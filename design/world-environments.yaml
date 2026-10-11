@@ -1,0 +1,87 @@
+schema_version: 1
+project: scalfagus
+version: 0.1
+status: owner_approved_domains_and_mvp_land_only_with_world_preset_proposals
+specification: design/world-environments-and-map-authoring-2026-10-11.md
+decision: DEC-026
+natural_domains:
+  man:
+    faction: man
+    element: earth
+    environment: terrestrial_ground
+    future_fantasy: [ground_vehicles, mobile_ground_infrastructure, land_fortifications]
+    mvp_path_domain: ground
+    innate_ground_stat_bonus_in_mvp: false
+  eth:
+    faction: eth
+    element: air
+    environment: atmosphere_and_levitation
+    future_fantasy: [hovering_structures, flight, meditation_relocation_on_network]
+    mvp_path_domain: ground
+    default_pylon_airborne_or_mobile_in_mvp: false
+  org:
+    faction: org
+    element: water
+    environment: aquatic_biological_ecology
+    future_fantasy: [aquatic_organisms, amphibious_colonies, submarine_logistics]
+    mvp_playable: false
+    later_ground_combat_allowed: true
+traversal_domains:
+  declared_for_future: [ground, water_surface, underwater, air, space]
+  actually_implemented_first_mvp: [ground]
+  requires_explicit_unit_capability_per_domain: true
+  no_automatic_swimming_or_flying_by_faction_affinity: true
+terrain_liquid_vs_resource_liquid:
+  distinct_entity_categories: true
+  terrain_liquid_body:
+    fields: [id, substance_id, geometry, surface_height_level, depth_m, movement_permissions, cover_or_hazard_rules]
+    may_exist_without_harvestable_resource_source: true
+    blocks_unbridged_ground_path_in_mvp: true
+  collectible_liquid_source:
+    fields: [id, source_form, deposited_resource_id, amount_remaining, harvest_permissions]
+    extraction_allowed_in_first_mvp: false
+  liquid_body_never_creates_automatic_currency: true
+  gas_is_never_energy_implicitly: true
+  same_world_3d_geometry_for_all_camera_modes: true
+world_presets:
+  earthlike_jungle:
+    first_mvp: true
+    water_present: true
+    liquid_substance_id: freshwater
+    biome: humid_tropical_alien_jungle
+    visual_character: earthlike_with_subtle_exotic_flora
+    cover: [large_living_tree_trunks, massive_roots, fallen_log_obstacles]
+    traversable_ground: true
+    swimming_enabled: false
+    solid_surface_resources: [surface_rock, deadwood_deposit]
+  space_platform_dense_fluid:
+    first_mvp: false
+    water_present: false
+    nonwater_liquid_present: true
+    default_substance_id: dense_synthetic_coolant
+    geometry: [metal_platforms, coolant_basins, engineering_pipes]
+    no_assumption_that_space_vacuum_is_liquid: true
+  waterless_arid_planet:
+    first_mvp: false
+    water_present: false
+    possible_nonwater_liquids: [hydrocarbon_pool, liquid_salt, cryogenic_fluid]
+    no_open_water_required: true
+    classical_desert_or_barren_rts_visual_tone: true
+  bare_rock_dry_exception:
+    first_mvp: false
+    water_present: false
+    may_have_no_open_liquid_if_scenario_explicitly_opts_out: true
+first_mvp_liquid_assertions:
+  maps_include_at_least_one_liquid_body: true
+  must_be_freshwater_on_earthlike_jungle: true
+  harvestable_source_forms: [solid]
+  extractable_liquid_source_count: 0
+  extractable_gas_source_count: 0
+  liquid_has_collision_and_shoreline_visuals: true
+  available_faction_units_walk_on_ground_only: true
+  moving_ground_units_cannot_enter_unbridged_liquid: true
+  no_swimming_flying_or_sailing_abilities: true
+  hero_first_person_collider_uses_same_liquid_blocking_as_rts: true
+owner_vs_candidate:
+  approved: [man_earth, eth_air, org_water, land_only_mvp, environmental_liquid_bodies_mandatory_in_first_supported_maps, jungle_earthlike]
+  proposed: [additional_world_substance_names, future_movement_domains, waterless_exception_preset, exact_liquid_collision_rules_and_visuals]
