@@ -1,5 +1,10 @@
 # SCALFAGUS — Coding-Agent Contract
 
+## OWNER PRODUCT VISION — THREE CONTROL MODES (POST-MVP0)
+
+**Read [command-autonomy design](design/command-autonomy-modes-2026-10-11.md) and [machine-readable contract](design/command-autonomy-modes.yaml) when planning future agent autonomy.** Player can instantly switch **FULL MANUAL** (classic RTS explicit orders), **SEMI-AUTO** (bounded managers controlling chosen groups of units and buildings) and **FULL AUTO** (civilization-wide doctrines with explicitly delegated authority). Preset doctrines include **War, Industrial, Reconstruction, Expansion Preparation, Defensive Readiness and Balanced**. Candidate doctrine panel exposes **3 / 5 / 7 axes** with -1 / 0 / +1 temperatures; temperature biases legal behavior, but never grants authority, vision, free resources or stat bonuses. Explicit manual commands always win. No reset or duplicate resource transactions on live mode/preset switches. **These are design contracts, not implemented or MVP0 deliverables. DEC-033 MAN-vs-MAN RTS-only release scope is unchanged.**
+
+
 ## LATEST VERIFIED SOURCE AUDIT — OPEN P0 GATES
 
 Read the [consolidated mechanics findings](design/mvp-repository-mechanics-audit-2026-10-11.md) and [machine-actionable findings](design/mvp-repository-mechanics-audit.yaml) before editing the match. The [runtime parity checklist](design/mvp0-runtime-parity-gaps.yaml) has **CODE-GAP-01..17**, including corrected movement rate: `MirrorMatchState._walk()` moves **one cell only every third simulation tick**, not every tick. `mirror_view.gd` advances at **10Hz** in default GUI; the candidate sim specifies **20Hz**. Authoritative YAML map: **10 source nodes/1660 units**; current state: **4 source nodes/2500 units**.
