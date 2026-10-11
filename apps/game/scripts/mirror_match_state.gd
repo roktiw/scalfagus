@@ -273,8 +273,12 @@ func _walk(e: Dictionary, dest: Vector2i, adjacent_ok: bool = true) -> void:
     if tick % 3 != 0:
         return
     var route: Array = e["route"]
-    if e["route_target"] != dest or bool(e["route_adjacent"]) != adjacent_ok \
-            or int(e["route_revision"]) != navigation.revision or route.is_empty():
+    if (
+            e["route_target"] != dest
+            or bool(e["route_adjacent"]) != adjacent_ok
+            or int(e["route_revision"]) != navigation.revision
+            or route.is_empty()
+    ):
         route = _find_route(e["pos"], dest, adjacent_ok)
         e["route"] = route
         e["route_target"] = dest
