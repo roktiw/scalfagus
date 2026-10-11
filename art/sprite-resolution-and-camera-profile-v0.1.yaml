@@ -1,7 +1,9 @@
 schema_version: 1
 project: scalfagus
-status: proposed_art_technical_standard_needs_godot_visual_spike
+status: proposed_art_technical_standard_needs_godot_visual_spike_with_approved_unit_role_illustrations
 reference: art/faction-art-direction-and-transport-v0.2-2026-10-11.md
+canonical_base_role_reference: design/base-ecologies-and-expansion-2026-10-11.md
+eth_folklore_moodboard_reference: art/eth-ancient-aliens-folklore-and-pixel-lineages-2026-10-11.md
 resolution:
   minimum_supported:
     width: 320
@@ -116,22 +118,34 @@ transport_silhouette_fixtures:
     min: worm_grub_pincers_one_cargo_crop
     mid: shell_crawler_multiple_individual_cargo_sacs
     max: flying_mother_hanging_sacs_side_load_ports
-    key_vfx: cargo_sac_transfer_while_flying_in_motion
+    key_vfx_early: mother_hovers_still_while_worker_transfers_one_item_at_a_time
+    key_vfx_midgame_research: in_motion_cargo_handoffs_one_active_port
+    base_vfx: branching_vascular_conduits_with_live_connected_buds_and_wither
+    expansion_upkeep_vfx: periodic_real_home_origin_nourishment_deliveries
   man:
     min: suited_miner_or_drill_rover
-    mid: articulated_mobile_belt_three_or_five_cells
+    mid: articulated_mobile_belt_three_or_five_cells_one_person_bunker_or_sentry_wall
     max: ground_only_cargo_fortress_deploys_to_bunker
     key_vfx: real_packets_on_belt_ejected_behind_deployed_wall
+    independent_base_vfx: walking_and_tracked_modules_join_separate_and_reassemble
   eth:
     min: small_courier_probe_with_one_visible_capsule
-    mid: proposed_ring_relay_skiff_with_bounded_buffer
-    max: stationary_tall_pylon_with_storage_and_turret_modes
-    key_vfx: meditation_transition_shuts_cargo_gates_with_inventory_preserved
+    mid: multi_mode_storage_network_turret_pylon_with_optional_meditation_levitation
+    max: nexus_class_monument_with_pyramid_ziggurat_dome_halo_pattern_library
+    key_vfx: min_builder_holds_blue_network_beam_mid_pylon_seals_gates_for_meditation
+    reveal_rule: pending_detection_balance_no_unconditional_map_wide_visibility
+    construction: no_protoss_style_energy_orb_drop_and_leave
 quality_gates:
   - visual_distinction_for_each_faction_in_grayscale_at_320x240
   - identify_economic_min_mid_max_without_reading_UI_labels
   - distinguish_MID_MAN_3_cell_vs_5_cell_length
   - show_source_packet_and_destination_packet_during_transfers
+  - org_bud_requires_visible_vascular_connection_and_home_origin_supply_routes
+  - org_mother_stops_to_receive_or_dispatch_before_research
+  - man_mid_one_person_bunker_has_a_real_unit_and_zero_belt_flow
+  - eth_min_building_beam_active_until_job_finishes
+  - eth_mid_pylon_distinct_storage_network_turret_poses
+  - eth_max_nexus_distinct_from_mid_pylon_and_active_from_creation
   - no_cargo_disappears_when_MAN_wall_or_bunker_deploys
   - no_cargo_transfer_while_ETH_pylon_meditates_or_turrets
   - giant_ORG_mother_remains_targetable_without_obscuring_entire_map
