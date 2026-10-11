@@ -22,7 +22,7 @@ combat_rules:
   future_extensions: [water_surface, submerged, altitude, orbital]
 archetypes:
   worker:
-    description: 'Extraction, hauling, construction and repair, subject to equipment.'
+    description: 'Extraction, hauling, construction and repair or dedicated economic hub service; stationary MID/ MAX chassis are allowed for ETH.'
   fighter:
     description: 'Basic close-combat line unit.'
   shooter:
@@ -42,6 +42,8 @@ units:
         name: 'Sporeling'
         chassis_scale: min
         movement_domains: [land]
+        economy_role: independent_hunter_gatherer
+        construction_capability: l1_bud_only_when_growth_equipped_and_live_vessel_connected
         melee_targets: []
         ranged_targets: []
         status: baseline_proposal
@@ -49,16 +51,26 @@ units:
         name: 'Harvester'
         chassis_scale: mid
         movement_domains: [land]
+        economy_role: medium_cargo_gatherer
+        construction_capability: l2_bud_only_when_growth_equipped_and_live_vessel_connected
+        baseline_transfer_port_count: 1
+        baseline_items_per_handoff: 1
         melee_targets: []
         ranged_targets: []
         status: baseline_proposal
       max:
         name: 'Brood Carrier'
         chassis_scale: max
-        movement_domains: [land]
+        movement_domains: [air]
+        economy_role: flying_mother_transporter
+        construction_capability: l3_bud_only_when_growth_equipped_and_live_vessel_connected
+        baseline_mode_exclusivity: [move, receive, dispatch, extract]
+        baseline_transfer_port_count: 1
+        baseline_items_per_handoff: 1
+        rolling_handoffs: researched_only
         melee_targets: []
         ranged_targets: []
-        status: baseline_proposal
+        status: owner_approved_role_name_proposal
     fighter:
       min:
         name: 'Clawling'
@@ -197,6 +209,8 @@ units:
         name: 'Utility Drone'
         chassis_scale: min
         movement_domains: [land]
+        economy_role: scv_like_miner_builder_and_repairer
+        can_repair_eligible_units_and_structures: true
         melee_targets: []
         ranged_targets: []
         status: baseline_proposal
@@ -204,16 +218,24 @@ units:
         name: 'Engineer Rig'
         chassis_scale: mid
         movement_domains: [land]
+        economy_role: tracked_3_or_5_tile_mobile_conveyor_relay
+        conveyor_length_tiles: [3, 5]
+        exclusive_modes: [travel, conveyor, one_soldier_bunker, outward_sentry_wall]
+        garrison_capacity_in_one_soldier_bunker: 1
         melee_targets: []
         ranged_targets: []
-        status: baseline_proposal
+        status: owner_approved_role_name_proposal
       max:
         name: 'Mobile Constructor'
         chassis_scale: max
         movement_domains: [land]
+        economy_role: slow_mobile_warehouse_or_multi_soldier_bunker
+        mobility: very_slow_ground_only
+        self_deployment_requires_tag: true
+        resource_cargo_ejection_required_before_bunker: true
         melee_targets: []
         ranged_targets: []
-        status: baseline_proposal
+        status: owner_approved_role_name_proposal
     fighter:
       min:
         name: 'Marine'
@@ -352,23 +374,33 @@ units:
         name: 'Wisp'
         chassis_scale: min
         movement_domains: [land]
+        economy_role: independent_extractor_courier_and_network_mode_builder
+        blue_construction_beam_to_nearest_large_node: true
+        stays_busy_until_build_done_or_cancelled: true
         melee_targets: []
         ranged_targets: []
         status: baseline_proposal
       mid:
-        name: 'Shaper'
+        name: 'Pylon'
         chassis_scale: mid
-        movement_domains: [land]
+        movement_domains: []
+        economy_role: stationary_pylon_storage_relay_or_meditated_turret
+        defensive_transform_retains_cargo_and_locks_gates: true
+        eligible_levitation_relocation: proposed_template_specific
         melee_targets: []
         ranged_targets: []
-        status: baseline_proposal
+        status: owner_approved_role_working_name
       max:
-        name: 'Resonance Architect'
+        name: 'Nexus Core'
         chassis_scale: max
-        movement_domains: [land]
+        movement_domains: []
+        economy_role: nexus_class_large_node_from_creation
+        local_blueprint_cache_and_expansion_initializer: true
+        construction_beam_receiver: true
+        eligible_levitation_relocation: proposed_template_specific
         melee_targets: []
         ranged_targets: []
-        status: baseline_proposal
+        status: owner_approved_role_working_name
     fighter:
       min:
         name: 'Blade Adept'
