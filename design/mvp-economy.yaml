@@ -1,4 +1,7 @@
 schema_version: 1
+release_target: post_mvp_0_1_MAN_vs_ETH
+do_not_apply_first_release_micro_MVP0: true
+current_micro_MVP0_profile: design/mvp0-man-mirror-balance-v0.1.yaml
 project: scalfagus
 version: 0.2
 status: developer_balance_seed_NOT_owner_approved_prices_rates_or_recipes
