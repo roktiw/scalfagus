@@ -1,5 +1,13 @@
 # SCALFAGUS — Coding-Agent Contract
 
+## LATEST VERIFIED SOURCE AUDIT — OPEN P0 GATES
+
+Read the [consolidated mechanics findings](design/mvp-repository-mechanics-audit-2026-10-11.md) and [machine-actionable findings](design/mvp-repository-mechanics-audit.yaml) before editing the match. The [runtime parity checklist](design/mvp0-runtime-parity-gaps.yaml) has **CODE-GAP-01..17**, including corrected movement rate: `MirrorMatchState._walk()` moves **one cell only every third simulation tick**, not every tick. `mirror_view.gd` advances at **10Hz** in default GUI; the candidate sim specifies **20Hz**. Authoritative YAML map: **10 source nodes/1660 units**; current state: **4 source nodes/2500 units**.
+
+`scripts/check.sh` NOW includes `mirror_smoke.gd` and `mirror_visual_smoke.gd`; the visual smoke protects directional sprite assets, startup window and camera zoom, but assumes exactly **four** resource visuals until map migration. The separately runnable `mirror_batch.gd` is **not** part of `scripts/check.sh`. None of these were executed by this documentation audit; run pinned Godot and record actual exit status, seed and hashes before writing “green”. The **current first-release numeric candidate** is `design/mvp0-agent-implementation-contract.yaml`; the other `mvp0-man-mirror-balance-v0.1.yaml` is a different analytical experiment, not an active second source.
+
+**P0 coding order:** fix one timebase/profile → compile correct map/nav/collider/source data → verify paid end-to-end local RTS + smoke/headless → ENet host-authoritative two-client H-H → repeatable C-C + H-H QA. Do not start ETH/UMU/Energy or FPP work before DEC-033 MVP0 gates.
+
 ## P0 CODE-TO-RULE PARITY BLOCKERS (new source inspection)
 
 **Before tuning bot results or calling `mirror_batch.gd` balanced**, review [current map/timing/network gaps](design/mvp0-runtime-parity-gaps.md) and [machine list CODE-GAP-01..15](design/mvp0-runtime-parity-gaps.yaml). The experimental `mirror_match_state.gd` uses **2500** hard-coded source units, `MAX_TICKS=5400` and mining a full bag in 6 ticks; canonical authored Verdant Divide uses **1660** source units. The GUI `mirror_view.gd` currently advances at **10Hz** while the intended candidate simulator is **20Hz**, so simulation time, gathering, training and rifle ranges need normalization. New test scripts have not been verified by this audit. H-H ENet authority is still a release blocker.
