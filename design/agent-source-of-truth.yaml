@@ -128,6 +128,14 @@ historical_future_MAN_ETH_milestone:
   prior_delivery_gates_not_active: design/MVP-DELIVERY-GATES.md
   prior_three_camera_HUD_not_active: design/mvp-hud-and-input.yaml
   previous_agent_handoff_not_active: design/AGENT-MVP-IMPLEMENTATION.md
+latest_future_faction_recovery_DEC_037:
+  decision: DEC-037
+  human: design/faction-damage-recovery-shields-and-repair-2026-10-11.md
+  machine: design/faction-damage-recovery-shields-and-repair.yaml
+  org: slow_passive_HP_regen_fast_with_valid_live_vein
+  eth: natural_shield_regen_boosted_on_connected_Obelisk_and_whole_shield_consumed_for_partial_HP_cycles
+  man: biological_medicine_mechanical_service_optional_shields_require_battery_or_grid
+  post_MVP0_only: true
 latest_future_faction_storage_DEC_036:
   decision: DEC-036
   human: design/faction-storage-specialization-and-obelisk-traffic-2026-10-11.md
