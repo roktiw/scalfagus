@@ -1,6 +1,10 @@
 schema_version: 1
 project: scalfagus
-version: 0.4
+latest_owner_network_contract: design/three-network-channels-and-destruction-2026-10-11.md
+latest_owner_network_data: design/three-network-channels-and-destruction.yaml
+world_loot_and_recycling: design/world-loot-and-recycling.yaml
+victory_classification: design/victory-defeat-building-classification-2026-10-11.md
+version: 0.5
 status: owner_approved_identity_with_proposed_mechanics
 specification: design/colony-topologies-vascular-modular-resonant-2026-10-11.md
 legacy_transport_specification: design/faction-logistics-2026-10-11.md
@@ -85,7 +89,10 @@ factions:
       emergency_feeding_requires_real_worker_deliveries: true
       remote_fully_independent_outposts_default: false
       network_is_not_mandatory_shared_hive_mind: true
-      nutrient_signal_and_real_nourishment_only_not_global_build_material_wallet: true
+      finite_vessel_transit_for_resources_nutrition_energy_information: true
+      two_mitochondria_generate_actual_energy_with_initial_bootstrap: true
+      no_instant_global_material_wallet: true
+      dying_org_buildings_spit_partial_salvage_over_time: true
     branch_feeding_priority: ensure_survival_before_growth
     loss_policy: TBD
     proposed_doctrines: [swarm, giant, symbiosis]
@@ -98,15 +105,20 @@ factions:
     independent_outposts_without_home_contact: true
     radial_and_vertical_base_growth: true
     self_and_mutual_building_unit_repair: true
-    basic_power_dock:
+    universal_man_unit:
+      full_name: Universal Man Unit
+      abbreviation: UMU
       ground_mobile_generator_and_warehouse_or_bunker: true
+      reuse_existing_max_chassis_with_generator_kit: proposed
+      building_flag_persists_during_travel: true
       generates_only_while_deployed_with_valid_source: true
       small_storage_and_small_defensive_capacity: true
       optional_chassis_kit_to_avoid_extra_asset: TBD
       no_specialist_mid_max_role_replacement: true
     electric_grid:
       automatic_nearby_deployed_power_port_cables: proposed
-      finite_power_transfer_not_material_transport: true
+      hybrid_data_and_power_cable_with_distinct_service_bandwidth: true
+      no_material_packets_through_cable: true
       separate_independent_outpost_grids: true
       construction_uses_actual_locally_delivered_cargo: true
     mid_exclusive_modes: [travel, conveyor, one_soldier_bunker, outward_sentry_wall]
@@ -140,6 +152,9 @@ factions:
     core_elements: [min_worker_network_beam, mid_pylon_multi_mode, max_nexus_class, finite_couriers, local_pattern_archive]
     physical_cargo_and_couriers: true
     free_teleportation: false
+    unified_ether_network_for_resource_energy_and_information: true
+    lost_construction_beam_emits_committed_material_as_orbs_at_site: true
+    broken_ether_edge_escrow_can_spill_visible_orbs: true
     nexus_converts_physical_cargo_to_typed_ether_after_real_delivery: true
     converted_resource_cargo_moves_via_ether_freight_graph: true
     pylon_and_obelisk_are_one_mid_structure: true
@@ -157,7 +172,7 @@ factions:
       kind: pylon_obelisk
       resonance_supply_cap_and_network_information_relay: true
       ether_stock_and_relay_active_in_storage_mode: true
-      signal_active_but_ether_freight_closed_in_turret: proposed
+      single_network_relay_while_turret_with_reduced_transfer: proposed
       modes: [storage, network_relay, meditation, turret, conditional_levitating_move]
       finite_buffer_and_port_queues: true
       storage_and_network_handoffs: true
