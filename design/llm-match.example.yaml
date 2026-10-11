@@ -1,0 +1,42 @@
+# Illustrative LLM laboratory match, not an implemented configuration contract
+schema_version: "0.1-draft"
+session_context: skirmish
+control_preset: autonomous_rts
+objective_ruleset: territory_control
+map: prototype_mainland
+seed: 357
+observer_mode: live
+experiment_mode: single
+record_llm_actions: true
+controllers:
+  - faction: blergians
+    controller_type: llm
+    role: generalist
+    provider: local
+    model: example-local-model
+    decision_interval_ticks: 300
+    max_input_tokens_per_call: 4000
+    max_output_tokens_per_call: 600
+    fallback: scripted_ai
+  - faction: manusians
+    controller_type: scripted_ai
+    role: generalist
+  - faction: aetherians
+    controller_type: llm
+    role: generalist
+    provider: hosted
+    model: example-hosted-model
+    decision_interval_ticks: 300
+    max_input_tokens_per_call: 4000
+    max_output_tokens_per_call: 600
+    fallback: last_valid_plan
+rules:
+  base_ai: autonomous
+  strategy_ai: execute
+  worker_ai: full
+  combat_ai: doctrine
+  possession: disabled
+  fog_of_war: on
+# Provider credentials are server-side and must never be serialized in match files.
+# LLM calls are asynchronous; accepted actions are queued for validated future ticks.
+# Faithful replay consumes recorded model outputs rather than calling providers again.
