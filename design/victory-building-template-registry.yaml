@@ -1,0 +1,88 @@
+schema_version: 1
+project: scalfagus
+version: 0.1
+status: owner_approved_category_with_candidate_per_template_tags_pending_final_unit_catalog
+decision: DEC-024
+contract: design/victory-defeat-building-classification-2026-10-11.md
+victory_mode_default: annihilation
+key_policy:
+  owner_rule: no_surviving_completed_building_class_entities_on_opponent_team
+  entity_mobility_does_not_change_building_class: true
+  entity_mode_does_not_change_building_class: true
+  unit_vs_building_is_an_explicit_template_capability_tag_not_chassis_size: true
+  every_living_eligible_entity_counted_once: true
+  original_complete_mobile_building_does_not_stop_counting_while_packed: true
+  unfinished_construction_does_not_count: true
+  destroyed_wreck_does_not_count: true
+  unbuilt_ghost_foundation_does_not_count: true
+  free_loot_object_does_not_count: true
+  standalone_vein_or_cable_edge_does_not_count: true
+  hero_and_standard_soldier_not_building_by_default: true
+  generic_builder_not_building_solely_due_to_build_capability: true
+  custom_future_deployable_building_class_must_be_explicitly_authorized: true
+examples:
+  org:
+    root_nexus: {victory_building: true, complete_required: true}
+    any_completed_living_organ_building: {victory_building: true, complete_required: true}
+    mitochondrion: {victory_building: true, complete_required: true}
+    incubating_cocoon_not_completed: {victory_building: false, becomes_true_after_completing_actual_building: true}
+    free_living_vessel_segment: {victory_building: false, unless_part_of_actual_named_completed_building: true}
+    max_flying_mother_transporter: {victory_building: false, despite_growth_support_if_equipped: true}
+    min_mid_mining_creatures_and_fighters: {victory_building: false}
+  man:
+    umu_ground_mobile_power_depot_bunker:
+      victory_building: true
+      when_deployed_warehouse: true
+      when_deployed_bunker: true
+      while_packed_and_moving: true
+      suggested_chassis: existing_max_mobile_depot_with_generator_kit
+    max_mobile_structural_warehouse_bunker: {victory_building: true, in_depot_bunker_and_travel: true}
+    mid_infrastructure_conveyor_wall_bunker:
+      victory_building: proposed_true_when_tagged_as_infrastructure_chassis
+      count_remains_during_travel_and_mode_change: true
+      tagging_to_freeze_before_mvp: true
+    mid_or_other_ordinary_transport_vehicle_without_structure_tag:
+      victory_building: false
+    scv_min_worker: {victory_building: false}
+    unfinished_frame_with_only_installed_materials: {victory_building: false}
+    salvage_excavation_ruin: {victory_building: false}
+    separately_built_finished_power_generation_building: {victory_building: true}
+  eth:
+    mid_pylon_obelisk:
+      victory_building: true
+      modes_that_count: [storage_relay, meditation, turret, future_in_network_meditated_move_if_unlocked]
+    max_nexus:
+      victory_building: true
+      modes_that_count: [initialized_core, local_expansion_core, legal_future_levitation_if_unlocked]
+    min_courier_network_builder:
+      victory_building: false
+      entering_construction_network_mode_does_not_make_worker_a_building: true
+    unfinished_eth_manifestation:
+      victory_building: false
+      consumed_on_abort_and_drops_committed_material_orbs: true
+  all_factions:
+    any_other_authorized_completed_building:
+      victory_building: true
+      includes_finished_production_storage_extraction_tower: true
+    loose_world_packages: {victory_building: false}
+    physical_sealed_liquid_or_gas_cans: {victory_building: false}
+    resource_vent_or_unmined_solid: {victory_building: false}
+    utility_cable_segment: {victory_building: false}
+    bare_road_or_conveyor_edge_without_own_finished_structural_entity: {victory_building: false}
+    deployed_soldier_shield_or_temporary_combat_ability: {victory_building: false}
+    garrisoned_troops: {victory_building: false, garrison_building_counts_if_alive: true}
+evaluation:
+  authoritative_fixed_tick_end: true
+  evaluate_after_damage_death_completed_morph_ownership_transfer_and_completion: true
+  only_team_with_positive_count_wins: true
+  no_positive_teams: draw_if_simultaneous_loss_proposed
+  zero_building_team_defeated_even_with_workers_hero_salvage: true
+  no_resurrection_by_initiating_new_construction_after_team_eliminated: true
+  already_captured_building_counts_for_exactly_one_team: true
+  no_required_resource_depletion: true
+  no_required_total_soldier_elimination: true
+optional_modes:
+  heartstrike: not_default_requires_designated_owner_heart
+  domination: not_default_future
+  time_limit: not_default
+acceptance_fixture: design/victory-defeat-acceptance-cases.yaml
