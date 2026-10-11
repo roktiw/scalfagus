@@ -1,0 +1,175 @@
+schema_version: 1
+project: scalfagus
+version: 0.1
+status: owner_directed_structure_with_proposed_mechanics_and_balance_parameters
+specification: design/three-network-channels-and-destruction-2026-10-11.md
+latest_decisions: [DEC-021, DEC-022, DEC-023]
+companion_world_loot: design/world-loot-and-recycling.yaml
+shared:
+  spendable_resource_ids: [matter, volatiles, energy]
+  physical_resource_forms: [solid, liquid, gas]
+  deposits:
+    solid: worker_direct_gather_without_extraction_building
+    liquid: worker_direct_slow_small_or_optional_pump
+    gas: completed_capture_rig_required
+  all_networked_resource_transfers_finite_and_accounted: true
+  physical_world_drops_collectible_by_all_factions: true
+  construction_contributor_caps_by_third:
+    org: [3, 2, 1]
+    man: [1, 2, 2]
+    eth: [1, 2, 3]
+  world_drop_shapes: {org: tetrahedron, man: cube, eth: orb}
+  world_drop_colors: {solid: "#E8AF42", liquid: "#36C4D8", gas: "#B58AF6"}
+networks:
+  eth:
+    system_count: 1
+    one_graph_shared_by_services: [typed_ether_freight, knowledge_and_blueprint_information, energy_transfer, resonance_support]
+    node_template: mid_pylon_obelisk
+    node_baseline_mobility: anchored
+    future_mobility: meditation_and_move_along_existing_connected_network_line_optional_upgrade
+    max_template: nexus_class_core_from_initial_deployment
+    min_jobs: [physical_gather, physical_transport_to_nexus, sustained_network_beam_construction]
+    resource_conversion:
+      location: eligible_nexus_only
+      requires_real_physical_input: true
+      transforms_storage_representation_not_spendable_resource_identity: true
+      ether_is_new_currency: false
+      type_and_quantity_accounting_preserved: true
+      no_unlimited_ether_teleport: true
+    pylon:
+      supports_units_and_buildings_with_finite_resonance_cap: true
+      forwards_network_messages_and_blueprints: true
+      forwards_actual_typed_ether_and_energy_at_finite_bandwidth: true
+      exclusive_service_modes: [storage_relay, meditating, turret]
+      storage_relay_provides_local_pickup_and_storage_service: true
+      turret_provides_bounded_combat_and_reduces_local_freight_service: true
+      unified_connection_remains_if_turret_in_baseline_variant: proposed
+      turret_relay_bandwidth_reduction_fraction: TBD
+      stored_ether_retained_during_mode_change: true
+      future_upgrade_does_not_cross_disconnected_networks: true
+    network_balance:
+      connected_resource_pool_is_real_sum_of_per_node_stock: true
+      even_distribution_target: proportional_node_fill_ratio_proposed
+      finite_per_edge_bandwidth_and_latency: true
+      finite_node_capacity_and_service_rate: true
+      construction_reservations_precede_background_equalization: true
+      cut_network_partition_keeps_exact_pre_cut_held_node_balances: true
+      cut_does_not_replicate_resources_to_each_new_network: true
+      merger_does_not_instantly_bring_network_to_equilibrium: true
+      local_initialized_nexus_remains_valid_with_known_blueprints: true
+      unknown_blueprints_need_actual_network_path_to_library: true
+      relay_flags_like_settlers_define_possible_paths: true
+      edge_escrow_packet_drops_on_actual_rupture: proposed
+    building_interruption:
+      zero_progress_immediately_when_last_required_beam_lost: true
+      drop_all_actually_committed_material_inputs_at_build_site_immediately: true
+      no_double_refund_to_contributing_nexus: true
+      nonrefundable_spent_channel_energy_and_labor_time: true
+      item_shape_on_drop: orb
+      raw_orbs_must_be_carried_to_nexus_to_reenter_network: true
+  org:
+    system_count: 2
+    names: [physically_living_vessels, mitochondrial_energy_generation]
+    vascular_network:
+      topology: home_rooted_live_physical_tissue_graph
+      transfers: [finite_physical_resource_packets, nourishment, energy, information]
+      source_material_resource_identity_preserved: true
+      source_transporter_min_mid_max_loops_still_exist: true
+      bulk_resources_do_not_become_uniform_virtual_global_balance: true
+      actual_vessel_capacity_and_rate: finite_TBD
+      distant_buds_need_connected_live_vessel: true
+      distant_colonies_need_physical_home_origin_nourishment_even_if_self_gathering: true
+      cut_triggers_real_stored_packet_leaks_and_gradual_decay: true
+      detached_colony_can_maintain_local_reserves_for_finite_time: true
+    mitochondrial_system:
+      organ_template: mitochondrion
+      explicit_owner_request_two_mitochondria: true
+      candidate_requirement: minimum_two_completed_connected_mitochondria_per_active_powered_component
+      exact_scope: unresolved_test_per_network_or_per_local_colony
+      starter_nexus_bootstrap_energy_or_seed_supply_until_first_pair: required_to_avoid_softlock
+      outputs_finite_actual_energy_with_real_recipe: true
+      vessel_network_carries_power_nutrition_information: true
+      second_mitochondrion_required_for_full_sustained_power_output: proposed
+      one_mitochondrion_emergency_output_policy: TBD
+      home_origin_nourishment_dependency_not_canceled_by_mitochondria: true
+    metabolism:
+      completed_connected_viable_living_buildings_add_supply_cap: true
+      each_unit_eats_using_real_finite_feed: true
+      support_slots_are_not_a_fourth_currency: true
+    construction:
+      must_have_live_rooted_vessel: true
+      requires_tending_workers_during_incubation: true
+      no_worker_causes_gradual_bud_decay: true
+      bud_decay_emits_some_embodied_resource_items_progressively: true
+      vein_severed_causes_only_actually_dying_buildings_to_spit_salvage: true
+      emitted_fraction_less_than_total_embodied_material: proposed
+      salvage_packaging: tetrahedron
+  man:
+    system_count: 3
+    names: [umu_power_bunker_warehouse_infrastructure, physical_material_delivery_and_salvage, hybrid_power_and_information_cables]
+    universal_man_unit:
+      unit_name: Universal Man Unit
+      short_id: umu
+      status: owner_named_primary_module
+      first_implementation: existing_max_depot_bunker_chassis_with_generator_module
+      creates_extra_competing_max_template: false
+      no_flight: true
+      mobility: wheels_or_tracks_ground_only
+      generator_requires_deployed_and_valid_input: true
+      exclusive_modes: [deployed_generator_warehouse, deployed_generator_bunker, packed_ground_travel]
+      bunker_generation_reduced: proposed
+      warehouse_generation_full: proposed
+      ground_travel_generation_disabled: proposed
+      large_bulk_storage_kept_from_existing_max: true
+      multi_soldier_bunker_kept_from_existing_max: true
+      must_unload_or_lock_real_goods_when_converting_to_bunker: true
+      original_nexus_may_be_composition_of_modules: true
+      independent_remote_umu_outposts_can_run_without_home: true
+    material_logistics:
+      all_construction_parts_real_physical_world_inventory: true
+      fetch_sources: [min_worker_inventory, nearby_universal_umu_warehouse, nearby_nexus_component, eligible_transport_vehicle, real_ground_packets, source_mine_or_gas_collector]
+      delivered_crates_can_stay_loose_near_build_site_and_be_stolen: true
+      installed_materials_remain_in_frame_and_need_salvage_mining_to_recover: true
+      unfinished_build_progress_persists_at_precise_percent: true
+      any_faction_eligible_worker_can_excavate_ruin: true
+      excavation_fraction_less_than_installed_inputs: true
+      mid_role_still_specialized_3_5_tile_belt_or_1_soldier_bunker_or_sentry_wall: true
+      cable_does_not_material_teleport: true
+    hybrid_fiber_power_lines:
+      physical_cable_type: one_hybrid_tether_with_optical_data_fibers_and_power_conductors
+      one_order_installs_both_information_and_electric_services: proposed
+      electricity_through_only_pure_optical_fiber_without_conductor: false
+      distinct_logical_services: [data_information, electricity_energy_power]
+      raw_solid_liquid_gas_materials_on_cable: false
+      physical_routing_and_damage: true
+      short_range_auto_snapping_for_deployed_umu_modules: proposed_mvp
+      long_range_route_order_built_repaired_by_scvs: proposed
+      data_capacity_and_power_capacity_accounted_separately: true
+      disconnected_outpost_still_runs_on_own_umu_generation_or_batteries: true
+      no_compulsory_fiber_link_to_original_nexus: true
+    unfinished_build:
+      immediate_termination_does_not_make_frame_disappear: true
+      loose_delivered_material_packets_still_physical: true
+      to_salvage_installed_material_requires_repeated_excavation_actions: true
+      collected_salvage_packaging_can_repack_across_factions: true
+      item_shape_on_initial_drop: cube
+    power_support:
+      power_available_through_finite_umu_generation: true
+      battery_energy_stored_in_existing_currency_or_local_capacitor: true
+      no_new_power_currency: true
+      brownout_grace_with_finite_stored_energy: proposed
+exclusions:
+  - no_third_separate_eth_subgraph_for_energy_or_information
+  - no_only_nutritional_org_vessels_without_resource_transfer
+  - no_global_man_construction_wallet_via_fiber
+  - no_power_dock_as_new_fourth_overlapping_big_man_module_without_proof
+  - no_magical_immediate_eth_refund_to_home_after_destroyed_network_beam
+  - no_generating_two_complete_buildings_from_one_salvage_batch
+simulation:
+  simulation_authority: one_world_deterministic_ledger
+  transfers_reservations_destruction_drops_and_collection_are_transactional: true
+  after_link_cut_recompute_local_components_and_emit_only_real_custody_packets: true
+  construction_cost_check_requires_real_local_legal_resources: true
+  infrastructure_mode_changes_cost_time_and_reduce_alternative_throughput: true
+  salvage_loop_positive_yield: forbidden
+acceptance_test_ids: [NET-021, NET-022, NET-023, NET-024, NET-025, NET-026, NET-027, NET-028, NET-029, NET-030]
