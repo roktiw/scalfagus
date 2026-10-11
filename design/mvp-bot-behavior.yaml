@@ -1,0 +1,101 @@
+schema_version: 1
+project: scalfagus
+version: 0.1
+status: implementation_candidate_not_ai_strength_promise
+scope: local_1v1_bot_can_play_MAN_or_ETH
+roster: design/mvp-man-eth-catalog.yaml
+economy: design/mvp-economy.yaml
+map: design/mvp-verdant-divide-map.yaml
+victory: design/match-rules.yaml
+bot_rules:
+  uses_same_units_buildings_costs_and_map_as_human: true
+  authoritatively_issues_player_equivalent_commands: true
+  cannot_teleport_or_instantly_debit_remote_resources: true
+  cannot_ignore_fog_of_war_or_undiscovered_targets: true
+  cannot_ignore_UMU_modes_or_ETH_construction_beams: true
+  cannot_collect_terrain_liquid_as_resource: true
+  no_llm_or_network_API_required_in_first_MVP: true
+  decisions_at_deterministic_interval: every_10_fixed_ticks_candidate
+  stable_seed_for_equal_player_commands: true
+  easy_first_MVP_strength: basic_scripted_finite_state
+  AI_builds_at_most_one_new_expansion_outpost_in_this_slice: false
+  advanced_rushes_and_research: out_of_scope
+goals_in_priority_order:
+  - id: survive
+    when: under_attack_or_last_building_threatened
+    action: protect_or_retreat_units_repair_if_legal_and_healthy_worker_available
+  - id: maintain_workers
+    when: worker_count_below_desired_3_and_real_matter_affordable
+    action: queue_min_at_mother
+  - id: gather
+    when: any_idle_workers_and_known_reachable_solid_source
+    action: dispatch_worker_to_source_then_real_delivery_to_mother
+  - id: infrastructure
+    when: no_UMU_or_pylon_and_actual_local_resources_legal
+    action: build_one_UMU_or_pylon_using_faction_correct_method
+  - id: barracks
+    when: own_barracks_missing_and_funded
+    action: build_one_race_appropriate_soldier_producer
+  - id: soldier
+    when: barracks_operational_and_population_support_available
+    action: queue_soldier_with_real_matter_and_energy
+  - id: scout
+    when: has_soldier_and_has_unexplored_reachable_lane
+    action: scout_nearby_forest_route_obeying_visible_cover_and_water
+  - id: attack
+    when: has_3_or_more_combatants_and_valid_discovered_target
+    action: attack_known_enemy_building_or_visible_enemy_army_then_resume_objective
+  - id: recover
+    when: missing_parts_or_energy_or_ether_connection
+    action: fetch_real_materials_relay_power_or_repair_legal_source_network
+  - id: clean_up
+    when: accessible_safe_enemy_loose_Matter_and_idle_worker
+    action: loot_and_physically_haul_only_if_no_more_urgent_orders
+race_specific:
+  man:
+    preferred_first_building: man_umu
+    site_requires_actual_crates: true
+    umu_deploy_as_generator_warehouse_by_default: true
+    emergency_umu_bunker_when_soldiers_available: conditional_candidate
+    short_range_hybrid_power_data_cable_connect_automatically: proposed
+    no_infinite_energy_when_packed: true
+    choose_safe_dry_ground_and_paths_large_enough_for_UMU: true
+    unfinished_site_remains_after_worker_leaves: true
+  eth:
+    preferred_first_building: eth_pylon_obelisk
+    physical_raw_pickup_deliver_to_eligible_Nexus: true
+    never_encode_into_Ether_without_Nexus_conversion: true
+    occupied_min_blue_beam_to_valid_Nexus_for_construction: true
+    interrupt_last_beam_must_eject_committed_material_orbs: true
+    send_Ether_at_limited_real_link_rates_and_storage: true
+    avoid_funding_from_disconnected_subnet: true
+    pylon_storage_relay_by_default: true
+    switch_pylon_to_turret_if_threat_and_energy_available: conditional_candidate
+production:
+  min_target_count: 3
+  soldier_attack_group_target_count: 3
+  supply_constrained: true
+  energy_constrained: true
+  cannot_queue_costly_unit_if_unfunded: true
+  affordability_checked_from_legal_local_faction_sources: true
+map_behavior:
+  favor_shortest_safe_real_paths_not_paths_through_tree_trunks: true
+  avoid_unbridged_liquid: true
+  no_unseen_player_HQ_position_targeting_before_reveal: true
+  known_start_zone_may_be_scouted_as_general_map_coordinate: true
+  scouting_and_depleted_solid_logic_finite: true
+  do_not_spawn_colliding_decoration: true
+defeat:
+  opponent_defeated_when_no_live_completed_victory_building_entities: true
+  mobile_packed_man_UMU_still_valid_enemy_building: true
+  surviving_worker_or_loot_does_not_block_win: true
+  bot_can_surrender_when_authorized_by_rules: true
+telemetry:
+  - observed_enemy_buildings
+  - bot_commands_issued_per_minute
+  - illegal_or_unfunded_orders_rejected
+  - bot_stuck_path_count
+  - time_to_first_funded_soldier
+  - bot_win_loss
+  - resource_ledger_replay_hash
+acceptance_test_ids: [MVP-13, MVP-14, MVP-15, MVP-16, MVP-21, MVP-22]
