@@ -8,6 +8,12 @@ owner_latest_concepts: design/three-network-channels-and-destruction.yaml
 world_loot_contract: design/world-loot-and-recycling.yaml
 historical_note: former_separate_small_power_dock_is_now_UMU_research_alternative
 storage_specialization_decision: DEC-036
+recovery_decision: DEC-037
+recovery_contract: design/faction-damage-recovery-shields-and-repair.yaml
+ORG_slow_passive_HP_regeneration: true
+ORG_vein_access_accelerates_HP_regeneration: true
+MAN_bio_needs_medicine_and_mech_needs_repair: true
+MAN_optional_shields_need_battery_or_power_grid: true
 storage_specification: design/faction-storage-specialization-and-obelisk-traffic.yaml
 canonical_currency_ids: [matter, volatiles, energy]
 source_forms: [solid, liquid, gas]
