@@ -166,6 +166,15 @@ man:
     - whether_mid_max_are_displaced_by_power_dock
     - building_completions_from_local_stock_vs_courier_fetch
 org:
+  preferred_vein_port_specification_DEC_039: design/org-plug-holes-and-eth-three-ingress-methods.yaml
+  universal_plug_hole_port:
+    status: design_candidate_OWNER_choice_between_Plug_Hole_only_and_hybrid_still_open
+    accepts_compatible_transport_units_by_scale: [min, mid, max]
+    direction: bidirectional
+    transfer_limit_obeys_existing_DEC_011_one_worker_one_item_initially: true
+    underlying_vein_must_be_live_and_have_finite_available_capacity: true
+    cyst_rejects_incompatible_resource_type: true
+  specialty_mouth_organ: optional_for_digestion_feeding_and_extraction
   universal_vein_transport:
     bidirectional_typed_resources_nutrients_Energy_information: owner_approved
     two_way_traffic_share_finite_throughput: proposed
