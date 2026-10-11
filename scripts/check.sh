@@ -3,6 +3,7 @@ set -euo pipefail
 source "$(dirname "$0")/env.sh"
 cd "$SCALFAGUS_ROOT"
 require_godot
+bash scripts/install-godot-addons.sh --ensure
 # Optional source-level parity: PyYAML is needed only for OFFLINE authoring,
 # never to launch or export the Godot game.
 if command -v python3 >/dev/null 2>&1; then
@@ -16,6 +17,7 @@ else
   echo 'MAP_SOURCE_CHECK_SKIPPED: Python3 not found; run scripts/check-map-source.py with Python3.'
 fi
 "$GODOT_BIN" --headless --path apps/game --editor --import --quit
+"$GODOT_BIN" --headless --path apps/game --script res://tests/addons_smoke.gd
 "$GODOT_BIN" --headless --path apps/game --script res://tests/smoke.gd
 "$GODOT_BIN" --headless --path apps/game --script res://tests/menu_smoke.gd
 "$GODOT_BIN" --headless --path apps/game --script res://tests/rts_smoke.gd

@@ -1,0 +1,100 @@
+# Scalfagus — Three-Faction Logistics: Current Canon and Decisions
+
+**Updated:** 2026-10-12  
+**Audience:** game-design and Godot implementation agents.  
+**Purpose:** concise, actionable **overview** of decisions DEC-035–039 and the prior network rules. This is an index/summary, **not a competing source** of numerical balance or a new owner approval. Follow the linked contracts and newer owner decisions in case of conflict.
+
+> **Current release boundary (DEC-033): MVP 0.1 is MAN vs MAN only** with four active templates (Command Core, MIN, Barracks, Rifleman) and physical SOLID → worker → own HQ Matter delivery. No conveyors, UMU, ORG, ETH, multi-resource advanced economy, shields or unit-relay networks in this MVP. Do not expand release scope due to this document.
+
+## One-line identity
+
+- **MAN — engineer a factory:** physical vehicles, conveyor belts, compartmentalized UMU depots, modular power and mobile infrastructure.
+- **ORG — grow a living organism:** large biological mother carriers, bidirectional living veins, dock ports and mono-resource cysts.
+- **ETH — design a network:** ground-foot Obelisk drone flags plus elevated bidirectional tip-to-tip Ether links, with mixed real per-node levitated storage, Energy costs, congestion and slow network unit relays.
+
+All resource transfers are **real, finite, attributable and time-consuming**. No unlimited global wallet, instant teleported cargo, duplicate in-flight ownership or unlimited bandwidth. All factions can be directed by the RTS player and later scoped managers or civilization doctrines via the same authoritative rules.
+
+## Comparison matrix
+
+| Axis | MAN / Manusians | ORG / Organites | ETH / Etherans |
+| --- | --- | --- | --- |
+| Basic extraction | Physical workers, machines, compatible equipment | Biological gatherers and extraction organisms | Physical worker/drones before legal Ether injection |
+| Local delivery | Workers, finite transport vehicles, containers | MIN/MID/MAX compatible living transporters and mother-hauling organisms | Physical courier drones passing ground cargo between **Obelisk foot flags** |
+| Main network | **Real material belts**; separate hybrid electrical-power + optical-information conductor network that **cannot carry Matter** | One **live bidirectional vein/vessel substrate** for finite resources, nutrition, Energy, information; mitochondria provide biological power | One **bidirectional Ether graph** with straight visible links **between Obelisk tips** carrying typed resources, Energy, information and eligible slow unit transfers |
+| Directionality | **Two-way belts proposed for the first post-MVP conveyor slice**; both directions share finite capacity; later manual one-way lanes optional/TBD | Two-way living-vein freight is an owner direction, with bounded flow both ways | Two-way tips and physical drone relays are owner direction, with bounded hop/edge/node service |
+| Depot | Finite cargo in appropriate UMU/storage/bunker module modes, with physically legal open ports | Physical **cysts**, each holding **one resource type only** | At **Obelisk foot**: unlevitated physical ground stacks. At **tip**: actual mixed typed resources levitating around the node |
+| Specialization cost/benefit | Mixed UMU cargo is flexible; configuring one resource type increases **effective packing/storage capacity** | A cyst is mono-resource; biological binding/change incurs **real mutation/specialization cost**; reversibility details open | More homogeneous levitated stock costs **less upkeep Energy** for the same held quantity; mixed stock remains legal |
+| Network/store pressure | Belt junctions, physical lanes, vehicle/warehouse throughput and space | Finite vessel bandwidth, available docks/cysts, branch nourishment and living maintenance | **More levitated stock → lower node transit throughput** regardless of homogeneity; heavily loaded storage branches and lightly loaded transit trunks are strategically useful |
+| Infrastructure vulnerability | Cut belt/hauler route; power cable damage only breaks power/data, not hidden material pipeline; independent UMU outposts remain possible | Cut vein: partition, starvation and gradual withering after finite reserves; hit mother transporter to disrupt bulk flow | Cut graph: no cross-component free transfers; break tips/edges and disrupt cargo/slow unit transfer; loss of **actual levitation support** makes real tip stock **fall to ground once** |
+| Unique army mobility | Physical passenger transports if equipped | Physical organism carriers if equipped; veins do **not** convey troops as Ether-like packets | Slow, capacity-/cost-limited eligible **unit-to-unit identity-preserving transfer via linked Obelisks** (DEC-035); not instant teleport or relocation of built Obelisks |
+
+### MAN: industrial logistics and UMU
+
+1. Source → worker/vehicle → actual conveyor/warehouse/UMU → compatible factory/build site. Construction consumes stock held by a real custodian, never an arbitrary remotely powered wire.
+2. UMU is a mobile infrastructure chassis with generator/warehouse versus bunker/travel mode restrictions. Mixed cargo is convenient; choosing one good improves the same chassis's usable cargo capacity. No stock creation or loss on reconfiguration.
+3. For the **first actual belt implementation after MVP0**, the owner floated **universal two-way belt segments without mandatory manual orientation**. Recommended deterministic implementation arbitrates shared finite bandwidth, head-on traffic and backpressure. Expert one-way belt lanes with optional optimization are possible later, **not yet a permanent requirement**.
+4. Separate power and data channels share physical cable-routing infrastructure but never transport cargo themselves. Damage may leave nearby warehouses with their contents still physically accessible if ordinary material routes survive.
+
+### ORG: biology, vein logistics and cysts
+
+1. Gatherers and large living carrier organisms haul physical finite materials into a real bidirectional living vein system. Roots/veins transfer material, nutrients, Energy and information both ways with finite throughput, meaningful cuts, a nourishment need and biological power support.
+2. A **cyst** stores **exactly one** typed resource kind; it rejects incompatible goods. Re-specialization/mutation is not free and cannot instantly rebind a stocked cyst without physically handling remaining cargo. Whether changing cyst type is irreversible or simply expensive is **TBD**.
+3. An ORG **Plug Hole** is the **preferred, not finally owner-selected** universal logistics docking interface for eligible **MIN/MID/MAX transport workers**. A hybrid is plausible: Plug Holes for bidirectional network intake/dispatch, specialized mouths for food/digestion/extraction. Ordinary size/port fit and docking range/collision apply.
+4. **Do not override initial mother-transporter constraints:** one active worker handoff port, one resource item per completed handoff, initial MOVE / RECEIVE / DISPATCH / EXTRACT modes exclusive, later research to allow extra ports or moving handoffs.
+5. Cutting veins does not instantly delete all units or cyst cargo. Access partitions and local reserves matter; starving branches weaken/wither over finite time.
+
+### ETH: lower courier flags + upper Ether network
+
+**Two concurrent loops:**
+- **Lower loop:** at the feet of Obelisks, drones shuttle/carry actual ground piles from flag to flag (in both directions) as in The Settlers. This can function without upper levitation **if the ground workers/ports/paths remain viable**.
+- **Upper loop:** physical goods enter Ether through an authorized ingress method and travel as visible parcels along **straight tip-to-tip links**, hop by hop, at finite latency, congestion and network Energy service. All stock is real locally held at each Obelisk; no global instant resource pool.
+- A near-site ETH construction delivery **descends from a real tip inventory to Obelisk foot**, then reaches the legal construction site by a physical last-mile transfer, respecting builder blue-beam work, reservation and commit rules.
+
+**Three owner-selected ways to place raw resources into elevated Ether stock (DEC-039):**
+
+| Method | Ingress operation | Specific ingress cost | Other costs / drawbacks |
+| --- | --- | --- | --- |
+| **1. Nexus delivery** | Physically carry a legal raw cargo batch to Nexus | **0 incremental Energy for conversion/upload** | Real extraction, travel, finite queue/port and handling time; subsequent levitation upkeep is still payable |
+| **2. Shielded drone → Obelisk tip** | A qualified shielded drone reaches the tip and physically injects a finite batch | **33% of the injecting drone's blue shield** per upload operation; **33% of max shield per bounded batch is a technical candidate, NOT confirmed owner interpretation** | Vulnerable drone while shields recharge, finite batch capacity and tip-port congestion; distinguish from ETH consuming a whole shield for green HP (DEC-037) |
+| **3. Powered Obelisk ground pickup** | Authorized supported Obelisk lifts real, legal nearby foot/ground cargo into tip custody | **Highest real Energy tariff for comparable ingress** | Finite pickup radius/rate/ports, Energy/network availability, policy permissions |
+
+**The three legal alternatives supersede previous "Nexus-only raw conversion" exclusivity in DEC-021 for future ETH gameplay.** However, Nexus maintains its distinct core/pattern/blueprint authority: a random Obelisk uploads cargo, **not** Nexus research or civilization identity. There is no fourth money/resource.
+
+**Storage and failure:**
+- Obelisks can keep a mix of typed resources levitating around their structures. A more **homogeneous** levitated load consumes **less ongoing Energy at fixed quantity** than an equally loaded mixture. Levitation cost is still positive for nonempty inventory.
+- **Independent effect:** increasing the **amount** of levitated inventory decreases the node's **effective throughput**, regardless of cargo diversity. Even an all-Matter Obelisk at 100% occupancy is a slow through-relay; favor **storage sidings/spurs** and **clear lightly loaded trunk relays**. Background equalization must not force-fill protected mainline nodes.
+- Stationary ground piles do not pay levitation upkeep; their footprint, exposure, handling and real drone trips still matter.
+- When an Obelisk genuinely loses required **power/levitation service**, currently levitated stock falls into ground custody once. A graph split is not automatically total power loss for every surviving component if it retains legitimate sustain; a broken edge can separately drop cargo that was *actually in flight* at the rupture position. No duplication or refund of the same packet.
+- ETH-only troop transfer rides the same valid graph at finite time/ports/bandwidth, with persistent unit identity/HP/inventory; it is separate from cargo packets and lower drones. Cargo load, shields/recharge (DEC-037), Energy service and military traffic may contend according to a future explicit service policy.
+
+## Balancing principle
+
+| Faction | Real economic design question | Winning infrastructure tradeoff |
+| --- | --- | --- |
+| MAN | Where to place physical freight routes, depots, buffers and mobile power? | **Packing efficiency, footprint, route/junction capacity and industrial resilience** |
+| ORG | How many dedicated cysts, live veins, biological docks and transport organisms are needed? | **Mutation/specialization cost, nutrition, physiological redundancy and growth** |
+| ETH | What goes on the ground, what levitates, which Obelisks hold stock, and how is network Energy spent? | **Network topology, energy-efficient homogeneous levitation, separated warehouse branches and protected through-corridors** |
+
+Competitive parity comes from balancing **delivery latency, sustained throughput, setup/resource cost, Energy upkeep, stock safety, resilience and recovery**, not making three races perform identical deliveries with different visual effects.
+
+## Status: approved owner direction versus open engineering/design choices
+
+**Owner directions:** physical nonmagical logistics all factions; mono-type ORG cysts; MAN mixed/single-type UMU packing; ETH Obelisks with real mixed stock and lower throughput when fuller; homogeneous ETH storage cheaper Energy upkeep; two-way ORG veins and ETH links; ETH lower drones and elevated beams with drop-on-loss; all **three** ETH raw ingress methods with **33%** drone shield; ETH slow linked-unit relay; one shared authoritative world.
+
+**Still open / implementation candidates:** definitive ORG Plug Hole-only vs mixed Plug Hole + mouth aesthetic; port adaptation and mutation prices; reversibility of ORG cyst specialization; MAN early two-way belt finalization versus later one-way optimization, head-on collision algorithm; 33% shield reference basis (max/current) and exactly how much cargo constitutes an upload batch; Obelisk automatic pickup Energy charge and radius; non-Nexus uplink technology prerequisites; levitation and congested traffic coefficients, power/grace rules; ETH unit transfer safety/interruption policy.
+
+**Nothing described here is a claim of implemented/tested code.** Current documented Godot match is a narrower MAN mirror spike and the full DEC-033 first release still needs separate actual runtime verification.
+
+## Source-of-truth links
+
+1. [Decision register / latest scope authority](decisions.yaml) — DEC-033, DEC-035, DEC-036, DEC-037, DEC-038, DEC-039.
+2. [Broad faction logistics roles](faction-logistics.yaml).
+3. [MAN/ORG power docks and living veins](man-power-dock-and-org-vessel-mechanics.yaml).
+4. [ORG Plug Holes and ETH three ways of entering Ether](org-plug-holes-and-eth-three-ingress-methods-2026-10-12.md) and [contract](org-plug-holes-and-eth-three-ingress-methods.yaml).
+5. [ETH lower flag and upper levitating freight loops](eth-dual-loop-ground-flags-and-aerial-freight-2026-10-12.md), interpreted under **newer DEC-039** for uplink authority.
+6. [ETH network mechanics](eth-ether-network-mechanics.yaml), [ETH slow unit relay](three-faction-logistics-and-eth-unit-relay.yaml).
+7. [Storage specialization / congestion](faction-storage-specialization-and-obelisk-traffic.yaml), [two-way / homogeneous Energy efficiency](faction-bidirectional-logistics-and-homogeneous-storage.yaml).
+8. [Faction healing and shield recovery](faction-damage-recovery-shields-and-repair.yaml).
+9. [MVP0 hard boundary](mvp0-man-mirror-rts.yaml) and [coding agent guidance](../AGENTS.md).
+
+**Agent precedence:** Newer specific DEC requirements supersede older conflicting passages, but **do not overwrite historic source quotes**. In particular, DEC-039 overrides older "Nexus is the only Ether entry point" proposals without removing the Nexus's original blueprint role; DEC-036 prevents unconditional equalization across transit relays; DEC-033 remains the release gate.
