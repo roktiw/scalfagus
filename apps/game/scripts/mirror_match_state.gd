@@ -54,14 +54,15 @@ func setup(match_seed: int = 42, slot_controllers: Array = ["human", "bot"]) -> 
         players.append({"matter": 0, "kills": 0})
     _build_terrain()
     sources["west"] = {"pos": Vector2i(17, 31), "stock": 900}
-    sources["east"] = {"pos": Vector2i(46, 33), "stock": 900}
+    sources["east"] = {"pos": Vector2i(46, 32), "stock": 900}
     sources["center_n"] = {"pos": Vector2i(31, 13), "stock": 350}
     sources["center_s"] = {"pos": Vector2i(32, 50), "stock": 350}
     for side in range(2):
         var hx: int = 8 if side == 0 else 55
-        _spawn("hq", side, Vector2i(hx, 32))
+        _spawn("hq", side, Vector2i(hx, 32 if side == 0 else 31))
         for offset in range(3):
-            _spawn("worker", side, Vector2i(hx + (2 if side == 0 else -2), 30 + offset * 2))
+            var wy: int = 30 + offset * 2
+            _spawn("worker", side, Vector2i(hx + (2 if side == 0 else -2), wy if side == 0 else 63 - wy))
 
 func _build_terrain() -> void:
     # Fixed, symmetrical, walkable corridors; neutral impassable water/tree cells.
@@ -430,8 +431,10 @@ func _bot_tick(side: int) -> void:
         if closest != -1:
             issue_command(side, "attack", rid, closest)
         elif riflemen.size() >= 3:
-            # The opponent starting zone is common map knowledge, NOT enemy entity omniscience.
-            issue_command(side, "move", rid, Vector2i(54, 32) if side == 0 else Vector2i(9, 32))
+            # Opponent spawn zone is common map knowledge, not live hidden-unit coordinates.
+            var scouting_goal: Vector2i = Vector2i(54, 31) if side == 0 else Vector2i(9, 32)
+            if str(soldier["order"]) != "move" or soldier["target_pos"] != scouting_goal:
+                issue_command(side, "move", rid, scouting_goal)
 
 func _check_end() -> void:
     var alive: Array[bool] = [false, false]
