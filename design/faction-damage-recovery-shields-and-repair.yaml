@@ -1,0 +1,128 @@
+schema_version: 1
+project: scalfagus
+id: DEC-037
+version: 0.1
+date: "2026-10-11"
+status: owner_approved_recovery_asymmetry_rates_thresholds_and_costs_TBD
+narrative: design/faction-damage-recovery-shields-and-repair-2026-10-11.md
+prior_canon: [DEC-001, DEC-012, DEC-019, DEC-020, DEC-021, DEC-033, DEC-035, DEC-036]
+release_guard:
+  current: mvp_0_1
+  decision: DEC-033
+  mvp0_MAN_mirror_four_templates_unchanged: true
+  advanced_health_shield_and_network_regeneration_not_MVP0: true
+shared:
+  green_health_HP: finite_per_actor
+  blue_shield_HP: finite_if_actor_supports_shields
+  shield_and_health_are_separate_durability_layers: true
+  nominal_damage_order: shield_then_health
+  damage_type_exceptions: future_explicit_definition_only
+  no_overheal_or_overshield: true
+  destroyed_at_zero_health_not_resurrected_by_passive_heal: true
+  shield_capacity_is_not_fourth_economic_currency: true
+  energy_resource_ledger_remains_distinct_from_shield_durability: true
+  deterministic_authoritative_fixed_tick_accounting: true
+  no_double_consumption_or_healing: true
+  same_game_state_GUI_LAN_headless: true
+factions:
+  org:
+    default_shields: false
+    health:
+      baseline_passive_regeneration: true
+      baseline_rate: positive_slow_TBD
+      requires_external_healer_for_baseline: false
+      valid_live_vein_connection:
+        effect: faster_green_HP_regeneration
+        network_must_be_live_accessible_and_eligible: true
+        boosted_rate_gt_baseline_under_same_conditions: true
+        accelerated_service_real_nourishment_cost: TBD
+      cut_vein:
+        boosted_regeneration: disabled_or_bounded_buffer_if_later_approved
+        baseline_regeneration_can_continue_if_unit_is_still_viable: true
+        obey_existing_branch_starvation_withering: true
+  eth:
+    canonical_network_node_player_facing_name: Obelisk
+    shields:
+      present_for_eligible_templates: true
+      natural_regeneration_without_network: true
+      passive_rate: positive_TBD
+      delay_after_recent_damage: TBD
+      connected_Obelisk_network:
+        effect: faster_blue_shield_regeneration
+        eligible_connected_live_service_required: true
+        boost_gt_baseline_under_same_conditions: true
+        real_network_energy_and_bandwidth_cost: TBD
+        storage_pressure_compatibility: DEC-036
+      network_cut:
+        fallback_to_passive_regeneration: true
+        previously_earned_charge_preserved: true
+    green_health:
+      natural_autoregen_without_shield_conversion: not_approved
+      recovery_method: sacrifice_whole_recharged_shield_to_restore_finite_HP
+      shield_to_HP_conversion:
+        atomic_shield_debit_and_HP_credit: true
+        whole_shield_consumed_per_cycle: true
+        charge_to_full_before_conversion: recommended_interpretation_not_numeric_canon
+        actual_activation_threshold: owner_confirmation_or_balance_TBD
+        regained_green_HP_per_cycle: finite_positive_TBD
+        multiple_cycles_required_for_large_damage: true
+        fully_depleted_shield_after_conversion: true
+        healing_clamped_to_missing_HP: true
+        no_unused_shield_to_global_energy_currency_conversion: true
+        auto_activation_requires_explicit_delegate_permissions: true
+        interrupted_network_does_not_instantly_finish_cycle: true
+        actor_can_be_vulnerable_between_cycles: true
+  man:
+    biological:
+      passive_green_HP_regeneration: false
+      recovery: compatible_external_medical_treatment
+      healing_provider_and_cost: TBD
+    mechanical:
+      passive_green_HP_regeneration: false
+      recovery: compatible_service_or_repair
+      real_Matter_parts_time_and_Energy_cost: TBD
+    hybrid:
+      category_specific_rules: TBD
+    optional_force_shield:
+      only_selected_templates: true
+      passive_regeneration_without_power: false
+      recharge_requires_power_source: true
+      power_sources: [finite_local_battery, valid_powered_MAN_network]
+      energy_consumption_finite_and_ledger_accounted: true
+      empty_battery_and_no_powered_grid_means_zero_shield_recharge: true
+      legal_battery_can_continue_when_grid_severed: true
+      shield_to_HP_conversion_like_ETH: false
+      exact_battery_capacity_grid_rate_and_cost: TBD
+autonomy:
+  all_healing_repair_and_shield_actions_use_same_authoritative_command_gateway: true
+  manual_orders_override_managers: true
+  manager_auto_cycle_requires_permission: true
+  full_manual_does_not_grant_unsolicited_whole_shield_consumption: true
+open_questions:
+  - ETH_entire_shield_conversion_activation_threshold_full_capacity_preferred
+  - exact_ETH_shield_to_HP_conversion_yield_cooldown_and_combat_safety
+  - shared_Obelisk_bandwidth_priority_between_shield_boost_cargo_and_unit_relay
+  - ETH_boost_energy_spend_and_proximity_definition
+  - ORG_regeneration_nutrient_cost_and_accessible_live_vein_definition
+  - MAN_battery_recharge_ledger_grid_draw_and_support_class_catalog
+  - MAN_hybrid_health_service_rules
+  - optional_nondefault_shield_capabilities_by_unit_type
+acceptance_test_ids:
+  - HEAL-01
+  - HEAL-02
+  - HEAL-03
+  - HEAL-04
+  - HEAL-05
+  - HEAL-06
+  - HEAL-07
+  - HEAL-08
+  - HEAL-09
+  - HEAL-10
+  - HEAL-11
+  - HEAL-12
+  - HEAL-13
+  - HEAL-14
+  - HEAL-15
+  - HEAL-16
+  - HEAL-17
+  - HEAL-18

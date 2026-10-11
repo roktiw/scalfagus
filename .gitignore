@@ -8,3 +8,7 @@ build/
 apps/desktop/
 *.log
 logs/gha-local-*/linux-replay/godot.zip
+
+# Pinned Git submodules provide source; installer copies Godot subtrees locally.
+/apps/game/addons/godot_state_charts/
+/apps/game/addons/gut/

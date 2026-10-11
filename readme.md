@@ -5,6 +5,19 @@
 **CURRENT OWNER-APPROVED DELIVERY SCOPE (DEC-033):** MAN vs MAN (four templates: HQ / MIN worker / Barracks / Rifleman), Overlord RTS only, one floating platform map, finite carried Matter, basic production/combat/victory, and **Human-Human LAN/loopback, Human-Computer, Computer-Computer** (GUI watch or accelerated headless). This is an implementation plan, **not an existing playable feature**. FPP possession is future; TPP is not a production mode. ETH/ORG and advanced logistics are later milestones. Start with [agent contract](AGENTS.md), [MVP 0.1 design](design/mvp0-man-mirror-rts-2026-10-11.md), [YAML scope](design/mvp0-man-mirror-rts.yaml), [backlog](design/mvp0-man-mirror-backlog.yaml) and [headless lab](design/godot-headless-balance-lab-2026-10-11.md).
 
 
+## Godot plugins — local installation (no GitHub Actions dependency)
+
+Four MIT addons are enabled in the Godot project: RTS Framework (WIP reference), Keychain 2.1, Godot State Charts 0.22.5 and GUT 9.7.1 (dev tests). The last two are **pinned Git submodules**, copied into `apps/game/addons/` automatically on the first `bash scripts/dev.sh` or `bash scripts/check.sh` run; no manual AssetLib steps. LimboAI remains excluded due redundant AI stack and native binary portability. On initial checkout, a GitHub connection is required **once** for submodule sources. No downloads occur inside the running game.
+
+```sh
+git pull
+bash scripts/dev.sh --editor      # installs missing addons, opens editor
+bash scripts/check.sh             # independently checks real Godot locally
+bash scripts/install-godot-addons.sh --check  # offline addon inventory
+```
+
+Instructions: [Godot addon installation](docs/GODOT-ADDON-INSTALLATION-2026-10-11.md), [exact pins and status](architecture/godot-addons.lock.yaml). **GitHub Actions are currently unavailable (jobs fail before allocating a runner); never report their state as test evidence.** Keychain and State Charts gameplay integration is still a distinct future task.
+
 ## Engineering rule — DEC-034 Reuse First
 
 Do not reinvent Godot A*, raycasting, UI, keybinds, physics, generic FSMs or networking. **Wrap built-in Godot facilities first**; use **pinned and audited GitHub/AssetLib modules** only when demonstrably beneficial. Keep game rules behind stable ports and use one authoritative command validation path. Read [ADR-0004](architecture/adr-0004-godot-reuse-first-wrappers.md), [21-capability map](architecture/godot-reuse-component-map.yaml), [third-party candidates](architecture/godot-third-party-candidates.yaml), [research](docs/GODOT-REUSE-RESEARCH-2026-10-11.md) and [agent playbook](docs/AGENT-REUSE-FIRST-PLAYBOOK.md). Candidates are NOT installed or locally runtime-tested simply by being listed.
@@ -14,6 +27,8 @@ Do not reinvent Godot A*, raycasting, UI, keybinds, physics, generic FSMs or net
 ## Universal world rule — DEC-030
 
 **Every playable Scalfagus battlefield is a floating platform in outer space.** The top can be brown-earth jungle with trees, welded metal patchwork, rock, desert, marshland or mixed terrain. Each platform has real traversable ground, visible outer rim/underside, hard invisible gameplay walls and space/starfield around it; the distant planet is backdrop only. **Ordinary planet-surface maps are not a valid alternative.** The first `Verdant Divide` map is a **stationary 64×64 candidate floating jungle platform**. No orbital movement, starship travel, spherical gravity, sailing/flying units or fluid harvesting in MVP.
+
+**Newest repo-wide findings:** [audited conclusions and coding order](design/mvp-repository-mechanics-audit-2026-10-11.md) · [machine-readable findings](design/mvp-repository-mechanics-audit.yaml) · [live-code mismatches](design/mvp0-runtime-parity-gaps.yaml). These are source-based reports; they do **not** certify passing Godot tests or LAN completion.
 
 **Coding agents for CURRENT MVP 0.1 start here:** [AGENTS.md](AGENTS.md) → [MAN mirror scope](design/mvp0-man-mirror-rts-2026-10-11.md) → [M0 backlog](design/mvp0-man-mirror-backlog.yaml) → [current implementation candidate values](design/mvp0-agent-implementation-contract.yaml) → [source-versus-rules P0 mismatches](design/mvp0-runtime-parity-gaps.md) → [M0 acceptance](design/mvp0-man-mirror-acceptance.yaml). **The previous `MVP-DELIVERY-GATES.md` and `mvp-implementation-backlog.yaml` describe a later MAN–ETH milestone, not the first playable release.** World law: [space-platform-world-contract](design/space-platform-world-contract-2026-10-11.md), [frame YAML](design/battlefield-frames.yaml), [surface material presets](design/platform-surface-presets.yaml), [first playable map YAML](design/mvp-verdant-divide-map.yaml), [acceptance](design/battlefield-frame-acceptance.yaml). The older MAN vs ETH five-role loop is a **later expansion**, superseded for the first playable release by DEC-033's MAN mirror 1v1.
 

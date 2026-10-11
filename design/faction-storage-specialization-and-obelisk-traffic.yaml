@@ -1,0 +1,127 @@
+schema_version: 1
+project: scalfagus
+decision_id: DEC-036
+version: 0.1
+date: "2026-10-11"
+status: owner_approved_storage_identity_engineering_values_and_edge_cases_proposed
+narrative: design/faction-storage-specialization-and-obelisk-traffic-2026-10-11.md
+homogeneous_levitation_efficiency: design/faction-bidirectional-logistics-and-homogeneous-storage.yaml
+latest_directional_transport_decision: DEC-038
+precedence:
+  current_release: DEC-033
+  prior_faction_logistics: [DEC-010, DEC-012, DEC-013, DEC-018, DEC-021, DEC-023, DEC-035]
+  supersedes: unqualified_full_ETH_network_equal_fill_proposal
+  no_MVP0_scope_change: true
+  post_MVP0_only: true
+identifiers:
+  eth_player_facing_name: Obelisk
+  eth_legacy_player_facing_term_not_for_new_content: Pylon
+  eth_existing_runtime_id_kept_until_explicit_migration: eth_mid_pylon
+  legacy_schema_aliases: [pylon_obelisk, eth_mid_pylon, pylon]
+  new_game_UI_and_lore_should_say_Obelisk: true
+shared_invariants:
+  resource_ids: [matter, volatiles, energy]
+  inventory_owner_and_real_custody_per_node: true
+  finite_storage_and_transfer: true
+  resources_not_created_by_configure_or_equalize: true
+  typed_resources_not_transmuted_by_storage_mode: true
+  explicit_authorization_for_mode_changes: true
+  GUI_LAN_headless_one_authoritative_ledger: true
+factions:
+  org:
+    storage_object: cyst
+    one_resource_kind_per_cyst: true
+    specialization_mutation_has_real_cost: true
+    mutation_undo_irreversibility_or_second_cost: TBD
+    accepts_mixed_resources: false
+    eligible_cyst_resource_kind: one_at_a_time
+    initial_empty_unassigned_possible: true
+    cannot_instantly_rebind_nonempty_cyst: true
+    rebinding_requires_actual_prior_unload_or_explicit_costed_removal: true
+    transport: [large_living_carriers, live_vascular_veins]
+    cyst_access_through_real_organism_or_vessel_delivery: true
+    on_vascular_partition_stock_stays_at_actual_cyst: true
+    capacity_and_cost: TBD
+    biological_nutrition_and_cyst_specific_eligibility: TBD
+  man:
+    storage_object: Universal_Man_Unit
+    abbreviation: UMU
+    modes: [mixed_cargo, dedicated_single_resource]
+    mixed_cargo:
+      allows_multiple_typed_resource_ids: true
+      shared_physical_capacity: finite
+      per_type_combination_allowed: true
+    dedicated_single_resource:
+      selected_resource_id_required: true
+      only_selected_resource_accepted: true
+      strictly_more_usable_capacity_than_mixed_at_equal_chassis: true
+      packing_density_and_exact_capacity_bonus: TBD
+    changing_mode:
+      explicit_player_or_authorized_manager_order: true
+      incompatible_existing_cargo_must_be_physically_unloaded: true
+      no_instant_disposal_or_resource_duplication: true
+      time_and_cost: TBD
+    existing_bunker_generator_packed_port_gates_remain: true
+    power_data_cable_carries_physical_material: false
+  eth:
+    building_canonical_name: Obelisk
+    cargo_visual: mixed_typed_Ether_orbs_levitating_around_Obelisk
+    more_homogeneous_levitated_mix_reduces_ongoing_energy_cost_at_equal_stock: true
+    mono_resource_levitation_energy_discount_is_not_free_or_zero_cost: true
+    resource_mix_energy_upkeep_is_independent_of_fullness_congestion: true
+    each_Obelisk_has_real_finite_local_storage: true
+    accepts_multiple_typed_resource_ids: true
+    same_existing_unified_Ether_Network: true
+    filled_storage_penalizes_node_transit_throughput: true
+    penalty_input: actual_occupied_node_capacity_fraction
+    response: monotonic_nonincreasing_with_fill
+    strictly_positive_storage_relay_service_floor_candidate: true
+    effective_traffic_limit_includes_link_and_node_capacity: true
+    formula_candidate: "max(min_service, floor(base_service * (1 - pressure_factor * occupancy_fraction)))"
+    all_rate_and_penalty_coefficients: TBD
+    network_storage_design:
+      warehouse_sidings_and_branch_clusters: supported_as_strategic_topology
+      keep_mainline_Obelisks_lightly_loaded: recommended
+      per_Obelisk_storage_policy: [transit_priority, mixed_default, dedicated_warehouse]
+      preserve_backbone_reserve: true
+      no_forced_equal_fill_into_transit_priority_nodes: true
+      background_equalization_opt_in_over_eligible_storage_nodes_only: true
+      background_equalization_after_authorized_priority_delivery: true
+    cargo_visual_updates_are_not_ledger_events: true
+    traffic_classes: [typed_resource, energy, information, unit_relay]
+    unit_relay_competes_for_real_network_capacity: true
+    unit_relay_storage_pressure_impact: TBD
+    turret_meditation_port_restrictions_still_apply: true
+    rupture_does_not_replicate_stock_or_units: true
+player_authority:
+  full_manual: player_direct_control_of_storage_modes_and_traffic_policy
+  semi_auto: manager_only_with_scope_budget_permissions
+  full_auto: civilization_delegate_may_construct_sidings_if_approved_and_funded
+  manual_stop_preempts_future_automatic_actions: true
+  doctrine_temperature_never_bypasses_resource_costs: true
+acceptance_test_ids:
+  - STOR-01
+  - STOR-02
+  - STOR-03
+  - STOR-04
+  - STOR-05
+  - STOR-06
+  - STOR-07
+  - STOR-08
+  - STOR-09
+  - STOR-10
+  - STOR-11
+  - STOR-12
+  - STOR-13
+  - STOR-14
+  - STOR-15
+  - STOR-16
+open_questions:
+  - exact_ORG_cyst_unit_size_and_resource_rebinding_restrictions
+  - whether_organic_nutrition_is_a_separate_cyst_resource_class
+  - UMU_specialized_capacity_multiplier_and_switch_time
+  - ETH_storage_pressure_curve_minimum_transit_service_and_energy_effects
+  - ETH_homogeneity_based_levitation_energy_cost_curve
+  - how_ETH_unit_relay_shares_node_service_with_resource_and_energy_payload
+  - which_Obelisks_participate_in_any_stock_equalization_by_default
+  - warehouse_Obelisk_cluster_blueprints_and_expansion_costs

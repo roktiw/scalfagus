@@ -1,0 +1,108 @@
+schema_version: 1
+project: scalfagus
+decision_id: DEC-039
+version: 0.1
+date: "2026-10-12"
+status: ETH_three_resource_ingress_methods_owner_selected_ORG_Plug_Holes_preferred_design_not_final_owner_selection
+narrative: design/org-plug-holes-and-eth-three-ingress-methods-2026-10-12.md
+precedence:
+  first_release: DEC-033
+  eth_ingress_supersedes_Nexus_exclusive_raw_conversion_in_future_ETH_gameplay: DEC-021
+  origin_preservation_finite_graph_and_nexus_blueprint_authority_unchanged: true
+  shield_regeneration_compatible_with: DEC-037
+  ground_vs_tip_loops: design/eth-dual-loop-ground-flags-and-aerial-freight.yaml
+  storage_pressure_and_energy_diversity: [DEC-036, DEC-038]
+  all_advanced_faction_logic_excluded_from_MVP0: true
+org:
+  owner_question: mouths_or_Plug_Holes
+  preferred_universal_input_output: Plug_Hole
+  chosen_as_owner_final: false
+  optional_hybrid_mouth_role: specialty_digestion_feeding_extraction
+  universal_biological_socket:
+    supports_transporter_scales: [min, mid, max]
+    requires_compatible_haul_docking_capability: true
+    physical_live_vessel_connection_required: true
+    both_intake_and_dispatch: true
+    finite_queue_capacity_and_spatial_footprints: true
+    initial_mid_max_worker_handoff_concurrency: 1
+    initial_mid_max_items_per_completed_handoff: 1
+    initial_modes_mutually_exclusive: [move, receive, dispatch, extract]
+    moving_handoffs_unlock_later: true
+    wrong_typed_resource_rejected_by_monotypic_cyst: true
+    mutation_to_upgrade_ports_costs_real_resources_and_time: true
+    plug_hole_tier_size_adaptation: proposed
+    actual_port_construction_and_upgrade_costs: TBD
+eth:
+  canonical_player_facing_node_name: Obelisk
+  internal_legacy_runtime_id: eth_mid_pylon
+  number_of_owner_selected_upload_methods: 3
+  uplinks:
+    - id: nexus_hand_delivery
+      method: physical_worker_or_drone_carries_real_cargo_to_eligible_Nexus
+      direct_upload_conversion_energy_cost: 0
+      processing_delay: positive_TBD
+      finite_rate_and_ports: true
+      no_cost_claim_for_navigation_and_Nexus_upkeep: false
+      no_instant_global_wallet: true
+    - id: shield_drone_Obelisk_tip_injection
+      method: shielded_transport_drone_physically_inserts_packet_at_actual_Obelisk_tip
+      owner_shield_payment: 33_percent
+      assumed_basis: maximum_drone_blue_shield_per_finite_batch_candidate
+      proposed_ceil_integer_formula: ceil(max_shield_HP_times_33_div_100)
+      shield_payment_not_green_HP: true
+      cannot_inject_without_sufficient_actual_current_shield: true
+      packet_size_and_port_rate_bounded: true
+      failure_before_acceptance_debits_nothing: true
+      successful_transaction_debits_real_shield_and_drone_cargo_then_credits_node_or_edge_once: true
+      shield_can_naturally_recharge_over_finite_time: DEC-037
+      energy_tax_on_this_transaction: none_explicit_beyond_existing_levitation_upkeep
+    - id: powered_Obelisk_ground_pick_up
+      method: activated_Obelisk_lifts_nearby_real_legal_foot_ground_stock_to_Ether_tip
+      tariff: most_expensive_in_real_Energy_per_comparable_upload
+      local_pickup_radius_and_inventory: finite_TBD
+      real_power_and_network_sustain_required: true
+      energy_consumption_positive_and_ledger_accounted: true
+      finite_pickup_time_and_tip_bandwidth: true
+      autonomous_operation_requires_user_or_manager_authorization: true
+      no_unseen_enemy_loot_vacuum_by_default: true
+  separation:
+    raw_material_converted_to_typed_Ether_by_each_method_when_eligible: true
+    resource_identity_and_source_lineage_preserved: true
+    energy_currency_not_shield_durability: true
+    continuing_levitation_upkeep_is_separate_from_ingress_tariff: true
+    natural_shield_recharge_does_not_undo_real_vulnerability_and_work_delay: true
+    shield_upload_is_distinct_from_full_shield_heal_cycle: DEC-037
+    all_uplinks_physical_and_network_capacity_limited: true
+    fall_on_actual_loss_of_levitation_sustain: true
+    available_without_Nexus_input_when_other_method_legal: true
+    no_free_blueprints_or_Nexus_colony_authority_when_using_Obelisk_uplink: true
+    solid_liquid_gas_extraction_permissions_still_apply: DEC-016
+acceptance_test_ids:
+  - PORT-01
+  - PORT-02
+  - PORT-03
+  - PORT-04
+  - PORT-05
+  - PORT-06
+  - INGRESS-01
+  - INGRESS-02
+  - INGRESS-03
+  - INGRESS-04
+  - INGRESS-05
+  - INGRESS-06
+  - INGRESS-07
+  - INGRESS-08
+  - INGRESS-09
+  - INGRESS-10
+  - INGRESS-11
+  - INGRESS-12
+  - INGRESS-13
+  - INGRESS-14
+open_questions:
+  - ORG_Plug_Hole_vs_hybrid_Mouth_port_final_owner_choice
+  - shield_33_percent_is_max_shield_vs_current_shield_basis
+  - shield_charge_per_item_or_bounded_batch_and_exact_max_batch_amount
+  - shield_drone_required_docking_and_recharge_cooldown
+  - pickup_Energy_tariff_units_range_and_anti_theft_rules
+  - automatic_pickup_default_off_or_policy_authorization
+  - secondary_Obelisk_port_tech_unlock_vs_baseline_legality

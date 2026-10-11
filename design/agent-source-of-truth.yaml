@@ -1,11 +1,22 @@
 schema_version: 1
 project: scalfagus
-version: 0.4
+version: 0.5
 status: active_agent_document_authority_after_owner_DEC_033
 language: en
 latest_owner_scope_decision: DEC-033
 latest_research_and_view_decisions: [DEC-030, DEC-031, DEC-032, DEC-034]
 mandatory_reuse_first_policy: DEC-034
+future_three_faction_logistics_concise_overview:
+  path: design/three-faction-logistics-overview-2026-10-12.md
+  covers: [MAN, ORG, ETH, DEC-035, DEC-036, DEC-037, DEC-038, DEC-039]
+  status: summary_not_independent_balance_authority
+  excludes_first_MVP0: true
+latest_source_audit_reports: [design/mvp-repository-mechanics-audit-2026-10-11.md, design/mvp-repository-mechanics-audit.yaml]
+latest_code_vs_contract_reports: [design/mvp0-runtime-parity-gaps.md, design/mvp0-runtime-parity-gaps.yaml]
+latest_audit_status: source_only_no_Godot_execution_or_LAN_verification
+last_complete_recursive_main_tree_file_count_during_audit: 360
+last_complete_recursive_main_tree_design_file_count_during_audit: 115
+tracked_count_is_snapshot_and_main_keeps_changing: true
 built_in_first_reference: architecture/godot-reuse-component-map.yaml
 first_MVP_target: MAN_vs_MAN_Verdant_Divide_RTS_only_Godot_Native_HH_HC_CC
 first_release_id: mvp_0_1
@@ -38,6 +49,11 @@ observed_source_mirror:
   smoke: apps/game/tests/mirror_smoke.gd
   batch: apps/game/tests/mirror_batch.gd
   current_test_evidence: files_exist_no_pass_confirmed_in_this_audit
+  checked_scripts_check_sh_invokes: [smoke.gd, menu_smoke.gd, rts_smoke.gd, navigation_smoke.gd, mirror_smoke.gd, mirror_visual_smoke.gd]
+  checked_scripts_check_sh_does_not_invoke: [mirror_batch.gd]
+  no_actual_engine_test_outcome_observed_in_this_audit: true
+  actual_walk_one_cell_every_sim_ticks: 3
+  mirror_visual_smoke_requires_four_current_sources_but_authored_map_has_ten: true
   two_human_LAN: not_implemented
   compiled_authored_yaml_map: not_implemented_in_observed_mirror_path
   current_BFS: candidate_for_DEC034_reuse_adapter_review
@@ -117,6 +133,55 @@ historical_future_MAN_ETH_milestone:
   prior_delivery_gates_not_active: design/MVP-DELIVERY-GATES.md
   prior_three_camera_HUD_not_active: design/mvp-hud-and-input.yaml
   previous_agent_handoff_not_active: design/AGENT-MVP-IMPLEMENTATION.md
+latest_future_org_ports_and_eth_ingress_DEC_039:
+  decision: DEC-039
+  human: design/org-plug-holes-and-eth-three-ingress-methods-2026-10-12.md
+  machine: design/org-plug-holes-and-eth-three-ingress-methods.yaml
+  org_Plug_Hole_port_vs_specialized_Mouth: design_candidate_not_final_owner_choice
+  eth_three_ingress_methods: [Nexus_free_conversion, drone_Obelisk_tip_33_percent_shield, costly_Obelisk_ground_pickup]
+  eth_non_Nexus_ingress_supersedes_old_Nexus_only_baseline: true
+  no_ETH_in_MVP0: true
+latest_future_bidirectional_and_storage_economics_DEC_038:
+  decision: DEC-038
+  human: design/faction-bidirectional-logistics-and-homogeneous-storage-2026-10-12.md
+  machine: design/faction-bidirectional-logistics-and-homogeneous-storage.yaml
+  org: real_finite_two_way_veins_with_cyst_mutation_cost
+  eth: two_way_Obelisk_links_homogeneous_levitation_lower_Energy_cost_independent_of_storage_congestion
+  man: proposed_initial_two_way_conveyor_without_manual_facing_optional_future_one_way
+  mvp0_excluded: true
+future_ETH_dual_transport_proposal_2026_10_12:
+  proposal_status: owner_direction_on_two_loops_raw_uplink_authority_open
+  human: design/eth-dual-loop-ground-flags-and-aerial-freight-2026-10-12.md
+  machine: design/eth-dual-loop-ground-flags-and-aerial-freight.yaml
+  ground: physical_drone_handoffs_at_Obelisk_foot_flags
+  elevated: resource_freight_on_straight_tip_to_tip_links_with_costed_levitation
+  on_power_loss: local_suspended_stock_falls_once_to_ground
+  DEC_039_supersedes_old_DEC_021_Nexus_only_raw_ingress: true
+  DEC_039_three_ways_owner_selected_exact_drone_shield_basis_and_tech_unlock_open: true
+  MVP0_excluded: true
+latest_future_faction_recovery_DEC_037:
+  decision: DEC-037
+  human: design/faction-damage-recovery-shields-and-repair-2026-10-11.md
+  machine: design/faction-damage-recovery-shields-and-repair.yaml
+  org: slow_passive_HP_regen_fast_with_valid_live_vein
+  eth: natural_shield_regen_boosted_on_connected_Obelisk_and_whole_shield_consumed_for_partial_HP_cycles
+  man: biological_medicine_mechanical_service_optional_shields_require_battery_or_grid
+  post_MVP0_only: true
+latest_future_faction_storage_DEC_036:
+  decision: DEC-036
+  human: design/faction-storage-specialization-and-obelisk-traffic-2026-10-11.md
+  machine: design/faction-storage-specialization-and-obelisk-traffic.yaml
+  player_facing_ETH_building_name: Obelisk
+  org_cyst_one_resource_type_only: true
+  man_UMU_mixed_or_more_efficient_single_type: true
+  eth_storage_pressure_reduces_transit_rate: true
+  eth_trunk_nodes_should_not_be_force_equalized: true
+  post_MVP0_only: true
+latest_future_three_faction_logistics_with_ETH_unit_relay:
+  decision: DEC-035
+  human: design/three-faction-logistics-and-eth-unit-relay-2026-10-11.md
+  machine: design/three-faction-logistics-and-eth-unit-relay.yaml
+  excluded_from_first_release_mvp_0_1: true
 future_full_faction_mechanics:
   universe_currency_ids: [matter, volatiles, energy]
   physical_source_forms: [solid, liquid, gas]
@@ -150,3 +215,17 @@ development_claims:
   - first_release_balance_not_playtested
   - Godot_headless_speed_not_measured
   - multiplayer_HH_not_implemented_until_two_clients_actually_complete_game
+
+future_control_modes_and_civilization_doctrines:
+  status: owner_directed_product_vision_not_MVP0_implementation
+  design: design/command-autonomy-modes-2026-10-11.md
+  contract: design/command-autonomy-modes.yaml
+  player_selectable_control_modes: [full_manual, semi_auto, full_auto]
+  group_managers_can_coordinate: [units, buildings]
+  doctrine_examples: [war, industrial, rebuilding, expansion_preparation, defensive_readiness, balanced]
+  candidate_ui_axis_counts: [3, 5, 7]
+  temperatures: [-1, 0, 1]
+  live_switching_without_world_reset: true
+  manual_order_override_always_available: true
+  no_unbudgeted_strategic_autonomy: true
+  first_MVP0_scope_unchanged: true

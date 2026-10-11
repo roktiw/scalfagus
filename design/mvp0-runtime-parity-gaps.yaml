@@ -26,6 +26,15 @@ critical_note: >
   execution, benchmark, test failure or compiler result was observed.
   The first code prototype intentionally uses simplified hardcoded rules.
   Agent must align one authoritative validated profile before claiming MVP.
+code_gap_numbers_below_include_both_actual_GUI_10Hz_and_target_20Hz: true
+actual_selected_implementation_contract: design/mvp0-agent-implementation-contract.yaml
+source_checked_test_runner: scripts/check.sh
+current_check_script_calls: [addons_smoke.gd, smoke.gd, menu_smoke.gd, rts_smoke.gd, navigation_smoke.gd, mirror_smoke.gd, mirror_integrity_smoke.gd, mirror_navigation_port_smoke.gd, mirror_timing_smoke.gd, mirror_visual_smoke.gd]
+batch_runner_NOT_in_check_script: apps/game/tests/mirror_batch.gd
+test_execution_outcome_observed_in_this_audit: none
+mirror_visual_test_expects_hardcoded_four_source_visuals: true
+mirror_visual_test_expects_real_directional_unit_and_HQ_sprites: true
+mirror_visual_test_checks_camera_zoom_and_min_window_dimensions: true
 numbers:
   tick_hz_target: 20
   target_timeout_ticks: 24000
@@ -78,6 +87,18 @@ numbers:
   current_code_simulation_map_identifiers: [west, east, center_n, center_s]
   canonical_YAML_map_world_source_ids_are_different: true
   source_not_identical_in_code_and_map_manifest: true
+  current_timeout_minutes_in_actual_GUI_at_10Hz: 9.0
+  current_worker_gather_ten_units_seconds_in_GUI_at_10Hz: 0.60
+  current_cell_step_period_sim_ticks: 3
+  current_walk_gate_expression: tick_modulo_3_equals_zero
+  one_cell_every_sim_tick_claim_in_prior_audit: corrected_false
+  current_effective_speed_if_20Hz_unobstructed_cells_per_second: 6.6666667
+  current_effective_speed_in_GUI_at_10Hz_unobstructed_cells_per_second: 3.3333333
+  current_barracks_build_seconds_GUI_10Hz: 4.5
+  current_worker_train_seconds_GUI_10Hz: 4.5
+  current_rifleman_train_seconds_GUI_10Hz: 6.5
+  current_weapon_cooldown_seconds_GUI_10Hz: 1
+  simulated_game_time_in_unpaced_batch_must_use_normalized_tick_rate: true
 major_gaps:
   - id: CODE-GAP-01
     priority: P0
@@ -166,6 +187,18 @@ major_gaps:
     issue: candidate_victory_termination_does_not_have_simultaneous_elimination_batch_snapshot_guaranteed_by_event_protocol
     remediation: resolve_both_teams_damage_same_tick_then_compute_victory_or_draw_with_single_result_event
     tests: [M0B-10, M0B-11]
+  - id: CODE-GAP-16
+    priority: P0
+    issue: mirror_visual_smoke_asserts_exactly_four_hardcoded_source_render_nodes_but_canonical_authored_map_contains_ten
+    remediation: migrate_visual_assertion_to_actual_loaded_map_resource_node_count_and_stable_ids_when_map_loader_lands_preserve_sprite_and_window_regressions
+    sources: [apps/game/tests/mirror_visual_smoke.gd, design/mvp-verdant-divide-map.yaml]
+    tests: [M0B-02, M0B-13, M0B-24]
+  - id: CODE-GAP-17
+    priority: P0
+    issue: new_mirror_smoke_and_visual_smoke_in_check_sh_but_no_proven_execution_log_and_batch_separate
+    remediation: run_Godot_import_all_current_smokes_and_mirror_batch_then_record_actual_engine_platform_status_and_failure_seed_if_any
+    sources: [scripts/check.sh, apps/game/tests/mirror_smoke.gd, apps/game/tests/mirror_visual_smoke.gd, apps/game/tests/mirror_batch.gd]
+    tests: [M0B-18, M0B-20, M0B-24]
 plan:
   preferred_first_remediation: one_authoritative_map_and_economy_tick_canonical_numeric_profile
   why_first: gameplay_is_too_fast_and_has_more_source_stock_than_authorized_map_so_any_balance_result_now_is_invalid

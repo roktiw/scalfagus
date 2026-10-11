@@ -1,0 +1,219 @@
+schema_version: 1
+project: scalfagus
+id: command-autonomy-modes
+version: 0.1
+date: "2026-10-11"
+language: en
+status: owner_directed_product_vision_implementation_proposal_unimplemented
+narrative: design/command-autonomy-modes-2026-10-11.md
+release_guard:
+  current: mvp_0_1
+  decision: DEC-033
+  scope: MAN_vs_MAN_four_templates_RTS_only_HH_HC_CC
+  proposal_is_not_MVP0_release_dependency: true
+  existing_player_bot_is_not_unit_mini_AI: true
+  preserve_FPP_as_post_MVP_DEC_031: true
+  reuse_first: DEC-034
+product_principles:
+  - player_controls_level_of_autonomy_at_any_moment
+  - player_manual_commands_always_override_delegate_commands
+  - every_mode_shares_one_physical_entity_and_GameState
+  - temperature_is_preference_not_permission_or_stat_boost
+  - never_erase_real_world_state_on_mode_change
+  - no_unsanctioned_strategic_spending_warfare_or_expansion
+control_modes:
+  - id: full_manual
+    label: FULL MANUAL
+    initiation: player
+    automatic_new_operational_tasks: false
+    automatic_new_strategic_tasks: false
+    permitted_low_level_AI: [path_navigation, legal_self_defense_as_stance_allows, targeting_inside_explicit_order]
+    player_can_override: true
+  - id: semi_auto
+    label: SEMI-AUTO
+    initiation: human_orders_plus_explicitly_mandated_group_managers
+    group_members_may_include: [units, buildings]
+    manager_is_logical_controller_not_required_physical_game_unit: true
+    requires: [group_membership, objective, allowed_area, permissions, budget_or_zero_spend, revocation_rule]
+    automatic_new_strategic_tasks: false
+    player_can_override: true
+  - id: full_auto
+    label: FULL AUTO
+    initiation: faction_level_policy_delegate_and_subordinate_managers
+    requires: [enabled_by_player, permitted_action_classes, spending_limits, risk_limits, geographic_scope, goals]
+    independent_no_input_progress_when_enabled: true
+    unlimited_strategic_permission: false
+    player_can_override: true
+mode_vs_doctrine:
+  control_mode: who_can_initiate_or_coordinate
+  doctrine: which_legal_tasks_to_prioritize
+  authorization: hard_limits_to_actions_costs_and_targets
+  preset_switch_alone_does_not_change_control_mode: true
+  manual_mode_with_war_plus_one_does_not_start_attack: true
+hierarchy:
+  levels: [civilization, sector, manager_group, entity]
+  resolve: nearest_explicit_override_wins
+  absence: inherit
+  explicit_zero: overrides_parent_value
+  child_scope_UI_supports_separate_inherit_action: true
+  one_active_authoritative_manager_per_entity: true
+  membership_revision_and_policy_epoch_per_handover: true
+doctrine_temperatures:
+  valid: [-1, 0, 1]
+  default: 0
+  no_hidden_numeric_stat_buffs: true
+  ui_depth_candidates:
+    basic_three: [construction, extraction, warfare]
+    standard_five: [construction, extraction, warfare, logistics, reconnaissance]
+    advanced_seven: [construction, extraction, warfare, logistics, reconnaissance, reconstruction, expansion_preparation]
+  axis_meaning:
+    construction:
+      "-1": conserve_critical_authorized_repairs_only
+      "0": maintain_existing_approved_buildings
+      "1": prioritize_approved_blueprints_with_funds
+    extraction:
+      "-1": collect_safe_essentials_only
+      "0": demand_driven_collection
+      "1": prioritize_legal_safe_throughput
+    warfare:
+      "-1": defend_no_unapproved_pursuit
+      "0": patrol_and_local_engagement
+      "1": proactive_pressure_inside_authorized_area
+    logistics:
+      "-1": essential_low_risk_transport
+      "0": ordinary_approved_supply
+      "1": prioritize_throughput_without_bypass
+    reconnaissance:
+      "-1": no_unsolicited_scout
+      "0": local_patrol
+      "1": scout_inside_authorized_frontier
+    reconstruction:
+      "-1": emergency_restoration_only
+      "0": standard_authorized_repairs
+      "1": prioritize_repair_and_recovery
+    expansion_preparation:
+      "-1": consolidate_existing_holdings
+      "0": prepare_on_request
+      "1": prioritize_approved_scouting_staging_and_stockpiles
+doctrine_presets:
+  # Candidate preferences, NOT cost or balance constants.
+  balanced:
+    temperatures: {construction: 0, extraction: 0, warfare: 0, logistics: 0, reconnaissance: 0, reconstruction: 0, expansion_preparation: 0}
+  war:
+    temperatures: {construction: -1, extraction: 0, warfare: 1, logistics: 1, reconnaissance: 0, reconstruction: 0, expansion_preparation: -1}
+  industrial:
+    temperatures: {construction: 1, extraction: 1, warfare: -1, logistics: 1, reconnaissance: 0, reconstruction: 0, expansion_preparation: 0}
+  rebuilding:
+    temperatures: {construction: 0, extraction: 1, warfare: -1, logistics: 1, reconnaissance: 0, reconstruction: 1, expansion_preparation: -1}
+  expansion_preparation:
+    temperatures: {construction: 0, extraction: 1, warfare: 0, logistics: 1, reconnaissance: 1, reconstruction: 0, expansion_preparation: 1}
+  defensive_readiness:
+    temperatures: {construction: -1, extraction: 0, warfare: -1, logistics: 1, reconnaissance: 0, reconstruction: 1, expansion_preparation: -1}
+  custom:
+    temperatures: player_defined
+  all_preset_values_are_tunable: true
+  switch_requires_explicit_user_input_by_default: true
+  auto_transition_feature_is_opt_in_post_full_auto: true
+  recommendation_does_not_equal_autonomous_policy_change: true
+  preserve_custom_policy_history_on_preset_switch: true
+manager_contract:
+  manager_types: [extraction_crew, logistics_team, defense_garrison, production_cell, reconstruction_team, expansion_party]
+  must_have: [members, owner, objective, allowed_area, permission_set, duration_or_revocation]
+  spending: hard_cap_or_zero
+  may_propose_jobs: true
+  must_use_same_CommandGateway_as_human: true
+  cannot_spend_reserved_resources_twice: true
+  cannot_duplicate_or_instant_complete_production: true
+  cannot_see_through_fog: true
+  cannot_change_victory_rules: true
+  task_board:
+    bounded_claim_slots: true
+    avoid_multiple_claims_per_worker: true
+    release_claims_on_death_cancel_or_job_invalidity: true
+    jobs: [gather, deliver, guard, escort, train_if_authorized, build_if_authorized, repair_if_authorized, scout_if_authorized]
+priority:
+  legality_permissions_visibility_costs_and_hard_constraints_first: true
+  then:
+    - direct_player_possession_future
+    - explicit_manual_order_or_latched_stop_hold
+    - authorized_group_or_civilization_objective
+    - autonomous_role_task
+    - local_tactical_instinct
+    - idle
+hot_handover:
+  mode_change_legal_during_running_match: true
+  policy_change_legal_during_running_match: true
+  effective_at: next_authoritative_fixed_tick_boundary
+  no_world_reset: true
+  preserve: [entity_id, hp, position, cargo, inventory, queued_human_orders, construction_progress, production_progress, cooldowns, ledger]
+  going_to_full_manual:
+    disable_new_automatic_instructions: true
+    disable_new_auto_spend_reservations: true
+    invalidate_stale_pending_manager_proposals: true
+    existing_accepted_actions_continue_under_normal_game_rules: true
+    no_free_refund_or_rollback: true
+    existing_manual_orders_remain: true
+  return_to_auto:
+    revalidate_active_tasks_and_claims: true
+    revalidate_observation_and_permission: true
+    never_replay_stale_pre_handover_commands: true
+    never_double_charge: true
+  stop:
+    latches_held_idle_until_new_order_or_resume: true
+  hold:
+    no_pursuit_outside_ordered_position_leash: true
+  fpp_future:
+    uses_same_entity_and_inventory: true
+    released_actor_resumes_previous_still_legal_goal: true
+  auto_change_doctrine_on_attack:
+    default: disabled
+    enabled_only_by_explicit_toggle: true
+    requires: [guardrails, transition_cooldown, player_visible_history]
+candidate_AI:
+  algorithm: deterministic_small_utility_AI_plus_FSM
+  filter_before_scoring: [role_capability, active_manual_order, scope, fog, LOS, legal_navigation, budget, reservation, risk_limit]
+  objective: benefit_of_legal_task_minus_real_cost_and_risk
+  idle_is_valid: true
+  hysteresis_and_cooldowns_required: true
+  candidate_decision_every_sim_ticks: 10
+  candidate_min_nonurgent_commitment_seconds: 2
+  candidate_parameters_not_approved_or_measured: true
+  no_LLM_required: true
+telemetry:
+  - mode_and_policy_epoch_per_team
+  - effective_policy_and_override_source_per_entity
+  - current_manager_and_task_claim
+  - reason_for_idle_or_rejected_job
+  - unauthorized_command_rejections
+  - autonomous_and_human_orders_per_minute
+  - manual_override_latency_ticks
+  - mode_and_preset_switch_latency_ticks
+  - Matter_budget_reserved_spent_and_returned
+  - resource_transport_and_combat_losses
+  - replay_hash_GUI_LAN_headless
+acceptance:
+  - {id: AUTO-01, given: full_manual_idle_worker, expect: no_unsolicited_operational_job}
+  - {id: AUTO-02, given: full_manual_soldier_with_guard_order, expect: obey_order_and_legal_local_defense_only}
+  - {id: AUTO-03, given: semi_auto_group_with_workers_and_building, expect: manager_coordinates_only_its_group}
+  - {id: AUTO-04, given: two_managers_claim_same_actor, expect: reject_conflicting_control}
+  - {id: AUTO-05, given: manager_build_budget_zero, expect: no_automatic_spending}
+  - {id: AUTO-06, given: full_auto_explicitly_authorized, expect: progress_without_per_click_orders}
+  - {id: AUTO-07, given: full_auto_industrial_to_manual_under_attack, expect: no_new_auto_orders_next_tick_state_preserved}
+  - {id: AUTO-08, given: change_preset_to_war_while_manual, expect: no_new_unsanctioned_attacks}
+  - {id: AUTO-09, given: rebuilding_selected_with_zero_Matter, expect: no_negative_balance_or_invalid_repair_loop}
+  - {id: AUTO-10, given: global_warfare_minus_one_and_squad_plus_one, expect: squad_override_only_inside_authorized_area}
+  - {id: AUTO-11, given: sector_plus_one_unit_explicit_zero, expect: unit_zero_not_inherit}
+  - {id: AUTO-12, given: player_STOP_in_semi_auto, expect: held_idle_until_resumed}
+  - {id: AUTO-13, given: all_axes_plus_one, expect: cannot_double_spend_Matter_or_exceed_permissions}
+  - {id: AUTO-14, given: identical_seed_policy_commands, expect: same_replay_hash_in_GUI_and_headless}
+  - {id: AUTO-15, given: full_auto_AI_enemy_in_fog, expect: cannot_target_hidden_enemy}
+  - {id: AUTO-16, given: switching_back_to_full_auto, expect: stale_command_epoch_discarded_no_duplicate_cost}
+  - {id: AUTO-17, given: no_valid_work, expect: units_can_idle_without_spam}
+  - {id: AUTO-18, given: future_FPP_possession_and_release, expect: same_entity_and_valid_objective_restored}
+staged_implementation:
+  - MVP0_finish_DEC033_with_no_new_autonomy_scope
+  - post_MVP_actor_order_and_held_idle_semantics
+  - post_MVP_group_manager_and_budget_permissions
+  - post_MVP_doctrine_axes_presets_and_hot_switch_UI
+  - post_MVP_full_auto_civilization_delegation
+  - future_FPP_and_faction_specific_MAN_ETH_ORG_adapters

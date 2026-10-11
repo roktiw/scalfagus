@@ -3,7 +3,9 @@ set -euo pipefail
 source "$(dirname "$0")/env.sh"
 cd "$SCALFAGUS_ROOT"
 require_godot
+bash scripts/install-godot-addons.sh --ensure
 "$GODOT_BIN" --headless --path apps/game --editor --import --quit
+"$GODOT_BIN" --headless --path apps/game --script res://tests/addons_smoke.gd
 "$GODOT_BIN" --headless --path apps/game --script res://tests/smoke.gd
 "$GODOT_BIN" --headless --path apps/game --script res://tests/menu_smoke.gd
 "$GODOT_BIN" --headless --path apps/game --script res://tests/rts_smoke.gd
