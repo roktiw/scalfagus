@@ -1,0 +1,84 @@
+schema_version: 1
+project: scalfagus
+version: 0.1
+status: proposed_architecture_planar_only_mvp_spherical_future_option_not_approved
+decision: DEC-028
+documentation: design/planetary-map-topology-2026-10-11.md
+current_mvp:
+  map_id: verdant_divide
+  topology: planar
+  executable_topology_adapters: [planar]
+  spherical_engine_implementation_required_for_first_release: false
+shared:
+  topology_discriminator: world.topology
+  choices_for_future: [planar, spherical]
+  topology_discriminator_is_not_only_a_rendering_flag: true
+  same_authoritative_3d_world_for_each_match: true
+  geometry_visibility_collision_navigation_from_same_mesh_or_heightfield: true
+  unit_faction_domain_independent_from_world_topology: true
+  no_direct_world_axis_assumption_in_gameplay_components: proposed_goal
+  API_surface_methods:
+    - surface_to_world
+    - world_to_surface
+    - up_at
+    - tangent_frame_at
+    - ground_neighbors
+    - surface_travel_distance
+    - has_traversable_connection
+    - raycast_line_of_sight
+    - placement_footprint
+    - network_link_surface_or_line_distance
+planar:
+  runtime_status: target_for_first_MVP
+  shape: rect_heightfield
+  uniform_gravity_world_up: [0, 1, 0]
+  legal_map_grid: width_height_in_tiles
+  first_example: {width_tiles: 64, height_tiles: 64, tile_meters: 2.0}
+  bounded_map_edges: true
+  optional_elevation_ramps: true
+  source_map: design/mvp-verdant-divide-map.yaml
+spherical:
+  runtime_status: research_after_mvp
+  shape: closed_sphere_with_heightfield
+  grid_candidates: [cube_sphere_preferred, icosphere_alternative, latitude_longitude_editor_only]
+  preferred_grid: cube_sphere
+  face_count: 6
+  surface_elevation_relative_to_planet_center: true
+  radius_m_example_for_visibility_spike: 1000
+  cube_face_resolution_example: 256
+  gravity: radial
+  terrain_local_up: radial_surface_normal
+  no_map_outer_edge: true
+  traverse_faces_without_gaps: true
+  local_tangent_orientation_for_units_and_buildings: true
+  water_liquid_bodies_follow_local_surface: true
+  hero_FPS_must_handle_radial_gravity_and_camera: true
+  RTS_camera_can_orbit_spherical_world: true
+  can_attack_around_world_using_real_los_not_fake_wall_piercing: true
+  same_faction_ETH_network_conservation_on_face_seams: true
+  same_MAN_ground_mobility_and_victory_building_while_moving: true
+  sphere_horizon_validation:
+    formula_meters: "arc = R * acos(R / (R + eye_height))"
+    small_h_approximation_meters: "sqrt(2 * R * eye_height)"
+    radius_36m_eye_1p7m_approx_horizon_m: 11
+    radius_1000m_eye_1p7m_approx_horizon_m: 58
+    warn_when_weapon_range_exceeds_mean_ground_visibility: true
+  tiny_planet_with_flat_gameplay_rules_requires_explicit_stylized_vision_choice: true
+distinguish:
+  toroidal_wrapped_rect:
+    same_as_spherical: false
+    future_optional_topology_not_current_enum: true
+  curved_skybox_flat_patch:
+    same_as_spherical: false
+    gameplay_geometry_is_planar: true
+schema_examples:
+  future_planar:
+    world: {topology: planar, gravity: uniform, planar: {width_tiles: 64, height_tiles: 64, tile_meters: 2.0}}
+  future_spherical:
+    world: {topology: spherical, gravity: radial, spherical: {radius_m: 1000, grid_type: cube_sphere, resolution_per_face: 256}}
+validations:
+  exactly_one_topology_variant_enabled: true
+  spherical_not_implicitly_enabled_by_aesthetic_planet_prop: true
+  planar_replay_stable_when_sphere_code_not_built: true
+  engine_must_explicitly_reject_spherical_if_adapter_missing: true
+  do_not_pretend_spherical_mode_implemented_from_YAML_alone: true
