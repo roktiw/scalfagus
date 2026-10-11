@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 0.4
+version: 0.5
 status: approved_core_rules_with_proposed_details
 resource:
   id: energy
@@ -11,6 +11,10 @@ resource:
   transported: true
   spent: true
   not_a_mandatory_power_grid: true
+  physical_deposit_form_is_not_energy_resource: true
+  gas_deposit_is_not_directly_equal_to_energy: true
+  source_form_mapping_reference: design/physical-resource-forms.yaml
+  gas_capture_to_energy_conversion_recipe: TBD_optional
   supply:
     generation: [geothermal, solar_collection, reactors]
     harvesting: [energy_deposits]
@@ -42,6 +46,8 @@ resource:
   anti_softlock:
     starter_energy_required_for_basic_matter_extraction: false
     guaranteed_path_to_first_energy_producer: true
+    first_gas_extractor_recipe_must_not_need_its_uncaptured_gas_output: true
+    basic_solid_collection_available_without_energy_extraction_rig: true
 balance:
   energy_per_minute: TBD
   storage_capacities: TBD
