@@ -1,0 +1,85 @@
+schema_version: 1
+project: scalfagus
+version: 0.1
+status: design_only_not_executed
+contract: design/victory-defeat-building-classification-2026-10-11.md
+owner_decision: DEC-024
+default_objective: annihilation
+victory_by: last_team_with_surviving_completed_building_class_entities
+rule:
+  victory_building_template_tag_required: true
+  traveling_existing_completed_structure_keeps_tag: true
+  worker_can_construct_but_worker_itself_not_building: true
+  unfinished_site_ghost_and_ruin_do_not_count: true
+  standalone_vessel_cable_and_ether_link_dont_count: true
+  defeat_checked_after_authoritative_fixed_tick_batch: true
+  same_tick_double_elimination: draw_proposed
+fixtures:
+  - id: WIN-001
+    name: workers_and_hero_without_building_are_defeated
+    opponent_entities: [alive_min_worker, alive_soldier, alive_hero, world_drop_cube]
+    completed_opponent_building_count: 0
+    expect: defeat
+  - id: WIN-002
+    name: last_ground_mobile_man_umu_counts_as_building
+    opponent_entities: [{template: man_umu, mode: packed_ground_travel, victory_building: true, completed: true, hp: 50}]
+    expect: continue_match
+  - id: WIN-003
+    name: packed_umu_does_not_escape_building_classification
+    action: man_last_umu_switches_from_deployed_warehouse_to_packed_ground_travel
+    expect: {opponent_building_count_before: 1, opponent_building_count_after: 1, defeat_triggered: false}
+  - id: WIN-004
+    name: kill_last_mobile_man_umu
+    initial: {last_enemy_structural_umu_hp: 1, enemy_min_workers: 3}
+    action: damage_last_umu_by_one_hitpoint
+    expect: {completed_enemy_buildings_after: 0, result: victory_even_if_enemy_workers_survive}
+  - id: WIN-005
+    name: isolated_eth_turret_pylon_counts
+    opponent_entities: [{template: eth_mid_pylon_obelisk, mode: turret, hp: 1, victory_building: true}]
+    expect: continue_match
+  - id: WIN-006
+    name: eth_incomplete_build_drops_materials_but_is_not_building
+    opponent_entities: [{template: eth_construction_site, progress_percent: 66}, eth_orb_loot]
+    expect: defeat_if_no_other_surviving_buildings
+  - id: WIN-007
+    name: org_completed_mitochondrion_counts
+    opponent_entities: [{template: org_mitochondrion, hp: 1, victory_building: true}]
+    expect: continue_match
+  - id: WIN-008
+    name: org_dead_cocoon_and_mother_only_do_not_count
+    opponent_entities: [withered_incomplete_org_bud, broken_org_vessel, alive_org_max_flying_mother]
+    expect: defeat
+  - id: WIN-009
+    name: man_3_5_tile_specialist_mid_deployed_counts_when_tagged
+    opponent_entities: [{template: man_mid_infrastructure, mode: conveyor, victory_building: true}]
+    expect: continue_match
+  - id: WIN-010
+    name: ordinary_mid_vehicle_does_not_auto_count
+    opponent_entities: [{template: man_transport_only, mode: travel, victory_building: false}]
+    expect: defeat
+  - id: WIN-011
+    name: same_tick_both_last_buildings_destroyed
+    initial: {team_a_buildings: 1, team_b_buildings: 1}
+    action: simultaneous_authoritative_tick_both_destroy
+    expect: draw_proposed_not_yet_playtested
+  - id: WIN-012
+    name: no_buildings_but_stealable_cargo_and_ruin
+    opponent_entities: [incomplete_man_ruin, abandoned_crates, salveageable_matter_drop]
+    expect: defeat
+  - id: WIN-013
+    name: heartstrike_is_optional_and_requires_defined_team_target
+    match_objective: heartstrike_optional
+    initial: {man_team_has_no_designated_command_module: true}
+    expect: config_validation_error_not_automatic_man_loss
+  - id: WIN-014
+    name: completion_and_last_building_death_same_tick_deterministic
+    action: resolve_all_sim_events_then_count_valid_alive_completed_building_entities
+    expect: same_result_for_same_seed_and_ordered_commands
+  - id: WIN-015
+    name: capture_transfers_building_allegiance_not_duplicates
+    action: capture_one_last_enemy_building
+    expect: enemy_building_count_becomes_zero_once_and_captured_building_is_counted_for_new_team_once
+  - id: WIN-016
+    name: no_expansion_foundations_save_player_from_elimination
+    opponent_entities: [construction_ghost_at_1_percent, live_builder_with_crates]
+    expect: defeat
