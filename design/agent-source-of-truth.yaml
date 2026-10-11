@@ -1,0 +1,134 @@
+schema_version: 1
+project: scalfagus
+version: 0.1
+status: machine_readable_coding_agent_document_authority_and_read_order
+first_MVP_target: MAN_vs_ETH_Verdant_Divide_Godot_Native
+owner_decisions: design/decisions.yaml
+owner_latest_universal_map_decision: DEC-030
+game_runtime: Godot_4_7_2_Standard_typed_GDScript
+only_native_game_window: true
+all_playable_maps_platform_in_outer_space: true
+release_status: design_only_not_complete_RTS
+precedence:
+  - explicit_owner_DEC_entries_from_latest_non_superseded_decisions
+  - first_MVP_gameplay_semantics_in_design_mvp_gameplay_execution_contract
+  - numeric_test_profile_design_mvp_balance_playtest_v0_1_yaml
+  - matching_specialized_mvp_network_map_art_and_tests
+  - legacy_full_three_race_design_as_future_research_only
+  - historical_ideas_which_do_not_override_approved_Decisions
+required_read_order:
+  - AGENTS.md
+  - design/decisions.yaml
+  - design/space-platform-world-contract-2026-10-11.md
+  - design/MVP-DELIVERY-GATES.md
+  - design/AGENT-MVP-IMPLEMENTATION.md
+  - design/godot-runtime-component-contract.md
+  - design/mvp-gameplay-execution-contract.md
+  - design/mvp-balance-playtest-v0.1.yaml
+  - design/mvp-network-execution.yaml
+  - design/mvp-verdant-divide-map.yaml
+  - design/mvp-man-eth-catalog.yaml
+  - design/mvp-balance-acceptance.yaml
+  - design/mvp-man-eth-acceptance.yaml
+  - design/battlefield-frame-acceptance.yaml
+  - design/mvp-implementation-backlog.yaml
+canonical_source_map:
+  owner_decisions:
+    file: design/decisions.yaml
+    enforced_owner_canon: true
+  game_owner_mechanics:
+    file: design/mvp-gameplay-execution-contract.md
+    numeric_source: design/mvp-balance-playtest-v0.1.yaml
+  initial_roster:
+    file: design/mvp-man-eth-catalog.yaml
+    roles_per_faction: 5
+    hero_counted_as_extra_template: false
+    faction_ids: [man, eth]
+  economy:
+    semantic: design/mvp-economy.yaml
+    actual_candidate_values: design/mvp-balance-playtest-v0.1.yaml
+    general_form_gates: design/physical-resource-forms.yaml
+    inverse_harvesting_future_direction: design/resource-balance.yaml
+  energy:
+    generic: design/energy.yaml
+    actual_first_profile: design/mvp-balance-playtest-v0.1.yaml
+  combat:
+    semantic: design/mvp-combat.yaml
+    actual_first_profile: design/mvp-balance-playtest-v0.1.yaml
+  construction:
+    general: design/construction-phases.yaml
+    concrete_first_MVP: design/mvp-gameplay-execution-contract.md
+  logistics:
+    core: design/three-network-channels-and-destruction.yaml
+    actual_first_MVP: design/mvp-network-execution.yaml
+    detailed_ETH_future: design/eth-ether-network-mechanics.yaml
+    detailed_MAN_future: design/man-power-dock-and-org-vessel-mechanics.yaml
+  world:
+    mandatory_all_maps: design/space-platform-world-contract-2026-10-11.md
+    frames: design/battlefield-frames.yaml
+    terrain_presets: design/platform-surface-presets.yaml
+    natural_race_domains: design/world-environments.yaml
+    topology: design/world-topologies.yaml
+    first_MVP_playable_topology: planar
+    other_playable_map_frames_allowed: false
+  map:
+    format: design/map-authoring-format-v0.1.yaml
+    actual_example: design/mvp-verdant-divide-map.yaml
+    map_loader_implementation_instructions: design/godot-runtime-component-contract.md
+  world_loot:
+    semantic: design/world-loot-and-recycling.yaml
+    first_recovery_fractions: design/mvp-balance-playtest-v0.1.yaml
+  win:
+    default: design/match-rules.yaml
+    structural_registry: design/victory-building-template-registry.yaml
+  bot:
+    generic: design/mvp-bot-behavior.yaml
+    numeric: design/mvp-balance-playtest-v0.1.yaml
+  HUD:
+    prose: design/mvp-hud-and-input.md
+    config: design/mvp-hud-and-input.yaml
+  game_test_fixtures:
+    - design/mvp-man-eth-acceptance.yaml
+    - design/mvp-balance-acceptance.yaml
+    - design/battlefield-frame-acceptance.yaml
+    - design/victory-defeat-acceptance-cases.yaml
+    - design/network-mechanics-acceptance-cases.yaml
+    - design/recycling-and-network-acceptance-cases.yaml
+  agent_task_worklist:
+    prose: design/MVP-DELIVERY-GATES.md
+    expanded: design/AGENT-MVP-IMPLEMENTATION.md
+    machine_backlog: design/mvp-implementation-backlog.yaml
+  source_audit:
+    report: design/mvp-repository-mechanics-audit-2026-10-11.md
+    status: new_current_full_tree_and_high_risk_contract_review
+legacy_or_proposal_exclusions_from_first_MVP_numeric_loader:
+  - design/economy.yaml
+  - design/resources.yaml
+  - design/units.yaml
+  - design/scale-presets.example.yaml
+  - design/five-civilizations-and-balance-exploration-2026-10-11.md
+  - design/mvp-iso-pixel-rts.md
+  - design/planetary-map-topology-2026-10-11.md
+  - design/repository-gap-review-2026-10-11.md
+  - architecture/adr-0002-desktop-shell-boundary.md
+  note: historical_concepts_referenced_for_context_not_active_runtime_balance
+hard_fail_load_guards:
+  - missing_or_wrong_battlefield_frame_variant
+  - material_cost_id_crystals_resin_or_legacy_gas_as_current_economy
+  - unknown_template_id_for_this_MVP
+  - missing_complete_numeric_profile_parameter_used_by_runtime
+  - map_source_spawns_illegal_in_terrain_liquid
+  - starting_resource_source_unreachable_by_worker
+  - more_than_one_owner_of_same_real_resource_packet
+  - repeated_refund_or_repeat_spill_event
+  - any_character_reaches_nonplayable_space
+  - incomplete_eth_network_packet_delivered_over_broken_edge
+  - network_service_uses_second_unaccounted_freight_subnetwork
+  - building_class_flag_removed_from_packed_UMU
+  - duplicate_Hero_entity_between_RTS_Direct_FPS
+only_after_code_implementation_claims:
+  - no_runtime_features_are_completed_by_design_yaml_alone
+  - source_map_geometry_unvalidated_until_actual_parser_nav_compiler_runs
+  - numerical_balance_untested_until_bot_and_human_matches_exist
+  - complete_Godot_game_requires_real_scene_and_GDScript_integration
+  - executable_acceptance_tests_are_separate_from_yaml_scenario_descriptions
