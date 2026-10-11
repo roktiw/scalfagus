@@ -1,0 +1,83 @@
+# Scalfagus original faction definitions
+schema_version: 1
+project: scalfagus
+status: concept
+description: >-
+  Three original playable science-fiction factions inspired by broad RTS
+  archetypes and the five-color philosophy of Magic: The Gathering.
+  Names, lore, art and units should be developed as independent IP.
+factions:
+  - id: blergians
+    name: Blergians
+    archetype: biological_swarm
+    mtg:
+      colors: [black, red, green]
+      shorthand: BRG
+      combination: Jund
+    themes:
+      - consumption
+      - aggression
+      - mutation
+      - adaptation
+      - biological_evolution
+    aesthetics:
+      - organic_architecture
+      - asymmetric_creatures
+      - living_structures
+    gameplay_direction:
+      - evolving_biological_units
+      - rapid_aggressive_expansion
+    lore: >-
+      A predatory civilization of adaptive organisms whose living
+      infrastructure evolves through competition and resource consumption.
+  - id: manusians
+    name: Manusians
+    archetype: industrial_colonists
+    mtg:
+      colors: [red, white, blue]
+      shorthand: RWU
+      combination: Jeskai
+    themes:
+      - ingenuity
+      - discipline
+      - freedom
+      - military_technology
+      - tactics
+    aesthetics:
+      - industrial_colonies
+      - modular_vehicles
+      - fortified_outposts
+    gameplay_direction:
+      - combined_arms
+      - tactical_flexibility
+    lore: >-
+      A civilization of inventive colonists balancing individual freedom,
+      coordinated defense and experimental engineering.
+  - id: aetherians
+    name: Aetherians
+    archetype: ancient_energy_civilization
+    mtg:
+      colors: [white, blue, green]
+      shorthand: WUG
+      combination: Bant
+    themes:
+      - harmony
+      - knowledge
+      - transcendence
+      - symbiosis
+      - advanced_technology
+    aesthetics:
+      - crystalline_structures
+      - energy_fields
+      - living_technology
+    gameplay_direction:
+      - energy_manipulation
+      - high_value_specialist_units
+    lore: >-
+      An ancient civilization that unites scientific insight with
+      ecological symbiosis and technologies based on resonance and energy.
+legal_notes:
+  - These are original working names; trademark clearance has not been performed.
+  - MTG color combinations are design references, not an affiliation with Wizards of the Coast.
+  - Do not redistribute Blizzard or Wizards of the Coast copyrighted artwork or lore.
+  - Create independent silhouettes, symbols, names and gameplay identities.
