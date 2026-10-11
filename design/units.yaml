@@ -20,15 +20,15 @@ core_model:
     - cargo
   module_roles: [cargo, mining, weapon, armor, mobility, sensor, support]
   faction_specific_implementations:
-    cargo: {blergians: biological_sac, manusians: container, aetherians: energy_chamber}
-    mining: {blergians: extraction_organ, manusians: drill, aetherians: resonance_extractor}
-    weapon: {blergians: combat_organ, manusians: turret, aetherians: energy_projector}
-    armor: {blergians: chitin, manusians: armor_plates, aetherians: barrier}
-    mobility: {blergians: wings_or_limbs, manusians: engines_or_chassis, aetherians: levitation}
-    sensor: {blergians: sensory_organ, manusians: radar, aetherians: psionic_perception}
-    support: {blergians: regeneration, manusians: repair, aetherians: meditation_or_healing}
+    cargo: {org: biological_sac, man: container, eth: energy_chamber}
+    mining: {org: extraction_organ, man: drill, eth: resonance_extractor}
+    weapon: {org: combat_organ, man: turret, eth: energy_projector}
+    armor: {org: chitin, man: armor_plates, eth: barrier}
+    mobility: {org: wings_or_limbs, man: engines_or_chassis, eth: levitation}
+    sensor: {org: sensory_organ, man: radar, eth: psionic_perception}
+    support: {org: regeneration, man: repair, eth: meditation_or_healing}
 faction_transformation:
-  - faction: blergians
+  - faction: org
     philosophy: irreversible_evolution
     flexibility_rank: 3
     mechanism: biological_mutation
@@ -44,7 +44,7 @@ faction_transformation:
       effect: sacrifices_some_or_all_transport_organs_for_combat_capabilities
       reversible: false
     structure_conversion: permanent_rooting_into_building
-  - faction: manusians
+  - faction: man
     philosophy: agile_modular_engineering
     flexibility_rank: 1
     mechanism: physical_module_attachment_and_detachment
@@ -62,7 +62,7 @@ faction_transformation:
       effect: detach_cargo_modules_and_attach_weapons
       reversible: true
     structure_conversion: anchored_module_assembly
-  - faction: aetherians
+  - faction: eth
     philosophy: reversible_transcendence
     flexibility_rank: 2
     mechanism: meditation_resonance_and_energy
@@ -80,17 +80,17 @@ faction_transformation:
       reversible: true
     structure_conversion: manifested_energy_structure
 proposed_transform_times_seconds:
-  blergians:
+  org:
     role_change_same_tier: [21, 55]
     min_to_mid: 34
     mid_to_max: 89
     downgrade: null
-  manusians:
+  man:
     role_change_same_tier: [1, 5]
     min_to_mid: 8
     mid_to_max: 13
     downgrade: [5, 13]
-  aetherians:
+  eth:
     role_change_same_tier: [13, 34]
     min_to_mid: 21
     mid_to_max: 55
@@ -98,15 +98,15 @@ proposed_transform_times_seconds:
 transformation_costs:
   base_core_costs_crystals: {min: 34, mid: 89, max: 233}
   note: Refer to economy.yaml; module and transformation costs are additional
-  blergians: high_one_time_mutation_cost_no_refund
-  manusians: low_reconfiguration_cost_reusable_physical_modules
-  aetherians: recurring_resource_energy_and_time_cost
+  org: high_one_time_mutation_cost_no_refund
+  man: low_reconfiguration_cost_reusable_physical_modules
+  eth: recurring_resource_energy_and_time_cost
   exact_resource_costs: TBD
 balance_rules:
   - Larger tier does not guarantee victory against smaller armed units.
-  - Manusian flexibility requires available physical modules and logistics.
-  - Blergian permanent specialization must provide meaningful efficiency advantages.
-  - Aetherian reversibility must have significant time and energy costs.
+  - Manus flexibility requires available physical modules and logistics.
+  - Organ permanent specialization must provide meaningful efficiency advantages.
+  - Eter reversibility must have significant time and energy costs.
   - No instantaneous cost-free cargo_to_combat_conversion during combat.
   - Unit_and_structure boundaries may be bridged by faction_specific_conversion.
 notes:
