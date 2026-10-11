@@ -1,9 +1,9 @@
 # Scalfagus — Flat Battlefield vs True Spherical Planetoid
 
 Date: 2026-10-11
-Status: **new owner-raised alternative under evaluation, NOT approved as first-MVP feature**.
+Status: **ARCHIVED TECHNICAL RESEARCH, superseded by DEC-030 for playable-map authoring**. All playable Scalfagus maps MUST now be floating space platforms. Actual spherical gameplay remains a hypothetical future engineering experiment only; no current map may choose a planet surface instead of a flying deck. See [world constitution](space-platform-world-contract-2026-10-11.md).
 Machine-readable option contract: [world-topologies.yaml](world-topologies.yaml).
-Current first map: [Verdant Divide](mvp-verdant-divide-map.yaml) is PLANAR unless owner changes scope.
+Current first map: [Verdant Divide](mvp-verdant-divide-map.yaml) is a strictly bounded PLANAR flying space platform. A spherical level would require a new explicit owner decision and is not a legal current map variant.
 Design authority: [map authoring](world-environments-and-map-authoring-2026-10-11.md) and [MVP agent handoff](AGENT-MVP-IMPLEMENTATION.md).
 
 ## Why topology is gameplay, not cosmetic curvature
@@ -103,4 +103,4 @@ Treat alternatives as discriminated variants: if `topology: planar`, the `spheri
 
 ## Decision state
 
-**Owner asked WHETHER spherical should be possible and requested a pros/cons table.** No explicit decision to implement sphere in MVP. Safe architectural choice: expose topology vocabulary and a topology-independent simulation interface, ship planar `Verdant Divide` first. Put full spherical implementation in separately budgeted **post-MVP research** rather than claim it is a one-line map flag.
+**Historical note:** owner compared spherical maps with flat ones but subsequently required all playable maps to be **spaceborne platforms** (DEC-030). Sphere is not a valid substitute for that rule. No owner decision authorizes a playable spherical globe in MVP. Safe architectural choice: expose topology vocabulary and a topology-independent simulation interface, ship planar `Verdant Divide` first. Put full spherical implementation in separately budgeted **post-MVP research** rather than claim it is a one-line map flag.
