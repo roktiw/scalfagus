@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 1.0
+version: 1.1
 decisions:
   - id: DEC-001
     status: approved
@@ -118,6 +118,28 @@ decisions:
       pylon roles are superseded.
     specification: design/logistics-min-mid-max-2026-10-11.md
     data_specification: design/logistics-unit-scales.yaml
+  - id: DEC-014
+    status: open_research_not_approved
+    topic: faction_specific_existing_building_relocation
+    question: >-
+      Whether any existing completed buildings besides already permitted mobile
+      modules and selectively levitating Eter structures can be physically
+      relocated without weakening RTS expansion geography.
+    proposals: >-
+      ORG very slow expensive living-vessel transplantation along an existing
+      live Nexus-connected branch; ETH faster high-energy resonant network
+      railgun-beam transfer between initialized endpoints; MAN further
+      selective packing and moving of existing modular buildings.
+    constraints_under_consideration: >-
+      No universal free all-building mobility, no instantaneous expansion
+      bypass, no duplication of structure/cargo/garrison/HP, and visible
+      interrupted costed movement respecting map geography and fog of war.
+    approved_baseline_unaffected: [DEC-002, DEC-011, DEC-012, DEC-013]
+    specification: design/building-relocation-design-options-2026-10-11.md
+    data_specification: design/building-relocation-options.yaml
+    note: >-
+      Discussion recorded but no transplant or railgun transfer approved;
+      owner mentioned an additional ETH MAX idea without completing it.
 migration_required:
   - design/economy.yaml
   - design/resources.yaml
