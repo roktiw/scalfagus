@@ -9,6 +9,8 @@ require_godot
 "$GODOT_BIN" --headless --path apps/game --script res://tests/rts_smoke.gd
 "$GODOT_BIN" --headless --path apps/game --script res://tests/navigation_smoke.gd
 "$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_smoke.gd
+"$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_integrity_smoke.gd
+"$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_batch.gd -- --matches 2 --seed 42
 "$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_visual_smoke.gd
 if command -v node >/dev/null 2>&1; then
   node scripts/verify_atlases.mjs
