@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 0.2
+version: 0.3
 status: agent_tasks_not_implemented
 implementation_agent_entrypoint: AGENTS.md
 technical_runtime:
@@ -16,8 +16,14 @@ owner_scope:
   terrain_liquids_but_only_solid_mineable: true
   units_only_ground: true
   world_topology_first_mvp: planar
+  owner_world_decision: DEC-030
+  every_playable_map_in_space_on_flying_platform: true
+  required_battlefield_frame: floating_space_platform
+  selectable_nonplatform_battlefields: false
+  upper_surface_preset_first_map: brown_soil_jungle
+  future_upper_surface_variants: [industrial_metal_patchwork, rocky_desert, resonant_monastery, biological_wet_ark]
   square_map_bounded_by_hard_invisible_wall: true
-  visual_frame_candidate: floating_space_platform
+  mandatory_space_platform_world_frame: floating_space_platform
   deck_movement_or_interplanetary_travel_in_mvp: false
   platform_counts_for_faction_victory: false
   future_true_sphere: candidate_not_committed
@@ -25,6 +31,11 @@ owner_scope:
 docs:
   canonical_owner_decisions: design/decisions.yaml
   implementation_plan: design/AGENT-MVP-IMPLEMENTATION.md
+  delivery_gates: design/MVP-DELIVERY-GATES.md
+  world_constitution: design/space-platform-world-contract-2026-10-11.md
+  surface_material_presets: design/platform-surface-presets.yaml
+  HUD_and_input: design/mvp-hud-and-input.md
+  HUD_config: design/mvp-hud-and-input.yaml
   roster: design/mvp-man-eth-catalog.yaml
   map: design/mvp-verdant-divide-map.yaml
   map_format: design/map-authoring-format-v0.1.yaml
@@ -46,13 +57,15 @@ tasks:
     checks: [existing_smoke_gd, scripts_check_sh]
     done_when: original_Godot_five_view_three_camera_smoke_still_passes
   - id: PR-01
-    title: Compile YAML map and validate land collision
+    title: Compile mandatory floating-space-platform YAML map and validate land collisions
     priority: P0
     status: todo
     dependencies: [PR-00]
-    design_inputs: [design/mvp-verdant-divide-map.yaml, design/map-authoring-format-v0.1.yaml, design/world-environments.yaml, design/world-topologies.yaml]
-    expected_components: [map_manifest_compiler, planar_topology_adapter, map_collision_renderer, navigation_validator, four_sided_world_boundary_guard, noninteractive_floating_platform_visual_renderer]
-    acceptance: [MVP-02, MVP-03, MVP-24, MVP-25, MVP-29, MVP-30, MAP-01, MAP-02, MAP-03, MAP-04, MAP-05, MAP-06, FRAME-01, FRAME-02, FRAME-03, FRAME-04, FRAME-05, FRAME-06, FRAME-07, FRAME-08, FRAME-09, FRAME-10]
+    design_inputs: [design/mvp-verdant-divide-map.yaml, design/map-authoring-format-v0.1.yaml, design/world-environments.yaml, design/world-topologies.yaml, design/battlefield-frames.yaml, design/platform-surface-presets.yaml, design/space-platform-world-contract-2026-10-11.md]
+    expected_components: [strict_required_space_platform_validator, sparse_yaml_map_compiler, planar_topology_adapter, jungle_soil_surface_and_optional_metal_patches, visible_rim_and_underdeck_renderer, noninteractive_starfield, four_sided_world_boundary_guard, collision_navigation_and_LOS_validator]
+    must_reject: [missing_battlefield_frame, bounded_planetary_surface, unsupported_true_sphere, missing_rim_or_collision_guard]
+    done_when: loaded_map_visibly_floats_in_space_and_all_actor_types_stay_within_four_edges
+    acceptance: [MVP-02, MVP-03, MVP-24, MVP-25, MVP-29, MVP-30, MAP-01, MAP-02, MAP-03, MAP-04, MAP-05, MAP-06, FRAME-01, FRAME-02, FRAME-03, FRAME-04, FRAME-05, FRAME-06, FRAME-07, FRAME-08, FRAME-09, FRAME-10, FRAME-11, FRAME-12]
   - id: PR-02
     title: Unit building class registry and legal player commands
     priority: P0
@@ -114,7 +127,7 @@ tasks:
     priority: P1
     status: todo
     dependencies: [PR-07, PR-08]
-    design_inputs: [design/three-pillars-one-world-control-contract.md, design/mvp-hud-and-input.md]
+    design_inputs: [design/three-pillars-one-world-control-contract.md, design/mvp-hud-and-input.md, design/mvp-hud-and-input.yaml]
     expected_components: [one_hero_identity, three_camera_controller_adapters, production_HUD, source_and_mode_overlays]
     acceptance: [MVP-23, MVP-30, MVP-31]
   - id: PR-10
@@ -124,16 +137,15 @@ tasks:
     dependencies: [PR-07, PR-08, PR-09]
     expected_components: [headless_contract_test_runner, replay_hash, reproducible_match, documentation_update]
     acceptance: [MVP-01, MVP-16, MVP-26, MVP-31, MVP-32]
-  - id: RESEARCH-SPHERE
-    title: True spherical planet topology spike
-    priority: post_MVP
-    status: todo
-    dependencies: [PR-10]
+  - id: ARCHIVED_RESEARCH_TRUE_SPHERE
+    title: Historical planetoid geometry comparison, not an authorized playable map feature
+    priority: out_of_MVP_without_new_owner_approval
+    status: blocked
+    dependencies: []
     approval_required: true
-    not_committed_to_current_MVP: true
+    not_committed_to_current_or_universal_platform_roadmap: true
     reference: design/planetary-map-topology-2026-10-11.md
-    expected_components: [cube_sphere_mesh, radial_gravity, surface_navmesh, spherical_LOS, 360_degree_world_camera]
-    acceptance: [PLANET-01, PLANET-02, PLANET-03]
+    caution: do_not_add_nonfloating_planet_surface_playable_maps
 critical_constraints:
   - never_claim_unexecuted_tests_pass
   - every_resource_transfer_exactly_one_ledger_custodian
@@ -144,6 +156,11 @@ critical_constraints:
   - ETH_pylon_uses_single_resource_energy_information_network
   - real_sphere_feature_flag_requires_runtime_adapter
   - square_map_bounds_enforced_by_gameplay_and_physics
+  - all_future_playable_maps_must_include_floating_space_platform_frame
+  - surface_preset_can_be_brown_earth_with_jungle_or_metal_patchwork_or_other_material
+  - nonfloating_planetary_surface_never_legal_playable_map
+  - platform_art_and_underside_are_neutral_and_do_not_count_for_victory
+  - first_mvp_is_Godot_native_only_without_Tauri_runtime
   - flying_platform_is_static_frame_not_a_moving_spherical_world
   - no_platform_border_or_background_counts_as_faction_building
   - do_not_add_full_liquid_gas_harvesting_or_ORG_before_two_race_MVP
