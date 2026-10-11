@@ -48,7 +48,7 @@ python3 -m venv .tools/map-venv
 .tools/map-venv/bin/pip install -r scripts/requirements-map.txt
 MAP_PYTHON=.tools/map-venv/bin/python bash scripts/check-map.sh
 # Regenerate after editing YAML:
-MAP_PYTHON=.tools/map-venv/bin/python .tools/map-venv/bin/python scripts/compile-verdant-map.py
+.tools/map-venv/bin/python scripts/compile-verdant-map.py
 bash scripts/check.sh   # local Godot; GitHub Actions runners currently unavailable
 ```
 
