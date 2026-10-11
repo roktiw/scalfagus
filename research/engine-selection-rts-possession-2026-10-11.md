@@ -130,3 +130,17 @@ Each engine must implement the SAME 5-minute test scenario with colored placehol
 **S5** three-faction MIN, then complex Sim MID/MAX, full FPS/TPP, LLM lab and multiplayer.
 
 This file does not imply that the project already has a running engine, benchmark results or validated numeric balance.
+
+
+## 11. Hero progression and three-camera hard gate (2026-10-11)
+The owner requires one evolving Hero per player and three switchable views: Overlord RTS, `Realm of the Mad God`-like Direct Unit top-down, and literal FPS possession; TPP is optional. Starting kits Engineer/Commander/Specialist use one shared skill graph with cross-specialization. The same actor retains world pose, health, equipment, inventory, combat cooldown and learned ability state when switching.
+
+**Extra engine-spike tests (Godot 4 and Recoil):**
+- Overlord -> top-down Direct Unit -> FPS -> Overlord, repeat during concurrent worker harvest and enemy shots.
+- Activate one identical Hero ability in both Direct and FPS; compare state, cooldown, LOS, resource debits.
+- Modify one talent choice and verify same ability rules apply in all relevant camera modes.
+- On Hero death, release FPS input capture and restore Overlord without blocking base AI/army control.
+- Ensure Commander/Engineer/Specialist kits do not require different scene/runtime character classes.
+
+**Selection impact:** Godot remains initial prototype favorite due to free camera/input system composition and a custom ability graph; Recoil remains real competitor thanks to RTS core and `ControlUnit`, but an RTS-first built-in FPS control pathway alone does NOT prove flexible top-down action-RPG actor motor and skill-system integration. Benchmark rather than assume.
+Source requirement: [Hero Progression](../design/hero-progressions-and-three-cameras-2026-10-11.md).
