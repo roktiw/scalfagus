@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 0.3
+version: 0.4
 status: active_agent_document_authority_after_owner_DEC_033
 language: en
 latest_owner_scope_decision: DEC-033
@@ -11,6 +11,10 @@ first_MVP_target: MAN_vs_MAN_Verdant_Divide_RTS_only_Godot_Native_HH_HC_CC
 first_release_id: mvp_0_1
 first_release_source: design/mvp0-man-mirror-rts.yaml
 first_release_numeric_source: design/mvp0-agent-implementation-contract.yaml
+supplementary_alternative_numeric_scenario_NOT_active: design/mvp0-man-mirror-balance-v0.1.yaml
+source_verified_Godot_code_vs_active_profile_gap_register: design/mvp0-runtime-parity-gaps.yaml
+human_code_parity_report: design/mvp0-runtime-parity-gaps.md
+never_mix_numeric_sources_without_recalculating_test_thresholds: true
 first_release_numeric_status: developer_candidates_not_owner_approved_not_measured
 owner_decisions: design/decisions.yaml
 engine: Godot_4_7_2_Standard_typed_GDScript
@@ -40,6 +44,14 @@ observed_source_mirror:
   coded_source_stock_Matter: 2500
   authored_map_source_stock_Matter: 1660
   code_GUI_simulation_rate_Hz: 10
+  proposed_expected_tick_rate_Hz: 20
+  source_verified_tick_rate_disagreement_needs_P0_reconciliation: true
+  hardcoded_mining_ten_units_in_six_ticks: true
+  hardcoded_Barracks_build_45_ticks: true
+  hardcoded_worker_training_45_ticks: true
+  hardcoded_rifleman_training_65_ticks: true
+  expected_release_timeout_24000_ticks: true
+  actual_mirror_state_timeout_5400_ticks: true
   YAML_proposed_simulation_rate_Hz: 20
   requires_normalization_before_gameplay_release: true
 all_supported_playable_maps_floating_space_platform_in_outer_space: true
@@ -61,6 +73,8 @@ current_release_read_order:
   - design/mvp0-man-mirror-rts-2026-10-11.md
   - design/mvp0-man-mirror-rts.yaml
   - design/mvp0-agent-implementation-contract.yaml
+  - design/mvp0-runtime-parity-gaps.md
+  - design/mvp0-runtime-parity-gaps.yaml
   - design/mvp0-man-mirror-backlog.yaml
   - design/mvp0-man-mirror-acceptance.yaml
   - design/mvp0-man-mirror-rts-runtime-tests.yaml
