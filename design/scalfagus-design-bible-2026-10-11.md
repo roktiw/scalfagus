@@ -1,5 +1,10 @@
 # SCALFAGUS — Consolidated Design Bible
 
+> **Current release scope reconciliation — DEC-033 (2026-10-11):** Long-term universe, not current code release rules; DEC-033 first release is MAN mirror four templates, while DEC-030 all maps space platforms and DEC-031 future two views remain binding.
+>
+> **CURRENT executable release: [MAN mirror scope](mvp0-man-mirror-rts-2026-10-11.md), [active numbers](mvp0-man-mirror-balance-v0.1.yaml), [execution](mvp0-man-mirror-execution-contract.md), [authority](mvp0-man-mirror-network.yaml), [M0 backlog](mvp0-man-mirror-backlog.yaml), [acceptance](mvp0-man-mirror-acceptance.yaml).**
+
+
 > **Latest owner world constitution (DEC-030, supersedes optional frames): EVERY playable Scalfagus battlefield is a spaceborne floating platform.** The top can be brown jungle soil, industrial metal patchwork, stone, desert or mixed terrain. In MVP it is a flat square `planar` map, enclosed by a physical boundary and visibly suspended over space; the rim/underside is neutral world terrain. Bare playable planetary surfaces are FORBIDDEN. The first MAN–ETH map is a jungle on a static floating deck, not a playable spherical globe. [World constitution](space-platform-world-contract-2026-10-11.md), [frame schema](battlefield-frames.yaml), [surface presets](platform-surface-presets.yaml), [MVP delivery](MVP-DELIVERY-GATES.md).
 
 > **Current first playable scope (DEC-025/026): MAN vs ETH**, 5 base roles per faction, only SOLID extraction, water bodies as nonharvestable environment, ground-only actors and default all-building-class victory (DEC-024). Older speculative full-race/spherical/planetary design below does not override this playable slice.
