@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 2.4
+version: 2.5
 decisions:
   - id: DEC-001
     status: approved
@@ -655,6 +655,29 @@ decisions:
     data_specification: design/mvp0-man-mirror-rts.yaml
     acceptance: design/mvp0-man-mirror-acceptance.yaml
     agent_backlog: design/mvp0-man-mirror-backlog.yaml
+
+  - id: DEC-034
+    status: owner_approved_engineering_policy_implementation_audits_pending
+    topic: godot_native_reuse_first_and_audited_github_wrappers
+    resolution: >-
+      Every coding agent must first inspect existing Scalfagus components,
+      then built-in Godot 4.7.2 APIs, then audited GitHub/AssetLib modules.
+      Wrap existing engine/service functionality rather than reimplement
+      generic pathfinding, raycasts, input handling, physics, UI layout,
+      general state machines or network transports. Third-party sources
+      require a reviewed license, immutable pinned commit, compatibility
+      tests, provenance/security review and a replacement boundary.
+      Authoritative game commands, fixed-tick orchestration, finite
+      resource accounting, ownership/fog and victory remain Scalfagus
+      domain code behind adapters; plugins cannot own those rules.
+      Every PR records reuse evidence, actual test results and why
+      original code was justified when reuse alternatives failed.
+    current_release_scope: DEC-033_MAN_vs_MAN_Overlord_RTS
+    specification: architecture/adr-0004-godot-reuse-first-wrappers.md
+    module_registry: architecture/godot-third-party-candidates.yaml
+    component_registry: architecture/godot-reuse-component-map.yaml
+    agent_playbook: docs/AGENT-REUSE-FIRST-PLAYBOOK.md
+    research: docs/GODOT-REUSE-RESEARCH-2026-10-11.md
 
 migration_required:
   - design/economy.yaml

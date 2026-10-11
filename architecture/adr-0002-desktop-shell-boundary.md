@@ -1,4 +1,7 @@
 # ADR-0002 — Standalone Native Game First; Tauri/Electron Studio Optional
+
+**2026-10-11 SUPERSESSION NOTICE (DEC-034 and Godot-only migration):** This is historical studio/launcher analysis. Tauri was retired from the current repository and MUST NOT be reintroduced into Scalfagus game or its MVP. Current official architecture is [ADR-0004](adr-0004-godot-reuse-first-wrappers.md): one Godot-native game window, offline tooling optional. This ADR has no authority to prescribe a game launcher.
+
 Date: 2026-10-11
 Status: **PROPOSED**. The owner requested comparison and boilerplate; no Tauri/launcher code shipped yet.
 

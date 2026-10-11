@@ -3,6 +3,12 @@ project: scalfagus
 release: mvp_0_1
 status: agent_tasks_not_implemented
 owner_decision: DEC-033
+reuse_first_engineering_policy: DEC-034
+reuse_architecture: architecture/adr-0004-godot-reuse-first-wrappers.md
+reuse_component_map: architecture/godot-reuse-component-map.yaml
+vetted_github_module_registry: architecture/godot-third-party-candidates.yaml
+agent_reuse_intake: docs/AGENT-REUSE-FIRST-PLAYBOOK.md
+upstream_modules_are_preapproved_to_install: false
 canonical_scope: design/mvp0-man-mirror-rts-2026-10-11.md
 acceptance: design/mvp0-man-mirror-acceptance.yaml
 task_lifecycle: [todo, in_progress, blocked, completed, verified]
@@ -83,3 +89,17 @@ post_mvp_nonblocking:
   - introduce_playable_ETH_and_faction_balance
   - introduce_FPP_possession_per_DEC_031
   - introduce_ORG_after_asymmetric_MVP
+
+reuse_by_current_gate:
+  M0-00: [Godot_Resource, Sprite3D, existing_Godot_scene]
+  M0-01: [Godot_SceneTree, Node_signals, stable_GameState_domain_adapter]
+  M0-02: [InputMap, Control, PhysicsDirectSpaceState3D, AStarGrid2D, CharacterBody3D]
+  M0-03: [Resource, PackedScene, Timer, authoritative_ledger_domain_logic]
+  M0-04: [Area3D, PhysicsDirectSpaceState3D, Timer, building_class_domain_rules]
+  M0-05: [Node_signals, Timer, optional_audited_Godot_State_Charts_candidate]
+  M0-06: [SceneTree_headless, optional_GUT_godot_4_7_candidate]
+  M0-07: [ENetMultiplayerPeer, MultiplayerAPI, RPC, approved_snapshot_replication]
+  M0-08: [Control, Theme, InputMap, optional_Keychain_candidate]
+  M0-09: [SceneTree_headless, optional_GUT_candidate, native_executable_proof]
+no_homegrown_general_purpose_component_without_review: true
+all_mvp_commands_share_authoritative_validator: true

@@ -5,6 +5,12 @@
 **CURRENT OWNER-APPROVED DELIVERY SCOPE (DEC-033):** MAN vs MAN (four templates: HQ / MIN worker / Barracks / Rifleman), Overlord RTS only, one floating platform map, finite carried Matter, basic production/combat/victory, and **Human-Human LAN/loopback, Human-Computer, Computer-Computer** (GUI watch or accelerated headless). This is an implementation plan, **not an existing playable feature**. FPP possession is future; TPP is not a production mode. ETH/ORG and advanced logistics are later milestones. Start with [agent contract](AGENTS.md), [MVP 0.1 design](design/mvp0-man-mirror-rts-2026-10-11.md), [YAML scope](design/mvp0-man-mirror-rts.yaml), [backlog](design/mvp0-man-mirror-backlog.yaml) and [headless lab](design/godot-headless-balance-lab-2026-10-11.md).
 
 
+## Engineering rule — DEC-034 Reuse First
+
+Do not reinvent Godot A*, raycasting, UI, keybinds, physics, generic FSMs or networking. **Wrap built-in Godot facilities first**; use **pinned and audited GitHub/AssetLib modules** only when demonstrably beneficial. Keep game rules behind stable ports and use one authoritative command validation path. Read [ADR-0004](architecture/adr-0004-godot-reuse-first-wrappers.md), [21-capability map](architecture/godot-reuse-component-map.yaml), [third-party candidates](architecture/godot-third-party-candidates.yaml), [research](docs/GODOT-REUSE-RESEARCH-2026-10-11.md) and [agent playbook](docs/AGENT-REUSE-FIRST-PLAYBOOK.md). Candidates are NOT installed or locally runtime-tested simply by being listed.
+
+**Current first playable release = DEC-033: MAN vs MAN classic RTS, H-H/H-C/C-C.** ETH, ORG and possession remain future milestones. The existing 3-camera Godot demo stays as a regression fixture. Draft PR #5 RTS navigation is not a confirmed feature on main.
+
 ## Universal world rule — DEC-030
 
 **Every playable Scalfagus battlefield is a floating platform in outer space.** The top can be brown-earth jungle with trees, welded metal patchwork, rock, desert, marshland or mixed terrain. Each platform has real traversable ground, visible outer rim/underside, hard invisible gameplay walls and space/starfield around it; the distant planet is backdrop only. **Ordinary planet-surface maps are not a valid alternative.** The first `Verdant Divide` map is a **stationary 64×64 candidate floating jungle platform**. No orbital movement, starship travel, spherical gravity, sailing/flying units or fluid harvesting in MVP.

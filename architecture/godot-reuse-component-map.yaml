@@ -1,0 +1,173 @@
+schema_version: 1
+project: scalfagus
+decision: DEC-034
+release_scope: DEC-033_MAN_vs_MAN_Overlord_only_HH_HC_CC
+status: reference_architecture_not_claiming_implementation
+baseline_engine: Godot_4_7_2_Standard_GDScript
+source_of_truth: architecture/adr-0004-godot-reuse-first-wrappers.md
+third_party_registry: architecture/godot-third-party-candidates.yaml
+code_layout_proposed:
+  core: apps/game/scripts/core
+  adapters: apps/game/scripts/adapters
+  gameplay: apps/game/scripts/gameplay
+  ui: apps/game/scenes/ui
+  tests: apps/game/tests
+  vetted_third_party: apps/game/addons
+  offline_compilation: scripts
+
+capabilities:
+  - id: rts_camera
+    mvp_gate: M0-02
+    existing_location: apps/game/scripts/main.gd
+    provider: [Camera3D, InputMap, InputEvent]
+    wrapper: RTSCameraController
+    implementation: thin_adapter_plus_camera_controls
+    owned_rules: [camera_bounds_and_speed, zoom_limits, player_focus]
+    tests: [camera_WASD_orbit_QE_zoom, camera_never_teleports_units]
+  - id: keybindings
+    mvp_gate: M0-08
+    provider: [InputMap, ConfigFile]
+    github_candidate: keychain
+    wrapper: InputBindingPort
+    implementation: built_in_first_optional_vetted_addon
+    owned_rules: [RTS_action_naming, conflict_scopes, profile_defaults]
+    tests: [keyboard_mappings, shift_selection, persistence]
+  - id: input_dispatch
+    mvp_gate: M0-02
+    provider: [InputEvent, Node._unhandled_input, Control._gui_input]
+    wrapper: PlayerIntentAdapter
+    implementation: thin_adapter
+    owned_rules: [controller_slot, command_context]
+    tests: [GUI_consumes_clicks, RTS_camera_cannot_move_unit_on_WASD]
+  - id: picking
+    mvp_gate: M0-02
+    provider: [PhysicsDirectSpaceState3D, PhysicsRayQueryParameters3D, Camera3D]
+    wrapper: SelectionPort
+    implementation: thin_adapter
+    owned_rules: [ownership_filter, fog_filter, multi_selection]
+    tests: [click_select, rectangle_select, hidden_unit_not_targetable]
+  - id: HUD
+    mvp_gate: M0-08
+    provider: [CanvasLayer, Control, Container, Theme, ProgressBar]
+    wrapper: HUDPort
+    implementation: godot_UI_scene_plus_snapshot_presenter
+    owned_rules: [resource_balance_display, selection_panel, production_queue]
+    tests: [selection_and_resources_refresh, keyboard_focus_consistency]
+  - id: minimap
+    mvp_gate: M0-08
+    provider: [Control._draw, SubViewport]
+    wrapper: ViewportMapPort
+    implementation: godot_render_helpers_plus_snapshot_filter
+    owned_rules: [fog_safe_visibility, viewport_coordinate_transform]
+    tests: [enemy_fog_not_leaked, map_edge_clicks]
+  - id: pathfinding_grid
+    mvp_gate: M0-02
+    proposed_PR: 5
+    provider: [AStarGrid2D]
+    wrapper: NavigationPort
+    implementation: existing_repo_draft_thin_grid_adapter
+    owned_rules: [blocked_cells, clearance, nav_version, dynamic_invalidation]
+    tests: [blocked_trees, impassable_water, actor_larger_than_cell, building_placed_mid_route]
+  - id: navigation_3D_alternative
+    mvp_gate: post_MVP_or_benchmark
+    provider: [NavigationServer3D, NavigationRegion3D, NavigationAgent3D]
+    wrapper: NavigationPort
+    implementation: optional_provider_not_parallel_mandatory_planner
+    owned_rules: [ramp_passability, clearance_classes]
+    tests: [same_routes_as_grid, perf_20_and_100_units]
+  - id: local_crowd_avoidance
+    mvp_gate: post_initial_path_correctness
+    provider: [NavigationAgent3D, NavigationObstacle3D]
+    wrapper: UnitMotionPort
+    implementation: optional_engine_avoidance
+    owned_rules: [stuck_detection, formation_spacing]
+    tests: [twenty_units_narrow_corridor, no_bad_walk_through_wall]
+  - id: physics
+    mvp_gate: M0-01
+    provider: [CharacterBody3D, StaticBody3D, CollisionShape3D, PhysicsServer3D]
+    wrapper: UnitMotionPort
+    implementation: built_in
+    owned_rules: [collision_layers, speed_limits, movement_tick]
+    tests: [no_obstacle_teleport, bounds_enforced, attack_hit_shapes]
+  - id: authoritative_commands
+    mvp_gate: [M0-01, M0-02]
+    provider: [Node.signals, RefCounted, Resource]
+    wrapper: CommandGateway
+    implementation: unique_domain_logic_on_engine_types
+    owned_rules: [slot_validation, queue_order, fog, resource_cost, cooldown, event_sequence]
+    tests: [same_validation_human_and_bot, reject_enemy_unit, reject_spend_twice]
+  - id: simulation
+    mvp_gate: M0-01
+    provider: [Node._physics_process, SceneTree]
+    wrapper: MatchSimulation
+    implementation: unique_fixed_tick_game_rules
+    owned_rules: [GameState, deterministic_input_order, win_state]
+    tests: [replay_tick_hash, no_duplicate_spawns, same_seed_results]
+  - id: economy
+    mvp_gate: [M0-02, M0-03]
+    provider: [Resource, signals]
+    wrapper: MatterLedger
+    implementation: unique_domain_logic
+    owned_rules: [finite_SOLID, carry, physical_delivery, spend_after_validation]
+    tests: [conservation, zero_negative_stock, no_double_credit]
+  - id: production
+    mvp_gate: M0-03
+    provider: [PackedScene, Timer, signals]
+    wrapper: ProductionPort
+    implementation: unique_domain_cost_queue_with_builtin_lifecycle
+    owned_rules: [build_legality, queue_cost, time_to_spawn, collision_free_spawn]
+    tests: [costs_reserved_once, unit_templates_four]
+  - id: combat
+    mvp_gate: M0-04
+    provider: [PhysicsDirectSpaceState3D, Area3D, Timer]
+    wrapper: CombatPort
+    implementation: unique_domain_damage_cooldown_with_engine_queries
+    owned_rules: [target_legality, tree_LOS, HP, victory_building_class]
+    tests: [no_shoot_through_tree, correct_win_on_last_building]
+  - id: bot_AI
+    mvp_gate: M0-05
+    provider: [signals, Node, Timer]
+    github_candidate: godot_statecharts
+    alternatives: [limboai]
+    wrapper: BotBehaviorPort
+    implementation: small_bot_first_then_select_one_addon_if_cost_effective
+    owned_rules: [legal_commands_only, own_fog, economy_fairness]
+    tests: [HC_same_rules, CC_seeded_matches, bot_cannot_see_hidden_enemy]
+  - id: native_network_HH
+    mvp_gate: M0-07
+    provider: [ENetMultiplayerPeer, MultiplayerAPI, MultiplayerSpawner, MultiplayerSynchronizer]
+    wrapper: NetworkSessionPort
+    implementation: built_in_network_transport_with_unique_validation
+    owned_rules: [authority_host, player_slot_binding, client_validation, visibility_filtering]
+    tests: [two_clients_loopback, reject_forged_economy_command, disconnect]
+  - id: web_network_future
+    mvp_gate: post_MVP
+    provider: [WebSocketMultiplayerPeer, WebRTCMultiplayerPeer]
+    wrapper: NetworkSessionPort
+    implementation: optional_transport_after_native_LAN
+    owned_rules: [same_command_protocol, no_client_authority]
+    tests: [web_transport_compatibility, web_runtime_build]
+  - id: unit_visual
+    mvp_gate: M0-00
+    existing_location: apps/game/scripts/directional_sprite_5.gd
+    provider: [Sprite3D, AnimationPlayer, AnimationTree]
+    wrapper: DirectionalSprite5
+    implementation: preserve_existing_repo_adapter
+    owned_rules: [five_views_three_horizontal_mirrors, authoring_manifest]
+    tests: [direction_mapping, sprite_does_not_change_physics]
+  - id: map_visual_and_collision
+    mvp_gate: M0-01
+    provider: [MeshInstance3D, StaticBody3D, CollisionShape3D, FastNoiseLite]
+    wrapper: MapAuthoringPort
+    implementation: godot_mesh_and_noise_plus_rules_from_canonical_world_data
+    owned_rules: [floating_platform_only, procedural_noncritical_cosmetics, stable_boundaries]
+    tests: [platform_edges, ponds, deterministic_gameplay_geometry_hash]
+  - id: testing
+    mvp_gate: M0-09
+    existing_location: apps/game/tests
+    provider: [SceneTree, assertions]
+    github_candidate: gut
+    wrapper: TestHarnessPort
+    implementation: keep_native_smokes_then_optionally_adopt_GUT
+    owned_rules: [mvp0_acceptance_all_M0_tests, CI, actual_test_provenance]
+    tests: [Godot_4_7_2_headless, human_input_QA, mac_win_linux_web_export_gates]
