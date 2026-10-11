@@ -39,6 +39,15 @@ func _verify() -> void:
             return
         var e: Dictionary = sim.entities[id]
         var kind: String = str(e["kind"])
+        if kind == "hq":
+            var body: StaticBody3D = actor.get_node_or_null("FootprintBody") as StaticBody3D
+            var collision: CollisionShape3D = body.get_node_or_null("FootprintShape") as CollisionShape3D if body != null else null
+            if collision == null or not (collision.shape is BoxShape3D):
+                _fail("HQ lost its actual Godot 3D collision")
+                return
+            if absf((collision.shape as BoxShape3D).size.x * actor.scale.x - 6.0) > 0.01:
+                _fail("HQ collision should be exactly six metres wide")
+                return
         if kind == "worker":
             workers += 1
             if sprite.texture.get_width() != 32 or sprite.texture.get_height() != 240:
@@ -76,8 +85,17 @@ func _verify() -> void:
         return
 
     var game_camera: Camera3D = world.get("camera")
-    if game_camera == null or game_camera.size > 65.0:
+    if game_camera == null or game_camera.size > 130.0:
         _fail("Human RTS camera starts too zoomed out")
+        return
+    if sim.tile_meters != 2.0:
+        _fail("Godot scene lost authored 2 metre scale")
+        return
+    var northwest_hq: int = sim.units_for(0, "hq")[0]
+    var nw_cell: Vector2i = sim.entities[northwest_hq]["pos"]
+    var nw_node: Node3D = sprites[northwest_hq]
+    if nw_node.position != Vector3(nw_cell.x * 2.0, 0.0, nw_cell.y * 2.0):
+        _fail("Simulation grid and render space are misaligned")
         return
     var window_width: int = int(ProjectSettings.get_setting(
         "display/window/size/window_width_override", 0))
