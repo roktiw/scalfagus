@@ -1,0 +1,47 @@
+schema_version: 1
+project: scalfagus
+version: 0.4
+status: approved_core_rules_with_proposed_details
+automation: medium
+player_controls:
+  - select_deposit_and_assign_workers
+  - place_transfer_points_and_storage
+  - designate_destination_or_route
+  - choose_island_or_asteroid_for_expansion
+  - initiate_docking_operations
+  - change_strategic_routes
+automatic:
+  - repeat_ordered_extraction
+  - transfer_cargo_when_compatible_receiver_in_range_and_has_capacity
+  - return_full_cargo_to_configured_destination
+  - basic_pathfinding_around_inaccessible_terrain
+  - queued_transfer_at_configured_points
+not_automatic:
+  - independently_choose_new_expansion_sites
+  - build_new_economy_without_orders
+  - optimize_global_strategy
+  - autonomously_claim_remote_deposits
+transfer:
+  permitted_chain: [min_to_mid, min_to_max, mid_to_max]
+  source_of_truth: design/economy.yaml
+  supports_resources: [matter, volatiles, energy]
+  needs_receiver_capacity: true
+  needs_transfer_range_and_compatibility: true
+  energy_as_cargo: true
+  rates_and_docking_delays: refer_to_economy_pending_migration
+  simultaneous_loaders: TBD
+  queue_priority: TBD
+  fallback_if_receiver_destroyed: TBD
+asteroids:
+  movement: slowly_drifting
+  docking_player_ordered: true
+  travel_route_recalculation: basic
+  automatic_strategic_retargeting: false
+  docking_when_target_moves: TBD
+failure_modes:
+  full_storage: TBD
+  interrupted_transfer: TBD
+  obstructed_route: TBD
+  dropped_or_lost_cargo: TBD
+  congestion: TBD
+metrics: [delivered_resources_per_minute, idle_time, congestion, lost_cargo, travel_distance]
