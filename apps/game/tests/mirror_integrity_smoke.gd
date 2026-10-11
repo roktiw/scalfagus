@@ -2,6 +2,7 @@ extends SceneTree
 
 # MVP0: authority, physical occupancy, Matter custody and replay integrity.
 const MATCH = preload("res://scripts/mirror_match_state.gd")
+const GEOM = preload("res://scripts/mirror_geometry.gd")
 
 func _initialize() -> void:
     call_deferred("_verify")
@@ -60,7 +61,7 @@ func _verify() -> void:
     var hq: Dictionary = spawn_sim.entities[hq_id]
     var hq_pos: Vector2i = hq["pos"]
     var blocking_ids: Array[int] = []
-    for cell in spawn_sim.GEOM.perimeter_cells(hq_pos):
+    for cell in GEOM.perimeter_cells(hq_pos):
         if not spawn_sim._mobile_at(cell) and not spawn_sim._source_at(cell):
             blocking_ids.append(spawn_sim._spawn("worker", 0, cell))
     var count_before: int = spawn_sim.units_for(0, "worker").size()
