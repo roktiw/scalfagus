@@ -233,3 +233,11 @@ Faction logistics:
 - Is tech research required to unlock unit transit?
 
 **End of conversation archive.**
+
+## Addendum: DEC-036 — owner storage clarification (2026-10-11)
+
+> Org magazynują w cystach. Jedna cysta może  mieć tylko jeden rodzaj surowca. Ludzie mogą w UMU magazynować miks towarów ale, wybranie jednego rodzaju towaru sprawia że pomieści się lepiej. Eth po prostu lewitują miks towarów  wokol  pylonów ale im więcej pylon magazynuje tym mniejsza ma przepustowość więc gracz powinien dążyć do posiadania bocznic w networku lub bazie pylonów przeznaczonych do magazonywanja. Gdy mówię pylony mam na myśli obeliski bo chcemy się dorozniac od StarCraft protów
+
+**New canonical owner decision:** [DEC-036 narrative](../design/faction-storage-specialization-and-obelisk-traffic-2026-10-11.md) and [machine contract](../design/faction-storage-specialization-and-obelisk-traffic.yaml). ORG has single-resource cysts, MAN UMU supports mixed goods but gains higher effective capacity if dedicated to a single type, ETH stores mixed resources as orbiting/levitating bundles at each **Obelisk** with storage-fill-dependent throughput penalty. Mainline Obelisks should remain relatively unloaded and storage branches should handle hoarding. Player-facing naming is **Obelisk**, NOT Pylon; old technical IDs are stable aliases until explicit migration. These systems remain future post-MVP0 features.
+
+**Important correction:** earlier candidate for background capacity-weighted equalization across *all* ETH nodes would fill central relay Obelisks and undermine the newly approved branch storage economics. DEC-036 requires opt-in eligible warehouse-node balancing with protected transit-only nodes. Formula and exact traffic costs remain tuning proposals, not owner-approved numbers.
