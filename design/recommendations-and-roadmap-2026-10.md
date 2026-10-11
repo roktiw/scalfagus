@@ -89,6 +89,16 @@ Matter, Volatiles and Energy; the owner has not yet defined their full mapping.
 See [physical forms](physical-resource-forms-and-extraction-2026-10-11.md)
 and [data](physical-resource-forms.yaml).
 
+## Latest network, loot and default victory gates — DEC-021–024
+
+- **WIN:** Win a default skirmish when every enemy completed living building-class entity has been eliminated. Mobile/packed UMU or MAN infrastructure retaining a `victory_building` tag count as buildings until actually destroyed. Remaining workers, heroes, unbuilt scaffolds, crates and ruins do not count. This is an **owner-approved rule**, not merely a proposed mode.
+- **ETH:** one underlying connected Ether Network carries typed resource packets, information and Energy after real Nexus conversion; pylon flags are relay locations. Real finite throughput, edge escrow and actual stocks define what isolated components can spend. Failed unfinished construction ejects all **site-committed** material orbs, while spent channel Energy/time is lost.
+- **ORG:** living vessel paths carry actual finite material, information, Energy and nutrition; paired mitochondria produce energy (two requested by owner, exact power-region scope TBD). Dying buds/buildings gradually eject partial salvage as real tetrahedra.
+- **MAN:** universal ground-mobile **UMU** is generator + warehouse OR bunker; test it as a kit on existing MAN MAX rather than a fourth overlapping template. Workers physically fetch building crates; unfinished scaffolds persist and require salvage excavation, while loose crates can be stolen. Hybrid cable routes power conductors and optical data together but never construction materials.
+- **GLOBAL:** one event-driven `WorldDrop` actor, shape by origin (ORG tetrahedron / MAN cube / ETH orb), color by source form (solid amber, liquid cyan, gas violet); cross-faction pickup and strictly loss-bearing completed-asset recycling. Confirm no material creation or match stalemate by requiring building elimination.
+- **Fixtures:** [current three-network contract](three-network-channels-and-destruction-2026-10-11.md), [loot spec](world-loot-salvage-and-recycling-2026-10-11.md), [victory spec](victory-defeat-building-classification-2026-10-11.md), [loot/net test fixtures](recycling-and-network-acceptance-cases.yaml), [WIN test fixtures](victory-defeat-acceptance-cases.yaml).
+- **Sequence:** WorldDrop deterministic stack + MAN UMU build/haul/cable/loot + WIN rule → ETH one graph/conversion/split and site drops → ORG vessels/mitochondria/decay and all-race salvage. No false claim of executable tests.
+
 ## Construction-phases prototype priority (DEC-015)
 
 Before numerical tuning, implement three **faction-specific construction site
@@ -97,7 +107,7 @@ state machines**, with the **current experimental** caps
 and **ETH 1→2→3** network channelers across 0–33%,
 33–66% and 66–100%. Test ORG interrupted incubation decay, MAN persistent
 unfinished structures and rival salvage, and ETH progress-reset with
-source-accounted non-magical refund. Stage caps are *not* mandatory worker
+real site-ejected Ether-orb packets with no duplicate remote credit. Stage caps are *not* mandatory worker
 quorums. Compare total time, resource opportunity cost, risk and recovery
 after interruption; no claim of achieved balance. Do not enable the
 proposed optional ORG worker-consumed finalization automatically.
