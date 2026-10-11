@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 0.1
+version: 0.2
 status: design_only_not_executed
 contract: design/three-faction-network-and-infrastructure-contract-2026-10-11.md
 purpose: deterministic_acceptance_fixtures_for_eventual_shared_simulator
@@ -12,6 +12,7 @@ fixtures:
       type: matter
       nodes: [{id: p1, capacity: 40, qty: 20}, {id: p2, capacity: 40, qty: 20}, {id: p3, capacity: 40, qty: 20}, {id: p4, capacity: 40, qty: 20}, {id: p5, capacity: 40, qty: 20}, {id: p6, capacity: 40, qty: 20}]
       component: [p1, p2, p3, p4, p5, p6]
+      links: [[p1, p2], [p2, p3], [p3, p4], [p4, p5], [p5, p6]]
       total: 120
     action: disconnect_p2_p3_without_destroying_nodes
     expect:
@@ -24,11 +25,8 @@ fixtures:
     scenario: proportional_capacity_equalization
     initial:
       type: matter
-      nodes: [{id: p1, capacity: 10, qty: 30}, {id: p2, capacity: 20, qty: 0}, {id: p3, capacity: 30, qty: 0}]
-      total: 30
-      fixture_note: first_node_initial_over_capacity_invalid_in_strict_execution_see_corrected_valid_case_below
-    valid_start:
       nodes: [{id: p1, capacity: 10, qty: 10}, {id: p2, capacity: 20, qty: 20}, {id: p3, capacity: 30, qty: 0}]
+      links: [[p1, p2], [p2, p3]]
       total: 30
     action: advance_until_all_equalization_queues_empty
     expect:
@@ -41,6 +39,7 @@ fixtures:
       type: volatiles
       nodes: [{id: p1, qty: 6}, {id: p2, qty: 19}, {id: p3, qty: 14}, {id: p4, qty: 1}]
       total: 40
+      links: [[p1, p2], [p2, p3], [p3, p4]]
     action: disconnect_between_p2_and_p3
     expect:
       left_actual_qty: 25
@@ -138,7 +137,7 @@ fixtures:
   - id: NET-014
     faction: man
     scenario: material_access_requires_route
-    action: builder_starts_build_at_pylonless_remote_site_with_electric_grid_but_without_haulable_parts
+    action: builder_starts_build_at_remote_site_with_electric_grid_but_without_haulable_parts
     expect:
       immediate_material_spend_from_remote_bank: false
       builder_requests_actual_delivery_or_gathering: true
