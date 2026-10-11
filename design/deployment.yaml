@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 0.9
+version: 1.0
 status: approved_core_rules_with_proposed_details
 rule:
   all_units_deploy_into_buildings: false
@@ -10,7 +10,9 @@ rule:
   construction_capability_required_for_growth_or_assembly: true
   economic_worker_tier_does_not_grant_all_structure_morphs: true
   phased_labor_specification: design/construction-phases.yaml
-  newer_network_utility_contract: design/three-faction-network-and-infrastructure-contract-2026-10-11.md
+  newer_network_utility_contract: design/three-network-channels-and-destruction-2026-10-11.md
+  newer_world_loot_contract: design/world-loot-and-recycling.yaml
+  default_victory_building_specification: design/victory-defeat-building-classification-2026-10-11.md
   asymmetric_construction_stages_status: owner_proposal_pending_balance
   contributor_slot_caps_mean_maximum_not_mandatory_team_size: true
   real_workers_must_remain_assigned_and_eligible: true
@@ -32,6 +34,8 @@ factions:
         builders_do_not_die_at_initial_placement: true
         visible_tending_movements: true
         no_caretaker_stops_progress_and_causes_gradual_wither: true
+        wither_spits_partial_embodied_resource_drops_over_time: true
+        vein_cut_can_leak_physical_in_transit_resources: true
         final_caretaker_fertilization_may_consume_worker: unresolved_optional
         resources_consumed_during_growth: true
       detached_bud_requires_regrowth_reconnection: true
@@ -55,14 +59,19 @@ factions:
         three_stages_explanation: [single_worker_foundation, two_worker_core_and_frame, two_worker_final_commissioning]
         worksite_progress_persists_when_unattended: true
         materials_at_site_persist_if_not_destroyed: true
+        loose_build_crates_at_site_collectible_by_any_faction: true
+        installed_materials_require_salvage_excavation_to_recover: true
         unfinished_or_destroyed_worksite_can_be_salvaged_by_other_factions: true
         salvage_requires_real_collection_and_nonzero_cost: true
-    basic_power_dock:
-      candidate_small_service_module_or_existing_chassis_kit: true
+    universal_man_unit:
+      full_name: Universal Man Unit
+      existing_man_max_depot_bunker_with_generator_kit: proposed
+      counts_as_building_even_when_packed_ground_travel: true
+      previous_separate_power_dock_candidate: historical
       exclusive_modes: [deployed_power_warehouse, deployed_fortified_bunker, packed_ground_travel]
       ground_only: true
       no_full_generator_output_during_travel: true
-      power_cables_only_transport_electricity_not_materials: true
+      hybrid_cables_transport_electricity_and_information_not_materials: true
       physical_parts_required_at_construction_site: true
     specialized_mid:
       exclusive_modes: [travel, conveyor, one_person_bunker, sentry_wall]
@@ -88,14 +97,16 @@ factions:
         previous_proposal: [1, 3, 2]
         three_stages_explanation: [single_pattern_seeding, dual_beam_energy_transfer, triadic_final_manifestation]
         breaking_all_required_links_loses_all_build_progress: true
-        partial_refund_to_attributed_nexus_expansion_sources: true
-        refundable_materials_require_actual_return_transfer: true
+        no_nexus_auto_refund_of_site_committed_material: true
+        all_material_ingredients_in_site_custody_immediately_eject_as_world_orbs: true
+        remote_reservations_not_yet_site_delivered_stay_at_real_source: true
+        spent_channel_energy_does_not_materialize_as_refund: true
         disconnect_grace: undecided_not_approved
         stage_explanation: [single_seed, dual_energy_transfer, triple_channel_manifestation]
     mid:
       role: pylon_obelisk_storage_relay_resonance_supply_or_meditated_turret
       signal_support_persists_during_turret: true
-      ether_freight_through_activated_turret: false_by_proposed_default
+      same_network_relay_during_turret_at_reduced_capacity: proposed
       retains_cargo_while_meditating: true
       cargo_gates_locked_while_meditating_and_defending: true
       requires_eligible_mode_capability: true
