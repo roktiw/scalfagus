@@ -25,6 +25,12 @@ naming:
     - Universal_Man_Unit
 core:
   real_two_transforming_conveyor_wings: DEC-040
+  physical_transport_capacity_owner_DEC_042: design/man-umu-capacity-and-specialist-balance.yaml
+  MOVE_passengers_soldiers: 4
+  MOVE_standard_mixed_cargo_units: 27
+  MOVE_mono_cargo_units_with_two_9_unit_side_racks: 45
+  owner_balance_light_UMU_versus_much_stronger_specialists: true
+  passengers_and_cargo_in_same_cage_forbidden: true
   only_one_active_operational_role_per_UMU: true
   rooftop_equipment_persists_but_not_all_services_active: true
   no_resource_or_actors_created_during_transformation: true
