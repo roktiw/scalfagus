@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 0.4
+version: 0.5
 decisions:
   - id: DEC-001
     status: approved
@@ -36,10 +36,22 @@ decisions:
     topic: language_policy
     resolution: All repository documentation, YAML content, comments, and authored text must be in English.
     specification: design/design-audit.md
+  - id: DEC-007
+    status: approved
+    topic: individuality_over_hivemind
+    resolution: >-
+      All playable civilizations are composed of distinctive specialized units with
+      meaningful independent local agency. No mandatory single hive mind, totalizing
+      super-organism, amorphous civilization-wide assimilation or free enemy-DNA copying.
+      Tactical coordination and enhanced networks remain allowed and must not erase
+      unit individuality. This principle does not mean every unit must be sentient.
+    specification: design/individual-agency-and-composable-civilizations.md
 migration_required:
   - design/economy.yaml
   - design/resources.yaml
   - design/units.yaml
 notes:
   - Approved design decisions are distinct from tentative balance numbers.
-  - See design/decisions-v0.4.md for implementation questions and acceptance criteria.
+  - See design/decisions-v0.4.md for historical v0.4 questions and acceptance criteria.
+  - Fourth Terra-born autonomous machine civilization is a candidate, not an approved fourth starting faction.
+  - Candidate details: design/fourth-civilization-independent-machines-2026-10-11.md
