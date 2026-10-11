@@ -1,0 +1,176 @@
+schema_version: 1
+project: scalfagus
+version: 0.1
+status: owner_approved_direction_proposed_numbers
+specification: design/base-ecologies-and-expansion-2026-10-11.md
+canonical_faction_ids: [org, man, eth]
+canonical_resources: [matter, volatiles, energy]
+invariants:
+  min_independently_extracts_and_carries: true
+  worker_and_building_inventory_finite: true
+  explicit_construction_capability_required: true
+  self_to_structure_conversion_requires_deployable_tag: true
+  units_retain_individual_agency: true
+  resource_cargo_conserved: true
+  build_cost_and_time_nonzero: true
+  exact_values_require_playtest: true
+  strategic_expansion_requires_permission: true
+factions:
+  org:
+    name_mid: Organites
+    economic_style: hunter_gatherer
+    base_topology: single_nexus_rooted_branching_vascular_graph
+    base_mobility: least_mobile
+    visual_timelapse: branching_rooted_organism_with_pulsating_nutrient_convoys
+    construction:
+      physical_live_vessel_must_reach_placement: true
+      every_rooted_building_requires_connected_vessel_to_home_nexus: true
+      creep_area_carpet_is_not_placement_contract: true
+      authorized_worker_by_level: {l1: min, l2: mid, l3: max}
+      units_require_growth_equipment: true
+      original_builder_does_not_automatically_transform_into_building: true
+      building_growth_consumes_real_resources_and_time: true
+    vessel:
+      destructible: true
+      physical_branch_segments: true
+      redundant_branches_allowed: true
+      disconnected_branch_enters_wither: true
+      instant_destroy_on_disconnect: false
+      wither_grace_time: TBD
+      reconnection_recovery_before_total_decay: proposed
+    expansion:
+      independent_from_home: false
+      requires_continuous_live_vascular_path: true
+      recurring_actual_home_origin_nourishment_deliveries: true
+      local_resource_extraction_does_not_remove_home_supply_requirement: true
+      upkeep_consumes_canonical_resources_only: true
+      nourishment_recipe_and_interval: TBD
+      starvation_has_staged_visible_decline: true
+      separate_dependency_causes: [disconnected_vessel, missing_home_supplies]
+    economic_units:
+      min:
+        role: fast_independent_gatherer
+        construction_max_building_level: l1
+      mid:
+        role: medium_slow_miner_and_bulk_hauler
+        construction_max_building_level: l2
+        can_shuttle_supply_or_hold_temporarily: true
+        initial_transfer_ports: 1
+        initial_items_per_worker_handoff: 1
+      max:
+        role: slow_flying_mother_transport
+        construction_max_building_level: l3
+        movement_domains: [air]
+        route_priority: repeated_home_deposit_or_expansion_loop
+        initial_modes_mutually_exclusive: [move, receive, dispatch, extract]
+        initial_loading_requires_holding_position: true
+        initial_transfer_ports: 1
+        initial_items_per_worker_handoff: 1
+        in_motion_handoff: researched_midgame
+        simultaneous_ports: researched_lategame
+        stationary_hoard_mode: tactical_alternative_not_default
+        passengers_and_combat: specialized_tradeoff_proposed
+    signature_vulnerabilities: [vessel_cut, colony_starvation, mother_interception]
+  man:
+    name_mid: Manusians
+    economic_style: modular_conveyor_engineering
+    base_topology: composable_modular_mobile_factory_system
+    base_mobility: highest
+    visual_timelapse: creeping_radial_vertical_modular_city
+    nexus_is_mandatory_single_building: false
+    most_modules_relocatable: true
+    some_structures_have_permanent_foundations: true
+    construction:
+      prefabricated_physical_module_assembly: true
+      repair_of_buildings_and_units: true
+      repairs_require_resources_time_and_compatible_equipment: true
+      module_packing_and_unpacking_require_valid_footprint: true
+    expansion:
+      independent_from_home: true
+      recurring_home_contact_required: false
+      recurring_home_nourishment_required: false
+      optional_interconnection: true
+      hidden_until_scouted_under_normal_fog: true
+      mandatory_exposed_link_to_home: false
+      requires_local_equipment_and_resources: true
+    economic_units:
+      min:
+        role: scv_like_miner_builder_repairer
+        repairs_units_and_structures_if_equipped: true
+      mid:
+        role: ground_tracked_relay
+        conveyor_length_tiles: [3, 5]
+        exclusive_modes: [conveyor, one_soldier_bunker, sentry_wall, travel]
+        garrison_capacity_in_bunker_mode: 1
+        sentry_wall_faces_outward_and_blocks: true
+        resource_packages_ejected_to_legal_protected_side: true
+        conveyor_disabled_when_defending: true
+      max:
+        role: very_slow_ground_only_modular_warehouse
+        movement_domains: [land]
+        exclusive_modes: [travel, warehouse, multi_soldier_bunker]
+        multi_soldier_bunker_capacity: TBD
+        unload_resource_crates_before_bunker: true
+        resource_ejection_must_not_credit_home_bank: true
+    signature_vulnerabilities: [belt_interdiction, packed_module_downtime, isolated_outpost_raids]
+  eth:
+    name_mid: Etherans
+    economic_style: courier_relays_resonant_construction
+    base_topology: distributed_nexus_and_pylon_network
+    base_mobility: selective_meditation_levitation
+    visual_timelapse: resonant_nodes_visible_blue_construction_beams_occasional_levitation
+    economic_units:
+      min:
+        role: independent_miner_courier_and_network_mode_builder
+        construction:
+          requires_stationary_worker_network_mode: true
+          construction_beam_color: blue
+          construction_beam_visible_strategic_signal: true
+          construction_beam_target: nearest_eligible_large_network_node
+          worker_remains_busy_until_job_finished_or_cancelled: true
+          not_drop_energy_orb_and_leave: true
+          energy_spent_from_accounted_inventory: true
+          matter_volatiles_must_be_physically_delivered: true
+          enemy_visibility_rules: TBD
+      mid:
+        role: stationary_pylon_storage_and_relay_or_turret
+        replaces_old_mobile_relay_conductor: true
+        modes: [storage_relay, meditating_to_turret, turret, meditating_to_storage]
+        storage_cargo_remains_inside_during_mode_transition: true
+        cargo_gates_closed_during_meditation: true
+        cargo_gates_closed_while_turret_active: true
+        duration_and_cost: TBD
+        relocation_only_if_eligible_after_meditation: proposed
+      max:
+        role: nexus_class_core_node
+        nexus_capabilities_from_creation: true
+        functions: [local_base_anchor, local_blueprint_cache, construction_beam_receiver, major_storage_and_routing]
+        not_automatically_turret: true
+        levitating_relocation_for_eligible_models_only: true
+    construction:
+      nearest_large_valid_node_required_for_beam: true
+      no_free_material_teleport: true
+      moving_supported_structures_requires_meditation_first: true
+      energy_and_time_cost_nonzero: true
+      during_meditation_incompatible_operations_disabled: true
+    expansion:
+      home_contact_at_initialization: true
+      continuous_home_link_required_after_initialization: false
+      recurring_home_nourishment_required: false
+      local_cached_known_blueprints: true
+      unknown_blueprints_require_new_home_contact: true
+      local_operation_without_home_for_known_plans: true
+      physical_costs_and_local_inventory_still_required: true
+      fog_and_beam_detection: TBD
+    signature_vulnerabilities: [visible_build_beams, forced_pylon_turret_downtime, unavailable_uncached_blueprints]
+balance_telemetry:
+  - delivered_resource_units_by_faction_and_distance
+  - investment_cost_of_remote_expansion
+  - home_cut_duration_and_recovery
+  - org_vessel_connectivity_and_wither_time
+  - org_home_nourishment_delivery_frequency
+  - man_independent_base_profit_and_module_relocation_downtime
+  - eth_blue_beam_visibility_exposure
+  - eth_blueprint_cache_hit_miss_and_node_meditation_downtime
+  - total_economy_recovery_after_interdiction
+acceptance_tests: [ECO-01, ECO-02, ECO-03, ECO-04, ECO-05, ECO-06, ECO-07, ECO-08, ECO-09, ECO-10, ECO-11, ECO-12, ECO-13, ECO-14, ECO-15]
