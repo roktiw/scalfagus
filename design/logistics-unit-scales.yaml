@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 0.9
+version: 1.0
 status: owner_approved_economic_roles_with_open_balance
 specification: design/colony-topologies-vascular-modular-resonant-2026-10-11.md
 legacy_unit_specification: design/logistics-min-mid-max-2026-10-11.md
@@ -10,6 +10,11 @@ eth_freight_config: design/eth-ether-network-mechanics.yaml
 man_power_dock_config: design/man-power-dock-and-org-vessel-mechanics.yaml
 man_umu_wing_transform_contract: design/man-umu-transforming-belt-wings.yaml
 man_power_building_roof_contract_DEC_041: design/man-umu-power-building-mobility-roof-modules.yaml
+man_umu_capacity_and_specialists_DEC_042: design/man-umu-capacity-and-specialist-balance.yaml
+man_umu_troop_capacity: 4
+man_umu_mixed_standard_cargo_capacity: 27
+man_umu_mono_standard_cargo_capacity: 45
+man_umu_light_universal_specialists_role_dominant: owner_direction
 man_umu_exactly_one_active_role: true
 man_umu_building_wheel_assemblies: {small: 4, medium: 6, large: 8}
 man_latest_umu_mode_decision: DEC-040
@@ -194,6 +199,10 @@ factions:
     max:
       role: ground_mobile_depot_warehouse
       when_designated_UMU_same_two_belt_wings_required: true
+      UMU_passenger_capacity_if_designated: 4
+      UMU_mixed_cargo_if_designated: 27
+      UMU_mono_cargo_if_designated: 45
+      UMU_external_symmetric_racks_when_mono: [9, 9]
       when_designated_UMU_move_has_open_troop_or_cargo_cage: true
       when_designated_UMU_warehouse_deploys_one_wing_only: true
       when_designated_UMU_five_function_modes: [move_tracks, warehouse, conveyor, bunker, sentry_wall]
