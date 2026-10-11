@@ -1,10 +1,12 @@
 schema_version: 1
 project: scalfagus
-version: 0.2
+version: 0.3
 status: active_agent_document_authority_after_owner_DEC_033
 language: en
 latest_owner_scope_decision: DEC-033
-latest_research_and_view_decisions: [DEC-030, DEC-031, DEC-032]
+latest_research_and_view_decisions: [DEC-030, DEC-031, DEC-032, DEC-034]
+mandatory_reuse_first_policy: DEC-034
+built_in_first_reference: architecture/godot-reuse-component-map.yaml
 first_MVP_target: MAN_vs_MAN_Verdant_Divide_RTS_only_Godot_Native_HH_HC_CC
 first_release_id: mvp_0_1
 first_release_source: design/mvp0-man-mirror-rts.yaml
@@ -24,7 +26,22 @@ first_release_resource_currency_ids: [matter]
 first_release_mineable_source_forms: [solid]
 first_release_excludes: [ETH, ORG, UMU, energy_supply, Ether_Network, liquid_or_gas_extraction, FPP_gameplay, TPP_gameplay, public_internet_matchmaking]
 universal_playable_frame: floating_space_platform
-release_status: design_only_not_implemented_complete_RTS
+release_status: new_local_MAN_mirror_GameState_render_and_test_source_present_but_unverified_full_release_incomplete
+observed_source_mirror:
+  state: apps/game/scripts/mirror_match_state.gd
+  view: apps/game/scripts/mirror_view.gd
+  scene: apps/game/scenes/mirror_match.tscn
+  smoke: apps/game/tests/mirror_smoke.gd
+  batch: apps/game/tests/mirror_batch.gd
+  current_test_evidence: files_exist_no_pass_confirmed_in_this_audit
+  two_human_LAN: not_implemented
+  compiled_authored_yaml_map: not_implemented_in_observed_mirror_path
+  current_BFS: candidate_for_DEC034_reuse_adapter_review
+  coded_source_stock_Matter: 2500
+  authored_map_source_stock_Matter: 1660
+  code_GUI_simulation_rate_Hz: 10
+  YAML_proposed_simulation_rate_Hz: 20
+  requires_normalization_before_gameplay_release: true
 all_supported_playable_maps_floating_space_platform_in_outer_space: true
 precedence_rules:
   - most_recent_owner_approved_DEC_scope_wins_for_named_release
@@ -38,6 +55,9 @@ precedence_rules:
 current_release_read_order:
   - AGENTS.md
   - design/decisions.yaml
+  - architecture/adr-0004-godot-reuse-first-wrappers.md
+  - architecture/godot-reuse-component-map.yaml
+  - docs/AGENT-REUSE-FIRST-PLAYBOOK.md
   - design/mvp0-man-mirror-rts-2026-10-11.md
   - design/mvp0-man-mirror-rts.yaml
   - design/mvp0-agent-implementation-contract.yaml
