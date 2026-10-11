@@ -1,0 +1,157 @@
+schema_version: 1
+project: scalfagus
+format_id: scalfagus_map_manifest
+format_version: 0.1
+status: proposed_authoring_schema_for_agent_implementation
+decision: DEC-027
+readme: design/world-environments-and-map-authoring-2026-10-11.md
+example_map: design/mvp-verdant-divide-map.yaml
+replay_rules:
+  fixed_seed_required: true
+  generator_version_pinned: true
+  resolved_map_hash_required: true
+  preserve_stable_object_ids: true
+  engine_must_not_randomize_blockers_during_match: true
+grid:
+  origin: northwest_top_left
+  x_axis: east_increases
+  z_axis: south_increases
+  up_axis: y_world
+  tile_y_vs_world_y_must_not_be_confused: true
+  tile_indices_start_at_zero: true
+  width_height_integer_positive: true
+  proposed_tile_meters: 2.0
+  proposed_elevation_step_meters: 1.0
+  world_point_formula:
+    x_m: (tile_x_plus_0_5)_times_tile_meters
+    z_m: (tile_y_plus_0_5)_times_tile_meters
+    y_m: elevation_height_at_tile_and_subcell
+  tile_corner_vs_center_coordinates: keep_explicit
+proposed_sizes:
+  engine_spike: {width: 32, height: 32}
+  two_faction_one_vs_one: {width: 64, height: 64}
+  larger_one_vs_one: {width: 96, height: 96}
+  mid_future: {width: 128, height: 128}
+  max_future: {minimum_width: 128, minimum_height: 128}
+manifest_top_level_fields:
+  - schema_version
+  - map_id
+  - map_version
+  - status
+  - name
+  - environment
+  - grid
+  - procedural
+  - default_terrain
+  - terrain_regions
+  - elevation_features
+  - ramps
+  - liquid_bodies
+  - ground_routes
+  - start_slots
+  - fixed_cover
+  - resource_nodes
+  - decoration
+  - validation
+authoring_syntax:
+  shapes:
+    rect: {fields: [x, y, width, height], semantics: integer_tile_footprint}
+    circle: {fields: [cx, cy, radius], semantics: center_and_radius_in_tile_units}
+    polygon: {fields: [points], semantics: consecutive_tile_coordinate_vertices}
+    polyline: {fields: [points, width_tiles], semantics: navigable_corridor_or_route_constraint}
+    point: {fields: [x, y], semantics: tile_location}
+  elevation:
+    base_height_level: integer
+    sparse_overlay_types: [rect, polygon]
+    ramp_fields: [from_height_level, to_height_level, footprint, traversal_direction]
+    forbid_arbitrary_steep_height_jump_without_eligible_ramp: true
+    height_is_collision_and_line_of_sight_authority: true
+  materials:
+    terrain_palette_ids_declared_in_yaml: true
+    liquid_substance_ids_declared_in_yaml: true
+    opacity_and_hitbox_are_distinct: true
+  start_slots:
+    no_faction_hardcoded_to_map_corner: true
+    matchup_assignment_at_lobby_or_match_config: true
+    HQ_footprint_and_workers_must_avoid_blockers: true
+    legal_ground_paths_to_start_resources: true
+  resources:
+    each_node_id_unique: true
+    each_finite_stock_positive: true
+    only_declared_form_collectible_in_mvp: [solid]
+    deposit_vs_environment_liquid_body_distinct: true
+    all_material_spawns_are_world_entities_not_visual_noise: true
+  cover:
+    collision_trunks_block_ground_movement_and_projectile_rays: true
+    leaves_and_canopy_visual_only_for_mvp: true
+    canopy_fades_when_camera_occludes_selected_units: true
+    alpha_does_not_change_fog_or_los: true
+layer_resolution_order:
+  - default_terrain
+  - optional_explicit_lossless_raster_layers
+  - sparse_height_and_terrain_overlays
+  - explicit_liquid_bodies
+  - explicitly_authored_bridges_and_ramps_if_available
+  - fixed_cover_collision
+  - unique_resources_and_start_slots
+  - cosmetic_nonblocking_decorations
+  - validation_and_resolved_map_hash
+  note: routes_are_constraints_checked_after_geometry_not_automatic_water_erasing_tunnels
+raster_sidecars_optional_future:
+  height:
+    file_example: height_u16.png
+    lossless_single_channel_16_bit: true
+    requires_scale_offset_and_no_gamma_interpretation: true
+    alternative: height_u16.raw_with_byte_order_record
+  terrain:
+    file_example: terrain_u8.png
+    palette_index_per_cell: true
+  liquids:
+    file_example: liquid_mask_u8.png
+    substance_palette_declared_in_manifest: true
+  explicit_objects_remain_yaml_with_unique_ids: true
+  sidecar_hash_required_for_replay: true
+  sidecar_files_not_required_for_first_64x64_map: true
+generation:
+  gameplay_critical_geometry_fixed_for_first_map: true
+  gameplay_critical_fields:
+    - start_slots
+    - collision_cover
+    - paths_and_chokepoints
+    - liquid_boundaries
+    - ramps
+    - resource_node_positions_and_quantities
+  random_gameplay_layout_at_match_start: false
+  seeded_cosmetic_only_first_mvp: true
+  cosmetic_types: [grass, moss, ferns, small_nonblocking_stones, fallen_leaves]
+  cosmetic_scatter_forbidden_near:
+    - HQ_placement_cells
+    - resource_pickup_slots
+    - reserved_path_clearance
+  procedural_future:
+    generate_draft_with_pinned_version_and_seed: true
+    overlay_authored_strategic_constraints: true
+    validate_ground_routes_and_source_fairness: true
+    bake_immutable_resolved_map_with_hash: true
+    never_mutate_live_ranked_map_based_on_unseeded_rng: true
+validator_requirements:
+  parse_and_resolve_declarations: true
+  ensure_positions_within_bounds: true
+  ensure_unique_ids: true
+  require_each_initial_spawn_on_dry_ground: true
+  require_HQ_and_UMU_fit_ground_footprint: true
+  require_two_or_more_independent_ground_routes_between_spawns: true
+  require_at_least_one_safe_solid_deposit_near_each_spawn: true
+  require_similar_reachable_initial_solid_stock_and_travel_distance: true
+  require_one_or_more_noncollectible_liquid_terrain_bodies_in_mvp: true
+  require_no_ground_path_through_unbridged_liquid: true
+  require_no_unapproved_air_or_water_traversal: true
+  require_tree_trunk_projectile_occlusion_and_valid_visual_canopy_fade: true
+  require_terrain_height_ramps_have_legal_ground_passage: true
+  fail_invalid_map_with_actionable_error_and_object_id: true
+implementation_note:
+  compact_sparse_yaml_first: true
+  do_not_write_4096_literal_cells_by_hand: true
+  compile_map_manifest_into_runtime_nav_collision_and_render_data: true
+  separate_map_compiler_from_gameplay_simulation: true
+  object_ids_persist_across_editor_changes: true
