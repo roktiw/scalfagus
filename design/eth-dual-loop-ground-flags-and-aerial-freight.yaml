@@ -5,8 +5,10 @@ date: "2026-10-12"
 version: 0.1
 status: owner_approved_visual_and_flow_direction_raw_uplink_authority_still_open
 human_specification: design/eth-dual-loop-ground-flags-and-aerial-freight-2026-10-12.md
+bidirectional_homogeneity_extension: design/faction-bidirectional-logistics-and-homogeneous-storage.yaml
+owner_decision_after_this_design: DEC-038
 related_existing_canon: [DEC-012, DEC-018, DEC-021, DEC-022, DEC-023, DEC-033, DEC-035, DEC-036, DEC-037]
-next_DEC_candidate: DEC-038_only_after_owner_decision
+next_DEC_candidate: unassigned_secondary_raw_uplink_still_needs_owner_approval
 release_scope:
   first_release: DEC-033_MAN_mirror_RTS_only
   eth_features_in_mvp0: false
@@ -19,6 +21,7 @@ two_logistics_loops:
     interface: physical_Settlers_like_flag
     carriers: independent_ETH_drones
     movement: real_pathfinding_and_per_hop_physical_resource_handoffs
+    cargo_transport_both_directions: true
     cargo: real_resource_items_or_stacks
     stocks_are_visible_and_pickupable: true
     does_not_credit_elevated_Nexus_or_remote_nodes_automatically: true
@@ -28,6 +31,9 @@ two_logistics_loops:
   elevated:
     interface: straight_tip_to_tip_visible_Ether_connections
     transfer: finite_real_resource_parcels_leaking_no_global_wallet
+    links_bidirectional: true
+    shared_link_capacity_for_both_directions: proposed
+    more_homogeneous_levitated_inventory_costs_less_energy_at_equal_total: true
     representation: typed_Ether_preserves_Matter_Volatiles_Energy_identity
     local_stock: real_mixed_resources_levitating_around_Obelisk
     upkeep: positive_operational_network_Energy_or_service_per_stored_quantity_and_time
