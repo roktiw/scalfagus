@@ -24,13 +24,15 @@ func _ready() -> void:
     title.add_theme_font_size_override("font_size", 38)
     stack.add_child(title)
     var subtitle := Label.new()
-    subtitle.text = "MAN  •  ETH  |  Godot-native prototype"
+    subtitle.text = "MAN vs MAN  |  RTS MVP 0.1 (local test)"
     subtitle.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
     stack.add_child(subtitle)
     menu_panel = VBoxContainer.new()
     menu_panel.add_theme_constant_override("separation", 12)
     stack.add_child(menu_panel)
-    _add_button(menu_panel, "START GAME", _start_game)
+    _add_button(menu_panel, "PLAY MAN vs BOT", _start_mirror_vs_bot)
+    _add_button(menu_panel, "WATCH BOT vs BOT", _start_mirror_bots)
+    _add_button(menu_panel, "LEGACY CAMERA SPIKE", _start_game)
     _add_button(menu_panel, "OPTIONS", _open_options)
     _add_button(menu_panel, "QUIT", _quit)
     options_panel = VBoxContainer.new()
@@ -47,7 +49,7 @@ func _ready() -> void:
     options_panel.add_child(fullscreen_toggle)
     _add_button(options_panel, "BACK", _close_options)
     var footer := Label.new()
-    footer.text = "F1 RTS  |  F2 TPP  |  F3 FPP"
+    footer.text = "LAN Human vs Human: not yet implemented"
     footer.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
     stack.add_child(footer)
 
@@ -57,6 +59,14 @@ func _add_button(parent: VBoxContainer, caption: String, callback: Callable) -> 
     b.custom_minimum_size.y = 43
     b.pressed.connect(callback)
     parent.add_child(b)
+
+func _start_mirror_vs_bot() -> void:
+    ProjectSettings.set_setting("scalfagus/mirror_mode", "human_bot")
+    get_tree().change_scene_to_file("res://scenes/mirror_match.tscn")
+
+func _start_mirror_bots() -> void:
+    ProjectSettings.set_setting("scalfagus/mirror_mode", "bot_bot")
+    get_tree().change_scene_to_file("res://scenes/mirror_match.tscn")
 
 func _start_game() -> void:
     get_tree().change_scene_to_file("res://scenes/main.tscn")
