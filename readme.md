@@ -37,6 +37,14 @@ godot --headless --path apps/game --script res://tests/mirror_batch.gd -- --matc
 
 **Not implemented yet:** real LAN/loopback H-H two-client multiplayer, box selection, full fog-of-war shroud, art polish, full MAN logistics/UMU/Energy, playable ETH, FPP possession. The new RTS view is a **blockout** and these mechanics are working-code candidates pending actual executable verification, not certified release features.
 
+## Display and pixel-art regression fix (2026-10-11)
+
+The MAN mirror RTS now **uses the project's real five-direction Sprite3D atlas renderer** again. The previous early RTS blockout drew every entity as a colored cube; this was a presentation regression, not missing source PNGs. Workers use `man_worker_32x48_idle_5view.png`, HQ uses the 128×128 lander atlas, trees use `neutral_tree_40x64_5view.png` and resource rocks use `neutral_rock_56x36_5view.png`. For now, Riflemen tint/reuse the worker art and Barracks tint/reuse the lander art; their dedicated atlases remain outstanding. Runtime state is still shared and sprite changes do not alter unit rules.
+
+The desktop window now starts at **1440×810** (internal reference viewport 1280×720). Options offer 1280×720, 1440×810 and 1600×900 plus fullscreen; tiny 640×360/320×240 profiles were removed, including from the legacy F9 cycle. In mirror RTS the **mouse wheel** zooms the orthographic battlefield.
+
+Regression checks: `bash scripts/check.sh` now also invokes `res://tests/mirror_visual_smoke.gd` to verify the five-view atlas nodes, resource/tree sprites, camera scale and startup resolution. New checks require a real Godot runtime and are **not claimed passed** merely because code was committed.
+
 ## Install & run — macOS (Apple Silicon and Intel)
 
 Install Apple Command Line Tools first (`xcode-select --install`). Then:
