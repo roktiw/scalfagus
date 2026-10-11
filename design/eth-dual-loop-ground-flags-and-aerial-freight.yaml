@@ -3,12 +3,14 @@ project: scalfagus
 proposal_id: eth_dual_loop_ground_flags_and_aerial_freight
 date: "2026-10-12"
 version: 0.1
-status: owner_approved_visual_and_flow_direction_raw_uplink_authority_still_open
+status: owner_approved_dual_loops_and_DEC_039_three_legal_ingress_methods
 human_specification: design/eth-dual-loop-ground-flags-and-aerial-freight-2026-10-12.md
+ingress_three_methods_decision: DEC-039
+ingress_three_methods_contract: design/org-plug-holes-and-eth-three-ingress-methods.yaml
 bidirectional_homogeneity_extension: design/faction-bidirectional-logistics-and-homogeneous-storage.yaml
 owner_decision_after_this_design: DEC-038
 related_existing_canon: [DEC-012, DEC-018, DEC-021, DEC-022, DEC-023, DEC-033, DEC-035, DEC-036, DEC-037]
-next_DEC_candidate: unassigned_secondary_raw_uplink_still_needs_owner_approval
+raw_ingress_question_closed_by_owner_DEC_039: three_methods_now_approved_direction
 release_scope:
   first_release: DEC-033_MAN_mirror_RTS_only
   eth_features_in_mvp0: false
@@ -64,23 +66,18 @@ power_failure:
   local_reserve_buffer_and_grace_period: TBD
   rendering_animation_mutates_inventory: false
 entry_to_elevated_network:
-  baseline_authoritative_canon_DEC_021:
-    fresh_raw_material_converted_by: eligible_Nexus_input_only
-    preexisting_raw_cargo_must_arrive_physically: true
-  alternative_owner_question: can_additional_non_Nexus_ingress_points_exist
-  candidate_advanced_variant:
-    recommendation: costly_researched_specialized_Obelisk_uplink_not_unrestricted_generic_Obelisks
-    consumes_real_energy_and_port_capacity: true
-    finite_conversion_rate: true
-    no_automatic_Nexus_pattern_authority: true
-    approved_by_owner: false
-  candidate_re_lift:
-    previously_converted_typed_Ether_cargo_fallen_at_Obelisk_foot_may_be_relevitated: proposed_only
-    fresh_raw_cargo_automatic_re_lift: false
-    source_lineage_and_custody_preserved: true
-    requires_real_Energy_time_and_authorization: true
-    approved_by_owner: false
-  unresolved_approval_question: Nexus_only_forever_or_costed_secondary_uplink_upgrade_later
+  updated_canon_DEC_039:
+    allowed: [Nexus_free_conversion, shield_drone_Obelisk_tip_manual_insertion, expensive_powered_Obelisk_ground_pickup]
+    Nexus_ingress_energy_tariff: 0
+    tip_insertion_cost: 33_percent_drone_shield
+    ground_pickup_cost: high_finite_Energy
+    physical_real_cargo_and_nonzero_transfer_time_required: true
+  remaining_balance_open_questions:
+    drone_tip_shield_fee_basis_max_shield_or_current_shield: TBD
+    drone_accepted_packet_size: TBD
+    ground_pickup_Energy_rate_and_radius: TBD
+    non_Nexus_Obelisk_uplink_upgrade_gate: TBD
+  baseline_Nexus_historical_only_not_for_new_post_MVP_code: true
 construction:
   site_must_be_legal_and_connected: true
   blue_beam_worker_eligibility_from_existing_canon_still_required: true
