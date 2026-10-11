@@ -1,0 +1,192 @@
+schema_version: 1
+project: scalfagus
+version: 0.1
+status: owner_approved_first_renderer_spike_visual_feasibility_unverified
+decision_id: DEC-017
+architecture: architecture/adr-0003-five-view-mirrored-3d-sprites.md
+discussion: research/five-view-mirroring-renderer-discussion-2026-10-11.md
+source_view_policy:
+  authored_azimuth_views: 5
+  displayed_azimuth_sectors: 8
+  sector_degrees: 45.0
+  max_view_deviation_degrees: 22.5
+  one_authoring_perspective_for_all_game_cameras: true
+  allow_second_FPS_sprite_family_by_default: false
+  source_orientation_reference: camera_relative_to_actor_local_minus_z_forward
+  signed_positive_angle_direction: actor_local_plus_x_right
+  observer_angle_zero_means: observer_is_in_front_of_actor
+  angle_selection:
+    perspective: horizontal_bearing_from_actor_world_position_to_camera_world_position
+    orthographic: flattened_camera_world_backward_axis_positive_z
+    vertical_degeneracy: last_valid_sector_else_camera_backward_axis
+    quantization: nearest_45_degree_sector
+    modulo: 8
+  sectors:
+    - { sector: 0, angle_degrees: 0, source_view: front, source_row: 0, flip_h: false }
+    - { sector: 1, angle_degrees: 45, source_view: front_right, source_row: 1, flip_h: false }
+    - { sector: 2, angle_degrees: 90, source_view: right_side, source_row: 2, flip_h: false }
+    - { sector: 3, angle_degrees: 135, source_view: back_right, source_row: 3, flip_h: false }
+    - { sector: 4, angle_degrees: 180, source_view: back, source_row: 4, flip_h: false }
+    - { sector: 5, angle_degrees: 225, source_view: back_right, source_row: 3, flip_h: true }
+    - { sector: 6, angle_degrees: 270, source_view: right_side, source_row: 2, flip_h: true }
+    - { sector: 7, angle_degrees: 315, source_view: front_right, source_row: 1, flip_h: true }
+  interpolated_camera_yaw: true
+  interpolated_camera_pitch: true
+  smooth_camera_zoom: true
+  authored_sprite_crossfade: false
+  sector_hysteresis: optional_after_test
+  animation_frame_selection_independent_of_view_selection: true
+  frame_flip_does_not_change_gameplay_state: true
+
+render_world:
+  terrain: physical_3D_world_mesh_and_collision
+  selected_engine_for_spike: Godot_4_candidate_not_yet_benchmarked
+  sprite_render_node: Sprite3D
+  sprite_billboard_early_default: fixed_y
+  sprite_pixel_filter: nearest
+  depth_test: enabled
+  sprites_have_true_alpha: true
+  magenta_background: QA_only_do_not_use_for_chromakey_in_shipped_PNGs
+  actor_collision: authoritative_3D_collision_proxy
+  actor_targeting: world_raycasts_unchanged_by_sprite_view
+  structure_doors: fixed_world_coordinates_even_when_sprite_flips
+  object_categories:
+    - actor
+    - mobile_structure
+    - static_building
+    - tree
+    - rock
+    - prop
+  mirror_safe_policy:
+    default_for_new_sprite: needs_art_review
+    acceptable_for_source_five: symmetry_or_correct_mirrorable_modular_details
+    unsafe_examples: [left_only_door, right_only_cannon, readable_text, directional_logo, asymmetric_tool_mount]
+    fix_priority: [redesign_symmetrically, independent_overlay_with_world_attachment, explicit_exception_after_art_review]
+    eight_unique_views_exception: owner_review_after_proof
+  vertical_sprite_elevation:
+    authored_pitch_bands_in_base_variant: 1
+    near_FPS_roof_and_underside_parallax: known_artistic_risk
+    automatic_pitch_geometry_solution: false
+    fallback: test_and_request_explicit_art_exception_only_after_failure
+  visual_foot_anchor:
+    tied_to_world_3D_ground_point: true
+    shadow_and_selection_separate_layers: true
+    all_source_rows_share_pivot: true
+
+shared_camera_world:
+  modes: [overlord, direct_unit_tpp, full_fps_possession]
+  game_worlds: 1
+  actor_entities_per_actor_id: 1
+  render_asset_sets_per_object: 1
+  control_handoff_changes_actor_input_source_only: true
+  cameras_are_continuous_even_when_sprite_pops: true
+  overlord:
+    projection: orthographic
+    may_orbit_yaw_360: true
+    dimetric_2_to_1: camera_preset_not_all_yaw_guarantee
+  direct_unit_tpp:
+    projection: perspective_or_near_orthographic
+    steer_existing_unit: true
+    can_orbit_360: true
+  full_fps_possession:
+    perspective_eye_height: true
+    possessed_body_locally_hidden: true
+    other_entities_use_same_5_view_source: true
+    separate_3D_visible_body_default: false
+  fog_line_of_sight_collision:
+    driven_by_world_not_alpha: true
+
+asset_pipeline:
+  authoring_format: layered_editable_source_or_equivalent
+  one_atlas_per_action: recommended_MVP
+  texture_format: PNG_RGBA
+  authored_view_rows: [front, front_right, right_side, back_right, back]
+  columns: per_action_animation_frame
+  direction_row_count: 5
+  array_index_origin: zero
+  region_formula:
+    x_px: animation_frame_index_times_frame_width
+    y_px: authored_view_row_times_frame_height
+  separate_mirror_flag: flip_h
+  required_manifest_fields:
+    - asset_id
+    - action
+    - texture_path
+    - frame_width_px
+    - frame_height_px
+    - action_frame_count
+    - playback_fps
+    - authored_views
+    - direction_to_view
+    - pivot_px
+    - world_pixel_scale
+    - mirror_safe
+    - collision_proxy_id
+    - license_source
+  validation:
+    - five_expected_authored_rows_per_action
+    - texture_pixel_width_is_frame_width_times_animation_frames
+    - texture_pixel_height_is_frame_height_times_five
+    - alpha_not_magenta_key
+    - correct_direction_flip_mapping
+    - every_mirrored_view_art_reviewed_if_asymmetric
+    - same_source_atlas_all_camera_modes
+    - pivot_consistency_per_action
+    - each_building_door_world_position_stable_under_flip
+    - asset_sources_and_licenses_present
+  texture_data_generated_for_godot: JSON
+  typescript_tools_are_offline_only: true
+  game_runtime_never_needs_node: true
+
+sprite_fixtures:
+  man_min_worker:
+    status: prototype_five_rotational_views_not_yet_authored
+    asset_id: man.worker.min
+    art_source: art/man-min-isometric-sprite-production-spec-v0.1.md
+    frame_px: [24, 32]
+    foot_pivot_px: [12, 30]
+    example_actions:
+      idle: { frames_per_source_view: 2, fps: 3, atlas_px: [48, 160], authored_frames: 10, displayed_directional_frames: 16 }
+      walk: { frames_per_source_view: 4, fps: 7, atlas_px: [96, 160], authored_frames: 20, displayed_directional_frames: 32 }
+      work: { frames_per_source_view: 4, fps: 7, atlas_px: [96, 160], authored_frames: 20, displayed_directional_frames: 32 }
+      carry: { frames_per_source_view: 2, fps: 4, atlas_px: [48, 160], authored_frames: 10, displayed_directional_frames: 16 }
+    total_authored_animation_frames: 60
+    equivalent_eight_unique_directional_frames: 96
+    reduction_fraction: 0.375
+    mirror_sensitive_parts: [right_wrist_drill, asymmetric_pack, printed_insignia]
+  man_lunar_lander:
+    asset_id: man.hq.lander
+    status: concept_views_not_proven_rotation_consistent
+    proposed_frame_px: [128, 128]
+    idle_atlas_px_if_five_clean_views: [128, 640]
+    collision_proxy: fixed_box_or_compound_with_stable_door
+    primary_risk: mirrored_door_moves_to_opposite_visual_side
+  neutral_tree:
+    status: needs_prototype
+    primary_risk: foliage_and_trunk_pitch_occlusion
+  neutral_rock:
+    status: needs_prototype
+    primary_risk: asymmetric_surface_and_large_collision_silhouette
+
+acceptance:
+  - ANGLE_01_EIGHT_SECTORS_MAP_CORRECTLY
+  - ANGLE_02_POSITION_BASED_PERSPECTIVE_VS_AXIS_BASED_ORTHOGRAPHIC
+  - ANGLE_03_360_ORBIT_AND_ANGLE_WRAP
+  - ART_01_ONE_SOURCE_FOR_ALL_CAMERAS
+  - ART_02_FOOT_ANCHOR_AND_OCCLUSION
+  - ART_03_LANDER_DOOR_DOES_NOT_TELEPORT
+  - WORLD_01_SAME_ACTOR_ACROSS_OVERLORD_TPP_FPS
+  - WORLD_02_COLLISION_LOS_AND_CARGO_IGNORE_FLIP
+  - VISUAL_01_FPS_PITCH_AND_ROOF_READABILITY
+  - VISUAL_02_320x240_AND_640x360_NO_DISTORTION
+  - ASSET_01_GENUINE_ROTATIONS_AND_TRANSPARENT_ALPHA
+
+unresolved:
+  - vertical_pitch_appearance_of_large_buildings
+  - whether_character_silhouettes_look_good_at_eye_height
+  - mirroring_of_unequal_MAN_equipment
+  - exact_Godot_billboard_axis_and_alpha_material_choice
+  - camera_projection_blend_between_ortho_and_perspective
+  - terrain_deformation_implementation_cost
+  - cost_of_artistic_exceptions_for_asymmetric_structures
+  - actual_8_angle_asset_approval_on_real_320x240_capture
