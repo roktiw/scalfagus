@@ -15,17 +15,24 @@ UMU:
   owner_rule_each_UMU_has_two_belt_wings: true
   wing_count: 2
   open_trapezoid_cage_and_one_open_warehouse_belt: true
+  cargo_capacity_extension_DEC_042: design/man-umu-capacity-and-specialist-balance.yaml
+  maximum_real_soldier_transport_passengers: 4
+  internal_cargo_layout: [3, 3, 3]
+  mixed_cargo_max: 27
+  mono_cargo_racks_two_sides: [9, 9]
+  mono_cargo_max: 45
+  soldiers_and_cargo_mutually_exclusive: true
   mobile_body:
     owner_approved_profile: trapezoid_like_belt_tracks_under_body_with_open_front_and_rear_cage
     track_wings: two_real_existing_belt_wings
     cabin_open_at: [front, rear]
     functions: [carry_soldiers, carry_real_cargo]
-    owner_phrase_soldiers_or_cargo_initial_rules: mutually_exclusive_occupancy_candidate
+    owner_phrase_soldiers_or_cargo_initial_rules: owner_approved_exclusive_profiles_DEC_042
     troops_manifest_retains_unit_identity_and_HP: true
-    finite_passenger_slots: true
+    finite_passenger_slots: 4
     finite_cargo_slots_and_physical_loading: true
     not_a_free_invulnerable_mobile_bunker: true
-    onboard_mixed_passengers_plus_cargo_in_same_volume: TBD
+    onboard_mixed_passengers_plus_cargo_in_same_volume: false_owner_DEC_042
     soldiers_fire_while_moving: TBD
     onboard_damage_or_vehicle_destruction_policy: TBD
   wings_are_persistent_physical_parts: true
