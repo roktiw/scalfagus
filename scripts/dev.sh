@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 source "$(dirname "$0")/env.sh"
-cd "$SCALFAGUS_ROOT"
-[[ -f apps/desktop/src-tauri/resources/game.pck ]] || bash scripts/prepare-game.sh
-npm --prefix apps/desktop run tauri -- dev
+require_godot
+if [[ "${1:-}" == "--editor" ]]; then
+  exec "$GODOT_BIN" --path "$SCALFAGUS_ROOT/apps/game" --editor
+fi
+exec "$GODOT_BIN" --path "$SCALFAGUS_ROOT/apps/game" "$@"

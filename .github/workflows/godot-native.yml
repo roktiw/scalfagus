@@ -1,0 +1,23 @@
+name: Scalfagus native Godot source validation
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  godot-smoke:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - name: Download and verify official Godot 4.7.2
+        run: |
+          curl --fail --location --retry 3 https://github.com/godotengine/godot/releases/download/4.7.2-stable/Godot_v4.7.2-stable_linux.x86_64.zip -o /tmp/godot.zip
+          echo 'cadd3204e728a35d3f13adb7fd0d7902636b79f6b95c40c265eb73b6c35329e4  /tmp/godot.zip' | sha256sum --check
+          unzip -q /tmp/godot.zip -d /tmp/godotbin
+          chmod +x /tmp/godotbin/Godot_v4.7.2-stable_linux.x86_64
+      - name: Game + menu smoke
+        run: |
+          export GODOT_BIN=/tmp/godotbin/Godot_v4.7.2-stable_linux.x86_64
+          bash scripts/check.sh

@@ -1,13 +1,15 @@
 {
-  "name": "scalfagus",
-  "version": "0.1.0",
+  "name": "scalfagus-dev-tools",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
   "scripts": {
+    "bootstrap": "bash bootstrap.sh",
     "dev": "bash scripts/dev.sh",
-    "build": "bash scripts/build.sh",
-    "check": "bash scripts/check.sh",
+    "editor": "bash scripts/dev.sh --editor",
     "game": "bash scripts/game.sh",
-    "bootstrap": "bash scripts/bootstrap.sh"
+    "check": "bash scripts/check.sh",
+    "build": "bash scripts/build.sh",
+    "assets:check": "node scripts/verify_atlases.mjs && node scripts/test-faction-emblems.mjs"
   }
 }

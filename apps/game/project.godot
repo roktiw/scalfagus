@@ -1,10 +1,9 @@
-; Scalfagus — first native Godot renderer spike (DEC-017)
-; Initial art and engine prototype, NOT the game MVP.
+; Scalfagus native Godot game. No Tauri/WebView runtime.
 config_version=5
 
 [application]
-config/name="Scalfagus — Five-View Renderer Spike"
-run/main_scene="res://scenes/main.tscn"
+config/name="Scalfagus"
+run/main_scene="res://scenes/menu.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 
 [display]

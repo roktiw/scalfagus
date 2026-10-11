@@ -1,22 +1,33 @@
-# Scalfagus
+# Scalfagus — Godot-only RTS / Direct / Possession prototype
 
-Offline RTS / TPP / FPS technical prototype: Godot 4.7.2 game, bundled in a Tauri 2 desktop launcher. The launcher opens the native game in a separate window. This build does not yet implement the full RTS economy, combat or faction design described in `design/`.
+**Game/runtime: Godot 4.7.2 Standard with typed GDScript, one native window.** Tauri, Rust, Vite, WebView and a separate launcher are no longer part of the product. Godot owns menu, HUD, cameras, 3D terrain, actor simulation and platform exports. JavaScript/Node is *optional offline tooling* for pixel sprite atlas validation; it is not a game runtime requirement.
 
-## macOS Apple Silicon
+## Install & run — macOS (Apple Silicon and Intel)
 
-Prerequisites: Homebrew and Apple Command Line Tools (`xcode-select --install`). From this checkout:
+Install Apple Command Line Tools first (`xcode-select --install`). Then:
 
 ```sh
-bash scripts/bootstrap.sh  # installs Rust and Node 24, verified official Godot, npm dependencies
-npm run check              # Godot import + existing smoke scenario + frontend typecheck/build
-npm run dev                # Tauri development launcher
-npm run game               # native game directly
-npm run build              # release app at build/Scalfagus.app
-open build/Scalfagus.app
+bash bootstrap.sh                 # verified official Godot 4.7.2 and smoke tests
+bash scripts/dev.sh               # one Godot window, MAIN MENU → START GAME → 3D scene
+bash scripts/dev.sh --editor      # edit scene/scripts in Godot IDE
+bash scripts/check.sh             # headless scene smoke + menu smoke + optional asset checks
+bash scripts/build.sh --templates # optional: official 4.7.2 export templates (~1.28 GB)
+bash scripts/build.sh macos       # export macOS zip (needs installed templates)
 ```
 
-Node 24 is selected by project scripts without requiring edits to shell configuration. Godot lives in ignored `.tools/`; release resources, npm dependencies, Cargo artifacts and builds are ignored. npm and Cargo lockfiles pin dependencies. Exporting the resource pack needs no Godot export templates: this initial local app bundles the verified Standard engine binary with the game pack.
+Linux/Windows: install official **Godot 4.7.2 Standard** and its matching export templates from https://godotengine.org/download. On Linux use `GODOT_BIN=/path/to/godot bash scripts/dev.sh`. On Windows open `apps/game/project.godot` in Godot Editor, press F6/F5 (run current scene/project) or use a bash-compatible shell. Platform exports may be created from Godot Editor → Project → Export or via `scripts/build.sh` on Bash-capable hosts after installing templates. Test exports on the target OS; cross-compilation does not guarantee target runtime compatibility.
 
-Controls: F1 RTS, F2 TPP, F3 FPS, Tab cycles views; WASD moves the hero in TPP/FPS; mouse aims in FPS; right drag or Q/E rotates the external view; wheel zooms RTS; Escape releases the cursor. See `apps/game/README.md` for prototype details and visual limitations.
+## UI and keys
 
-The release is for local macOS use, without Apple Developer distribution signing/notarization. Windows/Linux packaging and gameplay beyond the existing engineering spike are not validated.
+The Godot main menu includes **START GAME / OPTIONS / QUIT**. Start opens the *existing* technical prototype world without a second window. In game: F1 RTS, F2 Direct/TPP, F3 FPS, Tab cycles views; Q/E orbit; right drag orbit; wheel zoom; WASD controls actor in Direct/FPS. **RTS WASD camera panning, HUD, unit selection and right-click orders are a separate upcoming gameplay change and are not yet in main.**
+
+## Project layout
+
+- `apps/game/` — full Godot project, source art and GDScript.
+- `design/`, `architecture/`, `art/` — rules, 5-direction renderer contract and MVP MAN/ETH roadmap.
+- `scripts/{bootstrap,dev,game,check,build}.sh` — game install, execution and export.
+- `scripts/*.mjs` — optional Node.js art validation and generation tools.
+
+The game is currently an **engine vertical slice**, not a complete RTS. The MAN/ETH Verdant Divide 64×64 jungle gameplay specification exists, but resource collection, squads, production, opponent AI, victory flow, unit selection and RTS orders still need implementation. Refer to `design/mvp-man-eth-jungle-vertical-slice-2026-10-11.md`.
+
+**Historical note:** `docs/INSTALLATION-BUILD-REPORT-2026-10-11.md` records an older local Tauri build. It is not the current product architecture. Old local `~/Applications/Scalfagus.app` Tauri bundle is not modified by updating this repository; uninstall it manually if no longer desired.

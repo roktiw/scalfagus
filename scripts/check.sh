@@ -2,8 +2,14 @@
 set -euo pipefail
 source "$(dirname "$0")/env.sh"
 cd "$SCALFAGUS_ROOT"
-node --version
-rustc --version
+require_godot
 "$GODOT_BIN" --headless --path apps/game --editor --import --quit
 "$GODOT_BIN" --headless --path apps/game --script res://tests/smoke.gd
-npm --prefix apps/desktop run build
+"$GODOT_BIN" --headless --path apps/game --script res://tests/menu_smoke.gd
+if command -v node >/dev/null 2>&1; then
+  node scripts/verify_atlases.mjs
+  node scripts/test-faction-emblems.mjs
+else
+  echo 'Node not installed: skipping optional offline asset checks.'
+fi
+printf 'SCALFAGUS_GODOT_CHECK_PASS\n'
