@@ -11,21 +11,21 @@ geographic_tiers:
   t2: islands
   t3: drifting_asteroids
   note: Resource tier and geographic tier are independent axes.
-factions: [blergians, manusians, aetherians]
+factions: [org, man, eth]
 specializations:
-  blergians:
+  org:
     matter: biological_assimilation
     volatiles: biochemistry_and_metabolism
     energy: bioenergy_and_mutation
     strength: early_expansion_and_permanent_specialization
     weakness: irreversible_reconfiguration
-  manusians:
+  man:
     matter: industrial_mining_recycling_and_prefabrication
     volatiles: refinery_petrochemistry_and_modular_fuel_systems
     energy: electrical_grids_generators_and_batteries
     strength: midgame_logistics_and_hot_swappable_modules
     weakness: physical_module_supply_chains
-  aetherians:
+  eth:
     matter: resonant_material_reorganization
     volatiles: molecular_separation_and_synthesis
     energy: resonance_storage_transfer_and_ascension
@@ -35,9 +35,9 @@ efficiency_matrix:
   interpretation: illustrative_relative_efficiency_not_global_gameplay_multiplier
   columns: [matter, volatiles, energy]
   rows:
-    blergians: [1.30, 0.80, 1.00]
-    manusians: [1.00, 1.30, 0.80]
-    aetherians: [0.80, 1.00, 1.30]
+    org: [1.30, 0.80, 1.00]
+    man: [1.00, 1.30, 0.80]
+    eth: [0.80, 1.00, 1.30]
   symmetry:
     each_row_sum: 3.10
     each_column_sum: 3.10
@@ -52,7 +52,7 @@ phase_weight_examples:
   note: Phase weights are illustrative; not a fixed resource progression.
 design_constraints:
   - All factions access all three resources and all resource tiers.
-  - Early Blergian, mid Manusian and late Aetherian advantage are strategic windows, not guaranteed victories.
+  - Early Organ, mid Manus and late Eter advantage are strategic windows, not guaranteed victories.
   - Differentiate extraction, processing, transport and spending efficiency rather than applying one global multiplier.
   - Energy is an approved stored, transportable, spendable resource; a mandatory power grid is not required.
   - Lava is a map-dependent geothermal heat source and potential matter feedstock, not a universal fourth resource.
