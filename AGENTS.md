@@ -16,6 +16,10 @@ Read the [consolidated mechanics findings](design/mvp-repository-mechanics-audit
 
 
 
+## MIT addon setup / source pins (development)
+
+[Addon installation instructions](docs/GODOT-ADDON-INSTALLATION-2026-10-11.md) and [lock](architecture/godot-addons.lock.yaml) govern exact versions. Run `bash scripts/install-godot-addons.sh --install` after clone/pull on a machine with GitHub access, then `bash scripts/check.sh`. Keychain is enabled in editor; State Charts and GUT are enabled only when the setup copies their complete subtrees into `apps/game/addons`; RTS Framework stays vendored but disabled (WIP). LimboAI is not part of MVP0. MIT still requires preserved license/copyright notices. No claim of passed runtime tests without actual Godot output.
+
 ## MANDATORY REUSE-FIRST ENGINEERING POLICY — DEC-034
 
 **Every coding agent MUST search existing Scalfagus components, built-in Godot 4.7.2 APIs, and audited GitHub/AssetLib modules BEFORE implementing a generic subsystem.** Prefer existing wrappers, then thin adapters to engine primitives, then pinned and license-reviewed third-party modules, then only unique game-domain logic. GitHub availability alone is NOT approval: source, license, immutable commit, Godot 4.7.2 compatibility, macOS/Windows/Linux/Web support, authority/security, actual tests and rollback must be checked. **No arbitrary plugins, floating dependency branches, runtime auto-downloads, or self-written standard A*, physics, keybind framework, GUI layout, generic FSM or networking transport.**

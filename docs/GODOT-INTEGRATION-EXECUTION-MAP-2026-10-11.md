@@ -3,6 +3,10 @@
 ## Authoritative scope
 Use **DEC-033 MVP0 MAN-vs-MAN Overlord RTS (H-H, H-C, C-C)** as the active development scope. MAN-vs-ETH, full possession cameras and faction asymmetry are subsequent milestones, despite older documents referring to them as MVP. All arenas are bounded **floating platforms in space** (DEC-030), not planetary spheres. Single native Godot 4.7.2 Standard GDScript runtime; no Tauri, Pixel UI Free, or second GameState.
 
+## Optional MIT addons setup (new)
+
+The existing Keychain editor plugin is enabled in project settings. RTS Framework remains a vendored, disabled/WIP reference. Godot State Charts 0.22.5 and GUT 9.7.1 are now pinned by Git submodules and copied into `apps/game/addons` with `bash scripts/install-godot-addons.sh --install`. Their source is not in the main source tree until local/CI setup; neither is wired into the authoritative match rules. LimboAI intentionally remains uninstalled (binary GDExtension overlaps State Charts and adds platform concerns). See [addon installation / notices](GODOT-ADDON-INSTALLATION-2026-10-11.md) and [pin lockfile](../architecture/godot-addons.lock.yaml). Runtime Godot 4.7.2 compatibility and plugin operation are **not yet engine-verified**.
+
 ## Installed versus connected
 Files are already present in `apps/game/addons/rts_framework/` and `apps/game/addons/keychain/` on main, including MIT license files. Presence is NOT proof the editor plugin is enabled or that the components are used in live gameplay. Built-in `NavigationAgent3D` and `NavigationServer3D` require no installation. The repository documentation claims a local headless Godot validation of the PR #5 slice; this guide does not independently rerun it.
 
