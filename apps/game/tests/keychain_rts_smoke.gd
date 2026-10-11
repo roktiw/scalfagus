@@ -37,9 +37,10 @@ func _verify() -> void:
             return
         var found: bool = false
         for mapping in InputMap.action_get_events(action):
-            if mapping is InputEventKey and (
-                    mapping.physical_keycode == int(expected[action])
-                    or mapping.keycode == int(expected[action])):
+            var mapped_key := mapping as InputEventKey
+            if mapped_key != null and (
+                    mapped_key.physical_keycode == int(expected[action])
+                    or mapped_key.keycode == int(expected[action])):
                 found = true
         if not found:
             _fail("Default binding missing for " + str(action))
@@ -50,56 +51,58 @@ func _verify() -> void:
         _fail("Selected Keychain ShortcutEdit addon component is unavailable")
         return
 
-    var menu: Control = MENU.instantiate()
+    var menu := MENU.instantiate()
     root.add_child(menu)
     await process_frame
-    menu._open_options()
+    menu.call("_open_options")
     await process_frame
-    var controls: Control = menu.get("shortcut_editor")
+    var controls: Control = menu.get("shortcut_editor") as Control
     if controls == null or not controls.is_inside_tree():
         _fail("Options did not embed the vendored Keychain ShortcutEdit")
         return
-    menu._close_options()
+    menu.call("_close_options")
     menu.queue_free()
     await process_frame
 
     ProjectSettings.set_setting("scalfagus/mirror_mode", "human_bot")
-    var game: Node3D = MATCH.instantiate()
+    var game := MATCH.instantiate()
     root.add_child(game)
     await process_frame
-    var hqs: Array[int] = game.sim.units_for(0, "hq")
+    var sim = game.get("sim")
+    var hqs: Array[int] = sim.units_for(0, "hq")
     if hqs.is_empty():
         _fail("Cannot inspect RTS training hotkeys without a Command Core")
         return
-    var hq: Dictionary = game.sim.entities[hqs[0]]
-    game.selected_id = int(hqs[0])
+    var hq: Dictionary = sim.entities[hqs[0]]
+    game.set("selected_id", int(hqs[0]))
 
     # Pressing W must not train Workers anymore. Keychain remapping must be
     # observed by event.is_action_pressed, not duplicated hardcoded KEY_W.
     var w := InputEventKey.new()
     w.physical_keycode = KEY_W
     w.pressed = true
-    game._unhandled_input(w)
+    game.call("_unhandled_input", w)
     if str(hq["train_kind"]) != "":
         _fail("W conflicted with Worker production")
         return
 
-    game.sim.mined_matter = 100
-    game.sim.players[0]["matter"] = 100
+    sim.mined_matter = 100
+    sim.players[0]["matter"] = 100
     var t := InputEventKey.new()
     t.physical_keycode = KEY_T
     t.pressed = true
-    game._unhandled_input(t)
-    if str(hq["train_kind"]) != "worker" or int(game.sim.players[0]["matter"]) != 65:
+    game.call("_unhandled_input", t)
+    if str(hq["train_kind"]) != "worker" or int(sim.players[0]["matter"]) != 65:
         _fail("T did not route legal Worker production through MatchState")
         return
 
     # Pan uses the actual action state, not hardcoded physical scancodes.
-    var before: Vector3 = game.camera_center
+    var before: Vector3 = game.get("camera_center")
     Input.action_press("rts_pan_up")
-    game._process(0.016)
+    game.call("_process", 0.016)
     Input.action_release("rts_pan_up")
-    if game.camera_center.z >= before.z:
+    var after: Vector3 = game.get("camera_center")
+    if after.z >= before.z:
         _fail("RTS camera did not consume remappable pan action")
         return
 
