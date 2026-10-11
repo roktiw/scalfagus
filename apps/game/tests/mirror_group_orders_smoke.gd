@@ -48,8 +48,8 @@ func _run() -> void:
 
     # Use actual Godot Camera3D projections for drag-select, not fake pixels.
     var camera: Camera3D = game.camera
-    var s0: Vector2 = camera.unproject_position(Vector3(a.x, 0.8, a.y))
-    var s1: Vector2 = camera.unproject_position(Vector3(b.x, 0.8, b.y))
+    var s0: Vector2 = camera.unproject_position(Vector3(a.x * 2.0, 1.6, a.y * 2.0))
+    var s1: Vector2 = camera.unproject_position(Vector3(b.x * 2.0, 1.6, b.y * 2.0))
     var top_left := Vector2(
         minf(s0.x, s1.x) - 12.0, minf(s0.y, s1.y) - 12.0)
     var bottom_right := Vector2(
