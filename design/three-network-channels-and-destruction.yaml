@@ -3,7 +3,13 @@ project: scalfagus
 version: 0.1
 status: owner_directed_structure_with_proposed_mechanics_and_balance_parameters
 specification: design/three-network-channels-and-destruction-2026-10-11.md
-latest_decisions: [DEC-021, DEC-022, DEC-023]
+latest_decisions: [DEC-021, DEC-022, DEC-023, DEC-035, DEC-036]
+storage_specialization_owner_decision: DEC-036
+storage_specialization_contract: design/faction-storage-specialization-and-obelisk-traffic.yaml
+ETH_obelisk_inventory_load_reduces_traffic_rate: true
+ETH_do_not_auto_equalize_into_transit_only_nodes: true
+ORG_cyst_exactly_one_resource_kind: true
+MAN_UMU_mixed_goods_or_specialized_single_good: true
 companion_world_loot: design/world-loot-and-recycling.yaml
 shared:
   spendable_resource_ids: [matter, volatiles, energy]
