@@ -1,10 +1,10 @@
 # Scalfagus — Flat RTS Battlegrounds as Flying Platforms in Space
 
 Date: 2026-10-11
-Status: **OWNER CONFIRMED** first-MVP square, finite, nonwrapping **PLANAR** battlefield with an impassable boundary. **NEW EXCITING OWNER ALTERNATIVE / RECOMMENDED ART DIRECTION:** present battlegrounds as immense **flying platforms or mobile world-ships in space**, inspired by the visible edges and construction decks of classic sci-fi RTS, Factorio Space Age interplanetary platforms, and the layered mechanical/fantasy character of a wandering flying castle. Not yet a locked mandate that ALL future maps must be platforms.
+Status: **HISTORICAL initial options analysis (DEC-029). SUPERSEDED BY OWNER-APPROVED DEC-030**, which REQUIRES every playable Scalfagus map to be a flying space platform, whether its upper deck is brown jungle soil, metal patchwork, rock, desert or another material. The comparison with an ordinary planetary surface below is retained for historical design rationale ONLY; ordinary planet-surface maps are **not valid playable maps**. Authoritative rules: [universal platform world constitution](space-platform-world-contract-2026-10-11.md), [mandatory frame YAML](battlefield-frames.yaml), [surface presets](platform-surface-presets.yaml).
 Decision: [DEC-029](decisions.yaml). Machine contract: [battlefield-frames.yaml](battlefield-frames.yaml). First-map fixture: [Verdant Divide](mvp-verdant-divide-map.yaml).
 
-## 1. Best of both approaches: same flat map, two diegetic skins
+## 1. Historical comparison — only the floating-platform column is now legal
 
 The core gameplay map remains a 2D tactical square grid over one 3D **PLANAR** heightfield, default proposed 64 x 64 cells at 2 m/cell. No true spherical surface, no gameplay map wrap, no in-match orbital motion, no new navigation domains.
 
@@ -103,7 +103,7 @@ Implementation:
 
 ## 7. Agent acceptance cases
 
-- `FRAME-01` same map geometry, same match gameplay on either `bounded_planetary_surface` or `floating_space_platform` visual frame.
+- `FRAME-01` NEW TEST: every playable map requires `floating_space_platform`; missing or `bounded_planetary_surface` frame is a compile error. See [updated tests](battlefield-frame-acceptance.yaml).
 - `FRAME-02` all four map borders are impassable to MAN MIN, ETH MIN, soldiers, Hero and packed moving MAN UMU.
 - `FRAME-03` static starfield/planet cannot be selected, collided with, mined, attacked or reached by ETH network path.
 - `FRAME-04` water stays on playable deck, liquid resource extraction remains off and biome/tree cover still works.
@@ -116,4 +116,4 @@ Implementation:
 
 ## Decision boundary
 
-**Approved by owner:** first-MVP square/rectangular bounded map with collision wall; no true spherical world demanded. **Strong owner-raised alternative; candidate to adopt visually for first map:** spaceborne floating platforms, possibly universal environment of Scalfagus, combining sci-fi machinery and whimsical airborne architecture. Exact "all maps must be space platforms" and in-match interplanetary travel remain **unapproved/open**.
+**Current canon after DEC-030:** ALL playable maps are flying platforms in outer space. The upper surface terrain is variable (brown soil and jungle / welded metal patchwork / other biome). PLANAR hard-bounded MVP; no whole-platform travel in a match. `bounded_planetary_surface` is a **historical rejected alternative**, not a map validator option. Complete specification: [space-platform-world-contract-2026-10-11.md](space-platform-world-contract-2026-10-11.md).
