@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 1.2
+version: 1.3
 decisions:
   - id: DEC-001
     status: approved
@@ -148,19 +148,24 @@ decisions:
       per 0-33, 33-66, 66-100 percent stage; workers tend the living spore
       rather than instantly morphing into buildings, and unattended growth
       gradually withers while embodied materials are consumed over time.
-      MAN builds physically on site with 1, then 2, then 3 simultaneous
-      workers; paused construction persists at its precise built percentage,
-      and unfinished/destroyed worksites offer finite real salvage even to
-      other factions. ETH NETWORK construction uses 1, then 3, then 2
-      channelers; loss of the last required beam/link causes full construction
+      MAN builds physically on site; the latest PROPOSED 2, then 1, then 3
+      simultaneous worker caps replace the older 1, then 2, then 3 candidate,
+      while 2, then 3, then 1 remains an explicitly open alternative.
+      Paused MAN construction persists at its precise built percentage,
+      and unfinished/destroyed worksites offer finite real salvage even
+      to other factions. ETH NETWORK construction's revised proposed
+      caps are 1, then 2, then 3 (replacing earlier 1, then 3, then 2);
+      loss of the last required beam/link causes full construction
       progress loss with a bounded resource refund to actual source inventories
       through valid finite return logistics. Labor caps are upper bounds,
       not compulsory worker counts.
     open_balance: >-
-      Exact stage durations, additional-worker speed modifiers, ORG caretaker
-      final cocoon-entry sacrifice or animation, incubation decay, ETH
-      disconnect grace (if any) and material recovery percent/cost remain
-      unspecified; fully equal faction balance is not demonstrated.
+      MAN 2-1-3 versus 2-3-1 still requires owner selection and playtests;
+      the 1-2-3 ETH ramp also remains exploratory. Exact stage durations,
+      additional-worker speed modifiers, ORG caretaker final cocoon-entry
+      sacrifice or animation, incubation decay, ETH disconnect grace (if any),
+      and material recovery percent/cost remain unspecified; balanced faction
+      construction has not been demonstrated.
     specification: design/construction-incubation-assembly-resonance-2026-10-11.md
     data_specification: design/construction-phases.yaml
 migration_required:
