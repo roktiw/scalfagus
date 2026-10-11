@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 3.1
+version: 3.2
 decisions:
   - id: DEC-001
     status: approved
@@ -842,6 +842,35 @@ decisions:
     specification: design/man-umu-transforming-belt-wings-2026-10-12.md
     data_specification: design/man-umu-transforming-belt-wings.yaml
 
+
+  - id: DEC-041
+    status: owner_directed_core_generator_4_6_8_building_drive_and_one_function_naming_roof_proposals_open
+    topic: MAN_UMU_name_power_generator_building_undercarriage_roof_modules_and_exclusive_role
+    resolution: >-
+      A MAN UMU can operate as an actual fuel-consuming power plant:
+      physical raw cargo enters through a lawful finite intake port,
+      an eligible fuel recipe debits real Matter or Volatiles as
+      appropriate and creates finite stored/transmitted Energy. It
+      cannot simultaneously operate as an unrestricted WAREHOUSE,
+      CONVEYOR, BUNKER or military hauler. Each UMU performs exactly
+      ONE active job at a time even if other tools remain physically
+      installed. Groups of distinct real UMU can act as wheels or
+      crawler undercarriages for compatible complete buildings:
+      exactly FOUR for small, SIX for medium and EIGHT for large.
+      During a grouped building move those units are dedicated to
+      the one building's locomotion, lose their individual services,
+      and respect actual footprint/pathfinding/cargo constraints.
+      Fixed roof modules are an owner-proposed direction, including
+      mounted guns, Matter drills and rooftop solar panels; exact
+      module set, recipe rates, roof socket size and building mobility
+      speed are open. Proposed name variants include Universal Modular
+      Unit, Universal Module Unit and Universal Mobility Unit, but
+      the established name Universal Man Unit remains until owner
+      chooses an official replacement. These post-MVP0 additions
+      refine DEC-040's physical pose doctrine without requiring new
+      features in DEC-033 first MAN mirror release.
+    specification: design/man-umu-power-building-mobility-roof-modules-2026-10-12.md
+    data_specification: design/man-umu-power-building-mobility-roof-modules.yaml
 
 migration_required:
   - design/economy.yaml
