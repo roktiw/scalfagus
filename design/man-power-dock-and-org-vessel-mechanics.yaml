@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 0.5
+version: 0.6
 status: approved_owner_direction_with_explicit_implementation_candidates_and_unresolved_balance
 decision_ids: [DEC-019, DEC-020]
 specification: design/three-network-channels-and-destruction-2026-10-11.md
@@ -11,7 +11,9 @@ storage_specialization_decision: DEC-036
 latest_UMU_physical_wings_decision: DEC-040
 latest_UMU_physical_wings_contract: design/man-umu-transforming-belt-wings.yaml
 UMU_all_instances_have_two_belt_wings: true
-UMU_four_postures: [move_tracks, conveyor_3_or_5, bunker, sentry_wall]
+UMU_five_postures: [move_tracks, warehouse_one_open_belt, conveyor_3_or_5, bunker, sentry_wall]
+UMU_move_trapezoid_open_front_rear_troop_or_cargo_cage: true
+UMU_warehouse_one_belt_open_other_folded: true
 bidirectional_and_storage_efficiency_decision: DEC-038
 bidirectional_and_storage_efficiency_spec: design/faction-bidirectional-logistics-and-homogeneous-storage.yaml
 recovery_decision: DEC-037
@@ -69,6 +71,7 @@ man:
         local_recharging: true
         finite_small_physical_cargo_buffer: true
         warehouse_pickup_ports_open: true
+        single_wing_loader_open_other_folded_if_actual_UMU: true
         large_garrison: false
         generator_input_recipe: TBD
       deployed_fortified_bunker:
@@ -135,6 +138,11 @@ man:
     physical_embedded_materials_remain_or_explicitly_salvage: true
     salvage_is_collectible_by_all_factions_at_actual_cost: true
   UMU_transforming_wings:
+    MOVE_uses_two_bent_under_chassis_tracks: true
+    MOVE_has_open_front_rear_real_passenger_or_cargo_cage: true
+    WAREHOUSE_one_wing_open_while_other_folded: true
+    WAREHOUSE_one_sided_real_loader_into_finite_hold: true
+    WAREHOUSE_cannot_mobilize_until_single_wing_retracted: true
     two_wings_on_every_UMU: true
     deployed_conveyor_axis_tiles: [3, 5]
     movement_uses_same_wings_as_crawler_tracks: true
