@@ -1,6 +1,6 @@
 schema_version: 1
 map_format: scalfagus_map_manifest
-map_format_version: 0.1
+map_format_version: 0.2
 world:
   topology: planar
   gravity: uniform
