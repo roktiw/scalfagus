@@ -6,7 +6,7 @@
 
 **All future playable maps are floating platforms in outer space.** The first MAN-versus-ETH `Verdant Divide` is a 64x64 candidate bounded, stationary spaceborne deck covered in real brown jungle soil, tactical tree-trunk cover, nonharvestable freshwater, and finite surface SOLID deposits; it has visible physical edges/underside and an invisible four-sided gameplay collision guard. The sky planet is just background. Other platform surfaces can be industrial metal patchwork, desert rock or mixed terrain. Bare ordinary planet surface is not a valid selectable map, and true spherical navigation is out of MVP.
 
-This **is not yet present as functional Godot map code**. Implement by following [AGENTS.md](../../../AGENTS.md), [MVP delivery gates](../../../design/MVP-DELIVERY-GATES.md), [map data](../../../design/mvp-verdant-divide-map.yaml), [world constitution](../../../design/space-platform-world-contract-2026-10-11.md) and [frame test cases](../../../design/battlefield-frame-acceptance.yaml). Preserve the native menu, three Hero camera modes and 5-view sprite smoke tests, with NO Tauri/second engine.
+The current RTS integration slice creates a simplified 128m floating jungle slab with physics border, collisions, water and A* navigation. **It does not yet import the canonical Verdant Divide map YAML or implement its exact routes/resources**. Complete it by following [AGENTS.md](../../../AGENTS.md), [MVP delivery gates](../../../design/MVP-DELIVERY-GATES.md), [map data](../../../design/mvp-verdant-divide-map.yaml), [world constitution](../../../design/space-platform-world-contract-2026-10-11.md) and [frame test cases](../../../design/battlefield-frame-acceptance.yaml). Preserve the native menu, three Hero camera modes and 5-view sprite smoke tests, with NO Tauri/second engine.
 
 
 ## Run locally
@@ -29,10 +29,10 @@ The repo root does NOT need pnpm, Node or Tauri to run the game. Node is only fo
 | F2 | Direct/TPP — following a real hero body |
 | F3 | Possession FPP — camera at same hero's eye level |
 | Tab | Switch through three modes |
-| WASD | Move hero in Direct/TPP/FPP |
+| WASD | Pan camera in RTS; move Hero in Direct/TPP/FPP |
 | Mouse movement in FPP | Turn view/pitch; Esc releases cursor |
 | Q / E | Rotate camera/character view horizontally |
-| Right mouse drag | Orbit in Overlord/TPP |
+| Q / E | Rotate RTS map/camera yaw |\n| Left click / drag | Select MAN actor / box selection in RTS |\n| Shift + left click | Add MAN actor to selection |\n| Right click | Issue A* movement for selected MAN Hero/workers in RTS |\n| Middle mouse drag | Orbit in RTS/TPP |
 | Mouse wheel | Zoom Overlord |
 | F9 | Cycle 960×540 / 640×360 / 320×240 window presets |
 
@@ -52,6 +52,10 @@ Alpha channel is used, **not magenta chroma key**. The 5 source rows are ordered
 
 ## Scope still missing
 
-Not a full RTS: no build orders, harvesting, production, enemy AI, weapons, minimap, player win conditions, true 4K pixel-perfect implementation, terrain deformation or animation state machine. Visual FPS pitch and large structure art require human screenshots and inspection. An engineering green CI proves import/smoke tests, **not** that the art passes the FPP visual gate.
+Not a full RTS: no build orders, harvesting, production, enemy AI, weapons, shipped fog-of-war minimap, player win conditions, true 4K pixel-perfect implementation, terrain deformation or animation state machine. Visual FPS pitch and large structure art require human screenshots and inspection. An engineering green CI proves import/smoke tests, **not** that the art passes the FPP visual gate.
 
 Documentation: `architecture/adr-0003-five-view-mirrored-3d-sprites.md`, `art/directional-sprite-five-view-v0.1.yaml`.
+
+## RTS A* and minimap spike
+
+The RTS fixture introduces an AStarGrid2D 64×64 at 2 metres/cell over a physical 3D platform, a visible underside, unit selection/formation commands, no-corner-cutting static pathing and a **debug-only minimap**. Test with `bash scripts/check.sh`, including `navigation_smoke.gd`. See [agent handoff](../../../docs/RTS-NAVIGATION-DEVELOPMENT-2026-10-11.md). Native Godot GUI screenshots and movement behavior remain an acceptance gate.
