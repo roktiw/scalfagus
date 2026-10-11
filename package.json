@@ -1,0 +1,13 @@
+{
+  "name": "scalfagus",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "bash scripts/dev.sh",
+    "build": "bash scripts/build.sh",
+    "check": "bash scripts/check.sh",
+    "game": "bash scripts/game.sh",
+    "bootstrap": "bash scripts/bootstrap.sh"
+  }
+}

@@ -1,0 +1,8 @@
+.tools/
+node_modules/
+dist/
+build/
+**/.godot/
+**/target/
+apps/desktop/src-tauri/resources/*
+!apps/desktop/src-tauri/resources/.gitkeep
