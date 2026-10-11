@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 2.8
+version: 2.9
 decisions:
   - id: DEC-001
     status: approved
@@ -745,6 +745,28 @@ decisions:
       medical or vein/Obelisk systems to DEC-033 MAN mirror MVP0.
     specification: design/faction-damage-recovery-shields-and-repair-2026-10-11.md
     data_specification: design/faction-damage-recovery-shields-and-repair.yaml
+
+  - id: DEC-038
+    status: approved_ETH_mono_storage_energy_and_ORG_ETH_bidirectional_direction_MAN_two_way_first_belts_proposed
+    topic: faction_network_bidirectionality_and_homogeneous_storage_energy_economics
+    resolution: >-
+      ETH Obelisks can levitate mixed resource types but, for equal total
+      levitated inventory, a more homogeneous store consumes less Energy
+      per tick than a mixed store; cost remains positive and high storage
+      occupancy still reduces transit throughput independently (DEC-036).
+      ORG universal living vein links and ETH Obelisk network links allow
+      real finite flows in both directions. The same material network
+      capacity must be accounted for and not doubled for opposing flows.
+      ORG cysts remain single-resource and biological specialization
+      or mutation carries real commitment cost; reversibility and cost
+      remain open. For early post-MVP MAN conveyor implementation, the
+      owner proposed universal two-way belts requiring no player-set
+      direction, with later optional Factorio-like one-way operation
+      considered for advanced optimization. That belt default remains
+      a proposed initial implementation rather than a finalized
+      permanent requirement. No systems here enter DEC-033 MAN MVP0.
+    specification: design/faction-bidirectional-logistics-and-homogeneous-storage-2026-10-12.md
+    data_specification: design/faction-bidirectional-logistics-and-homogeneous-storage.yaml
 
 migration_required:
   - design/economy.yaml
