@@ -1,0 +1,43 @@
+name: scalfagus-5-view-spike
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  godot-smoke:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Set up Node 24
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: '24'
+      - name: Validate PNG atlas dimensions, RGBA and SHA-256
+        run: node scripts/verify_atlases.mjs
+      - name: Validate pure-js reference yaw selector
+        run: node --test architecture/examples/test_five_view_mapping.mjs
+      - name: Download official Godot 4.7.2 Linux editor and verify release SHA-256
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 4 \
+            https://github.com/godotengine/godot/releases/download/4.7.2-stable/Godot_v4.7.2-stable_linux.x86_64.zip \
+            --output /tmp/godot.zip
+          echo 'cadd3204e728a35d3f13adb7fd0d7902636b79f6b95c40c265eb73b6c35329e4  /tmp/godot.zip' | sha256sum --check
+          unzip -q /tmp/godot.zip -d /tmp/godotbin
+          chmod +x /tmp/godotbin/Godot_v4.7.2-stable_linux.x86_64
+          /tmp/godotbin/Godot_v4.7.2-stable_linux.x86_64 --version
+      - name: Import textures and check Godot project scripts
+        run: |
+          /tmp/godotbin/Godot_v4.7.2-stable_linux.x86_64 \
+            --headless --path apps/game --editor --import --quit
+      - name: Run in-engine contract smoke
+        run: |
+          /tmp/godotbin/Godot_v4.7.2-stable_linux.x86_64 \
+            --headless --path apps/game --script res://tests/smoke.gd
+      - name: Startup/physics 30-frame smoke
+        run: |
+          /tmp/godotbin/Godot_v4.7.2-stable_linux.x86_64 \
+            --headless --path apps/game --quit-after 30
