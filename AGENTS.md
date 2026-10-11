@@ -8,6 +8,8 @@
 
 **Release precedence:** DEC-033 MAN-vs-MAN classic RTS first; DEC-034 governs HOW code is built. Preserve F2/F3 experimental camera code, but do not expand ETH/FPP/TPP into this micro MVP.
 
+**Development evidence and next verification gates:** [Markdown report](docs/SCALFAGUS-MVP0-DEVELOPMENT-FINDINGS-2026-10-11.md) and [machine-readable YAML](design/mvp0-development-findings-2026-10-11.yaml). Newly added MAN mirror state, renderer, smoke and batch runners are committed but **unverified**; no Human–Human LAN host yet. Never treat historical Godot smoke passes as evidence the new RTS compiles.
+
 ## CURRENT RELEASE GATE — DEC-033 current micro-MVP (supersedes old MAN+ETH first-MVP plan)
 
 **Implement ONLY the MAN-vs-MAN classic RTS for MVP 0.1, with two player slots and all three combinations H-H / H-C / C-C.** Human-Human requires two Godot clients over LAN or loopback and an authoritative host; computer players use the same commands. C-C runs headless/accelerated or in observer mode. The roster for this first release is **Command Core / MIN worker / Barracks / Rifleman**; initial Matter-only finite-gather economy, one floating-space-platform Verdant Divide map, combat and full building-elimination victory. **NO FPP/TPP gameplay, ETH/ORG, MAN UMU/power networks, Hero progression or advanced resources in this micro-MVP.** Preserve the existing three-camera prototype/smoke for safety; do not advertise or enhance it as an MVP deliverable. Future product FPP remains DEC-031. Do not infer that the new scope has been implemented.
