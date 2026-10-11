@@ -1,0 +1,206 @@
+schema_version: 1
+project: scalfagus
+version: 0.1
+status: design_acceptance_fixtures_NOT_yet_executable_or_run
+source_of_truth:
+  implementation_handoff: design/AGENT-MVP-IMPLEMENTATION.md
+  game: apps/game/project.godot
+  current_smoke_test: apps/game/tests/smoke.gd
+  catalog: design/mvp-man-eth-catalog.yaml
+  combat: design/mvp-combat.yaml
+  economy: design/mvp-economy.yaml
+  bot: design/mvp-bot-behavior.yaml
+  map: design/mvp-verdant-divide-map.yaml
+  environment: design/world-environments.yaml
+  topology: design/world-topologies.yaml
+  network: design/three-network-channels-and-destruction.yaml
+  victory: design/victory-building-template-registry.yaml
+  loot: design/world-loot-and-recycling.yaml
+initial_implementation_priority:
+  P0: engine_solid_gathering_base_roster_combat_win_bot
+  P1: complete_ETH_network_modes_recycling_and_three_camera_Hero_integration
+  future: true_spherical_planetoids_liquid_harvesting_gas_ORG_multiplayer_editor
+tests:
+  - id: MVP-01
+    tier: P0
+    name: game_starts_with_exact_two_factions
+    steps: [choose_MAN_or_ETH, spawn_human_and_bot_opposite_Verdant_Divide_slots]
+    expect: {playable_factions: [man, eth], mother_building_per_player: 1, min_workers_per_player: 3, playable_org_units: 0}
+  - id: MVP-02
+    tier: P0
+    name: land_only_movement_and_liquid_collision
+    steps: [spawn_man_min_near_pond, order_ground_movement_across_unbridged_pond]
+    expect: {movement_uses_dry_terrain_route_or_reports_unreachable: true, unit_entered_liquid: false}
+  - id: MVP-03
+    tier: P0
+    name: visible_environment_liquid_is_not_economic_liquid
+    steps: [click_freshwater_pond_with_selected_min, attempt_gather]
+    expect: {gather_order_accepted: false, matter_added: 0, volatiles_added: 0}
+  - id: MVP-04
+    tier: P0
+    name: mine_surface_solid_without_mine
+    initial: {source_form: solid, amount: 16, worker_cargo: 0}
+    steps: [order_mine, wait_real_harvest_ticks]
+    expect: {worker_cargo_increases: true, source_amount_decreases_by_same_amount: true, no_mine_structure_required: true}
+  - id: MVP-05
+    tier: P0
+    name: MAN_storage_really_requires_moving_cargo
+    steps: [mine_8_matter, return_to_command_core, transfer_at_port]
+    expect: {worker_cargo_after_deposit: 0, local_depot_stored_matter_addition: 8, no_earlier_instant_credit: true}
+  - id: MVP-06
+    tier: P0
+    name: ETH_nexus_conversion_only
+    steps: [eth_min_mines_8_matter, attempt_pylon_network_without_Nexus, deliver_to_Nexus, convert]
+    expect: {before_nexus_transfer_rejected: true, after_converted_typed_ether_matter_units: 8, new_currency_added: false}
+  - id: MVP-07
+    tier: P0
+    name: tree_trunk_blocks_combat
+    steps: [place_rifleman_and_sentinel_opposite_authoritative_tree_trunk, fire_directly]
+    expect: {damage_through_trunk: 0, can_reposition_to_unblocked_firing_angle: true}
+  - id: MVP-08
+    tier: P0
+    name: forest_canopy_fade_does_not_change_los
+    steps: [fade_visual_canopy_over_selected_unit, use_same_projectile_raycast]
+    expect: {unchanged_colliders_and_line_of_sight: true}
+  - id: MVP-09
+    tier: P0
+    name: soldier_can_damage_building
+    steps: [train_or_spawn_rifleman_using_real_costs, attack_enemy_completed_barracks_in_range]
+    expect: {barracks_hp_decreases: true, attack_uses_los_and_cooldown: true}
+  - id: MVP-10
+    tier: P0
+    name: authoritative_HP_and_damage
+    steps: [issue_fixed_number_of_attacks_in_same_tick_order, replay_same_seed]
+    expect: {same_damage_and_deaths_across_replay: true, no_hits_beyond_range: true}
+  - id: MVP-11
+    tier: P0
+    name: weapon_and_worker_visibility_respect_fog
+    steps: [put_hidden_enemy_behind_unscouted_forest, issue_bot_attack_to_unknown_id]
+    expect: {omniscient_attack_rejected: true}
+  - id: MVP-12
+    tier: P0
+    name: UMU_ground_travel_footprint_and_victory
+    steps: [deploy_UMU, switch_warehouse_to_bunker, pack_and_drive_UMU]
+    expect: {flies: false, collides_with_trunks: true, generator_off_when_packed: true, victory_building_flag_always_true: true}
+  - id: MVP-13
+    tier: P0
+    name: MAN_worker_hauls_to_actual_barracks_site
+    steps: [deposit_matter_at_far_UMU, queue_barracks_build_out_of_loading_range]
+    expect: {no_remote_instant_material_spend: true, physical_worker_fetch_required: true}
+  - id: MVP-14
+    tier: P0
+    name: MAN_build_crew_caps_and_persistent_frame
+    steps: [start_MAN_barracks, recruit_3_worker_helpers, stop_at_half_build]
+    expect: {caps_by_thirds: [1, 2, 2], third_early_builder_no_extra_output: true, worksite_progress_persists: true}
+  - id: MVP-15
+    tier: P0
+    name: basic_bot_valid_build_order
+    steps: [run_bot_with_same_initial_resources_and_fog_as_human, observe_gather_UMU_or_pylon_barracks_soldiers]
+    expect: {never_spends_unheld_resource: true, eventually_trains_soldier: true, can_target_known_enemy_building: true}
+  - id: MVP-16
+    tier: P0
+    name: all_buildings_win_check
+    steps: [destroy_all_enemy_completed_buildings_but_leave_two_workers_and_hero]
+    expect: {enemy_defeated: true, remaining_workers_do_not_prevent_end: true}
+  - id: MVP-17
+    tier: P1
+    name: ETH_pylon_one_network_services
+    steps: [route_typed_matter_E_and_blueprint_over_same_real_Nexus_to_pylon_link]
+    expect: {one_graph: true, all_transactions_finite_and_visible: true}
+  - id: MVP-18
+    tier: P1
+    name: ETH_pylon_support_and_turret_mode
+    steps: [build_pylon, verify_resonance_slots_added, switch_through_meditation_to_turret]
+    expect: {same_structural_entity: true, victory_building_still_true: true, primary_network_connected: true, turret_uses_actual_cooldown: true}
+  - id: MVP-19
+    tier: P1
+    name: ETH_gathered_ether_split_without_duplication
+    initial: {node_quantities: [20, 20, 20, 20, 20, 20], total: 120}
+    steps: [break_link_between_second_and_third_pylon]
+    expect: {component_totals: [40, 80], global_retained_total: 120, no_duplicate_inventory: true}
+  - id: MVP-20
+    tier: P1
+    name: ETH_interrupted_barracks_committed_ingredients_eject
+    initial: {site_committed_matter: 15, operating_E_already_consumed: 5}
+    steps: [sever_last_required_ETH_network_build_beam]
+    expect: {site_progress: 0, local_collectible_amber_ETH_orbs_matter: 15, energy_refunded: 0, double_refund: false}
+  - id: MVP-21
+    tier: P1
+    name: MAN_salvage_and_stealable_loose_crates
+    initial: {installed_matter: 30, uninstalled_loose_matter: 15}
+    steps: [interrupt_work, rival_worker_takes_loose_crates, salvage_installed_frame]
+    expect: {loose_opponent_can_collect: 15, installed_recovery_below_original: true, worker_salvage_time_positive: true}
+  - id: MVP-22
+    tier: P1
+    name: cross_faction_world_loot
+    steps: [MAN_drops_solid_cube, ETH_worker_collects_cube, walks_it_to_ETH_Nexus]
+    expect: {foreign_pickup_legal: true, before_Nexus_not_automatically_network_ether: true, no_currency_identity_mutation: true}
+  - id: MVP-23
+    tier: P1
+    name: hero_is_one_actor_across_three_cameras
+    steps: [take_same_hero_entity_id, Overlord, Direct, FPS, Overlord]
+    expect: {same_id_position_HP_cargo_and_cooldown: true, no_second_gameworld_spawned: true}
+  - id: MVP-24
+    tier: P0
+    name: validate_map_unique_objects_and_start_resources
+    steps: [compile_Verdant_Divide_map]
+    expect: {all_resource_IDs_unique: true, both_starts_reach_two_safe_solid_deposits: true, first_mvp_liquid_bodies_present: true, no_harvestable_liquid_or_gas: true}
+  - id: MVP-25
+    tier: P0
+    name: validate_map_ramps_and_routes
+    steps: [generate_ground_navigation_for_worker_and_packed_UMU]
+    expect: {minimum_dry_independent_ground_routes: 2, no_required_path_through_water: true, no_tree_or_building_spawn_overlap: true, ramps_navigable: true}
+  - id: MVP-26
+    tier: P0
+    name: deterministic_resource_ledger
+    steps: [run_same_seed_and_command_log_for_mining_building_combat_and_loot_twice]
+    expect: {source_plus_accounts_plus_drops_plus_escrow_plus_consumed_loss_conserved: true, no_negative_resources: true, end_hash_matches: true}
+  - id: MVP-27
+    tier: P0
+    name: no_volatiles_and_no_gas_softlock
+    steps: [spawn_in_jungle_without_liquid_or_gas_resource_deposits, follow_first_worker_UMU_or_pylon_barracks_tech]
+    expect: {all_first_slice_recipes_fundable_with_surface_solids_and_actual_available_E: true}
+  - id: MVP-28
+    tier: P0
+    name: mobile_building_must_be_destroyed_for_win
+    steps: [destroy_all_enemy_buildings_except_PACKED_MAN_UMU, then_destroy_UMU]
+    expect: {not_victorious_before_UMU_death: true, victorious_after_UMU_death: true}
+  - id: MVP-29
+    tier: P0
+    name: reject_unimplemented_spherical_topology
+    steps: [load_manifest_with_world_topology_spherical_while_only_planar_adapter_exists]
+    expect: {clear_config_validation_error: true, do_not_silently_simulate_flat_world_as_sphere: true}
+  - id: MVP-30
+    tier: P1
+    name: map_render_surface_and_gameplay_consistency
+    steps: [inspect_planar_ground_height_and_water_tree_raycast_in_RTS_Direct_FPS]
+    expect: {same_collision_ground_and_tree_line_of_fire: true, no_alternate_FPS_world: true}
+  - id: MVP-31
+    tier: P0
+    name: atlas_renderer_regression
+    steps: [run_existing_apps_game_tests_smoke_gd]
+    expect: {five_view_sprites_and_three_camera_existing_spike_preserved: true}
+  - id: MVP-32
+    tier: P1
+    name: production_release_two_race_jungle_gate
+    steps: [select_each_faction_against_scripted_bot, play_until_normal_victory_or_defeat]
+    expect: {complete_match_without_crash: true, no_required_online_services: true, no_ORG_units: true, no_liquid_or_gas_harvest: true}
+map_validation_tests:
+  - id: MAP-01
+    scenario: preserve_exact_collision_topology_across_cosmetic_seed_change
+    expected: {nav_grid_hash_same: true, source_placement_same: true}
+  - id: MAP-02
+    scenario: tree_blocks_trunk_ray_but_canopy_does_not
+    expected: {combat_los_uses_authoritative_collision: true}
+  - id: MAP-03
+    scenario: no_terrain_only_height_teleport
+    expected: {a_step_between_different_levels_requires_valid_ramp: true}
+  - id: MAP-04
+    scenario: no_invisible_liquid_economy
+    expected: {water_terrain_has_zero_automatically_generated_Volatiles: true}
+  - id: MAP-05
+    scenario: double_spawning_for_invalid_map_objects
+    expected: {duplicate_resource_source_id_rejected: true}
+  - id: MAP-06
+    scenario: reject_planetoid_if_only_planar_implemented
+    expected: {explicit_error: true}
