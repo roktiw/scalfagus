@@ -1,0 +1,52 @@
+{
+  "project": "scalfagus",
+  "collection": "StarCraft Alpha visual references",
+  "created": "2026-10-11",
+  "policy": "external references only; proprietary artwork is not vendored",
+  "items": [
+    {
+      "id": "zerg-base-side-ui",
+      "phase": "early-alpha",
+      "type": "screenshot",
+      "url": "https://www.betaarchive.com/imageupload/2017-11/1511900303.or.59211.png",
+      "source": "https://www.betaarchive.com/forum/viewtopic.php?t=27845",
+      "date_verified": false
+    },
+    {
+      "id": "zerg-buildings",
+      "phase": "early-alpha-candidate",
+      "type": "sprite-sheet",
+      "url": "https://1.bp.blogspot.com/-X5ef1f07es0/UwRB42FHq0I/AAAAAAAAA14/OCPwjlRrpN4/s1600/zergbuildings.png",
+      "source": "https://gamehistory101.blogspot.com/2014/08/history-of-starcraft.html",
+      "date_verified": false
+    },
+    {
+      "id": "prototype-unit-gallery",
+      "phase": "prototype",
+      "type": "screenshot",
+      "url": "https://www.unseen64.net/wp-content/uploads/2008/04/starcr44.jpg",
+      "source": "https://www.unseen64.net/2008/04/07/starcraft-pc-prototype-beta/"
+    },
+    {
+      "id": "later-space-platform",
+      "phase": "late-alpha",
+      "type": "screenshot",
+      "url": "https://www.blizzardarchive.com/pub/Images/Screens/Sc1_2/blizzardarchive/starcraft2.gif",
+      "source": "https://staredit.net/topic/18217/"
+    },
+    {
+      "id": "later-goliath-lava",
+      "phase": "late-alpha",
+      "type": "screenshot",
+      "url": "https://www.blizzardarchive.com/pub/Images/Screens/Sc1_2/starcraftevo/alpha17.jpg",
+      "source": "https://staredit.net/topic/18217/"
+    },
+    {
+      "id": "later-protoss-scout",
+      "phase": "late-alpha",
+      "type": "screenshot",
+      "url": "https://media.moddb.com/images/groups/1/4/3106/alpha11.jpg",
+      "source": "https://www.moddb.com/groups/video-game-art-realm/images/sc1-alpha5"
+    }
+  ]
+}
