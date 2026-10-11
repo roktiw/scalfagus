@@ -2,8 +2,8 @@ schema_version: 1
 project: scalfagus
 decision_id: DEC-040
 date: "2026-10-12"
-version: 0.1
-status: owner_approved_UMU_wings_four_physical_modes_with_candidate_implementation_details
+version: 0.2
+status: owner_approved_UMU_wings_five_modes_open_cage_move_single_belt_warehouse_with_candidate_implementation
 human_specification: design/man-umu-transforming-belt-wings-2026-10-12.md
 scope:
   post_MVP0_only: true
@@ -14,9 +14,24 @@ UMU:
   canonical_name: Universal_Man_Unit
   owner_rule_each_UMU_has_two_belt_wings: true
   wing_count: 2
+  open_trapezoid_cage_and_one_open_warehouse_belt: true
+  mobile_body:
+    owner_approved_profile: trapezoid_like_belt_tracks_under_body_with_open_front_and_rear_cage
+    track_wings: two_real_existing_belt_wings
+    cabin_open_at: [front, rear]
+    functions: [carry_soldiers, carry_real_cargo]
+    owner_phrase_soldiers_or_cargo_initial_rules: mutually_exclusive_occupancy_candidate
+    troops_manifest_retains_unit_identity_and_HP: true
+    finite_passenger_slots: true
+    finite_cargo_slots_and_physical_loading: true
+    not_a_free_invulnerable_mobile_bunker: true
+    onboard_mixed_passengers_plus_cargo_in_same_volume: TBD
+    soldiers_fire_while_moving: TBD
+    onboard_damage_or_vehicle_destruction_policy: TBD
   wings_are_persistent_physical_parts: true
   wing_roles:
-    in_move: retract_under_chassis_to_form_left_and_right_crawler_tracks
+    in_move: bend_under_open_cage_body_form_two_tracks_and_trapezoid_profile
+    in_warehouse: open_one_belt_on_selected_side_for_real_cargo_loading_other_remains_folded
     in_conveyor: unfold_symmetrically_into_left_and_right_belt_wings
     in_bunker: fold_parallel_against_both_hull_sides_for_flank_protection
     in_sentry_wall: rotate_up_to_form_ground_unit_blocking_wall
@@ -38,7 +53,23 @@ UMU:
       ground_movement: true
       belt_freight_ports_open: false
       wings_under_body: true
+      trapezoid_open_front_rear_cage: true
+      can_carry_actual_soldier_manifest_or_typed_cargo: true
+      external_conveyor_ports_closed_even_when_cage_loaded: true
       deployed_only_generator_and_grid_services: false
+    - id: warehouse
+      ground_movement: false
+      open_working_wing_count: 1
+      folded_wing_count: 1
+      player_selects_open_side: [left, right]
+      opening_length_tiles: TBD
+      conveyor_connection_to_opposite_folded_side: false
+      legal_functions: [one_sided_loading_to_finite_storage, one_sided_dispatch_from_storage]
+      UMU_cargo_mixed_or_one_resource_packed_from: DEC-036
+      real_physical_cargo_manifest: true
+      actual_loader_open_required_for_external_handoff: true
+      external_cargo_throughput_finite: true
+      generator_requires_deployed_kit_and_eligible_fuel: true
     - id: conveyor
       ground_movement: false
       belt_freight_ports_open: true
@@ -63,7 +94,7 @@ UMU:
       free_turret_by_default: false
       garrison_by_default: false
       requires_real_legal_footprint_and_navmesh_update: true
-  mutually_exclusive_postures: [move_tracks, conveyor, bunker, sentry_wall]
+  mutually_exclusive_postures: [move_tracks, warehouse, conveyor, bunker, sentry_wall]
   physically_one_actor_across_modes: true
   mode_transition:
     finite_positive_duration: true
@@ -97,6 +128,9 @@ UMU:
     - transform_duration_cost_energy
     - cargo_buffer_footprint_emergency_unload
     - exact_templates_that_are_UMU_capable_in_mid_max
+    - warehouse_single_wing_extension_tiles_and_open_side_animation
+    - passengers_and_cargo_can_mix_with_shared_volume_or_remain_exclusive
+    - troop_fire_and_damage_exposure_inside_open_MOVE_cage
 acceptance_tests:
   - UMU-01
   - UMU-02
@@ -116,3 +150,9 @@ acceptance_tests:
   - UMU-16
   - UMU-17
   - UMU-18
+  - UMU-19
+  - UMU-20
+  - UMU-21
+  - UMU-22
+  - UMU-23
+  - UMU-24
