@@ -1,5 +1,7 @@
 # SCALFAGUS — Consolidated Design Bible
 
+> **Latest approved base economy/expansion canon (DEC-012/013):** [Three Base Ecologies](base-ecologies-and-expansion-2026-10-11.md), [machine-readable ecology](base-ecologies.yaml), [economic 3×3](logistics-unit-scales.yaml). This supersedes earlier exploratory statements about disconnected ORG buildings, always-mobile ETH MID relays, ETH MAX as a turret pylon, and a mandatory single static Manus Nexus.
+
 > **Canonical faction naming (2026-10-11): Organs (`org`), Manus (`man`), Eters (`eth`).** Earlier names are archived in historical discussion notes; see [naming decision](faction-identity-rename-2026-10-11.md).
 Date: 2026-10-11
 Version: discussion consolidation v0.1
@@ -68,9 +70,9 @@ Match generation concept:
 ## 3. Three factions and their identities
 | Faction | Identity | Economic topology | Power window (hypothesis) | Preferred flavor, not forced role |
 |---|---|---|---|---|
-| **Organs** | Predatory living swarm, organic mutation | Strong connected biomass; detached outposts operate less efficiently | Early pressure | Architect |
-| **Manus** | Modular industrial colonists and combined arms | Independent outposts, cargo hubs, deployable industrial infrastructure | Mid-game | Commander |
-| **Eters** | Ancient psionic/resonance civilization | Fortified center; satellites viable, stronger with resonance links | Late game | Avatar |
+| **Organs** | Predatory living swarm, organic mutation | **Rooted Nexus-linked living vessel branches; distant expansions need repeated home nourishment; severed branches wither after grace** | Early pressure | Architect |
+| **Manus** | Modular industrial colonists and combined arms | **Modular repositionable composite bases, independent outposts, optional corridors; repairable machines** | Mid-game | Commander |
+| **Eters** | Ancient psionic/resonance civilization | **MID cargo/turret pylons + MAX Nexus-class hubs; initial home knowledge and conditional unknown-blueprint syncing; exposed blue build beams** | Late game | Avatar |
 
 All factions can perform all jobs, use every gameplay control surface and win in early/mid/late play. Affinity and power windows are character, not automatic score multipliers. Organ mutation can be irreversible; Manus modules configurable; Eter transformations expensive and reversible where designed. Each needs counterplay against rush, siege, turtling, stealth and logistics disruption.
 
