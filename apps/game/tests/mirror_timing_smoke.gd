@@ -26,17 +26,17 @@ func _verify() -> void:
     var worker: Dictionary = mine.entities[worker_id]
     # Fixture is parked at an actual source input tile: isolate mining clock
     # from the separate movement/navigation contract.
-    worker["pos"] = Vector2i(16, 31)
-    if not mine.issue_command(0, "gather", worker_id, "west"):
+    worker["pos"] = Vector2i(10, 16)
+    if not mine.issue_command(0, "gather", worker_id, "nw_solid_1"):
         _fail("Cannot order eligible Worker to mine")
         return
     for i in range(39):
         mine.advance()
-    if int(worker["cargo"]) != 0 or int(mine.sources["west"]["stock"]) != 900:
+    if int(worker["cargo"]) != 0 or int(mine.sources["nw_solid_1"]["stock"]) != 200:
         _fail("Mining extracted Matter before 2 seconds")
         return
     mine.advance()
-    if int(worker["cargo"]) != 1 or int(mine.sources["west"]["stock"]) != 899:
+    if int(worker["cargo"]) != 1 or int(mine.sources["nw_solid_1"]["stock"]) != 199:
         _fail("One unit of Matter was not extracted on tick 40")
         return
     for i in range(360):
@@ -49,7 +49,7 @@ func _verify() -> void:
     if str(worker["gather_phase"]) != "return":
         _fail("Pickup delay did not last exactly seven ticks")
         return
-    worker["pos"] = Vector2i(9, 32) # Adjacent to own HQ; no teleport occurs in gameplay.
+    worker["pos"] = Vector2i(9, 10) # Adjacent to own HQ; no teleport occurs in gameplay.
     for i in range(TIMING.UNLOAD_TICKS - 1):
         mine.advance()
     if int(mine.players[0]["matter"]) != 0:
@@ -69,8 +69,8 @@ func _verify() -> void:
     concurrency.setup(12, ["human", "human"])
     var ids: Array[int] = concurrency.units_for(0, "worker")
     for id in ids:
-        concurrency.entities[id]["pos"] = Vector2i(16, 31)
-        if not concurrency.issue_command(0, "gather", id, "west"):
+        concurrency.entities[id]["pos"] = Vector2i(10, 16)
+        if not concurrency.issue_command(0, "gather", id, "nw_solid_1"):
             _fail("Cannot assign miner fixture")
             return
     for i in range(40):
@@ -87,20 +87,20 @@ func _verify() -> void:
     var movement = MATCH.new()
     movement.setup(20, ["human", "human"])
     var walker_id: int = movement.units_for(0, "worker")[0]
-    movement.entities[walker_id]["pos"] = Vector2i(10, 40)
-    if not movement.issue_command(0, "move", walker_id, Vector2i(50, 40)):
+    movement.entities[walker_id]["pos"] = Vector2i(10, 2)
+    if not movement.issue_command(0, "move", walker_id, Vector2i(50, 2)):
         _fail("No legal Worker route for motion clock fixture")
         return
-    var soldier_id: int = movement._spawn("rifleman", 0, Vector2i(10, 42))
-    if not movement.issue_command(0, "move", soldier_id, Vector2i(50, 42)):
+    var soldier_id: int = movement._spawn("rifleman", 0, Vector2i(10, 4))
+    if not movement.issue_command(0, "move", soldier_id, Vector2i(50, 4)):
         _fail("No legal Rifleman route for motion clock fixture")
         return
     for i in range(40):
         movement.advance()
-    if movement.entities[walker_id]["pos"] != Vector2i(14, 40):
+    if movement.entities[walker_id]["pos"] != Vector2i(14, 2):
         _fail("Worker did not travel exactly 4 cells in 2 seconds at 2.3 tiles/s")
         return
-    if movement.entities[soldier_id]["pos"] != Vector2i(15, 42):
+    if movement.entities[soldier_id]["pos"] != Vector2i(15, 4):
         _fail("Rifleman did not travel exactly 5 cells in 2 seconds at 2.6 tiles/s")
         return
 
@@ -123,8 +123,8 @@ func _verify() -> void:
         _fail("Worker was not trained at the 140th tick")
         return
     var builder_id: int = production.units_for(0, "worker")[0]
-    production.entities[builder_id]["pos"] = Vector2i(12, 36)
-    if not production.issue_command(0, "build_barracks", builder_id, Vector2i(13, 36)):
+    production.entities[builder_id]["pos"] = Vector2i(12, 12)
+    if not production.issue_command(0, "build_barracks", builder_id, Vector2i(13, 12)):
         _fail("Funded Barracks site was refused")
         return
     for i in range(TIMING.BARRACKS_BUILD_TICKS - 1):

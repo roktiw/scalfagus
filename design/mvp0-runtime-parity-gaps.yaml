@@ -1,7 +1,7 @@
 schema_version: 1
 project: scalfagus
 release: mvp_0_1
-version: 0.3
+version: 0.4
 status: candidate_20hz_code_implemented_not_engine_tested_or_playtested
 owner_decisions: [DEC-030, DEC-031, DEC-032, DEC-033, DEC-034]
 canonical_numeric_profile: design/mvp0-agent-implementation-contract.yaml
@@ -44,10 +44,20 @@ numbers:
   previous_timeout_minutes_in_GUI_at_10Hz: 9.0
   target_timeout_minutes: 20
   expected_map_source_total: 1660
-  current_hardcoded_source_total: 2500
-  current_nodes: {west: 900, east: 900, center_n: 350, center_s: 350}
+  current_compiled_source_total: 1660
+  current_nodes:
+    nw_solid_1: 200
+    nw_solid_2: 200
+    se_solid_1: 200
+    se_solid_2: 200
+    center_solid_1: 200
+    center_solid_2: 200
+    west_flank_solid_1: 150
+    east_flank_solid_1: 150
+    north_ridge_solid: 80
+    south_ridge_solid: 80
   candidate_near_start_stock: 400
-  current_near_start_stock_in_code: 900
+  current_near_start_stock_in_code: 400
   target_worker_gather_one_unit_seconds: 2.0
   current_worker_gather_batch_units: 1
   current_worker_gather_batch_ticks: 40
@@ -84,9 +94,11 @@ numbers:
   canonical_map_world_width_meters_candidate: 128
   current_visual_ground_block_width_world_units: 64
   current_code_map_grid_cells: [64, 64]
-  current_code_simulation_map_identifiers: [west, east, center_n, center_s]
-  canonical_YAML_map_world_source_ids_are_different: true
-  source_not_identical_in_code_and_map_manifest: true
+  current_code_simulation_map_identifiers:
+    [nw_solid_1, nw_solid_2, se_solid_1, se_solid_2, center_solid_1, center_solid_2, west_flank_solid_1, east_flank_solid_1, north_ridge_solid, south_ridge_solid]
+  canonical_YAML_map_world_source_ids_are_different: false
+  source_not_identical_in_code_and_map_manifest: false
+  current_hardcoded_source_total: 2500
   current_timeout_minutes_in_actual_GUI_at_10Hz: 9.0
   current_worker_gather_ten_units_seconds_in_GUI_at_10Hz: 0.60
   current_cell_step_period_sim_ticks: 3
@@ -109,6 +121,10 @@ major_gaps:
     test: M0B-12
   - id: CODE-GAP-02
     priority: P0
+    status: compiled_runtime_map_implemented_in_dependent_draft_not_engine_verified
+    runtime_json: apps/game/maps/verdant_divide.compiled.json
+    compiler: scripts/compile-verdant-map.py
+    evidence: docs/MVP0-VERDANT-MAP-RUNTIME-2026-10-12.md
     issue: four_hardcoded_source_nodes_sum_2500_vs_map_YAML_1660
     remediation: implement_map_manifest_loader_and_use_same_stable_source_positions_amounts_and_terrain_for_headless_and_GUI
     tests: [M0B-02, M0B-13]
@@ -138,6 +154,7 @@ major_gaps:
     tests: [M0B-07, M0B-13]
   - id: CODE-GAP-07
     priority: P0
+    status: source_map_and_terrain_raster_compiled_but_3D_geometry_footprints_elevation_missing
     issue: duplicated_planetary_jungle_map_hardcoded_in_RefCounted_state_and_3D_view_instead_of_loading_authored_Verdant_Divide_manifest
     remediation: explicit_Godot_resource_or_buildtime_JSON_map_compiler_with_consistent_tile_meters_spawns_3x3_building_footprints_and_liquid_collision
     tests: [M0B-02, M0B-13]

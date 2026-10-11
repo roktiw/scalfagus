@@ -24,8 +24,8 @@ func _verify() -> void:
     if sim.issue_command(0, "build_barracks", worker, occupied):
         _fail("Barracks overlapped a mobile unit")
         return
-    sim.sources["fixture"] = {"pos": Vector2i(13, 36), "stock": 10}
-    if sim.issue_command(0, "build_barracks", worker, Vector2i(13, 36)):
+    sim.sources["fixture"] = {"pos": Vector2i(13, 12), "stock": 10}
+    if sim.issue_command(0, "build_barracks", worker, Vector2i(13, 12)):
         _fail("Barracks overlapped a resource source")
         return
     if int(sim.players[0]["matter"]) != 150 or not sim.matter_is_conserved():

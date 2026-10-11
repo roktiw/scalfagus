@@ -1,5 +1,27 @@
 # SCALFAGUS — Coding-Agent Contract
 
+## MAN MVP0 MAP SOURCE CONTRACT — Verdant Divide
+
+The **only authored world topology source** is `design/mvp-verdant-divide-map.yaml`.
+`scripts/compile-verdant-map.py` converts it using the pinned permissive MIT PyYAML
+authoring tool to the checked-in native Godot artifact
+`apps/game/maps/verdant_divide.compiled.json`.
+`MirrorMapPort` feeds both `MirrorMatchState` and its AStar navigation from that
+JSON. **Do not copy/paste source deposits, trees or spawn positions into gameplay
+GDScript or add a second procedural gameplay terrain generator.**
+
+On YAML changes, regenerate JSON using `python3 scripts/compile-verdant-map.py`
+with the pinned `scripts/requirements-map.txt` package, then validate with
+`bash scripts/check-map.sh` and `bash scripts/check.sh` on real Godot 4.7.2.
+The source SHA and exact JSON artifact must agree. One known raster collision is
+resolved as **water over tree** at (28,46); do not remove the pond in collision
+logic to conceal it. The source currently contains 10 nodes / 1660 Matter,
+2 diagonal starts and a single-cell impassable rim. 3x3 building footprints,
+ridges/ramps, 2m visual physics and 3D LOS remain **unimplemented**.
+GitHub Actions remain unavailable before runner allocation: do not imply green CI.
+
+
+
 ## THREE-FACTION LOGISTICS — CANON OVERVIEW (DEC-035–039)
 
 **Start with [MAN / ORG / ETH logistics overview](design/three-faction-logistics-overview-2026-10-12.md) for a current side-by-side summary** of physical MAN belts and UMU packing, biological ORG bidirectional veins and monotypic cysts, and ETH Obelisk ground drone flags plus upper levitating network. It includes all three owner-selected ETH ingress options (Nexus zero Energy upload tariff, drone paying 33% shield at Obelisk tip, powered Obelisk ground pick-up with high Energy cost), the power-loss resource drop, storage energy/throughput tradeoffs, unresolved choices, and direct links to specific DEC-035–039 machine contracts. **This is a summary, not a replacement for those contracts and never changes DEC-033 MVP0 release scope.**

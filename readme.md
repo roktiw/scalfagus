@@ -18,6 +18,16 @@ bash scripts/install-godot-addons.sh --check  # offline addon inventory
 
 Instructions: [Godot addon installation](docs/GODOT-ADDON-INSTALLATION-2026-10-11.md), [exact pins and status](architecture/godot-addons.lock.yaml). **GitHub Actions are currently unavailable (jobs fail before allocating a runner); never report their state as test evidence.** Keychain and State Charts gameplay integration is still a distinct future task.
 
+## Runtime map — Verdant Divide (stacked draft PR)
+
+Canonical YAML: `design/mvp-verdant-divide-map.yaml`; compiled native Godot JSON:
+`apps/game/maps/verdant_divide.compiled.json`. Includes 10 fixed SOLID Matter
+sources (1660 stock), two diagonal MAN starts, fixed water and trunk collision.
+`MirrorMapPort` shares authored terrain and sources between simulation, renderer
+and Godot AStarGrid2D. **Pending actual Godot engine run.** For source-parity
+checks with pinned PyYAML: `bash scripts/check-map.sh`. See
+[Verdant runtime contract](docs/MVP0-VERDANT-MAP-RUNTIME-2026-10-12.md).
+
 ## Engineering rule — DEC-034 Reuse First
 
 Do not reinvent Godot A*, raycasting, UI, keybinds, physics, generic FSMs or networking. **Wrap built-in Godot facilities first**; use **pinned and audited GitHub/AssetLib modules** only when demonstrably beneficial. Keep game rules behind stable ports and use one authoritative command validation path. Read [ADR-0004](architecture/adr-0004-godot-reuse-first-wrappers.md), [21-capability map](architecture/godot-reuse-component-map.yaml), [third-party candidates](architecture/godot-third-party-candidates.yaml), [research](docs/GODOT-REUSE-RESEARCH-2026-10-11.md) and [agent playbook](docs/AGENT-REUSE-FIRST-PLAYBOOK.md). Candidates are NOT installed or locally runtime-tested simply by being listed.

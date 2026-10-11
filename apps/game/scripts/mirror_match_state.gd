@@ -2,6 +2,7 @@ extends RefCounted
 class_name MirrorMatchState
 
 const NAV_SCRIPT = preload("res://scripts/mirror_navigation_port.gd")
+const MAP_SCRIPT = preload("res://scripts/mirror_map_port.gd")
 const TIMING = preload("res://scripts/mirror_timing.gd")
 
 # MVP 0.1: authoritative rules for a two-slot MAN mirror match.
@@ -15,6 +16,11 @@ const COST_WORKER: int = 35
 const COST_BARRACKS: int = 100
 const COST_RIFLEMAN: int = 50
 const HP: Dictionary = {"hq": 1200, "worker": 50, "barracks": 650, "rifleman": 100}
+
+var map_id: String = "verdant_divide"
+var map_hash: String = ""
+var map_source_sha: String = ""
+var tile_meters: float = 2.0
 
 var tick: int = 0
 var seed: int = 42
@@ -60,31 +66,28 @@ func setup(match_seed: int = 42, slot_controllers: Array = ["human", "bot"]) -> 
         players.append({"matter": 0, "kills": 0})
         # Reproducible strategy variation for headless seed sweeps.
         bot_attack_thresholds.append(2 + posmod(match_seed / (1 if slot == 0 else 3) + slot * 17, 3))
-    _build_terrain()
+    # The compiled JSON is a checked-in build artifact of the canonical
+    # owner-authored YAML. Godot's JSON parser is native; no runtime YAML lib.
+    var authored: Dictionary = MAP_SCRIPT.load_verdant()
+    if authored.is_empty():
+        finished = true
+        finish_reason = "invalid_authored_map"
+        push_error("SCALFAGUS_MAP_ERROR: refused to start an incomplete map")
+        return
+    map_id = str(authored["map_id"])
+    map_hash = str(authored["map_hash"])
+    map_source_sha = str(authored["source_git_blob_sha"])
+    tile_meters = float(authored["tile_meters"])
+    terrain = authored["terrain"]
+    sources = authored["sources"]
     navigation = NAV_SCRIPT.new()
     navigation.configure(BOARD, terrain)
-    sources["west"] = {"pos": Vector2i(17, 31), "stock": 900}
-    sources["east"] = {"pos": Vector2i(46, 32), "stock": 900}
-    sources["center_n"] = {"pos": Vector2i(31, 13), "stock": 350}
-    sources["center_s"] = {"pos": Vector2i(32, 50), "stock": 350}
+    var starts: Array[Dictionary] = authored["starts"]
     for side in range(2):
-        var hx: int = 8 if side == 0 else 55
-        _spawn("hq", side, Vector2i(hx, 32 if side == 0 else 31))
-        for offset in range(3):
-            var wy: int = 30 + offset * 2
-            _spawn("worker", side, Vector2i(hx + (2 if side == 0 else -2), wy if side == 0 else 63 - wy))
-
-func _build_terrain() -> void:
-    # Fixed, symmetrical, walkable corridors; neutral impassable water/tree cells.
-    for y in range(9, 19):
-        terrain[Vector2i(29, y)] = "water"
-        terrain[Vector2i(34, 63 - y)] = "water"
-    for y in range(24, 29):
-        terrain[Vector2i(30, y)] = "tree"
-        terrain[Vector2i(33, 63 - y)] = "tree"
-    for x in [21, 22, 41, 42]:
-        terrain[Vector2i(x, 22)] = "tree"
-        terrain[Vector2i(63 - x, 41)] = "tree"
+        var start: Dictionary = starts[side]
+        _spawn("hq", side, start["hq"])
+        for cell in start["workers"]:
+            _spawn("worker", side, cell)
 
 func _spawn(kind: String, owner: int, pos: Vector2i) -> int:
     var id: int = next_id
@@ -498,8 +501,23 @@ func _bot_tick(side: int) -> void:
         if str(entities[wid]["order"]) == "build":
             building = true
     if barracks.is_empty() and not building and int(players[side]["matter"]) >= COST_BARRACKS:
-        var candidate: Vector2i = Vector2i(13, 36) if side == 0 else Vector2i(50, 27)
-        issue_command(side, "build_barracks", workers[0], candidate)
+        # Use a site near this authored HQ rather than hardcoded positions
+        # from the superseded horizontal prototype; maintain deterministic order.
+        var home: Vector2i = entities[hqs[0]]["pos"]
+        var candidate: Vector2i = home + (Vector2i(4, 3) if side == 0 else Vector2i(-4, -3))
+        var ordered: bool = false
+        if _can_build(candidate, side):
+            ordered = issue_command(side, "build_barracks", workers[0], candidate)
+        if not ordered:
+            for dy in range(-6, 7):
+                if ordered:
+                    break
+                for dx in range(-6, 7):
+                    var test_cell: Vector2i = home + Vector2i(dx, dy)
+                    if _can_build(test_cell, side):
+                        ordered = issue_command(side, "build_barracks", workers[0], test_cell)
+                        if ordered:
+                            break
     for wid in workers:
         var w: Dictionary = entities[wid]
         if str(w["order"]) == "idle":
@@ -528,7 +546,7 @@ func _bot_tick(side: int) -> void:
             issue_command(side, "attack", rid, closest)
         elif riflemen.size() >= bot_attack_thresholds[side]:
             # Opponent spawn zone is common map knowledge, not live hidden-unit coordinates.
-            var scouting_goal: Vector2i = Vector2i(54, 31) if side == 0 else Vector2i(9, 32)
+            var scouting_goal: Vector2i = Vector2i(54, 54) if side == 0 else Vector2i(9, 9)
             if str(soldier["order"]) != "move" or soldier["target_pos"] != scouting_goal:
                 issue_command(side, "move", rid, scouting_goal)
 
@@ -578,7 +596,8 @@ func matter_is_conserved() -> bool:
 func replay_hash() -> String:
     # Stable state hash includes orders, outstanding work, queues, and cooldowns.
     # It is a pinned-runtime regression tool, not a cross-platform lockstep promise.
-    var material: String = "mvp0-man-mirror-v3-20hz|"
+    var material: String = "mvp0-man-mirror-v4-verdant|"
+    material += map_id + "|" + map_hash + "|"
     for field in [
         seed, tick, winner, finished, finish_reason, next_id,
         mined_matter, spent_matter, lost_matter, rejected_commands
@@ -623,7 +642,8 @@ func replay_hash() -> String:
 
 func result() -> Dictionary:
     return {
-        "rules": "mvp0-man-mirror-v3-20hz",
+        "rules": "mvp0-man-mirror-v4-verdant",
+        "map_id": map_id, "map_hash": map_hash, "map_source_sha": map_source_sha,
         "tick_hz": TIMING.TICKS_PER_SECOND, "max_ticks": MAX_TICKS,
         "seed": seed, "ticks": tick, "winner": winner, "reason": finish_reason,
         "finished": finished, "controllers": controllers.duplicate(),
