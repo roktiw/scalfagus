@@ -1,11 +1,21 @@
 # ETH — Dual Logistics Loops: Ground Obelisk Flags, Drone Relays and Elevated Ether Freight
 
 Date: 2026-10-12  
-Status: **owner-directed dual-loop logistics concept**, with **Nexus-only versus secondary uplink authority undecided**. Candidate implementation and balance policies are explicitly marked *proposed*, not owner-approved numerical rules.  
+Status: **owner-directed dual-loop logistics concept**; **the raw-ingress decision has subsequently been resolved by DEC-039 (three methods)**. Earlier alternate proposals are retained below for historical design reasoning only.  
 Related: DEC-021 (typed Ether resource conversion at Nexus), DEC-035 (slow in-network ETH unit transit), DEC-036 (Obelisk storage cost/congestion and canonical player-facing naming), DEC-037 (Obelisk shielding support).  
-Proposed next registry ID: DEC-038 **only if approved**; this document is a design proposal and does not silently supersede the existing DEC-021 conversion authority.  
+Later approved transport balance: DEC-038; **the newer DEC-039 supersedes DEC-021 Nexus-only raw-ingress exclusivity for future ETH gameplay**, without changing the first MAN mirror MVP0.  
 Machine spec: [eth-dual-loop-ground-flags-and-aerial-freight.yaml](eth-dual-loop-ground-flags-and-aerial-freight.yaml).  
 MVP0 guard: DEC-033 MAN versus MAN four-template native Godot match; **do not implement ETH in MVP0**.
+
+## Subsequent owner decision: DEC-039
+
+The open Nexus-only question originally posed here has been answered by the owner and is now binding for future ETH systems:
+
+1. **Nexus**: physical delivery of raw resource; **0 Energy conversion tariff**, positive travel and finite processing time.
+2. **Shielded drone → Obelisk tip**: a real eligible drone inserts a finite cargo batch into the upper tip port and **loses 33% of its own blue shield**. The suggested technical basis is percent of maximum shield per bounded batch; exact interpretation remains to be confirmed.
+3. **Powered Obelisk ground pick-up**: automated lifting of real eligible nearby ground cargo at the **highest finite Energy ingress cost**.
+
+This newer direction **supersedes** the old recommendation to retain permanent Nexus-only raw uplink conversion and also removes the old requirement for a separately researched specialist uplink as the *only* alternative. The underlying secondary Obelisk uplift modes may have technology/mode prerequisites TBD; no costs, free lifts or anonymous imports are implied. Read [DEC-039 human spec](org-plug-holes-and-eth-three-ingress-methods-2026-10-12.md) / [YAML contract](org-plug-holes-and-eth-three-ingress-methods.yaml) before implementing. Any sections below asserting Nexus-only remain as **historical proposals** only. The two-loop physical drone base flags and visible tip-to-tip beams remain owner direction.
 
 ## The owner's latest concept (original Polish, recorded without correction)
 
