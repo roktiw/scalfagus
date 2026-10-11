@@ -6,6 +6,18 @@ Status: **conversation synthesis**. Owner-approved direction is marked **CANON**
 **Canonical sources:** [decisions.yaml](decisions.yaml) DEC-001–DEC-013; [base ecologies](base-ecologies-and-expansion-2026-10-11.md); [base ecology data](base-ecologies.yaml); [colony topologies](colony-topologies-vascular-modular-resonant-2026-10-11.md); [economic chassis](logistics-unit-scales.yaml); [logistics physics](faction-logistics.yaml); [deployable policy](deployment.yaml); [faction definitions](factions.yaml).
 **Newest separate open design:** [building relocation options](building-relocation-design-options-2026-10-11.md), [option data](building-relocation-options.yaml).
 
+## Latest addendum — one/two/three networks, world drops, elimination (DEC-021–024)
+
+The owner clarified ETH **one** unified Ether Network over pylon/obelisk nodes, carrying counted typed resources/energy/information after physical cargo reaches and is converted in a Nexus. ETH interrupting an unfinished building ejects all **site-committed materials** immediately as physical orbs; previous source-account partial refund is superseded.
+
+ORG has live physical vessels conveying finite actual materials, information, nourishment and energy, **plus two mitochondria** as energy-producing organ structures (exact requirement scope still open). Abandoned cocoons or dying branches gradually spit out a partial portion of actually embodied materials as tetrahedral drops.
+
+MAN has three distinct responsibilities: **Universal Man Unit (UMU)**, a ground-mobile energy generator configured as warehouse or bunker (reuse large MAX depot chassis with a generator attachment is a candidate), real material transport/loose stealable jobsite cubes and salvageable frames, and a physical hybrid cable containing optical fiber for data plus power conductors.
+
+World packets are physically collectible by all factions. Source physical form determines **solid amber / liquid cyan / gas violet** color (hex values proposed); package manufacturing faction determines **ORG tetrahedron / MAN cube / ETH orb**. Completed building/unit recycling always has losses, while uninstalled crates and committed-but-incomplete ETH materials are accounted custody transfers. One owner-approved default victory rule is **annihilation of all living completed building-class entities, including mobile building-class units**; killing all remaining conventional soldiers is not needed. This also prevents endless scavenging after all buildings are destroyed.
+
+Latest references: [network contract](three-network-channels-and-destruction-2026-10-11.md), [world loot](world-loot-salvage-and-recycling-2026-10-11.md), [victory](victory-defeat-building-classification-2026-10-11.md) and [decisions DEC-021–024](decisions.yaml).
+
 ## Addendum — physical source classification DEC-016 (2026-10-11)
 
 The owner requires three **resource deposit physical forms**:
