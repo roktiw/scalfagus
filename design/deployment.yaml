@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 0.5
+version: 0.6
 status: approved_core_rules_with_proposed_details
 rule:
   all_units_deploy_into_buildings: false
@@ -9,6 +9,10 @@ rule:
   building_construction_is_distinct_from_unit_self_deployment: true
   construction_capability_required_for_growth_or_assembly: true
   economic_worker_tier_does_not_grant_all_structure_morphs: true
+  phased_labor_specification: design/construction-phases.yaml
+  asymmetric_construction_stages_status: owner_proposal_pending_balance
+  contributor_slot_caps_mean_maximum_not_mandatory_team_size: true
+  real_workers_must_remain_assigned_and_eligible: true
   terrain_space_resource_and_time_checks_required: true
   deploy_can_be_interrupted: true
   deployment_cooldown: TBD
@@ -21,6 +25,14 @@ factions:
       builder_scale_to_building_level: {min: l1, mid: l2, max: l3}
       requires_growth_capable_specialist: true
       live_connected_home_nexus_vessel_at_placement: true
+      proposed_incubation:
+        form: living_spore_cocoon
+        caretakers_by_third: [3, 2, 1]
+        builders_do_not_die_at_initial_placement: true
+        visible_tending_movements: true
+        no_caretaker_stops_progress_and_causes_gradual_wither: true
+        final_caretaker_fertilization_may_consume_worker: unresolved_optional
+        resources_consumed_during_growth: true
       detached_bud_requires_regrowth_reconnection: true
     specialist_self_deployment:
       optional_template: colony_seed
@@ -33,6 +45,12 @@ factions:
       modules_can_reposition: true
       local_independent_outposts: true
       repair_units_and_buildings_with_supplies: true
+      proposed_staged_assembly:
+        workers_by_third: [1, 2, 3]
+        worksite_progress_persists_when_unattended: true
+        materials_at_site_persist_if_not_destroyed: true
+        unfinished_or_destroyed_worksite_can_be_salvaged_by_other_factions: true
+        salvage_requires_real_collection_and_nonzero_cost: true
     specialized_mid:
       exclusive_modes: [travel, conveyor, one_person_bunker, sentry_wall]
       belt_length_tiles: [3, 5]
@@ -50,6 +68,13 @@ factions:
       visible_blue_beam: true
       actual_energy_spend: true
       physical_materials_required: true
+      proposed_staged_channeling:
+        channelers_by_third: [1, 3, 2]
+        breaking_all_required_links_loses_all_build_progress: true
+        partial_refund_to_attributed_nexus_expansion_sources: true
+        refundable_materials_require_actual_return_transfer: true
+        disconnect_grace: undecided_not_approved
+        stage_explanation: [single_seed, three_channel_amplification, dual_phase_lock]
     mid:
       role: pylon_storage_relay_or_meditated_turret
       retains_cargo_while_meditating: true
