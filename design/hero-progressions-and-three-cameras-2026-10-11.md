@@ -1,6 +1,8 @@
 # Scalfagus — One Hero per Player, Open Specialization Graph, Three Camera Modes
 
 Date: 2026-10-11
+
+> Faction terminology: **Organs / Organites (ORG), Manus / Manusians (MAN), Eters / Etherans (ETH)**. See the [approved naming canon](faction-naming-conventions-2026-10-11.md). Hero roles, skill pivots and camera modes are independent of faction names.
 Status: **owner-requested product direction**. Ability names, progression mechanics, balance and presentation details below are **proposals**, not playtested rules.
 
 ## Executive rule
