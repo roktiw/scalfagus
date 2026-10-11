@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 0.4
+version: 0.5
 status: owner_revision_proposed_not_approved_for_balance
 specification: design/construction-incubation-assembly-resonance-2026-10-11.md
 existing_canon:
@@ -11,6 +11,8 @@ existing_canon:
   manus_repair_construction: true
   etheran_min_network_mode_visible_blue_beam: true
   ether_network_conversion_and_partition_reference: design/eth-ether-network-mechanics.yaml
+  newest_network_contract: design/three-network-channels-and-destruction-2026-10-11.md
+  world_loot_contract: design/world-loot-and-recycling.yaml
 proposed_shared_contract:
   normalized_stages: [initiation_0_to_33_percent, growth_33_to_66_percent, finalization_66_to_100_percent]
   active_candidate_by_faction: {org: [3, 2, 1], man: [1, 2, 2], eth: [1, 2, 3]}
@@ -44,7 +46,8 @@ factions:
     interruption_methods: [worker_death, worker_fear_or_displacement, player_cancels, vessel_severed]
     returned_caretaker_can_rescue_before_total_decay: proposed
     resource_payment: continuously_consumed_in_growth
-    default_refund: no_free_full_refund
+    default_refund: partial_spit_as_tetrahedra_over_decay_ticks
+    dying_vessel_or_cocoon_ejects_physical_fraction_of_real_embodied_input: true
     birth_final_action:
       option: caretaker_enters_or_fertilizes_cocoon
       worker_consumption: unresolved_not_approved
@@ -72,6 +75,8 @@ factions:
     incomplete_structure_physically_persists: true
     resume_exact_progress_if_structure_survives: true
     resource_payment: installed_as_real_local_material_and_consumed_input
+    loose_pre_delivered_build_crates_are_real_world_packets_and_can_be_stolen: true
+    installed_portion_salvaged_by_any_legal_worker_excavation_at_actual_loss: true
     destroyed_or_abandoned_site_salvage: true
     salvage_accessible_to_other_factions: true
     salvage_requires_eligible_actor_time_and_inventory: true
@@ -93,16 +98,14 @@ factions:
     worker_leaves_when_other_valid_channels_remain: reduce_speed_not_force_total_loss
     when_required_connection_fully_lost: instant_zero_construction_progress
     structure_does_not_remain_as_usable_physical_worksite: true
-    proportionate_resource_refund:
-      desired: true
-      amount: TBD
-      contributor_source_attribution: [home_nexus, local_expansion, other_legal_source]
-      energy_return_via_authorized_accounted_mechanism: required
-      matter_and_volatiles_return_by_real_cargo_recovery_before_nexus_conversion: true
-      post_conversion_refunds_return_as_typed_ether_to_valid_local_current_component_or_real_recovery: true
-      no_remote_refund_teleport_across_severed_network: true
-      no_instant_free_cross_map_resource_credit: true
-    cancellation_refund_may_differ_from_enemy_attack: proposed
+    on_last_required_beam_interruption:
+      instant_progress_reset_to_zero: true
+      all_actually_site_committed_materials_eject_as_collectible_orbs_at_world_site: true
+      already_burned_operating_energy_and_time_not_recovered: true
+      remote_reservations_not_yet_delivered_stay_at_true_remote_node: true
+      do_not_auto_refund_dropped_inputs_to_home_nexus: true
+      previous_partial_network_refund_draft_superseded: true
+    cancellation_refund_may_differ_from_enemy_attack: not_in_baseline_all_committed_material_drops_once
     short_disconnect_grace: unapproved_possible_balance_mitigation
     main_risk: extreme_time_loss_from_small_interruptions
 balance:
