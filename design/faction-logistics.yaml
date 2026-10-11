@@ -1,6 +1,10 @@
 schema_version: 1
 project: scalfagus
 latest_owner_network_contract: design/three-network-channels-and-destruction-2026-10-11.md
+eth_three_ingress_decision: DEC-039
+eth_three_ingress_contract: design/org-plug-holes-and-eth-three-ingress-methods.yaml
+org_universal_vein_port_design: Plug_Hole_preferred_not_final
+eth_baseline_Nexus_only_exclusivity: superseded
 unit_relay_extension: design/three-faction-logistics-and-eth-unit-relay.yaml
 storage_specialization_extension: design/faction-storage-specialization-and-obelisk-traffic.yaml
 latest_bidirectional_and_storage_economics_decision: DEC-038
