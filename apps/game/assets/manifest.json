@@ -1,0 +1,175 @@
+{
+  "schema_version": 1,
+  "status": "PROTOTYPE_ART_ONLY_NOT_APPROVED_SHIPPING_ATLAS",
+  "world": "3D collision terrain",
+  "runtime_source_views": 5,
+  "runtime_sectors": 8,
+  "sector_source_rows": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    3,
+    2,
+    1
+  ],
+  "sector_flip_h": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    true,
+    true,
+    true
+  ],
+  "faction_ids": [
+    "org",
+    "man",
+    "eth"
+  ],
+  "source_assets": [
+    {
+      "kind": "worker",
+      "filename": "man_worker_32x48_idle_5view.png",
+      "frame_size_px": [
+        32,
+        48
+      ],
+      "rows": 5,
+      "columns": 1,
+      "source_row_names": [
+        "front",
+        "front_right",
+        "right",
+        "back_right",
+        "back"
+      ],
+      "mirror_safe_appearance": false,
+      "provenance": "prior_conversation_generated_worker_concept",
+      "sha256": "728e71c200023aed45c3082d92d8995f1310918c85a6ee425b46c9e384388adf"
+    },
+    {
+      "kind": "worker",
+      "filename": "man_worker_32x48_walk_reference_5view.png",
+      "frame_size_px": [
+        32,
+        48
+      ],
+      "rows": 5,
+      "columns": 1,
+      "source_row_names": [
+        "front",
+        "front_right",
+        "right",
+        "back_right",
+        "back"
+      ],
+      "mirror_safe_appearance": false,
+      "provenance": "prior_conversation_generated_worker_pose_not_full_animation",
+      "sha256": "c8adb95d590eed034b4ba7961dc323406352d86fcaf32e7469ec723be4cb3911"
+    },
+    {
+      "kind": "worker_lod",
+      "filename": "man_worker_24x32_idle_5view.png",
+      "frame_size_px": [
+        24,
+        32
+      ],
+      "rows": 5,
+      "columns": 1,
+      "source_row_names": [
+        "front",
+        "front_right",
+        "right",
+        "back_right",
+        "back"
+      ],
+      "mirror_safe_appearance": false,
+      "provenance": "prior_conversation_generated_worker_concept",
+      "sha256": "5b197d2283c38605527a3bba8cd8275749a13f80e9cebca00f7a0f35dce75991"
+    },
+    {
+      "kind": "worker_lod",
+      "filename": "man_worker_24x32_walk_reference_5view.png",
+      "frame_size_px": [
+        24,
+        32
+      ],
+      "rows": 5,
+      "columns": 1,
+      "source_row_names": [
+        "front",
+        "front_right",
+        "right",
+        "back_right",
+        "back"
+      ],
+      "mirror_safe_appearance": false,
+      "provenance": "prior_conversation_generated_worker_pose_not_full_animation",
+      "sha256": "1ab9c8608e70b469eee2f210459212e4271679988c5621b465c81fc87983c9d5"
+    },
+    {
+      "kind": "lander",
+      "filename": "man_lander_128x128_unverified_5view.png",
+      "frame_size_px": [
+        128,
+        128
+      ],
+      "rows": 5,
+      "columns": 1,
+      "source_row_names": [
+        "front",
+        "front_right",
+        "right",
+        "back_right",
+        "back"
+      ],
+      "mirror_safe_appearance": false,
+      "provenance": "prior_conversation_generated_lander_concept_variants_not_real_rotations",
+      "sha256": "7605b7a1b521a68420b5dd4623231c52211d27e8a7ae5d99638332cbaa433fa4"
+    },
+    {
+      "kind": "tree",
+      "filename": "neutral_tree_40x64_5view.png",
+      "frame_size_px": [
+        40,
+        64
+      ],
+      "rows": 5,
+      "columns": 1,
+      "source_row_names": [
+        "front",
+        "front_right",
+        "right",
+        "back_right",
+        "back"
+      ],
+      "mirror_safe_appearance": true,
+      "provenance": "engineer_created_procedural_silhouette_placeholder",
+      "sha256": "6ac00d5ad51040ab2144352eae45f9b490d7f0215fd9ba1ed0806ef5f3f7b7bf"
+    },
+    {
+      "kind": "rock",
+      "filename": "neutral_rock_56x36_5view.png",
+      "frame_size_px": [
+        56,
+        36
+      ],
+      "rows": 5,
+      "columns": 1,
+      "source_row_names": [
+        "front",
+        "front_right",
+        "right",
+        "back_right",
+        "back"
+      ],
+      "mirror_safe_appearance": false,
+      "provenance": "engineer_created_procedural_silhouette_placeholder",
+      "sha256": "631c8cca5e2416c6f0e0f8e6f114a5e144de37b7e349df9b57bbbb77765c75d4"
+    }
+  ],
+  "artifact_readme": "apps/game/README.md"
+}
