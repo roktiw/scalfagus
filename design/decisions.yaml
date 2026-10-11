@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 2.9
+version: 3.0
 decisions:
   - id: DEC-001
     status: approved
@@ -767,6 +767,34 @@ decisions:
       permanent requirement. No systems here enter DEC-033 MAN MVP0.
     specification: design/faction-bidirectional-logistics-and-homogeneous-storage-2026-10-12.md
     data_specification: design/faction-bidirectional-logistics-and-homogeneous-storage.yaml
+
+  - id: DEC-039
+    status: owner_selected_ETH_three_ingress_methods_ORG_Plug_Holes_preferred_candidate
+    topic: ORG_universal_vein_docking_and_ETH_raw_material_ingress_methods
+    resolution: >-
+      For ORG, universal bidirectional Plug Holes are the recommended
+      logistics ports for compatible MIN, MID and MAX transport workers,
+      possibly complemented by specialist Mouth organs for feeding and
+      digestion; owner has asked for comparison and not yet finally
+      selected Plug Hole-only versus hybrid. DEC-011 early sequential
+      handoffs, mode exclusivity and finite living vessel capacity remain.
+      For ETH, the owner selects THREE ways to inject physical cargo into
+      an elevated Ether Network: carry it physically to a Nexus with
+      zero incremental upload Energy tariff (travel and finite port
+      processing still cost time), have a shielded drone physically
+      insert a finite batch at an Obelisk tip while losing 33 percent
+      of its own blue shield, or enable the expensive Energy-consuming
+      automatic pickup of real nearby ground stock by an Obelisk. The
+      preferred initial interpretation is 33 percent of maximum shield
+      per bounded transaction but its exact charge basis and packet
+      size remain owner/balance TBD. Secondary non-Nexus ingress is now
+      part of the future ETH direction and supersedes the older
+      DEC-021 assumption that ONLY Nexus can admit raw physical cargo;
+      Nexus conversion authority for blueprints, physical accounting,
+      finite network services, levitation upkeep and resource identity
+      preservation remain. This does not change MAN mirror MVP0.
+    specification: design/org-plug-holes-and-eth-three-ingress-methods-2026-10-12.md
+    data_specification: design/org-plug-holes-and-eth-three-ingress-methods.yaml
 
 migration_required:
   - design/economy.yaml
