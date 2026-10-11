@@ -173,7 +173,10 @@ func _reserved_site_at(cell: Vector2i, excluding: int = -1) -> bool:
 func _route_to_building_ring(start: Vector2i, center: Vector2i) -> Array[Vector2i]:
     # Candidate endpoints only. Every actual route is searched by Godot A*.
     var best: Array[Vector2i] = []
-    for cell in GEOM.perimeter_cells(center):
+    var perimeter: Array[Vector2i] = GEOM.perimeter_cells(center)
+    if perimeter.has(start):
+        return best
+    for cell in perimeter:
         if _blocked(cell):
             continue
         var path: Array[Vector2i] = navigation.route(start, cell, false)
@@ -305,7 +308,7 @@ func issue_command(side: int, action: String, actor_id: int, arg: Variant = null
                 return _reject()
             if int(players[side]["matter"]) < COST_BARRACKS or not _can_build(arg, side):
                 return _reject()
-            if _distance(e["pos"], arg) > 1 and _find_route(e["pos"], arg, true).is_empty():
+            if _footprint_distance(e["pos"], arg) > 1 and _route_to_building_ring(e["pos"], arg).is_empty():
                 return _reject()
             players[side]["matter"] = int(players[side]["matter"]) - COST_BARRACKS
             spent_matter += COST_BARRACKS
@@ -613,7 +616,8 @@ func _bot_tick(side: int) -> void:
             issue_command(side, "attack", rid, closest)
         elif riflemen.size() >= bot_attack_thresholds[side]:
             # Opponent spawn zone is common map knowledge, not live hidden-unit coordinates.
-            var scouting_goal: Vector2i = Vector2i(54, 54) if side == 0 else Vector2i(9, 9)
+            # Scout a legal walkable tile near the opposing 3x3 HQ, not its center.
+            var scouting_goal: Vector2i = Vector2i(50, 53) if side == 0 else Vector2i(13, 10)
             if str(soldier["order"]) != "move" or soldier["target_pos"] != scouting_goal:
                 issue_command(side, "move", rid, scouting_goal)
 
