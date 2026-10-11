@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 0.4
+version: 0.5
 status: approved_owner_direction_with_explicit_implementation_candidates_and_unresolved_balance
 decision_ids: [DEC-019, DEC-020]
 specification: design/three-network-channels-and-destruction-2026-10-11.md
@@ -8,6 +8,10 @@ owner_latest_concepts: design/three-network-channels-and-destruction.yaml
 world_loot_contract: design/world-loot-and-recycling.yaml
 historical_note: former_separate_small_power_dock_is_now_UMU_research_alternative
 storage_specialization_decision: DEC-036
+latest_UMU_physical_wings_decision: DEC-040
+latest_UMU_physical_wings_contract: design/man-umu-transforming-belt-wings.yaml
+UMU_all_instances_have_two_belt_wings: true
+UMU_four_postures: [move_tracks, conveyor_3_or_5, bunker, sentry_wall]
 bidirectional_and_storage_efficiency_decision: DEC-038
 bidirectional_and_storage_efficiency_spec: design/faction-bidirectional-logistics-and-homogeneous-storage.yaml
 recovery_decision: DEC-037
@@ -130,6 +134,14 @@ man:
     installed_materials_require_real_mining_salvage_and_have_recovery_loss: true
     physical_embedded_materials_remain_or_explicitly_salvage: true
     salvage_is_collectible_by_all_factions_at_actual_cost: true
+  UMU_transforming_wings:
+    two_wings_on_every_UMU: true
+    deployed_conveyor_axis_tiles: [3, 5]
+    movement_uses_same_wings_as_crawler_tracks: true
+    bunker_wings_fold_against_hull: true
+    separate_sentry_wall_wings_rotate_to_block_ground_units: true
+    same_real_wings_cannot_run_multiple_modes_simultaneously: true
+    collision_and_cargo_transaction_protocol: design/man-umu-transforming-belt-wings.yaml
   role_partition:
     min:
       extract: true
@@ -137,12 +149,15 @@ man:
       building_and_repair: true
       electric_generation: false
     power_dock:
+      actual_UMU_requires_transforming_belt_wings_DEC_040: true
       electric_generation: true
       recharging: true
       cargo_storage: small
       garrison_or_shelter: limited
       ground_mobility: packed_only
-      continuous_belt_3_or_5_tiles: false
+      continuous_belt_3_or_5_tiles: true_for_actual_UMU_under_DEC_040
+      both_attached_belt_wings_transform_for_tracks_bunker_and_sentry_wall: true
+      older_non_UMU_separate_power_dock_candidate: historical_only
     mid:
       primary: 3_or_5_tile_high_throughput_conveyor
       secondary: specialist_one_soldier_bunker_or_outward_sentry_wall
