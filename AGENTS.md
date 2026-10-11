@@ -1,5 +1,26 @@
 # SCALFAGUS — Coding-Agent Contract
 
+## MAN MVP0 MAP SOURCE CONTRACT — Verdant Divide
+
+The **only authored world topology source** is `design/mvp-verdant-divide-map.yaml`.
+`scripts/compile-verdant-map.py` converts it using the pinned permissive MIT PyYAML
+authoring tool to the checked-in native Godot artifact
+`apps/game/maps/verdant_divide.compiled.json`.
+`MirrorMapPort` feeds both `MirrorMatchState` and its AStar navigation from that
+JSON. **Do not copy/paste source deposits, trees or spawn positions into gameplay
+GDScript or add a second procedural gameplay terrain generator.**
+
+On YAML changes, regenerate JSON using `python3 scripts/compile-verdant-map.py`
+with the pinned `scripts/requirements-map.txt` package, then validate with
+`bash scripts/check-map.sh` and `bash scripts/check.sh` on real Godot 4.7.2.
+The source SHA and exact JSON artifact must agree. One known raster collision is
+resolved as **water over tree** at (28,46); do not remove the pond in collision
+logic to conceal it. The source currently contains 10 nodes / 1660 Matter,
+2 diagonal starts and a single-cell impassable rim. 3x3 building footprints,
+ridges/ramps, 2m visual physics and 3D LOS remain **unimplemented**.
+GitHub Actions remain unavailable before runner allocation: do not imply green CI.
+
+
 ## P0 CODE-TO-RULE PARITY BLOCKERS (new source inspection)
 
 **Before tuning bot results or calling `mirror_batch.gd` balanced**, review [current map/timing/network gaps](design/mvp0-runtime-parity-gaps.md) and [machine list CODE-GAP-01..15](design/mvp0-runtime-parity-gaps.yaml). The experimental `mirror_match_state.gd` uses **2500** hard-coded source units, `MAX_TICKS=5400` and mining a full bag in 6 ticks; canonical authored Verdant Divide uses **1660** source units. The GUI `mirror_view.gd` currently advances at **10Hz** while the intended candidate simulator is **20Hz**, so simulation time, gathering, training and rifle ranges need normalization. New test scripts have not been verified by this audit. H-H ENet authority is still a release blocker.
