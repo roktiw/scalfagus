@@ -106,7 +106,7 @@ func _verify() -> void:
         _fail("Trained Rifleman could not leave full Barracks footprint")
         return
     var soldier: Dictionary = sim.entities[soldiers[0]]
-    if not rim.is_empty() and GEOM.occupied_cells(site).has(soldier["pos"]):
+    if GEOM.occupied_cells(site).has(soldier["pos"]):
         _fail("Rifleman spawned inside completed Barracks")
         return
     if not GEOM.perimeter_cells(site).has(soldier["pos"]):
