@@ -5,6 +5,8 @@ Status: **owner-approved high-level faction identity / ETH unit-relay direction;
 See [machine-readable rules](three-faction-logistics-and-eth-unit-relay.yaml).  
 Authority: new DEC-035, supplementing DEC-010/011/012/013/018–023. **This is POST-MVP0**: DEC-033 MAN-vs-MAN remains the first-playable scope.
 
+**Later owner update (DEC-039):** The older ETH text below saying that ONLY Nexus may convert raw cargo is **superseded** for future gameplay. Three routes now exist: Nexus deposit with no incremental Energy conversion tariff; an eligible shielded drone inserting a finite parcel at an Obelisk tip while losing 33% of its own shield; or costly powered Obelisk ground pick-up. See [DEC-039](org-plug-holes-and-eth-three-ingress-methods-2026-10-12.md). The canonical player-facing term is **Obelisk**; the word "pylon" in this dated historical design does not authorize new UI strings using that term. DEC-035 unit-over-network transfers remain separate from cargo injection.
+
 ## The owner's new design clarification
 
 - **MAN (Manusians)**: physical resources arrive through **transporters, warehouses, bunker/UMU configurations where cargo access is physically permitted, power-station infrastructure where equipped with actual storage/input ports, and conveyor belts**. None of these is a free network-wide inventory. Existing hybrid electricity/information cables **do not convey resource matter**. A bunker in combat/garrison mode cannot implicitly act as an open warehouse when that mode disables its ports.
