@@ -39,13 +39,15 @@ func _ready() -> void:
     options_panel.visible = false
     stack.add_child(options_panel)
     resolution_button = OptionButton.new()
-    for s in ["960 × 540", "640 × 360", "320 × 240"]:
+    for s in ["1280 × 720", "1440 × 810 (recommended)", "1600 × 900"]:
         resolution_button.add_item(s)
     resolution_button.item_selected.connect(_set_resolution)
+    resolution_button.select(1)
     options_panel.add_child(resolution_button)
     fullscreen_toggle = CheckButton.new()
     fullscreen_toggle.text = "Fullscreen"
     fullscreen_toggle.toggled.connect(_set_fullscreen)
+    fullscreen_toggle.button_pressed = get_window().mode == Window.MODE_FULLSCREEN
     options_panel.add_child(fullscreen_toggle)
     _add_button(options_panel, "BACK", _close_options)
     var footer := Label.new()
@@ -80,7 +82,7 @@ func _close_options() -> void:
     menu_panel.visible = true
 
 func _set_resolution(index: int) -> void:
-    get_window().size = [Vector2i(960,540), Vector2i(640,360), Vector2i(320,240)][index]
+    get_window().size = [Vector2i(1280,720), Vector2i(1440,810), Vector2i(1600,900)][index]
 
 func _set_fullscreen(enabled: bool) -> void:
     get_window().mode = Window.MODE_FULLSCREEN if enabled else Window.MODE_WINDOWED
