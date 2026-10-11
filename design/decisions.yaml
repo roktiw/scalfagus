@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 0.8
+version: 0.9
 decisions:
   - id: DEC-001
     status: approved
@@ -74,6 +74,20 @@ decisions:
       logistics physics while the player chooses architecture and resiliency.
     specification: design/faction-logistics-2026-10-11.md
     data_specification: design/faction-logistics.yaml
+  - id: DEC-011
+    status: approved_core_constraints_with_proposed_upgrade_details
+    topic: organite_transport_bandwidth_and_activity_modes
+    resolution: >-
+      Unupgraded ORG MID and MAX accept or release only one physical resource
+      item per completed worker handoff and service only one worker transfer at a time.
+      Unupgraded ORG mother transporters are in exactly one mode at a time:
+      moving, receiving, dispatching, or extracting. Therefore mother cargo
+      routes stop for loading and unloading initially; the previously described
+      loading/unloading while flying and moving is a researched mid/late-game
+      capability rather than a free starting rule. Upgrade values and costs
+      remain proposals requiring balance testing.
+    specification: design/logistics-min-mid-max-2026-10-11.md
+    data_specification: design/logistics-unit-scales.yaml
 migration_required:
   - design/economy.yaml
   - design/resources.yaml
