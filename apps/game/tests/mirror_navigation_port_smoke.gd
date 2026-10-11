@@ -4,6 +4,7 @@ extends SceneTree
 # responds to dynamic construction / destruction without inventing new A*.
 const PORT = preload("res://scripts/mirror_navigation_port.gd")
 const MATCH = preload("res://scripts/mirror_match_state.gd")
+const GEOM = preload("res://scripts/mirror_geometry.gd")
 
 func _initialize() -> void:
     call_deferred("_verify")
@@ -72,7 +73,7 @@ func _verify() -> void:
         _fail("Constructing a building did not invalidate cached routes")
         return
     var detour: Array[Vector2i] = sim._find_route(origin, end, false)
-    var footprint: Array[Vector2i] = sim.GEOM.occupied_cells(obstacle_cell)
+    var footprint: Array[Vector2i] = GEOM.occupied_cells(obstacle_cell)
     var crosses_footprint: bool = false
     for step in detour:
         if footprint.has(step):
