@@ -1,0 +1,85 @@
+schema_version: 1
+project: scalfagus
+status: proposed_balance_v0_2
+references:
+  economy: design/economy.yaml
+  units: design/units.yaml
+geography:
+  - id: mainland
+    tier: 1
+    terrain: continental
+    deposits: stationary
+    logistics: local
+    preferred_worker: min
+  - id: islands
+    tier: 2
+    terrain: isolated_islands
+    deposits: stationary
+    logistics: inter_island
+    preferred_worker: mid
+  - id: asteroids
+    tier: 3
+    terrain: space
+    deposits: slowly_drifting
+    logistics: long_range_docking
+    preferred_worker: max
+resources:
+  - id: crystals
+    function: basic_construction_and_units
+    extraction_time_seconds_by_tier: [3, 5, 8]
+    deposit_quantity_by_tier: [500, 1300, 3400]
+  - id: gas
+    function: advanced_technology_and_specialists
+    extraction_time_seconds_by_tier: [5, 8, 13]
+    deposit_quantity_by_tier: [300, 800, 2100]
+    requires_extraction_infrastructure: true
+  - id: resin
+    function: strategic_fuel_and_heavy_units
+    extraction_time_seconds_by_tier: [8, 13, 21]
+    deposit_quantity_by_tier: [200, 500, 1300]
+    description: Viscous amber organic-chemical substance
+extraction:
+  unit_of_output: one_resource_portion
+  base_time_reference_worker: min
+  worker_time_multipliers:
+    min: 1.0
+    mid: 1.6666666667
+    max: 2.6666666667
+  formula: resource_tier_base_seconds * worker_time_multiplier
+  operational_cost:
+    model: extraction_work_and_energy_demand
+    note: Extraction work is elapsed machine time, not a fourth spendable resource
+    energy_demand_multiplier_by_tier: [1, 2, 3]
+    energy_consumption_amounts: TBD
+    avoid_mandatory_self_consumption_of_crystals: true
+  deposit_attributes:
+    - quantity
+    - extraction_time_seconds
+    - extraction_energy_cost
+    - concurrent_mining_slots
+    - position
+    - drift_velocity
+  mining_slots_by_tier:
+    mainland: {min: 1, max: 2}
+    islands: {min: 2, max: 4}
+    asteroids: {min: 4, max: 8}
+  depletion_hardness:
+    status: proposed
+    last_fraction_of_deposit: 0.20
+    extraction_time_multiplier: 1.5
+  asteroid_drift:
+    enabled: true
+    speed: slow
+    affects_route_distance_and_docking: true
+    exact_motion_rules: TBD
+balance:
+  measure: net_resources_delivered_per_minute
+  account_for:
+    - mining_time
+    - transport_time
+    - docking_delay
+    - energy_demand
+    - congestion
+    - cargo_losses
+    - deposit_movement
+  note: All quantities and timings are illustrative and require playtesting
