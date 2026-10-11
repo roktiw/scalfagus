@@ -1,7 +1,10 @@
 schema_version: 1
 project: scalfagus
 release: mvp_0_1
-status: agent_tasks_not_implemented
+status: implementation_started_not_verified
+progress_report_md: docs/SCALFAGUS-MVP0-DEVELOPMENT-FINDINGS-2026-10-11.md
+progress_report_yaml: design/mvp0-development-findings-2026-10-11.yaml
+verification_gate: new_mirror_smoke_and_headless_batch_not_yet_executed
 owner_decision: DEC-033
 reuse_first_engineering_policy: DEC-034
 reuse_architecture: architecture/adr-0004-godot-reuse-first-wrappers.md
