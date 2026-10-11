@@ -96,6 +96,30 @@ func _verify() -> void:
         _fail("T did not route legal Worker production through MatchState")
         return
 
+    # Swap the mapped key at runtime. InputMap must change the command
+    # WITHOUT editing mirror_view.gd or sending a fabricated direct order.
+    hq["train_kind"] = ""
+    hq["train_left"] = 0
+    var saved_bindings: Array[InputEvent] = InputMap.action_get_events("rts_train_worker")
+    InputMap.action_erase_events("rts_train_worker")
+    var remapped := InputEventKey.new()
+    remapped.physical_keycode = KEY_Y
+    InputMap.action_add_event("rts_train_worker", remapped)
+    game.call("_unhandled_input", t)
+    if str(hq["train_kind"]) != "":
+        _fail("Old T key remained active after remapping")
+        return
+    var y := InputEventKey.new()
+    y.physical_keycode = KEY_Y
+    y.pressed = true
+    game.call("_unhandled_input", y)
+    if str(hq["train_kind"]) != "worker":
+        _fail("New Y key did not control production after remapping")
+        return
+    InputMap.action_erase_events("rts_train_worker")
+    for binding in saved_bindings:
+        InputMap.action_add_event("rts_train_worker", binding)
+
     # Pan uses the actual action state, not hardcoded physical scancodes.
     var before: Vector3 = game.get("camera_center")
     Input.action_press("rts_pan_up")
