@@ -1,5 +1,10 @@
 # SCALFAGUS — Consolidated Design Bible
 
+> **Latest owner world constitution (DEC-030, supersedes optional frames): EVERY playable Scalfagus battlefield is a spaceborne floating platform.** The top can be brown jungle soil, industrial metal patchwork, stone, desert or mixed terrain. In MVP it is a flat square `planar` map, enclosed by a physical boundary and visibly suspended over space; the rim/underside is neutral world terrain. Bare playable planetary surfaces are FORBIDDEN. The first MAN–ETH map is a jungle on a static floating deck, not a playable spherical globe. [World constitution](space-platform-world-contract-2026-10-11.md), [frame schema](battlefield-frames.yaml), [surface presets](platform-surface-presets.yaml), [MVP delivery](MVP-DELIVERY-GATES.md).
+
+> **Current first playable scope (DEC-025/026): MAN vs ETH**, 5 base roles per faction, only SOLID extraction, water bodies as nonharvestable environment, ground-only actors and default all-building-class victory (DEC-024). Older speculative full-race/spherical/planetary design below does not override this playable slice.
+
+
 > **Latest approved base economy/expansion canon (DEC-012/013):** [Three Base Ecologies](base-ecologies-and-expansion-2026-10-11.md), [machine-readable ecology](base-ecologies.yaml), [economic 3×3](logistics-unit-scales.yaml). This supersedes earlier exploratory statements about disconnected ORG buildings, always-mobile ETH MID relays, ETH MAX as a turret pylon, and a mandatory single static Manus Nexus.
 
 > **Canonical faction naming (2026-10-11): Organs (`org`), Manus (`man`), Eters (`eth`).** Earlier names are archived in historical discussion notes; see [naming decision](faction-identity-rename-2026-10-11.md).
