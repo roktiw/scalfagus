@@ -28,6 +28,16 @@ and Godot AStarGrid2D. **Pending actual Godot engine run.** For source-parity
 checks with pinned PyYAML: `bash scripts/check-map.sh`. See
 [Verdant runtime contract](docs/MVP0-VERDANT-MAP-RUNTIME-2026-10-12.md).
 
+## MVP0 physical buildings and 2-metre tile scale (unverified draft)
+
+The canonical Verdant 64×64 grid occupies a 128×128m floating platform.
+HQ and Barracks are represented by 3×3 occupied tiles (6×6m), twelve exterior
+access tiles, authoritative AStarGrid2D blocking and real Godot StaticBody3D
+colliders. See [footprint/scale acceptance contract](docs/MVP0-FOOTPRINT-WORLD-SCALE-2026-10-12.md);
+`bash scripts/check.sh` includes the new headless footprint regression.
+**Code is committed, real Godot/GUI verification is pending.** Full physical
+terrain / height / raycast LOS remain separate work.
+
 ## Engineering rule — DEC-034 Reuse First
 
 Do not reinvent Godot A*, raycasting, UI, keybinds, physics, generic FSMs or networking. **Wrap built-in Godot facilities first**; use **pinned and audited GitHub/AssetLib modules** only when demonstrably beneficial. Keep game rules behind stable ports and use one authoritative command validation path. Read [ADR-0004](architecture/adr-0004-godot-reuse-first-wrappers.md), [21-capability map](architecture/godot-reuse-component-map.yaml), [third-party candidates](architecture/godot-third-party-candidates.yaml), [research](docs/GODOT-REUSE-RESEARCH-2026-10-11.md) and [agent playbook](docs/AGENT-REUSE-FIRST-PLAYBOOK.md). Candidates are NOT installed or locally runtime-tested simply by being listed.
