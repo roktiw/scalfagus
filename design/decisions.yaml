@@ -336,6 +336,12 @@ decisions:
       Power Dock must be a separate extra building rather than the
       owner's UMU, or that light-only optical fiber transmits bulk power.
       Earlier logistical chassis remain where not contradicted.
+    historical_Nexus_only_conversion_superseded_by: DEC-039
+    historical_cargo_conversion_ambiguity_note: >-
+      The earlier Nexus-only raw conversion wording is historical.
+      DEC-039 adds two finite non-Nexus ingress methods for ETH future
+      gameplay while retaining the ONE-network topology and typed
+      resource accounting. See DEC-039 for current mechanics.
     specification: design/three-network-channels-and-destruction-2026-10-11.md
     data_specification: design/three-network-channels-and-destruction.yaml
     acceptance_scenarios: design/recycling-and-network-acceptance-cases.yaml
