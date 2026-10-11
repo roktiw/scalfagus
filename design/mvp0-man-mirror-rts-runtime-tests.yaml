@@ -1,0 +1,125 @@
+schema_version: 1
+project: scalfagus
+version: 0.1
+release: mvp_0_1
+status: proposed_executable_scenarios_to_implement_not_executed
+owner_scope: DEC-033
+numeric_profile: design/mvp0-agent-implementation-contract.yaml
+base_acceptance: design/mvp0-man-mirror-acceptance.yaml
+map_fixture: design/mvp-verdant-divide-map.yaml
+game_engine: Godot_4_7_2_Standard
+test_runner_expected: Godot_SceneTree_or_GUT_if_explicitly_adopted
+runner_currently_exists: false
+acceptance_test_ids:
+  - id: M0-R01
+    priority: P0
+    name: startup_only_MAN_two_slots_not_old_eth_or_hero
+    arrange: valid_map_verdant_divide_with_NW_and_SE_starts
+    act: instantiate_host_game_using_mvp_0_1_profile
+    assert: {two_HQ: 2, six_MIN: 6, heroes: 0, ETH_or_ORG_units: 0, start_Matter_in_each_own_HQ: 0}
+  - id: M0-R02
+    priority: P0
+    name: batch_deposit_never_creates_Matter
+    arrange: {source_start: 100, bag: 0, own_HQ_inventory: 0}
+    act: gather_10_then_walk_home_and_deposit
+    assert: {source_end: 90, bag_end: 0, own_HQ_end: 10, global_Matter_created: 0, duplicate_transactions: 0}
+  - id: M0-R03
+    priority: P0
+    name: worker_bag_is_not_team_wallet
+    arrange: {source_start: 100, worker_bag: 10, own_HQ_inventory: 0}
+    act: try_build_Barracks_before_worker_return
+    assert: {result: insufficient_Matter, spendable_team_Matter: 0, site_created: false}
+  - id: M0-R04
+    priority: P0
+    name: exact_single_Barracks_debit
+    arrange: {HQ_Matter: 100, free_dry_build_site: true, eligible_worker: true}
+    act: submit_two_identical_build_orders_same_sequence
+    assert: {accepted_orders: 1, site_count: 1, HQ_Matter_end: 0, Matter_double_spent: false}
+  - id: M0-R05
+    priority: P0
+    name: incomplete_Barracks_pauses_but_not_victory_building
+    arrange: Barracks_half_constructed_and_one_worker_present
+    act: stop_worker_then_kill_last_completed_own_HQ
+    assert: {unfinished_site_still_exists: true, completed_victory_building_count: 0, own_team_defeated: true}
+  - id: M0-R06
+    priority: P0
+    name: finite_safe_stock_affords_first_army
+    arrange: {each_spawn_accessible_source: 400, no_enemy_attack: true}
+    act: buy_1_Barracks_3_Riflemen_2_extra_workers
+    assert: {Matter_required: 320, no_negative_Matter: true, no_Energy_required: true}
+  - id: M0-R07
+    priority: P0
+    name: world_edge_and_tree_attack_block
+    arrange: {rifleman_range_world_units: 6.5, tree_block_between_shooter_target: true}
+    act: attempt_fire_then_move_outside_platform
+    assert: {through_tree_damage: 0, out_of_bounds_movement: rejected, outside_map_actor_count: 0}
+  - id: M0-R08
+    priority: P0
+    name: H_H_two_processes_one_host_resource_truth
+    arrange: two_separate_Godot_processes_loopback_24680
+    act: connect_two_human_slots_mine_and_train_simultaneously
+    assert: {single_game_state_authority: true, both_clients_same_snapshot_tick_hash: true, duplicate_spawns: 0, unauthorized_commands: 0}
+  - id: M0-R09
+    priority: P0
+    name: hostile_command_and_sequence_replay
+    arrange: player_2_sent_encrypted_or_plain_authenticated_per_connection_commands
+    act: player_1_attempts_order_player_2_worker_and_replays_an_accepted_own_order
+    assert: {enemy_order_rejected: true, duplicate_sequence_rejected: true, accepted_event_count_for_own_sequence: 1}
+  - id: M0-R10
+    priority: P0
+    name: bot_has_no_hidden_target_knowledge
+    arrange: bot_enemy_HQ_not_revealed_under_fog_and_no_previous_scout_report
+    act: request_attack_target_using_unseen_entity_id
+    assert: {command_rejected: true, bot_may_scout_known_general_coordinates: true}
+  - id: M0-R11
+    priority: P0
+    name: C_C_unpaced_and_GUI_deterministic_replay
+    arrange: same_pinned_Godot_runtime_map_hash_profile_hash_seed_and_accepted_commands
+    act: run_normal_observed_and_unpaced_headless
+    assert: {same_integer_tick_state_hash: true, same_final_result: true, same_Matter_ledger: true, actual_wallclock_perf_measured: true}
+  - id: M0-R12
+    priority: P0
+    name: same_tick_both_last_buildings_die
+    arrange: each_team_has_exactly_one_HQ_alive_at_1_HP
+    act: resolve_simultaneous_mutual_hits_in_same_authoritative_tick
+    assert: {result: draw, no_arbitrary_slot_priority_win: true}
+  - id: M0-R13
+    priority: P0
+    name: candidate_time_limit_draw
+    arrange: both_teams_have_surviving_victory_buildings_at_tick_24000
+    act: evaluate_end_of_tick
+    assert: {result: draw_time_limit, forced_random_winner: false}
+  - id: M0-R14
+    priority: P1
+    name: illegal_map_frame_and_hero_spawn_metadata
+    arrange: map_hero_location_present_from_future_roster_and_forbidden_nonspace_frame_override
+    act: compile_map_with_valid_frame_and_mvp_0_1_then_try_invalid_frame
+    assert: {micro_Hero_spawn_count: 0, valid_space_platform_loads: true, invalid_planet_surface_fails: true}
+  - id: M0-R15
+    priority: P0
+    name: all_buildings_eliminated_even_with_remaining_workers
+    arrange: {enemy_completed_HQ: 1, enemy_completed_Barracks: 1, enemy_workers: 5}
+    act: destroy_enemy_HQ_and_Barracks
+    assert: {result: attacker_victory, surviving_enemy_workers_do_not_block_victory: true}
+  - id: M0-R16
+    priority: P0
+    name: host_disconnect_not_free_victory
+    arrange: H_H_LAN_match_active
+    act: disconnect_host_during_match
+    assert: {match_result: aborted_host_disconnected, fabricated_win: false, UI_not_frozen: true}
+  - id: M0-R17
+    priority: P1
+    name: mirrored_start_resources_and_worker_paths
+    arrange: Verdant_Divide_map_with_400_finite_SOLID_stock_near_each_start
+    act: measure_A_star_or_nav_path_lengths_for_worker_to_own_first_two_sources_from_each_side
+    assert: {both_sources_reachable: true, same_total_available_start_Matter: 400, no_source_placed_inside_water: true}
+  - id: M0-R18
+    priority: P0
+    name: preserve_existing_spike_tests
+    arrange: app_has_original_hero_godot_spike
+    act: run_scripts_check_sh_and_new_tests
+    assert: {old_scene_smokes_pass: true, new_tests_report_results: true, TPP_or_FPP_shipped_in_public_micro_mvp: false}
+implementation_note: >
+  Every scenario must become real executable Godot tests. Static YAML
+  does not execute, compile world geometry, prove multiplayer authority,
+  or establish balance.

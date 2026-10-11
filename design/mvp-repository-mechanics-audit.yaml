@@ -1,0 +1,328 @@
+schema_version: 1
+project: scalfagus
+audit_id: SCALFAGUS-MECHANICS-REPO-AUDIT-2026-10-11
+version: 3
+status: source_supported_findings_and_proposed_remediation_not_executed_tests
+language: en
+human_report: design/mvp-repository-mechanics-audit-2026-10-11.md
+source_scope:
+  repository: roktiw/scalfagus
+  branch: main
+  recursive_tree_tracked_files_first_audit_pass: 198
+  design_files_first_audit_pass: 91
+  latest_same_day_source_update_checked:
+    - apps/game/scripts/mirror_match_state.gd
+    - apps/game/scripts/mirror_view.gd
+    - apps/game/scripts/menu.gd
+    - apps/game/tests/mirror_smoke.gd
+    - apps/game/tests/mirror_batch.gd
+    - scripts/check.sh
+    - apps/game/tests/mirror_visual_smoke.gd
+    - architecture/godot-reuse-component-map.yaml
+    - design/decisions.yaml
+  inspected:
+    - decisions_and_scope
+    - Godot_source_and_existing_smokes
+    - world_map_and_map_schema
+    - economic_faction_forms_resources
+    - MAN_ETH_networks_and_recycling
+    - MVP0_HH_HC_CC_backlog_and_acceptance
+    - balance_simulation_plan
+  not_claimed:
+    - every_line_of_every_repository_file_verified
+    - current_Godot_headless_execution_test_passed
+    - true_Godot_runtime_gameplay_mechanics_implemented
+    - complete_LAN_multiplayer
+    - balanced_faction_matchups
+  current_repo_runtime_verified_from_source: Godot_native_camera_Hero_sprite_menu_spike_and_new_MirrorMatchState_GDScript_source_not_release_verified
+latest_owner_authority:
+  release: mvp_0_1
+  scope_decision: DEC-033
+  world_decision: DEC-030
+  product_view_decision: DEC-031
+  godot_batch_sim_decision: DEC-032
+  victory_decision: DEC-024
+  reuse_first_decision: DEC-034
+  reuse_first_policy: inspect_existing_repo_then_Godot_builtin_then_vetted_pinned_addon_then_unique_game_logic
+  first_mvp_factions: [man]
+  slot_factions: [man, man]
+  player_slots: 2
+  controllers: [human_human_over_two_separate_Godot_LAN_clients, human_computer, computer_computer]
+  playable_perspectives_in_first_release: [overlord_RTS]
+  future_perspectives: [overlord_RTS, possession_FPP]
+  four_templates: [man_command_core, man_min, man_barracks, man_rifleman]
+  shipped_Energy_system: false
+  shipped_UMU_ETH_ORG_advanced_networks: false
+  physical_source_harvested: [solid]
+  spending_currency_in_first_release: [matter]
+  first_map: verdant_divide
+  all_playable_map_frames: [floating_space_platform]
+  default_victory: defeat_if_no_alive_completed_opposing_victory_buildings
+  candidate_timeout_minutes: 20
+  timeout_result: draw
+release_document_precedence:
+  - design/decisions.yaml
+  - design/mvp0-man-mirror-rts-2026-10-11.md
+  - design/mvp0-man-mirror-rts.yaml
+  - design/mvp0-agent-implementation-contract.yaml
+  - design/mvp0-man-mirror-acceptance.yaml
+  - design/mvp0-man-mirror-backlog.yaml
+  - design/godot-headless-balance-lab-2026-10-11.md
+  - design/mvp-verdant-divide-map.yaml
+  - design/space-platform-world-contract-2026-10-11.md
+  - design/mvp0-man-mirror-rts-runtime-tests.yaml
+  - architecture/adr-0004-godot-reuse-first-wrappers.md
+  - architecture/godot-reuse-component-map.yaml
+  - docs/AGENT-REUSE-FIRST-PLAYBOOK.md
+historical_post_MVP_only:
+  - design/MVP-DELIVERY-GATES.md
+  - design/mvp-implementation-backlog.yaml
+  - design/mvp-gameplay-execution-contract.md
+  - design/mvp-balance-playtest-v0.1.yaml
+  - design/mvp-balance-acceptance.yaml
+  - design/mvp-network-execution.yaml
+  - design/mvp-hud-and-input.yaml
+  - design/mvp-man-eth-catalog.yaml
+  - design/mvp-economy.yaml
+  - design/mvp-combat.yaml
+  - design/mvp-bot-behavior.yaml
+findings:
+  - id: MECH-AUD-001
+    priority: P0
+    category: source_of_truth_release
+    status: found_and_document_routing_fix_required
+    severity: scope_blocker
+    issue: A MAN_ETH five_role numerical balance source incorrectly advertised as first_MVP despite DEC_033
+    fix: Route agent loader to current MAN_mirror release before any template_or_balance imports
+    proof_paths: [design/decisions.yaml, design/agent-source-of-truth.yaml, design/mvp-balance-playtest-v0.1.yaml]
+    remediations: [design/agent-source-of-truth.yaml, AGENTS.md]
+  - id: MECH-AUD-002
+    priority: P0
+    category: numeric_rules
+    status: candidate_contract_added_requires_code_validation
+    severity: ambiguity_blocker
+    issue: MVP0_has_no_single_complete_candidate_profile_for_workers_mining_placement_commands_and_combat_math
+    fix: Publish release_specific_candidate_implementation_profile_not_falsely_owner_approved
+    proof_paths: [design/mvp0-man-mirror-rts.yaml, design/mvp0-man-mirror-rts-2026-10-11.md]
+    remediations: [design/mvp0-agent-implementation-contract.yaml]
+  - id: MECH-AUD-003
+    priority: P0
+    category: finite_material_custody
+    status: code_not_implemented
+    severity: gameplay_blocker
+    issue: Source_worker_bag_HQ_spend_and_barrracks_purchase_must_share_one_real_ledger
+    fix: Use_single_atomic_transfer_and_idempotent_deposit_payment_rules
+    acceptance: [M0-03, M0-04, M0-05, M0-06]
+  - id: MECH-AUD-004
+    priority: P0
+    category: LAN_multiplayer
+    status: code_not_implemented
+    severity: release_blocker
+    issue: Two_separate_human_Godot_clients_require_host_authority_replication_and_replay_protection
+    fix: Build_one_Godot_host_command_validator_and_two_process_loopback_smoke
+    acceptance: [M0-13, M0-14, M0-15]
+  - id: MECH-AUD-005
+    priority: P0
+    category: automated_simulation
+    status: code_not_implemented
+    severity: release_blocker
+    issue: --headless_does_not_automatically_accelerate_Godot_matches
+    fix: Explicit_unpaced_fixed_tick_Godot_runner_shared_with_graphical_world_and_real_bot_actions
+    acceptance: [M0-12, M0-16, M0-17]
+  - id: MECH-AUD-006
+    priority: P0
+    category: playable_map
+    status: map_fixture_present_compiler_not_proven
+    severity: implementation_blocker
+    issue: Verdant_Divide_has_two_faction_old_hero_positions_but_mvp0_spawns_MAN_on_both_sides_and_no_Hero
+    fix: Resolve_spawns_through_match_rules_keep_map_metadata_non_authoritative_for_roster
+    acceptance: [M0-01, M0-02, M0-08]
+  - id: MECH-AUD-007
+    priority: P0
+    category: cameras_and_HUD
+    status: legacy_camera_smoke_present_new_RTS_HUD_not_implemented
+    severity: scope_conflict
+    issue: Existing_F1_F2_F3_prototype_not_shipped_FPP_and_TPP
+    fix: First_release_Overlord_only_preserve_debug_smokes_FPP_future_DEC031
+    acceptance: [M0-19, M0-20]
+  - id: MECH-AUD-008
+    priority: P1
+    category: balance
+    status: paper_only
+    severity: needs_measurement
+    issue: Symmetric_costs_do_not_prove_fair_spawns_bot_strategies_or_match_pacing
+    fix: Seed_pairs_side_swaps_and_worker_income_microbench_before_balanced_claim
+    acceptance: [M0-02, M0-12, M0-16]
+  - id: MECH-AUD-009
+    priority: P1
+    category: future_faction_resource_doctrine
+    status: clarified_future
+    severity: avoid_wrong_scope_import
+    issue: Old_Matter_Volatiles_Energy_efficiency_matrix_is_NOT_inverse_SOLID_LIQUID_GAS_extraction
+    fix: Keep_forms_and_currencies_separate_full_asymmetry_post_MVP0
+    proof_paths: [design/resource-balance.yaml, design/physical-resource-forms.yaml]
+  - id: MECH-AUD-010
+    priority: P1
+    category: complex_logistics_future
+    status: intentionally_deferred
+    severity: scope_protection
+    issue: ETH_network_MAN_UMU_ORG_vessels_salvage_must_not_block_MAN_mirror
+    fix: Explicitly_mark_post_MVP_contracts_and_keep_approved_long_term_decisions
+  - id: MECH-AUD-011
+    priority: P1
+    category: tests_and_evidence
+    status: specification_only
+    severity: release_verification_missing
+    issue: M0_YAML_test_names_are_not_executable_Godot_test_results
+    fix: Add_real_headless_tests_snapshot_consistency_two_process_HH_and_report_test_results_with_pinned_version
+    acceptance: [M0-01, M0-03, M0-09, M0-13, M0-16, M0-20]
+  - id: MECH-AUD-013
+    priority: P0
+    category: current_Godot_authority_vs_authored_map
+    status: observed_static_mismatch_unfixed
+    severity: source_of_truth_blocker
+    issue: MirrorMatchState_uses_2500_fixed_stock_and_midmap_HQs_while_Verdant_Divide_YAML_uses_1660_and_diagonal_starts
+    source:
+      coded_stocks: {west: 900, east: 900, center_n: 350, center_s: 350}
+      coded_total_Matter: 2500
+      authored_total_SOLID: 1660
+      coded_initial_HQ_xy: [[8, 32], [55, 31]]
+      authored_initial_HQ_xy: [[9, 9], [54, 54]]
+    fix: make_runtime_map_data_resolved_from_authored_YAML_or_explicitly_mark_temporary_fixture_then_verify_parity
+    proof_paths: [apps/game/scripts/mirror_match_state.gd, design/mvp-verdant-divide-map.yaml]
+  - id: MECH-AUD-014
+    priority: P0
+    category: match_clock
+    status: observed_static_mismatch_unfixed
+    severity: timing_blocker
+    issue: GUI_clock_0_1s_per_tick_and_MAX_TICKS_5400_conflict_with_20Hz_YAML_and_candidate_20_minute_time_cap
+    source: {GUI_seconds_per_tick: 0.1, GUI_Hz: 10, code_MAX_TICKS: 5400, actual_GUI_clock_timeout_minutes: 9, YAML_tick_Hz_candidate: 20, YAML_timeout_minutes_candidate: 20}
+    fix: define_one_clock_source_then_derive_training_combat_mining_and_time_limit_ticks
+    proof_paths: [apps/game/scripts/mirror_match_state.gd, apps/game/scripts/mirror_view.gd, design/mvp0-man-mirror-rts.yaml]
+  - id: MECH-AUD-015
+    priority: P0
+    category: test_execution_evidence
+    status: tests_exist_not_executed_by_this_audit
+    severity: CI_gate_missing
+    issue: Current_check_sh_runs_mirror_smoke_and_mirror_visual_smoke_but_does_not_run_explicit_mirror_batch;_no_Godot_execution_evidence_in_this_audit
+    fix: execute_existing_script_check_sh_and_separate_mirror_batch_with_pinned_Godot_record_exit_codes_hashes_and_failure_seeds_before_any_pass_claim
+    proof_paths: [apps/game/tests/mirror_smoke.gd, apps/game/tests/mirror_visual_smoke.gd, apps/game/tests/mirror_batch.gd, scripts/check.sh]
+  - id: MECH-AUD-016
+    priority: P1
+    category: reuse_first
+    status: approved_DEC_034_implementation_policy
+    severity: architecture_review_required
+    issue: Existing_custom_BFS_and_grid_line_steps_need_justification_against_Godot_AStarGrid2D_and_physics_raycast_services
+    fix: evaluate_builtins_and_wrap_existing_code_with_adapter_and_parity_tests_before_replacement
+    proof_paths: [apps/game/scripts/mirror_match_state.gd, architecture/godot-reuse-component-map.yaml]
+  - id: MECH-AUD-017
+    priority: P0
+    category: active_gameplay_code
+    status: code_committed_unverified
+    severity: correct_old_source_status
+    issue: Initial_audit_camera_only_description_is_historical_new_local_MAN_mirror_engine_menu_and_bot_code_committed
+    fix: treat_as_unverified_gameplay_prototype_then_test_real_Code_and_report_results
+    proof_paths: [apps/game/scripts/mirror_match_state.gd, apps/game/scripts/mirror_view.gd, docs/SCALFAGUS-MVP0-DEVELOPMENT-FINDINGS-2026-10-11.md]
+  - id: MECH-AUD-012
+    priority: P1
+    category: old_repo_audit_provenance
+    status: this_report_currently_supersedes_older_coverage_claim
+    severity: documentation_gap
+    issue: design_design_audit_yaml_still_describes_smaller_old_review_and_unenumerated_tree
+    fix: Mark_historical_source_scope_and_link_to_this_current_repo_review
+  - id: MECH-AUD-018
+    priority: P0
+    category: movement_clock
+    status: exact_code_gate_corrected
+    severity: numeric_parity_blocker
+    issue: MirrorMatchState_walks_one_grid_cell_every_THREE_sim_ticks_not_every_tick_and_GUI_10Hz_differs_from_desired_20Hz
+    source: {code_step_period_ticks: 3, current_GUI_approx_cells_per_second: 3.3333333, if_changed_to_20Hz_without_retuning_cells_per_second: 6.6666667, active_candidate_worker_tiles_per_second: 2.3}
+    fix: derive_movement_distance_from_one_shared_authoritative_fixed_tick_and_tile_to_world_unit_factor
+    proof_paths: [apps/game/scripts/mirror_match_state.gd, apps/game/scripts/mirror_view.gd, design/mvp0-agent-implementation-contract.yaml]
+    tests: [M0-08, M0-16]
+  - id: MECH-AUD-019
+    priority: P0
+    category: visual_regression_and_map_migration
+    status: committed_smoke_unverified_against_new_authored_map
+    severity: tests_can_lock_wrong_fixture
+    issue: Mirror_visual_smoke_preserves_5_direction_Sprite3D_startup_window_and_camera_but_expects_four_resources_while_authored_map_has_ten
+    fix: keep_sprite_zoom_window_checks_replace_fixed_four_with_authored_map_node_ids_after_compiler_is_integrated
+    proof_paths: [apps/game/tests/mirror_visual_smoke.gd, design/mvp-verdant-divide-map.yaml, scripts/check.sh]
+  - id: MECH-AUD-020
+    priority: P1
+    category: competing_profiles
+    status: selected_first_release_candidate_clarified
+    severity: avoid_numeric_confusion
+    issue: current_agent_implementation_candidate_and_supplemental_analytical_mvp0_balance_have_different_worker_speed_and_build_radius_values
+    fix: load_only_design_mvp0_agent_implementation_contract_for_current_release_and_recalculate_or_disable_alternate_profile_test_expectations
+    proof_paths: [design/agent-source-of-truth.yaml, design/mvp0-agent-implementation-contract.yaml, design/mvp0-man-mirror-balance-v0.1.yaml]
+final_conclusions:
+  scope_first_release: MAN_vs_MAN_overlord_RTS_4_templates_2_slots_HH_LAN_HC_CC
+  future_release: MAN_vs_ETH_Energy_UMU_Pylon_liquid_gas_and_later_FPP
+  canonical_numeric_profile: design/mvp0-agent-implementation-contract.yaml
+  code_status: new_MirrorMatchState_visual_bot_and_smoke_code_exists_but_not_proven_shippable
+  blocking_work:
+    - normalize_10Hz_GUI_to_20Hz_shared_fixed_tick_and_3_tick_movement
+    - replace_2500_four_source_hardcoded_map_with_1660_ten_source_authored_map
+    - reconcile_6_tick_full_bag_mining_and_45_65_training_timers
+    - validate_sprite_camera_window_and_map_asset_tests_after_true_map_import
+    - connect_host_bound_Godot_ENet_HH_LAN_two_client_flow
+    - run_GUI_HC_and_headless_CC_and_real_LAN_HH_end_to_end
+    - prove_one_ledger_one_state_no_double_credit_fog_cheating_or_illegal_wins
+  scripts_check_invokes: [smoke.gd, menu_smoke.gd, rts_smoke.gd, navigation_smoke.gd, mirror_smoke.gd, mirror_visual_smoke.gd]
+  batch_script_requires_separate_invocation: apps/game/tests/mirror_batch.gd
+  current_tests_executed_by_this_audit: false
+  source_audit_sufficient_for_agent_handoff: true
+  executable_implementation_complete: false
+  numerical_or_competitive_balance_certified: false
+  current_detail_tasks: design/mvp0-runtime-parity-gaps.yaml
+  narrative_conclusions: design/mvp-repository-mechanics-audit-2026-10-11.md
+dependency_order:
+  - M0-00_preserve_existing_code_and_lock_release_scope
+  - M0-01_load_Mandatory_floating_platform_two_MAN_slots_host_state
+  - M0-02_real_gather_and_deposit
+  - M0-03_Barracks_and_paid_worker_Rifleman_queues
+  - M0-04_ground_LOS_combat_and_building_annihilation
+  - M0-05_HC_and_CC_bot
+  - M0-06_Godot_unpaced_batch_replay_logging
+  - M0-07_two_clients_LAN_authoritative_host
+  - M0-08_menu_HH_HC_CC_and_RTShud
+  - M0-09_end_to_end_tests_and_release_gates
+critical_invariants:
+  - all_playable_maps_floating_space_platforms
+  - first_roster_four_MAN_templates_only
+  - exactly_two_player_slots
+  - no_first_release_UMU_ETH_Energy_or_possession
+  - current_release_one_game_state_for_GUI_LAN_headless
+  - all_Matter_from_authored_finite_SOLID_nodes
+  - real_worker_delivery_required_to_HQ_before_credit
+  - no_double_debit_or_credit
+  - multiplayer_host_never_accepts_client_world_state_mutation
+  - bot_cannot_see_unknown_enemy_entities
+  - all_combat_rays_consider_tree_trunk_and_real_terrain_LOS
+  - victory_when_no_completed_enemy_building_class_remaining
+  - time_cap_if_enabled_produces_draw_not_fabricated_win
+  - no_claims_of_final_balance_without_measured_matches
+source_refresh:
+  DEC034_reuse_first_present: true
+  new_Godot_mirror_implementation_source_present: true
+  newest_check_script_invokes_mirror_smoke: true
+  newest_check_script_invokes_mirror_visual_smoke: true
+  newest_check_script_invokes_mirror_batch: false
+  check_script_pass_result_observed_in_this_audit: false
+  mirror_visual_smoke_resource_visual_count_hardcoded: 4
+  canonical_Verdant_Divide_resource_node_count: 10
+  move_step_every_sim_ticks: 3
+  GUI_current_sim_Hz: 10
+  target_candidate_sim_Hz: 20
+  experimental_hosted_H_H_LAN_implementation_present: false
+  currently_direct_imports_authored_Verdant_Divide_manifest: false
+  Godot_builtin_path_and_LOS_adapter_gate: architecture/godot-reuse-component-map.yaml
+  source_map_mismatch_reported_in_companion_MD: true
+execution_evidence:
+  report_date: "2026-10-11"
+  Godot_headless_tests_run_in_this_audit: false
+  completed_LAN_two_process_tests_run_in_this_audit: false
+  actual_bot_match_results_observed: false
+  numeric_balance_certified: false
+  repository_writes_verified_by_refetch: pending

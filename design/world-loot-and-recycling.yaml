@@ -1,7 +1,9 @@
 schema_version: 1
 project: scalfagus
-version: 0.1
+version: 0.2
 status: owner_directed_visuals_and_event_outcomes_numeric_rates_proposed
+first_MVP_recovery_numeric_profile: design/mvp-balance-playtest-v0.1.yaml
+numeric_recovery_and_packet_spill_test_suite: design/mvp-balance-acceptance.yaml
 specification: design/world-loot-salvage-and-recycling-2026-10-11.md
 decision: DEC-022
 invariants:
@@ -73,7 +75,7 @@ event_policies:
     owner_or_enemy_can_collect_delivered_loose_input: true
     unfinished_ruin_can_be_excavated_by_eligible_workers_of_any_faction: true
     reclaim_has_nonzero_work_time: true
-    embedded_fraction_recovered: TBD
+    embedded_fraction_recovered: {candidate_first_MVP: 0.50, source: design/mvp-balance-playtest-v0.1.yaml}
   org_worker_leaves_incubation:
     status: owner_approved
     cocoon_progress_gradually_decreases: true
@@ -87,7 +89,7 @@ event_policies:
     dying_connected_buildings_can_spit_out_salvage_over_time: true
     active_world_units_not_instantly_removed: true
     stages: [buffered, underfed, withering, death_and_drop]
-    emitted_fraction: TBD
+    emitted_fraction: TBD_future_ORG_not_playable_in_first_MVP
   eth_last_required_beam_break:
     status: owner_approved
     construction_progress_instant_zero: true
@@ -150,6 +152,9 @@ economy:
   combat_winner_can_collect_enemy_drops: true
   loser_may_recapture_or_interdict_loot: true
   win_condition_should_prevent_indefinite_rebuild_stalemates: open
-  loot_ttl_and_decay_beyond_race_decays: TBD
+  loot_ttl_and_decay_beyond_race_decays: no_TTL_in_first_MVP_future_rules_TBD
+  edge_escrow_packet_recovery_fraction_first_MVP: 0.80
+  completed_structure_embedded_recovery_fraction_first_MVP: 0.35
+  completed_structure_safe_disassembly_fraction_first_MVP: 0.65
   possible_salvage_cost_and_fog_benchmarks: [cost_per_reclaimed_unit, time_to_salvage, third_party_capture_rate, replay_match_duration, world_drop_stack_count]
 acceptance_test_ids: [LOOT-01, LOOT-02, LOOT-03, LOOT-04, LOOT-05, LOOT-06, LOOT-07, LOOT-08, LOOT-09, LOOT-10, LOOT-11, LOOT-12, LOOT-13, LOOT-14, LOOT-15, LOOT-16, LOOT-17, LOOT-18, LOOT-19, LOOT-20]

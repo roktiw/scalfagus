@@ -1,5 +1,9 @@
 schema_version: 1
 project: scalfagus
+shield_recovery_contract: design/faction-damage-recovery-shields-and-repair.yaml
+shield_HP_is_distinct_from_stored_Energy_currency: true
+MAN_shield_recharge_requires_finite_battery_or_valid_power_grid: true
+ETH_natural_shield_recovery_and_network_boost_are_distinct_services: true
 version: 0.7
 status: approved_core_rules_with_proposed_details
 resource:

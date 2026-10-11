@@ -1,0 +1,135 @@
+schema_version: 1
+project: scalfagus
+release: mvp_0_1
+status: owner_approved_scope_runtime_not_implemented_numeric_candidate
+numeric_candidate_profile: design/mvp0-agent-implementation-contract.yaml
+supplementary_analytical_balance_scenario_NOT_automatic_runtime_profile: design/mvp0-man-mirror-balance-v0.1.yaml
+numerical_precedence: design/mvp0-agent-implementation-contract.yaml_over_alternate_profile_until_agent_verifies_actual_Godot_roundtrip
+runtime_gameplay_contract: design/mvp0-man-mirror-execution-contract.md
+authoritative_LAN_and_controller_contract: design/mvp0-man-mirror-network.yaml
+numeric_acceptance_tests: design/mvp0-man-mirror-balance-acceptance.yaml
+do_not_import_future_MAN_ETH_profile: design/mvp-balance-playtest-v0.1.yaml
+cost_precedence: release_mvp0_scope_then_one_loaded_versioned_mvp0_agent_implementation_contract_no_future_profile_fallback
+
+decision: DEC-033
+engine: Godot_4_7_2_Standard
+language: typed_GDScript
+simulation_authority: one_Godot_GameState
+mode: classic_RTS_overlord_only
+scope:
+  playable_factions: [man]
+  team_slots: 2
+  teams_are_symmetric: true
+  combinations:
+    - {slot_1: human, slot_2: human, delivery: host_join_lan_or_loopback}
+    - {slot_1: human, slot_2: bot, delivery: single_local_match}
+    - {slot_1: bot, slot_2: bot, delivery: spectator_or_headless}
+  allowed_controller_types: [human, bot]
+  one_player_per_slot: true
+  map_id: verdant_divide
+  required_battlefield_frame: floating_space_platform
+  map_topology: planar_bounded
+  candidate_map_size_tiles: [64, 64]
+  roster: [man_command_core, man_min, man_barracks, man_rifleman]
+  initially_spawned:
+    man_command_core: 1
+    man_min: 3
+    man_barracks: 0
+    man_rifleman: 0
+  initial_real_resource: matter
+  mineable_source_forms: [solid]
+  energy_system: deferred_to_post_mvp_0_1
+  other_resources: deferred_to_post_mvp_0_1
+  umu_and_hybrid_networks: deferred_to_post_mvp_0_1
+  fpp_possession: deferred_to_post_mvp_0_1
+  tpp_direct: not_a_shipped_gameplay_mode
+  hero_skill_graph: deferred_to_post_mvp_0_1
+gameplay:
+  commands: [select, move, stop, gather, return_cargo, build_barracks, train_worker, train_rifleman, attack_target]
+  select_and_box_select: true
+  finite_resource_nodes: true
+  worker_carries_physical_matter: true
+  delivery_requires_worker_at_HQ: true
+  build_requires_legal_site_and_resources: true
+  terrain_tree_trunks_block_movement_and_line_of_sight: true
+  ponds_block_ground_units_and_are_not_collectible: true
+  visibility: simple_team_vision_no_omniscient_enemy_tracking
+  victory: no_opposing_live_completed_victory_building_entities
+  drawing_timeout: explicit_no_forced_winner
+  match_duration_target_minutes: [8, 15] # development target, NOT guaranteed
+  match_time_cap_minutes: 20 # candidate for initial test; timeout => draw
+  explicit_timeout_is_NOT_normal_building_elimination_victory: true
+candidate_balance_fixture_unapproved:
+  matter_start_per_team: 0
+  hq_hp: 1200
+  worker_hp: 50
+  barracks_hp: 650
+  rifleman_hp: 100
+  worker_carry_capacity_matter: 10
+  worker_price_matter: 35
+  barracks_price_matter: 100
+  rifleman_price_matter: 50
+  rifleman_damage: 8
+  rifleman_cooldown_seconds: 1.0
+  rifleman_range_world_units: 6.5
+  worker_training_seconds: 7
+  barracks_build_seconds: 18
+  rifleman_training_seconds: 9
+  all_candidate_values_are_tuning_start_points: true
+  canonical_MVP0_values_file: design/mvp0-agent-implementation-contract.yaml
+  optional_math_sanity_alt_profile: design/mvp0-man-mirror-balance-v0.1.yaml
+  never_charge_Energy_or_apply_UMU_support_cap_in_MVP0: true
+  worker_extraction_seconds_per_unit_candidate: 2.0
+  worker_speed_tiles_per_s_candidate: 2.3
+  Barracks_legal_site_distance_from_HQ_tiles_candidate: 9
+  Rifleman_range_is_WORLD_METERS_not_grid_tiles: true
+runtime:
+  tick_rate_hz_proposal: 20
+  host_authoritative: true
+  client_sends_commands_not_state: true
+  bots_use_same_command_api_as_humans: true
+  local_or_lan_only: true
+  external_account_or_cloud_required: false
+  public_internet_matchmaking: false
+  network_host_migration: false
+  bot_policies_initial: [economy_attack]
+  bot_policies_later: [rush, defend, random_legal]
+  gui_spectator_for_bot_bot: true
+  accelerated_headless_bot_bot: true
+  fixed_seed_recording: true
+  command_log_and_state_hash: true
+  tpp_debug_spike_may_remain: true
+  godot_fpp_spike_may_remain: true
+  public_gameplay_cameras: [overlord_rts]
+reporting:
+  formats: [jsonl, json]
+  match_metrics:
+    - winner_or_draw
+    - match_duration_ticks
+    - seed
+    - bot_policy_versions
+    - player_slot_controllers
+    - unit_counts_and_losses
+    - matter_mined_spent_lost
+    - time_to_first_barracks
+    - time_to_first_rifleman
+    - accepted_and_rejected_commands
+    - source_and_custody_conservation
+    - replay_state_hash
+excluded_release_features:
+  - playable_ETH_or_ORG
+  - possession_combat_or_rpg_progression
+  - third_person_gameplay
+  - UMU_mobile_warehouse_bunker
+  - multi_faction_networks_and_Ether
+  - advanced_energy_and_cable_supply
+  - marine_air_units_and_multideck_space_travel
+  - liquid_or_gas_extraction
+  - public_internet_multiplayer_and_accounts
+  - realtime_LLM_bots
+references:
+  design_contract: design/mvp0-man-mirror-rts-2026-10-11.md
+  acceptance: design/mvp0-man-mirror-acceptance.yaml
+  backlog: design/mvp0-man-mirror-backlog.yaml
+  prior_two_faction_scope: design/MVP-DELIVERY-GATES.md
+  faction_lore: design/decisions.yaml

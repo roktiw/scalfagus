@@ -1,8 +1,17 @@
 schema_version: 1
+release_target: post_mvp_0_1_MAN_vs_ETH
+do_not_apply_first_release_micro_MVP0: true
+current_micro_MVP0_profile: design/mvp0-man-mirror-balance-v0.1.yaml
 project: scalfagus
-version: 0.1
+version: 0.2
 status: developer_balance_seed_NOT_owner_approved_prices_rates_or_recipes
 scope: MAN_vs_ETH_on_Verdant_Divide_surface_SOLIDS_only
+active_numerical_playtest_profile: design/mvp-balance-playtest-v0.1.yaml
+active_simulation_protocol: design/mvp-gameplay-execution-contract.md
+active_network_execution: design/mvp-network-execution.yaml
+numeric_TBDs_below_are_historical_if_explicit_profile_value_exists: true
+require_complete_loaded_profile_and_fail_on_unresolved_MVP_required_price: true
+this_file_is_semantic_not_a_second_spendable_wallet: true
 catalog: design/mvp-man-eth-catalog.yaml
 physical_resource_form_canon: design/physical-resource-forms.yaml
 resource_ledger_canon: design/world-loot-and-recycling.yaml
@@ -32,6 +41,8 @@ extraction:
   no_extractor_building_required_for_solid_source: true
   worker_cargo_capacity_matter_candidate: 8
   seconds_to_extract_one_matter_candidate: 2
+  live_candidate_faction_seconds_per_matter: {man: 1.90, eth: 2.00}
+  worker_trip_load_unload_overhead_seconds: 0.70
   worker_has_finite_pickup_loading_capacity: true
   only_real_delivery_to_legal_inventory_port_credits_owned_store: true
   source_debit_and_worker_credit_atomic: true
@@ -78,17 +89,21 @@ candidate_rates_and_energy:
   proposed_external_origin: bounded_environmental_solar_or_ambient_flux
   if_renewable_inflow_enabled_book_it_as_external_energy_generation: true
   man:
-    starting_command_core_output_E_per_second: TBD_to_bootstrap_first_umu
-    umu_deployed_power_warehouse_E_per_second: TBD
-    umu_bunker_mode_generation_multiplier: TBD_less_than_one
+    starting_command_core_output_E_per_second: 0.20
+    umu_deployed_power_warehouse_E_per_second: 0.40
+    umu_bunker_mode_generation_multiplier: 0.50
     packed_umu_generation_E_per_second: 0
     batteries_and_power_service_local_not_free_global_wallet: true
     hybrid_power_and_data_cables_do_not_transport_solid_material_packets: true
     UMU_support_power_capacity_candidate: 8
   eth:
-    nexus_ambient_resonance_output_E_per_second: TBD_to_bootstrap_first_pylon
-    pylon_energy_relay_rate_E_per_second: TBD
-    pylon_turret_maintenance_E_per_second: TBD
+    nexus_ambient_resonance_output_E_per_second: 0.20
+    pylon_energy_relay_rate_E_per_second: 6
+    pylon_generates_E_per_second: 0
+    pylon_energy_relay_rate_is_shared_with_other_ether_resource_services: true
+    pylon_turret_maintenance_E_per_second: 0
+    pylon_turret_shot_consumption_E: 1
+    pylon_turret_attack_interval_seconds: 2
     pylon_support_resonance_slots_candidate: 8
     only_one_Ether_Network_for_typed_Matter_Energy_and_information: true
   avoid_energy_deadlock:
@@ -125,7 +140,12 @@ world_loot_visuals:
   compatible_foreign_salvage_allowed: true
   world_drop_never_counts_for_victory: true
   no_infinite_destroy_salvage_rebuild_profit: true
-  complete_asset_salvage_fraction: TBD_below_one
+  complete_asset_salvage_fraction: 0.35
+  MAN_unfinished_installed_salvage_fraction: 0.50
+  safe_completed_disassembly_fraction: 0.65
+  ETH_committed_abort_fraction: 1.0
+  full_loose_crate_fraction: 1.0
+  numeric_recovery_source: design/mvp-balance-playtest-v0.1.yaml
   intact_loose_package_retains_real_remaining_quantity: true
   retained_committed_ETH_site_material_ejects_full_amount_at_interruption: true
 anti_softlock_checks:

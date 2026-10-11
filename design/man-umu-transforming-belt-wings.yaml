@@ -1,0 +1,118 @@
+schema_version: 1
+project: scalfagus
+decision_id: DEC-040
+date: "2026-10-12"
+version: 0.1
+status: owner_approved_UMU_wings_four_physical_modes_with_candidate_implementation_details
+human_specification: design/man-umu-transforming-belt-wings-2026-10-12.md
+scope:
+  post_MVP0_only: true
+  current_first_release: DEC-033
+  no_new_UMU_or_belts_in_MAN_mirror_MVP0: true
+related_decisions: [DEC-010, DEC-011, DEC-013, DEC-019, DEC-021, DEC-033, DEC-034, DEC-036, DEC-038, DEC-039]
+UMU:
+  canonical_name: Universal_Man_Unit
+  owner_rule_each_UMU_has_two_belt_wings: true
+  wing_count: 2
+  wings_are_persistent_physical_parts: true
+  wing_roles:
+    in_move: retract_under_chassis_to_form_left_and_right_crawler_tracks
+    in_conveyor: unfold_symmetrically_into_left_and_right_belt_wings
+    in_bunker: fold_parallel_against_both_hull_sides_for_flank_protection
+    in_sentry_wall: rotate_up_to_form_ground_unit_blocking_wall
+  center_belt_geometry_tiles: 1
+  conveyor_variants:
+    - id: conveyor_3
+      left_extension_tiles: 1
+      center_tiles: 1
+      right_extension_tiles: 1
+      line_length_tiles: 3
+    - id: conveyor_5
+      left_extension_tiles: 2
+      center_tiles: 1
+      right_extension_tiles: 2
+      line_length_tiles: 5
+  no_asymmetric_length_variant_without_future_approval: true
+  modes:
+    - id: move_tracks
+      ground_movement: true
+      belt_freight_ports_open: false
+      wings_under_body: true
+      deployed_only_generator_and_grid_services: false
+    - id: conveyor
+      ground_movement: false
+      belt_freight_ports_open: true
+      lengths: [3, 5]
+      both_directions_possible_under_DEC_038_candidate: true
+      real_finite_shared_throughput: true
+      finite_onboard_buffer: true
+    - id: bunker
+      ground_movement: false
+      belt_freight_ports_open: false
+      wings_folded_against_hull: true
+      side_protection: true
+      garrison_capacity_follows_equipped_variant: true
+      free_turret_by_default: false
+    - id: sentry_wall
+      ground_movement: false
+      belt_freight_ports_open: false
+      wings_rotate_upright_as_wall: true
+      prevents_ground_unit_passage_by_actual_collision: true
+      also_blocks_friendly_ground_units: true
+      may_be_combined_with_other_distinct_walls_when_legally_adjacent: true
+      free_turret_by_default: false
+      garrison_by_default: false
+      requires_real_legal_footprint_and_navmesh_update: true
+  mutually_exclusive_postures: [move_tracks, conveyor, bunker, sentry_wall]
+  physically_one_actor_across_modes: true
+  mode_transition:
+    finite_positive_duration: true
+    validate_actual_footprint_and_occupants: true
+    reserve_deployment_cells_before_apply: true
+    disconnect_belt_escrow_before_closing_ports: true
+    wait_or_reject_if_cargo_cannot_fit_or_be_unloaded: true
+    no_spawned_or_refunded_resource_on_fold: true
+    do_not_create_or_destroy_soldiers_when_switching: true
+    navigation_collision_committed_authoritatively: true
+    manual_orders_preempt_managers_legally: true
+    interruption_and_damage_mid_transform: deterministic_TBD
+  economy:
+    no_resource_creation_from_transformation: true
+    no_simultaneous_full_freight_and_bunker_sentry: true
+    UMU_mixed_vs_single_resource_packing_from: DEC-036
+    MAN_belts_first_release_bidirectionality_candidate_from: DEC-038
+    mobile_pack_disables_deployed_generation_and_power_ports: true
+  historical_reconciliation:
+    older_mid_only_3_or_5_belt_exclusivity: superseded_for_actual_UMU
+    older_power_dock_no_continuous_belt_flag: superseded_for_actual_UMU
+    UMU_exact_tier_applicability: TBD
+    preserve_mid_soldier_slot_vs_max_bulk_store_roles: true
+    do_not_force_every_MAN_mid_or_max_to_be_UMU: true
+  open_balance:
+    - wall_width_3_or_5_from_panel_reach
+    - wall_height_LOS_projectile_blocking_armor_HP
+    - sentry_optional_weapon_equipment
+    - deployed_generator_effect_in_bunker_or_sentry
+    - wing_damage_persistence_and_component_repairs
+    - transform_duration_cost_energy
+    - cargo_buffer_footprint_emergency_unload
+    - exact_templates_that_are_UMU_capable_in_mid_max
+acceptance_tests:
+  - UMU-01
+  - UMU-02
+  - UMU-03
+  - UMU-04
+  - UMU-05
+  - UMU-06
+  - UMU-07
+  - UMU-08
+  - UMU-09
+  - UMU-10
+  - UMU-11
+  - UMU-12
+  - UMU-13
+  - UMU-14
+  - UMU-15
+  - UMU-16
+  - UMU-17
+  - UMU-18

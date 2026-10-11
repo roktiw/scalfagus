@@ -1,0 +1,144 @@
+schema_version: 1
+release_target: post_mvp_0_1_MAN_vs_ETH
+current_release_tests: design/mvp0-man-mirror-balance-acceptance.yaml
+current_scope_decision: DEC-033
+design_only_not_current_MVP0_test_gate: true
+project: scalfagus
+version: 0.1
+status: proposed_headless_acceptance_fixtures_not_executed
+profile: design/mvp-balance-playtest-v0.1.yaml
+explanation: design/mvp-balance-and-simulation-plan.md
+simulation_contract: design/mvp-gameplay-execution-contract.md
+network: design/mvp-network-execution.yaml
+first_map: design/mvp-verdant-divide-map.yaml
+deterministic_suite:
+  tick_hz: 20
+  seeds: [357, 42, 1234, 20261011]
+  expect_no_ledger_negative_or_duplicate_resource: true
+  same_seed_same_commands_equal_account_and_victory_hash_in_pinned_runtime: true
+  recording_must_report_actual_engine_and_version: true
+hard_invariants:
+  - id: BAL-001
+    name: exactly_five_templates_per_faction
+    expect: {man: 5, eth: 5, user_owned_extra_Hero_template: 0}
+  - id: BAL-002
+    name: compulsory_flying_platform_and_only_ground_paths
+    expect: {every_playable_map_frame: floating_space_platform, first_map_topology: planar, swimming_units: 0, flying_units: 0}
+  - id: BAL-003
+    name: sum_finite_placed_source_Matter
+    map: verdant_divide
+    expect: {all_solids: 1660, northwest_safe: 400, southeast_safe: 400, central: 400, two_flanks: 300, two_ridges: 160}
+  - id: BAL-004
+    name: starter_energy_funds_first_army_even_without_new_generation
+    inputs: {starter_energy: 40, infrastructure_E: 5, barracks_E: 8, soldier_E: 2, soldier_count: 3}
+    expect: {subtotal_E_spent: 19, reserve_E_remaining: 21, requires_liquid: false, requires_gas: false}
+  - id: BAL-005
+    name: first_army_materials_per_side_fund_from_safe_stock
+    inputs: {starter_safe_solid_stock: 400, infra_Matter: 40, barracks_Matter: 60, soldier_Matter: 20, three_soldiers: 3}
+    expect: {Matter_spent: 160, nearby_stock_remaining_before_any_other_consumption: 240}
+  - id: BAL-006
+    name: all_roles_pay_exact_one_authoritative_cost
+    expect: {worker_Matter: 15, soldier_Matter: 20, infra_Matter: 40, barracks_Matter: 60, identical_soldier_HP_DPS: true}
+  - id: BAL-007
+    name: extraction_timings_first_map
+    inputs: {cargo: 8, one_way_tiles: 8, speed_tiles_s: 2.30, load_unload_s: 0.70, eth_conversion_batch_s: 1.00}
+    expect_approx:
+      man_trip_seconds: 22.86
+      eth_trip_seconds: 24.66
+      man_three_worker_Matter_min: 63.0
+      eth_three_worker_Matter_min: 58.4
+      tolerance_seconds: 0.05
+      income_tolerance_per_min: 0.2
+    note: analytic_microbenchmark_without_source_queuing_or_pathing_congestion
+  - id: BAL-008
+    name: first_MVP_three_builder_labour_lower_bounds
+    inputs: {man_stage_caps: [1, 2, 2], eth_stage_caps: [1, 2, 3], solo_infra_s: 24, solo_barracks_s: 40}
+    expect_approx: {man_infra_s: 16.0, eth_pylon_s: 14.67, man_barracks_s: 26.67, eth_chamber_s: 24.44}
+    precondition: all_source_material_is_already_locally_eligible_and_all_worker_slots_filled
+  - id: BAL-009
+    name: candidate_UMU_modes_cost_infrastructure_utility
+    steps: [build_deployed_UMU_warehouse, verify_plus_8_support, pack, travel, deploy_as_bunker]
+    expect: {packed_E_production_rate: 0, packed_support_addition: 0, packed_world_inventory_retained: true, victory_building_during_pack: true, bunker_garrison_capacity: 2}
+  - id: BAL-010
+    name: ETH_Pylon_active_turret_not_free
+    inputs: {turret_E_per_shot: 1, cooldown_seconds: 2, nexus_generation_E_per_second: 0.20}
+    expect_approx: {turret_max_E_drain_per_second: 0.50, net_max_fire_balance_E_per_second: -0.30}
+    expected_behavior: sustained_turret_fire_eventually_depletes_finite_local_E_without_external_additional_source
+  - id: BAL-011
+    name: ETH_Nexus_only_conversion
+    initial: {ETH_courier_raw_Matter: 8, Nexus_typed_Matter: 0}
+    steps: [try_pylon_conversion_without_Nexus, deliver_raw_Matter_to_Nexus, wait_real_eight_unit_conversion]
+    expect: {direct_conversion_at_pylon_rejected: true, Nexus_typed_Matter: 8, new_fourth_currency: false}
+  - id: BAL-012
+    name: ETH_component_split_with_equal_holding_nodes
+    initial: {six_nodes_each_Matter: 20, total_Matter: 120, edge_escrow_Matter: 0}
+    steps: [sever_link_after_node_2]
+    expect: {left_component_Matter: 40, right_component_Matter: 80, global_Matter: 120, duplicate_credited_Matter: 0}
+  - id: BAL-013
+    name: ETH_inflight_escrow_split_once
+    initial: {original_sender_Matter: 10, edge_escrow_Matter: 10, already_debited_sender_for_escrow: true}
+    steps: [break_edge_before_packet_arrival]
+    expect: {ground_Matter_orbs: 8, explicit_lost_Matter: 2, newly_credited_sender_Matter: 0, newly_credited_receiver_Matter: 0}
+  - id: BAL-014
+    name: ETH_site_interruption_does_not_double_refund
+    initial: {site_committed_Matter: 15, remote_reserved_Matter: 10, spent_channel_E: 5}
+    steps: [kill_last_eligible_beam_worker]
+    expect: {ground_site_orbs_Matter: 15, untouched_remote_reserved_at_actual_node_Matter: 10, refunded_E: 0, credited_home_Matter: 0}
+  - id: BAL-015
+    name: MAN_unfinished_installed_parts_lossy_salvage
+    initial: {installed_Matter: 30, uninstalled_loose_Matter: 15}
+    steps: [cancel_workers, enemy_picks_up_unchanged_loose_cubes, enemy_excavates_30_installed_units]
+    expect: {loose_cubes_collected: 15, embedded_salvage_collected: 15, irrecoverable_embedded_loss: 15, recovered_plus_lost_total: 45}
+  - id: BAL-016
+    name: destroyed_completed_buildings_have_genuine_loss
+    initial: {original_completed_building_embodied_Matter: 100}
+    steps: [destroy_building, excavate_ruin, rebuild_from_recovered_Matter_if_possible]
+    expect: {recoverable_Matter: 35, irrecoverably_lost_Matter: 65, positive_yield_closed_loop: false}
+  - id: BAL-017
+    name: support_overcap_on_UMU_pack
+    initial: {base_cap: 8, deployed_UMU_cap: 8, units_support_used: 12}
+    steps: [pack_last_deployed_UMU, try_training_new_soldier]
+    expect: {new_cap: 8, existing_12_support_units_survive: true, training_is_rejected_until_cap_restored: true}
+  - id: BAL-018
+    name: build_recipe_three_payment_stages_are_exact
+    inputs: {construction_costs: [40, 60, 150], stage_count: 3}
+    expect: {total_paid_equal_price: true, no_negative_stage_payment: true, stage_40: [13, 13, 14], stage_60: [20, 20, 20], stage_150: [50, 50, 50]}
+  - id: BAL-019
+    name: no_economic_softlock_after_start
+    steps: [spawn_each_faction_on_its_start, mine_first_160_Matter, build_infrastructure, build_barracks, train_3_soldiers]
+    expect: {both_factions_can_complete: true, liquid_or_gas_required: false, unauthorized_global_transfer: false}
+  - id: BAL-020
+    name: only_buildings_preserve_match_alive
+    steps: [destroy_every_enemy_building_except_packed_MAN_UMU, kill_last_packed_UMU]
+    expect: {enemy_alive_before_UMU_death: true, enemy_defeated_after_UMU_death: true, workers_and_Hero_can_remain_alive: true}
+  - id: BAL-021
+    name: FPS_and_RTS_hero_share_attack_and_inventory_state
+    steps: [make_Hero_fire_in_FPS, switch_to_RTS, inspect_cooldown_inventory_and_position]
+    expect: {same_entity_id: true, no_extra_attack_reset: true, same_tree_trunk_LOS: true}
+  - id: BAL-022
+    name: deny_bot_cheating
+    steps: [spawn_bot_at_hidden_side_of_platform, deny_direct_LOS_and_discoverability, run_bot_decisions]
+    expect: {bot_does_not_know_hidden_enemy_unit_entities: true, same_build_prices_as_human: true, no_teleport_Matter_or_Energy: true}
+  - id: BAL-023
+    name: game_does_not_require_destroying_all_workers
+    steps: [destroy_all_enemy_completed_building_class_entities, leave_enemy_workers_Hero_soldiers_world_loot]
+    expect: {game_is_won: true}
+  - id: BAL-024
+    name: extra_Future_gas_extraction_requires_rig
+    gate: future_three_form_regression_not_enabled_MVP
+    expect: {gas_direct_worker_free_pickup_without_rig: false, no_automatic_gas_equals_Energy: true}
+  - id: BAL-025
+    name: no_heavy_duplicate_packet_at_map_edge
+    steps: [break_ETH_beam_at_platform_rim, attempt_drop_15_Matter_off_platform]
+    expect: {packet_count_ledger_after: 15, ground_packets_collectible_inside_border: true, missing_custody_or_cloned_packets: 0}
+playtest_sampling_plan_not_yet_executed:
+  local_bot_smoke_each_side_each_faction_seeds: 20
+  later_balance_sample_each_faction_side_pairings: 100
+  human_playtest_evidence_needed_for_final_competitive_balance: true
+  results_recorded_only_from_actual_Godot_matches: true
+  nominal_full_match_duration_first_slice_minutes: [10, 25]
+  faction_win_rate_ambition: close_to_50_percent
+  first_barracks_timing_difference_warn_percent: 20
+  asymmetrical_repeated_bot_win_rate_warn_above_percent: 60
+  accidental_negative_or_cloned_resource_count_hard_fail: 0
+  incomplete_path_validator_hard_fail: true

@@ -1,0 +1,175 @@
+schema_version: 1
+project: scalfagus
+report_id: mvp0_development_findings_2026_10_11
+recorded_date: "2026-10-11"
+report_type: source_audit_and_next_gates
+scope_decision: DEC-033
+release: mvp_0_1
+status: new_gameplay_committed_unverified
+report_md: docs/SCALFAGUS-MVP0-DEVELOPMENT-FINDINGS-2026-10-11.md
+source_of_truth:
+  canonical_spec: design/mvp0-man-mirror-rts-2026-10-11.md
+  canonical_yaml: design/mvp0-man-mirror-rts.yaml
+  acceptance: design/mvp0-man-mirror-acceptance.yaml
+  backlog: design/mvp0-man-mirror-backlog.yaml
+  historic_two_faction_plan: design/AGENT-MVP-IMPLEMENTATION.md
+rules:
+  engine: Godot_4_7_2_Standard
+  language: typed_GDScript
+  authoritative_worlds_per_match: 1
+  factions: [man]
+  player_slots: 2
+  gameplay_views_in_mvp: [overlord_rts]
+  controller_combinations:
+    - human_human
+    - human_computer
+    - computer_computer
+  faction_templates: [hq, worker, barracks, rifleman]
+  spendable_resources_in_mvp: [matter]
+  mineable_resource_forms: [solid]
+  terrain_frame: floating_space_platform
+  fpp: deferred_under_DEC_031
+  tpp: excluded_from_product
+observed_code:
+  - path: apps/game/scripts/mirror_match_state.gd
+    present: true
+    role: two_slot_rules_commands_economy_combat_bot_result_hash
+    test_status: not_run_in_this_session
+  - path: apps/game/scripts/mirror_view.gd
+    present: true
+    role: graphical_overlord_scene_local_human_bot_and_bot_spectator
+    test_status: not_run_in_this_session
+  - path: apps/game/scenes/mirror_match.tscn
+    present: true
+    role: Godot_MVP_match_scene
+    test_status: not_run_in_this_session
+  - path: apps/game/scripts/menu.gd
+    present: true
+    role: new_local_match_menu_entries
+    test_status: not_run_in_this_session
+  - path: apps/game/tests/mirror_smoke.gd
+    present: true
+    role: executable_candidate_economy_build_combat_victory_regression
+    test_status: not_run_in_this_session
+  - path: apps/game/tests/mirror_batch.gd
+    present: true
+    role: executable_candidate_headless_bot_self_play
+    test_status: not_run_in_this_session
+capability_status:
+  two_slot_match_state: code_present_unverified
+  local_human_vs_computer: code_present_unverified
+  local_computer_vs_computer_gui: code_present_unverified
+  accelerated_computer_vs_computer_headless: code_present_unverified
+  human_vs_human_two_clients_LAN: not_implemented
+  reproducible_seed_hash: code_present_unverified
+  full_authored_map_validation: not_implemented
+  production_ready_RTS: not_implemented
+test_evidence:
+  local_legacy_smoke:
+    source: docs/GITHUB-ACTIONS-LOCAL-REPLAY-2026-10-11.md
+    observed_from_user_report: true
+    status: reportedly_passed_on_macos_before_new_MVP_code
+    not_evidence_for_new_gameplay: true
+  new_mirror_smoke:
+    status: not_run
+  new_mirror_batch:
+    status: not_run
+  graphical_playtest:
+    status: not_run
+  Godot_available_in_current_authoring_container: false
+  github_workflows:
+    sha256_linux_zip_checked_in_complete: true
+    checksum_suffix: "329e4"
+    recent_observed_conclusion: failure
+    exact_failure_cause: unknown_logs_unavailable
+    sample_runs:
+      - 38171957663
+      - 38171957648
+risks:
+  - id: RISK-01
+    severity: high
+    topic: simulation_tick_duration
+    observation: visual_accumulator_0_1s_vs_20Hz_proposal_and_5400_tick_cap
+    requirement: one_pinned_tick_duration_and_timeout_semantics
+  - id: RISK-02
+    severity: high
+    topic: network_delivery
+    observation: two_player_state_exists_but_no_host_join_clients
+    requirement: independent_human_LAN_clients_with_single_authority
+  - id: RISK-03
+    severity: high
+    topic: unexecuted_gameplay_tests
+    observation: new_tests_exist_but_are_not_part_of_scripts_check
+    requirement: run_then_integrate_smoke_and_bounded_batch_into_CI
+  - id: RISK-04
+    severity: medium
+    topic: mirror_map_parity
+    observation: exact_spawn_resource_route_and_cover_symmetry_not_measured
+    requirement: cell_geometry_and_distance_parity_fixture
+  - id: RISK-05
+    severity: medium
+    topic: bot_fog_and_information
+    observation: source_selection_reads_global_source_map_and_stock
+    requirement: define_known_deposits_and_prohibit_hidden_enemy_intelligence
+  - id: RISK-06
+    severity: medium
+    topic: placement_and_occupancy
+    observation: structure_site_race_and_unit_occupancy_need_adversarial_tests
+    requirement: accepted_command_and_build_spawn_collision_tests
+  - id: RISK-07
+    severity: medium
+    topic: unprofiled_pathfinding
+    observation: BFS_search_per_actor_movement_may_be_costly
+    requirement: benchmark_30_60_120_units_and_batch_throughput
+  - id: RISK-08
+    severity: medium
+    topic: ci_failures
+    observation: recent_workflows_failed_despite_complete_checksum_in_source
+    requirement: capture_current_action_job_logs_and_actual_failure_reason
+  - id: RISK-09
+    severity: medium
+    topic: generated_assets
+    observation: prior_local_replay_reported_changed_tracked_emblem_atlases
+    requirement: regenerate_on_clean_checkout_and_compare_bytes
+  - id: RISK-10
+    severity: medium
+    topic: headless_graphical_parity
+    observation: replay_hash_exists_but_equivalence_unverified
+    requirement: compare_accepted_command_stream_and_result_on_same_seed
+next_gates:
+  - id: DEV-01
+    priority: P0
+    title: compile_and_run_new_MVP_scenarios
+    required_commands:
+      - bash scripts/check.sh
+      - godot --headless --path apps/game --editor --import --quit
+      - godot --headless --path apps/game --script res://tests/mirror_smoke.gd
+      - godot --headless --path apps/game --script res://tests/mirror_batch.gd -- --matches 2 --seed 42
+    status: todo
+  - id: DEV-02
+    priority: P0
+    title: single_tick_contract_economy_navigation_and_mirror_parity
+    status: todo
+  - id: DEV-03
+    priority: P0
+    title: full_local_human_computer_win_loss_restart
+    status: todo
+  - id: DEV-04
+    priority: P0
+    title: verified_headless_bot_tournament_and_reports
+    status: todo
+  - id: DEV-05
+    priority: P0
+    title: authoritative_two_client_LAN_human_human
+    status: todo
+  - id: DEV-06
+    priority: P1
+    title: polish_playtest_and_package
+    status: todo
+working_rules:
+  - never_claim_unexecuted_tests_passed
+  - preserve_existing_camera_and_sprite_spike
+  - reuse_authoritative_Godot_state_and_legal_command_validation
+  - do_not_implement_ETH_ORG_FPP_or_TPP_in_first_release
+  - record_all_engineering_findings_in_both_MD_and_YAML
+  - update_test_evidence_only_with_actual_logs_exit_codes_and_environment

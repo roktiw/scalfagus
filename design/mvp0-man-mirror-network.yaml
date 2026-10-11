@@ -1,0 +1,132 @@
+schema_version: 1
+project: scalfagus
+release: mvp_0_1
+version: 0.1
+status: implementation_candidate_not_running_network_code
+owner_scope_decision: DEC-033
+spec: design/mvp0-man-mirror-execution-contract.md
+numeric_profile: design/mvp0-agent-implementation-contract.yaml
+alternative_numerical_experiment: design/mvp0-man-mirror-balance-v0.1.yaml
+network_protocol_still_design_only: true
+acceptance: design/mvp0-man-mirror-acceptance.yaml
+godot:
+  runtime: Godot_4_7_2_Standard
+  GDScript_only_game_state: true
+  suggested_peer: ENetMultiplayerPeer
+  two_Godot_clients_HH: true
+  server_simulation_only_one_instance: true
+  no_Tauri_or_Node_server: true
+  no_cross_network_public_internet_matchmaking: true
+sessions:
+  supported: [HC_single_local, CC_local_or_headless, HH_loopback_or_LAN]
+  player_slots: [0, 1]
+  both_factions: man
+  bots_and_humans_use_same_accepted_commands: true
+  spectator_is_not_a_player_slot: true
+  HostAndJoin_required_HH: true
+  default_host_tcp_or_udp_public_port: configurable_not_fixed_in_design
+  peer_binding_is_the_actual_command_issuer_identity: true
+  never_trust_client_supplied_slot_id_as_authentication: true
+  connection_to_slot_authorization: host_bound_peer_to_one_slot
+  allow_empty_HH_slot_before_join: true
+  match_begins_only_when_both_slots_have_authorized_controller: true
+  reject_third_player_controller: true
+  no_host_migration_or_reconnect_first_release: true
+  on_disconnect:
+    host: abort_match_and_return_valid_error
+    client: abort_match_and_show_reason
+    no_fabricated_victory_for_other_slot: true
+  local_bots:
+    use_virtual_trusted_host_side_controller: true
+    cannot_issue_commands_as_opponent_slot: true
+protocol:
+  version: 1
+  encode: versioned_serializable_Dictionary_or_primitive_JSON
+  never_serialize_arbitrary_objects_or_load_client_code: true
+  deterministic_event_order: [requested_or_accepted_tick, slot_id, command_sequence]
+  host_clock_fixed_ticks_per_second: 20
+  accepted_command_tick_policy: host_chooses_legal_tick_and_records_it
+  future_tick_overrun_rejected: true
+  same_sequence_from_same_peer_ignored_after_first_accept_or_reject: true
+  malformed_message_fails_closed_with_reason: true
+  validation_error_codes:
+    - unknown_peer
+    - incorrect_or_missing_slot_binding
+    - invalid_protocol_version
+    - unknown_match
+    - malformed_command
+    - duplicate_sequence
+    - out_of_order_sequence
+    - requested_tick_too_far_or_stale
+    - not_owner
+    - invalid_template_or_action
+    - target_not_currently_visible
+    - target_dead
+    - world_cell_outside_platform
+    - impassable_water_or_tree
+    - no_legal_path
+    - insufficient_real_deposited_Matter
+    - producer_queue_full
+    - invalid_site_or_blocked_footprint
+    - game_over
+  messages:
+    join_request:
+      client_fields: [protocol_version, display_label, requested_slot_optional]
+      server_adds: [actual_authenticated_ENet_peer_id]
+      response_fields: [accepted, allocated_slot, match_id, seed, map_hash, rules_hash]
+    start_game:
+      host_fields: [map_id, map_hash, rule_profile_hash, seed, two_controller_kind_slots, assigned_start_slots]
+      host_is_only_authority: true
+    submit_order:
+      client_fields: [match_id, sequence, requested_tick, intent, actor_ids, target_entity_id_or_cell, build_template_if_any]
+      slot_id_from_peer_binding_not_client_payload: true
+      allowed_intents: [select_not_server_authoritative, move, stop, gather_solid, return_cargo, start_barracks, train_worker, train_rifleman, attack_target, surrender_optional]
+      server_checks_all_command_legality: true
+    command_ack:
+      server_fields: [match_id, slot_id, sequence, resolved_tick, accepted, reason_code, generated_event_ids]
+    state_delta:
+      server_fields: [match_id, tick, visible_units_and_buildings, owned_unit_orders, player_Matter_store, own_production_queues, game_status]
+      per_human_slot_fog_filter: required
+      never_send_hidden_enemy_actor_IDS_or_positions_to_human_peer: true
+      suggested_update_interval_sim_ticks: 2
+      not_required_bitwise_cross_hardware: true
+    match_end:
+      server_fields: [match_id, final_tick, outcome, winner_slot_or_null, reason, canonical_hash]
+      possible_reasons: [elimination, simultaneous_elimination, draw_timeout, explicit_abort_disconnect, surrender]
+  bot_behavior:
+    calls_same_submit_order_and_validation: true
+    cannot_read_unseen_opponent_entity_objects_when_making_decisions: true
+    no_costless_create_actor_or_direct_state_change: true
+    strategies_first_MVP: [economy_attack]
+  spectator:
+    only_CC_watch_or_explicit_offline_replay_mode: true
+    GUI_observer_omniscience_allowed_as_read_only: true
+    does_not_issue_valid_player_owned_commands: true
+    no_extra_team_or_player_slots: true
+  replay_and_headless:
+    capture_only_host_accepted_command_log_for_replay: true
+    canonical_sorting_on_tie: [tick, slot_id, sequence]
+    hashes: [game_version, map_hash, balance_profile_hash, bot_policy_version, command_log_hash, final_game_state_hash]
+    headless_simulation_must_not_depend_on_render_or_sleep: true
+    C_C_batch_runs_many_matches_inside_single_engine_process_candidate: true
+    equal_result_for_normal_and_headless_same_seed_and_accepted_log: required_for_pinned_runtime
+  rts_client:
+    can_locally_preview_selection_and_destination_markers: true
+    cannot_authoritatively_spawn_or_delete_world_entities: true
+    scroll_pan_rotate_camera_is_cosmetic_non_authoritative: true
+    blocked_spawns_or_bad_target_errors_visible_to_user: true
+security_minimum:
+  validate_every_order_on_host: true
+  client_Matter_HP_units_positions_not_authoritative: true
+  no_untrusted_dynamic_source_code_deserialization: true
+  prevent_OOM_from_unbounded_client_order_payloads: true
+  input_rate_limits_candidate_commands_per_second_per_human: 40
+  allow_safe_order_rejection_without_disconnect: true
+  no_cloud_account_authentication_required_on_LAN: true
+headless_balance:
+  same_core_as_graphics: true
+  repeated_seed_side_swaps: true
+  results_JSONL: true
+  bot_version_and_command_count_reported: true
+  no_LLM_per_tick: true
+  cannot_claim_simulation_speed_without_measurement: true

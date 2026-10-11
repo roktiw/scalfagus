@@ -1,0 +1,201 @@
+schema_version: 1
+release_target: post_mvp_0_1_MAN_vs_ETH
+not_in_current_MAN_mirror_micro_release: true
+current_release_network_protocol: design/mvp0-man-mirror-network.yaml
+current_scope_decision: DEC-033
+project: scalfagus
+version: 0.1
+status: first_MVP_deterministic_protocol_candidate_not_playtest_approved
+owner_decisions: [DEC-018, DEC-019, DEC-021, DEC-022, DEC-023, DEC-024, DEC-025]
+source_of_numeric_values: design/mvp-balance-playtest-v0.1.yaml
+human_specification: design/mvp-gameplay-execution-contract.md
+background: design/three-network-channels-and-destruction.yaml
+man_detailed_research: design/man-power-dock-and-org-vessel-mechanics.yaml
+eth_detailed_research: design/eth-ether-network-mechanics.yaml
+authoritative_sim_tick_hz: 20
+common:
+  inventory_transfers_are_atomic: true
+  real_Matter_never_appears_in_a_global_wallet_without_actual_custody: true
+  energy_is_an_existing_spendable_stored_currency: true
+  support_capacity_is_population_limit_not_energy_currency: true
+  side_effect_event_idempotency_required: true
+  stable_order: [tick, team_id, entity_id, command_sequence, transaction_id]
+  player_and_bot_use_same_legality_checks: true
+  negative_stock_or_support_clamp_to_zero_without_accounting: forbidden
+man:
+  systems_count: 3
+  systems:
+    physical_material_logistics:
+      transports: [actual_crates, worker_bags, carried_modules, real_solid_Matter]
+      via: [walking_MIN, ground_moving_UMU_when_packed, local_warehouse_pickup]
+      sites_require_real_local_Matter_delivery: true
+      never_material_teleport_on_cable: true
+      worker_bag_capacity: 8
+      warehouse_source_legal_within_tiles: 2
+      source_priority: [worker_own_bag, near_completed_HQ_or_deployed_warehouse_UMU, nearby_site_loose_packets, assigned_source_node_if_reachable]
+      procurement_if_missing: queue_valid_MIN_delivery_then_build_work_may_pause
+      physical_inventory_locked_during_UMU_packed_or_bunker_mode: true
+      material_already_in_packed_UMU_retained_until_redeploy: true
+    conducted_electrical_energy:
+      source: [command_core_real_E_inventory_and_external_metered_generation, deployed_UMU_real_E_inventory_and_metered_generation]
+      cable_kind: same_hybrid_physical_route_as_optical_data_but_electrically_conductive
+      autotether_distance_tiles: 10
+      power_transfer_E_per_second: 4
+      disconnected_component_with_own_UMU_still_valid: true
+      power_transfer_does_not_mint_stored_E: true
+      power_transfer_requires_real_debit_and_credit: true
+      generation_WHILE_UMU_packed_E_per_second: 0
+      generation_WHILE_UMU_deployed_warehouse_E_per_second: 0.40
+      generation_WHILE_UMU_deployed_bunker_E_per_second: 0.20
+      mandatory_user_drawn_long_wires: false
+      cable_drop_is_not_material_crate: true
+    optical_information:
+      channel: fiber_inside_same_auto_hybrid_cable_route
+      physical_material_transport: false
+      command_messages: [base_orders, status_reports, connected_module_state]
+      latency_first_mvp: one_fixed_tick_per_valid_link
+      not_enforced_for_basic_ownership_or_unit_commands_if_component_isolated: true
+      no_mandatory_HQ_contact_for_legally_independent_outpost: true
+  UMU:
+    identity: man_umu
+    victory_building_in_all_modes: true
+    on_pack:
+      timer_seconds: 5
+      stop_grid_generation: true
+      stop_grid_service_and_ports: true
+      support_cap_addition_after_successful_pack: 0
+      stored_Matter_and_E_retained_no_double_refund: true
+      if_team_overcap_prevent_new_training_not_existing_unit_survival: true
+      transition_requires_safe_collision_and_no_garrison_occupants: true
+    on_deploy:
+      timer_seconds: 5
+      requires_dry_flat_legal_footprint: true
+      resume_grid_ports_and_mode_if_valid: true
+      restore_plus_eight_support_when_deployed: true
+    warehouse:
+      Matter_cap: 96
+      energy_E_per_second: 0.40
+      garrison_slots: 0
+    bunker:
+      Matter_existing_cap_retained_but_ports_closed: true
+      energy_E_per_second: 0.20
+      garrison_slots: 2
+      autonomous_gun: false
+      garrisoned_unit_attacks_use_real_LOS_and_current_cooldowns: true
+      garrisoned_entity_still_uses_population_support: true
+      if_bunker_destroyed: eject_real_alive_garrison_at_legal_nearby_cells_if_any
+    on_structure_death:
+      remove_victory_building_count_at_end_tick: true
+      emit_real_inventory_packet_drop_only_once: true
+      account_separately_for_embedded_structure_salvage: true
+eth:
+  systems_count: 1
+  graph_id: unified_typed_ether_network
+  services_on_same_graph: [typed_resource_freight, energy, blueprint_and_information, resonance_support]
+  node_templates: [eth_nexus, eth_pylon_obelisk]
+  node_ids_are_stable: true
+  physical_MIN_carries_raw_Matter_to_Nexus_only: true
+  no_ether_generation_on_pylon_from_ambient_without_Nexus: true
+  eligible_raw_conversion_port: eth_nexus
+  raw_conversion:
+    matter_units_per_second: 8
+    loss_fraction_first_mvp: 0
+    E_cost_first_mvp: 0
+    does_not_create_fourth_currency: true
+    resource_id_after_conversion: matter
+    output_custody: typed_inventory_in_receiving_Nexus
+  edges:
+    eligible_if_node_distance_tiles_at_most: 14
+    route_allowed_through_nonsolid_visual_canopy: true
+    ordinary_tree_trunk_does_not_break_ether_connection_due_only_to_combat_LOS: true
+    special_explicit_signal_disruptor_needed_to_disable_edge_other_than_node_death: true
+    edge_resource_bandwidth_units_per_second: 6
+    edge_min_latency_seconds: 0.5
+    link_latency_applies_before_destination_credit: true
+    resource_id_and_packet_quantity_immutable_during_each_hop: true
+    in_flight_packet_has_exact_one_edge_escrow_owner: true
+    packet_transfer_is_debit_node_then_credit_escrow_then_credit_dest: true
+    max_backlog_when_receiver_full: pause_and_keep_at_current_sender_or_inflight_if_already_committed
+    payloads_are_finite_and_queued: true
+    data_messages_use_same_graph_and_priority_scheduler: true
+    data_messages_do_not_create_or_spend_Matter: true
+    routing_heuristic: shortest_valid_edges_then_sorted_node_ID
+    no_source_to_target_distance_tunneling_without_relay_edges: true
+    background_equalization_may_not_starve_priority_site_delivery: true
+  node_inventory:
+    nexus_Matter_capacity: 200
+    pylon_Matter_capacity: 80
+    nexus_E_capacity: 120
+    pylon_E_capacity: 60
+    no_node_can_accept_over_capacity: true
+    per_node_actual_E_not_a_second_global_network_wallet: true
+  pylon:
+    initial_mobility: anchored
+    future_meditated_travel: disabled
+    extra_team_support_if_alive: 8
+    support_in_all_modes: true
+    storage_relay_mode:
+      link_total_bandwidth_multiplier: 1.0
+      accepts_valid_local_loading: true
+      autonomous_turret_enabled: false
+    meditate_mode:
+      activation_time_seconds: 5
+      Energy_cost_E: 2
+      local_ports_open: false
+      autonomous_turret_enabled: false
+      source_backbone_network_still_connected: true
+    turret_mode:
+      link_total_bandwidth_multiplier: 0.5
+      local_loading_port_open: false
+      existing_inventory_stays_inside_node: true
+      turret_damage: 8
+      turret_range_tiles: 4
+      turret_cooldown_seconds: 2
+      turret_E_per_shot: 1
+      needs_actual_visible_target_and_LOS: true
+      no_power_no_shot: true
+      source_backbone_network_still_connected: true
+  worker_beam_construction:
+    builder_enters_NETWORK_mode_and_occupies_real_workforce_slot: true
+    max_beam_to_valid_network_node_tiles: 14
+    path_to_required_blueprint_authority_via_one_graph: true
+    at_least_one_beam_required_whole_build_time: true
+    more_workers_help_only_with_caps_1_2_3_by_stage: true
+    status_when_one_of_many_valid_beams_breaks: continue_slower
+    status_when_last_valid_beam_breaks: immediate_total_site_abort
+    committed_site_material_drops_as_world_orbs_once: true
+    remote_reserved_material_not_delivered_stays_in_original_node: true
+    link_cut_and_site_interrupt_share_event_ledger_not_double_drop: true
+    no_building_without_valid_material_and_E_payment: true
+  equalization:
+    mode: capacity_weighted_eventual_balancing
+    started_only_within_connected_component: true
+    match_resource_id_and_reservations_separately: true
+    target_node_r: floor(eligible_component_unreserved_r_times_cap_node_r_div_sum_eligible_caps_r)
+    distribute_remainder: stable_ascending_node_ID
+    exclude_committed_site_delivered_stock: true
+    exclude_edges_in_flight: true
+    exclude_training_and_player_work_reservations: true
+    background_priority_after_construction_and_production: true
+    effect_not_instantaneous: true
+    each_step_moves_owned_packet_through_eligible_edge_and_capacity: true
+    never_credits_unobserved_future_target_before_arrival: true
+    recompute_after_every_link_or_node_or_mode_change: true
+    no_starving_priority_payments_due_to_balance_oscillation: true
+    if_all_caps_full: pause_without_discard
+  on_partition:
+    cut_timestamp_is_authoritative_fixed_tick: true
+    no_replication_of_total_typed_resource_stock: true
+    sum_per_component_equals_existing_held_node_balance_in_that_component: true
+    what_happens_to_cut_edge_escrow: spill_once_as_ETH_world_orbs_with_20_percent_loss
+    cut_link_does_not_destroy_uncut_stored_node_inventory: true
+    disconnected_node_still_keeps_actual_local_E_and_Matter: true
+    known_blueprints_cached_locally_remain_usable_with_valid_Nexus: true
+    no_free_Nexus_reconstruction_or_new_network_summoner: true
+  on_node_death:
+    stored_packets_recoverable_fraction: 0.35
+    embedded_structure_material_recoverable_fraction: 0.35
+    packet_death_event_idempotent: true
+    surviving_edges_rebuild_components_after_death: true
+    death_does_not_refund_spent_channel_E: true
+acceptance_reference: design/mvp-balance-acceptance.yaml

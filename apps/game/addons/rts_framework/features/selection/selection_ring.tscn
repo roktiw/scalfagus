@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://l5i07kqny012"]
+
+[ext_resource type="Shader" uid="uid://bc56ls1q0je88" path="res://addons/rts_framework/features/selection/assets/shaders/ring_selection.gdshader" id="1_unvq6"]
+[ext_resource type="Texture2D" uid="uid://bt2s2hkx60r86" path="res://addons/rts_framework/features/selection/assets/textures/pixel.png" id="2_qc4ts"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xupk7"]
+render_priority = 0
+shader = ExtResource("1_unvq6")
+shader_parameter/radius = 0.6
+shader_parameter/thickness = 0.05
+
+[node name="SelectionRing" type="Sprite3D"]
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_xupk7")
+pixel_size = 1.0
+axis = 1
+texture = ExtResource("2_qc4ts")

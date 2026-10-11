@@ -5,6 +5,10 @@ Status: **newest owner-directed mechanic, replacing contradictory earlier networ
 Related: [world loot / attrition](world-loot-salvage-and-recycling-2026-10-11.md), [network mechanics data](three-network-channels-and-destruction.yaml), [DEC-021/022/023](decisions.yaml).
 **Priority:** This is later than DEC-018–020 / [previous network contract](three-faction-network-and-infrastructure-contract-2026-10-11.md) and supersedes it where incompatible. The established ORG mother transport, MAN MID and MAX physical chassis, and ETH MIN/MID/MAX role distinctions remain.
 
+## Subsequent raw-ingress correction: DEC-039
+
+The 2026-10-12 owner decision [DEC-039](org-plug-holes-and-eth-three-ingress-methods-2026-10-12.md) keeps the **one ETH Ether Network** and all conserved local inventories and transfer rules here, but **supersedes the historical Nexus-only raw ingress wording**. Future ETH may enter raw cargo into elevated Ether via (1) physical Nexus delivery at zero incremental upload Energy cost, (2) an eligible drone paying 33% of its own shield to inject a bounded package at an Obelisk tip, or (3) expensive powered automatic Obelisk pick-up of eligible ground cargo. Earlier Nexus-only examples here are historical baseline fixtures, not prohibitions against DEC-039. The ORG vessel network remains bidirectional (DEC-038); Plug Hole interfaces for eligible MIN/MID/MAX workers are the current **assistant-preferred** port design, with the user's final mouth-versus-plug choice still open. All is post-MVP0.
+
 ## 1. Updated comparison
 
 | Question | ORG — 2 coupled biological systems | MAN — 3 coupled physical systems | ETH — ONE Ether Network |

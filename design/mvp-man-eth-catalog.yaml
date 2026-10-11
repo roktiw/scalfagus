@@ -1,7 +1,16 @@
 schema_version: 1
+release_target: post_mvp_0_1_MAN_vs_ETH
+do_not_instantiate_five_templates_per_faction_in_micro_MVP0: true
+current_micro_MVP0_templates: [man_command_core, man_min, man_barracks, man_rifleman]
+current_release_owner_decision: DEC-033
 project: scalfagus
-version: 0.1
+version: 0.2
 status: owner_scoped_five_roles_per_faction_all_numbers_and_extra_names_playtest_candidates
+active_numerical_playtest_profile: design/mvp-balance-playtest-v0.1.yaml
+active_gameplay_protocol: design/mvp-gameplay-execution-contract.md
+active_network_protocol: design/mvp-network-execution.yaml
+only_five_major_functional_templates_per_faction: true
+hero_is_variant_of_basic_soldier: true
 owner_focus:
   factions: [man, eth]
   simple_roles_per_faction: [mother_hq, worker_min, soldier, infrastructure_farm, barracks]
@@ -204,7 +213,7 @@ factions:
         produces: [man_rifleman]
         depends_on_available_real_materials: true
         powered_by: reachable_eligible_man_power_grid_or_local_battery
-        local_energy_or_upkeep: finite_TBD
+        local_energy_or_upkeep: {training_price_E_per_rifleman: 2, idle_upkeep_E_per_second: 0}
         production_queue: simple_fifo
     special_interruption: incomplete_scaffold_and_loose_crates_persist_after_builder_stops
   eth:
@@ -248,7 +257,9 @@ factions:
         sample_damage: 9
         sample_cooldown_seconds: 1.2
         can_attack_buildings: true
-        energy_use_per_shot: TBD
+        energy_use_per_shot: 0
+        training_energy_cost_E: 2
+        note: energy_billed_during_training_not_each_regular_soldier_shot_in_MVP
         use_soldier_archetype_for_hero_variant: true
       infrastructure_farm:
         id: eth_pylon_obelisk
@@ -266,7 +277,11 @@ factions:
         turret_reduces_resource_transfer_bandwidth: candidate
         local_storage_ports_closed_in_turret: candidate
         no_free_damage_without_operational_energy: true
-        network_transport_latency_and_bandwidth: positive_and_finite_TBD
+        network_transport_latency_and_bandwidth: {latency_seconds: 0.5, aggregate_resource_units_per_second_per_link: 6}
+        node_capacity_Matter: 80
+        node_energy_capacity_E: 60
+        pylon_energy_generator_output_E_per_second: 0
+        turret_E_per_shot: 1
         eventual_equalization_by_capacity_fill_ratio: proposed_not_canon
       barracks:
         id: eth_manifestation_chamber
@@ -278,7 +293,7 @@ factions:
         produces: [eth_sentinel]
         actual_local_network_resource_availability_required: true
         requires_valid_eth_nexus_or_initialized_local_authority: true
-        production_energy_rate: finite_TBD
+        production_energy_rate: {training_price_E_per_sentinel: 2, idle_upkeep_E_per_second: 0}
         production_queue: simple_fifo
     nexus_and_pylons_one_network:
       sends: [typed_matter_ether_representation, energy, blueprint_information]

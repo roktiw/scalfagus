@@ -1,0 +1,99 @@
+schema_version: 1
+project: scalfagus
+id: DEC-035
+version: 0.1
+date: "2026-10-11"
+status: owner_approved_direction_exact_mechanics_and_balance_pending
+human_specification: design/three-faction-logistics-and-eth-unit-relay-2026-10-11.md
+latest_prior_decisions: [DEC-010, DEC-011, DEC-012, DEC-013, DEC-018, DEC-019, DEC-020, DEC-021, DEC-022, DEC-023]
+latest_three_ingress_owner_decision: DEC-039
+latest_three_ingress_contract: design/org-plug-holes-and-eth-three-ingress-methods.yaml
+first_release_guard:
+  release: mvp_0_1
+  decision: DEC-033
+  excluded: [eth_pylon_unit_relay, org_vascular_supply, advanced_man_conveyors, UMU]
+  preserve_MAN_vs_MAN_four_templates_and_Matter_delivery: true
+factions:
+  man:
+    physical_resource_transport: [worker_carried, vehicles, transporters, finite_warehouses, eligible_UMU_storage, conveyor_belts]
+    eligible_bunker_generator_resource_ports_depend_on_deployed_mode: true
+    power_data_hybrid_cable_carries_physical_Matter: false
+    ground_mobile_UMU: true
+    network_unit_transport: false
+    possible_physical_passenger_transport: true
+  org:
+    physical_resource_transport: [workers, large_transport_organisms, live_vascular_veins]
+    veins_carry: [typed_material_packets, nutrition, energy, information]
+    branch_home_feed_and_live_connection_required: true
+    large_mobile_mother_is_actual_carrier: true
+    network_unit_transport: false
+    possible_physical_passenger_transport: true
+  eth:
+    resource_intake: Nexus_zero_Energy_or_drone_tip_shield_or_powered_Obelisk_ground_pickup
+    converted_typed_resources: ether_representation_not_new_currency
+    every_pylon_is_storage:
+      local_inventory: finite
+      inventory_types: [matter, volatiles, energy]
+      ownership_and_local_custody: required
+      transfer_across_links: gradual_hop_events
+      no_instant_global_wallet: true
+    topology: one_unified_Ether_Network
+    services: [typed_resources, energy, information, unit_relay]
+    network_unit_transport: true
+    network_unit_transport_unique_to_ETH: true
+    slow_unit_relay:
+      concept: ETH_units_can_cross_existing_connected_pylon_links
+      only_eligible_owned_units: true
+      physical_source_and_destination_pylons_required: true
+      path_is_real_existing_graph: true
+      time: positive_nonzero_per_hop_and_depart_arrival
+      resource_cost: real_energy_and_bandwidth_TBD
+      capacity: finite_node_ports_link_occupancy_and_queue
+      distinct_from_building_relocation: true
+      same_unit_identity_inventory_hp_cooldowns: true
+      cannot_act_on_map_during_transit: true
+      destination_spawn_requires_free_legal_space: true
+      source_and_destination_storage_reserved_separately_from_unit_occupancy: true
+      unit_is_not_currency_or_new_production: true
+      no_duplicate_spawn_or_recreation: true
+      lost_connection_handling: last_safe_node_hold_or_repath_candidate
+      lethal_interruption_and_loss_policy: undecided
+      destination_under_fire_policy: undecided
+      turret_mode_forward_rate_and_ports_policy: undecided
+      heavy_unit_size_energy_multiplier: tunable_TBD
+      competing_freight_qos: tunable_TBD
+      base_game_includes_pylon_relay_of_buildings: false
+      manual_semiauto_fullauto_share_same_CommandGateway: true
+constraints:
+  one_authoritative_resource_and_entity_ledger: true
+  pylon_network_partition_preserves_existing_node_balances: true
+  in_flight_resource_packet_and_unit_custody_are_distinct: true
+  no_instant_cross_network_or_cross_partition_unit_teleport: true
+  cannot_target_invisible_unknown_pylon: true
+  policy_or_high_temperature_does_not_grant_new_spending_or_attack_permissions: true
+  FPP_and_RTS_control_share_same_unit_identity: true
+  advanced_faction_asymmetry_post_MVP0: true
+acceptance_test_ids:
+  - LOG-01
+  - LOG-02
+  - LOG-03
+  - LOG-04
+  - ETH-UNIT-01
+  - ETH-UNIT-02
+  - ETH-UNIT-03
+  - ETH-UNIT-04
+  - ETH-UNIT-05
+  - ETH-UNIT-06
+  - ETH-UNIT-07
+  - ETH-UNIT-08
+  - ETH-UNIT-09
+  - ETH-UNIT-10
+open_questions:
+  - exact_link_and_pylon_throughput_with_unit_traffic
+  - energy_cost_per_mass_distance_hop
+  - unit_types_eligible_for_unit_relay
+  - whether_transit_near_enemy_is_disabled
+  - safe_repath_and_damage_if_pylon_destroyed
+  - turret_mode_allow_forwarding_or_disable_landing
+  - storage_buffer_and_unit_queue_contention
+  - unlock_stage_of_ETH_network_unit_transit

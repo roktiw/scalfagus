@@ -1,0 +1,90 @@
+schema_version: 1
+project: scalfagus
+suite: mvp0_man_mirror_rts_acceptance
+status: design_fixtures_not_executed
+numeric_acceptance: design/mvp0-man-mirror-balance-acceptance.yaml
+active_numeric_profile: design/mvp0-man-mirror-balance-v0.1.yaml
+active_execution_contract: design/mvp0-man-mirror-execution-contract.md
+active_network_contract: design/mvp0-man-mirror-network.yaml
+old_five_role_and_FPP_tests_not_a_micro_MVP_release_gate: true
+cases:
+  - id: M0-01
+    category: startup
+    action: start_same_faction_two_slot_match
+    expect: exactly_two_MAN_HQ_and_six_MAN_workers_with_distinct_owners_and_stable_IDs
+  - id: M0-02
+    category: mirror
+    action: swap_player_slots_on_same_map_seed
+    expect: symmetric_initial_rules_stocks_template_stats_and_reachable_deposits
+  - id: M0-03
+    category: economy
+    action: collect_finite_SOLID_and_deposit_at_HQ
+    expect: Matter_credited_only_after_physical_worker_delivery_and_conservation
+  - id: M0-04
+    category: economy
+    action: repeat_deposit_and_build_commands
+    expect: no_duplicate_credit_no_negative_stock_no_double_spend
+  - id: M0-05
+    category: construction
+    action: worker_builds_barracks_using_Matter
+    expect: valid_placement_real_elapsed_build_and_funded_completion
+  - id: M0-06
+    category: production
+    action: train_worker_at_HQ_and_rifleman_at_barracks
+    expect: correct_owner_price_queue_duration_spawn_collision_and_capacity
+  - id: M0-07
+    category: combat
+    action: attack_units_and_completed_buildings
+    expect: shared_health_cooldown_range_damage_and_valid_targets
+  - id: M0-08
+    category: navigation
+    action: move_and_fire_across_trees_ponds_and_map_edge
+    expect: blocked_paths_LOS_and_world_boundary_respected
+  - id: M0-09
+    category: victory
+    action: destroy_all_opponent_completed_buildings
+    expect: exactly_one_winner_even_if_losing_workers_or_soldiers_survive
+  - id: M0-10
+    category: victory
+    action: reach_explicit_timeout_without_winner
+    expect: draw_reason_and_no_arbitrary_victory
+  - id: M0-11
+    category: controllers
+    action: run_human_computer_match_end_to_end
+    expect: bot_uses_only_valid_player_commands_can_win_or_lose_and_restart_works
+  - id: M0-12
+    category: controllers
+    action: run_computer_computer_match_without_human_input
+    expect: complete_match_and_structured_result_in_headless_and_observed_modes
+  - id: M0-13
+    category: multiplayer
+    action: two_human_clients_join_one_LAN_or_loopback_host
+    expect: exactly_two_slots_same_authoritative_state_simultaneous_legal_commands
+  - id: M0-14
+    category: multiplayer
+    action: spoof_enemy_owner_or_replay_duplicate_out_of_order_command
+    expect: host_rejects_without_state_corruption_or_double_application
+  - id: M0-15
+    category: multiplayer
+    action: host_or_client_disconnects_mid_match
+    expect: clear_abort_or_error_without_stuck_ui_or_fabricated_win
+  - id: M0-16
+    category: determinism
+    action: replay_same_map_rules_seed_and_accepted_commands_on_pinned_runtime
+    expect: equal_final_state_hash_and_economy_ledger
+  - id: M0-17
+    category: fog
+    action: bot_attempts_attack_on_unseen_enemy_coordinates
+    expect: no_unfair_hidden_actor_tracking_or_illegal_target_id
+  - id: M0-18
+    category: ui
+    action: navigate_menu_to_each_of_human_human_human_computer_computer_computer
+    expect: all_three_supported_modes_start_and_report_results
+  - id: M0-19
+    category: ui
+    action: inspect_shipped_mvp_0_1_controls
+    expect: RTS_Overlord_only_without_FPP_or_TPP_promised_controls
+  - id: M0-20
+    category: regression
+    action: run_legacy_camera_and_sprite_smoke_during_migration
+    expect: preserved_existing_work_until_replacement_contract_tests_pass

@@ -1,0 +1,200 @@
+schema_version: 1
+project: scalfagus
+release: mvp_0_1
+profile_id: man_mirror_verdant_divide_first_playtest
+version: 0.1
+status: supplementary_analytical_scenario_NOT_active_release_profile_NOT_owner_approved_or_tested
+active_micro_release_numeric_source: design/mvp0-agent-implementation-contract.yaml
+known_candidate_differences_from_active_draft: [worker_speed_2p4_vs_2p3_tiles_s, build_radius_18_vs_draft_9_tiles, mining_cycle_loading_0p5_vs_draft_0p7_s]
+do_not_load_this_file_automatically_for_mvp0: true
+OWNER_release_decision: DEC-033
+scope_contract: design/mvp0-man-mirror-rts.yaml
+runtime_contract: design/mvp0-man-mirror-execution-contract.md
+source_map: design/mvp-verdant-divide-map.yaml
+test_suite: design/mvp0-man-mirror-balance-acceptance.yaml
+note: >
+  SUPPLEMENTARY numeric analytical scenario for MAN mirror MVP0 only.
+  The active implementation candidate is documented in
+  design/mvp0-agent-implementation-contract.yaml. Do not load this
+  alternative into the current release or combine candidate numbers
+  without selecting a versioned profile and recalculating tests.
+  The MAN_vs_ETH profile design/mvp-balance-playtest-v0.1.yaml belongs
+  to a LATER release after DEC-033. No ETH, UMU, Energy, Hero,
+  two-faction resource asymmetry or FPP systems in the first game.
+session:
+  slots: 2
+  faction_each: man
+  controllers: [human, bot]
+  controller_pairings: [HH, HC, CC]
+  canonical_20_Hz_simulation: true
+  headless_same_game_state: true
+  unpaced_advance_in_headless_batches: true
+  map_frame: floating_space_platform
+  map_topology: planar
+  initial_map_size_candidate: [64, 64]
+  map_tile_meters_candidate: 2
+  implicit_winner_from_timeout: false
+  explicit_draw_timeout_seconds: 1200
+  game_time_not_network_wall_clock: true
+  target_playable_mirror_match_minutes: [8, 15]
+  default_victory: destroy_all_enemy_living_completed_buildings
+starter_per_slot:
+  hq: 1
+  worker: 3
+  barracks: 0
+  rifleman: 0
+  Matter_in_HQ: 0
+  no_energy_inventory_or_generator_in_release: true
+  no_population_support_system_in_release: true
+  no_hero_spawn_required: true
+resource:
+  active_currency: matter
+  world_source_form_collectible: solid
+  solid_source_to_Matter_ratio: 1
+  physically_delivered_before_HQ_credit: true
+  worker_cargo_capacity: 10
+  worker_solid_extract_seconds_per_unit: 2.0
+  worker_speed_tiles_per_second: 2.4
+  load_unload_seconds_per_full_worker_trip: 0.50
+  finite_initial_source_total_on_Verdant_Divide: 1660
+  safe_near_each_start_total: 400
+  node_depletion_no_respawn: true
+  no_liquid_or_gas_extraction: true
+  living_trees_are_LOS_cover_not_mineable: true
+  no_salvage_recycling_in_release: true
+  destroyed_carried_Matter:
+    policy: drop_once_as_collectible_MAN_cube_candidate
+    original_resource_quantity_is_preserved: true
+    no_additional_ledger_credit_on_drop: true
+    optional_if_scope_burden: >
+      For MVP0 initial implementation, dead worker cargo can be marked
+      irrecoverably_lost instead of implementing cross-faction pickup,
+      but must be explicit and conservation-preserving in its ledger.
+      Never auto-credit dead cargo back to HQ.
+  balance_analytic_single_worker_at_8_tiles:
+    cargo_per_trip: 10
+    source_one_way_distance_tiles: 8
+    gather_seconds_for_full_bag: 20
+    travel_round_trip_seconds: 6.6667
+    overhead_seconds: 0.5
+    expected_trip_seconds_approx: 27.1667
+    expected_Matter_per_min_per_worker_approx: 22.09
+    expected_Matter_per_min_three_workers_approx: 66.26
+    latency_queueing_and_stuck_units_excluded: true
+units:
+  man_command_core:
+    role: completed_HQ_and_worker_trainer
+    max_hp: 1200
+    armor: 0
+    cost_on_match_start: 0
+    rebuild_allowed_in_release: false
+    victory_building: true
+    Matter_storage_capacity: 600
+    worker_queue_slots: 1
+    vision_range_tiles: 9
+    ground_footprint_tiles: [3, 3]
+  man_min:
+    max_hp: 50
+    armor: 0
+    Matter_cost: 35
+    train_seconds: 7
+    cargo_Matter: 10
+    movement_tiles_per_second: 2.4
+    vision_range_tiles: 6
+    support_cost: 0
+    can_build_barracks: true
+    can_harvest_SOLID: true
+    weapon: none
+    victory_building: false
+    world_footprint_radius_meters: 0.4
+  man_barracks:
+    max_hp: 650
+    armor: 0
+    Matter_cost: 100
+    solo_build_seconds: 18
+    trainer: man_rifleman
+    queue_slots: 1
+    victory_building: true
+    ground_footprint_tiles: [3, 3]
+    vision_range_tiles: 8
+  man_rifleman:
+    max_hp: 100
+    armor: 0
+    Matter_cost: 50
+    train_seconds: 9
+    damage_per_shot: 8
+    attack_cooldown_seconds: 1.0
+    attack_range_world_meters: 6.5
+    attack_range_tiles_derived: 3.25
+    movement_tiles_per_second: 2.5
+    sight_range_tiles: 8
+    hit_resolution_first_release: one_authoritative_Godot_3D_LOS_raycast
+    can_hit: [enemy_MAN_worker, enemy_MAN_rifleman, enemy_MAN_command_core, enemy_MAN_barracks]
+    damage_vs_structures_multiplier: 1.0
+    victory_building: false
+    world_footprint_radius_meters: 0.45
+construction:
+  one_eligible_MAN_worker_builds_Barracks: true
+  multiple_workers_extra_speed_first_release: false
+  materials_deduct_at_construction_start_from_actual_team_HQ_depot: true
+  legitimate_construction_only_within_HQ_service_zone_candidate_tiles: 18
+  worker_must_physically_reach_site_to_advance_work: true
+  no_unfinished_UMU_or_material_delivery_network_needed_first_release: true
+  site_if_worker_walks_away: pause_and_retain_progress
+  site_if_destroyed: consumed_matters_logged_as_loss_no_loot_in_release_candidate
+  no_infinite_on_cancel:
+    not_yet_started_site: no_Matter_debit
+    started_site_cancellation: zero_Matter_refund_first_release_candidate
+    explicit_future_real_salvage_later: true
+  building_never_teleports_to_invalid_or_occupied_cell: true
+  training:
+    cost_from_real_HQ_Matter_store_only: true
+    energy_cost: 0
+    support_cap_check: none_in_release
+    spawn_blocked: wait_for_safe_cell_no_refund_or_extra_spawn
+combat:
+  friendly_fire: false
+  damage_formula: raw_damage_no_armor_in_initial_mirror
+  rifleman_direct_DPS: 8.0
+  hq_time_to_kill_solo_rifleman_seconds_theoretical: 150
+  hq_time_to_kill_5_riflemen_seconds_theoretical: 30
+  barracks_time_to_kill_5_riflemen_seconds_theoretical: 16.25
+  LOS_tree_trunks_block: true
+  LOS_decorative_canopy_not_block: true
+  LOS_terrain_and_world_bounds_block: true
+  no_auto_fire_into_fog: true
+  no_ability_or_tech_tree_in_release: true
+fog:
+  simple_line_of_sight_and_radius: true
+  bot_uses_fog_filtered_state: true
+  static_known_start_slot_coordinates_do_not_grant_hidden_actor_ids: true
+  remembered_enemy_position_for_attack_move_only_not_automatic_hidden_attack: true
+  spectator_sees_everything_after_explicit_CC_watch_mode: true
+network_authority:
+  exactly_one_host: true
+  authoritative_server_ticks_per_second: 20
+  clients_submit_commands_and_receive_snapshots: true
+  no_client_issued_direct_HP_Matter_or_position_delta: true
+  simultaneous_players_deterministic_command_order: [intended_tick, player_slot_id, client_sequence]
+  duplicate_order_no_effect: true
+  out_of_order_command_rejected_or_held_with_defined_reason: true
+  host_disconnect_aborts_explicitly_no_fabricated_winner: true
+  client_disconnect_policy: explicit_abort_without_fake_victory_first_release
+  no_prediction_or_rollback_required: true
+bot:
+  basic_policy: gather_deliver_build_barracks_train_riflemen_scout_attack
+  same_legal_command_protocol_as_human: true
+  think_every_simulation_ticks: 10
+  max_orders_per_think_candidate: 3
+  first_offensive_group_size: 3
+  no_omniscience_or_free_resources: true
+  future_policy_experiments: [rush, turtle, economist, random_legal]
+balance_safety:
+  starter_nearby_400_Matter_covers_barracks_plus_six_riflemen: true
+  barracks_plus_six_soldiers_cost_Matter: 400
+  barracks_plus_three_soldiers_cost_Matter: 250
+  barracks_plus_three_soldiers_plus_three_workers_cost_Matter: 355
+  no_need_to_traverse_contested_center_before_first_three_soldiers: true
+  mirror_income_rate_identical_on_symmetrically_reachable_source_nodes: true
+  durations_and_win_rates_must_be_measured_in_real_Godot_matches: true
+  human_HH_LAN_and_CC_accelerated_both_release_requirements: true

@@ -1,0 +1,140 @@
+schema_version: 1
+project: scalfagus
+reviewed_on: 2026-10-11
+owner_decision: DEC-034
+status: reviewed_candidates_some_vendored_not_engine_verified
+engine: Godot_4_7_2_Standard
+runtime_targets: [macos, windows, linux, web]
+policy:
+  priority: [existing_repo, godot_built_in, audited_github_module, justified_game_domain_code]
+  modules_are_not_installed_by_documentation: true
+  approval_requires: [maintainer_and_origin_audit, license_file, pinned_commit, godot_4_7_2_smoke, platform_matrix, license_notice, adapter_boundary, rollback_plan]
+  runtime_network_fetch_for_extensions: forbidden
+  floating_branch_dependency: forbidden
+  new_custom_A_star_or_physics_or_gui_framework_without_exception: forbidden
+  no_Tauri_Rust_Vite_runtime: true
+  only_one_external_state_machine_engine_at_a_time: true
+  canonical_mvp: DEC-033_MAN_vs_MAN_RTS_HH_HC_CC
+
+providers:
+  - id: keychain
+    name: Keychain
+    source_url: https://github.com/Orama-Interactive/Keychain
+    github_org_or_owner: Orama-Interactive
+    license_spdx: MIT
+    license_evidence: upstream_LICENSE_and_README
+    reviewed_revision: 5e13f4c5d1e2c67c2d14c97a1cf5f8bbe0737d6b
+    latest_repository_source_context: Godot_4_6_1_updated_2026_02_20
+    purpose: player_remappable_input_actions_profiles_groups_and_conflict_checks
+    port: InputBindingPort
+    status: vendored_runtime_autoload_and_RTS_Options_wired_pending_Godot_verification
+    first_release_required: false
+    web_compatibility: unverified
+    godot_4_7_2_compatibility: unverified
+    installed_in_project: true
+    risk: native_autoload_replaces_duplicate_editor_registration;_verify_user_profiles_and_conflicts
+    fallback: Godot_InputMap_plus_ConfigFile
+    test: headless_keychain_rts_smoke_then_manual_profiles_restart_WASD_T_and_conflicts
+
+  - id: godot_statecharts
+    name: Godot State Charts
+    source_url: https://github.com/derkork/godot-statecharts
+    github_org_or_owner: derkork
+    license_spdx: MIT
+    license_evidence: upstream_license_document
+    release_tag: v0.22.5
+    reviewed_revision: 76d226a3efac66a72aea825382b320c94808f409
+    godot_4_7_2_compatibility: upstream_0_22_5_fix_for_Godot_4_7_not_locally_tested
+    purpose: reusable_statecharts_for_bot_worker_build_queue_and_unit_state
+    port: BotBehaviorPort
+    status: gitlink_pinned_auto_installer_editor_enabled_pending_local_verification
+    first_release_required: false
+    installed_in_project: false
+    provisioning: scripts/install-godot-addons.sh_ensure_auto_on_first_dev_run
+    editor_plugin_enabled_in_project_configuration: true
+    web_compatibility: unverified
+    risk: visual_fsm_can_be_overkill_for_small_four_unit_roster
+    fallback: Godot_signals_with_explicit_small_state_components
+    test: state_transitions_seeded_two_bot_Mirror_match_and_headless_pause_resume
+
+  - id: gut
+    name: GUT_Godot_Unit_Tests
+    source_url: https://github.com/bitwes/Gut
+    github_org_or_owner: bitwes
+    license_spdx: MIT
+    license_evidence: addons/gut/LICENSE.md_and_upstream_README
+    branch_evaluated: godot_4_7
+    reported_godot_4_7_version: 9.7.1
+    reviewed_revision: aeb5d4f3f7f0a6c9b5e178876d6c99b791fda605
+    godot_4_7_2_compatibility: upstream_branch_claim_not_locally_tested
+    purpose: repeatable_unit_integration_assertions_mocks_cli_JUnit
+    port: TestHarnessPort
+    status: gitlink_pinned_auto_installer_editor_enabled_pending_local_verification
+    first_release_required: false
+    installed_in_project: false
+    provisioning: scripts/install-godot-addons.sh_ensure_auto_on_first_dev_run
+    editor_plugin_enabled_in_project_configuration: true
+    web_compatibility: editor_dev_tool_not_required_in_release
+    risk: plugin_test_fixtures_and_test_lifecycle_must_not_break_existing_Godot_smokes
+    fallback: existing_SceneTree_native_smoke_tests
+    test: basic_ECS_command_tests_as_GUT_plus_retained_old_menu_and_five_sprite_tests
+
+  - id: limboai
+    name: LimboAI
+    source_url: https://github.com/limbonaut/limboai
+    github_org_or_owner: limbonaut
+    license_spdx: MIT
+    license_evidence: upstream_LICENSE_md
+    release_tag: v1.8.1
+    reviewed_revision: e45e60e976dafab7f2c15cc341ae366e4cf3352b
+    godot_4_7_2_compatibility: release_supplies_Godot_4_7_2_module_build_and_GDExtension_4_6_plus_claim
+    purpose: sophisticated_behavior_trees_plus_hierarchical_FSM
+    port: BotBehaviorPort
+    status: reserve_candidate_not_default
+    first_release_required: false
+    installed_in_project: false
+    web_compatibility: must_validate_GDExtension_platform_binaries_and_web_build
+    risk: native_Cplusplus_extension_multi_target_distribution_complexity_and_perf
+    fallback: Godot_State_Charts_or_small_native_bot_policy
+    test: compile_run_mac_win_linux_web_and_no_unauthorized_state_changes
+
+  - id: rluders_rts_framework
+    name: RTS_Framework
+    source_url: https://github.com/rluders/rts-framework
+    github_org_or_owner: rluders
+    license_spdx: MIT
+    license_evidence: LICENSE_and_README
+    reviewed_revision: b366628f02f18199db6077d3beff2b606df3c40b
+    upstream_state: explicitly_WIP_not_intended_for_production
+    purpose: reference_design_for_selection_and_commands
+    port: SelectionPort_and_CommandGateway_design_inspiration_only
+    status: vendored_editor_enabled_noop_WIP_reference_only
+    first_release_required: false
+    installed_in_project: true
+    godot_4_7_2_compatibility: unverified
+    web_compatibility: unverified
+    risk: replacing_authoritative_GameState_or_core_unit_model_would_break_match_scope
+    fallback: Godot_raycasts_selection_UI_and_command_contract
+    test: extract_only_permitted_ideas_with_explicit_provenance_review
+
+explicitly_builtin_not_addons:
+  - {id: input, upstream: Godot_4_7_2, classes: [InputMap, InputEvent, Shortcut, ConfigFile]}
+  - {id: ui, upstream: Godot_4_7_2, classes: [Control, CanvasLayer, Theme, Container, ProgressBar, SubViewport]}
+  - {id: picking, upstream: Godot_4_7_2, classes: [PhysicsDirectSpaceState3D, PhysicsRayQueryParameters3D, Camera3D]}
+  - {id: pathfinding, upstream: Godot_4_7_2, classes: [AStarGrid2D, NavigationServer3D, NavigationAgent3D, NavigationRegion3D]}
+  - {id: movement, upstream: Godot_4_7_2, classes: [CharacterBody3D, CollisionShape3D, StaticBody3D]}
+  - {id: network, upstream: Godot_4_7_2, classes: [ENetMultiplayerPeer, MultiplayerAPI, MultiplayerSpawner, MultiplayerSynchronizer]}
+  - {id: sprites, upstream: Godot_4_7_2, classes: [Sprite3D, AnimationPlayer, AnimationTree]}
+  - {id: resources, upstream: Godot_4_7_2, classes: [Resource, JSON, FastNoiseLite, FileAccess]}
+  - {id: test_base, upstream: Godot_4_7_2, classes: [SceneTree, Script, Signal]}
+
+installation_source_lock: architecture/godot-addons.lock.yaml
+local_godot_actions_fallback: scripts/check.sh
+local_addon_preflight: scripts/install-godot-addons.sh_--check
+
+installation_workflow:
+  install_using: [reviewed_tag_or_full_commit, offline_vendoring_inside_apps/game/addons, validate_license_and_authorship]
+  enable_editor_plugin_if_plugin_cfg_exists: yes_after_review
+  track_lock_fields: [upstream_repo, full_commit_sha, license, sha256_if_binary, host_os, target_os, godot_version, reviewed_by, reviewed_at]
+  forbidden: [copying_unspecified_main, modifying_vendor_source_directly_without_fork, addons_network_auto_update, assuming_web_GDExtension_support]
+  test_gates: [engine_editor_import, SceneTree_smokes, targeted_addon_spike, headless_behavior, native_platform_export, web_if_runtime_addon, manual_GUI_and_input]

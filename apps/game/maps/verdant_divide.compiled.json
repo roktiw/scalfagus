@@ -1,0 +1,1142 @@
+{
+  "frame": "floating_space_platform",
+  "height": 64,
+  "map_id": "verdant_divide",
+  "map_version": 0.2,
+  "schema_version": 1,
+  "source_git_blob_sha": "036c23dbc582af6c63e2c2e901d3a74e3286e5e8",
+  "source_manifest": "design/mvp-verdant-divide-map.yaml",
+  "sources": [
+    {
+      "id": "nw_solid_1",
+      "kind": "surface_rock",
+      "pos": [
+        10,
+        17
+      ],
+      "stock": 200
+    },
+    {
+      "id": "nw_solid_2",
+      "kind": "deadwood_deposit",
+      "pos": [
+        17,
+        10
+      ],
+      "stock": 200
+    },
+    {
+      "id": "se_solid_1",
+      "kind": "surface_rock",
+      "pos": [
+        53,
+        46
+      ],
+      "stock": 200
+    },
+    {
+      "id": "se_solid_2",
+      "kind": "deadwood_deposit",
+      "pos": [
+        46,
+        53
+      ],
+      "stock": 200
+    },
+    {
+      "id": "center_solid_1",
+      "kind": "surface_rock",
+      "pos": [
+        30,
+        31
+      ],
+      "stock": 200
+    },
+    {
+      "id": "center_solid_2",
+      "kind": "deadwood_deposit",
+      "pos": [
+        34,
+        33
+      ],
+      "stock": 200
+    },
+    {
+      "id": "west_flank_solid_1",
+      "kind": "deadwood_deposit",
+      "pos": [
+        16,
+        34
+      ],
+      "stock": 150
+    },
+    {
+      "id": "east_flank_solid_1",
+      "kind": "deadwood_deposit",
+      "pos": [
+        48,
+        30
+      ],
+      "stock": 150
+    },
+    {
+      "id": "north_ridge_solid",
+      "kind": "surface_rock",
+      "pos": [
+        32,
+        7
+      ],
+      "stock": 80
+    },
+    {
+      "id": "south_ridge_solid",
+      "kind": "surface_rock",
+      "pos": [
+        31,
+        57
+      ],
+      "stock": 80
+    }
+  ],
+  "starts": [
+    {
+      "hq": [
+        9,
+        9
+      ],
+      "id": "northwest",
+      "starter_source_ids": [
+        "nw_solid_1",
+        "nw_solid_2"
+      ],
+      "workers": [
+        [
+          7,
+          11
+        ],
+        [
+          9,
+          12
+        ],
+        [
+          12,
+          9
+        ]
+      ]
+    },
+    {
+      "hq": [
+        54,
+        54
+      ],
+      "id": "southeast",
+      "starter_source_ids": [
+        "se_solid_1",
+        "se_solid_2"
+      ],
+      "workers": [
+        [
+          56,
+          52
+        ],
+        [
+          54,
+          51
+        ],
+        [
+          51,
+          54
+        ]
+      ]
+    }
+  ],
+  "terrain": [
+    {
+      "kind": "tree",
+      "x": 21,
+      "y": 14
+    },
+    {
+      "kind": "tree",
+      "x": 20,
+      "y": 15
+    },
+    {
+      "kind": "tree",
+      "x": 21,
+      "y": 15
+    },
+    {
+      "kind": "tree",
+      "x": 22,
+      "y": 15
+    },
+    {
+      "kind": "tree",
+      "x": 21,
+      "y": 16
+    },
+    {
+      "kind": "tree",
+      "x": 26,
+      "y": 16
+    },
+    {
+      "kind": "water",
+      "x": 32,
+      "y": 16
+    },
+    {
+      "kind": "tree",
+      "x": 39,
+      "y": 16
+    },
+    {
+      "kind": "tree",
+      "x": 25,
+      "y": 17
+    },
+    {
+      "kind": "tree",
+      "x": 26,
+      "y": 17
+    },
+    {
+      "kind": "tree",
+      "x": 27,
+      "y": 17
+    },
+    {
+      "kind": "water",
+      "x": 30,
+      "y": 17
+    },
+    {
+      "kind": "water",
+      "x": 31,
+      "y": 17
+    },
+    {
+      "kind": "water",
+      "x": 32,
+      "y": 17
+    },
+    {
+      "kind": "water",
+      "x": 33,
+      "y": 17
+    },
+    {
+      "kind": "water",
+      "x": 34,
+      "y": 17
+    },
+    {
+      "kind": "tree",
+      "x": 38,
+      "y": 17
+    },
+    {
+      "kind": "tree",
+      "x": 39,
+      "y": 17
+    },
+    {
+      "kind": "tree",
+      "x": 40,
+      "y": 17
+    },
+    {
+      "kind": "tree",
+      "x": 26,
+      "y": 18
+    },
+    {
+      "kind": "water",
+      "x": 29,
+      "y": 18
+    },
+    {
+      "kind": "water",
+      "x": 30,
+      "y": 18
+    },
+    {
+      "kind": "water",
+      "x": 31,
+      "y": 18
+    },
+    {
+      "kind": "water",
+      "x": 32,
+      "y": 18
+    },
+    {
+      "kind": "water",
+      "x": 33,
+      "y": 18
+    },
+    {
+      "kind": "water",
+      "x": 34,
+      "y": 18
+    },
+    {
+      "kind": "water",
+      "x": 35,
+      "y": 18
+    },
+    {
+      "kind": "tree",
+      "x": 39,
+      "y": 18
+    },
+    {
+      "kind": "water",
+      "x": 29,
+      "y": 19
+    },
+    {
+      "kind": "water",
+      "x": 30,
+      "y": 19
+    },
+    {
+      "kind": "water",
+      "x": 31,
+      "y": 19
+    },
+    {
+      "kind": "water",
+      "x": 32,
+      "y": 19
+    },
+    {
+      "kind": "water",
+      "x": 33,
+      "y": 19
+    },
+    {
+      "kind": "water",
+      "x": 34,
+      "y": 19
+    },
+    {
+      "kind": "water",
+      "x": 35,
+      "y": 19
+    },
+    {
+      "kind": "water",
+      "x": 28,
+      "y": 20
+    },
+    {
+      "kind": "water",
+      "x": 29,
+      "y": 20
+    },
+    {
+      "kind": "water",
+      "x": 30,
+      "y": 20
+    },
+    {
+      "kind": "water",
+      "x": 31,
+      "y": 20
+    },
+    {
+      "kind": "water",
+      "x": 32,
+      "y": 20
+    },
+    {
+      "kind": "water",
+      "x": 33,
+      "y": 20
+    },
+    {
+      "kind": "water",
+      "x": 34,
+      "y": 20
+    },
+    {
+      "kind": "water",
+      "x": 35,
+      "y": 20
+    },
+    {
+      "kind": "water",
+      "x": 36,
+      "y": 20
+    },
+    {
+      "kind": "water",
+      "x": 29,
+      "y": 21
+    },
+    {
+      "kind": "water",
+      "x": 30,
+      "y": 21
+    },
+    {
+      "kind": "water",
+      "x": 31,
+      "y": 21
+    },
+    {
+      "kind": "water",
+      "x": 32,
+      "y": 21
+    },
+    {
+      "kind": "water",
+      "x": 33,
+      "y": 21
+    },
+    {
+      "kind": "water",
+      "x": 34,
+      "y": 21
+    },
+    {
+      "kind": "water",
+      "x": 35,
+      "y": 21
+    },
+    {
+      "kind": "water",
+      "x": 29,
+      "y": 22
+    },
+    {
+      "kind": "water",
+      "x": 30,
+      "y": 22
+    },
+    {
+      "kind": "water",
+      "x": 31,
+      "y": 22
+    },
+    {
+      "kind": "water",
+      "x": 32,
+      "y": 22
+    },
+    {
+      "kind": "water",
+      "x": 33,
+      "y": 22
+    },
+    {
+      "kind": "water",
+      "x": 34,
+      "y": 22
+    },
+    {
+      "kind": "water",
+      "x": 35,
+      "y": 22
+    },
+    {
+      "kind": "tree",
+      "x": 41,
+      "y": 22
+    },
+    {
+      "kind": "water",
+      "x": 30,
+      "y": 23
+    },
+    {
+      "kind": "water",
+      "x": 31,
+      "y": 23
+    },
+    {
+      "kind": "water",
+      "x": 32,
+      "y": 23
+    },
+    {
+      "kind": "water",
+      "x": 33,
+      "y": 23
+    },
+    {
+      "kind": "water",
+      "x": 34,
+      "y": 23
+    },
+    {
+      "kind": "tree",
+      "x": 40,
+      "y": 23
+    },
+    {
+      "kind": "tree",
+      "x": 41,
+      "y": 23
+    },
+    {
+      "kind": "tree",
+      "x": 42,
+      "y": 23
+    },
+    {
+      "kind": "water",
+      "x": 2,
+      "y": 24
+    },
+    {
+      "kind": "water",
+      "x": 3,
+      "y": 24
+    },
+    {
+      "kind": "water",
+      "x": 4,
+      "y": 24
+    },
+    {
+      "kind": "water",
+      "x": 5,
+      "y": 24
+    },
+    {
+      "kind": "water",
+      "x": 32,
+      "y": 24
+    },
+    {
+      "kind": "tree",
+      "x": 41,
+      "y": 24
+    },
+    {
+      "kind": "water",
+      "x": 2,
+      "y": 25
+    },
+    {
+      "kind": "water",
+      "x": 3,
+      "y": 25
+    },
+    {
+      "kind": "water",
+      "x": 4,
+      "y": 25
+    },
+    {
+      "kind": "water",
+      "x": 5,
+      "y": 25
+    },
+    {
+      "kind": "water",
+      "x": 2,
+      "y": 26
+    },
+    {
+      "kind": "water",
+      "x": 3,
+      "y": 26
+    },
+    {
+      "kind": "water",
+      "x": 4,
+      "y": 26
+    },
+    {
+      "kind": "water",
+      "x": 5,
+      "y": 26
+    },
+    {
+      "kind": "water",
+      "x": 2,
+      "y": 27
+    },
+    {
+      "kind": "water",
+      "x": 3,
+      "y": 27
+    },
+    {
+      "kind": "water",
+      "x": 4,
+      "y": 27
+    },
+    {
+      "kind": "water",
+      "x": 5,
+      "y": 27
+    },
+    {
+      "kind": "water",
+      "x": 2,
+      "y": 28
+    },
+    {
+      "kind": "water",
+      "x": 3,
+      "y": 28
+    },
+    {
+      "kind": "water",
+      "x": 4,
+      "y": 28
+    },
+    {
+      "kind": "water",
+      "x": 5,
+      "y": 28
+    },
+    {
+      "kind": "water",
+      "x": 2,
+      "y": 29
+    },
+    {
+      "kind": "water",
+      "x": 3,
+      "y": 29
+    },
+    {
+      "kind": "water",
+      "x": 4,
+      "y": 29
+    },
+    {
+      "kind": "water",
+      "x": 5,
+      "y": 29
+    },
+    {
+      "kind": "tree",
+      "x": 24,
+      "y": 29
+    },
+    {
+      "kind": "water",
+      "x": 2,
+      "y": 30
+    },
+    {
+      "kind": "water",
+      "x": 3,
+      "y": 30
+    },
+    {
+      "kind": "water",
+      "x": 4,
+      "y": 30
+    },
+    {
+      "kind": "water",
+      "x": 5,
+      "y": 30
+    },
+    {
+      "kind": "water",
+      "x": 6,
+      "y": 30
+    },
+    {
+      "kind": "tree",
+      "x": 23,
+      "y": 30
+    },
+    {
+      "kind": "tree",
+      "x": 24,
+      "y": 30
+    },
+    {
+      "kind": "tree",
+      "x": 25,
+      "y": 30
+    },
+    {
+      "kind": "water",
+      "x": 2,
+      "y": 31
+    },
+    {
+      "kind": "water",
+      "x": 3,
+      "y": 31
+    },
+    {
+      "kind": "water",
+      "x": 4,
+      "y": 31
+    },
+    {
+      "kind": "water",
+      "x": 5,
+      "y": 31
+    },
+    {
+      "kind": "tree",
+      "x": 24,
+      "y": 31
+    },
+    {
+      "kind": "water",
+      "x": 2,
+      "y": 32
+    },
+    {
+      "kind": "water",
+      "x": 3,
+      "y": 32
+    },
+    {
+      "kind": "water",
+      "x": 4,
+      "y": 32
+    },
+    {
+      "kind": "water",
+      "x": 5,
+      "y": 32
+    },
+    {
+      "kind": "water",
+      "x": 2,
+      "y": 33
+    },
+    {
+      "kind": "water",
+      "x": 3,
+      "y": 33
+    },
+    {
+      "kind": "water",
+      "x": 4,
+      "y": 33
+    },
+    {
+      "kind": "water",
+      "x": 5,
+      "y": 33
+    },
+    {
+      "kind": "water",
+      "x": 2,
+      "y": 34
+    },
+    {
+      "kind": "water",
+      "x": 3,
+      "y": 34
+    },
+    {
+      "kind": "water",
+      "x": 4,
+      "y": 34
+    },
+    {
+      "kind": "tree",
+      "x": 39,
+      "y": 34
+    },
+    {
+      "kind": "water",
+      "x": 2,
+      "y": 35
+    },
+    {
+      "kind": "water",
+      "x": 3,
+      "y": 35
+    },
+    {
+      "kind": "water",
+      "x": 4,
+      "y": 35
+    },
+    {
+      "kind": "tree",
+      "x": 38,
+      "y": 35
+    },
+    {
+      "kind": "tree",
+      "x": 39,
+      "y": 35
+    },
+    {
+      "kind": "tree",
+      "x": 40,
+      "y": 35
+    },
+    {
+      "kind": "water",
+      "x": 2,
+      "y": 36
+    },
+    {
+      "kind": "water",
+      "x": 3,
+      "y": 36
+    },
+    {
+      "kind": "water",
+      "x": 4,
+      "y": 36
+    },
+    {
+      "kind": "tree",
+      "x": 39,
+      "y": 36
+    },
+    {
+      "kind": "tree",
+      "x": 42,
+      "y": 39
+    },
+    {
+      "kind": "water",
+      "x": 31,
+      "y": 40
+    },
+    {
+      "kind": "tree",
+      "x": 41,
+      "y": 40
+    },
+    {
+      "kind": "tree",
+      "x": 42,
+      "y": 40
+    },
+    {
+      "kind": "tree",
+      "x": 43,
+      "y": 40
+    },
+    {
+      "kind": "water",
+      "x": 29,
+      "y": 41
+    },
+    {
+      "kind": "water",
+      "x": 30,
+      "y": 41
+    },
+    {
+      "kind": "water",
+      "x": 31,
+      "y": 41
+    },
+    {
+      "kind": "water",
+      "x": 32,
+      "y": 41
+    },
+    {
+      "kind": "water",
+      "x": 33,
+      "y": 41
+    },
+    {
+      "kind": "tree",
+      "x": 42,
+      "y": 41
+    },
+    {
+      "kind": "water",
+      "x": 28,
+      "y": 42
+    },
+    {
+      "kind": "water",
+      "x": 29,
+      "y": 42
+    },
+    {
+      "kind": "water",
+      "x": 30,
+      "y": 42
+    },
+    {
+      "kind": "water",
+      "x": 31,
+      "y": 42
+    },
+    {
+      "kind": "water",
+      "x": 32,
+      "y": 42
+    },
+    {
+      "kind": "water",
+      "x": 33,
+      "y": 42
+    },
+    {
+      "kind": "water",
+      "x": 34,
+      "y": 42
+    },
+    {
+      "kind": "water",
+      "x": 28,
+      "y": 43
+    },
+    {
+      "kind": "water",
+      "x": 29,
+      "y": 43
+    },
+    {
+      "kind": "water",
+      "x": 30,
+      "y": 43
+    },
+    {
+      "kind": "water",
+      "x": 31,
+      "y": 43
+    },
+    {
+      "kind": "water",
+      "x": 32,
+      "y": 43
+    },
+    {
+      "kind": "water",
+      "x": 33,
+      "y": 43
+    },
+    {
+      "kind": "water",
+      "x": 34,
+      "y": 43
+    },
+    {
+      "kind": "water",
+      "x": 27,
+      "y": 44
+    },
+    {
+      "kind": "water",
+      "x": 28,
+      "y": 44
+    },
+    {
+      "kind": "water",
+      "x": 29,
+      "y": 44
+    },
+    {
+      "kind": "water",
+      "x": 30,
+      "y": 44
+    },
+    {
+      "kind": "water",
+      "x": 31,
+      "y": 44
+    },
+    {
+      "kind": "water",
+      "x": 32,
+      "y": 44
+    },
+    {
+      "kind": "water",
+      "x": 33,
+      "y": 44
+    },
+    {
+      "kind": "water",
+      "x": 34,
+      "y": 44
+    },
+    {
+      "kind": "water",
+      "x": 35,
+      "y": 44
+    },
+    {
+      "kind": "tree",
+      "x": 27,
+      "y": 45
+    },
+    {
+      "kind": "water",
+      "x": 28,
+      "y": 45
+    },
+    {
+      "kind": "water",
+      "x": 29,
+      "y": 45
+    },
+    {
+      "kind": "water",
+      "x": 30,
+      "y": 45
+    },
+    {
+      "kind": "water",
+      "x": 31,
+      "y": 45
+    },
+    {
+      "kind": "water",
+      "x": 32,
+      "y": 45
+    },
+    {
+      "kind": "water",
+      "x": 33,
+      "y": 45
+    },
+    {
+      "kind": "water",
+      "x": 34,
+      "y": 45
+    },
+    {
+      "kind": "tree",
+      "x": 26,
+      "y": 46
+    },
+    {
+      "kind": "tree",
+      "x": 27,
+      "y": 46
+    },
+    {
+      "kind": "water",
+      "x": 28,
+      "y": 46
+    },
+    {
+      "kind": "water",
+      "x": 29,
+      "y": 46
+    },
+    {
+      "kind": "water",
+      "x": 30,
+      "y": 46
+    },
+    {
+      "kind": "water",
+      "x": 31,
+      "y": 46
+    },
+    {
+      "kind": "water",
+      "x": 32,
+      "y": 46
+    },
+    {
+      "kind": "water",
+      "x": 33,
+      "y": 46
+    },
+    {
+      "kind": "water",
+      "x": 34,
+      "y": 46
+    },
+    {
+      "kind": "tree",
+      "x": 22,
+      "y": 47
+    },
+    {
+      "kind": "tree",
+      "x": 27,
+      "y": 47
+    },
+    {
+      "kind": "water",
+      "x": 29,
+      "y": 47
+    },
+    {
+      "kind": "water",
+      "x": 30,
+      "y": 47
+    },
+    {
+      "kind": "water",
+      "x": 31,
+      "y": 47
+    },
+    {
+      "kind": "water",
+      "x": 32,
+      "y": 47
+    },
+    {
+      "kind": "water",
+      "x": 33,
+      "y": 47
+    },
+    {
+      "kind": "tree",
+      "x": 38,
+      "y": 47
+    },
+    {
+      "kind": "tree",
+      "x": 21,
+      "y": 48
+    },
+    {
+      "kind": "tree",
+      "x": 22,
+      "y": 48
+    },
+    {
+      "kind": "tree",
+      "x": 23,
+      "y": 48
+    },
+    {
+      "kind": "water",
+      "x": 31,
+      "y": 48
+    },
+    {
+      "kind": "tree",
+      "x": 37,
+      "y": 48
+    },
+    {
+      "kind": "tree",
+      "x": 38,
+      "y": 48
+    },
+    {
+      "kind": "tree",
+      "x": 39,
+      "y": 48
+    },
+    {
+      "kind": "tree",
+      "x": 22,
+      "y": 49
+    },
+    {
+      "kind": "tree",
+      "x": 38,
+      "y": 49
+    }
+  ],
+  "tile_meters": 2,
+  "width": 64
+}

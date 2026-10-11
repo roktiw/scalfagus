@@ -1,8 +1,14 @@
 schema_version: 1
+release_target: post_mvp_0_1_MAN_vs_ETH
+do_not_apply_first_release_micro_MVP0: true
+current_micro_MVP0_bot_rules: design/mvp0-man-mirror-execution-contract.md
 project: scalfagus
-version: 0.1
+version: 0.2
 status: implementation_candidate_not_ai_strength_promise
 scope: local_1v1_bot_can_play_MAN_or_ETH
+active_numeric_profile: design/mvp-balance-playtest-v0.1.yaml
+full_command_validation: design/mvp-gameplay-execution-contract.md
+bot_commands_must_be_regular_human_eligible_game_commands: true
 roster: design/mvp-man-eth-catalog.yaml
 economy: design/mvp-economy.yaml
 map: design/mvp-verdant-divide-map.yaml
@@ -16,9 +22,12 @@ bot_rules:
   cannot_collect_terrain_liquid_as_resource: true
   no_llm_or_network_API_required_in_first_MVP: true
   decisions_at_deterministic_interval: every_10_fixed_ticks_candidate
+  actual_first_profile_decision_interval_ticks: 10
   stable_seed_for_equal_player_commands: true
   easy_first_MVP_strength: basic_scripted_finite_state
-  AI_builds_at_most_one_new_expansion_outpost_in_this_slice: false
+  AI_builds_new_expansion_outposts_in_this_slice: false
+  scripted_bot_cannot_depend_on_advanced_auto_expansion_to_win: true
+  move_traverse_and_scout_dry_lanes: true
   advanced_rushes_and_research: out_of_scope
 goals_in_priority_order:
   - id: survive
@@ -96,6 +105,9 @@ telemetry:
   - illegal_or_unfunded_orders_rejected
   - bot_stuck_path_count
   - time_to_first_funded_soldier
+  - platform_edge_order_rejections
+  - bot_retained_material_accounting
+  - no_permanent_busy_loop_attempting_invalid_building
   - bot_win_loss
   - resource_ledger_replay_hash
 acceptance_test_ids: [MVP-13, MVP-14, MVP-15, MVP-16, MVP-21, MVP-22]

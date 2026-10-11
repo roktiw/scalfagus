@@ -1,7 +1,14 @@
 schema_version: 1
+release_target: post_mvp_0_1_MAN_vs_ETH
+historical_original_first_MVP_backlog_superseded_by_DEC_033: true
+current_implementation_backlog: design/mvp0-man-mirror-backlog.yaml
+do_not_run_PR_00_to_PR_10_before_current_M0_gates: true
 project: scalfagus
 version: 0.3
-status: agent_tasks_not_implemented
+status: historical_post_mvp_tasks_not_implemented
+superseded_by_first_playable: design/mvp0-man-mirror-backlog.yaml
+current_owner_release_decision: DEC-033
+note: This file is NOT the current coding queue. Old MAN_vs_ETH and three-camera tasks remain for future milestone.
 implementation_agent_entrypoint: AGENTS.md
 technical_runtime:
   game_engine: Godot_4_7_2_GDScript
