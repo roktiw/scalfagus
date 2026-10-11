@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 0.1
+version: 0.2
 status: agent_tasks_not_implemented
 implementation_agent_entrypoint: AGENTS.md
 technical_runtime:
@@ -16,6 +16,10 @@ owner_scope:
   terrain_liquids_but_only_solid_mineable: true
   units_only_ground: true
   world_topology_first_mvp: planar
+  square_map_bounded_by_hard_invisible_wall: true
+  visual_frame_candidate: floating_space_platform
+  deck_movement_or_interplanetary_travel_in_mvp: false
+  platform_counts_for_faction_victory: false
   future_true_sphere: candidate_not_committed
   default_victory: every_enemy_living_completed_building_class_destroyed
 docs:
@@ -29,6 +33,8 @@ docs:
   bot: design/mvp-bot-behavior.yaml
   tests: design/mvp-man-eth-acceptance.yaml
   topology: design/world-topologies.yaml
+  battlefield_frame: design/battlefield-frames.yaml
+  battlefield_frame_acceptance: design/battlefield-frame-acceptance.yaml
   environmental_terrain: design/world-environments.yaml
 task_lifecycle: [todo, in_progress, blocked, completed, verified]
 tasks:
@@ -45,8 +51,8 @@ tasks:
     status: todo
     dependencies: [PR-00]
     design_inputs: [design/mvp-verdant-divide-map.yaml, design/map-authoring-format-v0.1.yaml, design/world-environments.yaml, design/world-topologies.yaml]
-    expected_components: [map_manifest_compiler, planar_topology_adapter, map_collision_renderer, navigation_validator]
-    acceptance: [MVP-02, MVP-03, MVP-24, MVP-25, MVP-29, MVP-30, MAP-01, MAP-02, MAP-03, MAP-04, MAP-05, MAP-06]
+    expected_components: [map_manifest_compiler, planar_topology_adapter, map_collision_renderer, navigation_validator, four_sided_world_boundary_guard, noninteractive_floating_platform_visual_renderer]
+    acceptance: [MVP-02, MVP-03, MVP-24, MVP-25, MVP-29, MVP-30, MAP-01, MAP-02, MAP-03, MAP-04, MAP-05, MAP-06, FRAME-01, FRAME-02, FRAME-03, FRAME-04, FRAME-05, FRAME-06, FRAME-07, FRAME-08, FRAME-09, FRAME-10]
   - id: PR-02
     title: Unit building class registry and legal player commands
     priority: P0
@@ -137,4 +143,7 @@ critical_constraints:
   - moving_MAN_UMU_remains_victory_building
   - ETH_pylon_uses_single_resource_energy_information_network
   - real_sphere_feature_flag_requires_runtime_adapter
+  - square_map_bounds_enforced_by_gameplay_and_physics
+  - flying_platform_is_static_frame_not_a_moving_spherical_world
+  - no_platform_border_or_background_counts_as_faction_building
   - do_not_add_full_liquid_gas_harvesting_or_ORG_before_two_race_MVP
