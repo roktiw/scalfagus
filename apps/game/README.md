@@ -2,6 +2,13 @@
 
 **Purpose:** A deliberately narrow native Godot 4.7.2 engineering test, **not** the final Scalfagus MVP.
 
+## Next required world and gameplay work (DEC-030)
+
+**All future playable maps are floating platforms in outer space.** The first MAN-versus-ETH `Verdant Divide` is a 64x64 candidate bounded, stationary spaceborne deck covered in real brown jungle soil, tactical tree-trunk cover, nonharvestable freshwater, and finite surface SOLID deposits; it has visible physical edges/underside and an invisible four-sided gameplay collision guard. The sky planet is just background. Other platform surfaces can be industrial metal patchwork, desert rock or mixed terrain. Bare ordinary planet surface is not a valid selectable map, and true spherical navigation is out of MVP.
+
+This **is not yet present as functional Godot map code**. Implement by following [AGENTS.md](../../../AGENTS.md), [MVP delivery gates](../../../design/MVP-DELIVERY-GATES.md), [map data](../../../design/mvp-verdant-divide-map.yaml), [world constitution](../../../design/space-platform-world-contract-2026-10-11.md) and [frame test cases](../../../design/battlefield-frame-acceptance.yaml). Preserve the native menu, three Hero camera modes and 5-view sprite smoke tests, with NO Tauri/second engine.
+
+
 ## Run locally
 
 Install the official **Godot 4.7.2 Standard (GDScript)** editor for your platform. Open `apps/game/project.godot` in Godot. Or run from repo root (replace `godot` with your binary name):
