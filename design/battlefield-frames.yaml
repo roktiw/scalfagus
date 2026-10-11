@@ -1,85 +1,90 @@
 schema_version: 1
 project: scalfagus
-version: 0.1
-status: owner_approved_bounded_square_mvp_with_floating_platform_presentation_candidate
-owner_decision: DEC-029
-documentation: design/floating-platform-battlefields-2026-10-11.md
-not_world_topology: true
+version: 0.2
+status: owner_approved_universal_floating_space_platform_all_playable_maps
+owner_decision: DEC-030
+previous_decision_superseded_in_framing: DEC-029
+documentation: design/space-platform-world-contract-2026-10-11.md
 world_topology_in_mvp: planar
-same_map_collider_navigation_and_resource_ledger_for_all_frames: true
-battlefield_frame_variants:
-  bounded_planetary_surface:
-    description: standard_square_ground_patch_at_world_surface
-    boundary_mode: invisible_hard_wall
-    visible_rim: optional_natural_rock_edge
-    biome_independent: true
-    topological_wraparound: false
-  floating_space_platform:
-    description: rectangular_level_surface_on_huge_stationary_floating_world_ship_in_space
-    boundary_mode: solid_edge_with_invisible_collision_guard
-    visible_rim: required
-    underside_geometry: noninteractive_render_only
-    biome_independent: true
-    can_contain_earthlike_soil_trees_rivers_and_water: true
-    background_options: [starfield, distant_planet, clouds, nebula]
-    atmospheric_retention: lore_only_in_mvp
-    global_radial_gravity: false
-    local_uniform_gravity: true
-    actual_ship_motion_during_match: false
-    cosmetic_background_parallax_only: true
-    interplanetary_travel: not_in_mvp
-default_candidate:
-  battlefield_frame: floating_space_platform
-  specific_map_id: verdant_divide
-  flavor: earthlike_hanging_jungle_habitat_on_ancient_mobile_platform
-  only_single_playable_ground_deck: true
-  no_faction_bonus_from_platform_silhouette: true
-  fixed_tree_trunk_cover: true
-  nonharvestable_freshwater_on_deck: true
-  harvestable_world_forms: [solid]
-  next_platform_family_candidates: [orbital_foundry, aerial_monastery, drowned_ark]
-  universal_platform_mandate_for_all_future_maps: owner_confirmation_needed
-  previous_planar_non_platform_presentation_remains_legal: true
-boundary:
-  outer_bounds_come_from_world_planar_grid: true
-  square_mvp_candidate: {width_tiles: 64, height_tiles: 64}
-  collision_policy: impassable
-  unit_fall_off_edges_mvp: false
-  long_range_escape_through_wall: false
-  pathfinder_treats_border_as_blocked: true
-  world_colliders_in_RTS_Direct_and_FPS: identical
-  projectiles_do_not_enter_gameplay_space_beyond_boundary: true
-  fog_of_war_not_extended_into_starfield: true
-  cannot_place_buildings_outside_bounds: true
-  loot_scatter_clamps_to_valid_inside_cells_deterministically: true
-  faction_neutral_platform_is_not_victory_building: true
-  background_not_interactable: true
-  source_positions_and_terrain_geometry_unaffected_by_backdrop: true
-  no_out_of_bounds_teleportation_by_mobile_UMU: true
-  floating_ETH_pylon_repositioning_remains_post_mvp: true
-mvp_asset_families:
-  rim: [aged_metal_terrace, soil_retaining_wall, suspended_roots]
-  underside: [visible_support_beams, ancient_reactors, dormant_thrusters]
-  backdrop: [low_contrast_stars, distant_planet_disc, thin_clouds]
-  surface: [actual_jungle_trees, soil, rocks, ponds, streams]
-  no_requirements_to_copy_third_party_IP: true
-  respect_pixel_art_unit_legibility: true
-implementation:
-  render_frame_separately_from_map_logic: true
-  map_manifest_field: battlefield_frame
-  planar_world_grid_remains_authoritative: true
-  guard_colliders_match_ground_edges: true
-  collider_high_enough_to_block_normal_Hero_and_UMU: true
-  map_edge_is_artful_but_gameplay_is_impenetrable: true
-  background_motion_visual_only_does_not_change_world_origin: true
-  unsupported_spherical_topology_rejected: true
-future_not_in_mvp:
-  platform_can_travel_between_planets: potential_campaign_mechanic
-  platform_is_a_destructible_command_ship: design_later
-  asteroid_interception: deferred
-  deck_construction_expansion: deferred
-  multiple_walkable_decks: deferred
-  engine_fuel_management: deferred
-  entering_leaving_platform_with_flyers: deferred
-  water_and_air_units: deferred
-acceptance_test_ids: [FRAME-01, FRAME-02, FRAME-03, FRAME-04, FRAME-05, FRAME-06, FRAME-07, FRAME-08, FRAME-09, FRAME-10]
+platform_identity_and_surface_biome_are_independent: true
+required_frame_for_all_playable_maps: floating_space_platform
+validation:
+  variant_required_in_every_playable_map: true
+  allowed_playable_variants: [floating_space_platform]
+  missing_frame_fails_compile: true
+  bounded_planetary_surface_as_playable_variant: forbidden
+  unspecified_planet_surface_fallback: forbidden
+  other_unknown_frame_variants: fail_validation
+  debug_scene_without_art_allowed_only_when_not_selectable_or_playable_map: true
+  map_frame_never_alters_economy_los_nav_victory_or_map_balance_implicitly: true
+  phase: map_compile_before_runtime
+  reject_unimplemented_spherical_gameplay: true
+floating_space_platform:
+  required: true
+  description: isolated_floating_tactical_world_deck_above_space_with_finite_terrain
+  is_world_and_level_frame_not_faction_built_structure: true
+  platform_is_neutral_not_victory_building: true
+  upper_surface:
+    requires_ground_with_height_ramps_and_buildable_area: true
+    material_source: design/platform-surface-presets.yaml
+    supports_mixed_material_regions: true
+    living_soil_and_jungle_allowed: true
+    industrial_patchwork_metal_allowed: true
+    rock_desert_wetland_ruins_and_other_terrains_allowed: true
+    may_include_visual_and_nonharvestable_liquid_bodies: true
+  edge:
+    four_sided_for_first_square_map: true
+    boundary_policy: impassable
+    visible_rim_required: true
+    invisible_physics_guard_required: true
+    guards_present_in_RTS_Direct_and_FPS: true
+    prevent_actor_fall_off_in_first_mvp: true
+    prevent_building_and_loot_spawns_out_of_bounds: true
+    projectile_clip_or_legal_collision_at_boundary: true
+    no_map_wraparound: true
+  external_scene:
+    is_noninteractive: true
+    renders: [platform_underside, distant_stars, distant_planet_or_nebula]
+    has_gameplay_navmesh: false
+    has_harvestable_resource: false
+    can_be_selected_or_attacked: false
+    can_count_as_building: false
+  static_gameplay_frame:
+    platform_translational_motion_during_match: none
+    platform_rotational_motion_during_match: none
+    gravity: uniform_in_mvp
+    true_sphere_terrain: false
+    travel_between_planets: post_mvp_research
+    cosmetic_space_background_parallax_without_sim_movement: allowed
+default_mvp:
+  map_id: verdant_divide
+  variant: floating_space_platform
+  surface_preset: brown_soil_jungle
+  surface_heightfield: planar_64_x_64_candidate
+  deck_appearance: suspended_earthlike_jungle_habitat
+  surface_source_forms_collectible: [solid]
+  liquid_bodies_present_but_noncollectible: true
+  actual_player_unit_domains: [ground]
+  tree_trunks_are_gameplay_cover: true
+  backdrop_candidate: distant_planet_below_low_contrast_stars
+  visible_rim_candidate: brown_earth_roots_and_exposed_structural_braces
+  no_hero_drop_death_at_edge: true
+future_material_family_examples: [brown_soil_jungle, industrial_metal_patchwork, rocky_desert, resonant_monastery, wet_biological_ark]
+no_first_mvp_support_for:
+  - ordinary_planetary_surface_playable_maps
+  - orbital_ship_motion_during_battle
+  - interplanetary_travel
+  - multi_deck_movement
+  - floating_platform_damage_as_match_objective
+  - space_walk_or_flight
+  - true_spherical_gameplay_nav_and_gravity
+  - harvested_liquid_or_gas_resources
+owner_locked:
+  all_future_playable_maps_are_floating_platforms: true
+  upper_surface_biome_and_material_are_variable: true
+  space_is_surrounding_scene_not_playable_first_mvp_domain: true
+  initial_world_flat_square_and_bounded: true
+  lower_surface_art_never_counts_as_playable_world: true
+acceptance_tests:
+  primary: design/battlefield-frame-acceptance.yaml
+  MVP_implementation: design/mvp-man-eth-acceptance.yaml
