@@ -1,6 +1,7 @@
 # Scalfagus — illustrative match configuration schema (proposal, not runtime contract)
 schema_version: "0.1-draft"
 session_context: skirmish # campaign | skirmish | multiplayer
+match_scale: min # min | mid | max; match duration/complexity, NOT chassis size
 control_preset: autonomous_rts # classic_rts | architect | commander | avatar | hybrid
 objective_ruleset: annihilation # control | assault | escort | extraction | custom
 map: prototype_mainland
