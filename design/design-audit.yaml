@@ -1,0 +1,166 @@
+schema_version: 1
+project: scalfagus
+version: 0.5
+status: design_audit_backlog
+language: en
+scope:
+  source: reviewed_design_documents_and_design_conversation
+  caveat: Full repository tree and all non-design files were not enumerated; repo-wide language verification is incomplete.
+principles:
+  - Approved decisions are separate from speculative parameters.
+  - Default faction playstyles are guidance, not restrictions.
+  - Economic efficiency indices are not match win rates.
+  - Three resource tiers and three geographic tiers are independent.
+  - A tier indicates chassis scale, not unconditional combat superiority.
+  - Balance must consider combat, economy, logistics, abilities, geography, and information together.
+issues:
+  - id: AUD-001
+    priority: P0
+    title: "Unify resource taxonomy"
+    task: "Migrate legacy Crystals/Gas/Resin definitions and core costs to Matter/Volatiles/Energy; no numerical one-to-one assumptions"
+    related_files: ["design/economy.yaml", "design/resources.yaml", "design/units.yaml"]
+    status: open
+  - id: AUD-002
+    priority: P0
+    title: "Define complete Energy economy"
+    task: "Resolve extraction versus generation, costs, containers, capacity, replenishment, transport and resource anti-softlocks"
+    related_files: ["design/energy.yaml"]
+    status: open
+  - id: AUD-003
+    priority: P0
+    title: "Separate unit tier from role and technology"
+    task: "Define core sizes MIN/MID/MAX, abilities, module slots, mass and capacity; distinguish platform tier and technology access"
+    related_files: ["design/units.yaml"]
+    status: open
+  - id: AUD-004
+    priority: P0
+    title: "Formalize transformations"
+    task: "Define state transitions, cancellation, health, cargo, module recovery, interruption and reversible versus irreversible costs"
+    related_files: ["design/units.yaml", "design/deployment.yaml"]
+    status: open
+  - id: AUD-005
+    priority: P0
+    title: "Define production recipes and building economy"
+    task: "Define costs in Matter/Volatiles/Energy for units, modules, research, fortification and repairs"
+    related_files: ["design/economy.yaml"]
+    status: open
+  - id: AUD-006
+    priority: P0
+    title: "Specify world topology and pathfinding"
+    task: "Define water, voids, airspace, islands, moving asteroids, docking, moving footprints and deployable construction"
+    related_files: ["design/resources.yaml", "design/logistics.yaml"]
+    status: open
+  - id: AUD-007
+    priority: P0
+    title: "Establish combat primitives"
+    task: "Define HP, armor, damage classes, range, target layers, projectiles, anti-air, active and passive abilities, counterplay and siege"
+    related_files: ["design/units.yaml"]
+    status: open
+  - id: AUD-008
+    priority: P0
+    title: "Define first playable gameplay loop"
+    task: "Specify initial economy, scouting, first encounter, first expansion, technology and victory conditions"
+    related_files: ["design/match-rules.yaml"]
+    status: open
+  - id: AUD-009
+    priority: P1
+    title: "Balance four resource subsystem matrices"
+    task: "Separate extraction, processing, transport/storage and conversion/spending efficiencies; avoid compounding global multipliers"
+    related_files: ["design/resource-balance.yaml"]
+    status: open
+  - id: AUD-010
+    priority: P1
+    title: "Validate power windows not win rates"
+    task: "Use economic index as a proposed baseline, not measured win rate; balance early Blergian pressure, mid Manusian adaptability and late Aetherian ascension"
+    related_files: ["design/resource-balance.yaml", "design/match-rules.yaml"]
+    status: open
+  - id: AUD-011
+    priority: P1
+    title: "Model faction base geography"
+    task: "Define biomass network constraints, widely dispersed Manusian outposts, medium-range Aetherian satellites and core base vulnerability"
+    related_files: ["design/factions.yaml"]
+    status: open
+  - id: AUD-012
+    priority: P1
+    title: "Complete logistics edge cases"
+    task: "Define transfer queuing, throughput, full warehouses, docking failure, lost cargo and destroyed endpoints"
+    related_files: ["design/logistics.yaml"]
+    status: open
+  - id: AUD-013
+    priority: P1
+    title: "Technology trees and unlock timing"
+    task: "Specify research prerequisites and viable alternative strategies per faction and for each game phase"
+    related_files: ["design/units.yaml"]
+    status: open
+  - id: AUD-014
+    priority: P1
+    title: "Scouting and information systems"
+    task: "Specify fog of war, radar, psionic senses, organic detection, stealth and intelligence counterplay"
+    related_files: ["design/factions.yaml"]
+    status: open
+  - id: AUD-015
+    priority: P1
+    title: "Measure map control and comeback"
+    task: "Specify resource denial, contested islands/asteroids, recovery after base loss, siege and anti-stalemate mechanisms"
+    related_files: ["design/match-rules.yaml"]
+    status: open
+  - id: AUD-016
+    priority: P1
+    title: "Scenario-based economic simulation"
+    task: "Test MIN/MID/MAX solo and relay throughput, route length, cargo loss, asteroid drift, energy reserves and ROI"
+    related_files: ["design/economy.yaml", "design/resources.yaml"]
+    status: open
+  - id: AUD-017
+    priority: P1
+    title: "Faction combat and strategic matchup playtests"
+    task: "Test all three pairings across phases, armor/weapon counters, sieges, specialist deployment, raids and hot-swap"
+    related_files: ["design/factions.yaml"]
+    status: open
+  - id: AUD-018
+    priority: P2
+    title: "CI and schema validation"
+    task: "Add machine-validatable YAML schema, references, unit conversions, versioning, tests and explicit status tags"
+    related_files: ["design/decisions.yaml"]
+    status: open
+  - id: AUD-019
+    priority: P2
+    title: "Original-IP visual direction"
+    task: "Develop distinct silhouettes and terminology without borrowing copyrighted characters, weapons, logos or franchise-identifying geometry"
+    related_files: ["design/factions.yaml"]
+    status: open
+  - id: AUD-020
+    priority: P2
+    title: "English-only repository documentation"
+    task: "Review all remaining tracked text files; English-only text, comments, descriptions, strings and design documentation"
+    related_files: ["design/decisions-v0.4.md"]
+    status: open
+recommended_sequence:
+  - resource_schema_migration
+  - energy_cost_and_storage_model
+  - modular_unit_core_and_transformations
+  - production_and_unlocks
+  - world_movement_and_logistics_simulation
+  - basic_combat_and_victory_conditions
+  - faction_matchup_playtests
+  - advanced_balance_telemetry
+baseline_test_scenarios:
+  - min_versus_max_direct_mining
+  - min_mid_max_cargo_relay
+  - moving_asteroid_transfer
+  - blergian_continuous_early_pressure
+  - blergian_biomass_link_disruption
+  - manusian_outpost_dispersion_and_raids
+  - manusian_hot_swap_under_attack
+  - aetherian_core_base_siege_and_survival
+  - aetherian_late_game_energy_spike
+  - resource_depletion_and_recycling
+  - energy_generator_first_build_softlock
+  - loss_of_full_max_transporter
+  - reversible_and_irreversible_unit_transformation
+acceptance_criteria:
+  - All official game economy definitions use matter, volatiles, energy.
+  - All playable factions have at least one viable strategic response in every phase.
+  - 1v1 duration is measured against the 25-40 minute target, not forcibly capped.
+  - Automated transfers require prior player directives and valid receiver capacity.
+  - Only units explicitly marked deployable can become structures.
+  - Balance is assessed on a representative map pool and skill-matched matchups.
