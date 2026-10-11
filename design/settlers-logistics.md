@@ -46,9 +46,9 @@ This **extends** the older unit-only autonomy design. Strategic expansion is all
 - Diagnostics: inventory map, flow overlay, throughput per route, idle units, missing inputs, delivery ETA estimates, contested routes and connectivity health.
 
 ## Faction logistics asymmetry
-- **Blergians:** connected biomass infrastructure yields strong synergies; detached outposts function but weakly. Organic routes and assimilation should remain interruptible.
-- **Manusians:** strongest independent outposts, modular factories and distributed depots; pay transport and defense costs.
-- **Aetherians:** balanced satellites with a preference for connected resonance networks; costly but expressive transformations.
+- **Organs / Organites:** **every rooted building requires a physical living vessel tied to the home Nexus**; disconnected branches wither gradually. Remote expansions additionally need recurring physical home-origin nourishment runs even if mining locally. Mobile gatherers remain independent actors.
+- **Manus / Manusians:** most independent expansions and relocatable modular factories. Their composite Nexus need not be one building; MID tracked conveyors can become one-person bunkers or outward sentry walls; MIN can repair units and buildings.
+- **Eters / Etherans:** **MID is stationary storage/relay/turret pylon; MAX is Nexus-class core**. MIN builds by remaining in NETWORK mode with a strategically visible blue beam to a large network node. New outposts contact home only at initialization and to obtain previously unknown blueprints. Eligible buildings may levitate after meditation.
 No faction receives free resources or privileged map knowledge.
 
 ## Territory, terrain and military logistics
@@ -79,7 +79,7 @@ A new colony starts with a base core, workers and nearby Matter. The autonomous 
 - Resources never appear without a valid source, transformation or explicitly costed ability.
 - A fixed seed and order stream produce identical simulation results.
 - 20 autonomous workers sustain a functioning extraction/transport chain.
-- Disconnected outposts obey faction-specific rules without becoming nonfunctional.
+- A disconnected ORG rooted outpost visibly begins withering after a grace period; a locally equipped independent MAN outpost continues normally; an initialized ETH outpost continues known-plan operations until it needs missing blueprints.
 - Destroyed/blocked transport routes create measurable shortages.
 - AI can recover from congestion or lost routes, subject to available capacity.
 - Manual mode never initiates strategic construction or expansion.
