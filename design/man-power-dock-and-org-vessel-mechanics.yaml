@@ -1,0 +1,185 @@
+schema_version: 1
+project: scalfagus
+version: 0.1
+status: approved_owner_direction_with_explicit_implementation_candidates_and_unresolved_balance
+decision_ids: [DEC-019, DEC-020]
+specification: design/three-faction-network-and-infrastructure-contract-2026-10-11.md
+canonical_currency_ids: [matter, volatiles, energy]
+source_forms: [solid, liquid, gas]
+economic_support_is_not_spendable_currency: true
+man:
+  doctrine: physical_modular_electric_independent_outposts
+  owner_direction:
+    basic_infrastructure_module_is_ground_mobile: true
+    basic_infrastructure_module_is_power_producer: true
+    basic_infrastructure_module_has_warehouse_or_bunker_modes: true
+    builder_requires_actual_material_access_at_or_near_site: true
+    supply_can_come_from_universal_transporter_nexus_or_direct_mine_pickup: true
+    remote_outpost_requires_no_mandatory_home_link: true
+  working_name: power_dock
+  template_implementation:
+    status: candidate_not_fixed_chassis_decision
+    default_variant: small_modular_power_dock
+    alternative_variants:
+      - power_generator_kit_mounted_on_eligible_mid_frame
+      - support_module_option_for_existing_max_depot
+    avoid_new_big_independent_unit_catalog: true
+  power_dock:
+    mobility_domains: [land]
+    can_fly: false
+    pack_move_unpack_costed: true
+    power_dock_cannot_be_simultaneously_full_warehouse_and_large_bunker: true
+    default_modes:
+      deployed_power_warehouse:
+        legal_ground_footprint_required: true
+        finite_power_generation: true
+        local_recharging: true
+        finite_small_physical_cargo_buffer: true
+        warehouse_pickup_ports_open: true
+        large_garrison: false
+        generator_input_recipe: TBD
+      deployed_fortified_bunker:
+        legal_ground_footprint_required: true
+        finite_power_generation: reduced_TBD
+        fast_recharging: restricted_or_disabled_TBD
+        warehouse_pickup_ports_open: false
+        garrison_capacity: small_TBD
+        weapon_arc_and_firing_power_below_mid_specialist_bunker: proposed_balance
+        unit_must_physically_enter_garrison: true
+        cargo_cannot_teleport_to_bank: true
+        retained_cargo_unload_or_lock_policy: TBD
+      packed_ground_travel:
+        ground_movement_speed: slow_TBD
+        grid_connection_active: false
+        generator_active: false
+        charge_output_active: false
+        warehouse_pickup_ports_open: false
+        carried_battery_and_cargo_finite: true
+        cannot_defend_as_deployed_bunker: true
+        packing_and_deployment_require_time: true
+    penalties:
+      lost_supply_or_power_budget_during_relocation: true
+      crowded_footprint_and_pathing_check: true
+      ability_to_tank_enemy_raid_while_fully_generating: forbidden
+  electric_grid:
+    status: candidate_for_first_playable_man
+    explicit_user_drawn_wires_required: false
+    auto_connect_nearby_valid_deployed_connector_ports: true
+    short_finite_range_and_valid_obstacle_rules: true
+    power_edges_visible_and_interdictable_if_enabled: true
+    ground_mobility_disables_port_links_while_packed: true
+    transmission_rate_finite: true
+    generation_of_real_stored_energy_per_tick_requires_valid_source_or_recipe: true
+    power_units_pu_are_instantaneous_budget_not_new_stored_currency: true
+    stored_energy_is_existing_e_currency: true
+    grid_transfers_electricity_not_solids_liquids_gases: true
+    local_component_balances_and_generation: true
+    no_mandatory_home_grid_link: true
+    local_batteries_support_bounded_offline_operation: true
+    brownout_policy_proposed: [block_extra_production, reduce_charging_rate, degrade_energy_hungry_systems_after_reserves_deplete]
+    no_instant_destruction_of_units_when_power_link_cut: true
+  construction_material_logistics:
+    workforce: actual_eligible_builders
+    builder_cap_by_thirds_latest_candidate: [1, 2, 2]
+    procurement:
+      - builder_own_carried_packets
+      - nearby_power_dock_in_open_warehouse_mode
+      - nearby_eligible_universal_transporter
+      - nearby_max_depot_with_open_access
+      - nexus_component_containing_real_eligible_local_inventory
+      - direct_visit_to_solid_or_liquid_source_and_return
+      - visit_to_completed_gas_extraction_rig_and_return
+    fetch_route_uses_pathfinding_and_time: true
+    local_pickup_requires_actual_compatible_source_receiver_and_range: true
+    player_approved_construction_may_auto_schedule_material_couriers: true
+    no_global_material_wallet_via_electric_grid: true
+    no_build_from_zero_local_materials_even_when_power_grid_online: true
+    unfinished_structure_progress_persists_without_worker: true
+    physical_embedded_materials_remain_or_explicitly_salvage: true
+    salvage_is_collectible_by_all_factions_at_actual_cost: true
+  role_partition:
+    min:
+      extract: true
+      physical_haul: true
+      building_and_repair: true
+      electric_generation: false
+    power_dock:
+      electric_generation: true
+      recharging: true
+      cargo_storage: small
+      garrison_or_shelter: limited
+      ground_mobility: packed_only
+      continuous_belt_3_or_5_tiles: false
+    mid:
+      primary: 3_or_5_tile_high_throughput_conveyor
+      secondary: specialist_one_soldier_bunker_or_outward_sentry_wall
+      large_storage: false
+      permanent_generator_by_default: false
+    max:
+      primary: huge_slow_ground_depot
+      secondary: multi_soldier_bunker_after_unloading
+      large_storage: true
+      permanent_generator_by_default: false
+      entire_nexus_is_this_one_unit: false
+  risk:
+    too_many_functional_overlaps_between_power_dock_and_mid_bunker: playtest
+    too_many_functional_overlaps_between_power_dock_and_max_warehouse: playtest
+    moving_power_dock_freely_during_combat_abuses_power_and_armor: protect_with_state_locks
+  telemetry:
+    - power_dock_usage_by_mode
+    - charger_occupancy_and_delivered_e_per_minute
+    - man_autolink_grid_connectivity_and_power_shortfall_duration
+    - distance_to_material_source_and_builder_idle_time
+    - whether_mid_max_are_displaced_by_power_dock
+    - building_completions_from_local_stock_vs_courier_fetch
+org:
+  doctrine: living_vessel_and_nourishment_not_global_ether_inventory
+  owner_direction:
+    every_rooted_building_needs_live_connected_home_vessel: true
+    vessels_are_physically_present_and_attackable: true
+    vessels_do_not_redistribute_every_resource_like_ether_network: true
+    remote_colony_requires_real_recurrent_home_origin_nourishment: true
+    all_completed_viable_connected_buildings_add_metabolic_support_cap: true
+    units_must_physically_feed_from_actual_valid_resources: true
+    building_incubation_builder_caps_by_third: [3, 2, 1]
+    untended_cocoon_gradually_withers: true
+  network:
+    graph_type: physically_rooted_nutrient_vascular_graph
+    eligible_build_site_must_be_reached_by_live_vessel: true
+    vessel_service: [growth_permission, nutrient_transfer, living_signal]
+    carried_nutrition_is_finite: true
+    bulk_raw_matter_volatiles_energy_are_not_globally_available_through_vessels: true
+    connection_to_home_is_required_even_if_locally_mined: true
+    mother_transport_initial_modes: [move, receive, dispatch, extract]
+    mother_one_worker_one_resource_item_per_handoff_initial: true
+    mobile_workers_act_independently_without_hive_mind: true
+  interruption:
+    on_branch_cut: enter_isolated_buffered
+    subsequent_states: [isolated_buffered, starving, dormant, withered]
+    stages_need_positive_balance_tuned_time: true
+    local_nutrients_deplete_finitely: true
+    existing_units_do_not_disappear_immediately: true
+    repair_or_regrow_vessel_possible_before_irrecoverable_decay: proposed
+    does_not_partition_a_shared_global_resource_bank: true
+  farming:
+    provider: every_completed_viable_connected_living_building
+    effective_metabolic_support_capacity: finite_per_building_TBD
+    support_slots_are_not_nutrition_items: true
+    actual_nutrition_consumption_remains_real: true
+    cheap_unfinished_cocoon_does_not_freely_print_support: true
+  telemetry:
+    - live_vessel_reachability_and_throughput
+    - home_origin_food_delivery_frequency
+    - isolated_branch_local_reserves
+    - wither_stage_by_tick
+    - number_of_organisms_underfed
+cross_faction_invariants:
+  - three_resource_types_and_no_new_global_currency
+  - source_form_extraction_permission_still_applies
+  - no_infinite_and_no_negative_resource_stocks
+  - no_spontaneous_logistics_and_no_unapproved_strategic_expansion
+  - one_authoritative_world_ledger
+  - effect_of_link_damage_visible_and_recoverable
+  - mobility_never_gives_free_teleportation_or_free_heal
+  - farm_support_cap_not_interchangeable_with_actual_stored_energy_or_nutrition
+acceptance_test_ids: [NET-011, NET-012, NET-013, NET-014, NET-015, NET-016, NET-017, NET-018, NET-019, NET-020]
