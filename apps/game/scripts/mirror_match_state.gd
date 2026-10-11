@@ -2,11 +2,12 @@ extends RefCounted
 class_name MirrorMatchState
 
 const NAV_SCRIPT = preload("res://scripts/mirror_navigation_port.gd")
+const TIMING = preload("res://scripts/mirror_timing.gd")
 
 # MVP 0.1: authoritative rules for a two-slot MAN mirror match.
 # Pure state: no cameras, rendering, input nodes, or wall-clock delays.
 const BOARD: int = 64
-const MAX_TICKS: int = 5400
+const MAX_TICKS: int = TIMING.MATCH_LIMIT_TICKS
 const DIRECTIONS: Array[Vector2i] = [
     Vector2i(1, 0), Vector2i(0, 1), Vector2i(-1, 0), Vector2i(0, -1)
 ]
@@ -92,6 +93,7 @@ func _spawn(kind: String, owner: int, pos: Vector2i) -> int:
         "id": id, "kind": kind, "owner": owner, "pos": pos, "hp": int(HP[kind]),
         "order": "idle", "target_id": -1, "target_pos": pos, "source_id": "",
         "cargo": 0, "work_ticks": 0, "cooldown": 0,
+        "gather_phase": "mine", "move_progress": 0,
         "train_kind": "", "train_left": 0, "build_pos": Vector2i(-1, -1),
         "route": [], "route_target": Vector2i(-1, -1), "route_adjacent": false,
         "route_revision": -1
@@ -229,6 +231,7 @@ func issue_command(side: int, action: String, actor_id: int, arg: Variant = null
                 return _reject()
             e["order"] = "gather"
             e["source_id"] = arg
+            e["gather_phase"] = "return" if int(e["cargo"]) > 0 else "mine"
             e["work_ticks"] = 0
         "build_barracks":
             if kind != "worker" or not (arg is Vector2i):
@@ -241,7 +244,7 @@ func issue_command(side: int, action: String, actor_id: int, arg: Variant = null
             spent_matter += COST_BARRACKS
             e["order"] = "build"
             e["build_pos"] = arg
-            e["work_ticks"] = 45
+            e["work_ticks"] = TIMING.BARRACKS_BUILD_TICKS
         "train_worker", "train_rifleman":
             var training_worker: bool = action == "train_worker"
             var price: int = COST_WORKER if training_worker else COST_RIFLEMAN
@@ -252,7 +255,7 @@ func issue_command(side: int, action: String, actor_id: int, arg: Variant = null
             players[side]["matter"] = int(players[side]["matter"]) - price
             spent_matter += price
             e["train_kind"] = "worker" if training_worker else "rifleman"
-            e["train_left"] = 45 if training_worker else 65
+            e["train_left"] = TIMING.WORKER_TRAIN_TICKS if training_worker else TIMING.RIFLEMAN_TRAIN_TICKS
         "attack":
             if kind != "rifleman" or not (arg is int) or not entities.has(arg):
                 return _reject()
@@ -384,7 +387,7 @@ func _rifleman_tick(e: Dictionary) -> void:
         if _distance(e["pos"], enemy["pos"]) <= 6 and _line_clear(e["pos"], enemy["pos"]):
             if int(e["cooldown"]) == 0:
                 _damage(enemy_id, 8, int(e["owner"]))
-                e["cooldown"] = 10
+                e["cooldown"] = TIMING.RIFLEMAN_ATTACK_COOLDOWN_TICKS
         else:
             _walk(e, enemy["pos"])
 
@@ -488,7 +491,7 @@ func advance() -> void:
     if finished:
         return
     tick += 1
-    if tick % 12 == 1:
+    if tick % TIMING.BOT_THINK_TICKS == 1:
         for side in range(2):
             if controllers[side] == "bot":
                 _bot_tick(side)
@@ -515,7 +518,7 @@ func matter_is_conserved() -> bool:
 func replay_hash() -> String:
     # Stable state hash includes orders, outstanding work, queues, and cooldowns.
     # It is a pinned-runtime regression tool, not a cross-platform lockstep promise.
-    var material: String = "mvp0-man-mirror-v2|"
+    var material: String = "mvp0-man-mirror-v3-20hz|"
     for field in [
         seed, tick, winner, finished, finish_reason, next_id,
         mined_matter, spent_matter, lost_matter, rejected_commands
@@ -536,7 +539,8 @@ func replay_hash() -> String:
         for field in [
             id, e["kind"], e["owner"], p.x, p.y, e["hp"], e["order"],
             e["target_id"], target.x, target.y, e["source_id"], e["cargo"],
-            e["work_ticks"], e["cooldown"], e["train_kind"], e["train_left"],
+            e["work_ticks"], e["gather_phase"], e["move_progress"],
+            e["cooldown"], e["train_kind"], e["train_left"],
             site.x, site.y, route_target.x, route_target.y, e["route_adjacent"]
         ]:
             material += str(field) + "|"
@@ -559,7 +563,8 @@ func replay_hash() -> String:
 
 func result() -> Dictionary:
     return {
-        "rules": "mvp0-man-mirror-v1",
+        "rules": "mvp0-man-mirror-v3-20hz",
+        "tick_hz": TIMING.TICKS_PER_SECOND, "max_ticks": MAX_TICKS,
         "seed": seed, "ticks": tick, "winner": winner, "reason": finish_reason,
         "finished": finished, "controllers": controllers.duplicate(),
         "bot_attack_thresholds": bot_attack_thresholds.duplicate(),
