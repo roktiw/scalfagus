@@ -6,6 +6,16 @@ language: en
 latest_owner_scope_decision: DEC-033
 latest_research_and_view_decisions: [DEC-030, DEC-031, DEC-032, DEC-034]
 mandatory_reuse_first_policy: DEC-034
+future_MAN_UMU_precise_capacity_and_specialists_DEC_042:
+  decision: DEC-042
+  human: design/man-umu-capacity-and-specialist-balance-2026-10-12.md
+  machine: design/man-umu-capacity-and-specialist-balance.yaml
+  exactly_four_soldiers_or_cargo: true
+  mixed_3x3x3_internal_slots: 27
+  mono_external_two_3x3_racks: [9, 9]
+  mono_total_slots: 45
+  universal_light_UMU_specialists_stronger_in_their_single_roles: true
+  beyond_DEC_033_mvp0: true
 future_MAN_UMU_exclusive_power_building_roof_DEC_041:
   decision: DEC-041
   human: design/man-umu-power-building-mobility-roof-modules-2026-10-12.md
