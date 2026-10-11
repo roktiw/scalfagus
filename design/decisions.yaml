@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 1.8
+version: 1.9
 decisions:
   - id: DEC-001
     status: approved
@@ -412,6 +412,7 @@ decisions:
       command modules if explicitly enabled by match configuration.
     specification: design/victory-defeat-building-classification-2026-10-11.md
     data_specification: design/match-rules.yaml
+    template_classification: design/victory-building-template-registry.yaml
     acceptance_scenarios: design/victory-defeat-acceptance-cases.yaml
 migration_required:
   - design/economy.yaml
