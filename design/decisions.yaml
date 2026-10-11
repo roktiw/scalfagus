@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 2.3
+version: 2.4
 decisions:
   - id: DEC-001
     status: approved
@@ -619,6 +619,42 @@ decisions:
       stepping stone, but a one-faction playable-release scope was NOT
       approved in this decision. ORG is deferred until separately playable.
     specification: design/godot-headless-balance-lab-2026-10-11.md
+
+  - id: DEC-033
+    status: owner_approved_current_mvp_release_scope_supersedes_DEC_025_two_faction_first_release
+    topic: micro_mvp_single_MAN_faction_two_player_RTS
+    resolution: >-
+      The FIRST playable Scalfagus MVP 0.1 is a classic Overlord-only
+      RTS with exactly two player slots, both using the SAME MAN faction.
+      Supported controller combinations are Human-Human, Human-Computer
+      and Computer-Computer. Human-Human uses two Godot clients on LAN
+      or loopback with one authoritative host; not hotseat or split screen.
+      Computer-Computer can be watched live or run accelerated headless.
+      The four required MAN templates are Command Core, MIN worker,
+      Barracks and Rifleman, with finite SOLID->Matter worker cargo
+      delivery, basic construction/production/combat and all-opponent-
+      completed-buildings victory. Keep the mandatory flying-platform
+      Verdant Divide map (DEC-030), one shared legal command API and
+      reproducible fixed-tick Godot gameplay. This is the smallest
+      shippable match, not the final faction-economy or camera feature set.
+    exclusions: >-
+      Playable ETH/ORG, MAN UMU modes and networks, Energy resource
+      implementation, higher logistics layers, full hero progression,
+      FPP possession and TPP are NOT required in MVP 0.1. FPP remains
+      an approved later product direction under DEC-031. Existing
+      working camera prototype/smoke may remain as debug baseline.
+    supersedes: >-
+      DEC-025 ONLY as regards the first playable MVP release requiring
+      simultaneous MAN and ETH implementation and five roles per race.
+      DEC-025's full two-faction slice remains a future milestone.
+      Historical first MVP PR plans/delivery gates and three-camera
+      acceptance criteria are superseded for MVP 0.1, not erased.
+      DEC-001 Energy canon and other long-term faction mechanics stay
+      approved for releases after MVP 0.1.
+    specification: design/mvp0-man-mirror-rts-2026-10-11.md
+    data_specification: design/mvp0-man-mirror-rts.yaml
+    acceptance: design/mvp0-man-mirror-acceptance.yaml
+    agent_backlog: design/mvp0-man-mirror-backlog.yaml
 
 migration_required:
   - design/economy.yaml
