@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 0.3
+version: 0.4
 status: owner_revision_proposed_not_approved_for_balance
 specification: design/construction-incubation-assembly-resonance-2026-10-11.md
 existing_canon:
@@ -10,6 +10,7 @@ existing_canon:
   organite_builder_l1_l2_l3_by_equipped_min_mid_max: true
   manus_repair_construction: true
   etheran_min_network_mode_visible_blue_beam: true
+  ether_network_conversion_and_partition_reference: design/eth-ether-network-mechanics.yaml
 proposed_shared_contract:
   normalized_stages: [initiation_0_to_33_percent, growth_33_to_66_percent, finalization_66_to_100_percent]
   active_candidate_by_faction: {org: [3, 2, 1], man: [1, 2, 2], eth: [1, 2, 3]}
@@ -97,7 +98,9 @@ factions:
       amount: TBD
       contributor_source_attribution: [home_nexus, local_expansion, other_legal_source]
       energy_return_via_authorized_accounted_mechanism: required
-      matter_and_volatiles_return_by_real_cargo_recovery: true
+      matter_and_volatiles_return_by_real_cargo_recovery_before_nexus_conversion: true
+      post_conversion_refunds_return_as_typed_ether_to_valid_local_current_component_or_real_recovery: true
+      no_remote_refund_teleport_across_severed_network: true
       no_instant_free_cross_map_resource_credit: true
     cancellation_refund_may_differ_from_enemy_attack: proposed
     short_disconnect_grace: unapproved_possible_balance_mitigation
