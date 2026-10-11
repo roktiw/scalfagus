@@ -1,4 +1,8 @@
 schema_version: 1
+release_target: post_mvp_0_1_MAN_vs_ETH
+historical_original_first_MVP_backlog_superseded_by_DEC_033: true
+current_implementation_backlog: design/mvp0-man-mirror-backlog.yaml
+do_not_run_PR_00_to_PR_10_before_current_M0_gates: true
 project: scalfagus
 version: 0.3
 status: historical_post_mvp_tasks_not_implemented
