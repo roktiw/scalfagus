@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 2.5
+version: 2.6
 decisions:
   - id: DEC-001
     status: approved
@@ -678,6 +678,26 @@ decisions:
     component_registry: architecture/godot-reuse-component-map.yaml
     agent_playbook: docs/AGENT-REUSE-FIRST-PLAYBOOK.md
     research: docs/GODOT-REUSE-RESEARCH-2026-10-11.md
+
+  - id: DEC-035
+    status: owner_approved_direction_exact_numeric_and_failure_semantics_TBD
+    topic: three_faction_resource_transport_and_ETH_pylon_unit_relay
+    resolution: >-
+      MAN transports real resources in vehicles, transporters, finite depots and
+      compatible bunker/UMU/power-station storage modes, and physical conveyor
+      belts; its hybrid power/data cables never carry physical resource packets.
+      ORG transports real resources in large living transport organisms and
+      vulnerable finite living vascular veins. ETH transmits typed resources
+      gradually pylon-to-pylon, with every pylon retaining finite actual local
+      resource inventory; its ONE existing Ether Network additionally allows
+      SLOW movement of eligible own units between connected pylons, unlike MAN
+      conveyors and ORG veins. Unit-relay movement has real time, congestion,
+      cost, vulnerability and unique-entity custody, NOT instant teleportation,
+      free building relocation, unlimited safe deployment or cargo duplication.
+      Numeric tuning, mode restrictions, safety and disruption handling remain
+      unresolved. This is post-MVP0, not part of DEC-033 first MAN mirror release.
+    specification: design/three-faction-logistics-and-eth-unit-relay-2026-10-11.md
+    data_specification: design/three-faction-logistics-and-eth-unit-relay.yaml
 
 migration_required:
   - design/economy.yaml
