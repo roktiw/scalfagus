@@ -273,7 +273,12 @@ func _find_route(start: Vector2i, goal: Vector2i, adjacent_ok: bool) -> Array[Ve
     return navigation.route(start, goal, adjacent_ok)
 
 func _walk(e: Dictionary, dest: Vector2i, adjacent_ok: bool = true) -> void:
-    if tick % 3 != 0:
+    # Integer fractional-tile accumulator: 115 milli-tiles/tick = 2.3
+    # tiles/s for workers; 130 milli-tiles/tick = 2.6 for Riflemen.
+    # Headless and GUI execute identical movement for identical tick input.
+    var gain: int = TIMING.RIFLEMAN_MILLI_PER_TICK if str(e["kind"]) == "rifleman" else TIMING.WORKER_MILLI_PER_TICK
+    e["move_progress"] = mini(TIMING.MILLI_TILES_PER_CELL, int(e["move_progress"]) + gain)
+    if int(e["move_progress"]) < TIMING.MILLI_TILES_PER_CELL:
         return
     var route: Array = e["route"]
     if (
@@ -293,11 +298,13 @@ func _walk(e: Dictionary, dest: Vector2i, adjacent_ok: bool = true) -> void:
     if _blocked(step):
         route = _find_route(e["pos"], dest, adjacent_ok)
         e["route"] = route
+        e["route_revision"] = navigation.revision
         if route.is_empty():
             return
         step = route[0]
     e["pos"] = step
     route.remove_at(0)
+    e["move_progress"] = int(e["move_progress"]) - TIMING.MILLI_TILES_PER_CELL
 
 func _nearest_source(pos: Vector2i) -> String:
     var choice: String = ""
