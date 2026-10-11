@@ -3,6 +3,8 @@
 Date: 2026-10-11
 Status: **owner-approved direction (DEC-031)**; implementation is **not yet migrated**.
 
+**MVP 0.1 exception (DEC-033):** the FIRST playable release exposes **RTS Overlord only**. Do not implement FPP possession now. DEC-031 remains the approved two-perspective direction for a later Scalfagus release. TPP/Direct is still not a user-facing mode. Existing FPP/TPP technical spike remains as non-release debug baseline until safely migrated.
+
 ## Product contract
 
 There are exactly **two supported player-facing gameplay perspectives**:
