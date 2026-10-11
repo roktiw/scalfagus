@@ -1,9 +1,11 @@
 schema_version: 1
 project: scalfagus
-version: 0.2
+version: 0.3
 status: owner_approved_concept_with_proposed_deterministic_protocol_and_tbd_balance
 decision: DEC-018
 contract: design/three-network-channels-and-destruction-2026-10-11.md
+additional_owner_decision: DEC-035
+unit_relay_specification: design/three-faction-logistics-and-eth-unit-relay.yaml
 precedence: DEC-021_supersedes_earlier_two_graph_model_and_DEC-022_supersedes_source_refund
 loot_contract: design/world-loot-and-recycling.yaml
 world_victory_rule: design/victory-defeat-building-classification-2026-10-11.md
@@ -104,6 +106,23 @@ nexus:
   local_blueprint_cache: true
   bootstrap_new_outpost_once: true
   full_turret_ability_by_default: false
+unit_relay:
+  status: owner_approved_direction_post_MVP0_exact_rules_and_balance_TBD
+  unique_to_ETH_network: true
+  packet_kind: unit
+  same_connected_pylon_graph_as_resources_energy_and_information: true
+  every_pylon_has_finite_stored_resource_inventory_independent_from_occupied_unit_transit_slots: true
+  only_eligible_friendly_units: true
+  requires_physical_source_and_destination_pylon_port: true
+  transit_over_multiple_hops_is_slow_and_costed: true
+  nonzero_per_hop_latency: true
+  finite_bandwidth_queue_ports_and_destination_space: true
+  preserves_single_entity_ID_HP_inventory_and_owner: true
+  unit_in_transit_cannot_act_as_world_actor: true
+  no_instant_teleportation_or_building_relocation: true
+  no_MVP0_requirement: true
+  on_pylon_or_link_break: deterministic_last_safe_node_or_repath_candidate_not_yet_approved
+  exact_energy_cost_and_mode_restrictions: TBD
 network:
   topology: one_unified_connected_relay_graph
   services_on_same_edges: [typed_resource, energy, knowledge_information, resonance_support]
