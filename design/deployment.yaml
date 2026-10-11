@@ -1,33 +1,69 @@
 schema_version: 1
 project: scalfagus
-version: 0.4
+version: 0.5
 status: approved_core_rules_with_proposed_details
 rule:
   all_units_deploy_into_buildings: false
   deployable_tag_required: true
   general_worker_min_mid_max_deploy_by_default: false
+  building_construction_is_distinct_from_unit_self_deployment: true
+  construction_capability_required_for_growth_or_assembly: true
+  economic_worker_tier_does_not_grant_all_structure_morphs: true
   terrain_space_resource_and_time_checks_required: true
   deploy_can_be_interrupted: true
   deployment_cooldown: TBD
   combat_behavior_during_deployment: TBD
   unit_persistence_after_deploy: faction_or_template_specific
 factions:
-  blergians:
-    proposed_specialist: colony_seed
-    mechanism: rooting_and_organic_growth
-    reversible: false
-    cost: TBD
-  manusians:
-    proposed_specialist: modular_constructor
-    mechanism: prefab_modules_anchored_into_structure
-    reversible: proposed
-    detached_components_persist_in_world: true
-    cost: TBD
-  aetherians:
-    proposed_specialist: resonance_anchor
-    mechanism: meditation_and_energy_manifestation
-    reversible: proposed_costly
-    cost: TBD
+  org:
+    approved_construction:
+      type: bud_living_building_along_connected_vessel
+      builder_scale_to_building_level: {min: l1, mid: l2, max: l3}
+      requires_growth_capable_specialist: true
+      live_connected_home_nexus_vessel_at_placement: true
+      detached_bud_requires_regrowth_reconnection: true
+    specialist_self_deployment:
+      optional_template: colony_seed
+      mechanism: irreversible_rooting_and_organic_growth
+      requires_deployable_tag: true
+    recurring_home_nourishment_for_remote_colonies: true
+  man:
+    approved_construction:
+      type: modular_prefab_assembly_and_repair
+      modules_can_reposition: true
+      local_independent_outposts: true
+      repair_units_and_buildings_with_supplies: true
+    specialized_mid:
+      exclusive_modes: [travel, conveyor, one_person_bunker, sentry_wall]
+      belt_length_tiles: [3, 5]
+      soldier_capacity_when_in_bunker: 1
+      requires_deployable_tag_for_wall_or_bunker: true
+    specialized_max:
+      exclusive_modes: [travel, warehouse, multi_person_bunker]
+      ground_only: true
+      requires_cargo_unloading_and_deployable_tag_for_bunker: true
+    self_deployment_reversible: proposed_costed
+  eth:
+    approved_construction:
+      type: network_mode_builder_with_nearest_eligible_large_node_beam
+      worker_stays_in_network_mode_until_build_completed_or_cancelled: true
+      visible_blue_beam: true
+      actual_energy_spend: true
+      physical_materials_required: true
+    mid:
+      role: pylon_storage_relay_or_meditated_turret
+      retains_cargo_while_meditating: true
+      cargo_gates_locked_while_meditating_and_defending: true
+      requires_eligible_mode_capability: true
+    max:
+      role: nexus_class_core_node_from_creation
+      old_max_storage_turret_pylon_role: superseded
+    optional_structure_relocation:
+      explicit_levitation_capability_required: true
+      meditation_before_moving: true
+      meditation_after_moving: proposed
+      energy_and_time_required: true
+
 structure_lifecycle:
   ownership: TBD
   capture_rules: TBD
