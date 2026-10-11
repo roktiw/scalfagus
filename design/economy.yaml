@@ -1,6 +1,16 @@
 schema_version: 1
 project: scalfagus
-status: proposed_balance_v0_1
+status: legacy_proposed_balance_pending_physical_form_and_currency_migration
+active_extraction_gate_reference: design/physical-resource-forms.yaml
+owner_directed_access:
+  solid: manual_without_extraction_structure
+  liquid: small_slow_manual_or_installed_pump
+  gas: installed_collector_required_before_any_extraction
+currency_ids_in_sample_below: historic_crystals_gas_resin_not_active
+warning: >-
+  All numerical worker costs, rates and faction aliases below are legacy
+  examples. Do not infer a one-to-one resource conversion or regard a legacy
+  gas currency as physical atmospheric gas or as Energy.
 economy:
   resources:
     - id: crystals
