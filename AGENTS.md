@@ -10,6 +10,7 @@ This repository has **an existing Godot 4.7.2 native three-camera game spike**, 
 4. **Simulation:** [design/mvp-economy.yaml](design/mvp-economy.yaml), [design/mvp-combat.yaml](design/mvp-combat.yaml), [design/mvp-bot-behavior.yaml](design/mvp-bot-behavior.yaml), [design/mvp-man-eth-acceptance.yaml](design/mvp-man-eth-acceptance.yaml).
 5. **Rules and owner decisions:** [design/decisions.yaml](design/decisions.yaml), [design/three-network-channels-and-destruction.yaml](design/three-network-channels-and-destruction.yaml), [design/world-loot-and-recycling.yaml](design/world-loot-and-recycling.yaml), [design/victory-building-template-registry.yaml](design/victory-building-template-registry.yaml).
 6. **Map topology choice:** [design/planetary-map-topology-2026-10-11.md](design/planetary-map-topology-2026-10-11.md), [design/world-topologies.yaml](design/world-topologies.yaml).
+7. **Latest bounded platform frames (DEC-029):** [design/floating-platform-battlefields-2026-10-11.md](design/floating-platform-battlefields-2026-10-11.md), [design/battlefield-frames.yaml](design/battlefield-frames.yaml), [design/battlefield-frame-acceptance.yaml](design/battlefield-frame-acceptance.yaml).
 
 ## Scope that must not drift
 
@@ -19,7 +20,7 @@ This repository has **an existing Godot 4.7.2 native three-camera game spike**, 
 - Default victory: all **completed living building-class entities** eliminated, **including mobile packed MAN UMU**. Workers, Hero, soldiers, loose items, wrecks and unfinished sites don't prolong matches.
 - World drop silhouettes: MAN cube, ETH orb, later ORG tetrahedron; source form determines color. All real currency transfers must be ledger-correct and salvaging cannot create infinite closed cycles.
 - Reuse **one native 3D world** in all camera perspectives; do not split RTS and FPS into separate simulations.
-- Terrain/topology: **PLANAR** implemented first. Genuine SPHERICAL planetoids are a **future candidate**, not a feature supplied by a flag alone. Validate and reject unsupported sphere manifests explicitly.
+- Terrain/topology: **PLANAR** implemented first. A square bounded map with impassable collision walls is owner-settled. The recommended first appearance is an enormous *stationary floating jungle habitat* framed by a visible deck rim, starfield and distant planet, with an invisible physics guard. This presentation must not alter navigation/resource gameplay or turn the platform into a victory building. Whether EVERY future map is a flying platform is still open. Genuine SPHERICAL planetoids are a **future candidate**, not a feature supplied by a flag alone. Validate and reject unsupported sphere manifests explicitly.
 
 ## Environment and regression
 
@@ -33,4 +34,4 @@ This repository has **an existing Godot 4.7.2 native three-camera game spike**, 
 
 ## If two specs conflict
 
-Newest **explicit owner-approved** DEC entry takes precedence over historical proposals. Specific latest priorities: DEC-021–024 networks/loot/victory; DEC-025 MVP content; DEC-026 environments; DEC-027 map authoring; DEC-028 is **research only** for possible spherical planet. Do not silently relabel legacy crystals/gas/resin into Matter/Volatiles/Energy outside the explicitly scoped solid→Matter first-map conversion. Document migration rather than guessing.
+Newest **explicit owner-approved** DEC entry takes precedence over historical proposals. Specific latest priorities: DEC-021–024 networks/loot/victory; DEC-025 MVP content; DEC-026 environments; DEC-027 map authoring; DEC-028 is **research only** for possible spherical planet; DEC-029 confirms bounded square PLANAR play with optional floating-platform visual frame. Do not silently relabel legacy crystals/gas/resin into Matter/Volatiles/Energy outside the explicitly scoped solid→Matter first-map conversion. Document migration rather than guessing.
