@@ -1,5 +1,10 @@
 # SCALFAGUS — Coding-Agent Contract
 
+## POST-MVP FACTION LOGISTICS UPDATE — DEC-035
+
+Read [three-faction logistics and ETH unit relay](design/three-faction-logistics-and-eth-unit-relay-2026-10-11.md) and [machine-readable specification](design/three-faction-logistics-and-eth-unit-relay.yaml) before modifying post-MVP0 MAN/ORG/ETH logistics. MAN uses physical transporters, mode-dependent warehouses/bunkers/UMU and belts (NOT cargo in electricity/data cables); ORG uses large living carriers and finite rooted veins; ETH has finite actual storage on EVERY pylon, gradual typed-resource hop transfers, and additionally a **slow, finite-capacity ETH unit transit capability across connected pylon links**, which no other faction's infrastructure grants. Shared unit identity, inventory, network interruption behavior and authoritative transfer/cost semantics are mandatory; numerical balance and interruption policies remain TBD. **Do not introduce ETH, ORG, conveyors, UMU or pylon unit relays into the DEC-033 MAN-only first MVP0 release.**
+
+
 ## OWNER PRODUCT VISION — THREE CONTROL MODES (POST-MVP0)
 
 **Read [command-autonomy design](design/command-autonomy-modes-2026-10-11.md) and [machine-readable contract](design/command-autonomy-modes.yaml) when planning future agent autonomy.** Player can instantly switch **FULL MANUAL** (classic RTS explicit orders), **SEMI-AUTO** (bounded managers controlling chosen groups of units and buildings) and **FULL AUTO** (civilization-wide doctrines with explicitly delegated authority). Preset doctrines include **War, Industrial, Reconstruction, Expansion Preparation, Defensive Readiness and Balanced**. Candidate doctrine panel exposes **3 / 5 / 7 axes** with -1 / 0 / +1 temperatures; temperature biases legal behavior, but never grants authority, vision, free resources or stat bonuses. Explicit manual commands always win. No reset or duplicate resource transactions on live mode/preset switches. **These are design contracts, not implemented or MVP0 deliverables. DEC-033 MAN-vs-MAN RTS-only release scope is unchanged.**
