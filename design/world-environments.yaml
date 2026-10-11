@@ -1,10 +1,12 @@
 schema_version: 1
 project: scalfagus
-version: 0.2
+version: 0.3
 status: owner_approved_domains_and_mvp_land_only_with_world_preset_proposals
 specification: design/world-environments-and-map-authoring-2026-10-11.md
 decision: DEC-026
-newest_environment_frame_decision: DEC-029
+newest_environment_frame_decision: DEC-030
+universal_flying_platform_documentation: design/space-platform-world-contract-2026-10-11.md
+platform_surface_variants: design/platform-surface-presets.yaml
 frame_specification: design/floating-platform-battlefields-2026-10-11.md
 frame_machine_contract: design/battlefield-frames.yaml
 natural_domains:
@@ -49,6 +51,10 @@ terrain_liquid_vs_resource_liquid:
 world_frame_compatibility:
   environment_preset_does_not_imply_planet_surface: true
   first_jungle_can_grow_on_massive_stationary_space_platform: true
+  all_playable_maps_are_flying_platforms_in_space: true
+  terrestrial_planetary_surface_maps_as_alternative: false
+  surface_can_be_brown_earth_jungle_or_patchwork_metal_or_other_biome: true
+  surface_preset_choice_is_not_world_frame_choice: true
   freshwater_and_soil_do_not_require_rendered_surface_planet: true
   artificial_atmosphere_and_gravity_are_lore_only_in_mvp: true
   platform_visual_backdrop_has_no_collision_navigation_or_resources: true
@@ -61,7 +67,8 @@ world_presets:
     liquid_substance_id: freshwater
     biome: humid_tropical_alien_jungle
     visual_character: earthlike_with_subtle_exotic_flora
-    compatible_frame_styles: [floating_space_platform, bounded_planetary_surface]
+    compatible_frame_styles: [floating_space_platform]
+    mandatory_platform_frame: floating_space_platform
     recommended_first_frame_style: floating_space_platform
     cover: [large_living_tree_trunks, massive_roots, fallen_log_obstacles]
     traversable_ground: true
@@ -97,4 +104,5 @@ first_mvp_liquid_assertions:
   hero_first_person_collider_uses_same_liquid_blocking_as_rts: true
 owner_vs_candidate:
   approved: [man_earth, eth_air, org_water, land_only_mvp, environmental_liquid_bodies_mandatory_in_first_supported_maps, jungle_earthlike]
-  proposed: [additional_world_substance_names, future_movement_domains, waterless_exception_preset, exact_liquid_collision_rules_and_visuals, making_all_future_maps_floating_platforms]
+  approved: [all_future_maps_are_floating_space_platforms, surface_material_is_independent_of_frame]
+  proposed: [additional_world_substance_names, future_movement_domains, waterless_exception_preset, exact_liquid_collision_rules_and_visuals, per_biome_material_combinations]
