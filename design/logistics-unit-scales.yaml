@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 0.7
+version: 0.8
 status: owner_approved_economic_roles_with_open_balance
 specification: design/colony-topologies-vascular-modular-resonant-2026-10-11.md
 legacy_unit_specification: design/logistics-min-mid-max-2026-10-11.md
@@ -151,6 +151,7 @@ factions:
     mid:
       role: mobile_conveyor_segment
       when_designated_UMU_share_same_transforming_two_wing_contract: true
+      when_designated_UMU_move_has_open_cage_and_one_wing_warehouse: true
       can_garrison_one_person_when_specialized_and_deployed: true
       mutually_exclusive_modes_by_default: [move, conveyor, sentry_wall, one_person_bunker]
       bunker_and_sentry_wall_simultaneity: not_approved
@@ -190,6 +191,9 @@ factions:
     max:
       role: ground_mobile_depot_warehouse
       when_designated_UMU_same_two_belt_wings_required: true
+      when_designated_UMU_move_has_open_troop_or_cargo_cage: true
+      when_designated_UMU_warehouse_deploys_one_wing_only: true
+      when_designated_UMU_five_function_modes: [move_tracks, warehouse, conveyor, bunker, sentry_wall]
       when_designated_UMU_3_or_5_belt_mode_available: true
       when_designated_UMU_separate_sentry_wall_blocks_real_ground_nav: true
       umu_name: Universal Man Unit
