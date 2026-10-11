@@ -75,7 +75,14 @@ def build(source: bytes) -> dict:
             return
         old = solids.get((x, y), "")
         if old and old != kind:
-            raise ValueError(f"Overlapping water and tree at {(x, y)}")
+            # The southwest edge of trunk_s_02 clips the southern pond.
+            # Water is the hard physical surface there; never erase the pond.
+            if old == "water" and kind == "tree":
+                return
+            if old == "tree" and kind == "water":
+                solids[(x, y)] = "water"
+                return
+            raise ValueError(f"Unknown terrain overlap at {(x, y)}")
         solids[(x, y)] = kind
 
     for water in manifest["liquid_bodies"]:
@@ -155,7 +162,7 @@ def build(source: bytes) -> dict:
         "source_git_blob_sha": source_git_blob_sha(source),
         "frame": "floating_space_platform",
         "width": width, "height": height,
-        "tile_meters": float(grid["tile_meters"]),
+        "tile_meters": int(grid["tile_meters"]),
         "starts": slots, "sources": sources,
         "terrain": [{"x": x, "y": y, "kind": kind}
                     for (x, y), kind in sorted(solids.items(), key=lambda entry: (entry[0][1], entry[0][0]))],
