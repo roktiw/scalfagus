@@ -2,7 +2,7 @@
 
 Date: 2026-10-11
 Status: **OWNER-APPROVED DEFAULT MATCH VICTORY RULE**. Implementation tags, mode-invariant classification, simultaneous elimination and optional objectives below are engineering proposals until tested.
-Decision: [DEC-024](decisions.yaml). Data: [match-rules.yaml](match-rules.yaml). Fixtures: [victory-defeat-acceptance-cases.yaml](victory-defeat-acceptance-cases.yaml).
+Decision: [DEC-024](decisions.yaml). Data: [match-rules.yaml](match-rules.yaml), [victory-building-template-registry.yaml](victory-building-template-registry.yaml). Fixtures: [victory-defeat-acceptance-cases.yaml](victory-defeat-acceptance-cases.yaml).
 Related new economic mechanics: [world loot, salvage, attrition](world-loot-salvage-and-recycling-2026-10-11.md) and [ORG/MAN/ETH 2/3/1 channels](three-network-channels-and-destruction-2026-10-11.md).
 
 ## Core user rule
