@@ -1,0 +1,54 @@
+schema_version: 1
+project: scalfagus
+version: 0.1
+status: design_fixture_not_executed
+owner_decision: DEC-029
+specification: design/floating-platform-battlefields-2026-10-11.md
+frame_data: design/battlefield-frames.yaml
+map_data: design/mvp-verdant-divide-map.yaml
+first_supported_topology: planar
+tests:
+  - id: FRAME-01
+    scenario: switch_appearance_between_classic_square_and_spaceborne_deck
+    setup: {same_map: verdant_divide, variants: [bounded_planetary_surface, floating_space_platform]}
+    expect:
+      same_spawn_positions: true
+      same_unit_pathing: true
+      same_tree_LOS_collider_geometry: true
+      same_source_amounts_and_legal_hauling: true
+      identical_gameplay_result_with_same_fixed_seed_and_commands: true
+  - id: FRAME-02
+    scenario: test_N_S_E_W_outer_borders
+    steps: [drive_packed_MAN_UMU_outside_north, move_worker_outside_south, move_soldier_outside_east, drive_hero_outside_west]
+    expect: {all_actor_types_blocked: true, position_remains_legal: true, physics_and_navmesh_agree: true}
+  - id: FRAME-03
+    scenario: aim_and_click_distant_starfield_and_background_planet
+    expect: {can_select: false, can_attack: false, can_mine: false, no_ETH_pylon_path_to_background: true}
+  - id: FRAME-04
+    scenario: jungle_liquid_bodies_and_tree_cover_remain
+    expect:
+      freshwater_pools_appear_on_habitat_deck: true
+      freshwater_not_harvestable_in_solid_only_MVP: true
+      tree_trunk_still_blocks_actual_projectile: true
+      no_swimming_or_flying_player_units: true
+  - id: FRAME-05
+    scenario: boundary_rim_art_and_collision_guard
+    expect: {rim_visible_along_every_side: true, guard_present: true, actor_cannot_fall_off_due_to_missing_collider: true}
+  - id: FRAME-06
+    scenario: decorative_cosmic_parallax_does_not_modify_simulation
+    expect: {world_origin_stable: true, deterministic_replay_unchanged: true, background_no_pathing_or_harvest_changes: true}
+  - id: FRAME-07
+    scenario: platform_frame_is_not_true_sphere
+    expect: {topology_remains_planar: true, radial_gravity_is_disabled: true, unimplemented_spherical_adapter_rejected_with_error: true}
+  - id: FRAME-08
+    scenario: platform_is_neutral_noninteractive_world_frame
+    steps: [destroy_all_enemy_completed_buildings, leave_platform_rim_and_support_beams_intact]
+    expect: {enemy_defeated: true, faction_owned_platform_building_count: 0}
+  - id: FRAME-09
+    scenario: ETH_orb_drop_scattered_next_to_N_platform_edge
+    initial: {site_committed_matter: 12}
+    steps: [break_required_ETH_build_beam, generate_deterministic_world_drops]
+    expect: {all_recovered_world_packet_positions_in_playable_bounds: true, total_world_drop_matter: 12, no_duplicate_resource_credit: true}
+  - id: FRAME-10
+    scenario: no_orbital_ship_travel_in_match
+    expect: {deck_static_in_gameplay_space: true, map_not_autoscrolling: true, no_orbit_or_engine_fuel_simulation: true}
