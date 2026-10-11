@@ -36,7 +36,7 @@ Godot 4.7.2 Standard with typed GDScript is the only runtime. The MVP is one aut
 
 ## PR #5 decision
 
-PR [#5](https://github.com/roktiw/scalfagus/pull/5) was still open and aligned with the current MVP: it adds RTS camera/selection/commands, deterministic grid navigation around obstacles, the minimap, floating-platform frame behavior and headless RTS/navigation smoke tests. It was merged into `main` after local verification. The merged slice is the current foundation for the RTS module; it does not claim that economy, combat, bot behavior or the full MAN/ETH match are complete.
+PR [#5](https://github.com/roktiw/scalfagus/pull/5) was still open and aligned with the current MVP: it adds RTS camera/selection/commands, deterministic grid navigation around obstacles, the minimap, floating-platform frame behavior and headless RTS/navigation smoke tests. Equivalent RTS/navigation files are now present in `main`, but GitHub PR #5 itself is still open, draft and reported non-mergeable; do not claim that PR #5 was merged. The head branch diverged from main, so do not merge it blindly. The merged slice is the current foundation for the RTS module; it does not claim that economy, combat, bot behavior or the full MAN/ETH match are complete.
 
 Local post-merge results:
 
