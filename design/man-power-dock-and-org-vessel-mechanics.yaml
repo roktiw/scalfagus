@@ -1,16 +1,25 @@
 schema_version: 1
 project: scalfagus
-version: 0.2
+version: 0.3
 status: approved_owner_direction_with_explicit_implementation_candidates_and_unresolved_balance
 decision_ids: [DEC-019, DEC-020]
 specification: design/three-network-channels-and-destruction-2026-10-11.md
 owner_latest_concepts: design/three-network-channels-and-destruction.yaml
 world_loot_contract: design/world-loot-and-recycling.yaml
 historical_note: former_separate_small_power_dock_is_now_UMU_research_alternative
+storage_specialization_decision: DEC-036
+storage_specification: design/faction-storage-specialization-and-obelisk-traffic.yaml
 canonical_currency_ids: [matter, volatiles, energy]
 source_forms: [solid, liquid, gas]
 economic_support_is_not_spendable_currency: true
 man:
+  UMU_cargo_storage:
+    mixed_typed_goods_allowed: true
+    dedicated_resource_mode_allows_only_selected_type: true
+    dedicated_resource_mode_has_greater_effective_capacity_than_mixed: true
+    physical_unload_required_before_rebinding_with_incompatible_cargo: true
+    exact_bonus_duration_and_cost: TBD
+    only_when_existing_UMU_warehouse_ports_legal_and_open: true
   doctrine: physical_modular_electric_independent_outposts
   owner_direction:
     basic_infrastructure_module_is_ground_mobile: true
@@ -144,6 +153,12 @@ man:
     - whether_mid_max_are_displaced_by_power_dock
     - building_completions_from_local_stock_vs_courier_fetch
 org:
+  cyst_storage:
+    finite_single_resource_kind_per_cyst: true
+    mixed_typed_goods_in_one_cyst_forbidden: true
+    rebind_nonempty_requires_physical_unload: true
+    access_via_live_vascular_or_real_organism_delivery: true
+    cyst_capacities_eligible_types_and_rebind_cost: TBD
   doctrine: living_vessel_and_nourishment_not_global_ether_inventory
   owner_direction:
     every_rooted_building_needs_live_connected_home_vessel: true
