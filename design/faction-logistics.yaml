@@ -1,5 +1,7 @@
 schema_version: 1
 project: scalfagus
+human_canonical_logistics_summary: design/three-faction-logistics-overview-2026-10-12.md
+human_summary_is_index_not_a_new_numeric_balance_contract: true
 latest_owner_network_contract: design/three-network-channels-and-destruction-2026-10-11.md
 eth_three_ingress_decision: DEC-039
 eth_three_ingress_contract: design/org-plug-holes-and-eth-three-ingress-methods.yaml
