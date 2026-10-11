@@ -3,7 +3,12 @@ project: scalfagus
 version: 0.1
 status: owner_directed_structure_with_proposed_mechanics_and_balance_parameters
 specification: design/three-network-channels-and-destruction-2026-10-11.md
-latest_decisions: [DEC-021, DEC-022, DEC-023, DEC-035, DEC-036]
+latest_decisions: [DEC-021, DEC-022, DEC-023, DEC-035, DEC-036, DEC-038]
+latest_bidirectional_economics_decision: DEC-038
+ORG_living_veins_allow_both_traffic_directions: true
+ETH_Obelisk_tip_links_allow_both_traffic_directions: true
+ETH_homogeneous_stored_levitation_saves_energy_at_same_total_stock: true
+MAN_early_post_MVP_two_way_belts_without_set_arrows: proposed
 storage_specialization_owner_decision: DEC-036
 storage_specialization_contract: design/faction-storage-specialization-and-obelisk-traffic.yaml
 ETH_obelisk_inventory_load_reduces_traffic_rate: true
