@@ -3,6 +3,7 @@ extends Node3D
 # First playable visualization of MVP 0.1's shared authoritative MAN rules.
 # This is local Human-vs-Bot / Bot-vs-Bot; LAN Human-vs-Human is a later gate.
 const MATCH = preload("res://scripts/mirror_match_state.gd")
+const TIMING = preload("res://scripts/mirror_timing.gd")
 const VIEW_SCRIPT = preload("res://scripts/directional_sprite_5.gd")
 const WORKER_ATLAS = preload("res://assets/man_worker_32x48_idle_5view.png")
 const LANDER_ATLAS = preload("res://assets/man_lander_128x128_unverified_5view.png")
@@ -30,7 +31,7 @@ var hud: Label
 var help_label: Label
 var selection_marker: MeshInstance3D
 var info: String = ""
-var camera_center: Vector3 = Vector3(19.0, 0.0, 32.0)
+var camera_center: Vector3 = Vector3(17.0, 0.0, 17.0)
 var zoom_size: float = 50.0
 
 func _ready() -> void:
@@ -469,9 +470,9 @@ func _process(delta: float) -> void:
     if not sim.finished and speed > 0:
         time_accumulator += delta * float(speed)
         var steps: int = 0
-        while time_accumulator >= 0.1 and steps < 32:
+        while time_accumulator >= TIMING.TICK_SECONDS and steps < 32:
             sim.advance()
-            time_accumulator -= 0.1
+            time_accumulator -= TIMING.TICK_SECONDS
             steps += 1
         if steps > 0:
             _sync_visuals()

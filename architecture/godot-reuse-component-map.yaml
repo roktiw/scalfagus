@@ -65,9 +65,14 @@ capabilities:
     proposed_PR: 5
     provider: [AStarGrid2D]
     wrapper: NavigationPort
-    implementation: existing_repo_draft_thin_grid_adapter
+    implementation: >-
+      grid_navigator.gd remains used in legacy scene. A separate
+      mirror_navigation_port.gd now wraps native AStarGrid2D for 64x64
+      tile-space MAN mirror simulation; code in dependent draft PR,
+      actual Godot runtime verification is still pending.
+    proposed_native_mirror_port: apps/game/scripts/mirror_navigation_port.gd
     owned_rules: [blocked_cells, clearance, nav_version, dynamic_invalidation]
-    tests: [blocked_trees, impassable_water, actor_larger_than_cell, building_placed_mid_route]
+    tests: [blocked_trees, impassable_water, actor_larger_than_cell, building_placed_mid_route, mirror_navigation_port_smoke]
   - id: navigation_3D_alternative
     mvp_gate: post_MVP_or_benchmark
     provider: [NavigationServer3D, NavigationRegion3D, NavigationAgent3D]

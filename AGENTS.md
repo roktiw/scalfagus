@@ -1,5 +1,71 @@
 # SCALFAGUS — Coding-Agent Contract
 
+## MAN MVP0 MAP SOURCE CONTRACT — Verdant Divide
+
+The **only authored world topology source** is `design/mvp-verdant-divide-map.yaml`.
+`scripts/compile-verdant-map.py` converts it using the pinned permissive MIT PyYAML
+authoring tool to the checked-in native Godot artifact
+`apps/game/maps/verdant_divide.compiled.json`.
+`MirrorMapPort` feeds both `MirrorMatchState` and its AStar navigation from that
+JSON. **Do not copy/paste source deposits, trees or spawn positions into gameplay
+GDScript or add a second procedural gameplay terrain generator.**
+
+On YAML changes, regenerate JSON using `python3 scripts/compile-verdant-map.py`
+with the pinned `scripts/requirements-map.txt` package, then validate with
+`bash scripts/check-map.sh` and `bash scripts/check.sh` on real Godot 4.7.2.
+The source SHA and exact JSON artifact must agree. One known raster collision is
+resolved as **water over tree** at (28,46); do not remove the pond in collision
+logic to conceal it. The source currently contains 10 nodes / 1660 Matter,
+2 diagonal starts and a single-cell impassable rim. 3x3 building footprints,
+ridges/ramps, 2m visual physics and 3D LOS remain **unimplemented**.
+GitHub Actions remain unavailable before runner allocation: do not imply green CI.
+
+
+
+## THREE-FACTION LOGISTICS — CANON OVERVIEW (DEC-035–039)
+
+**Start with [MAN / ORG / ETH logistics overview](design/three-faction-logistics-overview-2026-10-12.md) for a current side-by-side summary** of physical MAN belts and UMU packing, biological ORG bidirectional veins and monotypic cysts, and ETH Obelisk ground drone flags plus upper levitating network. It includes all three owner-selected ETH ingress options (Nexus zero Energy upload tariff, drone paying 33% shield at Obelisk tip, powered Obelisk ground pick-up with high Energy cost), the power-loss resource drop, storage energy/throughput tradeoffs, unresolved choices, and direct links to specific DEC-035–039 machine contracts. **This is a summary, not a replacement for those contracts and never changes DEC-033 MVP0 release scope.**
+
+
+## ORG PLUG HOLES / ETH THREE UPLOAD PATHS — DEC-039
+
+Read [ORG port & ETH ingress design](design/org-plug-holes-and-eth-three-ingress-methods-2026-10-12.md) and [DEC-039 contract](design/org-plug-holes-and-eth-three-ingress-methods.yaml). ORG preferred standard vascular docking interface is a **universal biological Plug Hole** accepting eligible equipped MIN/MID/MAX transport workers, with distinct specialist Mouth organs optional; the owner has not finally chosen Plug Hole-only vs hybrid. Respect DEC-011's one active worker/item handoff and exclusive MOVE/RECEIVE/DISPATCH/EXTRACT modes for initial ORG MID/MAX. **ETH owner selected three resource upload methods:** (1) physical delivery to Nexus with ZERO additional ingress Energy tariff, real travel/processing; (2) eligible shielded drone physically injects a finite cargo batch into an Obelisk tip at **33% drone blue shield cost** (max-shield basis per bounded batch is a proposed implementation and remains TBD); (3) powered Obelisk directly picks up authorized real nearby ground cargo at the **highest actual Energy cost**. This **supersedes the historical Nexus-only raw ingress restriction of DEC-021 for later ETH gameplay**. Unique custody, finite positive transfer times, DEC-037 shield recovery rules, DEC-036/038 storage congestion/homogeneity and ongoing levitation upkeep still apply. Any older "Nexus only" statements elsewhere are historical for ETH release plans. **None of this belongs in DEC-033 MVP0.**
+
+
+## BIDIRECTIONAL FACTION LOGISTICS AND ETH HOMOGENEITY — DEC-038
+
+Read [bidirectional logistics and storage economics](design/faction-bidirectional-logistics-and-homogeneous-storage-2026-10-12.md) and [machine specification](design/faction-bidirectional-logistics-and-homogeneous-storage.yaml). Owner rule: at **equal total levitated inventory**, ETH **single-resource** Obelisk storage has **lower continuing Energy upkeep** than heterogeneous mixes; it **still reduces relay throughput as its inventory fills**, under DEC-036, and still needs energy to stay aloft. ORG's universal living veins and ETH's Obelisk-tip links are **bidirectional** for legal material flow; never double finite bandwidth just because movement is possible in either direction. ORG cyst remains single-resource, with **costly biological specialization/mutation**; reversibility remains open. For **early post-MVP MAN conveyors**, owner proposed belts capable of both flow directions **without manual arrow orientation**; later optional Factorio-style directional modes are *not* decided and head-on traffic must be resolved deterministically with genuine shared capacity. This is **future work beyond DEC-033 first release**. Nexus-only raw ETH conversion remains the baseline pending its separate owner decision.
+
+
+## ETH DUAL GROUND/LEVITATION LOGISTICS — PROPOSAL, NOT AN APPROVED RAW-UPLINK CHANGE
+
+Read [ETH two transport loops](design/eth-dual-loop-ground-flags-and-aerial-freight-2026-10-12.md) and [machine candidate](design/eth-dual-loop-ground-flags-and-aerial-freight.yaml). The owner specifies **physical drone-to-drone cargo handoffs at Obelisk foot flags** plus a **separate elevated visible straight-line tip-to-tip Ether freight service** on the already unified ETH network, with actual mixed levitated stocks, network upkeep, and physical falling resource objects on loss of levitation support. Nearby build sites receive real parcels descended to the Obelisk foot and physically delivered onward. The owner has now resolved the non-Nexus raw uplink question in DEC-039: legal shielded-drone tip upload and expensive powered Obelisk ground pick-up supplement free Nexus upload. Exact port technology, shield-charge basis and Energy tariffs remain TBD. Secondary ingress is owner-selected under DEC-039; no special cost-free re-lift of previously fallen Ether stock is approved. Do not introduce these ETH systems into DEC-033 MVP0.
+
+
+## RECOVERY / SHIELD DOCTRINE — DEC-037 (POST-MVP0)
+
+Read [faction recovery rules](design/faction-damage-recovery-shields-and-repair-2026-10-11.md) and [typed contract + HEAL scenarios](design/faction-damage-recovery-shields-and-repair.yaml): ORG has slow passive biological HP regeneration and faster healing when genuinely connected to a functioning living vein; ETH shields naturally recharge, recharge faster near properly connected **Obelisks**, and **consume an entire recharged shield to restore a finite amount of green HP**, possibly over multiple shield→health cycles; MAN biological damage needs medical treatment, mechanical damage needs service/repair, and optional MAN force shields **NEVER** recharge except by finite battery or valid powered grid. Shield durability, green HP and the stored Energy resource are distinct ledgers. Exact timing, HP per consumed ETH shield and costs are TBD. **Keep this out of DEC-033 four-template MAN mirror MVP0.**
+
+
+## ETH OBELISK / FACTION STORAGE UPDATE — DEC-036
+
+**Canonical ETH player-facing term: OBELISK, not PYLON.** Older `eth_mid_pylon` / `pylon_obelisk` are technical compatibility IDs only; do not blindly rename serialized Godot data or old acceptance fixtures. Read [storage rules](design/faction-storage-specialization-and-obelisk-traffic-2026-10-11.md) and [YAML tests](design/faction-storage-specialization-and-obelisk-traffic.yaml): ORG stores only one resource kind per cyst; MAN UMU stores mixed goods or more of one type when deliberately specialized; ETH levitates mixed typed-resource stock around Obelisks, and greater node inventory occupancy **reduces throughput**. Use storage Obelisk sidings/clusters and lightly loaded transit backbone nodes. The old idea of unconditionally equalizing all ETH pylon fill levels is **superseded** by DEC-036: protect transit nodes from forced fill and scope background equalization to explicitly participating storage nodes. None of these systems belongs in DEC-033 MAN mirror MVP0.
+
+
+## LOCAL GODOT ADDONS — ACTIVE SETUP, NO ACTIONS GATE
+
+Godot 4.7.2 editor plugins: RTS Framework (WIP reference only), Keychain 2.1, Godot State Charts 0.22.5 and GUT 9.7.1. Locked revisions for new addons are tracked in `architecture/godot-addons.lock.yaml` and Git submodules. `scripts/dev.sh` / `scripts/check.sh` automatically call `scripts/install-godot-addons.sh --ensure`; the latter runs an independent headless addon manifest smoke. **GitHub Actions have pre-runner failures, so never claim CI passed; use actual local Godot logs.** LimboAI intentionally not installed. Installed editor plugins are NOT evidence that they implement RTS gameplay; never delegate GameState authority.
+
+
+## LATEST DESIGN DISCUSSION ARCHIVE — 2026-10-11
+
+The owner's recent conversation on unit initiative, FULL MANUAL / SEMI-AUTO / FULL AUTO, group managers, -1/0/+1 doctrine temperatures, hot preset switching, X-COM / Dwarf Fortress / Dungeon Keeper inspiration, and MAN / ORG / ETH asymmetric transport is preserved in [the chronological discussion archive](inbox/2026-10-11-gameplay-autonomy-doctrines-xcom-dwarf-logistics-conversation.md). It includes original Polish user utterances, separate assistant design summaries and explicit MVP0 vs future-scope labels. Use owner-approved decisions and release-specific contracts as authority; a brainstormed podcast mechanic is not automatically a release requirement. 
+
+## POST-MVP FACTION LOGISTICS UPDATE — DEC-035
+
+Read [three-faction logistics and ETH unit relay](design/three-faction-logistics-and-eth-unit-relay-2026-10-11.md) and [machine-readable specification](design/three-faction-logistics-and-eth-unit-relay.yaml) before modifying post-MVP0 MAN/ORG/ETH logistics. MAN uses physical transporters, mode-dependent warehouses/bunkers/UMU and belts (NOT cargo in electricity/data cables); ORG uses large living carriers and finite rooted veins; ETH has finite actual storage on EVERY pylon, gradual typed-resource hop transfers, and additionally a **slow, finite-capacity ETH unit transit capability across connected pylon links**, which no other faction's infrastructure grants. Shared unit identity, inventory, network interruption behavior and authoritative transfer/cost semantics are mandatory; numerical balance and interruption policies remain TBD. **Do not introduce ETH, ORG, conveyors, UMU or pylon unit relays into the DEC-033 MAN-only first MVP0 release.**
+
+
 ## OWNER PRODUCT VISION — THREE CONTROL MODES (POST-MVP0)
 
 **Read [command-autonomy design](design/command-autonomy-modes-2026-10-11.md) and [machine-readable contract](design/command-autonomy-modes.yaml) when planning future agent autonomy.** Player can instantly switch **FULL MANUAL** (classic RTS explicit orders), **SEMI-AUTO** (bounded managers controlling chosen groups of units and buildings) and **FULL AUTO** (civilization-wide doctrines with explicitly delegated authority). Preset doctrines include **War, Industrial, Reconstruction, Expansion Preparation, Defensive Readiness and Balanced**. Candidate doctrine panel exposes **3 / 5 / 7 axes** with -1 / 0 / +1 temperatures; temperature biases legal behavior, but never grants authority, vision, free resources or stat bonuses. Explicit manual commands always win. No reset or duplicate resource transactions on live mode/preset switches. **These are design contracts, not implemented or MVP0 deliverables. DEC-033 MAN-vs-MAN RTS-only release scope is unchanged.**
@@ -63,7 +129,7 @@ Read the [consolidated mechanics findings](design/mvp-repository-mechanics-audit
 - First battlefield = **Verdant Divide**: stationary **floating jungle deck in space**, brown fertile earth, trees with real solid-trunk line-of-sight and movement blocking, freshwater ponds/streams (nonharvestable), two starts, authored paths and scattered finite SOLIDS.
 - **Only raw SOLIDS are harvested** in the MVP (directly without a mining building). They yield Matter through an explicit MVP-specific mapping. No direct liquid/gas extraction. Energy is separately accounted and sourced at finite declared rates; Volatiles is not required on initial recipes.
 - MAN: ground-mobile UMU as generator + warehouse OR bunker; physical material crates, one hybrid power-conductor + optical-data cable; builders assemble real frames (worker caps 1/2/2); unfinished structures and loose crates remain and can be looted.
-- ETH: Nexus is the only physical-cargo to typed-Ether converter; **one** actual network through anchored pylons transfers real typed Matter/Energy/information with finite inventories and capacity; builders use beam (caps 1/2/3). Interrupted active incomplete construction **immediately ejects all site-committed materials as real ETH orbs**.
+- ETH (older roadmap superseded by DEC-039): Nexus is one of three permitted physical-cargo to typed-Ether ingress methods; **one** actual network through anchored pylons transfers real typed Matter/Energy/information with finite inventories and capacity; builders use beam (caps 1/2/3). Interrupted active incomplete construction **immediately ejects all site-committed materials as real ETH orbs**.
 - Loot: MAN crates/cubes, ETH orbs, later ORG tetrahedra; form colors SOLID amber / LIQUID cyan / GAS violet; cross-faction pickup legal, completed-asset recycling loses resources and must not create infinite income.
 - **Default victory = all opposing live completed BUILDING-CLASS entities destroyed**, including packed/moving MAN UMU. Workers, soldiers, surviving Hero, trees, platform structure, loose crates, cables or incomplete ruins do not count.
 - No in-MVP player flight, sailing, swimming, genuine curved planet terrain, interplanetary travel, moving platform origin, multiplayer, playable ORG, new heavy-unit/barracks families, or full tech tree.

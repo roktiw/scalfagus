@@ -1,0 +1,62 @@
+schema_version: 1
+date: 2026-10-11
+decision: DEC-034
+source_of_truth: docs/GODOT-ADDON-INSTALLATION-2026-10-11.md
+setup: scripts/install-godot-addons.sh
+setup_automated_on: [scripts/dev.sh, scripts/check.sh, scripts/bootstrap.sh_via_check]
+project: apps/game/project.godot
+editor_plugins:
+  - res://addons/rts_framework/plugin.cfg
+  - res://addons/keychain/plugin.cfg
+  - res://addons/godot_state_charts/plugin.cfg
+  - res://addons/gut/plugin.cfg
+modules:
+  rts_framework:
+    source: apps/game/addons/rts_framework
+    license: MIT
+    installed: already_vendored
+    enabled: true
+    gameplay: reference_only_WIP
+  keychain:
+    source: apps/game/addons/keychain
+    license: MIT
+    version: "2.1"
+    installed: already_vendored
+    enabled: true
+    gameplay: keybinding_options_not_integrated
+  godot_statecharts:
+    source_repository: https://github.com/derkork/godot-statecharts
+    pin: 76d226a3efac66a72aea825382b320c94808f409
+    tag: v0.22.5
+    license: MIT
+    gitlink: third_party/godot-statecharts
+    source_subtree: addons/godot_state_charts
+    local_addon: apps/game/addons/godot_state_charts
+    installed: via_auto_bootstrap_on_first_local_run
+    enabled: true
+    gameplay: not_integrated
+  gut:
+    source_repository: https://github.com/bitwes/Gut
+    pin: aeb5d4f3f7f0a6c9b5e178876d6c99b791fda605
+    upstream_branch: godot_4_7
+    version: "9.7.1"
+    license: MIT
+    gitlink: third_party/gut
+    source_subtree: addons/gut
+    local_addon: apps/game/addons/gut
+    installed: via_auto_bootstrap_on_first_local_run
+    enabled: true
+    usage: development_only
+  limboai:
+    repository: https://github.com/limbonaut/limboai
+    version_reviewed: v1.8.1
+    license: MIT
+    installed: false
+    reason: optional_GDExtension_platform_overhead_and_statecharts_overlap
+verification:
+  upstream_pins: confirmed
+  github_repository_configuration: committed
+  local_install_execution: NOT_RUN
+  godot_4_7_2_editor_import: NOT_RUN
+  github_actions: unavailable_pre_runner_failure
+  no_external_binary_distributed: true

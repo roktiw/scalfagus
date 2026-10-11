@@ -23,15 +23,15 @@ func _run() -> void:
     if right_hq != Vector2i(63 - left_hq.x, 63 - left_hq.y):
         _fail("Spawn locations are not rotationally mirrored")
         return
-    var west_source: Vector2i = match_state.sources["west"]["pos"]
-    var east_source: Vector2i = match_state.sources["east"]["pos"]
+    var west_source: Vector2i = match_state.sources["nw_solid_1"]["pos"]
+    var east_source: Vector2i = match_state.sources["se_solid_1"]["pos"]
     if east_source != Vector2i(63 - west_source.x, 63 - west_source.y):
         _fail("Harvest start locations are not mirrored")
         return
-    if not match_state._blocked(Vector2i(30, 25)):
+    if not match_state._blocked(Vector2i(21, 15)):
         _fail("Tree trunk is not impassable")
         return
-    if match_state._line_clear(Vector2i(30, 23), Vector2i(30, 29)):
+    if match_state._line_clear(Vector2i(19, 15), Vector2i(23, 15)):
         _fail("Tree trunk does not block line of sight")
         return
 
@@ -40,16 +40,17 @@ func _run() -> void:
     if match_state.issue_command(0, "move", enemy_worker, Vector2i(12, 12)):
         _fail("Human player controlled enemy worker")
         return
-    if match_state.issue_command(0, "build_barracks", west_worker, Vector2i(13, 36)):
+    if match_state.issue_command(0, "build_barracks", west_worker, Vector2i(13, 12)):
         _fail("Unfunded building was accepted")
         return
-    if not match_state.issue_command(0, "gather", west_worker, "west"):
+    if not match_state.issue_command(0, "gather", west_worker, "nw_solid_1"):
         _fail("Cannot order worker to gather")
         return
     for id in match_state.units_for(0, "worker"):
         if id != west_worker:
-            match_state.issue_command(0, "gather", id, "west")
-    for i in range(800):
+            match_state.issue_command(0, "gather", id, "nw_solid_2" if id == match_state.units_for(0, "worker")[1] else "nw_solid_1")
+    # Twenty Hertz with 40 ticks per Matter replaces the old six-tick lump.
+    for i in range(7500):
         match_state.advance()
         if int(match_state.players[0]["matter"]) >= 100:
             break
@@ -60,7 +61,7 @@ func _run() -> void:
     if not match_state.issue_command(0, "build_barracks", west_worker, Vector2i(13, 36)):
         _fail("Funded worker cannot build Barracks")
         return
-    for i in range(300):
+    for i in range(1500):
         match_state.advance()
         if match_state.units_for(0, "barracks").size() > 0:
             break
@@ -72,7 +73,7 @@ func _run() -> void:
         return
 
     # Additional gathering funds Rifleman training.
-    for i in range(700):
+    for i in range(5000):
         match_state.advance()
         if int(match_state.players[0]["matter"]) >= 50:
             break
@@ -80,7 +81,7 @@ func _run() -> void:
     if not match_state.issue_command(0, "train_rifleman", barracks_id):
         _fail("Barracks cannot train funded Rifleman")
         return
-    for i in range(80):
+    for i in range(200):
         match_state.advance()
     if match_state.units_for(0, "rifleman").is_empty():
         _fail("Training failed")

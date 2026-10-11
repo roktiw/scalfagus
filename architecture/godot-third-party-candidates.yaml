@@ -27,7 +27,7 @@ providers:
     latest_repository_source_context: Godot_4_6_1_updated_2026_02_20
     purpose: player_remappable_input_actions_profiles_groups_and_conflict_checks
     port: InputBindingPort
-    status: vendored_pending_runtime_wiring
+    status: vendored_editor_enabled_gameplay_wiring_pending
     first_release_required: false
     web_compatibility: unverified
     godot_4_7_2_compatibility: unverified
@@ -47,9 +47,11 @@ providers:
     godot_4_7_2_compatibility: upstream_0_22_5_fix_for_Godot_4_7_not_locally_tested
     purpose: reusable_statecharts_for_bot_worker_build_queue_and_unit_state
     port: BotBehaviorPort
-    status: preferred_candidate_for_future_bot_state_complexity
+    status: gitlink_pinned_auto_installer_editor_enabled_pending_local_verification
     first_release_required: false
     installed_in_project: false
+    provisioning: scripts/install-godot-addons.sh_ensure_auto_on_first_dev_run
+    editor_plugin_enabled_in_project_configuration: true
     web_compatibility: unverified
     risk: visual_fsm_can_be_overkill_for_small_four_unit_roster
     fallback: Godot_signals_with_explicit_small_state_components
@@ -67,9 +69,11 @@ providers:
     godot_4_7_2_compatibility: upstream_branch_claim_not_locally_tested
     purpose: repeatable_unit_integration_assertions_mocks_cli_JUnit
     port: TestHarnessPort
-    status: candidate_early_adoption_after_smoke
+    status: gitlink_pinned_auto_installer_editor_enabled_pending_local_verification
     first_release_required: false
     installed_in_project: false
+    provisioning: scripts/install-godot-addons.sh_ensure_auto_on_first_dev_run
+    editor_plugin_enabled_in_project_configuration: true
     web_compatibility: editor_dev_tool_not_required_in_release
     risk: plugin_test_fixtures_and_test_lifecycle_must_not_break_existing_Godot_smokes
     fallback: existing_SceneTree_native_smoke_tests
@@ -104,7 +108,7 @@ providers:
     upstream_state: explicitly_WIP_not_intended_for_production
     purpose: reference_design_for_selection_and_commands
     port: SelectionPort_and_CommandGateway_design_inspiration_only
-    status: vendored_reference_only_pending_component_validation
+    status: vendored_editor_enabled_noop_WIP_reference_only
     first_release_required: false
     installed_in_project: true
     godot_4_7_2_compatibility: unverified
@@ -123,6 +127,10 @@ explicitly_builtin_not_addons:
   - {id: sprites, upstream: Godot_4_7_2, classes: [Sprite3D, AnimationPlayer, AnimationTree]}
   - {id: resources, upstream: Godot_4_7_2, classes: [Resource, JSON, FastNoiseLite, FileAccess]}
   - {id: test_base, upstream: Godot_4_7_2, classes: [SceneTree, Script, Signal]}
+
+installation_source_lock: architecture/godot-addons.lock.yaml
+local_godot_actions_fallback: scripts/check.sh
+local_addon_preflight: scripts/install-godot-addons.sh_--check
 
 installation_workflow:
   install_using: [reviewed_tag_or_full_commit, offline_vendoring_inside_apps/game/addons, validate_license_and_authorship]
