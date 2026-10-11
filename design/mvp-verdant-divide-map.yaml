@@ -1,6 +1,17 @@
 schema_version: 1
 map_format: scalfagus_map_manifest
 map_format_version: 0.1
+world:
+  topology: planar
+  gravity: uniform
+  planar:
+    width_tiles: 64
+    height_tiles: 64
+    tile_meters: 2.0
+  spherical:
+    enabled: false
+    note: future_real_planetoid_topology_not_implemented_for_first_MVP
+world_topology_reference: design/world-topologies.yaml
 map_id: verdant_divide
 map_version: 0.1
 name: Verdant Divide
@@ -189,7 +200,7 @@ resource_policy:
   source_amounts_candidate_not_final_balance: true
   no_mine_required_for_direct_solid_gather: true
   material_output_is_finite_world_cargo: true
-  intial_total_world_solid_source_units: 1720
+  initial_total_world_solid_source_units: 1660
 decoration:
   fixed_colliding_cover_is_not_procedural: true
   seeded_nonblocking_sprites: [grass, fern, moss, flowers, leaf_particles, small_ground_rocks]
@@ -211,4 +222,7 @@ validation:
   tree_trunks_provide_true_tactical_cover: true
   forest_alpha_fade_visual_only: true
   collision_paths_and_resource_reachability_need_runtime_compiler_verification: true
+  first_authoring_fixture_not_yet_engine_validated: true
+  authored_route_polylines_are_validation_hints_not_guaranteed_walkable_lanes: true
+  world_resource_source_total_must_be_recomputed_from_unique_nodes: true
   no_enforced_match_timer: true
