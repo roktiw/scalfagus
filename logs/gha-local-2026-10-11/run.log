@@ -1,0 +1,104 @@
+=== LOCAL REPLAY: faction-emblems.yml ===
+OK 16x16: atlas 48x48, 9 icons, 1398 opaque pixels
+OK 32x32: atlas 96x96, 9 icons, 5803 opaque pixels
+OK 64x64: atlas 192x192, 9 icons, 23707 opaque pixels
+OK 27 RGBA icons and 3 atlases, all atlas rectangles match standalone source bytes
+Generated 27 standalone icons + three 3x3 atlases in assets/faction-emblems
+OK 16x16: atlas 48x48, 9 icons, 1398 opaque pixels
+OK 32x32: atlas 96x96, 9 icons, 5803 opaque pixels
+OK 64x64: atlas 192x192, 9 icons, 23707 opaque pixels
+OK 27 RGBA icons and 3 atlases, all atlas rectangles match standalone source bytes
+diff --git a/assets/faction-emblems/faction-emblems-32.png b/assets/faction-emblems/faction-emblems-32.png
+index 2682f5d..f77887d 100644
+Binary files a/assets/faction-emblems/faction-emblems-32.png and b/assets/faction-emblems/faction-emblems-32.png differ
+diff --git a/assets/faction-emblems/faction-emblems-64.png b/assets/faction-emblems/faction-emblems-64.png
+index 87e49ea..915b00f 100644
+Binary files a/assets/faction-emblems/faction-emblems-64.png and b/assets/faction-emblems/faction-emblems-64.png differ
+=== LOCAL REPLAY: five-view-spike.yml ===
+ASSET_MANIFEST_PASS 7 transparent, region-aligned PNG atlases (prototype only)
+✔ eight sectors map to five source rows and three mirrors (0.731125ms)
+✔ angle wrap works in both directions (0.105125ms)
+✔ near-sector boundary is stable unless threshold is actually crossed (0.053084ms)
+✔ orthographic camera shares bearing regardless of actor position (0.069709ms)
+✔ perspective camera bearing differs for actors on opposite sides of camera (0.348791ms)
+✔ zero horizontal camera-to-actor vector does not yield NaN (0.040209ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 58.105292
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+[   0% ] [90m[1mfirst_scan_filesystem[22m | Started Project initialization (5 steps)[39m[0m
+[   0% ] [90m[1mfirst_scan_filesystem[22m | Scanning file structure...[39m[0m
+[  16% ] [90m[1mfirst_scan_filesystem[22m | Loading global class names...[39m[0m
+[  33% ] [90m[1mfirst_scan_filesystem[22m | Verifying GDExtensions...[39m[0m
+[  50% ] [90m[1mfirst_scan_filesystem[22m | Creating autoload scripts...[39m[0m
+[  66% ] [90m[1mfirst_scan_filesystem[22m | Initializing plugins...[39m[0m
+[  83% ] [90m[1mfirst_scan_filesystem[22m | Starting file scan...[39m[0m
+[92m[ DONE ][39m [1mfirst_scan_filesystem[22m
+[0m
+[   0% ] [90m[1mloading_editor_layout[22m | Started Loading editor (5 steps)[39m[0m
+[   0% ] [90m[1mloading_editor_layout[22m | Loading editor layout...[39m[0m
+[  16% ] [90m[1mloading_editor_layout[22m | Loading docks...[39m[0m
+[  33% ] [90m[1mloading_editor_layout[22m | Reopening scenes...[39m[0m
+[  50% ] [90m[1mloading_editor_layout[22m | Loading central editor layout...[39m[0m
+[  66% ] [90m[1mloading_editor_layout[22m | Loading plugin window layout...[39m[0m
+[  83% ] [90m[1mloading_editor_layout[22m | Editor layout ready.[39m[0m
+[92m[ DONE ][39m [1mloading_editor_layout[22m
+[0m
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_SMOKE_PASS: one world, three modes, 5->8 mapping, same hero, PNG import
+WARNING: 1 ObjectDB instance was leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 1 RID allocations of type 'N17RendererSceneCull8InstanceE' were leaked at exit.
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_MENU_PASS
+ASSET_MANIFEST_PASS 7 transparent, region-aligned PNG atlases (prototype only)
+OK 16x16: atlas 48x48, 9 icons, 1398 opaque pixels
+OK 32x32: atlas 96x96, 9 icons, 5803 opaque pixels
+OK 64x64: atlas 192x192, 9 icons, 23707 opaque pixels
+OK 27 RGBA icons and 3 atlases, all atlas rectangles match standalone source bytes
+SCALFAGUS_GODOT_CHECK_PASS
+zsh:3: permission denied: 
+=== LOCAL REPLAY: godot-native.yml ===
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+[   0% ] [90m[1mfirst_scan_filesystem[22m | Started Project initialization (5 steps)[39m[0m
+[   0% ] [90m[1mfirst_scan_filesystem[22m | Scanning file structure...[39m[0m
+[  16% ] [90m[1mfirst_scan_filesystem[22m | Loading global class names...[39m[0m
+[  33% ] [90m[1mfirst_scan_filesystem[22m | Verifying GDExtensions...[39m[0m
+[  50% ] [90m[1mfirst_scan_filesystem[22m | Creating autoload scripts...[39m[0m
+[  66% ] [90m[1mfirst_scan_filesystem[22m | Initializing plugins...[39m[0m
+[  83% ] [90m[1mfirst_scan_filesystem[22m | Starting file scan...[39m[0m
+[92m[ DONE ][39m [1mfirst_scan_filesystem[22m
+[0m
+[   0% ] [90m[1mloading_editor_layout[22m | Started Loading editor (5 steps)[39m[0m
+[   0% ] [90m[1mloading_editor_layout[22m | Loading editor layout...[39m[0m
+[  16% ] [90m[1mloading_editor_layout[22m | Loading docks...[39m[0m
+[  33% ] [90m[1mloading_editor_layout[22m | Reopening scenes...[39m[0m
+[  50% ] [90m[1mloading_editor_layout[22m | Loading central editor layout...[39m[0m
+[  66% ] [90m[1mloading_editor_layout[22m | Loading plugin window layout...[39m[0m
+[  83% ] [90m[1mloading_editor_layout[22m | Editor layout ready.[39m[0m
+[92m[ DONE ][39m [1mloading_editor_layout[22m
+[0m
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_SMOKE_PASS: one world, three modes, 5->8 mapping, same hero, PNG import
+WARNING: 1 ObjectDB instance was leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 1 RID allocations of type 'N17RendererSceneCull8InstanceE' were leaked at exit.
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_MENU_PASS
+ASSET_MANIFEST_PASS 7 transparent, region-aligned PNG atlases (prototype only)
+OK 16x16: atlas 48x48, 9 icons, 1398 opaque pixels
+OK 32x32: atlas 96x96, 9 icons, 5803 opaque pixels
+OK 64x64: atlas 192x192, 9 icons, 23707 opaque pixels
+OK 27 RGBA icons and 3 atlases, all atlas rectangles match standalone source bytes
+SCALFAGUS_GODOT_CHECK_PASS
