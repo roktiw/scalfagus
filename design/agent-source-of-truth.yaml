@@ -6,6 +6,16 @@ language: en
 latest_owner_scope_decision: DEC-033
 latest_research_and_view_decisions: [DEC-030, DEC-031, DEC-032, DEC-034]
 mandatory_reuse_first_policy: DEC-034
+future_MAN_UMU_exclusive_power_building_roof_DEC_041:
+  decision: DEC-041
+  human: design/man-umu-power-building-mobility-roof-modules-2026-10-12.md
+  machine: design/man-umu-power-building-mobility-roof-modules.yaml
+  same_real_UMU_only_one_active_function: true
+  fuel_input_is_consumed_for_actual_finite_Energy: true
+  building_drive_minimum_unique_UMUs: {small: 4, medium: 6, large: 8}
+  roof_modules_are_candidate_persistent_equipment_not_parallel_services: true
+  name_expansion_change_not_yet_approved: true
+  future_only_not_DEC_033_first_release: true
 future_MAN_UMU_transforming_belt_wings_DEC_040:
   decision: DEC-040
   human: design/man-umu-transforming-belt-wings-2026-10-12.md
