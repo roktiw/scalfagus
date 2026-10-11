@@ -13,9 +13,13 @@ runtime_contract: design/mvp0-man-mirror-execution-contract.md
 source_map: design/mvp-verdant-divide-map.yaml
 test_suite: design/mvp0-man-mirror-balance-acceptance.yaml
 note: >
-  This is the ONLY numeric profile to load for release 0.1. The
-  MAN_vs_ETH profile design/mvp-balance-playtest-v0.1.yaml is for a
-  LATER release after DEC-033. No ETH, UMU, Energy, Hero,
+  SUPPLEMENTARY numeric analytical scenario for MAN mirror MVP0 only.
+  The active implementation candidate is documented in
+  design/mvp0-agent-implementation-contract.yaml. Do not load this
+  alternative into the current release or combine candidate numbers
+  without selecting a versioned profile and recalculating tests.
+  The MAN_vs_ETH profile design/mvp-balance-playtest-v0.1.yaml belongs
+  to a LATER release after DEC-033. No ETH, UMU, Energy, Hero,
   two-faction resource asymmetry or FPP systems in the first game.
 session:
   slots: 2
