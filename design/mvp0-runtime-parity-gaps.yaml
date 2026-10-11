@@ -128,9 +128,15 @@ major_gaps:
     tests: [M0B-03, M0B-09]
   - id: CODE-GAP-11
     priority: P1
+    status: code_implemented_in_dependent_draft_PR_not_engine_verified
     issue: custom_breadth_first_route_function_vs_reuse_first_DEC_034_Godot_AStarGrid2D_existing_grid_navigator
-    remediation: replace_ad_hoc_generic_pathfinder_with_existing_approved_adapter_without_reimplementing_Astar
-    tests: [M0B-13, M0B-23]
+    remediation: >-
+      Native AStarGrid2D wrapper now implemented in
+      apps/game/scripts/mirror_navigation_port.gd on dependent draft PR.
+      Must run real Godot engine, preserve source/world geometry
+      contract and benchmark 20/100 units before closing gap.
+    evidence: docs/MVP0-NATIVE-ASTAR-NAVIGATION-2026-10-11.md
+    tests: [M0B-13, M0B-23, mirror_navigation_port_smoke.gd]
   - id: CODE-GAP-12
     priority: P0
     issue: first_ground_view_renderer_meshes_have_no_verified_physical_collision_equivalent_to_world_map
