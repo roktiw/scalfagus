@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 0.2
+version: 0.3
 status: owner_revision_proposed_not_approved_for_balance
 specification: design/construction-incubation-assembly-resonance-2026-10-11.md
 existing_canon:
@@ -12,8 +12,12 @@ existing_canon:
   etheran_min_network_mode_visible_blue_beam: true
 proposed_shared_contract:
   normalized_stages: [initiation_0_to_33_percent, growth_33_to_66_percent, finalization_66_to_100_percent]
-  active_candidate_by_faction: {org: [3, 2, 1], man: [2, 1, 3], eth: [1, 2, 3]}
-  previous_candidate_by_faction: {org: [3, 2, 1], man: [1, 2, 3], eth: [1, 3, 2]}
+  active_candidate_by_faction: {org: [3, 2, 1], man: [1, 2, 2], eth: [1, 2, 3]}
+  proposed_reason_for_manus_cap: compensate_high_base_mobility_independent_expansion_repair_and_multi_mode_fortification
+  limit_is_worker_parallelism_not_automatic_overall_build_time_nerf: true
+  previous_candidate_by_faction: {org: [3, 2, 1], man: [2, 1, 3], eth: [1, 2, 3]}
+  first_exploratory_candidate_man: [1, 2, 3]
+  first_exploratory_candidate_eth: [1, 3, 2]
   alternate_man_candidate: [2, 3, 1]
   candidate_profiles_require_playtest_before_final_approval: true
   caps_mean_max_simultaneous_contributors_not_required_quorum: true
@@ -52,13 +56,16 @@ factions:
   man:
     construction_style: durable_local_modular_assembly
     status: owner_proposed
-    active_contributor_caps_by_stage: [2, 1, 3]
-    previous_candidate_caps_by_stage: [1, 2, 3]
+    active_contributor_caps_by_stage: [1, 2, 2]
+    previous_candidate_caps_by_stage: [2, 1, 3]
+    historical_candidate_caps_by_stage: [1, 2, 3]
     alternate_candidate_caps_by_stage: [2, 3, 1]
     proposed_stage_explanations:
-      stage_1: two_engineers_establish_frame_foundation_and_interfaces
-      stage_2: one_specialist_installs_core_and_primary_system
-      stage_3: three_engineers_integrate_parallel_modules_and_commission
+      stage_1: one_engineer_surveys_foundation_and_sets_initial_frame
+      stage_2: two_engineers_assemble_core_and_connect_main_infrastructure
+      stage_3: two_engineers_install_finish_modules_test_and_commission
+    labor_parallelism_disadvantage_is_intentional: true
+    construction_persistence_and_cross_faction_salvage_are_compensating_benefits: true
     worker_behaviors: [mount_components, weld, bolt, connect_modules, repair]
     when_all_workers_leave: progress_pauses_without_decay
     incomplete_structure_physically_persists: true
@@ -110,7 +117,9 @@ balance:
     - one_builder_scare_or_death
     - one_of_three_etheran_final_stage_channels_lost
     - man_single_specialist_mid_stage_targeted
-    - compare_man_alternate_2_3_1_against_2_1_3
+    - compare_man_1_2_2_with_2_1_3_and_2_3_1
+    - test_man_early_expand_time_and_labor_cost
+    - test_man_high_mobility_vs_delayed_forward_construction
     - last_required_channel_lost_late
     - cutter_interrupts_organite_vessel
     - enemy_recovers_manus_ruin
