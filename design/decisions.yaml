@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 1.9
+version: 2.0
 decisions:
   - id: DEC-001
     status: approved
@@ -414,6 +414,96 @@ decisions:
     data_specification: design/match-rules.yaml
     template_classification: design/victory-building-template-registry.yaml
     acceptance_scenarios: design/victory-defeat-acceptance-cases.yaml
+  - id: DEC-025
+    status: owner_approved_two_faction_five_role_solid_only_MVP_with_numbers_names_open
+    topic: man_vs_eth_MVP_roster_first_jungle_match
+    resolution: >-
+      MVP gameplay targets MAN and ETH only, initially with five functional
+      roles per civilization: one mother/HQ building, one MIN harvester/builder,
+      one basic soldier, one infrastructure/farm UMU or Pylon/Obelisk, and one
+      soldier-producing barracks. The existing Hero and three camera modes
+      remain part of the broader product and can reuse a soldier actor in
+      this small content slice. Initial economic gathering uses ONLY surface
+      SOLID deposits reachable without mining infrastructure. The first
+      battlefield should be an exotic jungle with trees usable as real cover.
+      Default victory remains all living completed building-class entities
+      lost, including mobile MAN UMU in travel mode.
+    candidate_only: >-
+      Names Command Core, Rifleman, Sentinel and Manifestation Chamber;
+      all HP, costs, source inventories, worker counts, world dimensions,
+      initial Energy reserves, hero variant and build durations are
+      prototyping fixtures rather than final approved balance.
+    design_reference: design/mvp-man-eth-jungle-vertical-slice-2026-10-11.md
+    roster_data: design/mvp-man-eth-catalog.yaml
+    economy_data: design/mvp-economy.yaml
+    combat_data: design/mvp-combat.yaml
+    bot_data: design/mvp-bot-behavior.yaml
+    agent_handoff: design/AGENT-MVP-IMPLEMENTATION.md
+    acceptance_tests: design/mvp-man-eth-acceptance.yaml
+  - id: DEC-026
+    status: owner_approved_natural_domains_and_land_only_first_MVP
+    topic: man_earth_eth_air_org_water_and_nonharvestable_environment_liquids
+    resolution: >-
+      Natural faction environment themes are MAN=EARTH/land,
+      ETH=AIR/atmosphere, and ORG=WATER/aquatic. These are strategic
+      identities and future mobility affinities, NOT automatic abilities
+      to swim/fly or extra combat multipliers in the first game. First
+      MAN versus ETH MVP has ground-only units and no sailing/swimming
+      or flying. Maps should visually feature liquid terrain: the first
+      Earthlike exotic jungle includes recognizable freshwater ponds
+      and streams, while future spacecraft platforms might contain dense
+      synthetic liquids and some waterless planets may host other liquids.
+      No liquid/gas may be extracted on the first SOLID-only map merely
+      because visually present as terrain. Future explicitly exceptional
+      dry worlds without open fluid need separate scenario configuration.
+    specification: design/world-environments-and-map-authoring-2026-10-11.md
+    data_specification: design/world-environments.yaml
+  - id: DEC-027
+    status: authoring_direction_approved_implementation_geometry_numbers_proposed
+    topic: sparse_yaml_terrain_maps_height_liquids_spawns_resources_rasters_and_seed
+    resolution: >-
+      Maintain a data-authored map manifest before a graphical map
+      editor. It must describe terrain height and ramps, traversable
+      ground, natural cover trees, liquid bodies, faction-neutral
+      starting slots, finite placed deposits and procedural decoration.
+      Use stable entity IDs and deterministic compile/validation;
+      keep tactical blockers, passable paths, resource balances and
+      spawns reproducible. Future lossless raster height/terrain masks
+      may supplement, not replace, semantic YAML. First 1v1 topology
+      and source layout should be authored and verified; seeded random
+      detail should not alter gameplay collision or strategic income.
+    implementation_candidates: >-
+      Default 64x64 tiles, 2 metres per tile, NW origin for planar map,
+      sparse rectangles/polygons and ramp features, optional 16-bit
+      lossless height raster and seeded decorative scatter. Final map
+      size, spawn parity, exact route geometry and canopy visibility
+      must be validated in the engine.
+    specification: design/world-environments-and-map-authoring-2026-10-11.md
+    format: design/map-authoring-format-v0.1.yaml
+    first_map: design/mvp-verdant-divide-map.yaml
+    acceptance_tests: design/mvp-man-eth-acceptance.yaml
+  - id: DEC-028
+    status: discussion_candidate_not_approved_for_MVP
+    topic: optional_genuine_spherical_planetoid_world_topology
+    resolution: >-
+      The owner is considering a match/world flag selecting a true
+      spherical planetoid instead of a classical flat rectangular RTS
+      battlefield, and requested a pros/cons comparison. No owner
+      confirmation to build spherical gameplay in the current MVP
+      has been given. Recommend default PLANAR for the first MAN vs
+      ETH jungle map and a versioned topology abstraction capable of
+      future SPHERICAL surface geometry, radial gravity, geodesic
+      navigation, tangent building placement, collision/LOS curvature
+      and 360-degree circumplanetary movement.
+    guardrails: >-
+      A skybox-only rounded decoration, curved planar patch or
+      toroidal 2D wrap is NOT a genuine sphere. An absent spherical
+      runtime adapter must fail explicitly instead of pretending
+      that a YAML flag implements planet physics. Sphere radius and
+      eye-height can make the combat horizon very short; require
+      engine performance, scale and camera tests before enablement.
+    specification: design/planetary-map-topology-2026-10-11.md
+    data_specification: design/world-topologies.yaml
 migration_required:
   - design/economy.yaml
   - design/resources.yaml
