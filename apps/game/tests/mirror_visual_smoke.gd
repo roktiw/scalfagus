@@ -41,7 +41,9 @@ func _verify() -> void:
         var kind: String = str(e["kind"])
         if kind == "hq":
             var body: StaticBody3D = actor.get_node_or_null("FootprintBody") as StaticBody3D
-            var collision: CollisionShape3D = body.get_node_or_null("FootprintShape") as CollisionShape3D if body != null else null
+            var collision: CollisionShape3D = null
+            if body != null:
+                collision = body.get_node_or_null("FootprintShape") as CollisionShape3D
             if collision == null or not (collision.shape is BoxShape3D):
                 _fail("HQ lost its actual Godot 3D collision")
                 return
