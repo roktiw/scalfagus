@@ -82,7 +82,8 @@ func _spawn(kind: String, owner: int, pos: Vector2i) -> int:
         "id": id, "kind": kind, "owner": owner, "pos": pos, "hp": int(HP[kind]),
         "order": "idle", "target_id": -1, "target_pos": pos, "source_id": "",
         "cargo": 0, "work_ticks": 0, "cooldown": 0,
-        "train_kind": "", "train_left": 0, "build_pos": Vector2i(-1, -1)
+        "train_kind": "", "train_left": 0, "build_pos": Vector2i(-1, -1),
+        "route": [], "route_target": Vector2i(-1, -1), "route_adjacent": false
     }
     if kind in ["hq", "barracks"]:
         building_cells[pos] = id
@@ -219,9 +220,10 @@ func issue_command(side: int, action: String, actor_id: int, arg: Variant = null
     events.append({"tick": tick, "owner": side, "actor": actor_id, "action": action})
     return true
 
-func _next_step(start: Vector2i, goal: Vector2i, adjacent_ok: bool) -> Vector2i:
+func _find_route(start: Vector2i, goal: Vector2i, adjacent_ok: bool) -> Array[Vector2i]:
+    var path: Array[Vector2i] = []
     if _distance(start, goal) <= (1 if adjacent_ok else 0):
-        return start
+        return path
     var queue: Array[Vector2i] = [start]
     var came: Dictionary = {}
     came[start] = start
@@ -242,16 +244,32 @@ func _next_step(start: Vector2i, goal: Vector2i, adjacent_ok: bool) -> Vector2i:
             came[nxt] = cur
             queue.append(nxt)
     if not found:
-        return start
-    while came[finish] != start:
+        return path
+    while finish != start:
+        path.push_front(finish)
         finish = came[finish]
-    return finish
+    return path
 
 func _walk(e: Dictionary, dest: Vector2i, adjacent_ok: bool = true) -> void:
     if tick % 3 != 0:
         return
-    var pos: Vector2i = e["pos"]
-    e["pos"] = _next_step(pos, dest, adjacent_ok)
+    var route: Array = e["route"]
+    if e["route_target"] != dest or bool(e["route_adjacent"]) != adjacent_ok or route.is_empty():
+        route = _find_route(e["pos"], dest, adjacent_ok)
+        e["route"] = route
+        e["route_target"] = dest
+        e["route_adjacent"] = adjacent_ok
+    if route.is_empty():
+        return
+    var step: Vector2i = route[0]
+    if _blocked(step):
+        route = _find_route(e["pos"], dest, adjacent_ok)
+        e["route"] = route
+        if route.is_empty():
+            return
+        step = route[0]
+    e["pos"] = step
+    route.remove_at(0)
 
 func _nearest_source(pos: Vector2i) -> String:
     var choice: String = ""
