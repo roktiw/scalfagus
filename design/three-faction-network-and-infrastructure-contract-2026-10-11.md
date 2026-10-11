@@ -1,7 +1,8 @@
 # Scalfagus — Three-Faction Network and Infrastructure Contract
 
 Date: 2026-10-11
-Status: **owner-directed mechanics with separately labeled implementation and balance proposals**.
+Status: **HISTORICAL earlier proposal, superseded when contradicted by DEC-021–024**.
+**Latest canonical precedence:** [ORG two / MAN three / ETH one network](three-network-channels-and-destruction-2026-10-11.md), [physical world loot/recycling](world-loot-salvage-and-recycling-2026-10-11.md), [building-class annihilation victory](victory-defeat-building-classification-2026-10-11.md). Do not implement the obsolete separate ETH freight/control topologies, ORG nutrition-only vessels, separate mandatory Power Dock, or remote automatic interrupted-construction refunds.
 Companion data: [ETH ether network](eth-ether-network-mechanics.yaml), [MAN Power Dock and ORG vessels](man-power-dock-and-org-vessel-mechanics.yaml), [test fixtures](network-mechanics-acceptance-cases.yaml).
 Decision log: [decisions.yaml](decisions.yaml), DEC-018 / DEC-019 / DEC-020.
 Precedence: This document **supersedes conflicting older ETH physical-courier-only relay assumptions** and older suggestions that ETH Matter/Volatiles must always be carried between pylons. It does **not** remove ETH MIN's physical extraction and delivery to a Nexus, the MIN blue construction beam, MAX being a Nexus from creation, MAN MID conveyor/wall/bunker, MAN MAX large warehouse/bunker, or ORG live-vessel-and-home-nourishment requirements. Every section distinguishes owner directions from proposals.
