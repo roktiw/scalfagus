@@ -95,6 +95,12 @@ UMU:
       garrison_by_default: false
       requires_real_legal_footprint_and_navmesh_update: true
   mutually_exclusive_postures: [move_tracks, warehouse, conveyor, bunker, sentry_wall]
+  extension_power_roof_building_drive_DEC_041: design/man-umu-power-building-mobility-roof-modules.yaml
+  physical_posture_count_is_not_full_operational_role_count: true
+  single_active_operational_role_across_both_specs: true
+  building_drive_reuses_move_track_pose_but_disables_independent_move_or_other_job: true
+  power_generator_uses_stationary_single_intake_wing_candidate_not_general_warehouse: true
+  harvest_uses_equipped_roof_tool_as_single_job: true
   physically_one_actor_across_modes: true
   mode_transition:
     finite_positive_duration: true
