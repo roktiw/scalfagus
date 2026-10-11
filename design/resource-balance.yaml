@@ -1,6 +1,15 @@
 schema_version: 1
 project: scalfagus
-status: proposed_balance_v0_3
+status: proposed_balance_v0_3_with_owner_approved_form_access
+physical_deposit_classification:
+  specification: design/physical-resource-forms-and-extraction-2026-10-11.md
+  data_specification: design/physical-resource-forms.yaml
+  owner_approved_gates: {solid: manual_no_rig, liquid: slow_small_manual_or_optional_pump, gas: mandatory_extractor}
+  physical_form_is_not_currency_type: true
+  gas_is_not_energy: true
+  form_to_matter_volatiles_energy_mapping: TBD
+  worker_and_infrastructure_costs_by_form: TBD
+  legacy_crystals_gas_resin_mapping_not_one_to_one: true
 scope: faction_resource_asymmetry
 resource_tiers:
   t1: {id: matter, role: construction_and_materials}
@@ -58,6 +67,10 @@ design_constraints:
   - Lava is a map-dependent geothermal heat source and potential matter feedstock, not a universal fourth resource.
   - Asteroid drift changes transport routes and logistics.
   - Test geographic resource distribution separately from faction modifiers.
+  - Solid source nodes must be accessible to MINs without a mining structure.
+  - Direct liquid tapping is a slow low-capacity fallback; pumps are an economic choice.
+  - Gas vents require a completed capture installation even for specialized faction workers.
+  - Neither gas capture nor first Energy production may require a circular unavailable input.
 metrics:
   - delivered_resources_per_minute
   - effective_cost_per_unit
