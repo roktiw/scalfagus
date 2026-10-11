@@ -826,6 +826,19 @@ decisions:
       tier catalog, defensive parameters, wall width and energy
       details remain for playtesting. This is future work beyond
       DEC-033 MAN mirror MVP0.
+    five_modes_open_cage_and_one_open_belt_refinement: >-
+      Subsequent owner refinement: in MOVE, the same two conveyor
+      wings bend underneath the vehicle as crawler tracks, creating
+      a trapezoid-like profile around an open front/rear cargo or
+      soldier passenger cage. The moving UMU can carry actual troops
+      or actual finite freight. In a distinct WAREHOUSE posture, only
+      ONE belt wing is extended as a local cargo loading/unloading
+      port; the other remains folded. This is neither a two-sided
+      3/5-tile through-CONVEYOR nor a BUNKER or SENTRY wall.
+      Therefore the physical operational modes are now FIVE:
+      MOVE, WAREHOUSE, CONVEYOR, BUNKER and SENTRY WALL.
+      Exact passenger/cargo combination, troop fire permissions and
+      single-belt loader extension remain open.
     specification: design/man-umu-transforming-belt-wings-2026-10-12.md
     data_specification: design/man-umu-transforming-belt-wings.yaml
 
