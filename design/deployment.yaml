@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 0.8
+version: 0.9
 status: approved_core_rules_with_proposed_details
 rule:
   all_units_deploy_into_buildings: false
@@ -10,6 +10,7 @@ rule:
   construction_capability_required_for_growth_or_assembly: true
   economic_worker_tier_does_not_grant_all_structure_morphs: true
   phased_labor_specification: design/construction-phases.yaml
+  newer_network_utility_contract: design/three-faction-network-and-infrastructure-contract-2026-10-11.md
   asymmetric_construction_stages_status: owner_proposal_pending_balance
   contributor_slot_caps_mean_maximum_not_mandatory_team_size: true
   real_workers_must_remain_assigned_and_eligible: true
@@ -56,6 +57,13 @@ factions:
         materials_at_site_persist_if_not_destroyed: true
         unfinished_or_destroyed_worksite_can_be_salvaged_by_other_factions: true
         salvage_requires_real_collection_and_nonzero_cost: true
+    basic_power_dock:
+      candidate_small_service_module_or_existing_chassis_kit: true
+      exclusive_modes: [deployed_power_warehouse, deployed_fortified_bunker, packed_ground_travel]
+      ground_only: true
+      no_full_generator_output_during_travel: true
+      power_cables_only_transport_electricity_not_materials: true
+      physical_parts_required_at_construction_site: true
     specialized_mid:
       exclusive_modes: [travel, conveyor, one_person_bunker, sentry_wall]
       belt_length_tiles: [3, 5]
@@ -73,6 +81,8 @@ factions:
       visible_blue_beam: true
       actual_energy_spend: true
       physical_materials_required: true
+      material_delivery_rule: physical_cargo_to_nexus_then_typed_ether_via_network_to_legal_local_build_receiver
+      ether_freight_rule: finite_actual_component_inventory_and_path_no_remote_free_bank
       proposed_staged_channeling:
         channelers_by_third: [1, 2, 3]
         previous_proposal: [1, 3, 2]
@@ -81,9 +91,11 @@ factions:
         partial_refund_to_attributed_nexus_expansion_sources: true
         refundable_materials_require_actual_return_transfer: true
         disconnect_grace: undecided_not_approved
-        stage_explanation: [single_seed, three_channel_amplification, dual_phase_lock]
+        stage_explanation: [single_seed, dual_energy_transfer, triple_channel_manifestation]
     mid:
-      role: pylon_storage_relay_or_meditated_turret
+      role: pylon_obelisk_storage_relay_resonance_supply_or_meditated_turret
+      signal_support_persists_during_turret: true
+      ether_freight_through_activated_turret: false_by_proposed_default
       retains_cargo_while_meditating: true
       cargo_gates_locked_while_meditating_and_defending: true
       requires_eligible_mode_capability: true
