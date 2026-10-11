@@ -3,11 +3,13 @@
 Date: 2026-10-11
 Status: **owner-approved technical direction (DEC-032)**; **design only**, not a completed or benchmarked runner.
 
+**DEC-033 update (2026-10-11):** the CURRENT first playable scope is MAN vs MAN (not MAN vs ETH). Implement initial fair mirror C-C tournaments and paired seed/side swaps before adding ETH or ORG. Broader asymmetric comparisons are future milestones, with the same Godot simulation authority.
+
 ## Outcome
 
 Build automated, repeatable, accelerated full-match tests for Scalfagus. Use them to measure racial/faction balance, economy and logistics performance, combat, tech choices, strategy dominance, pathfinding and regressions. A single shared simulation core must be authoritative for human play, scripted bots and offline self-play.
 
-Initial approved wider MVP fixture: **MAN vs ETH** on Verdant Divide with five roles per faction and finite SOLID harvesting. **ORG is future** until its actual gameplay exists. One-faction mirror tests are a valid **implementation stepping stone** but do not by themselves validate asymmetrical racial balance. The exact first-playable faction count is a separate release-scope decision.
+The active **MVP 0.1** fixture is **MAN vs MAN** on Verdant Divide with four templates and finite SOLID→Matter harvesting (DEC-033). MAN vs ETH and ORG become later test matrices. Mirror tests assess strategy/map spawn fairness and mechanics, not inter-faction balance.
 
 ## Architecture
 
@@ -70,4 +72,4 @@ Runner may batch many independent matches in one Godot process. The CLI is a **p
 
 ## Boundaries
 
-These balance-lab tasks **do not override** the currently approved two-faction playable MVP scope (DEC-025), nor the floating-space-platform rule (DEC-030). The proposed temporary one-faction mirror vertical slice is a delivery tactic unless the owner separately changes MVP release scope.
+**DEC-033 explicitly changes first playable MVP to one-faction MAN mirrors**; DEC-025's two-faction release requirement is deferred. DEC-030 mandatory floating-platform rule still applies.
