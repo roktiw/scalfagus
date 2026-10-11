@@ -1,10 +1,12 @@
 schema_version: 1
 project: scalfagus
 format_id: scalfagus_map_manifest
-format_version: 0.2
+format_version: 0.3
 status: proposed_authoring_schema_for_agent_implementation
 decision: DEC-027
-latest_boundary_decision: DEC-029
+latest_boundary_decision: DEC-030
+world_constitution: design/space-platform-world-contract-2026-10-11.md
+surface_presets: design/platform-surface-presets.yaml
 battlefield_frame_contract: design/battlefield-frames.yaml
 readme: design/world-environments-and-map-authoring-2026-10-11.md
 example_map: design/mvp-verdant-divide-map.yaml
@@ -58,7 +60,12 @@ manifest_top_level_fields:
   - validation
 battlefield_frame:
   semantic_role: presentation_and_3d_boundary_not_navigation_topology
-  variant_options: [bounded_planetary_surface, floating_space_platform]
+  playable_variant_required: floating_space_platform
+  allowed_playable_variant_values: [floating_space_platform]
+  any_other_playable_variant_or_missing_key: compile_error
+  formerly_proposed_bounded_planetary_surface: forbidden_after_DEC_030
+  surface_biome_is_independent_of_required_floating_platform: true
+  mixed_material_regions_supported_with_explicit_region_objects: true
   all_variants_keep_world_topology_planar_for_first_mvp: true
   boundary_policy: hard_invisible_physics_guard_reinforced_by_visible_rim_on_platform
   platform_underside_and_distant_planet_are_noninteractive_visual_assets: true
@@ -66,6 +73,8 @@ battlefield_frame:
   no_faction_ownership_or_victory_count_for_map_frame: true
   change_of_visual_frame_must_preserve_authoritative_nav_resource_and_collision_hash: true
   reference: design/battlefield-frames.yaml
+  surface_reference: design/platform-surface-presets.yaml
+  platform_is_neutral_and_never_counts_for_victory: true
 authoring_syntax:
   shapes:
     rect: {fields: [x, y, width, height], semantics: integer_tile_footprint}
@@ -151,6 +160,10 @@ validator_requirements:
   parse_and_resolve_declarations: true
   ensure_positions_within_bounds: true
   require_hard_boundary_on_all_four_planar_edges: true
+  require_world_framing_space_platform_for_every_playable_map: true
+  require_explicit_platform_surface_material_preset: true
+  reject_nonspace_world_backdrop_as_playable_map_identity: true
+  reject_bounded_planetary_surface_for_playable_match: true
   enforce_no_actor_or_building_or_loot_outside_grid_bounds: true
   when_floating_frame_visible_rim_matches_barrier: true
   ensure_background_is_noninteractive: true
@@ -169,6 +182,8 @@ validator_requirements:
   fail_invalid_map_with_actionable_error_and_object_id: true
 implementation_note:
   compact_sparse_yaml_first: true
+  material_overlay_technique: surface_palette_and_terrain_region_masks
+  lore_backdrop_must_not_add_collision_or_resources: true
   do_not_write_4096_literal_cells_by_hand: true
   compile_map_manifest_into_runtime_nav_collision_and_render_data: true
   separate_map_compiler_from_gameplay_simulation: true
