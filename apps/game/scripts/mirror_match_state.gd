@@ -186,16 +186,12 @@ func _route_to_building_ring(start: Vector2i, center: Vector2i) -> Array[Vector2
             best = path
     return best
 
-func _entity_los_cell(from_pos: Vector2i, target: Dictionary, maximum_manhattan: int) -> Vector2i:
-    var target_pos: Vector2i = target["pos"]
-    var cells: Array[Vector2i] = GEOM.occupied_cells(target_pos) if GEOM.is_building(str(target["kind"])) else [target_pos]
-    for cell in cells:
-        if _distance(from_pos, cell) <= maximum_manhattan and _line_clear(from_pos, cell):
-            return cell
-    return Vector2i(-1, -1)
-
 func _can_hit(shooter: Vector2i, target: Dictionary) -> bool:
-    var cells: Array[Vector2i] = GEOM.occupied_cells(target["pos"]) if GEOM.is_building(str(target["kind"])) else [target["pos"]]
+    var cells: Array[Vector2i] = []
+    if GEOM.is_building(str(target["kind"])):
+        cells = GEOM.occupied_cells(target["pos"])
+    else:
+        cells.append(target["pos"])
     var range_sq: float = GEOM.RIFLEMAN_RANGE_METERS * GEOM.RIFLEMAN_RANGE_METERS
     for cell in cells:
         if float(GEOM.distance_sq_cells(shooter, cell)) * tile_meters * tile_meters <= range_sq:
