@@ -1,14 +1,18 @@
 schema_version: 1
 project: scalfagus
-version: 0.1
+version: 0.2
 status: proposed_architecture_planar_only_mvp_spherical_future_option_not_approved
 decision: DEC-028
+newest_bounded_planar_decision: DEC-029
+frame_selection_is_independent: design/battlefield-frames.yaml
 documentation: design/planetary-map-topology-2026-10-11.md
 current_mvp:
   map_id: verdant_divide
   topology: planar
   executable_topology_adapters: [planar]
   spherical_engine_implementation_required_for_first_release: false
+  rectangular_edges_are_hard_impassable_barriers: true
+  visual_frame_first_map_candidate: floating_space_platform
 shared:
   topology_discriminator: world.topology
   choices_for_future: [planar, spherical]
@@ -35,6 +39,9 @@ planar:
   legal_map_grid: width_height_in_tiles
   first_example: {width_tiles: 64, height_tiles: 64, tile_meters: 2.0}
   bounded_map_edges: true
+  default_all_four_boundaries_impassable: true
+  visible_platform_edge_and_invisible_guard_do_not_change_topology: true
+  frame_variant_may_be_bounded_planetary_surface_or_floating_space_platform: true
   optional_elevation_ramps: true
   source_map: design/mvp-verdant-divide-map.yaml
 spherical:
@@ -81,4 +88,6 @@ validations:
   spherical_not_implicitly_enabled_by_aesthetic_planet_prop: true
   planar_replay_stable_when_sphere_code_not_built: true
   engine_must_explicitly_reject_spherical_if_adapter_missing: true
+  render_a_distant_planet_without_making_game_surface_spherical: true
+  static_platform_render_frame_must_not_invent_new_nav_cells: true
   do_not_pretend_spherical_mode_implemented_from_YAML_alone: true
