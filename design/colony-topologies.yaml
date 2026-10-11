@@ -1,11 +1,14 @@
 schema_version: 1
 project: scalfagus
-version: 0.1
+version: 0.2
 status: approved_owner_direction_with_proposed_state_machine_details
 specification: design/colony-topologies-vascular-modular-resonant-2026-10-11.md
 authoritative_base_ecologies_specification: design/base-ecologies-and-expansion-2026-10-11.md
 authoritative_base_ecologies_data: design/base-ecologies.yaml
-precedence: supplementary_analysis_follow_dec_012_and_dec_013
+precedence: supplementary_analysis_follow_dec_012_and_dec_013_then_dec_018_020
+new_network_mechanics_contract: design/three-faction-network-and-infrastructure-contract-2026-10-11.md
+new_ether_rules: design/eth-ether-network-mechanics.yaml
+new_man_org_rules: design/man-power-dock-and-org-vessel-mechanics.yaml
 name_ids: [org, man, eth]
 canonical_resources: [matter, volatiles, energy]
 single_authoritative_world: true
@@ -94,6 +97,14 @@ factions:
       not_every_generic_unit_may_deploy_into_a_building: true
       upward_and_radial_growth_visualized: true
       structures_can_split_and_reassemble: true
+    power_dock_and_grid:
+      ground_mobile_basic_generator_warehouse_or_bunker: true
+      generator_deployed_only: true
+      local_auto_power_ports_and_finite_battery: proposed
+      cable_links_carry_power_not_materials: true
+      worker_finite_physical_material_fetch_from_source_transporter_or_depot: true
+      no_mandatory_home_grid_connection: true
+      small_power_dock_does_not_replace_mid_belt_or_max_depot: true
     transport:
       model: modular_physical_conveyors
       min: scv_like_worker_builder_repairer_hauler
@@ -130,13 +141,21 @@ factions:
       beam_is_not_protoss_orb_drop_and_fly_away: true
       line_of_sight_visibility_balance: TBD
       resource_and_build_time_costs_apply: true
-      no_free_resource_teleportation: true
+      no_unbounded_or_unfunded_remote_wallet_access: true
+      typed_ether_after_nexus_conversion_has_finite_network_transfer: true
     transport:
-      model: physical_couriers_plus_resonant_network
+      model: physical_couriers_to_nexus_then_typed_ether_freight_across_pylons
+      pylon_and_obelisk_one_template: true
+      node_balances_reconcile_deterministically_on_split: true
+      even_resource_distribution_is_finite_proportional_fill: proposed
       mobile_min_couriers: true
       physical_cargo_and_finite_node_buffers: true
       mid:
-        kind: pylon
+        kind: pylon_obelisk_one_mid_template
+        local_resonance_supply_cap_contributor: true
+        signal_and_knowledge_relay: true
+        conversion_requires_nexus_input_before_network_stock: true
+        freight_closed_in_turret_while_signal_stays_online: proposed
         modes: [storage, network_relay, meditating, turret, levitating_move]
         storage_relay_turret_capabilities: true
         moving_requires_specialized_capability: true
@@ -149,6 +168,8 @@ factions:
         kind: nexus_class_from_first_deployment
         nexus_role_immediate: true
         local_pattern_store_and_authority: true
+        physical_intake_and_resource_to_typed_ether_conversion: true
+        local_ether_inventory_and_network_synchronization: true
         can_seed_local_expansion: true
         initial_synchronization_from_existing_node: true
         no_mandatory_home_link_after_bootstrap_for_known_patterns: true
@@ -160,6 +181,8 @@ factions:
       needs_home_contact_for_missing_blueprints: true
       constant_nutrient_home_ping: false
       local_independence_for_known_patterns: true
+      local_ether_pool_only_after_partition: true
+      no_forced_equal_percentage_split_on_network_cut: true
     strategic_weaknesses: [detectable_build_beam, relay_interdiction, meditation_downtime, missing_pattern_sync]
 balance:
   mobility_order: [org, eth, man]
