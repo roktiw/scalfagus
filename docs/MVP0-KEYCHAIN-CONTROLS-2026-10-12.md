@@ -73,3 +73,12 @@ in-game action.
 Upstream: https://github.com/Orama-Interactive/Keychain (MIT).
 Godot APIs: https://docs.godotengine.org/en/stable/classes/class_inputmap.html
 and https://docs.godotengine.org/en/stable/classes/class_inputeventkey.html
+
+## Local GUT test harness (additional reuse)
+
+The repository now includes two actual `GutTest` subclasses under
+`apps/game/tests/gut/`: native InputMap defaults and the authoritative
+MAN mirrored roster/owner validation. Run `bash scripts/check-gut.sh`.
+It uses the already pinned **GUT 9.7.1** CLI and fails closed unless
+the CLI reports a successful run summary. Unlike GitHub Actions,
+this is a local command. Test execution remains **NOT RUN** here.
