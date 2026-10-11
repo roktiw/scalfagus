@@ -1,5 +1,10 @@
 # SCALFAGUS — Coding-Agent Contract
 
+## ETH DUAL GROUND/LEVITATION LOGISTICS — PROPOSAL, NOT AN APPROVED RAW-UPLINK CHANGE
+
+Read [ETH two transport loops](design/eth-dual-loop-ground-flags-and-aerial-freight-2026-10-12.md) and [machine candidate](design/eth-dual-loop-ground-flags-and-aerial-freight.yaml). The owner specifies **physical drone-to-drone cargo handoffs at Obelisk foot flags** plus a **separate elevated visible straight-line tip-to-tip Ether freight service** on the already unified ETH network, with actual mixed levitated stocks, network upkeep, and physical falling resource objects on loss of levitation support. Nearby build sites receive real parcels descended to the Obelisk foot and physically delivered onward. The **question of non-Nexus raw material uplinks is unresolved**: preserve DEC-021's baseline Nexus-only conversion. Suggestions for upgraded remote uplink and finite-cost re-lifting of already-converted fallen stock are candidates, not implemented or owner-approved. Do not introduce these ETH systems into DEC-033 MVP0.
+
+
 ## RECOVERY / SHIELD DOCTRINE — DEC-037 (POST-MVP0)
 
 Read [faction recovery rules](design/faction-damage-recovery-shields-and-repair-2026-10-11.md) and [typed contract + HEAL scenarios](design/faction-damage-recovery-shields-and-repair.yaml): ORG has slow passive biological HP regeneration and faster healing when genuinely connected to a functioning living vein; ETH shields naturally recharge, recharge faster near properly connected **Obelisks**, and **consume an entire recharged shield to restore a finite amount of green HP**, possibly over multiple shield→health cycles; MAN biological damage needs medical treatment, mechanical damage needs service/repair, and optional MAN force shields **NEVER** recharge except by finite battery or valid powered grid. Shield durability, green HP and the stored Energy resource are distinct ledgers. Exact timing, HP per consumed ETH shield and costs are TBD. **Keep this out of DEC-033 four-template MAN mirror MVP0.**
