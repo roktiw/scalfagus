@@ -54,7 +54,7 @@ design_constraints:
   - All factions access all three resources and all resource tiers.
   - Early Blergian, mid Manusian and late Aetherian advantage are strategic windows, not guaranteed victories.
   - Differentiate extraction, processing, transport and spending efficiency rather than applying one global multiplier.
-  - Energy can be generated, transmitted, stored and transported; exact mechanics TBD.
+  - Energy is an approved stored, transportable, spendable resource; a mandatory power grid is not required.
   - Lava is a map-dependent geothermal heat source and potential matter feedstock, not a universal fourth resource.
   - Asteroid drift changes transport routes and logistics.
   - Test geographic resource distribution separately from faction modifiers.
@@ -67,7 +67,7 @@ metrics:
   - late_game_comeback_probability
   - faction_matchup_win_rate
 open_questions:
-  - energy_as_inventory_versus_grid_flow
+  - energy_generation_storage_transport_costs
   - per_subsystem_efficiency_multipliers
   - resource_extraction_times_for_new_resource_taxonomy
   - unit_and_technology_cost_migration_from_crystals_gas_resin
