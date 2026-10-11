@@ -1,6 +1,8 @@
 extends RefCounted
 class_name MirrorMatchState
 
+const NAV_SCRIPT = preload("res://scripts/mirror_navigation_port.gd")
+
 # MVP 0.1: authoritative rules for a two-slot MAN mirror match.
 # Pure state: no cameras, rendering, input nodes, or wall-clock delays.
 const BOARD: int = 64
@@ -25,6 +27,7 @@ var bot_attack_thresholds: Array[int] = []
 var entities: Dictionary = {}
 var sources: Dictionary = {}
 var terrain: Dictionary = {}
+var navigation: MirrorNavigationPort
 var building_cells: Dictionary = {}
 var events: Array[Dictionary] = []
 var mined_matter: int = 0
@@ -57,6 +60,8 @@ func setup(match_seed: int = 42, slot_controllers: Array = ["human", "bot"]) -> 
         # Reproducible strategy variation for headless seed sweeps.
         bot_attack_thresholds.append(2 + posmod(match_seed / (1 if slot == 0 else 3) + slot * 17, 3))
     _build_terrain()
+    navigation = NAV_SCRIPT.new()
+    navigation.configure(BOARD, terrain)
     sources["west"] = {"pos": Vector2i(17, 31), "stock": 900}
     sources["east"] = {"pos": Vector2i(46, 32), "stock": 900}
     sources["center_n"] = {"pos": Vector2i(31, 13), "stock": 350}
@@ -88,10 +93,12 @@ func _spawn(kind: String, owner: int, pos: Vector2i) -> int:
         "order": "idle", "target_id": -1, "target_pos": pos, "source_id": "",
         "cargo": 0, "work_ticks": 0, "cooldown": 0,
         "train_kind": "", "train_left": 0, "build_pos": Vector2i(-1, -1),
-        "route": [], "route_target": Vector2i(-1, -1), "route_adjacent": false
+        "route": [], "route_target": Vector2i(-1, -1), "route_adjacent": false,
+        "route_revision": -1
     }
     if kind in ["hq", "barracks"]:
         building_cells[pos] = id
+        navigation.set_blocked(pos, true)
     return id
 
 func sorted_ids() -> Array[int]:
@@ -116,9 +123,18 @@ func _in_bounds(p: Vector2i) -> bool:
     return p.x >= 1 and p.y >= 1 and p.x < BOARD - 1 and p.y < BOARD - 1
 
 func _blocked(p: Vector2i) -> bool:
-    if not _in_bounds(p) or terrain.has(p):
-        return true
-    return building_cells.has(p)
+    return not _in_bounds(p) or navigation.is_blocked(p)
+
+# Keep map mutation atomic: never edit terrain without updating the Godot A*.
+# Authored maps are intended to be immutable in a match; tests can model changes.
+func set_terrain_cell(p: Vector2i, kind: String) -> void:
+    if not _in_bounds(p) or building_cells.has(p):
+        return
+    if kind == "":
+        terrain.erase(p)
+    else:
+        terrain[p] = kind
+    navigation.set_blocked(p, kind != "")
 
 func _mobile_at(p: Vector2i, except_id: int = -1) -> bool:
     for id in sorted_ids():
@@ -251,44 +267,23 @@ func issue_command(side: int, action: String, actor_id: int, arg: Variant = null
     return true
 
 func _find_route(start: Vector2i, goal: Vector2i, adjacent_ok: bool) -> Array[Vector2i]:
-    var path: Array[Vector2i] = []
-    if _distance(start, goal) <= (1 if adjacent_ok else 0):
-        return path
-    var queue: Array[Vector2i] = [start]
-    var came: Dictionary = {}
-    came[start] = start
-    var index: int = 0
-    var finish: Vector2i = start
-    var found: bool = false
-    while index < queue.size():
-        var cur: Vector2i = queue[index]
-        index += 1
-        if _distance(cur, goal) <= (1 if adjacent_ok else 0):
-            finish = cur
-            found = true
-            break
-        for d in DIRECTIONS:
-            var nxt: Vector2i = cur + d
-            if came.has(nxt) or _blocked(nxt):
-                continue
-            came[nxt] = cur
-            queue.append(nxt)
-    if not found:
-        return path
-    while finish != start:
-        path.push_front(finish)
-        finish = came[finish]
-    return path
+    return navigation.route(start, goal, adjacent_ok)
 
 func _walk(e: Dictionary, dest: Vector2i, adjacent_ok: bool = true) -> void:
     if tick % 3 != 0:
         return
     var route: Array = e["route"]
-    if e["route_target"] != dest or bool(e["route_adjacent"]) != adjacent_ok or route.is_empty():
+    if (
+            e["route_target"] != dest
+            or bool(e["route_adjacent"]) != adjacent_ok
+            or int(e["route_revision"]) != navigation.revision
+            or route.is_empty()
+    ):
         route = _find_route(e["pos"], dest, adjacent_ok)
         e["route"] = route
         e["route_target"] = dest
         e["route_adjacent"] = adjacent_ok
+        e["route_revision"] = navigation.revision
     if route.is_empty():
         return
     var step: Vector2i = route[0]
@@ -410,6 +405,7 @@ func _damage(entity_id: int, points: int, attacker: int) -> void:
     events.append({"tick": tick, "owner": attacker, "action": "kill", "victim": entity_id})
     if str(e["kind"]) in ["hq", "barracks"]:
         building_cells.erase(e["pos"])
+        navigation.set_blocked(e["pos"], terrain.has(e["pos"]))
     entities.erase(entity_id)
 
 func _train_tick(e: Dictionary) -> void:

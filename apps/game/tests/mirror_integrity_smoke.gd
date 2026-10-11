@@ -35,7 +35,7 @@ func _verify() -> void:
     # A legal-looking but enclosed cell cannot silently accept an impossible route.
     var sealed := Vector2i(19, 19)
     for delta in MATCH.DIRECTIONS:
-        sim.terrain[sealed + delta] = "water"
+        sim.set_terrain_cell(sealed + delta, "water")
     if sim.issue_command(0, "move", worker, sealed):
         _fail("Unreachable move was accepted")
         return
