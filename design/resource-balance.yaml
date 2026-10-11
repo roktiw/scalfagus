@@ -1,15 +1,46 @@
 schema_version: 1
 project: scalfagus
-status: proposed_balance_v0_3_with_owner_approved_form_access
+status: owner_approved_inverse_physical_extraction_direction_with_unproven_rate_candidates
+version: 0.4
+latest_owner_need_vs_extraction_rule: inverse_form_harvest_efficiency_by_primary_phase
+first_MVP_numeric_profile: design/mvp-balance-playtest-v0.1.yaml
+full_faction_extraction_context: design/mvp-balance-and-simulation-plan.md
 physical_deposit_classification:
   specification: design/physical-resource-forms-and-extraction-2026-10-11.md
   data_specification: design/physical-resource-forms.yaml
   owner_approved_gates: {solid: manual_no_rig, liquid: slow_small_manual_or_optional_pump, gas: mandatory_extractor}
   physical_form_is_not_currency_type: true
   gas_is_not_energy: true
-  form_to_matter_volatiles_energy_mapping: TBD
+  form_to_matter_volatiles_energy_mapping: TBD_by_owner_further_review
+  full_game_mining_difficulty_is_by_PHYSICAL_FORM_not_by_spending_currency: true
+  gas_remains_mandatory_rig_for_every_faction: true
   worker_and_infrastructure_costs_by_form: TBD
   legacy_crystals_gas_resin_mapping_not_one_to_one: true
+owner_approved_inverse_form_extraction_direction:
+  explanation: >
+    Each faction harvests the form it most needs in its signature phase
+    the SLOWEST, while harvesting a least-used opposing form fastest;
+    this encourages physically occupying and denying rival deposits.
+  need_phase_by_faction:
+    org: {phase: early, source_form_most_needed: solid, source_form_fastest_denial: gas}
+    man: {phase: mid, source_form_most_needed: liquid, source_form_fastest_denial: solid}
+    eth: {phase: late, source_form_most_needed: gas, source_form_fastest_denial: liquid}
+  proposed_future_three_form_relative_throughput:
+    units: normalized_candidate_not_owner_approved_multipliers
+    columns: [solid, liquid, gas]
+    org: [0.85, 1.00, 1.15]
+    man: [1.15, 0.85, 1.00]
+    eth: [1.00, 1.15, 0.85]
+    each_column_sum: 3.00
+    each_row_sum: 3.00
+    not_active_in_first_solid_only_MAN_ETH_MVP: true
+    apply_after_legal_rig_and_container_validation: true
+    no_rig_gas_worker_gather_exception: true
+  first_MVP_deliberately_smaller_asymmetry:
+    man_solid_extraction_seconds_per_unit: 1.90
+    eth_solid_extraction_seconds_per_unit: 2.00
+    canon_values_source: design/mvp-balance-playtest-v0.1.yaml
+    not_measured_competitive_balance: true
 scope: faction_resource_asymmetry
 resource_tiers:
   t1: {id: matter, role: construction_and_materials}
@@ -41,7 +72,9 @@ specializations:
     strength: late_technology_and_energy_efficiency
     weakness: transformation_time_and_cost
 efficiency_matrix:
-  interpretation: illustrative_relative_efficiency_not_global_gameplay_multiplier
+  interpretation: legacy_currency_utilization_hypothesis_NOT_approved_physical_form_extraction_multiplier
+  older_matrix_does_not_implement_owner_inverse_extraction_rule: true
+  exclude_matrix_from_first_MVP_mining_rates: true
   columns: [matter, volatiles, energy]
   rows:
     org: [1.30, 0.80, 1.00]
@@ -51,7 +84,7 @@ efficiency_matrix:
     each_row_sum: 3.10
     each_column_sum: 3.10
     warning: Equal sums do not imply competitive balance.
-  application: per_subsystem_not_all_operations
+  application: historical_theory_for_possible_processing_or_spending_efficiency_only_not_raw_mining
   subsystems: [extraction, processing, storage, transport, consumption, recycling]
 phase_weight_examples:
   interpretation: illustrative_resource_importance_percentages
@@ -67,6 +100,8 @@ design_constraints:
   - Lava is a map-dependent geothermal heat source and potential matter feedstock, not a universal fourth resource.
   - Asteroid drift changes transport routes and logistics.
   - Test geographic resource distribution separately from faction modifiers.
+  - Latest inverse physical-form extraction law overrides legacy ORG Matter MAN Volatiles ETH Energy harvest interpretations.
+  - Raw form mining must not be inferred from canonical currency ID.
   - Solid source nodes must be accessible to MINs without a mining structure.
   - Direct liquid tapping is a slow low-capacity fallback; pumps are an economic choice.
   - Gas vents require a completed capture installation even for specialized faction workers.
@@ -85,3 +120,5 @@ open_questions:
   - resource_extraction_times_for_new_resource_taxonomy
   - unit_and_technology_cost_migration_from_crystals_gas_resin
   - phase_weight_validation
+  - competitive_testing_of_inverse_source_extraction_especially_asymmetric_denial
+  - later_map_source_distribution_for_all_three_forms_without_spawn_softlocks
