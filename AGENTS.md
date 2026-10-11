@@ -1,5 +1,10 @@
 # SCALFAGUS — Coding-Agent Contract
 
+## ETH OBELISK / FACTION STORAGE UPDATE — DEC-036
+
+**Canonical ETH player-facing term: OBELISK, not PYLON.** Older `eth_mid_pylon` / `pylon_obelisk` are technical compatibility IDs only; do not blindly rename serialized Godot data or old acceptance fixtures. Read [storage rules](design/faction-storage-specialization-and-obelisk-traffic-2026-10-11.md) and [YAML tests](design/faction-storage-specialization-and-obelisk-traffic.yaml): ORG stores only one resource kind per cyst; MAN UMU stores mixed goods or more of one type when deliberately specialized; ETH levitates mixed typed-resource stock around Obelisks, and greater node inventory occupancy **reduces throughput**. Use storage Obelisk sidings/clusters and lightly loaded transit backbone nodes. The old idea of unconditionally equalizing all ETH pylon fill levels is **superseded** by DEC-036: protect transit nodes from forced fill and scope background equalization to explicitly participating storage nodes. None of these systems belongs in DEC-033 MAN mirror MVP0.
+
+
 ## LOCAL GODOT ADDONS — ACTIVE SETUP, NO ACTIONS GATE
 
 Godot 4.7.2 editor plugins: RTS Framework (WIP reference only), Keychain 2.1, Godot State Charts 0.22.5 and GUT 9.7.1. Locked revisions for new addons are tracked in `architecture/godot-addons.lock.yaml` and Git submodules. `scripts/dev.sh` / `scripts/check.sh` automatically call `scripts/install-godot-addons.sh --ensure`; the latter runs an independent headless addon manifest smoke. **GitHub Actions have pre-runner failures, so never claim CI passed; use actual local Godot logs.** LimboAI intentionally not installed. Installed editor plugins are NOT evidence that they implement RTS gameplay; never delegate GameState authority.
