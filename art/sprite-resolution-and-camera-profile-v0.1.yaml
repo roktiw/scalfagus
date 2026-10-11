@@ -1,0 +1,139 @@
+schema_version: 1
+project: scalfagus
+status: proposed_art_technical_standard_needs_godot_visual_spike
+reference: art/faction-art-direction-and-transport-v0.2-2026-10-11.md
+resolution:
+  minimum_supported:
+    width: 320
+    height: 240
+    aspect: "4:3"
+    compact_ui: true
+    recommended_zoom: 1.0
+  alternative_wide_minimum:
+    width: 640
+    height: 320
+    aspect: "2:1"
+    compact_ui: true
+    recommended_zoom: 1.5
+  recommended_standard_canvas:
+    width: 640
+    height: 360
+    aspect: "16:9"
+    note: 4K_UHD_exact_integer_scale_x6
+  maximum_target_output:
+    width: 3840
+    height: 2160
+    aspect: "16:9"
+    recommended_zoom: 3.0
+  smaller_than_minimum:
+    status: experimental
+    reason: combat_hud_and_input_target_legibility_not_proven
+  display_policy:
+    gameplay_world_coordinates_independent_of_pixels: true
+    preserve_aspect_ratio_no_stretch: true
+    adapt_ui_to_screen_size: true
+    orthographic_camera_changes_visible_world_area: true
+    letterbox_or_extend_view_not_content_distortion: true
+    never_scale_320x240_to_3840x2160_as_exact_integer_factor: true
+    note: "320x240->4K is x12 horizontally and x9 vertically; content needs adaptive framing"
+world_grid:
+  topology: square_world_cells_projected_as_diamonds
+  sim_cell_width_world_units: 1
+  sim_cell_depth_world_units: 1
+  visual_diamond_nominal_pixels: [32, 16]
+  optional_detailed_diamond_pixels: [64, 32]
+  projection: 2_to_1_dimetric
+  camera_azimuth_degrees: 45
+  camera_elevation_approx_degrees: 30
+  rendering_engine: Godot_4_3D_world_with_ortho_overlord_and_perspective_FPS
+  note: pixel_ratio_is_visual_convention_not_collision_volume
+pixel_art:
+  source: authored_pixels_no_antialiased_runtime_upscale_in_pixel_perfect_mode
+  primary_filtering: nearest
+  pixel_perfect_zoom_steps: [0.5, 1, 2, 3, 4, 6, 8]
+  fractional_zoom:
+    supported: true
+    mode: smooth_camera_optional
+    tradeoff: nearest_neighbor_fractional_shimmer_needs_visual_test
+  lod_rules:
+    near: authored_detailed_frames_or_simple_3D_actor_proxy
+    far: small_distinct_silhouette_or_pixel_art_lod
+    no_crop_concept_poster_as_final_atlas: true
+  ui_scaling:
+    use_logical_layout_dp_independent_of_world_zoom: true
+    minimum_compact_ui: true
+    adaptable_hud_not_uniform_bitmap_stretch: true
+    no_small_pixel_fonts_as_unreadable_4K_default: true
+  scale_at_4K:
+    source_320x240_not_aspect_compatible_integer_scale: true
+    source_640x360_exact_integer_x6: true
+    source_640x320_not_exact_integer_scale_to_4K: true
+asset_classes:
+  - id: ground_diamond
+    proposed_frame_pixels: [32, 16]
+    render_anchor: center
+    collision: world_cell_not_texture
+  - id: tiny_fx
+    proposed_frame_pixels: [8, 8]
+    note: particles_only_not_readable_named_unit
+  - id: cargo_packet
+    proposed_frame_pixels: [16, 16]
+    resource_ids: [matter, volatiles, energy]
+  - id: economic_min
+    proposed_frame_pixels: [24, 32]
+    note: small_but_not_micro_scifi_worker
+  - id: economic_mid
+    proposed_frame_pixels: [48, 48]
+    note: MAN_belt_is_special_case_3_or_5_cells_long
+  - id: military_standard
+    proposed_frame_pixels: [32, 48]
+  - id: economic_max
+    proposed_frame_pixels: [128, 96]
+    note: ETH_stationary_pylon_has_tall_custom_frame
+  - id: headquarters
+    proposed_frame_pixels: [128, 128]
+animation_first_slice:
+  directions: [front, rear, left, right]
+  minimum_states: [idle, move, work, transfer, damaged]
+  later_directions: 8
+  vfx_layer_separate: true
+  shadow_layer_separate: true
+  team_color_areas_explicit: true
+  anchors:
+    ground_units: bottom_center
+    flying_units: projection_of_world_ground_shadow
+    buildings: bottom_center_of_footprint
+  motion_legibility: [loading_window, active_slots, belt_direction, relay_handoff, meditation_locked]
+technical_asset_manifest:
+  required_fields: [asset_id, faction_id, chassis_scale, action, facing, frame_size_px, frame_count, fps, pivot_px, world_footprint_cells, collision_proxy_id, license_source]
+  ids_format: "org.worker.min.idle.south"
+  faction_ids: [org, man, eth]
+  chassis_scales: [min, mid, max]
+  game_resources: [matter, volatiles, energy]
+  no_extra_resource_type_from_visual_motifs: true
+transport_silhouette_fixtures:
+  org:
+    min: worm_grub_pincers_one_cargo_crop
+    mid: shell_crawler_multiple_individual_cargo_sacs
+    max: flying_mother_hanging_sacs_side_load_ports
+    key_vfx: cargo_sac_transfer_while_flying_in_motion
+  man:
+    min: suited_miner_or_drill_rover
+    mid: articulated_mobile_belt_three_or_five_cells
+    max: ground_only_cargo_fortress_deploys_to_bunker
+    key_vfx: real_packets_on_belt_ejected_behind_deployed_wall
+  eth:
+    min: small_courier_probe_with_one_visible_capsule
+    mid: proposed_ring_relay_skiff_with_bounded_buffer
+    max: stationary_tall_pylon_with_storage_and_turret_modes
+    key_vfx: meditation_transition_shuts_cargo_gates_with_inventory_preserved
+quality_gates:
+  - visual_distinction_for_each_faction_in_grayscale_at_320x240
+  - identify_economic_min_mid_max_without_reading_UI_labels
+  - distinguish_MID_MAN_3_cell_vs_5_cell_length
+  - show_source_packet_and_destination_packet_during_transfers
+  - no_cargo_disappears_when_MAN_wall_or_bunker_deploys
+  - no_cargo_transfer_while_ETH_pylon_meditates_or_turrets
+  - giant_ORG_mother_remains_targetable_without_obscuring_entire_map
+  - first_person_proxy_and_overlord_sprite_share_one_actor_and_collision_model
+  - no_original_IP_lookalikes_or_unlicensed_art
