@@ -50,7 +50,11 @@ func _run() -> void:
     var camera: Camera3D = game.camera
     var s0: Vector2 = camera.unproject_position(Vector3(a.x, 0.8, a.y))
     var s1: Vector2 = camera.unproject_position(Vector3(b.x, 0.8, b.y))
-    game._select_box(s0 - Vector2(12, 12), s1 + Vector2(12, 12))
+    var top_left := Vector2(
+        minf(s0.x, s1.x) - 12.0, minf(s0.y, s1.y) - 12.0)
+    var bottom_right := Vector2(
+        maxf(s0.x, s1.x) + 12.0, maxf(s0.y, s1.y) + 12.0)
+    game._select_box(top_left, bottom_right)
     if not game.selected_ids.has(workers[0]) or not game.selected_ids.has(workers[1]):
         _fail("Marquee selection did not project owned units")
         return
