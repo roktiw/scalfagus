@@ -1,54 +1,108 @@
 schema_version: 1
 project: scalfagus
-version: 0.1
-status: design_fixture_not_executed
-owner_decision: DEC-029
-specification: design/floating-platform-battlefields-2026-10-11.md
-frame_data: design/battlefield-frames.yaml
-map_data: design/mvp-verdant-divide-map.yaml
-first_supported_topology: planar
+version: 0.2
+status: design_acceptance_fixtures_not_executed
+owner_decision: DEC-030
+world_specification: design/space-platform-world-contract-2026-10-11.md
+frame_contract: design/battlefield-frames.yaml
+surface_presets: design/platform-surface-presets.yaml
+first_map: design/mvp-verdant-divide-map.yaml
+test_suite_requires_real_engine_and_compiler: true
 tests:
   - id: FRAME-01
-    scenario: switch_appearance_between_classic_square_and_spaceborne_deck
-    setup: {same_map: verdant_divide, variants: [bounded_planetary_surface, floating_space_platform]}
-    expect:
-      same_spawn_positions: true
-      same_unit_pathing: true
-      same_tree_LOS_collider_geometry: true
-      same_source_amounts_and_legal_hauling: true
-      identical_gameplay_result_with_same_fixed_seed_and_commands: true
+    name: mandatory_floating_platform_on_every_playable_map
+    actions: [compile_MVP_Verdant_Divide, attempt_playable_map_without_battlefield_frame, attempt_classic_bounded_planetary_surface]
+    expected:
+      valid_floating_space_platform_compiles: true
+      missing_frame_is_validation_error: true
+      classic_planet_surface_is_validation_error: true
+      no_automatic_fallback_to_ordinary_planar_map: true
   - id: FRAME-02
-    scenario: test_N_S_E_W_outer_borders
-    steps: [drive_packed_MAN_UMU_outside_north, move_worker_outside_south, move_soldier_outside_east, drive_hero_outside_west]
-    expect: {all_actor_types_blocked: true, position_remains_legal: true, physics_and_navmesh_agree: true}
+    name: fixed_four_square_boundaries_work_for_all_ground_actors
+    actions: [attempt_cross_each_outer_edge_with_MAN_worker, ETH_worker, soldier, Hero, packed_MAN_UMU]
+    expected:
+      all_four_edges_have_hard_3d_collision: true
+      all_ground_movements_stay_inside_map: true
+      actor_is_not_lost_due_to_falling: true
+      game_navigation_and_physics_reject_same_illegal_target: true
   - id: FRAME-03
-    scenario: aim_and_click_distant_starfield_and_background_planet
-    expect: {can_select: false, can_attack: false, can_mine: false, no_ETH_pylon_path_to_background: true}
+    name: outer_space_background_is_noninteractive
+    actions: [click_distant_planet, shoot_at_starfield, order_ETH_network_to_space_scene, click_under_deck_engine]
+    expected:
+      no_interactive_selection: true
+      no_world_resource_or_income_credited: true
+      no_faction_building_count_modified: true
+      no_air_or_space_navigation_accepted: true
   - id: FRAME-04
-    scenario: jungle_liquid_bodies_and_tree_cover_remain
-    expect:
-      freshwater_pools_appear_on_habitat_deck: true
-      freshwater_not_harvestable_in_solid_only_MVP: true
-      tree_trunk_still_blocks_actual_projectile: true
-      no_swimming_or_flying_player_units: true
+    name: unchanged_jungle_economy_and_cover
+    actions: [spawn_on_brown_soil_jungle_platform, mine_surface_SOLID, attempt_mine_pond, fire_through_tree_trunk]
+    expected:
+      soil_and_tree_and_pond_on_platform: true
+      solid_mining_allowed_without_mine: true
+      liquid_mining_forbidden: true
+      tree_trunk_blocks_line_of_fire: true
   - id: FRAME-05
-    scenario: boundary_rim_art_and_collision_guard
-    expect: {rim_visible_along_every_side: true, guard_present: true, actor_cannot_fall_off_due_to_missing_collider: true}
+    name: physical_edge_and_rim_art_align
+    actions: [walk_player_to_each_platform_edge_with_RTS_Direct_FPS_cameras]
+    expected:
+      each_rim_visible_at_outer_ground_limit: true
+      invisible_guard_blocks_authoritatively: true
+      no_phantom_walkable_outer_surface: true
+      skybox_cannot_clip_as_attackable_obstacle: true
   - id: FRAME-06
-    scenario: decorative_cosmic_parallax_does_not_modify_simulation
-    expect: {world_origin_stable: true, deterministic_replay_unchanged: true, background_no_pathing_or_harvest_changes: true}
+    name: visual_surface_swap_does_not_modify_strategic_data
+    actions: [render_same_fixed_gameplay_map_with_brown_soil_jungle_preset, render_same_map_with_industrial_metal_patchwork_skin_only]
+    expected:
+      both_are_floating_space_platforms: true
+      same_finite_sources_and_unit_spawns: true
+      same_authoritative_collision_and_navigation_hash: true
+      same_fixed_seed_command_log_result: true
+      changed_cosmetic_surface_art_is_allowed: true
   - id: FRAME-07
-    scenario: platform_frame_is_not_true_sphere
-    expect: {topology_remains_planar: true, radial_gravity_is_disabled: true, unimplemented_spherical_adapter_rejected_with_error: true}
+    name: world_is_flat_bounded_platform_not_real_sphere
+    actions: [load_first_map_as_planar, request_true_spherical_runtime_without_supported_adapter]
+    expected:
+      playable_world_up_uniform: true
+      no_radial_gravity_or_cube_sphere_navmesh: true
+      unimplemented_spherical_request_rejected: true
+      distant_planet_disc_is_only_background: true
   - id: FRAME-08
-    scenario: platform_is_neutral_noninteractive_world_frame
-    steps: [destroy_all_enemy_completed_buildings, leave_platform_rim_and_support_beams_intact]
-    expect: {enemy_defeated: true, faction_owned_platform_building_count: 0}
+    name: neutral_platform_does_not_prevent_building_annihilation_victory
+    actions: [destroy_last_enemy_building_class_entities, leave_platform_rim_underside_trees_and_enemy_workers_intact]
+    expected:
+      victory_triggered: true
+      platform_is_not_victory_building: true
+      surviving_workers_and_loot_do_not_count: true
   - id: FRAME-09
-    scenario: ETH_orb_drop_scattered_next_to_N_platform_edge
-    initial: {site_committed_matter: 12}
-    steps: [break_required_ETH_build_beam, generate_deterministic_world_drops]
-    expect: {all_recovered_world_packet_positions_in_playable_bounds: true, total_world_drop_matter: 12, no_duplicate_resource_credit: true}
+    name: loot_near_edge_cannot_spawn_off_platform
+    initial: {ETH_site_committed_SOLID_Matter: 12}
+    actions: [break_ETH_required_last_beam_next_to_outer_rim]
+    expected:
+      world_orb_amount: 12
+      all_packet_positions_legal_and_collectible: true
+      no_duplicate_Nexus_refund: true
+      no_drop_through_platform_void: true
   - id: FRAME-10
-    scenario: no_orbital_ship_travel_in_match
-    expect: {deck_static_in_gameplay_space: true, map_not_autoscrolling: true, no_orbit_or_engine_fuel_simulation: true}
+    name: platform_static_during_first_match
+    actions: [run_complete_scenario_with_background_parallax, play_same_seed_without_background_parallax]
+    expected:
+      match_surface_world_coordinates_identical: true
+      no_orbital_thruster_energy_drain: true
+      no_interplanetary_travel_state: true
+      deterministic_ledger_and_victory_hash_equal: true
+  - id: FRAME-11
+    name: entire_map_library_rejects_nonplatform_playable_maps
+    actions: [validate_every_map_with_playable_true, check_required_frame_and_material_preset]
+    expected:
+      allowed_frame_values: [floating_space_platform]
+      every_playable_map_has_space_surroundings: true
+      no_ordinary_planet_surface_allowed: true
+      surface_presets_can_differ_by_map: true
+  - id: FRAME-12
+    name: patchwork_surface_can_mix_with_earth_and_same_gameplay_topology
+    actions: [author_patchwork_metal_region_with_brown_soil_main_deck, validate_its_mixed_surface_semantics]
+    expected:
+      platform_frame_preserved: true
+      both_surface_region_ids_valid: true
+      stable_base_world_geometry_unmodified_by_cosmetic_overlay: true
+      any_actual_new_cover_requires_explicit_authoritative_object: true
