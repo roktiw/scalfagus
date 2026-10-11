@@ -23,8 +23,13 @@ anti_aliasing/quality/msaa_3d=0
 [physics]
 3d/default_gravity=15.0
 
+[autoload]
+; Explicit runtime autoload avoids requiring an editor session to register Keychain.
+; The upstream Keychain editor plugin does nothing except add this autoload.
+Keychain="*res://addons/keychain/Keychain.gd"
+
 [editor_plugins]
-enabled=PackedStringArray("res://addons/rts_framework/plugin.cfg", "res://addons/keychain/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg", "res://addons/gut/plugin.cfg")
+enabled=PackedStringArray("res://addons/rts_framework/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg", "res://addons/gut/plugin.cfg")
 
 [input]
 rts_pan_up={
