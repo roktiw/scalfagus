@@ -1,4 +1,8 @@
 schema_version: 1
+release_target: post_mvp_0_1_MAN_vs_ETH
+not_in_current_MAN_mirror_micro_release: true
+current_release_network_protocol: design/mvp0-man-mirror-network.yaml
+current_scope_decision: DEC-033
 project: scalfagus
 version: 0.1
 status: first_MVP_deterministic_protocol_candidate_not_playtest_approved
