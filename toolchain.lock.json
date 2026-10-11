@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "status": "toolchain_target_not_installed",
+  "node_major": 24,
+  "pnpm_exact": "12.7.0",
+  "godot_exact": "4.7.2-stable",
+  "godot_flavor": "standard",
+  "checksums_verified": false,
+  "notes": "Pin official release checksums before automatic installer or CI Godot provisioning."
+}
