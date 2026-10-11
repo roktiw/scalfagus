@@ -1,7 +1,10 @@
 schema_version: 1
 project: scalfagus
-version: 0.1
+version: 0.2
 status: developer_playtest_fixtures_NOT_canon_balance
+active_numeric_profile: design/mvp-balance-playtest-v0.1.yaml
+protocol: design/mvp-gameplay-execution-contract.md
+candidate_values_in_this_file_must_not_override_numeric_profile: true
 specification: design/mvp-man-eth-jungle-vertical-slice-2026-10-11.md
 catalog: design/mvp-man-eth-catalog.yaml
 map: design/mvp-verdant-divide-map.yaml
@@ -66,7 +69,9 @@ soldier_profiles:
     cooldown_seconds: 1.2
     needs_line_of_sight: true
     can_target_buildings: true
-    operational_energy_per_shot: TBD_balance_before_real_sim
+    operational_energy_per_shot: 0
+    actual_E_cost_on_train: 2
+    all_shots_after_training_do_not_spend_additional_E_in_first_MVP: true
   hero_variant:
     created_from_soldier_actor_without_new_template: true
     owns_one_hero_identity_in_all_cameras: true
@@ -87,10 +92,11 @@ building_profiles:
   man_barracks: {max_health: 260, armor: 1, counts_for_victory: true}
   eth_manifestation_chamber: {max_health: 260, armor: 1, counts_for_victory: true}
   mode_change:
-    man_umu_bunker_garrison_slots: TBD
-    eth_pylon_turret_attack_range_damage_cooldown_energy: TBD
+    man_umu_bunker_garrison_slots: 2
+    eth_pylon_turret_attack_range_damage_cooldown_energy: {range_tiles: 4, damage: 8, cooldown_s: 2.0, E_per_shot: 1}
     no_full_rate_energy_generation_and_full_bunker_shelter_simultaneously: true
-    eth_pylon_ether_relay_remains_same_graph_while_turret_at_reduced_rate: proposed
+    eth_pylon_ether_relay_remains_same_graph_while_turret_at_reduced_rate: true
+    pylon_turret_mode_bandwidth_multiplier: 0.5
 tree_cover:
   id_tag: tree_trunk_cover
   movement_collider_and_ray_collider_consistent: true
@@ -99,6 +105,7 @@ tree_cover:
   tree_destruction: disabled_first_MVP
 pathfinding:
   algorithm_candidates: [A_star_on_valid_ground_cells, navmesh_with_dynamic_obstacles]
+  first_MVP_required: legal_ground_pathfinder_with_real_RTS_and_UMU_actor_footprints
   slope_and_ramp_require_explicit_legal_traversal: true
   respect_building_footprints_and_tree_trunks: true
   respect_liquid_ground_block: true
