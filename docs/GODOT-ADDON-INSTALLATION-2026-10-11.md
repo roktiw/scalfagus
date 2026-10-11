@@ -76,3 +76,5 @@ If the initial submodule download cannot connect to GitHub, the installer
 will explain the missing dependency rather than reporting a false success.
 
 Keychain input binding wiring: [MVP0 Keychain controls](MVP0-KEYCHAIN-CONTROLS-2026-10-12.md). New test requires actual local Godot run; no Actions result is valid evidence.
+
+The MIT **GUT** framework is now consumed by `apps/game/tests/gut/test_rts_input_map.gd` and `test_mirror_authority.gd`; `bash scripts/check-gut.sh` runs its pinned command-line frontend locally. The GUT suite has not yet been engine-verified.
