@@ -205,15 +205,15 @@ func _cell_at_mouse(screen_pos: Vector2) -> Vector2i:
     var point: Vector3 = ray_origin + ray_dir * distance
     return Vector2i(roundi(point.x), roundi(point.z))
 
-func _entity_near(cell: Vector2i, require_friendly: bool) -> int:
+func _entity_near(cell: Vector2i, owner_filter: int) -> int:
     var best: int = -1
     var best_distance: int = 2
     for id in sim.sorted_ids():
         var e: Dictionary = sim.entities[id]
         var owner: int = int(e["owner"])
-        if require_friendly and owner != 0:
+        if owner != owner_filter:
             continue
-        if not require_friendly and owner == 1 and not sim.can_see(0, e["pos"]):
+        if owner == 1 and not sim.can_see(0, e["pos"]):
             continue
         var p: Vector2i = e["pos"]
         var d: int = absi(p.x - cell.x) + absi(p.y - cell.y)
@@ -264,11 +264,11 @@ func _unhandled_input(event: InputEvent) -> void:
                 info = "Barracks ordered" if sim.issue_command(0, "build_barracks", selected_id, cell) else "Invalid site or insufficient Matter"
                 build_mode = false
             else:
-                selected_id = _entity_near(cell, true)
+                selected_id = _entity_near(cell, 0)
         elif selected_id >= 0 and sim.entities.has(selected_id):
             var kind: String = str(sim.entities[selected_id]["kind"])
             var source_id: String = _resource_near(cell)
-            var enemy: int = _entity_near(cell, false)
+            var enemy: int = _entity_near(cell, 1)
             if kind == "worker" and source_id != "":
                 info = "Gathering" if sim.issue_command(0, "gather", selected_id, source_id) else "Cannot gather"
             elif kind == "rifleman" and enemy >= 0 and int(sim.entities[enemy]["owner"]) == 1:
