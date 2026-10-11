@@ -17,7 +17,7 @@ UMU:
   actual_transforming_belt_wings: 2
   capacity:
     profiles_mutually_exclusive: [troop_transport, mixed_resource_cargo, monotypic_resource_cargo, empty]
-    trope_capacity_soldiers: 4
+    troop_capacity_soldiers: 4
     passenger_manifest_entities_real_and_persistent: true
     soldier_transport_and_cargo_at_same_time: false
     standard_unit_slot_size: physical_cargo_cube_or_compatible_normalized_container
