@@ -1,5 +1,10 @@
 # Scalfagus — Balance Audit, First Numerical Baseline and Headless Simulation Plan
 
+> **Current release scope reconciliation — DEC-033 (2026-10-11):** MAN vs ETH three-form extraction and network balance for a POST-MVP0 milestone. First release under DEC-033 is MAN vs MAN with four templates and no Energy, UMU, ETH or FPP. Use micro balance YAML.
+>
+> **CURRENT owner-approved executable release: [DEC-033](decisions.yaml), [MAN mirror scope](mvp0-man-mirror-rts-2026-10-11.md), [active numerical profile](mvp0-man-mirror-balance-v0.1.yaml), [Godot execution rules](mvp0-man-mirror-execution-contract.md), [Godot ENet authority](mvp0-man-mirror-network.yaml), [M0 backlog](mvp0-man-mirror-backlog.yaml), [M0 acceptance](mvp0-man-mirror-acceptance.yaml).**
+
+
 Date: 2026-10-11
 Status: **analytically checked candidate values, NOT a measured or final balanced game**.
 Actual numerical profile: [mvp-balance-playtest-v0.1.yaml](mvp-balance-playtest-v0.1.yaml).
