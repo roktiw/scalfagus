@@ -1,5 +1,7 @@
 # Scalfagus — Individual Agency and Composable Civilizations
 Date: 2026-10-11
+
+> Current owner-approved faction names are Organs (Organites / ORG), Manus (Manusians / MAN), and Eters (Etherans / ETH); exact full backronyms: [Canonical Naming](faction-naming-conventions-2026-10-11.md).
 Status: **project-owner design direction** on individuality, specialization and anti-blob faction design; implementation details are proposals.
 
 ## Constitutional thesis: an army of characters, not one amorphous intelligence
@@ -39,17 +41,17 @@ Translate that into the RTS:
 10. The simulation can be rich, but everyday commands must remain classic 1990s RTS simple.
 
 ## Applying the principle to the four-faction direction
-### Blergians
+### Organs (ORG / Organites)
 Predatory biological civilizations with breeding, mutations, differentiated organisms, sophisticated *individual* specialist intelligence, and living infrastructure. Connected biomass helps throughput and support, not a literal mind-merging requirement. No general automatic gene assimilation from enemies. Proposed historical template named 'Hive Mind' should be renamed before gameplay implementation to an individual specialist such as 'Brood Strategist' or 'Synaptic Commander' — a **proposal only**, not a retroactive canonical change.
 
-### Manusians
+### Manus (MAN / Manuss)
 People, modified humans, Akira-like bio-experiments, Quake Strogg-style cyberforms, service robots, drones and advanced AI can all remain **unit families** within a Human-origin industrial civilization. Some AI may be citizens with agency; ancestry and political ownership differ from substrate.
 
-### Aetherians
-Advanced biological/technological/psionic beings; a hunter with Predator-like ethos can be an elite *individual*, not a different species or proof all Aetherians follow hunter culture. Sophisticated resonance can coordinate without thought fusion.
+### Eters (ETH / Etherans)
+Advanced biological/technological/psionic beings; a hunter with Predator-like ethos can be an elite *individual*, not a different species or proof all Eters follow hunter culture. Sophisticated resonance can coordinate without thought fusion.
 
 ### Autonomous Machine Civilization (FOURTH FACTION CANDIDATE)
-A **civilization of independent machine persons** may justify separate faction status, even if its ancestors were Manusian robots. It differs through a civilization-level repair, continuity, maintenance, machine sociology and modular reconstruction economy. Components can function after physical separation using local controllers, limited power and real inventories. Other factions may learn from its engineering; none thereby become machine hive minds.
+A **civilization of independent machine persons** may justify separate faction status, even if its ancestors were Manus robots. It differs through a civilization-level repair, continuity, maintenance, machine sociology and modular reconstruction economy. Components can function after physical separation using local controllers, limited power and real inventories. Other factions may learn from its engineering; none thereby become machine hive minds.
 
 ## Economic integrity
 - Exactly three primary currencies: Matter, Volatiles, Energy.
