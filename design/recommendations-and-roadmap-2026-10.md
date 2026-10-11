@@ -2,6 +2,16 @@
 Date: 2026-10-11
 Status: recommended, not a delivery commitment.
 
+## Owner-approved latest MVP direction (DEC-030 and DEC-025–029)
+
+All playable maps take place **ON huge floating platforms in outer space**. The top deck biome is flexible — Earthlike brown jungle soil, industrial welded metal patchwork, rock, desert, wetlands or mixes — but the surrounding space, visible rim/underside, bounded gameplay and `battlefield_frame.variant=floating_space_platform` are **mandatory**. No bare planetary surface map is valid. First map **Verdant Divide** is a stationary square planar 64x64-candidate jungle platform with actual tree cover, nonharvestable freshwater and finite SOLID nodes.
+
+This is now a **Godot-only native game** with an existing menu/Hero/sprite/camera spike. Do not restart with Tauri or another engine. Scope for first complete game: **MAN vs ETH**, five base roles each (HQ, MIN worker, basic soldier, UMU or Pylon, barracks); directly harvested SOLIDS→Matter; Energy separately accounted; physical MAN delivery, one Ether graph after Nexus conversion, race-specific build/debris recovery, basic combat blocked by trees, one legal scripted 1v1 bot, all enemy buildings destroyed to win including moving building-class UMU. No aquatic/flying troops, player platform travel, real sphere, multiplayer, playable ORG or liquid/gas harvesting in this milestone.
+
+**Do first:** [root coding instructions](../AGENTS.md), [MVP gate checklist](MVP-DELIVERY-GATES.md), [machine worklist](mvp-implementation-backlog.yaml), [world constitution](space-platform-world-contract-2026-10-11.md), [platform palette](platform-surface-presets.yaml), [authored jungle fixture](mvp-verdant-divide-map.yaml), [strict platform acceptance](battlefield-frame-acceptance.yaml). More ambitious MIN/MID/MAX proposals below are long-term design explorations, not substitutes for the two-race MVP.
+
+
+
 ## Product thesis
 Ship an excellent ~30-minute autonomous RTS first. The unique hook is an observable AI base that the player can direct or take over, not maximal simulation complexity. Extend one tested system to strategic MID and open-ended industrial MAX.
 
