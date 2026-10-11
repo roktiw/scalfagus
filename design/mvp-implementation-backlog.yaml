@@ -1,0 +1,140 @@
+schema_version: 1
+project: scalfagus
+version: 0.1
+status: agent_tasks_not_implemented
+implementation_agent_entrypoint: AGENTS.md
+technical_runtime:
+  game_engine: Godot_4_7_2_GDScript
+  existing_desktop_launcher: Tauri_2
+  gameplay_authority: one_native_godot_world
+  original_spike_present: true
+  do_not_overwrite_existing_spike: true
+owner_scope:
+  factions: [man, eth]
+  entities_per_faction: [mother_hq, worker_min, basic_soldier, infrastructure_umu_or_pylon, barracks]
+  biome: earthlike_jungle
+  terrain_liquids_but_only_solid_mineable: true
+  units_only_ground: true
+  world_topology_first_mvp: planar
+  future_true_sphere: candidate_not_committed
+  default_victory: every_enemy_living_completed_building_class_destroyed
+docs:
+  canonical_owner_decisions: design/decisions.yaml
+  implementation_plan: design/AGENT-MVP-IMPLEMENTATION.md
+  roster: design/mvp-man-eth-catalog.yaml
+  map: design/mvp-verdant-divide-map.yaml
+  map_format: design/map-authoring-format-v0.1.yaml
+  economy: design/mvp-economy.yaml
+  combat: design/mvp-combat.yaml
+  bot: design/mvp-bot-behavior.yaml
+  tests: design/mvp-man-eth-acceptance.yaml
+  topology: design/world-topologies.yaml
+  environmental_terrain: design/world-environments.yaml
+task_lifecycle: [todo, in_progress, blocked, completed, verified]
+tasks:
+  - id: PR-00
+    title: Preserve existing native spike and launcher
+    priority: P0
+    status: todo
+    dependencies: []
+    checks: [existing_smoke_gd, npm_run_check]
+    done_when: original_Godot_five_view_three_camera_smoke_still_passes
+  - id: PR-01
+    title: Compile YAML map and validate land collision
+    priority: P0
+    status: todo
+    dependencies: [PR-00]
+    design_inputs: [design/mvp-verdant-divide-map.yaml, design/map-authoring-format-v0.1.yaml, design/world-environments.yaml, design/world-topologies.yaml]
+    expected_components: [map_manifest_compiler, planar_topology_adapter, map_collision_renderer, navigation_validator]
+    acceptance: [MVP-02, MVP-03, MVP-24, MVP-25, MVP-29, MVP-30, MAP-01, MAP-02, MAP-03, MAP-04, MAP-05, MAP-06]
+  - id: PR-02
+    title: Unit building class registry and legal player commands
+    priority: P0
+    status: todo
+    dependencies: [PR-01]
+    design_inputs: [design/mvp-man-eth-catalog.yaml, design/victory-building-template-registry.yaml]
+    expected_components: [stable_entity_ids, player_orders, unit_selection, factory_for_five_templates, victory_building_tag]
+    acceptance: [MVP-01, MVP-12, MVP-28]
+  - id: PR-03
+    title: Gather finite solid resources and maintain authoritative ledger
+    priority: P0
+    status: todo
+    dependencies: [PR-02]
+    design_inputs: [design/mvp-economy.yaml, design/world-loot-and-recycling.yaml]
+    expected_components: [resource_source, worker_haul, real_depot_receive, ETH_Nexus_conversion, typed_custody_ledger]
+    acceptance: [MVP-04, MVP-05, MVP-06, MVP-26, MVP-27]
+  - id: PR-04
+    title: MAN construction and basic powered infrastructure
+    priority: P0
+    status: todo
+    dependencies: [PR-03]
+    design_inputs: [design/mvp-man-eth-catalog.yaml, design/three-network-channels-and-destruction.yaml]
+    expected_components: [MAN_UMU_modes, real_site_crates, MAN_builder_caps_1_2_2, local_power_data_hybrid]
+    acceptance: [MVP-12, MVP-13, MVP-14]
+  - id: PR-05
+    title: ETH construction and one connected Ether Network
+    priority: P0
+    status: todo
+    dependencies: [PR-03]
+    design_inputs: [design/eth-ether-network-mechanics.yaml, design/three-network-channels-and-destruction.yaml]
+    expected_components: [ETH_Nexus_converter, ETH_pylon_graph, blue_beam_builder_caps_1_2_3, finite_ether_inventory, interruption_orbs]
+    acceptance: [MVP-06, MVP-17, MVP-18, MVP-19, MVP-20]
+  - id: PR-06
+    title: Barracks soldiers combat and complete building victory
+    priority: P0
+    status: todo
+    dependencies: [PR-04, PR-05]
+    design_inputs: [design/mvp-combat.yaml, design/match-rules.yaml]
+    expected_components: [production_queue, basic_ground_ranged_combat, line_of_sight_cover, fixed_tick_damage, end_match]
+    acceptance: [MVP-07, MVP-08, MVP-09, MVP-10, MVP-11, MVP-16, MVP-28]
+  - id: PR-07
+    title: Implement fair scripted 1v1 bot
+    priority: P0
+    status: todo
+    dependencies: [PR-06]
+    design_inputs: [design/mvp-bot-behavior.yaml]
+    expected_components: [resource_safe_bot_orders, exploration, basic_raid, bot_death_and_win]
+    acceptance: [MVP-11, MVP-15, MVP-32]
+  - id: PR-08
+    title: Real loot and loss-bearing recycling
+    priority: P1
+    status: todo
+    dependencies: [PR-06]
+    design_inputs: [design/world-loot-and-recycling.yaml, design/recycling-and-network-acceptance-cases.yaml]
+    expected_components: [world_cube_orb_stacks, foreign_pickup, MAN_excavation, ETH_site_ejection, ETH_edge_escrow_spill]
+    acceptance: [MVP-20, MVP-21, MVP-22, MVP-26]
+  - id: PR-09
+    title: Single Hero across all cameras and HUD
+    priority: P1
+    status: todo
+    dependencies: [PR-07, PR-08]
+    design_inputs: [design/three-pillars-one-world-control-contract.md, design/mvp-hud-and-input.md]
+    expected_components: [one_hero_identity, three_camera_controller_adapters, production_HUD, source_and_mode_overlays]
+    acceptance: [MVP-23, MVP-30, MVP-31]
+  - id: PR-10
+    title: Integrated regression and full MAN versus ETH match
+    priority: P1
+    status: todo
+    dependencies: [PR-07, PR-08, PR-09]
+    expected_components: [headless_contract_test_runner, replay_hash, reproducible_match, documentation_update]
+    acceptance: [MVP-01, MVP-16, MVP-26, MVP-31, MVP-32]
+  - id: RESEARCH-SPHERE
+    title: True spherical planet topology spike
+    priority: post_MVP
+    status: todo
+    dependencies: [PR-10]
+    approval_required: true
+    not_committed_to_current_MVP: true
+    reference: design/planetary-map-topology-2026-10-11.md
+    expected_components: [cube_sphere_mesh, radial_gravity, surface_navmesh, spherical_LOS, 360_degree_world_camera]
+    acceptance: [PLANET-01, PLANET-02, PLANET-03]
+critical_constraints:
+  - never_claim_unexecuted_tests_pass
+  - every_resource_transfer_exactly_one_ledger_custodian
+  - units_cannot_pass_or_shoot_through_tree_trunks
+  - visual_tree_fade_not_combat_fog
+  - water_terrain_noncollectible_in_solid_only_MVP
+  - moving_MAN_UMU_remains_victory_building
+  - ETH_pylon_uses_single_resource_energy_information_network
+  - real_sphere_feature_flag_requires_runtime_adapter
+  - do_not_add_full_liquid_gas_harvesting_or_ORG_before_two_race_MVP
