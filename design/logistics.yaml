@@ -1,17 +1,20 @@
 schema_version: 1
 project: scalfagus
-version: 0.8
+version: 0.9
 status: approved_core_rules_with_proposed_details
 automation: medium
 faction_mechanisms:
-  specification: design/faction-logistics-2026-10-11.md
+  specification: design/three-faction-network-and-infrastructure-contract-2026-10-11.md
+  historical_faction_logistics: design/faction-logistics-2026-10-11.md
+  ether_network: design/eth-ether-network-mechanics.yaml
+  man_power_org_vessels: design/man-power-dock-and-org-vessel-mechanics.yaml
   config: design/faction-logistics.yaml
   base_ecology: design/base-ecologies.yaml
   economic_chassis: design/logistics-unit-scales.yaml
   physical_resource_forms: design/physical-resource-forms.yaml
   org: exclusive_initial_mother_modes_with_tech_gated_rolling_handoffs
-  man: destructible_throughput_limited_conveyor_network
-  eth: mobile_min_couriers_to_mid_pylon_relays_and_max_nexus_cores
+  man: physical_material_conveyors_plus_local_auto_electric_power_links_and_power_dock
+  eth: physical_courier_to_max_nexus_conversion_then_finite_typed_ether_freight_across_mid_pylon_obelisk_graph
   note: Preserve common finite inventories, geometry, capacity and manual-order authority.
 player_controls:
   - select_deposit_and_assign_workers
@@ -53,6 +56,18 @@ transfer:
   needs_receiver_capacity: true
   needs_transfer_range_and_compatibility: true
   energy_as_cargo: true
+  ethos:
+    valid_nexus_conversion_required_before_ether_transfer: true
+    ether_payload_preserves_underlying_resource_type: true
+    freight_components_keep_own_actual_balances_on_split: true
+    equalization_is_capacity_weighted_and_bandwidth_limited: proposed
+    no_unlimited_global_teleport_wallet: true
+  manus:
+    physical_material_transport_not_electric_cable_material_transfer: true
+    builder_can_fetch_from_eligible_local_source_transporter_depot_or_nexus: true
+    auto_connected_power_ports_carry_finite_power: proposed
+  organs:
+    vessels_carry_physical_nutrition_not_globally_shared_building_materials: true
   rates_and_docking_delays: refer_to_economy_pending_migration
   simultaneous_loaders:
     org_min_worker_per_operation: 1
