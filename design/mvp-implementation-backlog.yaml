@@ -5,7 +5,7 @@ status: agent_tasks_not_implemented
 implementation_agent_entrypoint: AGENTS.md
 technical_runtime:
   game_engine: Godot_4_7_2_GDScript
-  existing_desktop_launcher: Tauri_2
+  existing_desktop_launcher: none
   gameplay_authority: one_native_godot_world
   original_spike_present: true
   do_not_overwrite_existing_spike: true
@@ -39,11 +39,11 @@ docs:
 task_lifecycle: [todo, in_progress, blocked, completed, verified]
 tasks:
   - id: PR-00
-    title: Preserve existing native spike and launcher
+    title: Preserve existing native Godot spike
     priority: P0
     status: todo
     dependencies: []
-    checks: [existing_smoke_gd, npm_run_check]
+    checks: [existing_smoke_gd, scripts_check_sh]
     done_when: original_Godot_five_view_three_camera_smoke_still_passes
   - id: PR-01
     title: Compile YAML map and validate land collision

@@ -13,8 +13,8 @@ As currently observed on GitHub `main`:
 - `apps/game/scripts/main.gd`, `hero.gd`, `directional_sprite_5.gd`: scene/render camera/actor spike. It is **not yet a complete playable RTS**; no real economy, bot, buildings, production or combat loop.
 - `apps/game/assets/`: existing MAN worker and neutral tree/rock 5-view sprite concept/reference assets, with some unresolved asymmetric mirroring quality.
 - `apps/game/tests/smoke.gd`: existing headless import and smoke checks: Hero ID/HP remains stable across F1/F2/F3, 5 source view to 8 rotated sectors/mirroring. **Preserve** this test.
-- `apps/desktop/`: **existing Tauri 2** launcher app with a TS/Vite UI, Rust sidecar packaging; launcher starts the native game in a separate window. Not the gameplay simulation authority.
-- `scripts/bootstrap.sh`, `scripts/check.sh`, `scripts/dev.sh`, `scripts/game.sh`, `scripts/build.sh`, `package.json`, `readme.md`: existing bootstrap, test and run paths. Follow these; do not replace with speculative custom npm scripts.
+- There is no desktop launcher. Godot owns the native game window and is the only runtime authority.
+- `scripts/bootstrap.sh`, `scripts/check.sh`, `scripts/dev.sh`, `scripts/game.sh`, `scripts/build.sh`, `readme.md`: Godot-only bootstrap, test, run and export paths. Follow these; do not add a desktop launcher.
 - `architecture/adr-0001-one-authoritative-game-world.md` / `adr-0002-desktop-shell-boundary.md` explain earlier proposals. **Runtime on main now EXISTS**; treat any statements inside ADR-0002 that "launcher code not shipped" as superseded by the actual `apps/desktop` tree and root `readme.md`.
 
 Recommended environment checks **after agent changes** (from repo root, prerequisites installed):
