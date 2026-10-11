@@ -1,0 +1,186 @@
+schema_version: 1
+project: scalfagus
+version: 0.1
+status: design_only_not_executed
+contract: design/three-faction-network-and-infrastructure-contract-2026-10-11.md
+purpose: deterministic_acceptance_fixtures_for_eventual_shared_simulator
+fixtures:
+  - id: NET-001
+    faction: eth
+    scenario: split_equal_capacity_pylons
+    initial:
+      type: matter
+      nodes: [{id: p1, capacity: 40, qty: 20}, {id: p2, capacity: 40, qty: 20}, {id: p3, capacity: 40, qty: 20}, {id: p4, capacity: 40, qty: 20}, {id: p5, capacity: 40, qty: 20}, {id: p6, capacity: 40, qty: 20}]
+      component: [p1, p2, p3, p4, p5, p6]
+      total: 120
+    action: disconnect_p2_p3_without_destroying_nodes
+    expect:
+      components: [[p1, p2], [p3, p4, p5, p6]]
+      component_balances: [40, 80]
+      total_retained: 120
+      duplicated: false
+  - id: NET-002
+    faction: eth
+    scenario: proportional_capacity_equalization
+    initial:
+      type: matter
+      nodes: [{id: p1, capacity: 10, qty: 30}, {id: p2, capacity: 20, qty: 0}, {id: p3, capacity: 30, qty: 0}]
+      total: 30
+      fixture_note: first_node_initial_over_capacity_invalid_in_strict_execution_see_corrected_valid_case_below
+    valid_start:
+      nodes: [{id: p1, capacity: 10, qty: 10}, {id: p2, capacity: 20, qty: 20}, {id: p3, capacity: 30, qty: 0}]
+      total: 30
+    action: advance_until_all_equalization_queues_empty
+    expect:
+      per_node_qty: [{id: p1, qty: 5}, {id: p2, qty: 10}, {id: p3, qty: 15}]
+      total_retained: 30
+  - id: NET-003
+    faction: eth
+    scenario: split_before_equilibrium
+    initial:
+      type: volatiles
+      nodes: [{id: p1, qty: 6}, {id: p2, qty: 19}, {id: p3, qty: 14}, {id: p4, qty: 1}]
+      total: 40
+    action: disconnect_between_p2_and_p3
+    expect:
+      left_actual_qty: 25
+      right_actual_qty: 15
+      immediate_redistribution: false
+      total: 40
+  - id: NET-004
+    faction: eth
+    scenario: subnet_only_can_fund_local_construction
+    initial:
+      split_components: [{id: west, qty: 10, has_local_initialized_nexus: true}, {id: east, qty: 90, has_local_initialized_nexus: true}]
+    action: west_requests_15_units_of_matched_resource_for_new_building
+    expect:
+      order_paid: false
+      west_may_spend_at_most: 10
+      remote_east_automatic_spend: 0
+      construction_beam_also_required: true
+  - id: NET-005
+    faction: eth
+    scenario: network_rejoin
+    initial:
+      independent_components: [{id: a, qty: 40}, {id: b, qty: 80}]
+    action: restore_valid_ether_link
+    expect:
+      immediately_total_qty: 120
+      immediately_reassigned_balances: false
+      gradual_equalization_after_rejoin: true
+  - id: NET-006
+    faction: eth
+    scenario: turret_infrastructure_vs_freight_graphs
+    initial: {pylon_mode: storage_relay, network_signal_connected: true, ether_freight_connected: true, stored_qty: 15}
+    action: finish_meditation_to_turret
+    expect:
+      signal_graph_still_connected: true
+      ether_freight_service_enabled: false
+      stored_qty_preserved: 15
+      mode_can_return_with_paid_transition: true
+  - id: NET-007
+    faction: eth
+    scenario: convert_only_after_nexus_arrival
+    action: min_attempts_to_send_unconverted_raw_liquid_into_ether_link_before_nexus
+    expect: {allowed: false, item_not_spontaneously_transformed: true, requires_real_nexus_conversion: true}
+  - id: NET-008
+    faction: eth
+    scenario: beam_loss_when_two_subnets_isolated
+    action: eth_min_loses_final_required_blue_beam_during_construction_after_split
+    expect:
+      remaining_build_progress: 0
+      refund_is_accounted_in_its_actual_local_current_inventory_or_physical_recovery: true
+      remote_unreachable_home_credit: false
+      exact_refund_fraction: TBD
+  - id: NET-009
+    faction: eth
+    scenario: loaded_node_destroyed
+    action: destroy_pylon_with_finite_stored_ether
+    expect:
+      its_network_balance_debited_exactly_once: true
+      captured_dropped_or_lost_recorded_explicitly: true
+      no_free_copy_to_other_pylons: true
+  - id: NET-010
+    faction: eth
+    scenario: disconnected_new_pylon
+    action: build_pylon_in_different_isolated_component
+    expect:
+      new_component_supply_cap_may_change: true
+      old_component_freight_bandwidth_not_globally_multiplied: true
+  - id: NET-011
+    faction: man
+    scenario: power_dock_three_exclusive_modes
+    sequence: [deployed_power_warehouse, deployed_fortified_bunker, packed_ground_travel]
+    expect:
+      no_ground_mobility_during_deployed_modes: true
+      generation_stops_while_packed: true
+      generation_decreases_in_bunker_variant: true
+      no_open_warehouse_cargo_service_while_bunker: true
+      no_flying: true
+  - id: NET-012
+    faction: man
+    scenario: specializations_still_matter
+    expect:
+      power_dock_single_unit_belt_length: 0
+      mid_belt_length_options: [3, 5]
+      power_dock_storage_less_than_max: true
+      power_dock_bunker_garrison_less_than_max_bunker: true
+      power_dock_defensive_output_not_superior_to_specialist_mid: true
+  - id: NET-013
+    faction: man
+    scenario: auto_electric_connections
+    action: deployed_nearby_power_dock_connects_then_packs
+    expect:
+      link_active_while_deployed: true
+      link_inactive_while_packed: true
+      local_independent_remote_power_dock_possible: true
+      actual_material_packets_not_carried_by_grid: true
+  - id: NET-014
+    faction: man
+    scenario: material_access_requires_route
+    action: builder_starts_build_at_pylonless_remote_site_with_electric_grid_but_without_haulable_parts
+    expect:
+      immediate_material_spend_from_remote_bank: false
+      builder_requests_actual_delivery_or_gathering: true
+      resumes_when_real_materials_arrive: true
+  - id: NET-015
+    faction: man
+    scenario: outages_and_partial_work
+    action: power_cable_break_and_worker_leave_at_66_percent
+    expect:
+      built_percent_remains: 66
+      existing_install_materials_stay_real: true
+      charge_runs_out_only_after_time_and_consumption: true
+  - id: NET-016
+    faction: org
+    scenario: cut_vessel_at_remote_bud
+    expect:
+      can_instantly_complete_bud_without_vessel: false
+      starving_or_wither_timed_not_instant: true
+      fixed_resource_bank_split_eth_style: false
+  - id: NET-017
+    faction: org
+    scenario: intact_vessels_missing_home_origin_food
+    expect:
+      nutrition_satisfied_indefinitely: false
+      eventually_starve_after_real_reserves_consumed: true
+  - id: NET-018
+    scenario: current_proposed_stage_crew_caps
+    expect:
+      org: [3, 2, 1]
+      man: [1, 2, 2]
+      eth: [1, 2, 3]
+      required_worker_quorum_equals_cap: false
+  - id: NET-019
+    scenario: all_factions_resource_source_permissions
+    expect:
+      solid_can_mine_without_rig: true
+      liquid_can_slow_hand_collect_without_pump: true
+      gas_can_hand_collect_without_rig: false
+  - id: NET-020
+    scenario: replay_and_no_free_resources
+    action: replay_same_seed_and_commands_after_multiple_ether_split_merge_events
+    expect:
+      state_hash_equal: true
+      no_duplicate_event_commits: true
+      mass_ledger_equal_initial_plus_actual_new_extraction_minus_actual_consumption_and_loss: true
