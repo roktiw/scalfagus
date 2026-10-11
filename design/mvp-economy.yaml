@@ -1,0 +1,151 @@
+schema_version: 1
+project: scalfagus
+version: 0.1
+status: developer_balance_seed_NOT_owner_approved_prices_rates_or_recipes
+scope: MAN_vs_ETH_on_Verdant_Divide_surface_SOLIDS_only
+catalog: design/mvp-man-eth-catalog.yaml
+physical_resource_form_canon: design/physical-resource-forms.yaml
+resource_ledger_canon: design/world-loot-and-recycling.yaml
+faction_networks_canon: design/three-network-channels-and-destruction.yaml
+map_source: design/mvp-verdant-divide-map.yaml
+accepted_user_direction:
+  only_surface_solid_sources_harvestable_first_map: true
+  water_ponds_and_streams_present_as_terrain_without_water_harvesting: true
+  no_raw_liquid_or_gas_harvest_in_first_mvp: true
+  all_mined_goods_have_physical_custody: true
+  MAN_materials_really_hauled: true
+  ETH_real_cargo_dropped_at_nexus_converted_to_typed_ether_only_there: true
+  cargo_recycling_is_lossy_except_uninstalled_loose_packets_and_eth_site_commit_abort: true
+  no_new_currency_named_ether: true
+currency_prototype:
+  existing_canonical_ids: [matter, volatiles, energy]
+  world_source_form: solid
+  MVP_only_explicit_recipe: {input_solid_source_units: 1, output_matter_units: 1}
+  other_production_recipes_out_of_scope: true
+  available_for_spending: [matter, energy]
+  volatiles_cannot_be_extracted_or_required_by_MVP_build_order: true
+  no_implicit_converting_matter_to_energy: true
+  no_implicit_energy_from_gas: true
+  resource_id_vs_physical_form_still_separate_fields: true
+extraction:
+  source_state: [amount_remaining, world_position, source_form, extraction_port_count, extraction_ticks_per_unit]
+  no_extractor_building_required_for_solid_source: true
+  worker_cargo_capacity_matter_candidate: 8
+  seconds_to_extract_one_matter_candidate: 2
+  worker_has_finite_pickup_loading_capacity: true
+  only_real_delivery_to_legal_inventory_port_credits_owned_store: true
+  source_debit_and_worker_credit_atomic: true
+  depletion_removes_harvestable_source_stock: true
+  deadwood_deposit_is_not_equivalent_to_cutting_alive_cover_tree: true
+  liquid_terrain_cannot_be_clicked_for_income: true
+starting_inventory_candidate:
+  matter: 0
+  energy: 40
+  completed_command_or_nexus: 1
+  MIN_workers: 3
+  hero_soldier_variant: 1
+  starting_support_cap: 8
+  used_support_candidate: 5
+  must_allow_first_umu_or_pylon_and_barracks_from_nearby_solids: true
+candidate_prices_matter:
+  MAN_command_core_rebuild: 150
+  ETH_nexus_rebuild: 150
+  MAN_min: 15
+  ETH_min: 15
+  MAN_rifleman: 20
+  ETH_sentinel: 20
+  MAN_umu: 40
+  ETH_pylon_obelisk: 40
+  MAN_barracks: 60
+  ETH_manifestation_chamber: 60
+  hero_extra_as_paid_new_unit_production: disabled_in_first_slice
+candidate_times_seconds:
+  worker_training: 9
+  soldier_training: 12
+  umu_build: 24
+  pylon_build: 24
+  barracks_build: 40
+  worker_pickup_and_delivery_visual_time: included_in_real_motion
+  construction_progress_in_three_equal_work_thirds: true
+  phase_caps:
+    man: [1, 2, 2]
+    eth: [1, 2, 3]
+candidate_rates_and_energy:
+  no_built_in_per_frame_free_energy_credit: true
+  energy_currency_is_actual_finite_quantized_stock: true
+  initial_starting_battery_E: 40
+  energy_supply_has_an_authorized_external_origin: true
+  proposed_external_origin: bounded_environmental_solar_or_ambient_flux
+  if_renewable_inflow_enabled_book_it_as_external_energy_generation: true
+  man:
+    starting_command_core_output_E_per_second: TBD_to_bootstrap_first_umu
+    umu_deployed_power_warehouse_E_per_second: TBD
+    umu_bunker_mode_generation_multiplier: TBD_less_than_one
+    packed_umu_generation_E_per_second: 0
+    batteries_and_power_service_local_not_free_global_wallet: true
+    hybrid_power_and_data_cables_do_not_transport_solid_material_packets: true
+    UMU_support_power_capacity_candidate: 8
+  eth:
+    nexus_ambient_resonance_output_E_per_second: TBD_to_bootstrap_first_pylon
+    pylon_energy_relay_rate_E_per_second: TBD
+    pylon_turret_maintenance_E_per_second: TBD
+    pylon_support_resonance_slots_candidate: 8
+    only_one_Ether_Network_for_typed_Matter_Energy_and_information: true
+  avoid_energy_deadlock:
+    first_generator_or_pylon_recipe_cannot_require_unavailable_liquid_or_gas: true
+    energy_generation_or_reserve_must_cover_first_legal_work: true
+    bot_and_human_have_same_source_rights_and_rate: true
+construction_currency_custody:
+  man:
+    sites_use_actual_worker_bag_or_depot_retrieval_or_loose_site_crates: true
+    there_is_no_instant_spend_of_remotely_power_connected_materials: true
+    installs_real_matter_into_persistent_skeleton: true
+    work_incomplete_after_worker_leaves: remains_at_exact_percent
+    delivered_but_not_installed_stacks_can_be_stolen: true
+    when_skeleton_destroyed_embedded_matter_requires_finite_salvage_mining: true
+  eth:
+    raw_matter_cannot_enter_pylon_network_before_nexus: true
+    conversion_to_typed_ether_preserves_matter_amount: true
+    transfer_Nexus_to_pylon_has_latency_bandwidth_capacity_and_edge_escrow: true
+    source_component_resource_stock_remains_local_after_link_cut: true
+    site_material_commit_requires_real_network_delivery_and_receiver_custody: true
+    last_required_beam_lost_ejects_all_site_committed_matter_as_ground_orbs_once: true
+    time_and_paid_channel_operating_energy_not_refunded: true
+    distant_reserved_but_not_delivered_stock_must_not_materialize_as_local_orbs: true
+pylon_equalization_candidate:
+  target_fill_by_eligible_resource_specific_node_capacity: true
+  respect_finite_transfer_rate_and_reachable_paths: true
+  total_all_components_after_split_equals_real_stock_before_minus_only_accounted_actual_losses: true
+  active_turret_uses_same_graph_with_reduced_packet_service_proposed: true
+world_loot_visuals:
+  physical_form_color_solid: "#E8AF42"
+  man_origin_package: cube
+  eth_origin_package: orb
+  org_origin_package_reserved_for_future: tetrahedron
+  compatible_foreign_salvage_allowed: true
+  world_drop_never_counts_for_victory: true
+  no_infinite_destroy_salvage_rebuild_profit: true
+  complete_asset_salvage_fraction: TBD_below_one
+  intact_loose_package_retains_real_remaining_quantity: true
+  retained_committed_ETH_site_material_ejects_full_amount_at_interruption: true
+anti_softlock_checks:
+  starter_deposits_reachable_for_both_spawns: true
+  starter_energy_and_Matter_recipe_work_without_LIQUID_or_GAS: true
+  trained_worker_can_reach_and_return_to_actual_mother_port: true
+  standard_buildings_can_eventually_be_funded_from_initial_safe_deposits: true
+  if_only_ETH_pylon_survives_after_Nexus_destroyed_team_not_auto_eliminated: true
+  no_unpaid_automatic_nexus_resurrection: true
+global_ledger:
+  compartments: [remaining_unmined_source, worker_cargo, depot_cargo, ETH_node_Ether, ETH_edge_escrow, site_loose_cargo, installed_material, completed_structure_embodied_material, world_drops, salvage_ruins, irrecoverably_consumed, legitimate_external_input]
+  each_real_material_owned_by_exactly_one_compartment: true
+  transfers_debit_source_and_credit_destination_in_one_authoritative_event: true
+  energy_input_generated_from_authored_environment_accounted_as_external_input: true
+  deterministic_fixed_tick_replay_validates_amount_nonnegative_and_no_double_spend: true
+test_telemetry:
+  - safe_Matter_access_time_per_spawn
+  - first_worker_and_first_UMU_or_pylon_timing
+  - first_barracks_and_first_soldier_time
+  - delivered_vs_carried_vs_ETH_escrow_Matter_by_tick
+  - resource_loss_and_loot_pickup_by_faction
+  - energy_starvation_time
+  - time_to_complete_first_game_against_bot
