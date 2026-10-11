@@ -114,12 +114,12 @@ func _blocked(p: Vector2i) -> bool:
             return true
     return false
 
-func _can_build(p: Vector2i, owner: int) -> bool:
+func _can_build(p: Vector2i, owner: int, ignore_builder_id: int = -1) -> bool:
     if _blocked(p):
         return false
     for id in sorted_ids():
         var e: Dictionary = entities[id]
-        if str(e["order"]) == "build" and e["build_pos"] == p:
+        if id != ignore_builder_id and str(e["order"]) == "build" and e["build_pos"] == p:
             return false
     var hqs: Array[int] = units_for(owner, "hq")
     return not hqs.is_empty() and _distance(p, entities[hqs[0]]["pos"]) <= 9
@@ -310,7 +310,7 @@ func _worker_tick(e: Dictionary) -> void:
         else:
             e["work_ticks"] = int(e["work_ticks"]) - 1
             if int(e["work_ticks"]) <= 0:
-                if _can_build(site, side):
+                if _can_build(site, side, int(e["id"])):
                     _spawn("barracks", side, site)
                 else:
                     # Site became invalid; spent resources remain accounted as loss.
