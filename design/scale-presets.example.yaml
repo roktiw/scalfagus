@@ -1,0 +1,27 @@
+# Draft design sketch only; not implemented runtime configuration.
+schema_version: "0.1-draft"
+match_scales:
+  min:
+    duration_target_minutes: [20, 40]
+    economy: compact
+    logistics: auto_short_routes
+    technology: curated
+    unit_customization: preset_loadouts
+    diplomacy: disabled_by_default
+  mid:
+    duration_target_minutes: [40, 80]
+    economy: developed
+    logistics: multiple_routes_and_depots
+    technology: branching
+    unit_customization: modular
+    diplomacy: optional
+  max:
+    duration_target_minutes: null
+    economy: expansive
+    logistics: freight_network_optimization
+    technology: long_horizon
+    unit_customization: deep_modular
+    diplomacy: optional
+# Orthogonal axes: session_context, control_preset, controller_type, objective_ruleset, teams.
+# chassis_scale: min | mid | max is a UNIT property independent of match_scale.
+# None of these scales requires possession, LLM, a fourth resource or an online service.
