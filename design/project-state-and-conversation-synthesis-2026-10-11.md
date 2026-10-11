@@ -17,6 +17,17 @@ Scalfagus is an **original** 1990s-feeling isometric pixel-art RTS inspired by W
 
 Backronym letters are deliberate, approved and **verbatim**. Generalismus, Etherans and Manusians are intentional spellings. These expansions are *full faction names*, **not** auto-generated singular species or necessarily one formal government. A polity/state name remains a separate optional concept. The naming levels should be called `short/mid/full` (and machine `id`); never confuse with the already overloaded MIN/MID/MAX match and chassis dimensions. See [canonical naming specification](faction-naming-conventions-2026-10-11.md), [active faction registry](factions.yaml), [approved decisions](decisions.yaml).
 
+## Latest resource source access — DEC-016 (2026-10-11)
+
+Three **physical deposit classes** now govern extraction access for every race:
+**SOLID**, accessible as scattered loose nodes harvested directly by MIN without a mine;
+**LIQUID**, directly tapped by MIN in slow small portions or efficiently gathered with an optional pump;
+and **GAS**, never hand-harvestable from a raw vent, requiring a completed installed capture rig.
+Initial construction of that rig must not need unavailable raw gas. Deposits/packets are finite and real.
+These are **source forms**, not a silent replacement of the canonical Matter, Volatiles, Energy spendable resources; Energy is not gas. The exact mapping and processing recipes are still open.
+See [owner-directed source-form specification](physical-resource-forms-and-extraction-2026-10-11.md),
+[physical form YAML](physical-resource-forms.yaml) and [DEC-016](decisions.yaml).
+
 ## 2026-10-11 — full economy discussion consolidation and open relocation options
 
 This project's complete discussion about **the three separate extraction, transport,
