@@ -1,7 +1,14 @@
 schema_version: 1
 project: scalfagus
-version: 0.6
+version: 0.7
 status: approved_default_all_buildings_victory_with_proposed_phase_windows_and_edge_cases
+current_MVP_scope: MAN_vs_ETH_only_solid_only_ground_only_floating_platform
+active_first_MVP_candidate_profile: design/mvp-balance-playtest-v0.1.yaml
+first_MVP_duration_goal_minutes: {min: 10, max: 25}
+full_future_three_form_MIN_goal_minutes: {min: 25, max: 40}
+duration_target_is_not_a_forced_time_limit: true
+first_MVP_supported_objective: annihilation_only
+no_Heartstrike_in_first_MVP: true
 victory_specification: design/victory-defeat-building-classification-2026-10-11.md
 victory_building_template_registry: design/victory-building-template-registry.yaml
 victory_acceptance: design/victory-defeat-acceptance-cases.yaml
@@ -50,10 +57,10 @@ victory_conditions:
       status: future_scenario_optional
     escort:
       status: future_scenario_optional
-starting_conditions: TBD
-population_limit: TBD
-unit_build_times: TBD
-economic_growth_curve: TBD
+starting_conditions: {teams: 2, playable_factions: [man, eth], mother_per_side: 1, MIN_per_side: 3, Hero_per_side: 1, Matter_per_side: 0, Energy_per_side: 40, initial_supply_cap: 8}
+population_limit: {base_support_per_HQ: 8, extra_per_deployed_MAN_UMU: 8, extra_per_live_ETH_Pylon: 8, actual_units_have_support_costs: true}
+unit_build_times: {worker_seconds: 9, soldier_seconds: 12, infra_solo_seconds: 24, barracks_solo_seconds: 40}
+economic_growth_curve: candidate_playtest_profile_not_fixed_by_rule
 tie_or_stalemate_resolution:
   same_authoritative_tick_all_competitors_reach_zero_buildings: draw_proposed
   surrender_allowed: true
