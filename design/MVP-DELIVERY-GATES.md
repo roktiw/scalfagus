@@ -1,4 +1,6 @@
-# Scalfagus MVP 0.1 — Agent Delivery Gates and Definition of Done
+# Scalfagus — HISTORICAL MAN+ETH delivery gates (POST-MVP 0.1)
+
+**DEC-033 NOTICE:** This document's old two-faction and three-camera gates are NOT current first-playable MVP tasks. Implement the single-faction MAN mirror RTS instead, using [micro-MVP spec](mvp0-man-mirror-rts-2026-10-11.md), [YAML](mvp0-man-mirror-rts.yaml), [backlog](mvp0-man-mirror-backlog.yaml), [acceptance](mvp0-man-mirror-acceptance.yaml). Retain this file only for a later MAN+ETH expanded milestone. The currently checked-in code remains an engine prototype, not either finished release.
 
 Date: 2026-10-11
 Status: **owner-confirmed product scope + proposed engineering execution gates, not completed features**.
