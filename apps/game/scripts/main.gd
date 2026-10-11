@@ -38,7 +38,7 @@ var reticle: Label
 var terrain: MeshInstance3D
 var test_props: Array[Node3D] = []
 var window_size_index: int = 0
-const WINDOW_PROFILES: Array[Vector2i] = [Vector2i(960, 540), Vector2i(640, 360), Vector2i(320, 240)]
+const WINDOW_PROFILES: Array[Vector2i] = [Vector2i(1440, 810), Vector2i(1280, 720), Vector2i(1600, 900)]
 var dragging_orbit: bool = false
 var elapsed: float = 0.0
 var camera_focus: Vector3 = Vector3(-41.0, 0.0, -41.0)
