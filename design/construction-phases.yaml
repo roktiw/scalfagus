@@ -1,0 +1,106 @@
+schema_version: 1
+project: scalfagus
+version: 0.1
+status: owner_proposed_stage_profiles_balance_unverified
+specification: design/construction-incubation-assembly-resonance-2026-10-11.md
+existing_canon:
+  decisions: [DEC-002, DEC-011, DEC-012, DEC-013]
+  resources: [matter, volatiles, energy]
+  organite_live_vessel_required: true
+  organite_builder_l1_l2_l3_by_equipped_min_mid_max: true
+  manus_repair_construction: true
+  etheran_min_network_mode_visible_blue_beam: true
+proposed_shared_contract:
+  normalized_stages: [initiation_0_to_33_percent, growth_33_to_66_percent, finalization_66_to_100_percent]
+  caps_mean_max_simultaneous_contributors_not_required_quorum: true
+  worker_chassis_min_mid_max_are_not_stage_slots: true
+  contributors_require_appropriate_build_tend_channel_capability: true
+  extra_worker_diminishing_returns: proposed
+  progress_uses_deterministic_fixed_tick_sim: true
+  stage_transitions_reassign_surplus_workers_deterministically: true
+  construction_repair_and_unit_self_deployment_are_separate_actions: true
+  no_negative_or_duplicate_inventory: true
+  progress_persists_per_faction_failure_rule: true
+  physical_materials_must_reach_legal_site: true
+factions:
+  org:
+    construction_style: living_cocoon_spore_incubation
+    status: owner_proposed
+    active_contributor_caps_by_stage: [3, 2, 1]
+    early_worker_becomes_structure: false
+    starter_action: growth_equipped_worker_starts_cocoon_on_live_vessel
+    eligible_worker_behaviors: [walk_around_spore, crawl_over_spore, physically_nourish_spore, watch_over_cocoon]
+    workers_remain_occupied_during_incubation: true
+    when_all_caretakers_leave: progress_pauses_and_gradually_decays
+    interruption_methods: [worker_death, worker_fear_or_displacement, player_cancels, vessel_severed]
+    returned_caretaker_can_rescue_before_total_decay: proposed
+    resource_payment: continuously_consumed_in_growth
+    default_refund: no_free_full_refund
+    birth_final_action:
+      option: caretaker_enters_or_fertilizes_cocoon
+      worker_consumption: unresolved_not_approved
+      animation_without_permanent_sacrifice: possible
+    support_roles_by_economic_chassis:
+      min: growth_equipped_l1_and_live_vessel
+      mid: growth_equipped_l2_and_live_vessel
+      max: growth_equipped_l3_and_live_vessel
+    main_risk: single_caretaker_final_stage_and_progress_decay
+  man:
+    construction_style: durable_local_modular_assembly
+    status: owner_proposed
+    active_contributor_caps_by_stage: [1, 2, 3]
+    worker_behaviors: [mount_components, weld, bolt, connect_modules, repair]
+    when_all_workers_leave: progress_pauses_without_decay
+    incomplete_structure_physically_persists: true
+    resume_exact_progress_if_structure_survives: true
+    resource_payment: installed_as_real_local_material_and_consumed_input
+    destroyed_or_abandoned_site_salvage: true
+    salvage_accessible_to_other_factions: true
+    salvage_requires_eligible_actor_time_and_inventory: true
+    no_instant_global_refund: true
+    salvage_recovery_fraction: TBD
+    main_risk: exploitable_permanent_forward_worksites_if_salvage_is_too_generous
+  eth:
+    construction_style: resonant_channeling_and_manifestation
+    status: owner_proposed
+    active_contributor_caps_by_stage: [1, 3, 2]
+    worker_must_enter_network_mode: true
+    worker_stays_and_projects_visible_blue_beam: true
+    source_node: nearest_eligible_large_node
+    explanation_proposed:
+      stage_1: single_channel_blueprint_seed
+      stage_2: three_channel_harmonic_amplification
+      stage_3: two_channel_phase_lock_and_stabilization
+    worker_leaves_when_other_valid_channels_remain: reduce_speed_not_force_total_loss
+    when_required_connection_fully_lost: instant_zero_construction_progress
+    structure_does_not_remain_as_usable_physical_worksite: true
+    proportionate_resource_refund:
+      desired: true
+      amount: TBD
+      contributor_source_attribution: [home_nexus, local_expansion, other_legal_source]
+      energy_return_via_authorized_accounted_mechanism: required
+      matter_and_volatiles_return_by_real_cargo_recovery: true
+      no_instant_free_cross_map_resource_credit: true
+    cancellation_refund_may_differ_from_enemy_attack: proposed
+    short_disconnect_grace: unapproved_possible_balance_mitigation
+    main_risk: extreme_time_loss_from_small_interruptions
+balance:
+  claimed_balanced: false
+  extra_contributor_efficiency_curve: TBD
+  construction_total_time_by_faction: TBD
+  per_stage_base_work_requirement: TBD
+  per_stage_material_payment_profile: TBD
+  eth_return_fraction_by_stage: TBD
+  organite_decay_rate: TBD
+  final_caretaker_consumption: TBD
+  benchmark_scenarios:
+    - safe_core_construction
+    - contested_forward_structure
+    - one_builder_scare_or_death
+    - one_of_three_etheran_channels_lost
+    - last_required_channel_lost_late
+    - cutter_interrupts_organite_vessel
+    - enemy_recovers_manus_ruin
+    - no_duplicate_cargo_on_refund
+    - recover_without_micro_after_interruption
+acceptance_test_ids: [BUILD-01, BUILD-02, BUILD-03, BUILD-04, BUILD-05, BUILD-06, BUILD-07, BUILD-08, BUILD-09, BUILD-10, BUILD-11, BUILD-12, BUILD-13, BUILD-14]
