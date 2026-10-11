@@ -4,6 +4,8 @@ Date: 2026-10-11
 Status: **owner-scoped two-faction / solid-only MVP; authored implementation proposals require playtesting, NOT owner approval for names, numbers or final map**.
 Decision log: [DEC-025](decisions.yaml).
 Structured starting data: [catalog](mvp-man-eth-catalog.yaml), [jungle map](mvp-verdant-divide-map.yaml), [acceptance cases](mvp-man-eth-acceptance.yaml).
+**Newer DEC-029:** First playable world **remains square PLANAR with hard collision walls**, but its proposed visual is a **stationary flying jungle habitat/platform above space**. A visible platform rim and an invisible physics guard block exit. This does not move the map, permit flight, change water/solid extraction, count toward building victory or implement a spherical planet. See [flying battlefield presentation](floating-platform-battlefields-2026-10-11.md) and [map YAML frame](mvp-verdant-divide-map.yaml). Whether ALL future maps should be such platforms remains a future art-direction decision.
+
 Main earlier MVP scope: [three cameras + Hero](mvp-iso-pixel-rts.md). Do not silently discard the one-world/three-camera product promise; implement first RTS loop before final Hero camera acceptance.
 
 ## Product goal and strict scope
