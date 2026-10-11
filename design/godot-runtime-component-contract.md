@@ -1,5 +1,10 @@
 # Scalfagus Godot-Native Implementation Contract — MVP 0.1
 
+> **Current release scope reconciliation — DEC-033 (2026-10-11):** Broad future two-faction architecture reference only. Implement MVP0 four MAN templates, Godot RTS-only GUI, Godot ENet LAN and headless C-C before ETH networks/UMU/Hero FPP. The native one-world design principle still applies.
+>
+> **CURRENT owner-approved executable release: [DEC-033](decisions.yaml), [MAN mirror scope](mvp0-man-mirror-rts-2026-10-11.md), [active numerical profile](mvp0-man-mirror-balance-v0.1.yaml), [Godot execution rules](mvp0-man-mirror-execution-contract.md), [Godot ENet authority](mvp0-man-mirror-network.yaml), [M0 backlog](mvp0-man-mirror-backlog.yaml), [M0 acceptance](mvp0-man-mirror-acceptance.yaml).**
+
+
 Date: 2026-10-11
 Status: target module responsibilities and serialized interfaces for coding agents; **not an assertion any classes already exist**.
 Runtime: Godot 4.7.2 Standard / typed GDScript / Compatibility renderer. Single game world, one native window and menu; **no Tauri**. Current source baseline is `apps/game/scripts/main.gd`, `hero.gd`, `directional_sprite_5.gd`, `menu.gd`, and `apps/game/tests/smoke.gd` / `menu_smoke.gd`.
