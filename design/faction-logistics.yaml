@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 0.1
+version: 0.2
 status: owner_approved_identity_with_proposed_mechanics
 specification: design/faction-logistics-2026-10-11.md
 canonical_resources: [matter, volatiles, energy]
@@ -21,21 +21,46 @@ factions:
   org:
     name_mid: Organites
     model: living_loops
-    signature: mother_transporter_continuous_moving_load_unload
+    signature: mother_transporter_loop_with_tech_gated_moving_handoffs
     core_elements: [extractor_workers, loader_workers, mobile_mother_carrier, unloaders_or_receiving_dock]
     movement: repeating_player_configured_source_base_loop
+    initial_route_behavior: fly_stop_load_fly_stop_unload
+    base_mother_modes: [move, receive, dispatch, extract]
+    base_mother_modes_mutually_exclusive: true
+    base_transfer_rules:
+      items_per_completed_handoff: 1
+      worker_concurrent_transfer_operations: 1
+      mid_max_concurrent_handoffs_per_transporter: 1
+      one_worker_per_transporter_transfer_port: true
+      receiver_slot_capacity_still_matters: true
     loading:
-      mother_can_continue_moving: true
+      mother_can_continue_moving: false
       range_limited: true
       time_window_limited: true
       rate_limited: true
       compatible_sender_required: true
       available_receiver_capacity_required: true
     unloading:
-      mother_can_continue_moving: true
+      mother_can_continue_moving: false
       rate_and_range_limited: true
       destination_capacity_required: true
-    scaling: [worker_count, mother_count, mother_cargo_capacity, organism_growth]
+    technology_progression:
+      early:
+        mother_modes: mutually_exclusive
+        transfer_ports_mid_max: 1
+        items_per_handoff: 1
+        moving_handoffs: false
+      mid_proposed:
+        moving_while_receiving_or_dispatching: true
+        ports_per_transporter: 1
+        harvest_overlap: false
+      late_proposed:
+        additional_ports: TBD
+        simultaneous_inbound_outbound: costed_and_bandwidth_capped
+        each_worker_still_has_finite_handoff_rate: true
+        harvest_overlap: requires_separate_specialist_upgrade
+      upgrade_costs_and_timing: TBD_after_playtests
+    scaling: [worker_count, mother_count, mother_cargo_capacity, organism_growth, transfer_port_upgrades]
     critical_asset: mother_transporter
     loss_policy: TBD
     proposed_doctrines: [swarm, giant, symbiosis]
@@ -69,7 +94,7 @@ balance:
   test_scenarios: [short_range, long_range, chokepoint, interruption, fallback, islands, drifting_asteroids]
   no_arbitrary_global_faction_throughput_bonus: true
 implementation:
-  phase_0: [shared_inventory_model, org_moving_mother_loop, man_destructible_belt, eth_static_pylon_couriers]
+  phase_0: [shared_inventory_model, org_stopping_mother_loop_single_transfer_port, man_destructible_belt, eth_static_pylon_couriers]
   phase_1: [org_two_mothers_and_contested_workers, man_bypass_and_buffer, eth_mesh_and_hub_attack]
-  phase_2: [doctrine_playtests, terrain_docking, competitive_balance]
+  phase_2: [org_midgame_moving_handoff_upgrade, org_lategame_extra_ports, doctrine_playtests, terrain_docking, competitive_balance]
 acceptance_test_ids: [LOG-F01, LOG-F02, LOG-F03, LOG-F04, LOG-F05, LOG-F06, LOG-F07, LOG-F08, LOG-F09, LOG-F10, LOG-F11, LOG-F12, LOG-F13]
