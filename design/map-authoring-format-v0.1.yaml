@@ -1,9 +1,11 @@
 schema_version: 1
 project: scalfagus
 format_id: scalfagus_map_manifest
-format_version: 0.1
+format_version: 0.2
 status: proposed_authoring_schema_for_agent_implementation
 decision: DEC-027
+latest_boundary_decision: DEC-029
+battlefield_frame_contract: design/battlefield-frames.yaml
 readme: design/world-environments-and-map-authoring-2026-10-11.md
 example_map: design/mvp-verdant-divide-map.yaml
 replay_rules:
@@ -40,6 +42,7 @@ manifest_top_level_fields:
   - status
   - name
   - environment
+  - battlefield_frame
   - grid
   - procedural
   - default_terrain
@@ -53,6 +56,16 @@ manifest_top_level_fields:
   - resource_nodes
   - decoration
   - validation
+battlefield_frame:
+  semantic_role: presentation_and_3d_boundary_not_navigation_topology
+  variant_options: [bounded_planetary_surface, floating_space_platform]
+  all_variants_keep_world_topology_planar_for_first_mvp: true
+  boundary_policy: hard_invisible_physics_guard_reinforced_by_visible_rim_on_platform
+  platform_underside_and_distant_planet_are_noninteractive_visual_assets: true
+  no_unit_falling_off_map_and_no_ship_travel_in_mvp: true
+  no_faction_ownership_or_victory_count_for_map_frame: true
+  change_of_visual_frame_must_preserve_authoritative_nav_resource_and_collision_hash: true
+  reference: design/battlefield-frames.yaml
 authoring_syntax:
   shapes:
     rect: {fields: [x, y, width, height], semantics: integer_tile_footprint}
@@ -137,6 +150,11 @@ generation:
 validator_requirements:
   parse_and_resolve_declarations: true
   ensure_positions_within_bounds: true
+  require_hard_boundary_on_all_four_planar_edges: true
+  enforce_no_actor_or_building_or_loot_outside_grid_bounds: true
+  when_floating_frame_visible_rim_matches_barrier: true
+  ensure_background_is_noninteractive: true
+  map_frame_remains_independent_from_planar_vs_spherical_topology: true
   ensure_unique_ids: true
   require_each_initial_spawn_on_dry_ground: true
   require_HQ_and_UMU_fit_ground_footprint: true
