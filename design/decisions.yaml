@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 1.4
+version: 1.5
 decisions:
   - id: DEC-001
     status: approved
@@ -170,6 +170,33 @@ decisions:
       construction has not been demonstrated.
     specification: design/construction-incubation-assembly-resonance-2026-10-11.md
     data_specification: design/construction-phases.yaml
+  - id: DEC-016
+    status: owner_approved_extraction_gates_resource_mapping_unresolved
+    topic: solid_liquid_gas_physical_source_classes
+    resolution: >-
+      Every world resource deposit has a physical extraction form: solid,
+      liquid, or gas. Dispersed loose SOLID deposits are directly gatherable
+      by an independent MIN worker without a mine or other extraction
+      structure, analogous to classic RTS surface harvesting. LIQUID sources
+      can be tapped directly by an eligible worker at low throughput with
+      small sealed cargo, or efficiently via optional installed pump and
+      tank infrastructure. GAS sources require a completed compatible
+      extraction/capture installation before any gathering; no worker can
+      directly harvest an uncaptured gas vent. Actual extraction and
+      transport remain finite, physical, and per-faction compatible.
+    compatibility: >-
+      The approved primary spendable resource IDs matter, volatiles and
+      energy remain unchanged for now. Physical form is distinct from a
+      spendable resource identity. Energy is not a gas, nor does a gas
+      deposit directly equal the energy resource. The exact form-to-resource
+      extraction/conversion mapping requires a separate owner decision,
+      alongside migration of historical crystals/gas/resin data.
+    anti_softlock: >-
+      Every start needs solid surface materials; the liquid manual mode
+      is a fallback, and the first gas capture rig must be buildable with
+      resources available without harvesting that gas first.
+    specification: design/physical-resource-forms-and-extraction-2026-10-11.md
+    data_specification: design/physical-resource-forms.yaml
 migration_required:
   - design/economy.yaml
   - design/resources.yaml
