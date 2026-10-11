@@ -34,6 +34,12 @@ Every human player starts with **one Hero**, who has an Engineer / Commander / S
 - Test real pixel-art asset pipeline near and far camera; 2D sprite billboarding may be insufficient at close FPS distance. May need flat 3D proxies or camera-specific cosmetic first-person weapon hands that do NOT create gameplay actors.
 - No commitment to cross-platform deterministic physics, multiplayer netcode or large battles until measured.
 
+## Extraction-form gate amendment (DEC-016, 2026-10-11)
+
+**Owner-directed shared extraction law:** raw SOLID nodes are dispersed and directly gathered by MIN without mine infrastructure; LIQUID sources permit slow, low-capacity worker tapping but an optional pump accelerates sustained production; GAS deposits **require a completed capture/extraction structure** before any gas output. Physical form does not replace the approved Matter/Volatiles/Energy identifiers; form-to-spendable-resource recipes are TBD. See [physical resource forms](physical-resource-forms-and-extraction-2026-10-11.md) and [data contract](physical-resource-forms.yaml).
+
+**Playable sequencing:** Phase 1 may prove a standalone solid gathering loop first. Internal MVP/full 3-faction economy proving should include direct liquid tapping and pump choice, then at least one mandatory gas collector, a valid built-without-gas bootstrap recipe and physical packet handling. All three factions must obey the same access gates with their existing racial construction and transport rules. Do not build a complex continuous-fluid pressure simulator for MVP: sealed finite cargo packets suffice.
+
 ## Phase 1 — smallest playable vertical slice (about 10 minutes to finish)
 - One **original sprite + small 3D collision map** with obstacles, chokepoint and distinguishable resource deposit.
 - Three functional ordinary unit types: worker, melee fighter and shooter; **one Hero** using the shooter actor class plus starter equipment and talent data, not a new independent game engine.
