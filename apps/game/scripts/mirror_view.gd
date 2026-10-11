@@ -17,6 +17,12 @@ var world_root: Node3D
 var unit_nodes: Dictionary = {}
 var source_nodes: Dictionary = {}
 var selected_id: int = -1
+var selected_ids: Array[int] = []
+var group_markers: Dictionary = {}
+var selection_box: ColorRect
+var drag_start: Vector2 = Vector2.ZERO
+var drag_active: bool = false
+var drag_moved: bool = false
 var build_mode: bool = false
 var spectator: bool = false
 var time_accumulator: float = 0.0
@@ -166,6 +172,14 @@ func _build_scene() -> void:
     help_label.add_theme_font_size_override("font_size", 14)
     ui.add_child(help_label)
 
+    # CanvasLayer's native Control draws a marquee; it never intercepts clicks.
+    selection_box = ColorRect.new()
+    selection_box.name = "RTSSelectionMarquee"
+    selection_box.color = Color(0.15, 0.68, 1.0, 0.20)
+    selection_box.mouse_filter = Control.MOUSE_FILTER_IGNORE
+    selection_box.visible = false
+    ui.add_child(selection_box)
+
 func _position_camera() -> void:
     if camera == null:
         return
@@ -214,15 +228,36 @@ func _sync_visuals() -> void:
     for sid in source_nodes.keys():
         var source: Dictionary = sim.sources[sid]
         (source_nodes[sid] as Node3D).visible = int(source["stock"]) > 0
+    # Reconcile all selected references after unit death or production.
+    var live_selection: Array[int] = []
+    for id in selected_ids:
+        if sim.entities.has(id) and int(sim.entities[id]["owner"]) == 0:
+            live_selection.append(id)
+    selected_ids = live_selection
+    if not selected_ids.has(selected_id):
+        selected_id = selected_ids.back() if not selected_ids.is_empty() else -1
     selection_marker.visible = selected_id >= 0 and sim.entities.has(selected_id)
     if selection_marker.visible:
-        var p: Vector2i = sim.entities[selected_id]["pos"]
-        selection_marker.position = Vector3(p.x, 0.12, p.y)
+        var focus: Vector2i = sim.entities[selected_id]["pos"]
+        selection_marker.position = Vector3(focus.x, 0.12, focus.y)
+    for id in group_markers.keys():
+        if not selected_ids.has(id) or id == selected_id or not sim.entities.has(id):
+            (group_markers[id] as Node).queue_free()
+            group_markers.erase(id)
+    for id in selected_ids:
+        if id == selected_id:
+            continue
+        if not group_markers.has(id):
+            group_markers[id] = _block(Vector3(1.45, 0.06, 1.45),
+                Color("#92d8ff"), world_root)
+        var p: Vector2i = sim.entities[id]["pos"]
+        (group_markers[id] as Node3D).position = Vector3(p.x, 0.12, p.y)
     var selected_text: String = "None"
     if selected_id >= 0 and sim.entities.has(selected_id):
         var chosen: Dictionary = sim.entities[selected_id]
-        selected_text = "%s #%d HP:%d (%s)" % [
-            str(chosen["kind"]).to_upper(), selected_id, int(chosen["hp"]), str(chosen["order"])
+        selected_text = "%d selected | %s #%d HP:%d (%s)" % [
+            selected_ids.size(), str(chosen["kind"]).to_upper(),
+            selected_id, int(chosen["hp"]), str(chosen["order"])
         ]
     var result_text: String = ""
     if sim.finished:
@@ -236,7 +271,7 @@ func _sync_visuals() -> void:
     help_label.text = "Selected: %s  |  %s\n%s" % [
         selected_text, info,
         "P pause / +/- speed / Esc menu" if spectator else
-        "Left click select / Right click move, gather or attack / B then click: Barracks / W: Worker at HQ / R: Rifleman at Barracks / WASD pan / Mouse wheel zoom / Esc menu"
+        "Left-click/drag select, Shift add / Right-click orders / B then click: Barracks / W: Worker at HQ / R: Rifleman at Barracks / WASD pan / Mouse wheel zoom / Esc menu"
     ]
 
 func _cell_at_mouse(screen_pos: Vector2) -> Vector2i:
@@ -275,11 +310,87 @@ func _resource_near(cell: Vector2i) -> String:
             return str(sid)
     return ""
 
+# These helpers are independent of InputEvents for headless smoke coverage.
+func _select_click(cell: Vector2i, additive: bool = false) -> void:
+    var hit: int = _entity_near(cell, 0)
+    if not additive:
+        selected_ids.clear()
+    if hit >= 0:
+        if additive and selected_ids.has(hit):
+            selected_ids.erase(hit)
+        elif not selected_ids.has(hit):
+            selected_ids.append(hit)
+    selected_id = selected_ids.back() if not selected_ids.is_empty() else -1
+
+func _select_box(from_screen: Vector2, to_screen: Vector2,
+        additive: bool = false) -> void:
+    if not additive:
+        selected_ids.clear()
+    var low: Vector2 = Vector2(
+        minf(from_screen.x, to_screen.x), minf(from_screen.y, to_screen.y))
+    var high: Vector2 = Vector2(
+        maxf(from_screen.x, to_screen.x), maxf(from_screen.y, to_screen.y))
+    var selection_rect := Rect2(low, high - low)
+    for id in sim.sorted_ids():
+        var e: Dictionary = sim.entities[id]
+        if int(e["owner"]) != 0:
+            continue
+        var p: Vector2i = e["pos"]
+        var location := Vector3(float(p.x), 0.8, float(p.y))
+        if camera.is_position_behind(location):
+            continue
+        if selection_rect.has_point(camera.unproject_position(location)):
+            if not selected_ids.has(id):
+                selected_ids.append(id)
+    selected_id = selected_ids.back() if not selected_ids.is_empty() else -1
+
+func _issue_group_order(cell: Vector2i) -> int:
+    var applied: int = 0
+    var target: int = _entity_near(cell, 1)
+    var source_id: String = _resource_near(cell)
+    var chosen_destinations: Dictionary = {}
+    for id in selected_ids:
+        if not sim.entities.has(id) or int(sim.entities[id]["owner"]) != 0:
+            continue
+        var kind: String = str(sim.entities[id]["kind"])
+        if target >= 0:
+            if kind == "rifleman" and sim.issue_command(0, "attack", id, target):
+                applied += 1
+        elif source_id != "":
+            if kind == "worker" and sim.issue_command(0, "gather", id, source_id):
+                applied += 1
+        elif kind in ["worker", "rifleman"]:
+            # Distinct nearby arrival tiles; the authoritative command API
+            # still checks bounds, movement legality and ownership.
+            var accepted: bool = false
+            for radius in range(6):
+                if accepted:
+                    break
+                for dy in range(-radius, radius + 1):
+                    if accepted:
+                        break
+                    for dx in range(-radius, radius + 1):
+                        if maxi(absi(dx), absi(dy)) != radius:
+                            continue
+                        var destination: Vector2i = cell + Vector2i(dx, dy)
+                        if chosen_destinations.has(destination) or sim._blocked(destination):
+                            continue
+                        if sim.issue_command(0, "move", id, destination):
+                            chosen_destinations[destination] = id
+                            applied += 1
+                            accepted = true
+                            break
+    return applied
+
 func _unhandled_input(event: InputEvent) -> void:
     if event is InputEventKey and event.pressed and not event.echo:
         match event.keycode:
             KEY_ESCAPE:
-                get_tree().change_scene_to_file(MENU_SCENE)
+                if build_mode:
+                    build_mode = false
+                    info = "Barracks placement cancelled"
+                else:
+                    get_tree().change_scene_to_file(MENU_SCENE)
                 return
             KEY_P:
                 if spectator:
@@ -298,35 +409,53 @@ func _unhandled_input(event: InputEvent) -> void:
             KEY_R:
                 if not spectator and sim.entities.has(selected_id):
                     info = "Rifleman queued" if sim.issue_command(0, "train_rifleman", selected_id) else "Cannot train Rifleman"
-    elif event is InputEventMouseButton and event.pressed and event.button_index in [
-            MOUSE_BUTTON_WHEEL_UP, MOUSE_BUTTON_WHEEL_DOWN]:
-        zoom_size = clampf(
-            zoom_size * (0.88 if event.button_index == MOUSE_BUTTON_WHEEL_UP else 1.12),
-            24.0, 96.0)
-        camera.size = zoom_size
-    elif event is InputEventMouseButton and event.pressed and not spectator:
-        if event.button_index not in [MOUSE_BUTTON_LEFT, MOUSE_BUTTON_RIGHT]:
+    elif event is InputEventMouseButton:
+        if event.pressed and event.button_index in [
+                MOUSE_BUTTON_WHEEL_UP, MOUSE_BUTTON_WHEEL_DOWN]:
+            zoom_size = clampf(
+                zoom_size * (0.88 if event.button_index == MOUSE_BUTTON_WHEEL_UP else 1.12),
+                24.0, 96.0)
+            camera.size = zoom_size
             return
-        var cell: Vector2i = _cell_at_mouse(event.position)
-        if not sim._in_bounds(cell):
+        if spectator:
             return
         if event.button_index == MOUSE_BUTTON_LEFT:
-            if build_mode and sim.entities.has(selected_id):
-                info = "Barracks ordered" if sim.issue_command(0, "build_barracks", selected_id, cell) else "Invalid site or insufficient Matter"
-                build_mode = false
-            else:
-                selected_id = _entity_near(cell, 0)
-        elif selected_id >= 0 and sim.entities.has(selected_id):
-            var kind: String = str(sim.entities[selected_id]["kind"])
-            var source_id: String = _resource_near(cell)
-            var enemy: int = _entity_near(cell, 1)
-            if kind == "worker" and source_id != "":
-                info = "Gathering" if sim.issue_command(0, "gather", selected_id, source_id) else "Cannot gather"
-            elif kind == "rifleman" and enemy >= 0 and int(sim.entities[enemy]["owner"]) == 1:
-                info = "Attacking" if sim.issue_command(0, "attack", selected_id, enemy) else "Invalid attack"
-            else:
-                info = "Moving" if sim.issue_command(0, "move", selected_id, cell) else "Invalid move"
-        _sync_visuals()
+            if event.pressed:
+                drag_start = event.position
+                drag_active = true
+                drag_moved = false
+            elif drag_active:
+                drag_active = false
+                selection_box.visible = false
+                var cell: Vector2i = _cell_at_mouse(event.position)
+                if build_mode and sim.entities.has(selected_id):
+                    if sim._in_bounds(cell):
+                        info = "Barracks ordered" if sim.issue_command(
+                            0, "build_barracks", selected_id, cell
+                        ) else "Invalid site or insufficient Matter"
+                    build_mode = false
+                elif drag_moved:
+                    _select_box(drag_start, event.position,
+                        Input.is_key_pressed(KEY_SHIFT))
+                elif sim._in_bounds(cell):
+                    _select_click(cell, Input.is_key_pressed(KEY_SHIFT))
+                _sync_visuals()
+        elif event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+            var destination: Vector2i = _cell_at_mouse(event.position)
+            if sim._in_bounds(destination):
+                var count: int = _issue_group_order(destination)
+                info = "%d unit order(s) accepted" % count
+                _sync_visuals()
+    elif event is InputEventMouseMotion and drag_active and not spectator:
+        if drag_start.distance_to(event.position) > 8.0:
+            drag_moved = true
+        if drag_moved and not build_mode:
+            var p: Vector2 = event.position
+            selection_box.position = Vector2(
+                minf(drag_start.x, p.x), minf(drag_start.y, p.y))
+            selection_box.size = Vector2(
+                absf(drag_start.x - p.x), absf(drag_start.y - p.y))
+            selection_box.visible = true
 
 func _process(delta: float) -> void:
     var shift := Vector3.ZERO

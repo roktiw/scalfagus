@@ -29,6 +29,7 @@ fi
 "$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_authored_map_smoke.gd
 "$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_batch.gd -- --matches 1 --seed 42
 "$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_visual_smoke.gd
+"$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_group_orders_smoke.gd
 if command -v node >/dev/null 2>&1; then
   node scripts/verify_atlases.mjs
   node scripts/test-faction-emblems.mjs
