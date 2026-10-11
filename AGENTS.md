@@ -1,5 +1,9 @@
 # SCALFAGUS — Coding-Agent Contract
 
+## LATEST DESIGN DISCUSSION ARCHIVE — 2026-10-11
+
+The owner's recent conversation on unit initiative, FULL MANUAL / SEMI-AUTO / FULL AUTO, group managers, -1/0/+1 doctrine temperatures, hot preset switching, X-COM / Dwarf Fortress / Dungeon Keeper inspiration, and MAN / ORG / ETH asymmetric transport is preserved in [the chronological discussion archive](inbox/2026-10-11-gameplay-autonomy-doctrines-xcom-dwarf-logistics-conversation.md). It includes original Polish user utterances, separate assistant design summaries and explicit MVP0 vs future-scope labels. Use owner-approved decisions and release-specific contracts as authority; a brainstormed podcast mechanic is not automatically a release requirement. 
+
 ## POST-MVP FACTION LOGISTICS UPDATE — DEC-035
 
 Read [three-faction logistics and ETH unit relay](design/three-faction-logistics-and-eth-unit-relay-2026-10-11.md) and [machine-readable specification](design/three-faction-logistics-and-eth-unit-relay.yaml) before modifying post-MVP0 MAN/ORG/ETH logistics. MAN uses physical transporters, mode-dependent warehouses/bunkers/UMU and belts (NOT cargo in electricity/data cables); ORG uses large living carriers and finite rooted veins; ETH has finite actual storage on EVERY pylon, gradual typed-resource hop transfers, and additionally a **slow, finite-capacity ETH unit transit capability across connected pylon links**, which no other faction's infrastructure grants. Shared unit identity, inventory, network interruption behavior and authoritative transfer/cost semantics are mandatory; numerical balance and interruption policies remain TBD. **Do not introduce ETH, ORG, conveyors, UMU or pylon unit relays into the DEC-033 MAN-only first MVP0 release.**
