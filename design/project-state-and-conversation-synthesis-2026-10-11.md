@@ -17,6 +17,27 @@ Scalfagus is an **original** 1990s-feeling isometric pixel-art RTS inspired by W
 
 Backronym letters are deliberate, approved and **verbatim**. Generalismus, Etherans and Manusians are intentional spellings. These expansions are *full faction names*, **not** auto-generated singular species or necessarily one formal government. A polity/state name remains a separate optional concept. The naming levels should be called `short/mid/full` (and machine `id`); never confuse with the already overloaded MIN/MID/MAX match and chassis dimensions. See [canonical naming specification](faction-naming-conventions-2026-10-11.md), [active faction registry](factions.yaml), [approved decisions](decisions.yaml).
 
+## 2026-10-11 — full economy discussion consolidation and open relocation options
+
+This project's complete discussion about **the three separate extraction, transport,
+MIN/MID/MAX construction and defense paradigms** is now indexed in
+[Economy and Construction Conversation](faction-economy-and-construction-conversation-2026-10-11.md).
+It joins previous approved decisions, summarizes early ORG transfer mode/port constraints,
+explains MAN one-person bunker versus 3-/5-tile conveyor and outward wall, and records
+the deliberate ETH pivot to MID pylon and immediately Nexus-class MAX.
+
+The subsequent question **"can existing buildings relocate, and would universal mobility
+undermine expansion?"** is separately preserved in
+[Building Relocation Options](building-relocation-design-options-2026-10-11.md) and
+[Building Relocation Options YAML](building-relocation-options.yaml).
+**DEC-014 is explicitly OPEN / NOT APPROVED.** Existing selective MAN modular mobility and
+eligible ETH meditated levitation remain the approved baseline; very slow vascular ORG
+building transplantation and ETH high-Energy railgun-beam relocation between nodes remain
+candidate experiments. The user's final ETH MAX idea was unfinished; no capability is inferred.
+
+This synthesis is an index only; [decisions.yaml](decisions.yaml) and
+[base ecologies](base-ecologies-and-expansion-2026-10-11.md) retain canon precedence.
+
 ## Latest owner canon — DEC-012/013: base ecology and economic units (2026-10-11)
 
 The authoritative reference is [Three Base Ecologies](base-ecologies-and-expansion-2026-10-11.md) and [base-ecologies.yaml](base-ecologies.yaml). This **supersedes earlier proposed disconnected-ORG-building behavior and ETH MID/MAX economic template roles**.
