@@ -1,5 +1,10 @@
 # Scalfagus MVP 0.1 — MAN vs ETH on Verdant Divide
 
+> **Current release scope reconciliation — DEC-033 (2026-10-11):** Post-MVP0 asymmetrical MAN versus ETH candidate; original owner DEC-025 two-faction-first release superseded by DEC-033 MAN mirror MVP0. Keep five roles per faction and one Ether graph for future, not current.
+>
+> **CURRENT executable release: [MAN mirror scope](mvp0-man-mirror-rts-2026-10-11.md), [active numbers](mvp0-man-mirror-balance-v0.1.yaml), [execution](mvp0-man-mirror-execution-contract.md), [authority](mvp0-man-mirror-network.yaml), [M0 backlog](mvp0-man-mirror-backlog.yaml), [acceptance](mvp0-man-mirror-acceptance.yaml).**
+
+
 Date: 2026-10-11
 Status: **owner-scoped two-faction / solid-only MVP; authored implementation proposals require playtesting, NOT owner approval for names, numbers or final map**.
 Decision log: [DEC-025](decisions.yaml).
