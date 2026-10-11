@@ -9,7 +9,7 @@ observer_mode: live
 experiment_mode: single
 record_llm_actions: true
 controllers:
-  - faction: blergians
+  - faction: org
     controller_type: llm
     role: generalist
     provider: local
@@ -18,10 +18,10 @@ controllers:
     max_input_tokens_per_call: 4000
     max_output_tokens_per_call: 600
     fallback: scripted_ai
-  - faction: manusians
+  - faction: man
     controller_type: scripted_ai
     role: generalist
-  - faction: aetherians
+  - faction: eth
     controller_type: llm
     role: generalist
     provider: hosted
