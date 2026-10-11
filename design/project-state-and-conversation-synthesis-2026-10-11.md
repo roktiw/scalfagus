@@ -17,6 +17,15 @@ Scalfagus is an **original** 1990s-feeling isometric pixel-art RTS inspired by W
 
 Backronym letters are deliberate, approved and **verbatim**. Generalismus, Etherans and Manusians are intentional spellings. These expansions are *full faction names*, **not** auto-generated singular species or necessarily one formal government. A polity/state name remains a separate optional concept. The naming levels should be called `short/mid/full` (and machine `id`); never confuse with the already overloaded MIN/MID/MAX match and chassis dimensions. See [canonical naming specification](faction-naming-conventions-2026-10-11.md), [active faction registry](factions.yaml), [approved decisions](decisions.yaml).
 
+## Latest owner canon — DEC-012/013: base ecology and economic units (2026-10-11)
+
+The authoritative reference is [Three Base Ecologies](base-ecologies-and-expansion-2026-10-11.md) and [base-ecologies.yaml](base-ecologies.yaml). This **supersedes earlier proposed disconnected-ORG-building behavior and ETH MID/MAX economic template roles**.
+
+- **ORG:** the least movable *base*, with narrow living vascular branches physically rooted at the home Nexus; each building buds on a connected vessel and disconnected branches eventually wither. Distant colonies additionally need recurring physical nutrient deliveries from home. Independently thinking MIN/MID/mobile flying MAX transporters still act without hive-mind control. Growth-equipped MIN/MID/MAX bud L1/L2/L3. Flying mother initially uses stop-and-load with one port, later researched moving transfer.
+- **MAN:** the most physically modular and movable base; its "Nexus" is a composition of units/modules, not mandatory one command building. Bunkers/conveyors and warehouses move/reconfigure; tracked MID is a 3/5-tile relay/conveyor or **one-soldier bunker**, or an outward sentry wall. Slow land MAX is a warehouse or multi-soldier bunker. SCV-like MIN repairs units and structures. Independent colonies do not require home connection and need not expose a supply path.
+- **ETH:** independent MIN gatherer enters **occupied NETWORK construction mode** and projects a strategically visible blue beam to nearest eligible large node while consuming finite actual Energy. **MID is now a stationary cargo relay/storage pylon or time-transformed defensive turret**, retaining cargo but locking handoffs; **MAX is a Nexus-class core node immediately**. Expansion contacts home initially and later only for a blueprint it does not know locally. Some equipped structures may meditate/levitate to reposition.
+- Fairness and mechanics for fog-of-war visibility, ORG nourishment recipes / decay grace, ETH blueprint transfer timings, mobility costs and building height remain proposals needing tests.
+
 ## 1. Status hierarchy and ownership
 ### Owner-approved / canon
 - Faction IDs and three naming levels as table above. Prior Blergians / Manusians-as-short / Aetherians were superseded; historical design docs retain their original discussion language.
