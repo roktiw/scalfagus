@@ -1,0 +1,141 @@
+schema_version: 1
+project: scalfagus
+version: 0.1
+status: owner_directed_roles_with_proposed_eth_mid
+specification: design/logistics-min-mid-max-2026-10-11.md
+resource_ids: [matter, volatiles, energy]
+scope: economic_logistics_platforms_only
+scale_meaning: chassis_size_not_tech_level_or_match_scale
+shared:
+  min_independent_extraction: true
+  min_independent_carry_and_base_delivery: true
+  mid_has_several_inventory_slots: true
+  mid_extraction_if_equipped: true
+  max_mobility_varies_by_faction: true
+  inventory_slots_are_finite_compartments: true
+  slot_capacity_units: TBD
+  cargo_conservation: true
+  transfer_reservations: true
+  geometric_transfer_range_required: true
+  deterministic_tick_simulation: true
+  generic_units_cannot_deploy: true
+  resource_energy_is_cargo: true
+  not_compulsory_power_grid: true
+factions:
+  org:
+    name_mid: Organites
+    physical_model: biological_cargo_scale
+    economic_gradient:
+      min_to_mid_to_max_cargo_capacity: increasing
+      min_to_mid_to_max_personal_mining_speed: decreasing
+      min_to_mid_to_max_movement_speed: decreasing
+    min:
+      role: fast_harvester_and_direct_courier
+      movement_domains: [land]
+      harvest_independently: true
+      direct_base_delivery: true
+      slots: few
+    mid:
+      role: medium_harvester_hauler_and_mother_loader
+      movement_domains: [land]
+      harvest_independently: true
+      slots: several
+      accepts_min_cargo: true
+      may_load_mother_in_motion: true
+    max:
+      role: flying_mother_transporter
+      movement_domains: [air]
+      mobile: true
+      flying: true
+      slots: many
+      player_defined_route: deposit_base_loop
+      in_motion_load: true
+      in_motion_unload: true
+      transfer_range_and_rate_required: true
+      direct_extraction: optional_specialist_organs_proposed
+      critical_loss: mother_interception
+  man:
+    name_mid: Manusians
+    physical_model: ground_conveyor_modules_and_bunker_storage
+    min:
+      role: independent_mining_robot
+      movement_domains: [land]
+      harvest_independently: true
+      direct_base_delivery: true
+      slots: few
+    mid:
+      role: mobile_conveyor
+      movement_domains: [land]
+      mobile: true
+      belt_length_tiles_options: [3, 5]
+      slots: several_buffers
+      connected_belt_transport: true
+      extraction_if_equipped: true
+      active_belt_while_parked_only: proposed_mvp
+      critical_loss: corridor_or_splitter_disruption
+    max:
+      role: slow_ground_mobile_bunker_warehouse
+      movement_domains: [land]
+      can_fly: false
+      travel_speed: very_slow
+      mobile: true
+      slots: many
+      deployment:
+        ability: anchor_as_bunker_warehouse
+        deployable_tag_required: true
+        applies_to: specialized_logistics_max_only
+        activation_time_and_cost: TBD
+      critical_loss: depot_capture_or_route_cut
+  eth:
+    name_mid: Etherans
+    physical_model: courier_and_pylon_hub_network
+    min:
+      role: independent_extractor_and_courier
+      harvest_independently: true
+      direct_base_delivery: true
+      slots: few
+      movement_domains: [land]
+    mid:
+      status: proposed_not_owner_approved
+      working_name: Relay Skiff
+      role: mobile_buffer_and_relay
+      movement_domains: [land]
+      slots: several
+      modes:
+        travel: physically_carries_inventory
+        relay_stance: finite_stationary_handoff_buffer
+      preserves_cargo_between_modes: true
+      extraction_if_equipped: proposed
+      critical_loss: relay_interception
+    max:
+      role: stationary_giant_storage_pylon
+      movement_domains: []
+      mobile: false
+      slots: many
+      constructed_in_place_by_specialist: true
+      ordinary_worker_deployment: false
+      courier_docking: true
+      finite_hub_queues: true
+      no_free_teleport: true
+      critical_loss: pylon_node_disconnection
+proposed_balance:
+  metrics:
+    - time_to_first_delivery
+    - time_to_1000_delivered_units
+    - extraction_units_per_second
+    - capacity_per_slot
+    - sustained_delivered_units_per_second
+    - resilience_after_critical_asset_loss
+    - build_and_redeploy_cost
+  numerical_values: TBD
+acceptance_test_ids:
+  - SCALE-01
+  - SCALE-02
+  - SCALE-03
+  - SCALE-04
+  - SCALE-05
+  - SCALE-06
+  - SCALE-07
+  - SCALE-08
+  - SCALE-09
+  - SCALE-10
