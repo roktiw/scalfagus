@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 1.6
+version: 1.7
 decisions:
   - id: DEC-001
     status: approved
@@ -229,6 +229,79 @@ decisions:
     specification: architecture/adr-0003-five-view-mirrored-3d-sprites.md
     data_specification: art/directional-sprite-five-view-v0.1.yaml
     conversation_record: research/five-view-mirroring-renderer-discussion-2026-10-11.md
+  - id: DEC-018
+    status: owner_approved_ether_conversion_and_partition_concept_distribution_algorithm_proposed
+    topic: eth_ether_network_as_typed_resource_freight_and_farm
+    resolution: >-
+      ETH Pylon and Obelisk are one starting fixed infrastructure building,
+      using the established MID pylon chassis: network/information and
+      resonance-support node, a typed-Ether storage/relay in resource mode,
+      or a meditated turret in defensive mode. The existing ETH MAX is a
+      Nexus-class authority and conversion endpoint. After physically harvested
+      cargo actually reaches a Nexus, it can be represented as typed Ether
+      and passed between connected pylons, while preserving exact tracked
+      resource identity, finite balances and consumption at building sites.
+      Ether is a transport/storage representation and not a fourth primary
+      spendable currency. When the Ether freight graph splits, each subgraph
+      retains only resources actually held by its nodes at the split tick:
+      no duplicated pools, invented equal division or transfer to unreachable
+      headquarters. An initialized expansion can operate using its accessible
+      local stock and known blueprints, subject to valid building beams.
+    proposed_protocol: >-
+      Fair equalization targets each node's proportional storage fill by
+      resource category while constrained by finite link and node bandwidth,
+      latency, reservations and port modes. A turret retains signal/support
+      connectivity but closes normal Ether freight service by default.
+      Connection and movement upgrades, pylon loss/capture policy and
+      conversion processing costs remain unresolved.
+    supersedes: >-
+      Previous physical-courier-only transfers between ETH MID pylons and
+      a separate mandatory pylon-versus-obelisk farm building. Initial ETH
+      courier-to-Nexus movement, construction blue beam and MAX Nexus
+      class remain mandatory where previously required.
+    specification: design/three-faction-network-and-infrastructure-contract-2026-10-11.md
+    data_specification: design/eth-ether-network-mechanics.yaml
+    acceptance_scenarios: design/network-mechanics-acceptance-cases.yaml
+  - id: DEC-019
+    status: owner_approved_man_ground_mobile_power_depot_bunker_direction_connection_and_template_open
+    topic: man_ground_power_dock_energy_and_physical_material_delivery
+    resolution: >-
+      The basic MAN infrastructure module is mobile only over land,
+      integrates energy generation and changes between a warehouse/depot
+      and bunker/fortified service mode with finite tradeoffs. MAN
+      construction uses physical materials delivered locally from
+      an eligible transporter, a MAN Nexus/component/depot or directly
+      gathered and carried from legal resource sources. A wired electric
+      grid can share power but cannot send physical building materials
+      as a magic shared material bank. Isolated MAN expansions remain
+      independent with sufficient local power, equipment and stock.
+    proposed_protocol: >-
+      For MVP, deployed compatible modules automatically form visible
+      short-range electric port/cable links; local power grid components
+      have bounded throughput and batteries, while traveling modules
+      disconnect. Candidate Power Dock may be a small basic module or
+      a kit on an existing tracked chassis; keep it weaker and smaller than
+      established MAN MID belt/one-person bunker and MAX heavy
+      warehouse/multi-soldier bunker. Exact modes and ratios need tests.
+    specification: design/three-faction-network-and-infrastructure-contract-2026-10-11.md
+    data_specification: design/man-power-dock-and-org-vessel-mechanics.yaml
+    acceptance_scenarios: design/network-mechanics-acceptance-cases.yaml
+  - id: DEC-020
+    status: owner_reaffirmed_org_vessel_dependency_with_proposed_service_details
+    topic: org_nutrient_vessels_are_not_shared_ether_wallet
+    resolution: >-
+      ORG budding requires a physically live connected vessel to original
+      home Nexus; the living vessel graph serves structural and metabolic
+      sustenance, not freely pooled global Matter/Volatiles/Energy inventories.
+      Actual ordinary construction materials are handled by physical workers,
+      MID handlers and stop-to-load flying mothers. Remote colonies additionally
+      require ongoing physical nourishment deliveries originating at home.
+      Cutting vessels causes staged decay/starvation after finite reserves
+      rather than an ETH-style partition into spendable abstract subnet wallets
+      or the instant loss of independently acting living units.
+    specification: design/three-faction-network-and-infrastructure-contract-2026-10-11.md
+    data_specification: design/man-power-dock-and-org-vessel-mechanics.yaml
+    acceptance_scenarios: design/network-mechanics-acceptance-cases.yaml
 migration_required:
   - design/economy.yaml
   - design/resources.yaml
