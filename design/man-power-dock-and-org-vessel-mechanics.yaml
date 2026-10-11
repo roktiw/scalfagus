@@ -1,9 +1,12 @@
 schema_version: 1
 project: scalfagus
-version: 0.1
+version: 0.2
 status: approved_owner_direction_with_explicit_implementation_candidates_and_unresolved_balance
 decision_ids: [DEC-019, DEC-020]
-specification: design/three-faction-network-and-infrastructure-contract-2026-10-11.md
+specification: design/three-network-channels-and-destruction-2026-10-11.md
+owner_latest_concepts: design/three-network-channels-and-destruction.yaml
+world_loot_contract: design/world-loot-and-recycling.yaml
+historical_note: former_separate_small_power_dock_is_now_UMU_research_alternative
 canonical_currency_ids: [matter, volatiles, energy]
 source_forms: [solid, liquid, gas]
 economic_support_is_not_spendable_currency: true
@@ -16,10 +19,14 @@ man:
     builder_requires_actual_material_access_at_or_near_site: true
     supply_can_come_from_universal_transporter_nexus_or_direct_mine_pickup: true
     remote_outpost_requires_no_mandatory_home_link: true
-  working_name: power_dock
+  owner_selected_name: Universal Man Unit
+  owner_selected_abbreviation: UMU
+  historical_working_name: power_dock
   template_implementation:
     status: candidate_not_fixed_chassis_decision
-    default_variant: small_modular_power_dock
+    default_variant: existing_man_max_warehouse_bunker_with_generator_kit
+    no_duplicate_fourth_major_chassis_without_playtest: true
+    counts_as_building_while_packed_and_ground_mobile: true
     alternative_variants:
       - power_generator_kit_mounted_on_eligible_mid_frame
       - support_module_option_for_existing_max_depot
@@ -72,7 +79,9 @@ man:
     generation_of_real_stored_energy_per_tick_requires_valid_source_or_recipe: true
     power_units_pu_are_instantaneous_budget_not_new_stored_currency: true
     stored_energy_is_existing_e_currency: true
-    grid_transfers_electricity_not_solids_liquids_gases: true
+    hybrid_trunk_transfers_data_and_electricity_not_solids_liquids_gases: true
+    fiber_carries_data_and_real_power_requires_conductive_strands: true
+    cable_route_one_but_power_and_data_service_quotas_separate: true
     local_component_balances_and_generation: true
     no_mandatory_home_grid_link: true
     local_batteries_support_bounded_offline_operation: true
@@ -95,6 +104,8 @@ man:
     no_global_material_wallet_via_electric_grid: true
     no_build_from_zero_local_materials_even_when_power_grid_online: true
     unfinished_structure_progress_persists_without_worker: true
+    loose_delivered_crates_remain_collectible_and_stealable: true
+    installed_materials_require_real_mining_salvage_and_have_recovery_loss: true
     physical_embedded_materials_remain_or_explicitly_salvage: true
     salvage_is_collectible_by_all_factions_at_actual_cost: true
   role_partition:
@@ -137,7 +148,10 @@ org:
   owner_direction:
     every_rooted_building_needs_live_connected_home_vessel: true
     vessels_are_physically_present_and_attackable: true
-    vessels_do_not_redistribute_every_resource_like_ether_network: true
+    vessels_relay_finite_actual_resource_packets_energy_information_and_nutrients: true
+    no_instant_uniform_global_inventory_pool: true
+    owner_requests_two_mitochondria_for_energy: true
+    exact_pair_per_colony_or_network_scope_TBD: true
     remote_colony_requires_real_recurrent_home_origin_nourishment: true
     all_completed_viable_connected_buildings_add_metabolic_support_cap: true
     units_must_physically_feed_from_actual_valid_resources: true
@@ -146,15 +160,18 @@ org:
   network:
     graph_type: physically_rooted_nutrient_vascular_graph
     eligible_build_site_must_be_reached_by_live_vessel: true
-    vessel_service: [growth_permission, nutrient_transfer, living_signal]
+    vessel_service: [growth_permission, finite_actual_resource_freight, nutrient_transfer, energy_transfer, information_signal]
     carried_nutrition_is_finite: true
-    bulk_raw_matter_volatiles_energy_are_not_globally_available_through_vessels: true
+    any_bulk_resource_must_travel_with_real_vessel_capacity_and_time: true
+    no_magic_globally_accessible_stock: true
     connection_to_home_is_required_even_if_locally_mined: true
     mother_transport_initial_modes: [move, receive, dispatch, extract]
     mother_one_worker_one_resource_item_per_handoff_initial: true
     mobile_workers_act_independently_without_hive_mind: true
   interruption:
     on_branch_cut: enter_isolated_buffered
+    broken_vein_can_spill_its_real_packets_as_tetrahedra: true
+    dying_buildings_spit_out_salvage_over_successive_ticks: true
     subsequent_states: [isolated_buffered, starving, dormant, withered]
     stages_need_positive_balance_tuned_time: true
     local_nutrients_deplete_finitely: true
@@ -167,6 +184,12 @@ org:
     support_slots_are_not_nutrition_items: true
     actual_nutrition_consumption_remains_real: true
     cheap_unfinished_cocoon_does_not_freely_print_support: true
+  mitochondria:
+    two_required_by_owner: true
+    production_scope_per_vascular_component_or_colony: undecided
+    starting_reserves_must_fund_first_pair: true
+    produced_actual_energy_travels_in_live_vessels: true
+    home_origin_nutrition_still_required: true
   telemetry:
     - live_vessel_reachability_and_throughput
     - home_origin_food_delivery_frequency
