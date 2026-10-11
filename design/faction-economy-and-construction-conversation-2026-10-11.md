@@ -157,7 +157,35 @@ Recommended telemetry (no claims of measured balance): time to first delivery; c
 | SYN-17 | Enemy hits a critical ORG artery / MAN belt / ETH pylon | Measurable, observable, recoverable cost and deterministic reproducible resource state |
 | SYN-18 | RTS player disables strategic autonomy | Worker routine actions may run, but no unapproved base expansion/construction objective is invented |
 
-## 10. Open decisions, dependencies and provenance
+## 10. Follow-up construction-phase discussion (DEC-015, owner-proposed)
+
+The later owner message adds an additional **three-stage building-labor asymmetry** and
+three incompatible interrupted-construction outcomes. Full details are in
+[construction incubation, assembly and resonance](construction-incubation-assembly-resonance-2026-10-11.md)
+with [construction-phases.yaml](construction-phases.yaml).
+
+- **ORG:** workers physically tend a cocoon/spore, running around or over it instead
+  of immediately dying or morphing into the building on placement. Maximum
+  contributors per 0–33%, 33–66%, 66–100% stage: **3 → 2 → 1**.
+  If all caretakers leave, progress slowly withers and progressively incorporated
+  resources are consumed. Optional final worker entering/fertilizing cocoon is
+  an **unresolved** real-sacrifice-versus-animation choice.
+- **MAN:** onsite tangible construction; maximum **1 → 2 → 3** workers.
+  If workers leave, build percent and installed materials remain. Unfinished
+  or destroyed sites can leave real salvage collected by even enemy factions
+  through finite eligible salvage/haul actions.
+- **ETH:** continuous blue NETWORK channeling, maximum **1 → 3 → 2**
+  helpers, proposed as single pattern seeding, harmonic triad and two-channel
+  coherence lock. If the **last required valid beam** is fully lost, progress
+  resets to zero. Some paid resources can be reclaimed proportionately by
+  original contributing Nexus/expansion inventories via **real finite return
+  logistics**, not free instant remote bank credit.
+- **Balance NOT proven:** worker slot counts are maxima, not staffing
+  requirements; assistance efficiency, stage work, ORG decay, ETH refund,
+  brief disconnect grace and contested construction all require tests.
+  Worker presence and network validity must remain deterministically auditable.
+
+## 11. Open decisions, dependencies and provenance
 
 **Owner-approved direction:** DEC-001–DEC-013, with explicit "details TBD" labels in those decisions; most importantly DEC-010 faction logistics, DEC-011 ORG base bandwidth and modes, DEC-012 physical colony ecology, DEC-013 updated worker roles.
 
