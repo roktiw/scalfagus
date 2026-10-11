@@ -5,7 +5,9 @@ version: 0.1
 status: implementation_candidate_not_running_network_code
 owner_scope_decision: DEC-033
 spec: design/mvp0-man-mirror-execution-contract.md
-numeric_profile: design/mvp0-man-mirror-balance-v0.1.yaml
+numeric_profile: design/mvp0-agent-implementation-contract.yaml
+alternative_numerical_experiment: design/mvp0-man-mirror-balance-v0.1.yaml
+network_protocol_still_design_only: true
 acceptance: design/mvp0-man-mirror-acceptance.yaml
 godot:
   runtime: Godot_4_7_2_Standard
