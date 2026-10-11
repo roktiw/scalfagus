@@ -1,39 +1,39 @@
-# Scalfagus — zatwierdzone decyzje projektowe v0.4
+# Scalfagus — Approved Design Decisions v0.4
 
-Status: **cztery decyzje zatwierdzone**. Szczegóły oznaczone `TBD` i `proposed` są do dalszego balansu.
+Status: **four approved decisions**. Details marked `TBD` or `proposed` remain subject to design and balancing.
 
-## DEC-001 — Energy jako trzeci surowiec magazynowany
+## DEC-001 — Energy as the Third Stored Resource
 
-Matter (T1), Volatiles (T2), Energy (T3) to trzy transportowalne i wydawane zasoby gospodarcze. Energy można produkować generatorami albo pozyskiwać w punktach wydobywczych, umieszczać w magazynach i jednostkach cargo, przeładowywać oraz wydawać na technologie, moduły, zdolności i transformacje. **Nie ma obowiązkowej sieci energetycznej.** Lawa to opcjonalne źródło geotermalne zależne od świata, nie czwarty zasób. Przeliczanie zasobów zachodzi wyłącznie według jawnych receptur. Pierwsze pozyskanie podstawowych zasobów i uruchomienie energii nie może powodować softlocka.
+Matter (T1), Volatiles (T2), and Energy (T3) are three transportable, spendable economic resources. Energy can be generated or harvested at special resource locations, stored in warehouses and cargo units, transferred, and spent on technologies, modules, abilities, and transformations. **A mandatory electrical transmission grid is not part of the baseline.** Lava is an optional geothermal source dependent on the world, not a fourth resource. Resource conversion is allowed only through explicit recipes. The first extraction steps and the initial Energy production path must not softlock the player.
 
-**Do określenia:** ilość Energy na cykl produkcji, pojemność kontenerów, koszty transformacji, sposób utraty ładunku, ewentualne zużycie ciągłe i wydajność dla trzech ras.
+**Open questions:** generation output per cycle, container capacities, transformation costs, cargo loss rules, optional ongoing upkeep, and faction production efficiency.
 
-## DEC-002 — Tylko specjalistyczne jednostki rozstawiają budynki
+## DEC-002 — Only Specialized Units Can Deploy into Structures
 
-Reguła: zwykła jednostka MIN/MID/MAX **nie** może stać się dowolną strukturą. Szablon jednostki musi mieć jawną cechę `deployable`, a rozstawienie wymaga właściwego terenu, miejsca, czasu i zasobów. Jest przerywalne.
+Ordinary MIN/MID/MAX units cannot transform into arbitrary buildings. A unit template must explicitly have the `deployable` capability. Deployment requires suitable terrain, available space, sufficient resources, and time, and can be interrupted.
 
-Przykłady robocze: Blergian *Colony Seed* zakorzenia się trwale, Manusian *Modular Constructor* kotwiczy moduły (potencjalnie demontowalne), Aetherian *Resonance Anchor* manifestuje strukturę za Energy (potencjalnie kosztownie odwracalną). Nazwy i mechaniki demontażu nie są jeszcze zatwierdzone.
+Working examples: a Blergian *Colony Seed* roots itself into a permanent organic structure; a Manusian *Modular Constructor* anchors prefabricated modules (potentially reversible); an Aetherian *Resonance Anchor* manifests a structure using Energy (potentially reversible at substantial cost). These examples and their dismantling mechanics are **proposals**, not approved unit names.
 
-**Do określenia:** koszt i czas, los konstruktora, HP podczas rozstawiania, przejmowanie, odzysk, rozstawianie na poruszających się asteroidach.
+**Open questions:** deployment cost and duration, fate of the constructor, HP and vulnerability during deployment, capture, salvage, and construction on drifting asteroids.
 
-## DEC-003 — Średnia automatyzacja logistyki
+## DEC-003 — Medium Logistics Automation
 
-Gra pozostaje klasycznym RTS. Gracz wskazuje złoża, trasę, cel magazynowania, miejsce ekspansji i operacje dokowania. Jednostki automatycznie powtarzają wydobycie, wracają z pełnym ładunkiem do wskazanego odbiorcy i przekazują cargo do zgodnego MIN/MID/MAX według istniejących zasad hierarchii. Bez samodzielnej ekspansji, strategicznego wybierania mapy lub automatycznego stawiania fabryk. Energy jest obsługiwane jako cargo.
+Scalfagus remains a classic RTS. The player selects extraction deposits, destinations, routes, expansion targets, and docking operations. Units repeat ordered extraction, return full cargo to a configured recipient, and transfer it to compatible MIN/MID/MAX receivers according to established logistics rules. Units do not autonomously expand, choose strategic map objectives, or construct factories. Energy is handled as cargo.
 
-**Do określenia:** zasięgi, przepustowość, kolejki, pełne magazyny, kolizje, utrata odbiorcy, przerwanie trasy i zachowanie przy dryfie asteroid.
+**Open questions:** transfer range, throughput, queues, full storage, collisions, destroyed recipients, route interruptions, and drifting asteroid behavior.
 
-## DEC-004 — Standardowy mecz 1v1: 25–40 minut
+## DEC-004 — Standard 1v1 Match Duration of 25–40 Minutes
 
-Czas 25–40 min to **cel projektowy**, nie limit meczu. Orientacyjnie early 0–8 min (Matter, zwiad), mid 8–22 (Volatiles, wyspy, MID), late 22–40 (Energy, asteroidy, MAX). Fazy są określane rozwojem technologicznym, nie zegarem. Dominacja ekonomiczna Blergians early, Manusians mid i Aetherians late to zamierzone **okna przewagi**, nie przewidywane procenty wygranych. Bilansować trzeba wszystkie matchupy i mapy, a nie tylko jedną łączną krzywą.
+A 25–40 minute duration is a **design target**, not a hard time limit. Illustrative windows: early 0–8 minutes (Matter and scouting), mid 8–22 (Volatiles, islands, MID), late 22–40 (Energy, asteroids, MAX). Phases emerge from technological and economic progression, not a clock. Blergian early, Manusian mid, and Aetherian late economic advantages are intended **power windows**, not measured win rates. All matchups and map types require validation.
 
-**Do określenia:** warunki zwycięstwa, limity populacji, początkowe zasoby, tempo produkcji, comeback i rozwiązania impasu.
+**Open questions:** victory conditions, population caps, starting resources, production rate, comeback mechanisms, and stalemate resolution.
 
-## Kryteria akceptacji v0.4
+## Acceptance Criteria for v0.4
 
-1. Energy można w symulatorze wyprodukować, magazynować, przetransportować i zużyć bez obowiązkowej sieci.
-2. Rozstawienie budynku przez jednostkę bez tagu `deployable` jest odrzucone; wyspecjalizowana jednostka przechodzi walidację miejsca i kosztu.
-3. MIN przekazuje cargo do uprawnionego MID/MAX bez ręcznego polecenia przeładunku po wcześniejszym skonfigurowaniu trasy.
-4. Model meczu raportuje długość partii i moment przejścia technologicznego, nie wymuszając zakończenia po 40 min.
-5. Dane historyczne `Crystals/Gas/Resin` z `economy.yaml`, `resources.yaml`, `units.yaml` są migrowane w osobnej zmianie; **nie są zgodne** z aktualnym Matter/Volatiles/Energy bez przeliczenia.
+1. A simulator can generate, store, transport, and spend Energy without a mandatory grid.
+2. Units without a `deployable` tag cannot deploy; eligible units must validate placement, time, and cost.
+3. With configured routes and compatible receivers, MIN transfers cargo to MID/MAX without a separate manual transfer order.
+4. Match telemetry measures game duration and technology transitions without enforcing a 40-minute deadline.
+5. Legacy `Crystals/Gas/Resin` data in `economy.yaml`, `resources.yaml`, and `units.yaml` must be migrated in a separate task; old values are **not directly compatible** with Matter/Volatiles/Energy.
 
-Powiązane: [resource-balance.yaml](resource-balance.yaml), [factions.yaml](factions.yaml), [units.yaml](units.yaml).
+Related: [resource-balance.yaml](resource-balance.yaml), [factions.yaml](factions.yaml), [units.yaml](units.yaml).
