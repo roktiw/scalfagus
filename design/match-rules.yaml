@@ -1,0 +1,35 @@
+schema_version: 1
+project: scalfagus
+version: 0.4
+status: approved_target_with_proposed_phase_windows
+mode: competitive_1v1
+target_duration_minutes: {min: 25, max: 40}
+phase_windows_minutes:
+  early: {from: 0, to: 8}
+  mid: {from: 8, to: 22}
+  late: {from: 22, to: 40}
+  note: Illustrative; phases emerge through technology and economy rather than fixed timers.
+phase_identity:
+  early: {emphasis: [matter, scouting, first_expansion], faction_economic_spike: blergians}
+  mid: {emphasis: [volatiles, mid_platforms, islands], faction_economic_spike: manusians}
+  late: {emphasis: [energy, max_platforms, asteroids], faction_economic_spike: aetherians}
+victory_conditions: TBD
+starting_conditions: TBD
+population_limit: TBD
+unit_build_times: TBD
+economic_growth_curve: TBD
+tie_or_stalemate_resolution: TBD
+balance:
+  economic_spikes_not_guaranteed_win_rates: true
+  target_equal_skill_overall_faction_win_rate: approximately_50_percent
+  test_all_matchups_and_map_types: true
+  counterplay_required_across_phases: true
+  telemetry:
+    - match_duration
+    - faction_win_rate
+    - faction_matchup_win_rate
+    - resource_income_by_minute
+    - first_expansion_timing
+    - tech_unlock_timing
+    - combat_losses
+    - map_control
