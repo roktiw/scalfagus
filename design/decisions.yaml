@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 1.1
+version: 1.2
 decisions:
   - id: DEC-001
     status: approved
@@ -140,6 +140,29 @@ decisions:
     note: >-
       Discussion recorded but no transplant or railgun transfer approved;
       owner mentioned an additional ETH MAX idea without completing it.
+  - id: DEC-015
+    status: owner_proposed_mechanic_balance_pending
+    topic: staged_asymmetric_construction_and_interruption
+    resolution: >-
+      ORG living cocoon incubation uses up to 3, then 2, then 1 active caretaker
+      per 0-33, 33-66, 66-100 percent stage; workers tend the living spore
+      rather than instantly morphing into buildings, and unattended growth
+      gradually withers while embodied materials are consumed over time.
+      MAN builds physically on site with 1, then 2, then 3 simultaneous
+      workers; paused construction persists at its precise built percentage,
+      and unfinished/destroyed worksites offer finite real salvage even to
+      other factions. ETH NETWORK construction uses 1, then 3, then 2
+      channelers; loss of the last required beam/link causes full construction
+      progress loss with a bounded resource refund to actual source inventories
+      through valid finite return logistics. Labor caps are upper bounds,
+      not compulsory worker counts.
+    open_balance: >-
+      Exact stage durations, additional-worker speed modifiers, ORG caretaker
+      final cocoon-entry sacrifice or animation, incubation decay, ETH
+      disconnect grace (if any) and material recovery percent/cost remain
+      unspecified; fully equal faction balance is not demonstrated.
+    specification: design/construction-incubation-assembly-resonance-2026-10-11.md
+    data_specification: design/construction-phases.yaml
 migration_required:
   - design/economy.yaml
   - design/resources.yaml
