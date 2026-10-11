@@ -1,0 +1,52 @@
+schema_version: 1
+project: scalfagus
+version: 0.4
+status: approved_core_rules_with_proposed_details
+resource:
+  id: energy
+  tier: 3
+  inventory_resource: true
+  units: abstract_energy_units
+  stored: true
+  transported: true
+  spent: true
+  not_a_mandatory_power_grid: true
+  supply:
+    generation: [geothermal, solar_collection, reactors]
+    harvesting: [energy_deposits]
+    inputs_and_output_rates: TBD
+    generation_requires_installation: true
+  terrain:
+    lava: {universal: false, role: geothermal_heat_source, fourth_resource: false}
+  storage:
+    capacity_limited: true
+    faction_containers:
+      blergians: biological_reservoirs
+      manusians: batteries_and_cartridges
+      aetherians: resonant_matrices
+  transport:
+    physical_cargo: true
+    compatible_with_min_mid_max_logistics: true
+    throughput_and_capacity: TBD
+  expenditure: [technology, modules, transformations, abilities, advanced_production]
+  conversion:
+    recipes_explicit: true
+    free_unrestricted_conversion: false
+    input_cost_and_loss: TBD
+  ongoing_upkeep:
+    globally_required: false
+    specific_units_or_abilities: proposed
+  loss_and_capture:
+    cargo_destruction_behavior: TBD
+    storage_capture_behavior: TBD
+  anti_softlock:
+    starter_energy_required_for_basic_matter_extraction: false
+    guaranteed_path_to_first_energy_producer: true
+balance:
+  energy_per_minute: TBD
+  storage_capacities: TBD
+  unit_and_transformation_costs: TBD
+  compare_across_factions: true
+migration:
+  replaces_legacy: resin
+  note: Not a one-to-one numerical conversion; update older YAML definitions separately.
