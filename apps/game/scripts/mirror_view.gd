@@ -3,6 +3,11 @@ extends Node3D
 # First playable visualization of MVP 0.1's shared authoritative MAN rules.
 # This is local Human-vs-Bot / Bot-vs-Bot; LAN Human-vs-Human is a later gate.
 const MATCH = preload("res://scripts/mirror_match_state.gd")
+const VIEW_SCRIPT = preload("res://scripts/directional_sprite_5.gd")
+const WORKER_ATLAS = preload("res://assets/man_worker_32x48_idle_5view.png")
+const LANDER_ATLAS = preload("res://assets/man_lander_128x128_unverified_5view.png")
+const TREE_ATLAS = preload("res://assets/neutral_tree_40x64_5view.png")
+const ROCK_ATLAS = preload("res://assets/neutral_rock_56x36_5view.png")
 const MENU_SCENE: String = "res://scenes/menu.tscn"
 
 var sim
@@ -19,12 +24,16 @@ var hud: Label
 var help_label: Label
 var selection_marker: MeshInstance3D
 var info: String = ""
-var camera_center: Vector3 = Vector3(32.0, 0.0, 32.0)
+var camera_center: Vector3 = Vector3(19.0, 0.0, 32.0)
+var zoom_size: float = 50.0
 
 func _ready() -> void:
     sim = MATCH.new()
     var mode: String = str(ProjectSettings.get_setting("scalfagus/mirror_mode", "human_bot"))
     spectator = mode == "bot_bot"
+    if spectator:
+        camera_center = Vector3(31.5, 0.0, 31.5)
+        zoom_size = 76.0
     sim.setup(42, ["bot", "bot"] if spectator else ["human", "bot"])
     _build_scene()
     _sync_visuals()
@@ -43,6 +52,36 @@ func _block(size: Vector3, color: Color, parent: Node3D) -> MeshInstance3D:
     visual.material_override = _mat(color)
     parent.add_child(visual)
     return visual
+
+# Restore existing five-view pixel art from the original camera prototype.
+# The returned Node3D belongs to presentation only. No gameplay state is duplicated.
+func _pixel_actor(atlas: Texture2D, frame_size: Vector2i, pixel_scale: float,
+        tint: Color, mirror_safe: bool = false) -> Node3D:
+    var root := Node3D.new()
+    world_root.add_child(root)
+    var visual: DirectionalSprite5 = VIEW_SCRIPT.new()
+    visual.name = "Visual"
+    root.add_child(visual)
+    visual.configure(atlas, frame_size, 1, root, pixel_scale, mirror_safe)
+    visual.sprite.modulate = tint
+    return root
+
+func _unit_sprite(e: Dictionary) -> Node3D:
+    var kind: String = str(e["kind"])
+    var blue: bool = int(e["owner"]) == 0
+    if kind == "hq":
+        return _pixel_actor(LANDER_ATLAS, Vector2i(128, 128), 0.038,
+            Color(0.85, 0.98, 1.0) if blue else Color(1.0, 0.77, 0.70))
+    if kind == "barracks":
+        # Existing lander sprite temporarily represents a Barracks until dedicated art.
+        return _pixel_actor(LANDER_ATLAS, Vector2i(128, 128), 0.027,
+            Color(0.58, 0.81, 1.0) if blue else Color(1.0, 0.64, 0.50))
+    if kind == "rifleman":
+        # Reuse MAN worker sheet until the Rifleman 5-view atlas is authored.
+        return _pixel_actor(WORKER_ATLAS, Vector2i(32, 48), 0.045,
+            Color(0.52, 0.83, 1.0) if blue else Color(1.0, 0.67, 0.50))
+    return _pixel_actor(WORKER_ATLAS, Vector2i(32, 48), 0.039,
+        Color(0.98, 0.98, 1.0) if blue else Color(1.0, 0.85, 0.78))
 
 func _build_scene() -> void:
     var background := WorldEnvironment.new()
@@ -80,26 +119,29 @@ func _build_scene() -> void:
         else:
             rim.position = Vector3(63.5, 0.02, 31.5)
 
+    # Gameplay obstruction lives in the Simulation Core. Pixel art is visual only.
     for cell in sim.terrain.keys():
         var kind: String = str(sim.terrain[cell])
-        var tile: MeshInstance3D
         if kind == "tree":
-            tile = _block(Vector3(0.72, 2.5, 0.72), Color("#163e32"), world_root)
-            tile.position = Vector3(float(cell.x), 1.25, float(cell.y))
+            var tree_sprite: Node3D = _pixel_actor(
+                TREE_ATLAS, Vector2i(40, 64), 0.052, Color.WHITE, true)
+            tree_sprite.position = Vector3(float(cell.x), 0.0, float(cell.y))
         else:
-            tile = _block(Vector3(1.0, 0.07, 1.0), Color("#296d9d"), world_root)
-            tile.position = Vector3(float(cell.x), 0.04, float(cell.y))
+            var pond := _block(Vector3(1.0, 0.07, 1.0),
+                Color("#296d9d"), world_root)
+            pond.position = Vector3(float(cell.x), 0.04, float(cell.y))
 
     for sid in sim.sources.keys():
         var source: Dictionary = sim.sources[sid]
-        var crystal := _block(Vector3(1.25, 0.7, 1.25), Color("#e6be57"), world_root)
+        var ore: Node3D = _pixel_actor(
+            ROCK_ATLAS, Vector2i(56, 36), 0.040, Color(1.0, 0.88, 0.57))
         var p: Vector2i = source["pos"]
-        crystal.position = Vector3(p.x, 0.38, p.y)
-        source_nodes[sid] = crystal
+        ore.position = Vector3(float(p.x), 0.0, float(p.y))
+        source_nodes[sid] = ore
 
     camera = Camera3D.new()
     camera.projection = Camera3D.PROJECTION_ORTHOGONAL
-    camera.size = 78.0
+    camera.size = zoom_size
     camera.far = 300.0
     camera.current = true
     add_child(camera)
@@ -111,12 +153,14 @@ func _build_scene() -> void:
     var ui := CanvasLayer.new()
     add_child(ui)
     hud = Label.new()
-    hud.position = Vector2(12, 8)
+    hud.position = Vector2(16, 12)
+    hud.mouse_filter = Control.MOUSE_FILTER_IGNORE
     hud.add_theme_color_override("font_color", Color.WHITE)
     hud.add_theme_font_size_override("font_size", 18)
     ui.add_child(hud)
     help_label = Label.new()
-    help_label.position = Vector2(12, 62)
+    help_label.position = Vector2(16, 56)
+    help_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
     help_label.add_theme_color_override("font_color", Color("#f5e6b2"))
     help_label.add_theme_font_size_override("font_size", 14)
     ui.add_child(help_label)
@@ -161,10 +205,10 @@ func _sync_visuals() -> void:
     for id in sim.sorted_ids():
         var e: Dictionary = sim.entities[id]
         if not unit_nodes.has(id):
-            unit_nodes[id] = _block(_unit_shape(e), _unit_color(e), world_root)
-        var v: MeshInstance3D = unit_nodes[id]
+            unit_nodes[id] = _unit_sprite(e)
+        var v: Node3D = unit_nodes[id]
         var p: Vector2i = e["pos"]
-        v.position = Vector3(p.x, _unit_shape(e).y * 0.5, p.y)
+        v.position = Vector3(float(p.x), 0.0, float(p.y))
         v.visible = spectator or int(e["owner"]) == 0 or sim.can_see(0, p)
     for sid in source_nodes.keys():
         var source: Dictionary = sim.sources[sid]
@@ -191,7 +235,7 @@ func _sync_visuals() -> void:
     help_label.text = "Selected: %s  |  %s\n%s" % [
         selected_text, info,
         "P pause / +/- speed / Esc menu" if spectator else
-        "Left click select / Right click move, gather or attack / B then click: Barracks / W: Worker at HQ / R: Rifleman at Barracks / WASD camera / Esc menu"
+        "Left click select / Right click move, gather or attack / B then click: Barracks / W: Worker at HQ / R: Rifleman at Barracks / WASD pan / Mouse wheel zoom / Esc menu"
     ]
 
 func _cell_at_mouse(screen_pos: Vector2) -> Vector2i:
@@ -253,6 +297,12 @@ func _unhandled_input(event: InputEvent) -> void:
             KEY_R:
                 if not spectator and sim.entities.has(selected_id):
                     info = "Rifleman queued" if sim.issue_command(0, "train_rifleman", selected_id) else "Cannot train Rifleman"
+    elif event is InputEventMouseButton and event.pressed and event.button_index in [
+            MOUSE_BUTTON_WHEEL_UP, MOUSE_BUTTON_WHEEL_DOWN]:
+        zoom_size = clampf(
+            zoom_size * (0.88 if event.button_index == MOUSE_BUTTON_WHEEL_UP else 1.12),
+            24.0, 96.0)
+        camera.size = zoom_size
     elif event is InputEventMouseButton and event.pressed and not spectator:
         if event.button_index not in [MOUSE_BUTTON_LEFT, MOUSE_BUTTON_RIGHT]:
             return
