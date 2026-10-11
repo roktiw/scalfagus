@@ -4,6 +4,7 @@ class_name MirrorMatchState
 const NAV_SCRIPT = preload("res://scripts/mirror_navigation_port.gd")
 const MAP_SCRIPT = preload("res://scripts/mirror_map_port.gd")
 const TIMING = preload("res://scripts/mirror_timing.gd")
+const GEOM = preload("res://scripts/mirror_geometry.gd")
 
 # MVP 0.1: authoritative rules for a two-slot MAN mirror match.
 # Pure state: no cameras, rendering, input nodes, or wall-clock delays.
@@ -101,9 +102,11 @@ func _spawn(kind: String, owner: int, pos: Vector2i) -> int:
         "route": [], "route_target": Vector2i(-1, -1), "route_adjacent": false,
         "route_revision": -1
     }
-    if kind in ["hq", "barracks"]:
-        building_cells[pos] = id
-        navigation.set_blocked(pos, true)
+    if GEOM.is_building(kind):
+        for cell in GEOM.occupied_cells(pos):
+            assert(_in_bounds(cell) and not terrain.has(cell) and not building_cells.has(cell))
+            building_cells[cell] = id
+            navigation.set_blocked(cell, true)
     return id
 
 func sorted_ids() -> Array[int]:
@@ -150,6 +153,59 @@ func _mobile_at(p: Vector2i, except_id: int = -1) -> bool:
             return true
     return false
 
+func _footprint_distance(pos: Vector2i, center: Vector2i) -> int:
+    return GEOM.distance_to_building(pos, center)
+
+func _distance_to_entity(pos: Vector2i, entity: Dictionary) -> int:
+    if GEOM.is_building(str(entity["kind"])):
+        return _footprint_distance(pos, entity["pos"])
+    return _distance(pos, entity["pos"])
+
+func _reserved_site_at(cell: Vector2i, excluding: int = -1) -> bool:
+    for id in sorted_ids():
+        if id == excluding:
+            continue
+        var e: Dictionary = entities[id]
+        if str(e["order"]) == "build" and GEOM.occupied_cells(e["build_pos"]).has(cell):
+            return true
+    return false
+
+func _route_to_building_ring(start: Vector2i, center: Vector2i) -> Array[Vector2i]:
+    # Candidate endpoints only. Every actual route is searched by Godot A*.
+    var best: Array[Vector2i] = []
+    for cell in GEOM.perimeter_cells(center):
+        if _blocked(cell):
+            continue
+        var path: Array[Vector2i] = navigation.route(start, cell, false)
+        if start != cell and path.is_empty():
+            continue
+        if best.is_empty() or path.size() < best.size():
+            best = path
+    return best
+
+func _entity_los_cell(from_pos: Vector2i, target: Dictionary, maximum_manhattan: int) -> Vector2i:
+    var target_pos: Vector2i = target["pos"]
+    var cells: Array[Vector2i] = GEOM.occupied_cells(target_pos) if GEOM.is_building(str(target["kind"])) else [target_pos]
+    for cell in cells:
+        if _distance(from_pos, cell) <= maximum_manhattan and _line_clear(from_pos, cell):
+            return cell
+    return Vector2i(-1, -1)
+
+func _can_hit(shooter: Vector2i, target: Dictionary) -> bool:
+    var cells: Array[Vector2i] = GEOM.occupied_cells(target["pos"]) if GEOM.is_building(str(target["kind"])) else [target["pos"]]
+    var range_sq: float = GEOM.RIFLEMAN_RANGE_METERS * GEOM.RIFLEMAN_RANGE_METERS
+    for cell in cells:
+        if float(GEOM.distance_sq_cells(shooter, cell)) * tile_meters * tile_meters <= range_sq:
+            if _line_clear(shooter, cell):
+                return true
+    return false
+
+func _footprint_has_mobile(center: Vector2i, ignored_id: int = -1) -> bool:
+    for cell in GEOM.occupied_cells(center):
+        if _mobile_at(cell, ignored_id):
+            return true
+    return false
+
 func _source_at(p: Vector2i) -> bool:
     for sid in sources.keys():
         if sources[sid]["pos"] == p:
@@ -157,11 +213,10 @@ func _source_at(p: Vector2i) -> bool:
     return false
 
 func _can_build(p: Vector2i, owner: int, ignore_builder_id: int = -1) -> bool:
-    if _blocked(p) or _mobile_at(p, ignore_builder_id) or _source_at(p):
-        return false
-    for id in sorted_ids():
-        var e: Dictionary = entities[id]
-        if id != ignore_builder_id and str(e["order"]) == "build" and e["build_pos"] == p:
+    for cell in GEOM.occupied_cells(p):
+        if _blocked(cell) or _mobile_at(cell, ignore_builder_id) or _source_at(cell):
+            return false
+        if _reserved_site_at(cell, ignore_builder_id):
             return false
     var hqs: Array[int] = units_for(owner, "hq")
     return not hqs.is_empty() and _distance(p, entities[hqs[0]]["pos"]) <= 9
@@ -187,17 +242,26 @@ func _line_clear(from_pos: Vector2i, to_pos: Vector2i) -> bool:
             return false
         # The target itself can be a building; buildings between actors block LOS.
         if ray_cell != to_pos and building_cells.has(ray_cell):
-            return false
+            # A building may see *outward* through its own footprint; a
+            # different completed building blocks the beam.
+            if not building_cells.has(from_pos) or building_cells[ray_cell] != building_cells[from_pos]:
+                return false
     return true
 
 func can_see(side: int, target: Vector2i) -> bool:
+    var candidate_cells: Array[Vector2i] = [target]
+    if building_cells.has(target):
+        var building_id: int = int(building_cells[target])
+        if entities.has(building_id):
+            candidate_cells = GEOM.occupied_cells(entities[building_id]["pos"])
     for id in sorted_ids():
         var e: Dictionary = entities[id]
         if int(e["owner"]) != side:
             continue
         var vision: int = 9 if str(e["kind"]) == "hq" else 8
-        if _distance(e["pos"], target) <= vision and _line_clear(e["pos"], target):
-            return true
+        for cell in candidate_cells:
+            if _distance(e["pos"], cell) <= vision and _line_clear(e["pos"], cell):
+                return true
     return false
 
 func _reject() -> bool:
@@ -273,6 +337,8 @@ func issue_command(side: int, action: String, actor_id: int, arg: Variant = null
     return true
 
 func _find_route(start: Vector2i, goal: Vector2i, adjacent_ok: bool) -> Array[Vector2i]:
+    if adjacent_ok and (building_cells.has(goal) or _reserved_site_at(goal)):
+        return _route_to_building_ring(start, goal)
     return navigation.route(start, goal, adjacent_ok)
 
 func _walk(e: Dictionary, dest: Vector2i, adjacent_ok: bool = true) -> void:
@@ -364,7 +430,7 @@ func _worker_tick(e: Dictionary) -> void:
                 e["order"] = "idle"
                 return
             var hq: Dictionary = entities[hqs[0]]
-            if _distance(e["pos"], hq["pos"]) > 1:
+            if _distance_to_entity(e["pos"], hq) > 1:
                 e["gather_phase"] = "return"
                 _walk(e, hq["pos"])
                 return
@@ -414,7 +480,7 @@ func _worker_tick(e: Dictionary) -> void:
                 e["gather_phase"] = "pickup"
     elif order == "build":
         var site: Vector2i = e["build_pos"]
-        if _distance(e["pos"], site) > 1:
+        if _footprint_distance(e["pos"], site) > 1:
             _walk(e, site)
         else:
             e["work_ticks"] = int(e["work_ticks"]) - 1
@@ -422,7 +488,7 @@ func _worker_tick(e: Dictionary) -> void:
                 if _can_build(site, side, int(e["id"])):
                     _spawn("barracks", side, site)
                     e["order"] = "idle"
-                elif _mobile_at(site, int(e["id"])):
+                elif _footprint_has_mobile(site, int(e["id"])):
                     # Temporary actor occupancy pauses, rather than losing paid progress.
                     e["work_ticks"] = 1
                 else:
@@ -447,7 +513,7 @@ func _rifleman_tick(e: Dictionary) -> void:
         if not can_see(int(e["owner"]), enemy["pos"]):
             e["order"] = "idle"
             return
-        if _distance(e["pos"], enemy["pos"]) <= 6 and _line_clear(e["pos"], enemy["pos"]):
+        if _can_hit(e["pos"], enemy):
             if int(e["cooldown"]) == 0:
                 _damage(enemy_id, 8, int(e["owner"]))
                 e["cooldown"] = TIMING.RIFLEMAN_ATTACK_COOLDOWN_TICKS
@@ -469,9 +535,10 @@ func _damage(entity_id: int, points: int, attacker: int) -> void:
         players[int(e["owner"])]["matter"] = 0
     players[attacker]["kills"] = int(players[attacker]["kills"]) + 1
     events.append({"tick": tick, "owner": attacker, "action": "kill", "victim": entity_id})
-    if str(e["kind"]) in ["hq", "barracks"]:
-        building_cells.erase(e["pos"])
-        navigation.set_blocked(e["pos"], terrain.has(e["pos"]))
+    if GEOM.is_building(str(e["kind"])):
+        for cell in GEOM.occupied_cells(e["pos"]):
+            building_cells.erase(cell)
+            navigation.set_blocked(cell, terrain.has(cell))
     entities.erase(entity_id)
 
 func _train_tick(e: Dictionary) -> void:
@@ -480,8 +547,8 @@ func _train_tick(e: Dictionary) -> void:
     e["train_left"] = int(e["train_left"]) - 1
     if int(e["train_left"]) > 0:
         return
-    for d in DIRECTIONS:
-        var candidate: Vector2i = e["pos"] + d
+    # Producer is a 3×3 footprint; spawn outside the completed collider.
+    for candidate in GEOM.perimeter_cells(e["pos"]):
         if not _blocked(candidate) and not _mobile_at(candidate) and not _source_at(candidate):
             _spawn(str(e["train_kind"]), int(e["owner"]), candidate)
             e["train_kind"] = ""
@@ -596,7 +663,7 @@ func matter_is_conserved() -> bool:
 func replay_hash() -> String:
     # Stable state hash includes orders, outstanding work, queues, and cooldowns.
     # It is a pinned-runtime regression tool, not a cross-platform lockstep promise.
-    var material: String = "mvp0-man-mirror-v4-verdant|"
+    var material: String = "mvp0-man-mirror-v5-3x3-world2m|"
     material += map_id + "|" + map_hash + "|"
     for field in [
         seed, tick, winner, finished, finish_reason, next_id,
@@ -642,7 +709,7 @@ func replay_hash() -> String:
 
 func result() -> Dictionary:
     return {
-        "rules": "mvp0-man-mirror-v4-verdant",
+        "rules": "mvp0-man-mirror-v5-3x3-world2m",
         "map_id": map_id, "map_hash": map_hash, "map_source_sha": map_source_sha,
         "tick_hz": TIMING.TICKS_PER_SECOND, "max_ticks": MAX_TICKS,
         "seed": seed, "ticks": tick, "winner": winner, "reason": finish_reason,
