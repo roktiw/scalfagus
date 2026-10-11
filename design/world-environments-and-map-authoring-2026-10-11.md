@@ -5,6 +5,16 @@ Status: **owner direction** for race domains, land-only MVP, visible liquid terr
 Data: [world environments](world-environments.yaml), [map format](map-authoring-format-v0.1.yaml), [first jungle map](mvp-verdant-divide-map.yaml), [spherical topology alternative](planetary-map-topology-2026-10-11.md).
 Implementation handoff: [AGENT-MVP-IMPLEMENTATION.md](AGENT-MVP-IMPLEMENTATION.md).
 
+## Newer map-edge / visual framing update — DEC-029
+
+The owner confirmed a square bounded PLANAR MVP map rather than actual spherical gameplay, and proposed presenting battlegrounds as enormous **flying platforms in space**. **Recommended first visual frame** for the same Verdant Divide jungle terrain: a static hovering habitat deck with real soil, tree-trunk cover, freshwater basins, visible roots/industrial underside and a starfield/distant planet. It has a **visible exterior rim plus authoritative invisible hard wall** along all four sides, blocking all ground actors and building/loot placement outside the world. The platform itself is a faction-neutral background, not a building or win target. Planet travel and moving entire game maps are post-MVP ideas.
+
+This is a **presentation/framing option**, **not** a new world topology, navigation dimension, airborne gameplay or permission to ignore the existing map height, ramp, source and water YAML. The alternative `bounded_planetary_surface` uses the same gameplay tile data. A mandate that all later maps must be space platforms remains unconfirmed.
+
+References: [flying platform design](floating-platform-battlefields-2026-10-11.md), [frame schema](battlefield-frames.yaml), [updated map fixture](mvp-verdant-divide-map.yaml).
+
+Implementation handoff: [AGENT-MVP-IMPLEMENTATION.md](AGENT-MVP-IMPLEMENTATION.md).
+
 ## 1. Natural environment of each civilization
 
 | Race | Natural environment | Future fantasy | First two-race MVP |
