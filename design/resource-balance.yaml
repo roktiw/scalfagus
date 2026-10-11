@@ -1,0 +1,74 @@
+schema_version: 1
+project: scalfagus
+status: proposed_balance_v0_3
+scope: faction_resource_asymmetry
+resource_tiers:
+  t1: {id: matter, role: construction_and_materials}
+  t2: {id: volatiles, role: chemistry_propulsion_and_fuels}
+  t3: {id: energy, role: power_storage_and_transformations}
+geographic_tiers:
+  t1: mainland
+  t2: islands
+  t3: drifting_asteroids
+  note: Resource tier and geographic tier are independent axes.
+factions: [blergians, manusians, aetherians]
+specializations:
+  blergians:
+    matter: biological_assimilation
+    volatiles: biochemistry_and_metabolism
+    energy: bioenergy_and_mutation
+    strength: early_expansion_and_permanent_specialization
+    weakness: irreversible_reconfiguration
+  manusians:
+    matter: industrial_mining_recycling_and_prefabrication
+    volatiles: refinery_petrochemistry_and_modular_fuel_systems
+    energy: electrical_grids_generators_and_batteries
+    strength: midgame_logistics_and_hot_swappable_modules
+    weakness: physical_module_supply_chains
+  aetherians:
+    matter: resonant_material_reorganization
+    volatiles: molecular_separation_and_synthesis
+    energy: resonance_storage_transfer_and_ascension
+    strength: late_technology_and_energy_efficiency
+    weakness: transformation_time_and_cost
+efficiency_matrix:
+  interpretation: illustrative_relative_efficiency_not_global_gameplay_multiplier
+  columns: [matter, volatiles, energy]
+  rows:
+    blergians: [1.30, 0.80, 1.00]
+    manusians: [1.00, 1.30, 0.80]
+    aetherians: [0.80, 1.00, 1.30]
+  symmetry:
+    each_row_sum: 3.10
+    each_column_sum: 3.10
+    warning: Equal sums do not imply competitive balance.
+  application: per_subsystem_not_all_operations
+  subsystems: [extraction, processing, storage, transport, consumption, recycling]
+phase_weight_examples:
+  interpretation: illustrative_resource_importance_percentages
+  early: {matter: 70, volatiles: 25, energy: 5}
+  mid: {matter: 35, volatiles: 45, energy: 20}
+  late: {matter: 15, volatiles: 30, energy: 55}
+  note: Phase weights are illustrative; not a fixed resource progression.
+design_constraints:
+  - All factions access all three resources and all resource tiers.
+  - Early Blergian, mid Manusian and late Aetherian advantage are strategic windows, not guaranteed victories.
+  - Differentiate extraction, processing, transport and spending efficiency rather than applying one global multiplier.
+  - Energy can be generated, transmitted, stored and transported; exact mechanics TBD.
+  - Lava is a map-dependent geothermal heat source and potential matter feedstock, not a universal fourth resource.
+  - Asteroid drift changes transport routes and logistics.
+  - Test geographic resource distribution separately from faction modifiers.
+metrics:
+  - delivered_resources_per_minute
+  - effective_cost_per_unit
+  - tech_unlock_timing
+  - return_on_investment
+  - map_control
+  - late_game_comeback_probability
+  - faction_matchup_win_rate
+open_questions:
+  - energy_as_inventory_versus_grid_flow
+  - per_subsystem_efficiency_multipliers
+  - resource_extraction_times_for_new_resource_taxonomy
+  - unit_and_technology_cost_migration_from_crystals_gas_resin
+  - phase_weight_validation
