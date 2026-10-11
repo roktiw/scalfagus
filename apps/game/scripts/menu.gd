@@ -97,7 +97,7 @@ func _open_options() -> void:
     if shortcut_editor == null:
         var keychain: Node = get_node_or_null("/root/Keychain")
         if keychain == null:
-            shortcut_status.text = "Keychain is not registered. Open Godot editor and enable Keychain in Project Settings > Plugins."
+            shortcut_status.text = "Keychain runtime singleton unavailable. Verify addons locally with: bash scripts/check.sh"
         else:
             var editor_scene := load("res://addons/keychain/ShortcutEdit.tscn") as PackedScene
             if editor_scene == null:
