@@ -2,8 +2,9 @@
 
 Date: 2026-10-11
 Status: **implementation tasking / documentation, not a claim that code is complete or tests have passed**.
-Owner-directed scope: **2 races MAN and ETH; 5 base roles each; only surface SOLID resource harvesting; jungle ground-only map with real liquid terrain; all-building victory**.
-Current default topography: **PLANAR**, bounded by physical invisible guard walls. DEC-029 proposes a *floating space-platform jungle frame* above a starfield/distant planet. It is the same game map, not spherical or airborne gameplay. Read [flying battlefield spec](floating-platform-battlefields-2026-10-11.md), [frame data](battlefield-frames.yaml), [frame acceptance](battlefield-frame-acceptance.yaml). The entire world platform is stationary during each MVP match. True `spherical` is **NOT IMPLEMENTED**.
+Owner-directed scope: **2 races MAN and ETH; 5 base roles each; only surface SOLID resource harvesting; jungle ground-only map with real liquid terrain; all-building victory. DEC-030: EVERY playable map is a floating space platform with variable soil, metal, rock or other surface material.**
+**Latest delivery gates:** [MVP-DELIVERY-GATES.md](MVP-DELIVERY-GATES.md); [universal space-platform constitution](space-platform-world-contract-2026-10-11.md); [mandatory frame](battlefield-frames.yaml); [surface palettes](platform-surface-presets.yaml).
+**Current world:** EVERY playable map is a floating platform in OUTER SPACE (DEC-030). MVP game topology remains **PLANAR**, with an impassable four-sided border, mandatory visible rim and underside, and noninteractive space background. The first flying platform carries Earthlike brown soil and jungle. A normal planetary surface is NOT a legal play map, even if an earlier art comparison suggests otherwise. The deck is static during the match and real spherical planets are NOT implemented.
 Detailed index: [MVP contract](mvp-man-eth-jungle-vertical-slice-2026-10-11.md), [world/map design](world-environments-and-map-authoring-2026-10-11.md), [planet alternative](planetary-map-topology-2026-10-11.md).
 
 ## 0. Repository reality — do NOT regenerate or overwrite functioning work
@@ -13,21 +14,21 @@ As currently observed on GitHub `main`:
 - `apps/game/scripts/main.gd`, `hero.gd`, `directional_sprite_5.gd`: scene/render camera/actor spike. It is **not yet a complete playable RTS**; no real economy, bot, buildings, production or combat loop.
 - `apps/game/assets/`: existing MAN worker and neutral tree/rock 5-view sprite concept/reference assets, with some unresolved asymmetric mirroring quality.
 - `apps/game/tests/smoke.gd`: existing headless import and smoke checks: Hero ID/HP remains stable across F1/F2/F3, 5 source view to 8 rotated sectors/mirroring. **Preserve** this test.
-- There is no desktop launcher. Godot owns the native game window and is the only runtime authority.
+- **Godot-only** current architecture. Godot owns the built-in main menu, native game window, 3D world, UI and cameras; there is no Tauri desktop launcher. Node/TypeScript is optional OFFLINE authoring tooling only.
 - `scripts/bootstrap.sh`, `scripts/check.sh`, `scripts/dev.sh`, `scripts/game.sh`, `scripts/build.sh`, `readme.md`: Godot-only bootstrap, test, run and export paths. Follow these; do not add a desktop launcher.
-- `architecture/adr-0001-one-authoritative-game-world.md` / `adr-0002-desktop-shell-boundary.md` explain earlier proposals. **Runtime on main now EXISTS**; treat any statements inside ADR-0002 that "launcher code not shipped" as superseded by the actual `apps/desktop` tree and root `readme.md`.
+- `architecture/adr-0001-one-authoritative-game-world.md` and the old desktop-shell ADR are historical design records. The current `readme.md`, `apps/game/project.godot` and Bash scripts describe the actual Godot-only game. **Do not reintroduce Tauri/Rust/WebView or an extra native window.**
 
 Recommended environment checks **after agent changes** (from repo root, prerequisites installed):
 ```sh
-npm run check
-npm run game
+bash scripts/check.sh
+bash scripts/dev.sh
 ```
 Individual native headless test after verified Godot import:
 ```sh
 godot --headless --path apps/game --editor --import --quit
 godot --headless --path apps/game --script res://tests/smoke.gd
 ```
-Do not announce successful tests unless actually executed on a supported environment; macOS bootstrap is currently the supported verified path. Windows/Linux game/launcher packaging is a later validation task.
+Do not announce successful tests unless actually executed on a supported environment; macOS bootstrap is currently the supported verified path. Windows/Linux game export validation is a later task.
 
 ## 1. Source-of-truth precedence and approval boundaries
 
@@ -62,7 +63,7 @@ MAN UMU is physically moveable over ground and must **still count for victory du
 
 Authoritative new components/classes (proposed GDScript files; exact names flexible if consistent):
 - `GameState.gd`: fixed tick, stable entity IDs, team ownership, game phase, event queue, resource ledger, victory check, replay snapshot hash.
-- `BattlefieldFrameRenderer.gd` / `WorldBoundary.gd` (proposed): draw visible space platform rim/underside/background noninteractively, and enforce one authoritative impassable four-sided boundary for every unit, Hero and packed UMU. Never permit building/loot outside the square, or count a neutral platform as the last faction building.
+- `BattlefieldFrameRenderer.gd` / `WorldBoundary.gd` (proposed): implement the **mandatory platform frame on ALL playable maps**. Render noninteractive soil/metal/rock upper surface, visible rim and underside and starfield; enforce impassable four-sided physics and navmesh borders for all units, Hero and packed UMU. Reject missing frame or forbidden `bounded_planetary_surface` map variant. No building/loot outside bounds; neutral platform NEVER counts toward victory. Validate surface skin swap without implicit physics/resource changes.
 - `MapManifestLoader.gd`: accepts validated compiled JSON or parse YAML through **TypeScript build tool**; Godot runtime need not implement a YAML parser. Build-time YAML→canonical JSON is recommended. Pin compiler schema version.
 - `WorldTopology.gd`: currently **planar-only** wrapper for tile->world, local up, legal neighbors, LOS/travel; throw explicit unsupported error if requested `spherical`. Do not implement globe by drawing a sphere beneath flat physics.
 - `ResourceSource.gd` and `ResourceLedger.gd`: finite solid deposits; source debit, worker carried cargo, MAN physical storage or ETH Nexus conversion; exactly one custody owner for each packet.
@@ -102,7 +103,7 @@ Map compiler should:
 - Seed cosmetic grass/ferns without affecting game outcome.
 - Compile deterministic map data & hash; replay stores `map_id`, `version`, `topology`, `seed`, `schema`, `resolved_hash`.
 
-**DEC-029 boundary requirement:** the map is a finite flat square with a collidable invisible guard and a proposed flying-habitat aesthetic. The sky planet/space backdrop is not navigation or terrain. A map-frame visual switch must leave pathing, LOS, resources, victory and deterministic replay untouched. See `FRAME-01`–`FRAME-10` test fixtures.
+**DEC-030 universal platform requirement:** every playable map is a finite floating platform in space, and first map is bounded PLANAR jungle above a visible underside and space background. The planet/starfield cannot act as world terrain or resource source. Every map must have a flying-platform frame; swapping cosmetic **upper-surface material presets** (jungle brown earth vs patchwork metal) must leave strategy unchanged unless semantic terrain/cover objects explicitly change. See `FRAME-01`–`FRAME-12` fixture tests.
 
 **Important:** The authored first YAML map contains *route intent hints*, not guaranteed navigable roads. The game/validator must detect and report any blockers, unreachable nodes or invalid ramp joins. The sample source-stock sum must be checked from nodes, not trusted from a handwritten total.
 
@@ -110,8 +111,8 @@ Map compiler should:
 
 | Order | Pull request / vertical-slice task | Files/components / measurable DONE |
 |---|---|---|
-| **PR-00** | Preserve existing Godot/Tauri spike + golden smoke | `npm run check` and existing `apps/game/tests/smoke.gd` still pass; record exact base commit and any failed prerequisites |
-| **PR-01** | Map data/compiler, terrain and battlefield edge | YAML→JSON, dry ground, real water, tree trunk cover/LOS, ramps, starter spawns, four hard square bounds + floating habitat frame/skybox, geometry validator and `FRAME-01`–`FRAME-10` fixtures |
+| **PR-00** | Preserve existing Godot-native menu/game/camera spike | `bash scripts/check.sh` imports Godot and exercises `apps/game/tests/smoke.gd` and menu smoke; record actual passed and blocked checks |
+| **PR-01** | Compile mandatory floating-platform map and hard boundaries | YAML→JSON using map manifest v0.3, reject missing/nonplatform frame, author brown-soil jungle deck, real water, fixed trees, ramps and source IDs, draw visible rim/underside/stars, guard all four sides and pass `FRAME-01`–`FRAME-12` plus map fixtures |
 | **PR-02** | Actor template registry and basic orders | Spawn MAN/ETH mother, 3 MIN, Hero; selection, Move, Stop; building-class tags and counters |
 | **PR-03** | SOLID harvest and deterministic economy | Source depletion, worker cargo, real MAN depot, ETH Nexus deposit/conversion, Matter ledger and end-state replay |
 | **PR-04** | MAN basic playable loop | UMU packed/deployed, local hybrid cable, MAN scaffold, real crate supply, barracks + Rifleman, energy support |
@@ -150,5 +151,5 @@ Keep future interfaces data-defined where cheap but don't implement unapproved p
 - The current map YAML terrain corridors may fail geometric clearance; validator must measure, not trust the route text or guessed resource-stock total.
 - Exact Energy generator input mechanism and usage rates, Pylon per-link bandwidth, UMU Bunker tradeoff, Hero ability and production prices remain playtest candidates. Implement as tunable data with complete ledger, not fabricated numbers presented as approved.
 - Future topology: provide `planar` runtime with an explicit discriminated map type and an early `spherical` unsupported guard. Don't tie every physics function to planar X/Z in ways that require complete rewrite.
-- Existing ADR-0002 was written before current launcher artifacts were committed; source code reality overrides historical "not shipped yet" statement.
+- ADR-0002 describes historical launcher consideration. Current Godot-only `readme.md` is authoritative; do not implement/revive Tauri.
 - Preserve the established 5-view/mirrored sprite renderer and existing test; do not substitute a second 2D world just to simplify map combat.
