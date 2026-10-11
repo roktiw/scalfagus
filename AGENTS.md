@@ -1,5 +1,12 @@
 # SCALFAGUS — Coding-Agent Contract
 
+## CURRENT RELEASE GATE — DEC-033 current micro-MVP (supersedes old MAN+ETH first-MVP plan)
+
+**Implement ONLY the MAN-vs-MAN classic RTS for MVP 0.1, with two player slots and all three combinations H-H / H-C / C-C.** Human-Human requires two Godot clients over LAN or loopback and an authoritative host; computer players use the same commands. C-C runs headless/accelerated or in observer mode. The roster for this first release is **Command Core / MIN worker / Barracks / Rifleman**; initial Matter-only finite-gather economy, one floating-space-platform Verdant Divide map, combat and full building-elimination victory. **NO FPP/TPP gameplay, ETH/ORG, MAN UMU/power networks, Hero progression or advanced resources in this micro-MVP.** Preserve the existing three-camera prototype/smoke for safety; do not advertise or enhance it as an MVP deliverable. Future product FPP remains DEC-031. Do not infer that the new scope has been implemented.
+
+**Authoritative agent reading order:** [DEC-033 in decisions](design/decisions.yaml) → [micro MVP design](design/mvp0-man-mirror-rts-2026-10-11.md) → [micro MVP YAML](design/mvp0-man-mirror-rts.yaml) → [micro MVP agent backlog](design/mvp0-man-mirror-backlog.yaml) → [micro MVP executable acceptance targets](design/mvp0-man-mirror-acceptance.yaml) → [Godot headless balance lab](design/godot-headless-balance-lab-2026-10-11.md). The older two-faction `MVP-DELIVERY-GATES.md` and `mvp-implementation-backlog.yaml` are **post-MVP history**, NOT the current execution queue.
+
+
 **Current architecture: Godot 4.7.2 Standard / GDScript, one native window, one authoritative 3D world.** No Tauri, Rust, Vite, WebView or second launcher. Godot already has a menu, a Hero actor, and F1 RTS / F2 Direct / F3 FPS camera spike. It does **not yet** have the full playable RTS mechanics. Do not overwrite or re-bootstrap the project from scratch.
 
 **Most important latest owner decision (DEC-030): EVERY PLAYABLE SCALFAGUS MAP IS A FLYING PLATFORM IN OUTER SPACE.** This is mandatory for all maps, not an optional aesthetic preset. Soil with jungle trees, welded metal patchwork, rocks, sand, marshland or mixed materials may cover the platform, but the world always visibly has a space-facing rim/underside and a cosmic exterior. No ordinary planet-surface playable map. In MVP, the surface is a bounded planar **64×64 candidate square** with real elevation/ramps, invisible hard outer walls, a visible space-platform edge, one gameplay ground deck and uniform gravity. The platform does NOT physically move during matches; its backdrop planet/stars are noninteractive.
@@ -15,7 +22,7 @@
 7. **Executable tests to write:** [design/mvp-man-eth-acceptance.yaml](design/mvp-man-eth-acceptance.yaml), [design/battlefield-frame-acceptance.yaml](design/battlefield-frame-acceptance.yaml). These YAML files are design fixtures, NOT tests that have already passed.
 8. **Historical comparisons only:** [design/floating-platform-battlefields-2026-10-11.md](design/floating-platform-battlefields-2026-10-11.md) previously treated flying platforms as optional; [design/planetary-map-topology-2026-10-11.md](design/planetary-map-topology-2026-10-11.md) considered real spheres. **DEC-030 supersedes those alternatives.**
 
-## Frozen playable MVP boundaries
+## Historical two-faction slice (after MVP 0.1; NOT first playable release)
 
 - Exactly **two playable factions**, MAN and ETH, each initially: mother/HQ, MIN worker, basic soldier, infrastructure (MAN **UMU** / ETH **Pylon/Obelisk**), barracks. Hero reuses a soldier-based actor and preserves the SAME entity ID/HP/cooldowns across F1/F2/F3.
 - First battlefield = **Verdant Divide**: stationary **floating jungle deck in space**, brown fertile earth, trees with real solid-trunk line-of-sight and movement blocking, freshwater ponds/streams (nonharvestable), two starts, authored paths and scattered finite SOLIDS.
@@ -38,7 +45,7 @@ bash scripts/dev.sh --editor            # native Godot IDE
 ```
 On macOS `bash scripts/bootstrap.sh` installs/validates the pinned official Godot binary; on other OS set `GODOT_BIN` to the installed compatible Godot. Check actual code/project/scripts before assuming an API or executable. Never claim tests passed if not run.
 
-## Implementation order and quality bars
+## Historical MAN+ETH implementation order (after micro MVP)
 
 - **G0** inspect current game and preserve existing Hero / 5-direction renderer / menu tests.
 - **G1** validate and compile mandatory **space-platform** YAML into runtime terrain: brown soil, water, fixed tree trunk cover, ramps, stable spawn/SOLIDS, visible rim/underside/starfield and four impenetrable bounds; **reject** missing or classic planetary-surface framing.
