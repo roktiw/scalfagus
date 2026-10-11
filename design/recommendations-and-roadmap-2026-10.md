@@ -79,7 +79,7 @@ No mandatory individual hunger/morale cycle; no large catalog of crafting reagen
 
 Before numerical tuning, implement three **faction-specific construction site
 state machines**, with the **current experimental** caps
-**ORG 3→2→1** cocoon tenders, **MAN 2→1→3** physical assemblers,
+**ORG 3→2→1** cocoon tenders, **MAN 1→2→2** physical assemblers,
 and **ETH 1→2→3** network channelers across 0–33%,
 33–66% and 66–100%. Test ORG interrupted incubation decay, MAN persistent
 unfinished structures and rival salvage, and ETH progress-reset with
@@ -89,7 +89,7 @@ after interruption; no claim of achieved balance. Do not enable the
 proposed optional ORG worker-consumed finalization automatically.
 
 See [asymmetric construction specification](construction-incubation-assembly-resonance-2026-10-11.md)
-and [staged configuration](construction-phases.yaml). Retain MAN **2→3→1** as a separate alternative for A/B simulator comparison, and retain historical 1→2→3 (MAN) / 1→3→2 (ETH) results only as candidates, never as the current default.
+and [staged configuration](construction-phases.yaml). Retain MAN **2→1→3** and **2→3→1** as historical alternatives for A/B simulator comparison; original 1→2→3 (MAN) / 1→3→2 (ETH) remain historical only. Measure construction vs outpost mobility and startup investment rather than presuming the cap creates fairness.
 
 ## Questions needing future approval
 Winning condition and map roster for MIN; mandatory features vs custom toggles; starting income and pace; choice of engine after benchmark; MAX time controls and save policy; definitive roadmap scope and estimates.
