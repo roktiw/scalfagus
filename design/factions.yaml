@@ -27,6 +27,8 @@ factions:
     gameplay_direction:
       - evolving_biological_units
       - rapid_aggressive_expansion
+      - continuous_multi_lane_pressure
+      - concentrated_biomass_connected_bases
     lore: >-
       A predatory civilization of adaptive organisms whose living
       infrastructure evolves through competition and resource consumption.
@@ -50,6 +52,8 @@ factions:
     gameplay_direction:
       - combined_arms
       - tactical_flexibility
+      - dispersed_modular_outposts
+      - intelligence_driven_specialized_strike_groups
     lore: >-
       A civilization of inventive colonists balancing individual freedom,
       coordinated defense and experimental engineering.
@@ -73,6 +77,8 @@ factions:
     gameplay_direction:
       - energy_manipulation
       - high_value_specialist_units
+      - fortified_homeworld_reconstruction
+      - preserve_core_base_until_late_game
     lore: >-
       An ancient civilization that unites scientific insight with
       ecological symbiosis and technologies based on resonance and energy.
@@ -81,3 +87,106 @@ legal_notes:
   - MTG color combinations are design references, not an affiliation with Wizards of the Coast.
   - Do not redistribute Blizzard or Wizards of the Coast copyrighted artwork or lore.
   - Create independent silhouettes, symbols, names and gameplay identities.
+
+default_playstyles:
+  note: >-
+    Default strategic identities, not exclusive faction restrictions.
+    Skilled players may pursue rush, expansion, turtle, harassment,
+    attrition, or tech strategies with any faction.
+  blergians:
+    default_archetype: relentless_biomass_pressure
+    primary_power_window: early
+    tempo: continuous_aggression_from_early_game
+    offensive_pattern:
+      primary: massive_continuous_assault_stream
+      optional_lanes: [2, 3]
+      approach: reinforce_pressure_while_mutating_and_scaling
+    territorial_pattern: concentrated_clustering
+    satellite_base_dispersion: low
+    base_network:
+      requires_biomass_connection: proposed
+      biomass_generated_by_structures: true
+      role: organic_connectivity_and_operational_support
+      interruption_counterplay: proposed
+    preferred_assets:
+      - swarm_production
+      - irreversible_combat_mutations
+      - connected_biomass_territory
+    strengths: [initiative, attrition, early_expansion, continuous_reinforcement]
+    risks: [predictable_attack_lanes, vulnerable_biomass_links, irreversible_investments]
+  manusians:
+    default_archetype: distributed_tactical_modularity
+    primary_power_window: mid
+    tempo: information_driven_precision
+    offensive_pattern:
+      primary: cohesive_specialized_strike_groups
+      emphasis: [reconnaissance, timing, combined_arms, modular_counterplay]
+    defenses: [light_fortifications, bunkers, screening]
+    territorial_pattern: widely_dispersed_outposts
+    satellite_base_dispersion: high
+    expansion:
+      - modular_deployable_structures
+      - airborne_deployable_structures
+      - reusable_building_modules
+    preferred_assets: [scouting, bunkers, flying_constructs, hot_swappable_modules]
+    strengths: [mobility, surprise, flexible_responses, distributed_map_control]
+    risks: [isolated_outpost_raids, supply_chain_interdiction, high_tactical_attention]
+  aetherians:
+    default_archetype: fortified_homeworld_ascension
+    primary_power_window: late
+    tempo: cautious_exploration_and_defensive_development
+    offensive_pattern:
+      primary: decisive_advanced_force_after_technology_advancement
+      emphasis: [survival, positional_control, energy_accumulation]
+    territorial_pattern: core_base_plus_moderately_separated_satellites
+    satellite_base_dispersion: medium
+    core_base:
+      fantasy: reconstruct_the_homeworld_as_a_living_sanctuary
+      preservation_priority: very_high
+      roles: [fortification, technology, resonance, energy_storage]
+    preferred_assets: [layered_defenses, shields, advanced_units, meditation]
+    strengths: [strong_defensive_position, advanced_late_game_units, energy_specialization]
+    risks: [early_pressure, core_base_dependency, costly_slow_transformations]
+strategic_counterplay:
+  - Baseline power windows must not become guaranteed victory windows.
+  - Every faction must have viable early, mid, and late strategies.
+  - Early Blergian pressure needs defensive and economic counters.
+  - Dispersed Manusian outposts must be vulnerable to raids and disrupted logistics.
+  - An entrenched Aetherian core must have vulnerabilities to siege, containment, or resource denial.
+  - Biomass connectivity must not make Blergian mobility or expansion impossible.
+  - Flying Manusian expansion must honor specialist deployable-unit restrictions.
+  - Aetherian homeworld reconstruction describes a faction fantasy, not an automatic map-wide terrain overwrite.
+creative_influences:
+  status: moodboard_only_not_licensed_content
+  shared:
+    - source: Warhammer 40000
+      inspiration: [grimdark_scale, monumental_warfare, civilizational_stakes, imposing_architecture]
+      exclusions: [names, insignia, factions, characters, specific_designs, lore]
+    - source: Prometheus
+      inspiration: [ancient_alien_ruins, unsettling_biotechnology, existential_mystery, monumental_emptiness]
+      exclusions: [engineers, recognizable_props, named_locations, storylines]
+  blergians:
+    - source: Alien
+      inspiration: [predatory_organic_ecology, claustrophobic_hives, architectural_biomass, visceral_mutation]
+      exclusions: [xenomorph_anatomy, facehuggers, eggs_as_signature_art, franchise_names]
+    - source: Warhammer 40000
+      inspiration: [overwhelming_war_scale, relentless_attrition]
+      exclusions: [tyranid_visual_identity, named_units, iconography]
+  manusians:
+    - source: Warhammer 40000
+      inspiration: [field_fortifications, expeditionary_military_scale, industrial_density]
+      exclusions: [imperium_symbols, space_marine_armor, recognizable_units]
+    - source: Prometheus
+      inspiration: [exploration_tension, advanced_field_equipment]
+      exclusions: [recognizable_vehicles, ships, props]
+  aetherians:
+    - source: Predator
+      inspiration: [ritualized_advanced_hunting, heightened_senses, stealth, technological_superiority]
+      exclusions: [yautja_anatomy, masks, wrist_blades, shoulder_cannons, signature_symbols]
+    - source: Prometheus
+      inspiration: [ancient_knowledge, bioengineering_mystery, enigmatic_ceremonial_spaces]
+      exclusions: [engineer_anatomy, recognizable_architecture, franchise_lore]
+  originality_rules:
+    - All silhouettes, terminology, worldbuilding, artwork, audio, and faction symbols must be original.
+    - References guide emotional tone and high-level design, never copy franchise-specific execution.
+    - Third-party imagery requires separate licensing; no unlicensed assets committed.
