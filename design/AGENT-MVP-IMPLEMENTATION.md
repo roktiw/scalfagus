@@ -3,7 +3,7 @@
 Date: 2026-10-11
 Status: **implementation tasking / documentation, not a claim that code is complete or tests have passed**.
 Owner-directed scope: **2 races MAN and ETH; 5 base roles each; only surface SOLID resource harvesting; jungle ground-only map with real liquid terrain; all-building victory**.
-Current default topography: **PLANAR**, with `spherical` an explicitly **NOT IMPLEMENTED** future topology option.
+Current default topography: **PLANAR**, bounded by physical invisible guard walls. DEC-029 proposes a *floating space-platform jungle frame* above a starfield/distant planet. It is the same game map, not spherical or airborne gameplay. Read [flying battlefield spec](floating-platform-battlefields-2026-10-11.md), [frame data](battlefield-frames.yaml), [frame acceptance](battlefield-frame-acceptance.yaml). The entire world platform is stationary during each MVP match. True `spherical` is **NOT IMPLEMENTED**.
 Detailed index: [MVP contract](mvp-man-eth-jungle-vertical-slice-2026-10-11.md), [world/map design](world-environments-and-map-authoring-2026-10-11.md), [planet alternative](planetary-map-topology-2026-10-11.md).
 
 ## 0. Repository reality — do NOT regenerate or overwrite functioning work
@@ -62,6 +62,7 @@ MAN UMU is physically moveable over ground and must **still count for victory du
 
 Authoritative new components/classes (proposed GDScript files; exact names flexible if consistent):
 - `GameState.gd`: fixed tick, stable entity IDs, team ownership, game phase, event queue, resource ledger, victory check, replay snapshot hash.
+- `BattlefieldFrameRenderer.gd` / `WorldBoundary.gd` (proposed): draw visible space platform rim/underside/background noninteractively, and enforce one authoritative impassable four-sided boundary for every unit, Hero and packed UMU. Never permit building/loot outside the square, or count a neutral platform as the last faction building.
 - `MapManifestLoader.gd`: accepts validated compiled JSON or parse YAML through **TypeScript build tool**; Godot runtime need not implement a YAML parser. Build-time YAML→canonical JSON is recommended. Pin compiler schema version.
 - `WorldTopology.gd`: currently **planar-only** wrapper for tile->world, local up, legal neighbors, LOS/travel; throw explicit unsupported error if requested `spherical`. Do not implement globe by drawing a sphere beneath flat physics.
 - `ResourceSource.gd` and `ResourceLedger.gd`: finite solid deposits; source debit, worker carried cargo, MAN physical storage or ETH Nexus conversion; exactly one custody owner for each packet.
@@ -101,6 +102,8 @@ Map compiler should:
 - Seed cosmetic grass/ferns without affecting game outcome.
 - Compile deterministic map data & hash; replay stores `map_id`, `version`, `topology`, `seed`, `schema`, `resolved_hash`.
 
+**DEC-029 boundary requirement:** the map is a finite flat square with a collidable invisible guard and a proposed flying-habitat aesthetic. The sky planet/space backdrop is not navigation or terrain. A map-frame visual switch must leave pathing, LOS, resources, victory and deterministic replay untouched. See `FRAME-01`–`FRAME-10` test fixtures.
+
 **Important:** The authored first YAML map contains *route intent hints*, not guaranteed navigable roads. The game/validator must detect and report any blockers, unreachable nodes or invalid ramp joins. The sample source-stock sum must be checked from nodes, not trusted from a handwritten total.
 
 ## 5. Timeline expressed as implementable, independently testable changes
@@ -108,7 +111,7 @@ Map compiler should:
 | Order | Pull request / vertical-slice task | Files/components / measurable DONE |
 |---|---|---|
 | **PR-00** | Preserve existing Godot/Tauri spike + golden smoke | `npm run check` and existing `apps/game/tests/smoke.gd` still pass; record exact base commit and any failed prerequisites |
-| **PR-01** | Map data/compiler and terrain | YAML→JSON, dry ground, real water, tree trunk cover/LOS, ramps, starter spawns, geometry validator and test fixtures |
+| **PR-01** | Map data/compiler, terrain and battlefield edge | YAML→JSON, dry ground, real water, tree trunk cover/LOS, ramps, starter spawns, four hard square bounds + floating habitat frame/skybox, geometry validator and `FRAME-01`–`FRAME-10` fixtures |
 | **PR-02** | Actor template registry and basic orders | Spawn MAN/ETH mother, 3 MIN, Hero; selection, Move, Stop; building-class tags and counters |
 | **PR-03** | SOLID harvest and deterministic economy | Source depletion, worker cargo, real MAN depot, ETH Nexus deposit/conversion, Matter ledger and end-state replay |
 | **PR-04** | MAN basic playable loop | UMU packed/deployed, local hybrid cable, MAN scaffold, real crate supply, barracks + Rifleman, energy support |
@@ -137,7 +140,7 @@ Minimum fail-fast invariants:
 
 ## 7. Backlog cut line / don't implement yet
 
-Not in first MAN vs ETH release: ORG playable, ORG mitochondria/veins, liquid mining or pumps, gas collectors, aerial/naval combat, many soldiers or advanced tech tiers, complete destructible forest, marketplace, multiplayer server, AI-LLM agent runtime, detailed weather seasons, realistic fluid physics, custom authoring GUI, procedural **strategic** multiplayer map generator, fully functioning actual spherical planet, alternate Heartstrike scenario.
+Not in first MAN vs ETH release: moving the entire space platform, orbital travel and management, falling off or flying beyond the battlefield edge, ORG playable, ORG mitochondria/veins, liquid mining or pumps, gas collectors, aerial/naval combat, many soldiers or advanced tech tiers, complete destructible forest, marketplace, multiplayer server, AI-LLM agent runtime, detailed weather seasons, realistic fluid physics, custom authoring GUI, procedural **strategic** multiplayer map generator, fully functioning actual spherical planet, alternate Heartstrike scenario.
 
 Keep future interfaces data-defined where cheap but don't implement unapproved physics. Explicitly preserve the product's future natural domains MAN Earth, ETH Air, ORG Water.
 
