@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 2.1
+version: 2.2
 decisions:
   - id: DEC-001
     status: approved
@@ -536,6 +536,45 @@ decisions:
     specification: design/floating-platform-battlefields-2026-10-11.md
     data_specification: design/battlefield-frames.yaml
     example_map: design/mvp-verdant-divide-map.yaml
+  - id: DEC-030
+    status: owner_approved_universal_world_rule_supersedes_DEC_029_optionality
+    topic: every_playable_battlefield_is_floating_space_platform_regardless_of_surface_material
+    resolution: >-
+      EVERY Scalfagus playable map must be a finite independent FLYING
+      PLATFORM in outer space. No classical playable planetary-surface
+      maps exist as an alternate frame. Surfaces may be real brown
+      earth with jungle trees, patchwork industrial metal, rock,
+      desert, wetlands, ruins or mixed original terrain materials.
+      The platform always has a visible rim and outer-space surroundings.
+      For MVP its gameplay map is a bounded flat 64x64 candidate square
+      with a hard invisible collision wall on all sides, uniform
+      gravity, one traversable deck and no movement/falling beyond the
+      edge. The underlying game-world topology is planar and all actors
+      use the same authoritative world/physics across RTS, Direct and FPS.
+      A distant planet is backdrop only, not the battlefield.
+    implementation_required: >-
+      Require battlefield_frame.variant=floating_space_platform in the
+      map manifest for every playable level, and reject missing or
+      bounded_planetary_surface variants. Separate immutable platform
+      identity from variable surface material palette and the authored
+      tactical colliders, liquid bodies, spawns and resource sources.
+      The platform/rim is neutral world terrain, never an enemy
+      victory-building. A floating platform is not a flying combat unit.
+      No gameplay orbit physics, interplanetary travel, platform motion,
+      ships/aircraft, drop-off death or multi-deck travel in MVP.
+    supersedes: >-
+      DEC-029's proposed optional floating-space-platform mode and
+      remaining support for ordinary bounded planetary surface as a
+      selectable playable map. Older discussions about genuine
+      spherical planetoids remain archived research only, not an
+      alternative to the universal flying platform doctrine.
+    specification: design/space-platform-world-contract-2026-10-11.md
+    frame_data: design/battlefield-frames.yaml
+    surface_presets: design/platform-surface-presets.yaml
+    example_map: design/mvp-verdant-divide-map.yaml
+    map_format: design/map-authoring-format-v0.1.yaml
+    coding_agent_plan: design/AGENT-MVP-IMPLEMENTATION.md
+    acceptance: design/battlefield-frame-acceptance.yaml
 migration_required:
   - design/economy.yaml
   - design/resources.yaml
