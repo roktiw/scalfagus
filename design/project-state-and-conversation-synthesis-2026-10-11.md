@@ -42,8 +42,12 @@ This synthesis is an index only; [decisions.yaml](decisions.yaml) and
 
 The owner proposed three distinct stage-worker capacity profiles across
 0–33%, 33–66%, 66–100% progress:
-**ORG 3→2→1 cocoon caretakers**, **MAN 1→2→3 on-site assemblers**,
-**ETH 1→3→2 visible NETWORK channelers**.
+**ORG 3→2→1 cocoon caretakers**, **MAN 2→1→3 on-site assemblers**,
+**ETH 1→2→3 visible NETWORK channelers**.
+The older MAN 1→2→3 and ETH 1→3→2 were superseded as **working
+proposals**, not as approved balance rules. MAN **2→3→1** is an open
+alternative to 2→1→3; the assistant favors 2→1→3 for a frame/core/assembly
+rhythm, pending player tests.
 Their losses differ: ORG neglected cocoon decays, MAN paused worksite
 persists and can be salvaged by any faction if exposed/destroyed,
 ETH full mandatory-link loss zeroes construction progress but returns
