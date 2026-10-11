@@ -1,5 +1,13 @@
 # SCALFAGUS — Coding-Agent Contract
 
+## P0 CODE-TO-RULE PARITY BLOCKERS (new source inspection)
+
+**Before tuning bot results or calling `mirror_batch.gd` balanced**, review [current map/timing/network gaps](design/mvp0-runtime-parity-gaps.md) and [machine list CODE-GAP-01..15](design/mvp0-runtime-parity-gaps.yaml). The experimental `mirror_match_state.gd` uses **2500** hard-coded source units, `MAX_TICKS=5400` and mining a full bag in 6 ticks; canonical authored Verdant Divide uses **1660** source units. The GUI `mirror_view.gd` currently advances at **10Hz** while the intended candidate simulator is **20Hz**, so simulation time, gathering, training and rifle ranges need normalization. New test scripts have not been verified by this audit. H-H ENet authority is still a release blocker.
+
+**Load ONE first-release numeric candidate:** [mvp0-agent-implementation-contract.yaml](design/mvp0-agent-implementation-contract.yaml) is the current selected source under [agent-source-of-truth.yaml](design/agent-source-of-truth.yaml). The additional [micro-MVP analytical profile](design/mvp0-man-mirror-balance-v0.1.yaml) and its [numeric scenario tests](design/mvp0-man-mirror-balance-acceptance.yaml) are **alternative experiments**; do not blend their differing worker speeds/build radii into runtime or claim tests pass. The [LAN authority protocol](design/mvp0-man-mirror-network.yaml) and [micro execution semantics](design/mvp0-man-mirror-execution-contract.md) provide detailed implementation help without adding ETH, UMU, Energy or FPP to MVP0.
+
+
+
 ## MANDATORY REUSE-FIRST ENGINEERING POLICY — DEC-034
 
 **Every coding agent MUST search existing Scalfagus components, built-in Godot 4.7.2 APIs, and audited GitHub/AssetLib modules BEFORE implementing a generic subsystem.** Prefer existing wrappers, then thin adapters to engine primitives, then pinned and license-reviewed third-party modules, then only unique game-domain logic. GitHub availability alone is NOT approval: source, license, immutable commit, Godot 4.7.2 compatibility, macOS/Windows/Linux/Web support, authority/security, actual tests and rollback must be checked. **No arbitrary plugins, floating dependency branches, runtime auto-downloads, or self-written standard A*, physics, keybind framework, GUI layout, generic FSM or networking transport.**
