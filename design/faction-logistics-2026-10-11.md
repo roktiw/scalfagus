@@ -38,7 +38,7 @@ Canon on other axes remains intact:
 | Enemy response | Ambush and intercept the loaded mother | Cut/congest belts and attack splitters | Destroy/jam hubs and force longer routes |
 | Fantasy | Living economy with giant circulating beasts | Factorio-like industrial machine | Settlers-like handoff network with resonance technology |
 
-## ORG / Organites — mother transports and continuous in-motion loading
+## ORG / Organites — stop-and-transfer baseline, moving handoffs through research
 
 **Owner-updated core mechanic (DEC-011):** workers load/unload a giant mother with **one physical item per completed handoff, one worker at a time**, using a single basic transfer port. The unupgraded mother runs mutually exclusive **MOVE, RECEIVE, DISPATCH, EXTRACT** modes: it flies between endpoints, but stops/holds position for loading and unloading. Flying handoffs are a mid-game researched capability; limited parallel worker ports are a further late-game upgrade. Previous starting-game moving handoffs are superseded.
 
@@ -156,7 +156,7 @@ MAN belt throughput is bounded by producer, slowest belt edge/junction and consu
 
 **Phase 0 — deterministic base:**
 - Three resources/inventories, extractor, depot, common reservation and transfer events; finite buffers, transfer geometry, capacity and interruption.
-- Three adapters in one headless match simulator: ORG mother loop + rolling load/unload, MAN physical belt with a destructible junction, ETH courier service between static pylons.
+- Three adapters in one headless match simulator: ORG mother loop with one-port stop-and-load/stop-and-unload, MAN physical belt with a destructible junction, ETH courier service between static pylons. Research-gated ORG moving handoffs belong to a later prototype phase.
 - Equal map/deposit layouts and controllable rates; instrument delivery and lost cargo; baseline 1v1 target remains 25–40 minutes as a later match-level goal.
 
 **Phase 1 — faction decisions:**
@@ -165,7 +165,7 @@ MAN belt throughput is bounded by producer, slowest belt edge/junction and consu
 - ETH direct delivery vs single-pylon route vs mesh of 3 pylons; attacks against high-betweenness hub and rerouting.
 
 **Phase 2 — doctrines and map complexity:**
-- Prove viable Swarm/Giant/Symbiosis; Belt/Rail/Automation; Relay/Mesh/Phase **as experimental branches**; do not presume Rail and teleport approved.
+- Prototype and test ORG mid-game moving handoffs and late-game limited multiport loading, then evaluate Swarm/Giant/Symbiosis; Belt/Rail/Automation; Relay/Mesh/Phase **as experimental branches**; do not presume Rail and teleport approved.
 - Add island transport, long-distance routes, drifting asteroid docking, congested chokepoints and terrain effects.
 - Validate costed performance with simulations and competitive playtests; do not lock in arbitrary capacities yet.
 
@@ -173,8 +173,8 @@ MAN belt throughput is bounded by producer, slowest belt edge/junction and consu
 
 | ID | Situation | Must hold |
 |---|---|---|
-| LOG-F01 | ORG mother passes loading zone without stopping | Worker transfers cargo only while geometrically and temporally in range, at finite rate |
-| LOG-F02 | ORG mother passes base unloading zone | Cargo enters base inventory only through compatible finite-capacity unloading, without forced stop |
+| LOG-F01 | Unupgraded ORG mother reaches pickup zone | It stops/holds position, serves exactly one worker and one item per handoff; others queue. An in-motion handoff is rejected unless unlocked |
+| LOG-F02 | ORG mother delivers to base | Without upgrade it stops and dispatches one item per handoff; with moving-handoff research it may dispatch during flight but still through one port |
 | LOG-F03 | ORG mother destroyed mid-loop | Carried cargo follows explicit drop/loss policy; no duplication or invisible base delivery |
 | LOG-F04 | Multiple ORG mothers share workers | Contention, queueing, occupancy and route overlap remain deterministic |
 | LOG-F05 | MAN belt broken between source and destination | Delivery on that route ceases, input buffers back up and supply downstream declines |
@@ -199,6 +199,6 @@ MAN belt throughput is bounded by producer, slowest belt edge/junction and consu
 
 ## Decision precedence
 
-**Approved owner directions as of 2026-10-11:** distinct ORG mobile biological cargo scaling with continuously loaded/unloaded mother transporters on loops; MAN fast complex conveyors vulnerable to route interdiction; ETH mobile couriers using stationary pylons as logistical handoff hubs; distinct logistics as foundations of three economic identities; player agency within faction paradigm.
+**Approved owner directions as of 2026-10-11:** distinct ORG mobile biological cargo scaling, one-item one-worker-at-a-time MID/MAX transfers and unupgraded mother modes that are mutually exclusive (move/receive/dispatch/extract); moving load/unload and parallel-port upgrades unlock later. MAN fast complex conveyors vulnerable to route interdiction; ETH mobile couriers using stationary pylons as logistical handoff hubs. Faction logistics establishes three economic identities, with player agency within each paradigm.
 
 **Design proposals rather than approved detailed mechanics:** specific doctrine trees, emergency truck/Rail paths, Phase teleportation, numeric performance coefficients, cargo-on-death rules and queue algorithms. These should be exposed as open decisions, not quietly converted to canon.
