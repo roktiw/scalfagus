@@ -3,7 +3,10 @@ project: scalfagus
 release: mvp_0_1
 profile_id: man_mirror_verdant_divide_first_playtest
 version: 0.1
-status: candidate_numbers_analytically_sanity_checked_NOT_owner_approved_or_match_validated
+status: supplementary_analytical_scenario_NOT_active_release_profile_NOT_owner_approved_or_tested
+active_micro_release_numeric_source: design/mvp0-agent-implementation-contract.yaml
+known_candidate_differences_from_active_draft: [worker_speed_2p4_vs_2p3_tiles_s, build_radius_18_vs_draft_9_tiles, mining_cycle_loading_0p5_vs_draft_0p7_s]
+do_not_load_this_file_automatically_for_mvp0: true
 OWNER_release_decision: DEC-033
 scope_contract: design/mvp0-man-mirror-rts.yaml
 runtime_contract: design/mvp0-man-mirror-execution-contract.md
