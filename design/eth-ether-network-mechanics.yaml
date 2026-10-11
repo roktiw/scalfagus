@@ -1,9 +1,12 @@
 schema_version: 1
 project: scalfagus
-version: 0.1
+version: 0.2
 status: owner_approved_concept_with_proposed_deterministic_protocol_and_tbd_balance
 decision: DEC-018
-contract: design/three-faction-network-and-infrastructure-contract-2026-10-11.md
+contract: design/three-network-channels-and-destruction-2026-10-11.md
+precedence: DEC-021_supersedes_earlier_two_graph_model_and_DEC-022_supersedes_source_refund
+loot_contract: design/world-loot-and-recycling.yaml
+world_victory_rule: design/victory-defeat-building-classification-2026-10-11.md
 related_canon: [DEC-001, DEC-012, DEC-013, DEC-015, DEC-016]
 faction: eth
 supersedes:
@@ -53,7 +56,7 @@ pylon_obelisk:
     blueprint_request_relay: true
     support_capacity: true
     typed_ether_storage: true
-    typed_ether_freight_service_only_in_storage_relay: true
+    typed_ether_freight_service_via_same_backbone_but_mode_restricted: true
   states:
     storage_relay:
       knowledge_signal_forwarding: true
@@ -65,20 +68,24 @@ pylon_obelisk:
       time_and_energy_spend: positive_TBD
       knowledge_signal_forwarding: true
       reserves_and_inventory_retained: true
-      local_storage_write_and_ether_transit: false
+      local_storage_write: false
+      ether_transit: reduced_or_buffered_proposed
       turret_weapon_active: false
     turret:
       knowledge_signal_forwarding: true
       resonance_support_cap_retained: true
       reserves_and_inventory_retained: true
-      local_storage_write_and_ether_transit: false
+      local_storage_write: false
+      ether_transit: reduced_proposed
+      signal_information_and_support_relay_remain_on_same_network: true
       turret_weapon_active: true
       weapon_uses_bounded_cooldown_or_real_energy: true
     meditate_to_storage_relay:
       time_and_energy_spend: positive_TBD
       knowledge_signal_forwarding: true
       reserves_and_inventory_retained: true
-      local_storage_write_and_ether_transit: false
+      local_storage_write: false
+      ether_transit: reduced_or_buffered_proposed
       turret_weapon_active: false
   competing_balance_variant:
     turret_reduced_freight_transit_but_no_local_courier_intake: experiment_not_approved
@@ -97,33 +104,24 @@ nexus:
   local_blueprint_cache: true
   bootstrap_new_outpost_once: true
   full_turret_ability_by_default: false
-graphs:
-  one_physical_network_topology_with_two_logical_permissions: true
-  control_knowledge_support:
-    eligibility: live_connected_valid_signal_nodes
-    pylon_turret_remains_signal_connected: true
-    throughput: finite_or_TBD
-    initialized_subgraph_continues_known_blueprints_when_home_disconnected: true
-  ether_freight:
-    eligibility: active_storage_relay_or_nexus_with_open_ether_ports
-    per_link_bandwidth: positive_finite_TBD
-    per_node_service_rate: positive_finite_TBD
-    per_node_storage_capacity: finite
-    per_link_latency: nonzero_TBD
-    pathfinding: deterministic_valid_connected_path
-    no_global_instant_wallet: true
-    turret_and_meditation_closed_ports_split_freight_components: proposed_default
-  support_cap:
-    counted_by_connected_initialized_local_authority: true
-    unit_and_structure_demand_finite: true
-    supply_capacity_not_currency: true
-    no_new_unit_allocation_if_over_cap: true
-    existing_units_not_instantly_deleted: true
+network:
+  topology: one_unified_connected_relay_graph
+  services_on_same_edges: [typed_resource, energy, knowledge_information, resonance_support]
+  finite_aggregate_link_capacity: true
+  finite_node_bandwidth_and_storage: true
+  one_visible_connected_structure: true
+  pylon_turret_stays_connected_to_same_network: true
+  pylon_turret_resources_relay_at_reduced_rate: proposed
+  storage_mode_allows_local_stock_intake_output: true
+  turret_disables_local_physical_courier_loading: proposed
+  no_remote_instant_global_wallet: true
+  locally_initialized_nexus_retains_known_blueprints_on_partition: true
+  separate_mandatory_control_and_freight_graphs: false
 equalization:
   owner_goal: even_distribution_of_stored_resources_across_connected_ether_nodes
   default_algorithm_status: recommended_for_playtest_not_numeric_canon
   per_resource_id_independent: true
-  per_freight_connected_component: true
+  per_ether_network_connected_component: true
   equilibrate_by: proportional_fraction_of_usable_resource_capacity
   if_equal_capacity: equal_absolute_amount_per_node_after_convergence
   formula: target_i_r_equals_component_unreserved_r_times_capacity_i_r_div_sum_capacities_r
@@ -141,15 +139,19 @@ equalization:
 transaction_contract:
   transfer_id_unique: true
   one_debit_and_one_credit_per_completed_hop: true
-  reserved_source_remains_custodian_until_completed_hop: true
-  no_separately_owned_in_flight_edge_inventory_in_mvp: true
-  cut_before_hop_acknowledgement_cancels_and_unlocks_source_reservation: true
+  reserved_source_stays_source_until_edge_escrow_accepted: true
+  then_edge_escrow_exclusively_owns_undelivered_packet: true
+  on_link_break_edge_packet_physically_spills_as_eth_orb_with_explicit_damage_loss: true
+  edge_spill_does_not_also_return_same_packet_to_source: true
   resource_source_conservation_invariant: true
   committed_consumption_cannot_be_refunded_twice: true
   funds_reserved_in_subnet_and_routed_to_valid_local_building_receiver: true
   construction_requires_valid_blue_beam_in_addition_to_resources: true
   progress_lost_when_last_required_beam_fails_as_owner_proposed: true
-  resource_refund_from_interrupted_building_respects_current_partition: true
+  interruption_ejects_all_actually_committed_material_inputs_as_world_orbs_at_site: true
+  previously_consumed_operating_energy_not_refunded: true
+  remote_reservations_not_delivered_to_site_remain_at_actual_network_node: true
+  no_double_source_account_refund: true
 partition:
   graph_recomputed_on: [link_break, structure_death, legal_movement, port_mode_change, connectivity_obstruction]
   component_inventory_equals_exact_sum_of_its_actual_node_balances: true
@@ -160,6 +162,8 @@ partition:
   locally_cached_blueprints_still_usable: true
   local_nexus_authorization_still_required_for_building_beam: true
   node_death_inventory_drop_or_loss_fraction: owner_choice_TBD
+  ejected_loot_shape: orb
+  collected_world_orbs_need_courier_to_nexus_to_reenter_ether_network: true
   merger_adds_original_real_stocks_once_and_resumes_gradual_balancing: true
 example_fixtures:
   six_equal_nodes:
