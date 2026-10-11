@@ -75,16 +75,36 @@ func _pixel_actor(atlas: Texture2D, frame_size: Vector2i, pixel_scale: float,
     visual.sprite.modulate = tint
     return root
 
+func _attach_footprint_collider(actor: Node3D, height_tiles: float) -> void:
+    # Actual Godot physics shape matches the authoritative 3x3 footprint:
+    # root is scaled by tile_meters, so this 3-tile BoxShape becomes 6x6 m.
+    var collider := StaticBody3D.new()
+    collider.name = "FootprintBody"
+    collider.collision_layer = 1
+    collider.collision_mask = 0
+    actor.add_child(collider)
+    var shape_node := CollisionShape3D.new()
+    shape_node.name = "FootprintShape"
+    var shape := BoxShape3D.new()
+    shape.size = Vector3(3.0, height_tiles, 3.0)
+    shape_node.shape = shape
+    shape_node.position.y = height_tiles * 0.5
+    collider.add_child(shape_node)
+
 func _unit_sprite(e: Dictionary) -> Node3D:
     var kind: String = str(e["kind"])
     var blue: bool = int(e["owner"]) == 0
     if kind == "hq":
-        return _pixel_actor(LANDER_ATLAS, Vector2i(128, 128), 0.038,
+        var hq_sprite: Node3D = _pixel_actor(LANDER_ATLAS, Vector2i(128, 128), 0.038,
             Color(0.85, 0.98, 1.0) if blue else Color(1.0, 0.77, 0.70))
+        _attach_footprint_collider(hq_sprite, 2.6)
+        return hq_sprite
     if kind == "barracks":
         # Existing lander sprite temporarily represents a Barracks until dedicated art.
-        return _pixel_actor(LANDER_ATLAS, Vector2i(128, 128), 0.027,
+        var barracks_sprite: Node3D = _pixel_actor(LANDER_ATLAS, Vector2i(128, 128), 0.027,
             Color(0.58, 0.81, 1.0) if blue else Color(1.0, 0.64, 0.50))
+        _attach_footprint_collider(barracks_sprite, 2.0)
+        return barracks_sprite
     if kind == "rifleman":
         # Reuse MAN worker sheet until the Rifleman 5-view atlas is authored.
         return _pixel_actor(WORKER_ATLAS, Vector2i(32, 48), 0.045,
