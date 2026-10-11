@@ -1,0 +1,76 @@
+schema_version: 1
+project: scalfagus
+version: 0.1
+status: mandatory_platform_frame_with_candidate_surface_art_families
+owner_decision: DEC-030
+world_constitution: design/space-platform-world-contract-2026-10-11.md
+required_battlefield_frame: floating_space_platform
+all_presets_are_surface_material_and_environment_variants_not_alternate_world_topologies: true
+mixed_surface_materials_on_one_deck_allowed: true
+first_mvp_runtime_rendering_can_use_placeholder_materials: true
+common:
+  top_surface_is_real_terrain_with_colliders_and_building_footprints: true
+  terrain_may_have_authored_height_regions_and_ramps: true
+  material_skins_do_not_automatically_apply_combat_stat_bonuses: true
+  obstacle_cover_and_terrain_liquids_are_explicit_semantic_objects: true
+  ambient_world_frame_is_not_faction_owned: true
+  space_backdrop_and_underside_have_no_interactive_nav_collision: true
+  outer_rim_visible_and_matches_invisible_gameplay_barrier: true
+  gameplay_Energy_and_Matter_do_not_spawn_from_material_skin_name: true
+  no_dangerous_surface_hazard_without_explicit_rules: true
+presets:
+  brown_soil_jungle:
+    owner_examples: [brown_earth, jungle, real_trees]
+    first_MVP: true
+    top_materials: [brown_loam, grass, rooted_soil, stone, small_metal_patches]
+    authored_fixed_cover: [thick_tree_trunks, roots, fallen_logs]
+    authored_liquids: [freshwater_ponds, freshwater_stream]
+    nonharvestable_water_for_first_MVP: true
+    collectable_solids_in_first_MVP: [surface_rock, deadwood_deposit]
+    rim_appearance: [soil_strata, suspended_roots, corroded_steel_braces]
+    underside_appearance: [stone_underplate, support_ribs, dormant_reactors]
+    backdrop_candidate: [dark_starfield, faint_distant_planet]
+    readable_ground_color_family: warm_brown_green
+  industrial_metal_patchwork:
+    first_MVP: false
+    top_materials: [riveted_plating, welded_patchwork, grated_catwalk, oxidized_iron, rusted_titanium]
+    authored_fixed_cover: [heavy_pipes, sealed_containers, support_pylons, scrap_structures]
+    authored_liquids: [industrial_dense_coolant, viscous_reactor_fluid]
+    frame_appearance: [exposed_trusses, cable_loops, giant_thrusters]
+    backdrops: [planet_dusk_orbit, black_space, nebula]
+    gameplay_collision_must_be_individually_authored: true
+  rocky_desert:
+    first_MVP: false
+    top_materials: [ochre_sand, fractured_basalt, sandstone, compact_dust]
+    authored_fixed_cover: [rock_outcrops, ridges, abandoned_machinery]
+    authored_liquids: [rare_brine_pool, optional_no_open_liquid_when_future_scenario_exempt]
+    rim_appearance: [exposed_geological_strata, metallic_foundation_grid]
+    gameplay_collision_must_be_individually_authored: true
+  resonant_monastery:
+    first_MVP: false
+    top_materials: [white_stone, ancient_tiles, moss, pale_minerals]
+    authored_fixed_cover: [columns, arches, overgrown_obelisks]
+    authored_liquids: [reflective_pool, unknown_exotic_dense_liquid]
+    rim_appearance: [layered_floating_stone, resonance_bracing]
+    do_not_count_neutral_background_obelisks_as_ETH_pylons: true
+  biological_wet_ark:
+    first_MVP: false
+    top_materials: [wet_soil, mangrove_roots, fibrous_tissue, ancient_ship_hull]
+    authored_fixed_cover: [huge_roots, living_columns, collapsed_biomaterial]
+    authored_liquids: [freshwater, marsh_brine]
+    rim_appearance: [living_hull, overgrown_support_structure]
+    aquatic_org_gameplay: reserved_for_later
+mixing:
+  example_patchwork:
+    primary_preset: brown_soil_jungle
+    region_overlay:
+      selected_region_material: industrial_metal_patchwork
+      notes: abandoned_metal_deck_in_organic_forest_as_cosmetic_plus_explicit_cover
+  material_region_changes_require_valid_declared_terrain_region: true
+  decorative_overlays_do_not_modify_collision_or_spawns: true
+  cover_or_water_must_be_explicit_object_if_gameplay_significant: true
+acceptance:
+  all_examples_share_same_required_platform_frame: true
+  swap_only_visual_materials_preserves_world_ledger_nav_victory_and_replay: true
+  first_map_default_preset_is_brown_soil_jungle: true
+  no_standard_planet_surface_preset: true
