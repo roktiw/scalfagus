@@ -1,11 +1,15 @@
 schema_version: 1
 project: scalfagus
-version: 0.3
+version: 0.4
 status: owner_approved_concept_with_proposed_deterministic_protocol_and_tbd_balance
 decision: DEC-018
 contract: design/three-network-channels-and-destruction-2026-10-11.md
 additional_owner_decision: DEC-035
 unit_relay_specification: design/three-faction-logistics-and-eth-unit-relay.yaml
+storage_pressure_decision: DEC-036
+storage_pressure_specification: design/faction-storage-specialization-and-obelisk-traffic.yaml
+canonical_player_facing_mid_name: Obelisk
+legacy_internal_class_id_remains: eth_mid_pylon
 precedence: DEC-021_supersedes_earlier_two_graph_model_and_DEC-022_supersedes_source_refund
 loot_contract: design/world-loot-and-recycling.yaml
 world_victory_rule: design/victory-defeat-building-classification-2026-10-11.md
@@ -43,6 +47,14 @@ resource_model:
     first_simulator_fixture_lossless: proposed_only
     no_creation_of_unaccounted_resources: true
 pylon_obelisk:
+  preferred_player_facing_name: Obelisk
+  legacy_word_pylon_only_in_internal_aliases_and_old_files: true
+  inventory_visual: mixed_Ether_orbs_levitating_around_Obelisk
+  storage_pressure_decreases_node_traffic_throughput: true
+  dedicated_storage_sidings_versus_clear_backbone_relay: player_topology_choice
+  fill_to_transit_rate_curve: TBD
+  nonzero_transit_minimum_in_storage_relay_mode: proposed
+  local_storage_assignment_controls: [transit_priority, mixed_default, dedicated_warehouse]
   class_id: eth_mid_pylon
   single_baseline_building_template: true
   aliases: [pylon, obelisk]
@@ -137,7 +149,11 @@ network:
   locally_initialized_nexus_retains_known_blueprints_on_partition: true
   separate_mandatory_control_and_freight_graphs: false
 equalization:
-  owner_goal: even_distribution_of_stored_resources_across_connected_ether_nodes
+  owner_goal: opt_in_balancing_among_explicitly_eligible_storage_Obelisks_only
+  superseded_legacy_goal: even_distribution_of_stored_resources_across_all_connected_ether_nodes
+  DEC_036_requires_excluding_transit_priority_Obelisks_from_background_equalization: true
+  opt_in_per_Obelisk_participation: true
+  node_fill_target_may_be_zero_for_transit_corridor: true
   default_algorithm_status: recommended_for_playtest_not_numeric_canon
   per_resource_id_independent: true
   per_ether_network_connected_component: true
@@ -209,3 +225,4 @@ open_questions:
   - remote_build_materialization_point_and_receiver_eligibility
   - advanced_meditation_pylon_relocation
   - shared_vs_resource_partitioned_dynamic_storage
+  - exact_Obelisk_fill_penalty_and_shared_unit_transit_QoS
