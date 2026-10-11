@@ -3,6 +3,9 @@ project: scalfagus
 version: 0.1
 status: approved_owner_direction_with_proposed_state_machine_details
 specification: design/colony-topologies-vascular-modular-resonant-2026-10-11.md
+authoritative_base_ecologies_specification: design/base-ecologies-and-expansion-2026-10-11.md
+authoritative_base_ecologies_data: design/base-ecologies.yaml
+precedence: supplementary_analysis_follow_dec_012_and_dec_013
 name_ids: [org, man, eth]
 canonical_resources: [matter, volatiles, energy]
 single_authoritative_world: true
@@ -48,11 +51,17 @@ factions:
       cut_link_does_not_disable_individual_unit_ai: true
       starvation_has_telegraphing: true
     expansion:
-      home_dependency: continuous_nourishment
+      home_dependency: continuous_live_vascular_link_AND_recurring_home_origin_supply
+      continuous_live_vascular_path_to_home_required: true
+      recurring_actual_home_origin_nourishment_deliveries: true
+      local_extraction_does_not_remove_home_delivery_requirement: true
+      living_vascular_path_alone_does_not_satisfy_nourishment_delivery: true
+      home_origin_supply_alone_does_not_substitute_for_broken_vascular_path: true
       permanent_fully_independent_expansion: false_by_default
       physical_worker_feeding: true
       worker_feeding_costed_from_real_inventory: true
-      feeding_can_temporarily_keep_branch_alive: true
+      feeding_can_temporarily_extend_finite_local_reserve: true
+      delivery_must_be_from_home_origin: true
       unlimited_autonomous_self_nourishment: not_approved
     transport:
       model: living_loops
