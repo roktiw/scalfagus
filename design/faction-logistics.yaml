@@ -1,6 +1,9 @@
 schema_version: 1
 project: scalfagus
 human_canonical_logistics_summary: design/three-faction-logistics-overview-2026-10-12.md
+latest_man_umu_wings_decision: DEC-040
+latest_man_umu_wings_contract: design/man-umu-transforming-belt-wings.yaml
+latest_man_umu_wings_human: design/man-umu-transforming-belt-wings-2026-10-12.md
 human_summary_is_index_not_a_new_numeric_balance_contract: true
 latest_owner_network_contract: design/three-network-channels-and-destruction-2026-10-11.md
 eth_three_ingress_decision: DEC-039
@@ -124,6 +127,10 @@ factions:
     radial_and_vertical_base_growth: true
     self_and_mutual_building_unit_repair: true
     universal_man_unit:
+      physical_wings_count: 2
+      wing_configurations: [crawler_tracks, conveyor_3_or_5, folded_bunker_armor, upright_sentry_ground_wall]
+      sentry_wall_distinct_from_bunker: true
+      no_full_cargo_flow_in_sentry_or_bunker: true
       full_name: Universal Man Unit
       abbreviation: UMU
       ground_mobile_generator_and_warehouse_or_bunker: true
