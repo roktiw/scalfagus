@@ -1,7 +1,10 @@
 schema_version: 1
 project: scalfagus
 version: 0.1
-status: proposed_not_yet_rendered_or_engine_tested
+status: revised_for_dec_017_art_frames_still_not_engine_tested
+renderer_decision: DEC-017
+renderer_specification: art/directional-sprite-five-view-v0.1.yaml
+renderer_architecture: architecture/adr-0003-five-view-mirrored-3d-sprites.md
 specification: art/man-min-isometric-sprite-production-spec-v0.1.md
 source_standard: art/sprite-resolution-and-camera-profile-v0.1.yaml
 faction_id: man
@@ -41,8 +44,8 @@ sprites:
     rgba_alpha: true
     nearest_neighbor_sampling: true
     authored_at_resolution_not_auto_downsampled: true
-    canonical_file: man_worker_min_base_24x32_8dir.png
-    initial_file: man_worker_min_base_24x32_4dir.png
+    canonical_file_proposed_not_created: man_worker_min_base_24x32_5view.png
+    initial_file_proposed_not_created: man_worker_min_base_24x32_5view_prototype.png
     source_suggested: man_worker_min.aseprite
   hero_close_overlord:
     frame_size_px: [32, 48]
@@ -125,7 +128,7 @@ art_palette_proposal:
   gradients: small_pixel_ramps_not_smooth_blurs
   dithering: very_sparing_only_when_adds_texture
   no_color_only_states: true
-directions:
+directions_legacy_eight_authored_superseded_by_dec_017:
   world_space_order: [N, NE, E, SE, S, SW, W, NW]
   independent_cardinal_art_in_spike: [N, E, S, W]
   final_all_8_authored: true
@@ -133,7 +136,7 @@ directions:
   orientation_angle_derived_from: actor_world_yaw_relative_to_overlord_camera
   pivot_static_across_all_facing_frames: true
   screen_movement_does_not_define_stationary_aim_direction: true
-atlas:
+atlas_legacy_eight_authored_superseded_by_dec_017:
   logical_frame_order: [idle_0, idle_1, walk_0, walk_1, walk_2, walk_3, work_0, work_1, work_2, work_3, carry_0, carry_1]
   frame_slots_per_direction: 12
   early_spike:
@@ -184,11 +187,26 @@ loadouts:
   gameplay_template_count: one_initial_worker_with_equipment_not_four_separate_unit_archetypes
   hero_starter_kits_unlocked_by_camera: false
   hero_camera_modes: [overlord, direct_unit, full_fps]
+authoritative_five_view_renderer:
+  authored_direction_rows: [front, front_right, right_side, back_right, back]
+  rendered_sector_authored_row: [0, 1, 2, 3, 4, 3, 2, 1]
+  rendered_sector_flip_h: [false, false, false, false, false, true, true, true]
+  one_source_perspective_for_all_camera_modes: true
+  actor_body3d_is_collidable_but_sprite_is_visual: true
+  asymmetrical_tool_or_insignia_mirror_safety: needs_visual_validation
+  nearest_relative_view_angle_error_degrees_max: 22.5
+  animation_atlas_per_action: recommended
+  idle_2_frames_authored_source: {frame_size_px: [24, 32], atlas_size_px: [48, 160], authored_cells: 10}
+  walk_4_frames_authored_source: {frame_size_px: [24, 32], atlas_size_px: [96, 160], authored_cells: 20}
+  work_4_frames_authored_source: {frame_size_px: [24, 32], atlas_size_px: [96, 160], authored_cells: 20}
+  carry_2_frames_authored_source: {frame_size_px: [24, 32], atlas_size_px: [48, 160], authored_cells: 10}
+  total_authored_cells: 60
+  previous_eight_unique_direction_budget: 96
 render_pipeline:
   authoritative_runtime: Godot_native_3D_world
   overhead: directional_AnimatedSprite3D_or_Sprite3D_frames
   direct_unit: shared_world_actor_closer_orthographic_view
-  fps: first_person_3D_or_authored_close_proxy_same_actor_id
+  fps: same_five_authored_sprite_view_family_without_mandatory_new_3D_visible_body
   never_replace_gameplay_actor_on_camera_switch: true
   pixel_alpha_edges_checked: true
   ui_independent_of_world_zoom: true
@@ -220,8 +238,8 @@ tests:
   - original_licensed_asset_source_and_editable_source_present
 milestones:
   A0: one_24x32_iso_silhouette_and_320x240_readability_preview
-  A1: four_cardinal_directions_idle_walk_work_carry
-  A2: eight_direction_base_plus_correct_pivots
+  A1: five_authored_angles_per_action_for_same_RTS_TPP_FPS_visual_source
+  A2: eight_runtime_sectors_from_five_rows_plus_mirror_safety_pivots
   A3: repair_scanner_cargo_equipment_overlays
   A4: independent_32x48_hero_lod_plus_first_person_proxy
   A5: introduce_other_distinct_MAN_unit_body_families_after_playtesting
