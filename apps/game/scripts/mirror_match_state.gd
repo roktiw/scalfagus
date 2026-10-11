@@ -2,11 +2,12 @@ extends RefCounted
 class_name MirrorMatchState
 
 const NAV_SCRIPT = preload("res://scripts/mirror_navigation_port.gd")
+const TIMING = preload("res://scripts/mirror_timing.gd")
 
 # MVP 0.1: authoritative rules for a two-slot MAN mirror match.
 # Pure state: no cameras, rendering, input nodes, or wall-clock delays.
 const BOARD: int = 64
-const MAX_TICKS: int = 5400
+const MAX_TICKS: int = TIMING.MATCH_LIMIT_TICKS
 const DIRECTIONS: Array[Vector2i] = [
     Vector2i(1, 0), Vector2i(0, 1), Vector2i(-1, 0), Vector2i(0, -1)
 ]
@@ -92,6 +93,7 @@ func _spawn(kind: String, owner: int, pos: Vector2i) -> int:
         "id": id, "kind": kind, "owner": owner, "pos": pos, "hp": int(HP[kind]),
         "order": "idle", "target_id": -1, "target_pos": pos, "source_id": "",
         "cargo": 0, "work_ticks": 0, "cooldown": 0,
+        "gather_phase": "mine", "move_progress": 0,
         "train_kind": "", "train_left": 0, "build_pos": Vector2i(-1, -1),
         "route": [], "route_target": Vector2i(-1, -1), "route_adjacent": false,
         "route_revision": -1
@@ -229,6 +231,7 @@ func issue_command(side: int, action: String, actor_id: int, arg: Variant = null
                 return _reject()
             e["order"] = "gather"
             e["source_id"] = arg
+            e["gather_phase"] = "return" if int(e["cargo"]) > 0 else "mine"
             e["work_ticks"] = 0
         "build_barracks":
             if kind != "worker" or not (arg is Vector2i):
@@ -241,7 +244,7 @@ func issue_command(side: int, action: String, actor_id: int, arg: Variant = null
             spent_matter += COST_BARRACKS
             e["order"] = "build"
             e["build_pos"] = arg
-            e["work_ticks"] = 45
+            e["work_ticks"] = TIMING.BARRACKS_BUILD_TICKS
         "train_worker", "train_rifleman":
             var training_worker: bool = action == "train_worker"
             var price: int = COST_WORKER if training_worker else COST_RIFLEMAN
@@ -252,7 +255,7 @@ func issue_command(side: int, action: String, actor_id: int, arg: Variant = null
             players[side]["matter"] = int(players[side]["matter"]) - price
             spent_matter += price
             e["train_kind"] = "worker" if training_worker else "rifleman"
-            e["train_left"] = 45 if training_worker else 65
+            e["train_left"] = TIMING.WORKER_TRAIN_TICKS if training_worker else TIMING.RIFLEMAN_TRAIN_TICKS
         "attack":
             if kind != "rifleman" or not (arg is int) or not entities.has(arg):
                 return _reject()
@@ -270,7 +273,13 @@ func _find_route(start: Vector2i, goal: Vector2i, adjacent_ok: bool) -> Array[Ve
     return navigation.route(start, goal, adjacent_ok)
 
 func _walk(e: Dictionary, dest: Vector2i, adjacent_ok: bool = true) -> void:
-    if tick % 3 != 0:
+    # Integer fractional-tile accumulator: 115 milli-tiles/tick = 2.3
+    # tiles/s for workers; 130 milli-tiles/tick = 2.6 for Riflemen.
+    # Headless and GUI execute identical movement for identical tick input.
+    var gain: int = TIMING.RIFLEMAN_MILLI_PER_TICK if str(e["kind"]) == "rifleman" else TIMING.WORKER_MILLI_PER_TICK
+    # Preserve fractional remainder after each step (otherwise 2.3 becomes 2.22).
+    e["move_progress"] = mini(TIMING.MILLI_TILES_PER_CELL + gain - 1, int(e["move_progress"]) + gain)
+    if int(e["move_progress"]) < TIMING.MILLI_TILES_PER_CELL:
         return
     var route: Array = e["route"]
     if (
@@ -290,11 +299,13 @@ func _walk(e: Dictionary, dest: Vector2i, adjacent_ok: bool = true) -> void:
     if _blocked(step):
         route = _find_route(e["pos"], dest, adjacent_ok)
         e["route"] = route
+        e["route_revision"] = navigation.revision
         if route.is_empty():
             return
         step = route[0]
     e["pos"] = step
     route.remove_at(0)
+    e["move_progress"] = int(e["move_progress"]) - TIMING.MILLI_TILES_PER_CELL
 
 func _nearest_source(pos: Vector2i) -> String:
     var choice: String = ""
@@ -308,6 +319,27 @@ func _nearest_source(pos: Vector2i) -> String:
             choice = str(source_id)
     return choice
 
+# Stable ID order is the tie-breaker for contested source mining slots.
+# No third worker can extract Matter during the same authoritative tick.
+func _can_mine_now(worker: Dictionary, source_id: String) -> bool:
+    var admitted: int = 0
+    for wid in sorted_ids():
+        var other: Dictionary = entities[wid]
+        if str(other["kind"]) != "worker" or str(other["order"]) != "gather":
+            continue
+        if str(other["source_id"]) != source_id or str(other["gather_phase"]) != "mine":
+            continue
+        if int(other["cargo"]) >= TIMING.WORKER_CAPACITY_MATTER:
+            continue
+        if _distance(other["pos"], sources[source_id]["pos"]) > 1:
+            continue
+        admitted += 1
+        if int(other["id"]) == int(worker["id"]):
+            return admitted <= TIMING.SOURCE_MINERS_MAX
+        if admitted >= TIMING.SOURCE_MINERS_MAX:
+            return false
+    return false
+
 func _worker_tick(e: Dictionary) -> void:
     var order: String = str(e["order"])
     var side: int = int(e["owner"])
@@ -316,36 +348,67 @@ func _worker_tick(e: Dictionary) -> void:
         if e["pos"] == e["target_pos"]:
             e["order"] = "idle"
     elif order == "gather":
-        if int(e["cargo"]) > 0:
+        var phase: String = str(e["gather_phase"])
+        if phase == "pickup":
+            e["work_ticks"] = int(e["work_ticks"]) + 1
+            if int(e["work_ticks"]) >= TIMING.PICKUP_TICKS:
+                e["gather_phase"] = "return"
+                e["work_ticks"] = 0
+            return
+        if phase in ["return", "unload"]:
             var hqs: Array[int] = units_for(side, "hq")
             if hqs.is_empty():
                 e["order"] = "idle"
                 return
             var hq: Dictionary = entities[hqs[0]]
-            if _distance(e["pos"], hq["pos"]) <= 1:
+            if _distance(e["pos"], hq["pos"]) > 1:
+                e["gather_phase"] = "return"
+                _walk(e, hq["pos"])
+                return
+            e["gather_phase"] = "unload"
+            e["work_ticks"] = int(e["work_ticks"]) + 1
+            if int(e["work_ticks"]) >= TIMING.UNLOAD_TICKS:
                 players[side]["matter"] = int(players[side]["matter"]) + int(e["cargo"])
                 e["cargo"] = 0
-            else:
-                _walk(e, hq["pos"])
-        else:
-            var sid: String = str(e["source_id"])
-            if not sources.has(sid) or int(sources[sid]["stock"]) <= 0:
-                sid = _nearest_source(e["pos"])
-                e["source_id"] = sid
-            if sid == "":
-                e["order"] = "idle"
+                e["work_ticks"] = 0
+                e["gather_phase"] = "mine"
+            return
+        if int(e["cargo"]) >= TIMING.WORKER_CAPACITY_MATTER:
+            e["gather_phase"] = "pickup"
+            e["work_ticks"] = 0
+            return
+        var sid: String = str(e["source_id"])
+        if not sources.has(sid) or int(sources[sid]["stock"]) <= 0:
+            if int(e["cargo"]) > 0:
+                e["gather_phase"] = "pickup"
+                e["work_ticks"] = 0
                 return
-            var src: Dictionary = sources[sid]
-            if _distance(e["pos"], src["pos"]) <= 1:
-                e["work_ticks"] = int(e["work_ticks"]) + 1
-                if int(e["work_ticks"]) >= 6:
-                    var picked: int = mini(10, int(src["stock"]))
-                    src["stock"] = int(src["stock"]) - picked
-                    e["cargo"] = picked
-                    mined_matter += picked
-                    e["work_ticks"] = 0
-            else:
-                _walk(e, src["pos"])
+            sid = _nearest_source(e["pos"])
+            e["source_id"] = sid
+            e["work_ticks"] = 0
+        if sid == "":
+            e["order"] = "idle"
+            return
+        var src: Dictionary = sources[sid]
+        if _distance(e["pos"], src["pos"]) > 1:
+            e["work_ticks"] = 0
+            _walk(e, src["pos"])
+            return
+        if not _can_mine_now(e, sid):
+            e["work_ticks"] = 0
+            return
+        # 2.0 seconds of continuous labor per ONE extracted Matter.
+        e["work_ticks"] = int(e["work_ticks"]) + 1
+        if int(e["work_ticks"]) >= TIMING.GATHER_TICKS_PER_MATTER:
+            src["stock"] = int(src["stock"]) - 1
+            e["cargo"] = int(e["cargo"]) + 1
+            mined_matter += 1
+            e["work_ticks"] = 0
+            if (
+                    int(e["cargo"]) >= TIMING.WORKER_CAPACITY_MATTER
+                    or int(src["stock"]) <= 0
+            ):
+                e["gather_phase"] = "pickup"
     elif order == "build":
         var site: Vector2i = e["build_pos"]
         if _distance(e["pos"], site) > 1:
@@ -384,7 +447,7 @@ func _rifleman_tick(e: Dictionary) -> void:
         if _distance(e["pos"], enemy["pos"]) <= 6 and _line_clear(e["pos"], enemy["pos"]):
             if int(e["cooldown"]) == 0:
                 _damage(enemy_id, 8, int(e["owner"]))
-                e["cooldown"] = 10
+                e["cooldown"] = TIMING.RIFLEMAN_ATTACK_COOLDOWN_TICKS
         else:
             _walk(e, enemy["pos"])
 
@@ -488,7 +551,7 @@ func advance() -> void:
     if finished:
         return
     tick += 1
-    if tick % 12 == 1:
+    if tick % TIMING.BOT_THINK_TICKS == 1:
         for side in range(2):
             if controllers[side] == "bot":
                 _bot_tick(side)
@@ -515,7 +578,7 @@ func matter_is_conserved() -> bool:
 func replay_hash() -> String:
     # Stable state hash includes orders, outstanding work, queues, and cooldowns.
     # It is a pinned-runtime regression tool, not a cross-platform lockstep promise.
-    var material: String = "mvp0-man-mirror-v2|"
+    var material: String = "mvp0-man-mirror-v3-20hz|"
     for field in [
         seed, tick, winner, finished, finish_reason, next_id,
         mined_matter, spent_matter, lost_matter, rejected_commands
@@ -536,7 +599,8 @@ func replay_hash() -> String:
         for field in [
             id, e["kind"], e["owner"], p.x, p.y, e["hp"], e["order"],
             e["target_id"], target.x, target.y, e["source_id"], e["cargo"],
-            e["work_ticks"], e["cooldown"], e["train_kind"], e["train_left"],
+            e["work_ticks"], e["gather_phase"], e["move_progress"],
+            e["cooldown"], e["train_kind"], e["train_left"],
             site.x, site.y, route_target.x, route_target.y, e["route_adjacent"]
         ]:
             material += str(field) + "|"
@@ -559,7 +623,8 @@ func replay_hash() -> String:
 
 func result() -> Dictionary:
     return {
-        "rules": "mvp0-man-mirror-v1",
+        "rules": "mvp0-man-mirror-v3-20hz",
+        "tick_hz": TIMING.TICKS_PER_SECOND, "max_ticks": MAX_TICKS,
         "seed": seed, "ticks": tick, "winner": winner, "reason": finish_reason,
         "finished": finished, "controllers": controllers.duplicate(),
         "bot_attack_thresholds": bot_attack_thresholds.duplicate(),

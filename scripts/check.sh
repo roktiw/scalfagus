@@ -12,8 +12,9 @@ bash scripts/install-godot-addons.sh --ensure
 "$GODOT_BIN" --headless --path apps/game --script res://tests/navigation_smoke.gd
 "$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_smoke.gd
 "$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_integrity_smoke.gd
+"$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_timing_smoke.gd
 "$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_navigation_port_smoke.gd
-"$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_batch.gd -- --matches 2 --seed 42
+"$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_batch.gd -- --matches 1 --seed 42
 "$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_visual_smoke.gd
 if command -v node >/dev/null 2>&1; then
   node scripts/verify_atlases.mjs

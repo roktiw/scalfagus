@@ -49,7 +49,7 @@ func _run() -> void:
     for id in match_state.units_for(0, "worker"):
         if id != west_worker:
             match_state.issue_command(0, "gather", id, "west")
-    for i in range(800):
+    # 20Hz and 40 mining ticks per individual Matter require real time.\n    for i in range(7500):
         match_state.advance()
         if int(match_state.players[0]["matter"]) >= 100:
             break
@@ -60,7 +60,7 @@ func _run() -> void:
     if not match_state.issue_command(0, "build_barracks", west_worker, Vector2i(13, 36)):
         _fail("Funded worker cannot build Barracks")
         return
-    for i in range(300):
+    for i in range(1500):
         match_state.advance()
         if match_state.units_for(0, "barracks").size() > 0:
             break
@@ -72,7 +72,7 @@ func _run() -> void:
         return
 
     # Additional gathering funds Rifleman training.
-    for i in range(700):
+    for i in range(5000):
         match_state.advance()
         if int(match_state.players[0]["matter"]) >= 50:
             break
@@ -80,7 +80,7 @@ func _run() -> void:
     if not match_state.issue_command(0, "train_rifleman", barracks_id):
         _fail("Barracks cannot train funded Rifleman")
         return
-    for i in range(80):
+    for i in range(200):
         match_state.advance()
     if match_state.units_for(0, "rifleman").is_empty():
         _fail("Training failed")
