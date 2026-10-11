@@ -2,15 +2,17 @@ schema_version: 1
 project: scalfagus
 version: 0.4
 status: owner_approved_economic_roles_with_open_balance
-specification: design/logistics-min-mid-max-2026-10-11.md
+specification: design/colony-topologies-vascular-modular-resonant-2026-10-11.md
+legacy_unit_specification: design/logistics-min-mid-max-2026-10-11.md
+precedence: eth_mid_pylon_and_max_nexus_supersede_legacy
 base_ecology_specification: design/base-ecologies-and-expansion-2026-10-11.md
 scope: economic_logistics_platforms_only
 resource_ids: [matter, volatiles, energy]
 scale_meaning: chassis_scale_not_technology_or_match_scale
 paradigms:
-  org: mobile_hunter_gatherers
-  man: physical_conveyor_and_fortification
-  eth: courier_relay_and_late_game_defense
+  org: vascular_rooted_buildings_and_mobile_living_cargo_loops
+  man: physical_conveyor_and_mobile_modular_fortifications
+  eth: courier_pylon_network_and_nexus_class_max
 shared:
   min_can_extract_independently: true
   min_can_deliver_directly: true
@@ -30,6 +32,11 @@ factions:
   org:
     name_mid: Organites
     gathering_style: hunter_gatherer
+    rooted_base_and_buildings_depend_on_vascular_nourishment: true
+    early_expansion_requires_live_branch_to_bud_site: true
+    disconnected_branch_has_finite_reserve_and_wither_states: true
+    rescue_worker_deliveries_are_physical: true
+    buildings_are_lowest_mobility_faction: true
     economic_gradient:
       size_min_mid_max: increasing
       cargo_slots_min_mid_max: increasing
@@ -38,6 +45,8 @@ factions:
       movement_speed_min_mid_max: decreasing
     min:
       role: fast_independent_worker
+      can_grow_level_1_building_and_vascular_conduit: true
+      can_physically_feed_isolated_branch: true
       movement_domains: [land]
       can_extract: true
       direct_base_delivery: true
@@ -48,6 +57,8 @@ factions:
         requires_growth_organs_and_connected_live_vessel: true
     mid:
       role: medium_biological_harvester
+      can_support_growth_of_level_2_building: true
+      can_feed_remote_branch_with_finite_cargo: true
       movement_domains: [land]
       can_extract: true
       cargo_slots: several
@@ -65,6 +76,8 @@ factions:
         requires_growth_organs_and_connected_live_vessel: true
     max:
       role: flying_mother_transporter
+      can_support_growth_of_level_3_building_if_capability_equipped: true
+      is_not_rooted_nexus: true
       movement_domains: [air]
       mobile: true
       cargo_slots: many
@@ -113,12 +126,16 @@ factions:
   man:
     name_mid: Manusians
     gathering_style: physical_conveyor_network
+    nexus_is_modular_unit_and_building_assembly: true
+    independent_island_expansion_without_home_ping: true
+    purpose_built_structures_can_move_on_tracks_wheels_or_legs: true
     nexus_model: composable_relocatable_modular_base
     independent_unlinked_expansions: true
     home_communication_required_for_outpost: false
     extensive_unit_and_building_repair: true
     min:
       role: self_sufficient_ground_miner_and_manual_hauler
+      can_build_and_repair_compatible_units_and_structures: true
       movement_domains: [land]
       can_extract: true
       direct_base_delivery: true
@@ -127,6 +144,9 @@ factions:
       repairs_need_spare_materials_time_and_tools: true
     mid:
       role: mobile_conveyor_segment
+      can_garrison_one_person_when_specialized_and_deployed: true
+      mutually_exclusive_modes_by_default: [move, conveyor, sentry_wall, one_person_bunker]
+      bunker_and_sentry_wall_simultaneity: not_approved
       movement_domains: [land]
       belt_length_tiles_options: [3, 5]
       cargo_slots: several_buffer_compartments
@@ -134,6 +154,12 @@ factions:
       tracked_ground_chassis: true
       mode_changes_are_mutually_exclusive: true
       modes:
+        one_person_bunker:
+          finite_slots: 1
+          mode_capability_required: true
+          cargo_flow: disabled
+          deployment_duration_and_cost: TBD
+          actual_unit_entity_remains_in_garrison: true
         conveyor:
           finite_rate: true
           physically_connected: true
@@ -156,6 +182,7 @@ factions:
       signature_weakness: belt_cut_or_defensive_conversion
     max:
       role: ground_mobile_depot_warehouse
+      nexus_can_be_distributed_across_modules: true
       movement_domains: [land]
       mobility: very_slow_ground_only
       can_fly: false
@@ -176,11 +203,12 @@ factions:
       nexus_model: warehouse_or_bunker_is_one_module_not_the_entire_base
   eth:
     name_mid: Etherans
-    gathering_style: mobile_min_couriers_to_fixed_pylon_relay_and_nexus_cores
-    base_model: distributed_resonance_network
-    initial_home_contact_for_new_expansion: true
-    continuous_home_contact_for_operating_expansion: false
-    unknown_blueprints_need_home_contact: true
+    gathering_style: physical_courier_plus_resonant_network
+    expansion_home_contact:
+      founding: true
+      novel_blueprint_sync: true
+      continual_nutrient_dependency: false
+      known_patterns_continue_locally_without_home: true
     min:
       role: independent_extractor_courier_and_network_builder
       movement_domains: [land]
@@ -189,69 +217,63 @@ factions:
       cargo_slots: few
       construction:
         mode: network
-        worker_remains_at_build_site_until_finished_or_cancelled: true
-        blue_beam_visible_as_strategic_signal: true
-        beam_target: nearest_eligible_large_node
-        spends_real_stored_energy: true
-        matter_and_volatiles_physically_delivered: true
-        beam_visibility_vs_fog_of_war: TBD
-        mode_excludes_extraction_and_courier_work: true
+        visible_blue_beam_to_eligible_larger_node: true
+        worker_channels_until_build_finishes: true
+        not_instant_energy_orb_drop: true
+        pay_finite_matter_volatiles_energy: true
+        exact_opponent_reveal_rules: TBD
     mid:
-      status: owner_approved_role_numeric_balance_tbd
-      role: pylon_cargo_storage_relay_or_turret
-      mobile_while_operating: false
-      movement_domains: []
-      cargo_slots: several
-      handoffs_require_range_queue_and_slot_capacity: true
+      status: owner_approved_role_with_proposed_meditation_timing
+      kind: pylon
+      role: physical_cargo_buffer_network_relay_and_defensive_turret
+      mobility: meditation_gated_if_explicitly_supported
+      cargo_slots: finite_several
       modes:
-        storage_relay:
+        storage:
           accepts_cargo: true
           dispatches_cargo: true
-          turret_enabled: false
-        meditating_to_turret:
+          finite_capacity: true
+        network_relay:
+          network_beam_eligibility: true
+          handoffs_have_real_range_rate_and_queue: true
+        meditating:
           duration: positive_TBD
           cargo_remains_inside: true
           accepts_cargo: false
           dispatches_cargo: false
-          turret_enabled: false
         turret:
-          cargo_remains_inside: true
-          accepts_cargo: false
-          dispatches_cargo: false
-          turret_enabled: true
           finite_weapon_cost_or_cooldown: TBD
-        meditating_to_storage:
-          duration: positive_TBD
-          cargo_remains_inside: true
-          accepts_cargo: false
-          dispatches_cargo: false
-          turret_enabled: false
-      future_levitating_relocation: only_if_explicitly_equipped_and_meditated
-      signature_weakness: node_disruption_and_logistics_downtime
-    max:
-      status: owner_approved_role_numeric_balance_tbd
-      role: nexus_class_core_node
-      mobile_while_operating: false
-      movement_domains: []
-      acts_as_nexus_from_creation: true
-      cargo_slots: many
-      large_node: true
-      local_blueprint_cache: true
-      initial_expansion_contact_to_home: true
-      known_buildings_work_offline_after_initialization: true
-      receives_network_construction_beams: true
-      major_storage_and_routing: true
-      not_default_mid_pylon_turret: true
-      eligible_structure_can_levitate_after_meditation: proposed_template_specific
+          cargo_retained: true
+          intake_and_dispatch_locked: proposed_until_balanced
+        levitating_move:
+          explicit_mobility_capability_required: true
+          meditation_before_motion: true
+          relay_and_turret_disabled: true
+          terrain_collision_and_energy_cost: TBD
       no_free_teleport: true
-      signature_weakness: knowledge_and_high_value_core_loss
-
+      signature_weakness: pylon_service_lost_while_in_defense_or_move_transition
+    max:
+      status: owner_approved_nexus_class_on_initial_deployment
+      role: nexus_class_pattern_library_and_major_node
+      construction_with_valid_source_or_bootstrap: true
+      nexus_from_start: true
+      local_known_pattern_store: true
+      can_seed_independent_remote_network_after_initial_sync: true
+      not_merely_storage_pylon_until_upgraded: true
+      movement: stationary_by_default_with_specialist_meditation_mobility_proposed
+      cargo_slots: finite_many_if_storage_equipped
+      synchronizes_new_patterns_at_cost: true
+      has_infinite_global_information: false
+      free_teleport: false
+      signature_weakness: pattern_sync_and_bottleneck_denial
 mode_rules:
   resource_ejection_creates_finite_world_packages: true
   resource_ejection_does_not_credit_base: true
   ejection_requires_legal_destination: true
   no_legal_ejection_target: block_or_queue_mode_change
   pylon_meditation_preserves_all_cargo: true
+  pylon_is_eth_mid_by_default: true
+  eth_max_is_nexus_immediately: true
   reservations_settled_before_mode_gate_locks: true
   passenger_manifests_have_finite_capacity: true
   generic_max_without_deployable_tag_cannot_transform: true
@@ -271,3 +293,10 @@ acceptance_test_ids:
   - SCALE-08
   - SCALE-09
   - SCALE-10
+  - ORG-BUD-01
+  - ORG-DECAY-02
+  - MAN-MID-01
+  - MAN-ISLAND-03
+  - ETH-BUILD-01
+  - ETH-PYLON-02
+  - ETH-NEXUS-03
