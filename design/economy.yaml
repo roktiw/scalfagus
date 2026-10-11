@@ -1,0 +1,100 @@
+schema_version: 1
+project: scalfagus
+status: proposed_balance_v0_1
+economy:
+  resources:
+    - id: crystals
+      name: Crystals
+      role: basic_construction_and_units
+    - id: gas
+      name: Gas
+      role: advanced_technology_and_specialists
+      extraction_infrastructure_required: true
+    - id: resin
+      name: Resin
+      role: strategic_fuel_and_heavy_units
+      form: viscous_amber_organic_chemical
+      note: Proposed third resource, analogous in strategic role to Warcraft II oil
+  worker_classes:
+    - id: min
+      tier: 1
+      cost: {crystals: 34}
+      technology_unlock_cost: {crystals: 0}
+      cargo_capacity: 5
+      movement_speed_relative: 8
+      seconds_per_resource_unit: 3
+      transfer_rate_units_per_second: 5
+      hit_points: 34
+      footprint_tiles: [1, 1]
+      role: fast_extractor
+      can_receive_from: []
+      can_deliver_to: [base, mid, max]
+      terrain_access: all_passable
+      docking_delay_seconds: 1
+    - id: mid
+      tier: 2
+      cost: {crystals: 89}
+      technology_unlock_cost: {crystals: 144}
+      cargo_capacity: 13
+      movement_speed_relative: 5
+      seconds_per_resource_unit: 5
+      transfer_rate_units_per_second: 13
+      hit_points: 89
+      footprint_tiles: [2, 2]
+      role: collector_and_transfer_hub
+      can_receive_from: [min]
+      can_deliver_to: [base, max]
+      terrain_access: most_passable
+      docking_delay_seconds: 2
+    - id: max
+      tier: 3
+      cost: {crystals: 233}
+      technology_unlock_cost: {crystals: 377}
+      cargo_capacity: 34
+      movement_speed_relative: 3
+      seconds_per_resource_unit: 8
+      transfer_rate_units_per_second: 21
+      hit_points: 233
+      footprint_tiles: [3, 3]
+      role: mobile_warehouse_and_bulk_transporter
+      can_receive_from: [min, mid]
+      can_deliver_to: [base]
+      terrain_access: wide_routes_only
+      docking_delay_seconds: 3
+  fibonacci_progression:
+    reference_sequence: [3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377]
+    worker_costs_crystals: [34, 89, 233]
+    cargo_capacities: [5, 13, 34]
+    technology_unlock_costs_crystals: [0, 144, 377]
+    note: >-
+      Costs rise faster in absolute terms than transport capacities;
+      larger workers should earn their value through logistics rather than
+      superior solo mining.
+  logistics:
+    automatic_transfer: true
+    min_can_load_mid_and_max: true
+    mid_can_load_max: true
+    mid_and_max_can_mine_independently: true
+    max_independent_mining_is_slow: true
+    transfer_requires_compatible_receiver_and_available_capacity: true
+    mobile_refinery_for_max: proposed
+    logistics_radius_automation: proposed
+    cargo_drops_on_destruction: proposed
+    specialized_extraction_efficiencies: proposed
+    faction_variations:
+      blergians: biological_regeneration_and_absorption
+      manusians: modular_transports_and_fast_transfers
+      aetherians: short_range_energy_costing_remote_transfer
+  balance:
+    target_metric: delivered_resources_per_minute
+    secondary_metrics:
+      - payback_time
+      - transport_distance
+      - throughput_under_congestion
+      - survivability
+      - resource_type
+    notes:
+      - MIN should remain the most effective direct extractor.
+      - MID should be attractive for medium-distance collection and consolidation.
+      - MAX should pay off mainly for distant rich deposits and bulk transport.
+      - All numeric values are initial playtest proposals, not verified balance.
