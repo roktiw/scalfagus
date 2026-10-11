@@ -7,3 +7,4 @@ build/
 *.uid
 apps/desktop/
 *.log
+logs/gha-local-*/linux-replay/godot.zip
