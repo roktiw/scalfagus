@@ -4,7 +4,14 @@ release: mvp_0_1
 version: 0.1
 status: source_inspected_engine_not_tested_or_playtested
 owner_decisions: [DEC-030, DEC-031, DEC-032, DEC-033, DEC-034]
-canonical_numeric_profile: design/mvp0-man-mirror-balance-v0.1.yaml
+canonical_numeric_profile: design/mvp0-agent-implementation-contract.yaml
+alternative_analytical_profile_not_active: design/mvp0-man-mirror-balance-v0.1.yaml
+current_GUI_advance_interval_seconds_source: apps/game/scripts/mirror_view.gd
+current_GUI_advance_interval_seconds: 0.1
+current_GUI_sim_ticks_per_second: 10
+design_target_fixed_ticks_per_second: 20
+code_uses_fixed_tick_without_GUI_timer_in_headless_batch: true
+code_gap_numbers_below_are_normalized_at_design_20_Hz_not_actual_10Hz_GUI: true
 competing_candidate_implementation_contract: design/mvp0-agent-implementation-contract.yaml
 current_code_inspected: apps/game/scripts/mirror_match_state.gd
 visual_code_inspected: apps/game/scripts/mirror_view.gd
@@ -21,6 +28,7 @@ numbers:
   current_mirror_state_MAX_TICKS: 5400
   difference: 18600
   current_timeout_minutes_at_20Hz: 4.5
+  current_timeout_minutes_in_actual_GUI_at_10Hz: 9.0
   target_timeout_minutes: 20
   expected_map_source_total: 1660
   current_hardcoded_source_total: 2500
@@ -31,6 +39,7 @@ numbers:
   current_worker_gather_batch_units: 10
   current_worker_gather_batch_ticks: 6
   current_worker_gather_ten_units_seconds_if_20Hz: 0.30
+  current_worker_gather_ten_units_seconds_in_GUI_at_10Hz: 0.60
   target_worker_gather_ten_units_seconds: 20
   target_worker_train_seconds: 7
   current_worker_train_ticks: 45
@@ -49,12 +58,16 @@ numbers:
   target_rifle_attack_range_grid_tiles: 3.25
   current_attack_range_Manhattan_grid_cells: 6
   current_single_step_each_advance_without_move_cooldown: true
-  target_worker_move_speed_tiles_per_second: 2.4
+  target_worker_move_speed_tiles_per_second: 2.3
+  separate_analytical_alternative_speed_tiles_s: 2.4
   current_effective_speed_if_20Hz_unobstructed_tiles_per_second: 20
+  current_effective_speed_in_GUI_at_10Hz_unobstructed_tiles_per_second: 10
   current_bot_think_interval_ticks: 12
+  GUI_sim_tick_scheduler_must_match_headless_same_profile: true
   desired_bot_think_interval_ticks_candidate: 10
   current_barracks_Manhattan_HQ_radius_tiles: 9
-  desired_barracks_build_distance_from_HQ_tiles_candidate: 18
+  desired_barracks_build_distance_from_HQ_tiles_candidate: 9
+  alternate_analytical_Barracks_distance_tiles: 18
   canonical_map_world_width_meters_candidate: 128
   current_visual_ground_block_width_world_units: 64
   current_code_map_grid_cells: [64, 64]
