@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 2.0
+version: 2.1
 decisions:
   - id: DEC-001
     status: approved
@@ -504,6 +504,38 @@ decisions:
       engine performance, scale and camera tests before enablement.
     specification: design/planetary-map-topology-2026-10-11.md
     data_specification: design/world-topologies.yaml
+  - id: DEC-029
+    status: owner_approved_square_bounded_planar_MVP_with_floating_platform_environment_candidate
+    topic: planar_rectangular_battlefield_boundary_and_flying_space_platform_framing
+    resolution: >-
+      The owner confirmed that the first MVP map can be a finite flat
+      SQUARE/RECTANGULAR battlefield blocked by an invisible wall, rather
+      than a true spherical planetoid. They also enthusiastically proposed
+      framing potentially all maps as vast FLYING PLATFORMS IN SPACE,
+      evoking classic space RTS decks, interplanetary Factorio-like
+      platforms and an imaginative wandering mechanical airborne castle.
+      Recommended reconciliation: the same PLANAR square tactical jungle
+      battlefield is a huge stationary floating jungle habitat, bounded
+      by a visible platform edge with a reliable invisible physics
+      guard. The platform can have soil, natural tree cover, real pools
+      and streams, resource rocks and an orbital sky backdrop without
+      adding spherical navigation or flight.
+    fixed_first_MVP: >-
+      No units may cross the square bounds; default real ground physics,
+      extraction, water and combat stay unchanged. The platform/backdrop
+      is not a faction-owned building and never changes DEC-024 victory.
+      No in-match whole-platform movement, space travel, vehicle flight,
+      radial gravity, orbital weather physics or extra currency.
+    open_visual_decisions: >-
+      Floating space platform is the preferred first-map presentation
+      candidate, not yet an explicit owner mandate to convert EVERY
+      future map. A standard bounded planetary-surface rendering remains
+      a legal presentation alternative on the same PLANAR topology.
+      Campaign trips between planets, moving living castles and
+      destructible mother-platforms require separate later scope.
+    specification: design/floating-platform-battlefields-2026-10-11.md
+    data_specification: design/battlefield-frames.yaml
+    example_map: design/mvp-verdant-divide-map.yaml
 migration_required:
   - design/economy.yaml
   - design/resources.yaml
