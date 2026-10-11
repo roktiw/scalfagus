@@ -3,6 +3,10 @@ project: scalfagus
 human_canonical_logistics_summary: design/three-faction-logistics-overview-2026-10-12.md
 latest_man_umu_wings_decision: DEC-040
 man_umu_generator_building_drive_roof_extension_decision: DEC-041
+man_umu_capacity_and_specialist_balance_DEC_042: design/man-umu-capacity-and-specialist-balance.yaml
+man_umu_four_soldiers_or_cargo: true
+man_umu_mixed_base_27_mono_external_9_plus_9_total_45: true
+man_specialists_stronger_in_single_role_than_universal_UMU: true
 man_umu_generator_building_drive_roof_extension_contract: design/man-umu-power-building-mobility-roof-modules.yaml
 MAN_UMU_one_active_role_rule_supersedes_parallel_generator_plus_warehouse: true
 latest_man_umu_wings_contract: design/man-umu-transforming-belt-wings.yaml
@@ -130,6 +134,13 @@ factions:
     radial_and_vertical_base_growth: true
     self_and_mutual_building_unit_repair: true
     universal_man_unit:
+      troop_transport_manifest_limit: 4
+      inner_standard_cargo_storage_3x3x3: 27
+      mixed_cargo_total_capacity: 27
+      monotypic_cargo_side_rack_sizes: [9, 9]
+      monotypic_cargo_total_capacity: 45
+      soldiers_or_cargo_profile_not_both: true
+      generalist_is_light_versatile_specialists_have_clear_role_specific_superiority: true
       owner_multi_function_constraint: exactly_one_active_function
       power_generator_consumes_actual_fuel_into_actual_Energy: true
       roof_installation_is_not_simultaneous_service: true
