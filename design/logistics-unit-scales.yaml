@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 0.8
+version: 0.9
 status: owner_approved_economic_roles_with_open_balance
 specification: design/colony-topologies-vascular-modular-resonant-2026-10-11.md
 legacy_unit_specification: design/logistics-min-mid-max-2026-10-11.md
@@ -9,6 +9,9 @@ network_contract: design/three-network-channels-and-destruction-2026-10-11.md
 eth_freight_config: design/eth-ether-network-mechanics.yaml
 man_power_dock_config: design/man-power-dock-and-org-vessel-mechanics.yaml
 man_umu_wing_transform_contract: design/man-umu-transforming-belt-wings.yaml
+man_power_building_roof_contract_DEC_041: design/man-umu-power-building-mobility-roof-modules.yaml
+man_umu_exactly_one_active_role: true
+man_umu_building_wheel_assemblies: {small: 4, medium: 6, large: 8}
 man_latest_umu_mode_decision: DEC-040
 base_ecology_specification: design/base-ecologies-and-expansion-2026-10-11.md
 scope: economic_logistics_platforms_only
@@ -197,8 +200,10 @@ factions:
       when_designated_UMU_3_or_5_belt_mode_available: true
       when_designated_UMU_separate_sentry_wall_blocks_real_ground_nav: true
       umu_name: Universal Man Unit
-      generator_umu_kit_on_existing_max_chassis: proposed
-      umu_deployed_generates_energy_and_offers_warehouse_or_bunker: true
+      generator_umu_kit_on_existing_max_chassis: proposed_equipment_role_not_concurrent_output
+      umu_selects_only_one_job_from_generator_warehouse_bunker_or_more: true
+      generator_consumes_actual_eligible_fuel: true
+      building_drive_4_6_8_distinct_UMU: true
       umu_packed_moves_on_ground_and_pauses_generation: true
       victory_building_tag_when_umu_equipped: true
       real_loose_cubes_and_mined_frame_salvage: true
