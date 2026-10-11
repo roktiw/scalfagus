@@ -1,4 +1,9 @@
 schema_version: 1
+release_target: post_mvp_0_1_MAN_vs_ETH
+superseded_as_first_playable_release_by: DEC-033
+MVP0_profile_to_load_instead: design/mvp0-man-mirror-balance-v0.1.yaml
+do_not_load_for_current_micro_MVP0: true
+candidate_profile_still_usable_for_later_asymmetric_MVP: true
 project: scalfagus
 profile_id: man_eth_verdant_divide_first_balance
 profile_version: 0.1
