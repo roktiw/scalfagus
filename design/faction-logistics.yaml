@@ -1,8 +1,10 @@
 schema_version: 1
 project: scalfagus
-version: 0.2
+version: 0.3
 status: owner_approved_identity_with_proposed_mechanics
 specification: design/faction-logistics-2026-10-11.md
+base_ecology_specification: design/base-ecologies-and-expansion-2026-10-11.md
+base_ecology_config: design/base-ecologies.yaml
 canonical_resources: [matter, volatiles, energy]
 core_rule: faction_determines_logistics_physics_player_determines_architecture
 identity_variation_ratio: qualitative_80_20_not_numeric_balance
@@ -23,6 +25,11 @@ factions:
     model: living_loops
     signature: mother_transporter_loop_with_tech_gated_moving_handoffs
     core_elements: [extractor_workers, loader_workers, mobile_mother_carrier, unloaders_or_receiving_dock]
+    base_topology: living_vessels_rooted_at_home_nexus
+    expansion_requires_connected_vessel: true
+    expansion_requires_recurring_physical_home_nourishment: true
+    severed_vessels_withering_grace: TBD
+    construction_levels_by_equipped_scale: {min: l1, mid: l2, max: l3}
     movement: repeating_player_configured_source_base_loop
     initial_route_behavior: fly_stop_load_fly_stop_unload
     base_mother_modes: [move, receive, dispatch, extract]
@@ -69,6 +76,12 @@ factions:
     model: industrial_belts
     signature: continuous_destructible_conveyor_flow
     core_elements: [industrial_extractor, belt_segments, splitter_merger, finite_buffer, depot]
+    base_topology: composable_relocatable_modules_not_single_fixed_nexus
+    independent_outposts_without_home_contact: true
+    radial_and_vertical_base_growth: true
+    self_and_mutual_building_unit_repair: true
+    mid_exclusive_modes: [travel, conveyor, one_soldier_bunker, outward_sentry_wall]
+    max_exclusive_modes: [travel, warehouse, multi_soldier_bunker]
     scaling: [belt_speed, parallel_lanes, junction_efficiency, storage_buffers]
     breakage_interrupts_flow: true
     backpressure_required: true
@@ -79,7 +92,13 @@ factions:
     name_mid: Etherans
     model: resonance_hubs
     signature: mobile_couriers_between_static_pylon_hubs
-    core_elements: [source_extractor, mobile_courier, stationary_pylon, finite_pylon_buffer, destination]
+    core_elements: [source_extractor, mobile_courier, stationary_mid_pylon, nexus_class_max_node, destination]
+    mid_role: pylon_storage_relay_or_meditated_turret
+    max_role: nexus_class_core_from_creation
+    min_construction_mode: stationary_network_builder_with_visible_blue_beam_to_nearest_eligible_large_node
+    home_contact: expansion_initialization_and_unknown_blueprints_only
+    eligible_structure_relocation: meditation_then_levitation
+    blueprint_knowledge_not_new_resource: true
     stationary_pylons: true
     pylon_inbound_outbound_queues: finite
     courier_payload_and_travel_time: finite
