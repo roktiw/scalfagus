@@ -161,3 +161,17 @@ development_claims:
   - first_release_balance_not_playtested
   - Godot_headless_speed_not_measured
   - multiplayer_HH_not_implemented_until_two_clients_actually_complete_game
+
+future_control_modes_and_civilization_doctrines:
+  status: owner_directed_product_vision_not_MVP0_implementation
+  design: design/command-autonomy-modes-2026-10-11.md
+  contract: design/command-autonomy-modes.yaml
+  player_selectable_control_modes: [full_manual, semi_auto, full_auto]
+  group_managers_can_coordinate: [units, buildings]
+  doctrine_examples: [war, industrial, rebuilding, expansion_preparation, defensive_readiness, balanced]
+  candidate_ui_axis_counts: [3, 5, 7]
+  temperatures: [-1, 0, 1]
+  live_switching_without_world_reset: true
+  manual_order_override_always_available: true
+  no_unbudgeted_strategic_autonomy: true
+  first_MVP0_scope_unchanged: true
