@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 0.6
+version: 0.7
 status: approved_core_rules_with_proposed_details
 resource:
   id: energy
@@ -14,14 +14,28 @@ resource:
   note: >-
     This means the universal Energy currency requires no mandatory global
     power grid. The MAN faction may use local finite wired electricity.
-  network_contract: design/three-faction-network-and-infrastructure-contract-2026-10-11.md
-  man_power_dock:
+  network_contract: design/three-network-channels-and-destruction-2026-10-11.md
+  world_loot_contract: design/world-loot-and-recycling.yaml
+  man_umu:
+    full_name: Universal Man Unit
+    existing_max_depot_with_generator_option: proposed
+    hybrid_conduit_carries_power_and_information_on_separate_conductors_and_fibers: true
+    no_cable_based_raw_material_teleport: true
+    deployed_generator_with_local_power_budget: true
+    packed_travel_cuts_grid_link_and_generating_output: true
     actual_generated_energy_is_finite_and_accounted: true
     support_pu_is_rate_not_new_stored_currency: true
     local_auto_electric_connectors: proposed
     battery_supports_detached_units_for_finite_time: true
     no_electric_cable_transport_for_solids_liquids_gases: true
+  org_mitochondria:
+    exact_two_required_by_owner: true
+    per_connected_component_or_per_colony_scope: TBD
+    starting_resources_must_allow_first_two_to_be_built: true
+    energy_moves_in_actual_living_vessels_at_finite_rate: true
   eth_ether_representation:
+    one_network_carries_energy_resources_and_information: true
+    no_instant_double_credit_when_edge_breaks: true
     underlying_energy_currency_id_remains_energy: true
     nexus_conversion_into_ether_form_changes_representation_not_resource_type: true
     network_transit_bounded_by_finite_node_link_capacity: true
@@ -45,6 +59,9 @@ resource:
       former_blergians_manusians_aetherians: migrated_out_of_active_keys
   transport:
     physical_cargo: true
+    eth_network_representation_after_nexus_conversion: true
+    org_vascular_finite_resource_and_energy_transit: true
+    man_hybrid_conductive_power_cable_or_physical_battery: true
     compatible_with_min_mid_max_logistics: true
     throughput_and_capacity: TBD
   expenditure: [technology, modules, transformations, abilities, advanced_production]
