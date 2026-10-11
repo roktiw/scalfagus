@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 0.5
+version: 0.6
 decisions:
   - id: DEC-001
     status: approved
@@ -26,9 +26,9 @@ decisions:
     status: approved
     topic: faction_default_playstyles
     resolution: >-
-      Blergians emphasize relentless early pressure and biomass-linked clustered bases;
-      Manusians use scouting, modular strike groups and widely dispersed outposts;
-      Aetherians protect and rebuild a homeworld-like core to survive until late technology.
+      Organs emphasize relentless early pressure and biomass-linked clustered bases;
+      Manus use scouting, modular strike groups and widely dispersed outposts;
+      Eters protect and rebuild a homeworld-like core to survive until late technology.
       These are defaults, never mandatory strategic restrictions.
     specification: design/factions.yaml
   - id: DEC-006
@@ -46,10 +46,18 @@ decisions:
       Tactical coordination and enhanced networks remain allowed and must not erase
       unit individuality. This principle does not mean every unit must be sentient.
     specification: design/individual-agency-and-composable-civilizations.md
+  - id: DEC-008
+    status: approved
+    topic: canonical_faction_names
+    resolution: >-
+      The original three playable civilizations are Organs (org), Manus (man),
+      and Eters (eth). Earlier names are obsolete for runtime game data.
+    specification: design/faction-identity-rename-2026-10-11.md
 migration_required:
   - design/economy.yaml
   - design/resources.yaml
   - design/units.yaml
+  - Audit all archived faction IDs before importing older examples.
 notes:
   - Approved design decisions are distinct from tentative balance numbers.
   - See design/decisions-v0.4.md for historical v0.4 questions and acceptance criteria.
