@@ -93,3 +93,16 @@ F. RTS-only player can beat same enemy without ever possessing; Architect-only p
 G. Unit death exits possession; no orphan camera, old input capture or stuck control lease.
 
 Related: [Product Principles](product-principles.md), [MVP](mvp-iso-pixel-rts.md), [Engine Selection](../research/engine-selection-rts-possession-2026-10-11.md).
+
+
+## 8. Hero ownership and three-view amendment (2026-10-11)
+The owner now requires **one Hero per human player from match start**, with initial Engineer, Commander or Specialist *kit* and one shared open talent graph. Skills can cross branches, while selected mutually-exclusive upgrades block incompatible **future** skills unless a later explicit respec system is approved. This creates NO hero-specific camera or exclusive gameplay mode.
+
+The three user-facing *observation/control* perspectives are:
+- **Overlord**: base / transport / RTS / army overview.
+- **Direct Unit**: top-down near-isometric `Realm of the Mad God`-like movement, aim and attack with one owned Hero; following TPP camera is optional, not a separate game system.
+- **Full FPS**: direct first-person control of that SAME Hero actor, with the same movement, weapon, collision, health, inventory and ability cooldowns.
+
+Architect / Commander / Avatar describe player *interests and control disciplines*, **not locked selectable classes**. A Specialist can enter Overlord to place buildings, an Engineer can use FPS, a Commander can control a unit directly. Full manual RTS remains playable without using direct control at all. One authoritative hero entity receives different input adapters. The progression graph and ability resolver are not duplicated per camera. All camera views must respond to hero death and controller release coherently.
+
+**Internal MVP delta:** a single unit hero with the three starting kits/presets as small modifiers or starter abilities, a tiny common graph (6–9 proposals), two demonstrated pivots, three working cameras (Overlord/Direct/FPS), no deep RPG class engine, no full TPP, no Quake movement mechanics. See [Hero and Cameras](hero-progressions-and-three-cameras-2026-10-11.md), [MVP Scope](mvp-iso-pixel-rts.md).
