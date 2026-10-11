@@ -4,6 +4,7 @@ extends Node3D
 # This is local Human-vs-Bot / Bot-vs-Bot; LAN Human-vs-Human is a later gate.
 const MATCH = preload("res://scripts/mirror_match_state.gd")
 const TIMING = preload("res://scripts/mirror_timing.gd")
+const GEOM = preload("res://scripts/mirror_geometry.gd")
 const VIEW_SCRIPT = preload("res://scripts/directional_sprite_5.gd")
 const WORKER_ATLAS = preload("res://assets/man_worker_32x48_idle_5view.png")
 const LANDER_ATLAS = preload("res://assets/man_lander_128x128_unverified_5view.png")
@@ -31,16 +32,16 @@ var hud: Label
 var help_label: Label
 var selection_marker: MeshInstance3D
 var info: String = ""
-var camera_center: Vector3 = Vector3(17.0, 0.0, 17.0)
-var zoom_size: float = 50.0
+var camera_center: Vector3 = Vector3(34.0, 0.0, 34.0)
+var zoom_size: float = 100.0
 
 func _ready() -> void:
     sim = MATCH.new()
     var mode: String = str(ProjectSettings.get_setting("scalfagus/mirror_mode", "human_bot"))
     spectator = mode == "bot_bot"
     if spectator:
-        camera_center = Vector3(31.5, 0.0, 31.5)
-        zoom_size = 76.0
+        camera_center = Vector3(63.0, 0.0, 63.0)
+        zoom_size = 152.0
     sim.setup(42, ["bot", "bot"] if spectator else ["human", "bot"])
     _build_scene()
     _sync_visuals()
@@ -66,6 +67,7 @@ func _pixel_actor(atlas: Texture2D, frame_size: Vector2i, pixel_scale: float,
         tint: Color, mirror_safe: bool = false) -> Node3D:
     var root := Node3D.new()
     world_root.add_child(root)
+    root.scale = Vector3.ONE * sim.tile_meters
     var visual: DirectionalSprite5 = VIEW_SCRIPT.new()
     visual.name = "Visual"
     root.add_child(visual)
@@ -108,23 +110,23 @@ func _build_scene() -> void:
 
     world_root = Node3D.new()
     add_child(world_root)
-    var underdeck := _block(Vector3(67.0, 1.5, 67.0), Color("#25314b"), world_root)
-    underdeck.position = Vector3(31.5, -1.2, 31.5)
-    var ground := _block(Vector3(64.0, 0.4, 64.0), Color("#526c4d"), world_root)
-    ground.position = Vector3(31.5, -0.28, 31.5)
+    var underdeck := _block(Vector3(134.0, 3.0, 134.0), Color("#25314b"), world_root)
+    underdeck.position = Vector3(63.0, -2.4, 63.0)
+    var ground := _block(Vector3(128.0, 0.8, 128.0), Color("#526c4d"), world_root)
+    ground.position = Vector3(63.0, -0.56, 63.0)
 
     # Cosmetic rim reinforces the mandatory floating-platform world rule.
     for edge in range(4):
-        var rim_size := Vector3(65.0, 1.0, 0.65) if edge < 2 else Vector3(0.65, 1.0, 65.0)
+        var rim_size := Vector3(130.0, 2.0, 1.3) if edge < 2 else Vector3(1.3, 2.0, 130.0)
         var rim := _block(rim_size, Color("#8498b1"), world_root)
         if edge == 0:
-            rim.position = Vector3(31.5, 0.02, -0.5)
+            rim.position = Vector3(63.0, 0.04, -1.0)
         elif edge == 1:
-            rim.position = Vector3(31.5, 0.02, 63.5)
+            rim.position = Vector3(63.0, 0.04, 127.0)
         elif edge == 2:
-            rim.position = Vector3(-0.5, 0.02, 31.5)
+            rim.position = Vector3(-1.0, 0.04, 63.0)
         else:
-            rim.position = Vector3(63.5, 0.02, 31.5)
+            rim.position = Vector3(127.0, 0.04, 63.0)
 
     # Gameplay obstruction lives in the Simulation Core. Pixel art is visual only.
     for cell in sim.terrain.keys():
@@ -132,29 +134,29 @@ func _build_scene() -> void:
         if kind == "tree":
             var tree_sprite: Node3D = _pixel_actor(
                 TREE_ATLAS, Vector2i(40, 64), 0.052, Color.WHITE, true)
-            tree_sprite.position = Vector3(float(cell.x), 0.0, float(cell.y))
+            tree_sprite.position = GEOM.tile_to_world(cell)
         else:
-            var pond := _block(Vector3(1.0, 0.07, 1.0),
+            var pond := _block(Vector3(2.0, 0.14, 2.0),
                 Color("#296d9d"), world_root)
-            pond.position = Vector3(float(cell.x), 0.04, float(cell.y))
+            pond.position = GEOM.tile_to_world(cell, 0.08)
 
     for sid in sim.sources.keys():
         var source: Dictionary = sim.sources[sid]
         var ore: Node3D = _pixel_actor(
             ROCK_ATLAS, Vector2i(56, 36), 0.040, Color(1.0, 0.88, 0.57))
         var p: Vector2i = source["pos"]
-        ore.position = Vector3(float(p.x), 0.0, float(p.y))
+        ore.position = GEOM.tile_to_world(p)
         source_nodes[sid] = ore
 
     camera = Camera3D.new()
     camera.projection = Camera3D.PROJECTION_ORTHOGONAL
     camera.size = zoom_size
-    camera.far = 300.0
+    camera.far = 600.0
     camera.current = true
     add_child(camera)
     _position_camera()
 
-    selection_marker = _block(Vector3(1.65, 0.08, 1.65), Color("#f5f18d"), world_root)
+    selection_marker = _block(Vector3(3.3, 0.16, 3.3), Color("#f5f18d"), world_root)
     selection_marker.visible = false
 
     var ui := CanvasLayer.new()
@@ -183,7 +185,7 @@ func _build_scene() -> void:
 func _position_camera() -> void:
     if camera == null:
         return
-    camera.position = camera_center + Vector3(0.0, 62.0, 49.0)
+    camera.position = camera_center + Vector3(0.0, 124.0, 98.0)
     camera.look_at(camera_center, Vector3.UP)
 
 func _unit_color(e: Dictionary) -> Color:
@@ -223,7 +225,7 @@ func _sync_visuals() -> void:
             unit_nodes[id] = _unit_sprite(e)
         var v: Node3D = unit_nodes[id]
         var p: Vector2i = e["pos"]
-        v.position = Vector3(float(p.x), 0.0, float(p.y))
+        v.position = GEOM.tile_to_world(p)
         v.visible = spectator or int(e["owner"]) == 0 or sim.can_see(0, p)
     for sid in source_nodes.keys():
         var source: Dictionary = sim.sources[sid]
@@ -239,7 +241,8 @@ func _sync_visuals() -> void:
     selection_marker.visible = selected_id >= 0 and sim.entities.has(selected_id)
     if selection_marker.visible:
         var focus: Vector2i = sim.entities[selected_id]["pos"]
-        selection_marker.position = Vector3(focus.x, 0.12, focus.y)
+        selection_marker.position = GEOM.tile_to_world(focus, 0.24)
+        selection_marker.scale = Vector3(3.0, 1.0, 3.0) if GEOM.is_building(str(sim.entities[selected_id]["kind"])) else Vector3.ONE
     for id in group_markers.keys():
         if not selected_ids.has(id) or id == selected_id or not sim.entities.has(id):
             (group_markers[id] as Node).queue_free()
@@ -248,10 +251,11 @@ func _sync_visuals() -> void:
         if id == selected_id:
             continue
         if not group_markers.has(id):
-            group_markers[id] = _block(Vector3(1.45, 0.06, 1.45),
+            group_markers[id] = _block(Vector3(2.9, 0.12, 2.9),
                 Color("#92d8ff"), world_root)
         var p: Vector2i = sim.entities[id]["pos"]
-        (group_markers[id] as Node3D).position = Vector3(p.x, 0.12, p.y)
+        (group_markers[id] as Node3D).position = GEOM.tile_to_world(p, 0.24)
+        (group_markers[id] as Node3D).scale = Vector3(3.0, 1.0, 3.0) if GEOM.is_building(str(sim.entities[id]["kind"])) else Vector3.ONE
     var selected_text: String = "None"
     if selected_id >= 0 and sim.entities.has(selected_id):
         var chosen: Dictionary = sim.entities[selected_id]
@@ -283,7 +287,7 @@ func _cell_at_mouse(screen_pos: Vector2) -> Vector2i:
     if distance < 0.0:
         return Vector2i(-1, -1)
     var point: Vector3 = ray_origin + ray_dir * distance
-    return Vector2i(roundi(point.x), roundi(point.z))
+    return GEOM.world_to_tile(point)
 
 func _entity_near(cell: Vector2i, owner_filter: int) -> int:
     var best: int = -1
@@ -296,7 +300,7 @@ func _entity_near(cell: Vector2i, owner_filter: int) -> int:
         if owner == 1 and not sim.can_see(0, e["pos"]):
             continue
         var p: Vector2i = e["pos"]
-        var d: int = absi(p.x - cell.x) + absi(p.y - cell.y)
+        var d: int = sim._distance_to_entity(cell, e)
         if d < best_distance:
             best_distance = d
             best = id
@@ -336,7 +340,7 @@ func _select_box(from_screen: Vector2, to_screen: Vector2,
         if int(e["owner"]) != 0:
             continue
         var p: Vector2i = e["pos"]
-        var location := Vector3(float(p.x), 0.8, float(p.y))
+        var location: Vector3 = GEOM.tile_to_world(p, 1.6)
         if camera.is_position_behind(location):
             continue
         if selection_rect.has_point(camera.unproject_position(location)):
@@ -413,7 +417,7 @@ func _unhandled_input(event: InputEvent) -> void:
                 MOUSE_BUTTON_WHEEL_UP, MOUSE_BUTTON_WHEEL_DOWN]:
             zoom_size = clampf(
                 zoom_size * (0.88 if event.button_index == MOUSE_BUTTON_WHEEL_UP else 1.12),
-                24.0, 96.0)
+                48.0, 192.0)
             camera.size = zoom_size
             return
         if spectator:
@@ -462,9 +466,9 @@ func _process(delta: float) -> void:
         shift.x = Input.get_axis("rts_pan_left", "rts_pan_right")
         shift.z = Input.get_axis("rts_pan_up", "rts_pan_down")
     if shift.length_squared() > 0.0:
-        camera_center += shift.normalized() * delta * 18.0
-        camera_center.x = clampf(camera_center.x, 12.0, 52.0)
-        camera_center.z = clampf(camera_center.z, 12.0, 52.0)
+        camera_center += shift.normalized() * delta * 36.0
+        camera_center.x = clampf(camera_center.x, 24.0, 104.0)
+        camera_center.z = clampf(camera_center.z, 24.0, 104.0)
         _position_camera()
     if not sim.finished and speed > 0:
         time_accumulator += delta * float(speed)
