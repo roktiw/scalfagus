@@ -22,6 +22,20 @@ decisions:
     topic: match_length
     resolution: Standard competitive 1v1 targets 25–40 minutes.
     specification: design/match-rules.yaml
+  - id: DEC-005
+    status: approved
+    topic: faction_default_playstyles
+    resolution: >-
+      Blergians emphasize relentless early pressure and biomass-linked clustered bases;
+      Manusians use scouting, modular strike groups and widely dispersed outposts;
+      Aetherians protect and rebuild a homeworld-like core to survive until late technology.
+      These are defaults, never mandatory strategic restrictions.
+    specification: design/factions.yaml
+  - id: DEC-006
+    status: approved
+    topic: language_policy
+    resolution: All repository documentation, YAML content, comments, and authored text must be in English.
+    specification: design/design-audit.md
 migration_required:
   - design/economy.yaml
   - design/resources.yaml
