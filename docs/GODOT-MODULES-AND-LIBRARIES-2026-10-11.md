@@ -33,3 +33,17 @@ Godot 4.7.2 Standard with typed GDScript is the only runtime. The MVP is one aut
 3. Add Keychain to the Options screen after named Input Map actions exist; add a smoke test that remapping does not bypass command validation.
 4. Wrap RTS Framework components with Scalfagus adapters only where they reduce duplicate code and preserve the one-world contract.
 5. Prototype a NavigationAgent3D adapter on a small platform region, compare paths against the grid oracle, then decide whether it belongs in MVP.
+
+## PR #5 decision
+
+PR [#5](https://github.com/roktiw/scalfagus/pull/5) was still open and aligned with the current MVP: it adds RTS camera/selection/commands, deterministic grid navigation around obstacles, the minimap, floating-platform frame behavior and headless RTS/navigation smoke tests. It was merged into `main` after local verification. The merged slice is the current foundation for the RTS module; it does not claim that economy, combat, bot behavior or the full MAN/ETH match are complete.
+
+Local post-merge results:
+
+- `SCALFAGUS_SMOKE_PASS`
+- `SCALFAGUS_MENU_PASS`
+- `SCALFAGUS_RTS_SMOKE_PASS`
+- `SCALFAGUS_NAV_SMOKE_PASS`
+- `SCALFAGUS_GODOT_CHECK_PASS`
+
+Godot 4.7.2 still reports `ObjectDB/RID` allocations on headless shutdown. The assertions pass; cleanup should be a separate task.
