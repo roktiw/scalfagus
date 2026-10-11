@@ -1,11 +1,17 @@
 schema_version: 1
 project: scalfagus
-version: 0.4
+version: 0.5
 status: active_agent_document_authority_after_owner_DEC_033
 language: en
 latest_owner_scope_decision: DEC-033
 latest_research_and_view_decisions: [DEC-030, DEC-031, DEC-032, DEC-034]
 mandatory_reuse_first_policy: DEC-034
+latest_source_audit_reports: [design/mvp-repository-mechanics-audit-2026-10-11.md, design/mvp-repository-mechanics-audit.yaml]
+latest_code_vs_contract_reports: [design/mvp0-runtime-parity-gaps.md, design/mvp0-runtime-parity-gaps.yaml]
+latest_audit_status: source_only_no_Godot_execution_or_LAN_verification
+last_complete_recursive_main_tree_file_count_during_audit: 360
+last_complete_recursive_main_tree_design_file_count_during_audit: 115
+tracked_count_is_snapshot_and_main_keeps_changing: true
 built_in_first_reference: architecture/godot-reuse-component-map.yaml
 first_MVP_target: MAN_vs_MAN_Verdant_Divide_RTS_only_Godot_Native_HH_HC_CC
 first_release_id: mvp_0_1
@@ -38,6 +44,11 @@ observed_source_mirror:
   smoke: apps/game/tests/mirror_smoke.gd
   batch: apps/game/tests/mirror_batch.gd
   current_test_evidence: files_exist_no_pass_confirmed_in_this_audit
+  checked_scripts_check_sh_invokes: [smoke.gd, menu_smoke.gd, rts_smoke.gd, navigation_smoke.gd, mirror_smoke.gd, mirror_visual_smoke.gd]
+  checked_scripts_check_sh_does_not_invoke: [mirror_batch.gd]
+  no_actual_engine_test_outcome_observed_in_this_audit: true
+  actual_walk_one_cell_every_sim_ticks: 3
+  mirror_visual_smoke_requires_four_current_sources_but_authored_map_has_ten: true
   two_human_LAN: not_implemented
   compiled_authored_yaml_map: not_implemented_in_observed_mirror_path
   current_BFS: candidate_for_DEC034_reuse_adapter_review
