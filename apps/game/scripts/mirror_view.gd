@@ -25,7 +25,7 @@ var hud: Label
 var help_label: Label
 var selection_marker: MeshInstance3D
 var info: String = ""
-var camera_center: Vector3 = Vector3(19.0, 0.0, 32.0)
+var camera_center: Vector3 = Vector3(17.0, 0.0, 17.0)
 var zoom_size: float = 50.0
 
 func _ready() -> void:
