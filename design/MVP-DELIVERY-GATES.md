@@ -1,5 +1,10 @@
 # Scalfagus — HISTORICAL MAN+ETH delivery gates (POST-MVP 0.1)
 
+> **Current release scope reconciliation — DEC-033 (2026-10-11):** Old full two-faction gates G0-G9 are DEFERRED to a later version. Current release is DEC-033 micro MVP0 MAN mirror M0-00..09; do not implement ETH, UMU, Energy, FPP or extra HUD controls now.
+>
+> **CURRENT owner-approved executable release: [DEC-033](decisions.yaml), [MAN mirror scope](mvp0-man-mirror-rts-2026-10-11.md), [active numerical profile](mvp0-man-mirror-balance-v0.1.yaml), [Godot execution rules](mvp0-man-mirror-execution-contract.md), [Godot ENet authority](mvp0-man-mirror-network.yaml), [M0 backlog](mvp0-man-mirror-backlog.yaml), [M0 acceptance](mvp0-man-mirror-acceptance.yaml).**
+
+
 **DEC-033 NOTICE:** This document's old two-faction and three-camera gates are NOT current first-playable MVP tasks. Implement the single-faction MAN mirror RTS instead, using [micro-MVP spec](mvp0-man-mirror-rts-2026-10-11.md), [YAML](mvp0-man-mirror-rts.yaml), [backlog](mvp0-man-mirror-backlog.yaml), [acceptance](mvp0-man-mirror-acceptance.yaml). Retain this file only for a later MAN+ETH expanded milestone. The currently checked-in code remains an engine prototype, not either finished release.
 
 Date: 2026-10-11
