@@ -1,5 +1,10 @@
 # Scalfagus — HISTORICAL Coding Agent Handoff: MAN vs ETH, Verdant Divide
 
+> **Current release scope reconciliation — DEC-033 (2026-10-11):** Historical/full two-faction PR00-PR10 plan, superseded as immediate release scope. Current Godot agent should work through DEC-033 MAN mirror M0-00..09 and micro-only economics/network/acceptance.
+>
+> **CURRENT owner-approved executable release: [DEC-033](decisions.yaml), [MAN mirror scope](mvp0-man-mirror-rts-2026-10-11.md), [active numerical profile](mvp0-man-mirror-balance-v0.1.yaml), [Godot execution rules](mvp0-man-mirror-execution-contract.md), [Godot ENet authority](mvp0-man-mirror-network.yaml), [M0 backlog](mvp0-man-mirror-backlog.yaml), [M0 acceptance](mvp0-man-mirror-acceptance.yaml).**
+
+
 **DEC-033 NOTICE:** The first playable MVP is now **MAN-vs-MAN, Overlord RTS only**, with two player slots H-H LAN/loopback, H-C and C-C, four MAN templates and a small Matter economy. This earlier MAN+ETH handoff and three-camera PR-09 are **post-MVP reference** rather than active coding tasks. Follow [current release spec](mvp0-man-mirror-rts-2026-10-11.md), [YAML](mvp0-man-mirror-rts.yaml), [backlog](mvp0-man-mirror-backlog.yaml), [acceptance](mvp0-man-mirror-acceptance.yaml), and [DEC-033](decisions.yaml). The older three-camera technical spike stays preserved for regression only. Also see DEC-031 (future Overlord+FPP only).
 
 Date: 2026-10-11
