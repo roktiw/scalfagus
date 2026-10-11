@@ -10,6 +10,7 @@ const HERO_SCRIPT = preload("res://scripts/hero.gd")
 const VIEW_SCRIPT = preload("res://scripts/directional_sprite_5.gd")
 const NAV_SCRIPT = preload("res://scripts/grid_navigator.gd")
 const MINIMAP_SCRIPT = preload("res://scripts/rts_minimap.gd")
+const DEV_MENU_SCRIPT = preload("res://scripts/dev_menu.gd")
 const WORKER_TEXTURE = preload("res://assets/man_worker_32x48_idle_5view.png")
 const WORKER_WALK_REFERENCE = preload("res://assets/man_worker_32x48_walk_reference_5view.png")
 const LANDER_TEXTURE = preload("res://assets/man_lander_128x128_unverified_5view.png")
@@ -55,6 +56,8 @@ var solids: int = 150
 var navigator: ScalfagusGridNavigator
 var minimap: ScalfagusRTSMinimap
 var map_name: String = "VERDANT DIVIDE · PROTOTYPE"
+var dev_menu: Panel
+var dev_selection_debug: bool = false
 
 
 func _ready() -> void:
@@ -63,6 +66,7 @@ func _ready() -> void:
     _make_terrain()
     _make_test_entities()
     _make_camera_and_hud()
+    _make_dev_menu()
     _apply_mode(OVERLORD)
     _refresh_hud()
 
@@ -418,6 +422,21 @@ func _make_camera_and_hud() -> void:
     reticle.mouse_filter = Control.MOUSE_FILTER_IGNORE
     layer.add_child(reticle)
 
+func _make_dev_menu() -> void:
+    var layer := CanvasLayer.new()
+    layer.name = "DevToolsLayer"
+    add_child(layer)
+    dev_menu = DEV_MENU_SCRIPT.new()
+    layer.add_child(dev_menu)
+    dev_menu.configure(self)
+
+func dev_focus_hero() -> void:
+    camera_focus = hero.global_position
+    camera_focus.y = height_at(camera_focus.x, camera_focus.z)
+    orbit_yaw = deg_to_rad(36.0)
+    orbit_pitch = deg_to_rad(49.0)
+    _apply_mode(OVERLORD)
+
 func _apply_mode(new_mode: int) -> void:
     view_mode = new_mode
     camera.projection = Camera3D.PROJECTION_ORTHOGONAL if view_mode == OVERLORD else Camera3D.PROJECTION_PERSPECTIVE
@@ -441,6 +460,10 @@ func _unhandled_input(event: InputEvent) -> void:
             KEY_F9:
                 window_size_index = (window_size_index + 1) % WINDOW_PROFILES.size()
                 get_window().size = WINDOW_PROFILES[window_size_index]
+            KEY_F12:
+                dev_menu.visible = not dev_menu.visible
+                if dev_menu.visible:
+                    Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
             KEY_ESCAPE:
                 if view_mode == FPS and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
                     Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -529,6 +552,8 @@ func _select_units(units: Array[Node3D], additive: bool) -> void:
         if unit is PrototypeHero:
             (unit as PrototypeHero).set_selected(true)
     _refresh_hud()
+    if dev_menu != null and dev_menu.visible:
+        dev_menu.refresh()
 
 func _issue_context_command(point: Vector2) -> void:
     if selected_units.is_empty():
