@@ -1,71 +1,79 @@
-# Scalfagus — Three-Layer Faction Naming Convention
+# Scalfagus — Canonical Three-Level Faction Naming Convention
 
 Date: 2026-10-11
-Status: **proposal**, not an additional approved rename.
+Status: **OWNER-APPROVED CANON** for the initial three civilizations.
+This document supersedes the earlier exploratory version of this file and the provisional expanded names elsewhere. Do not auto-correct the owner's intentional spellings.
 
-## Already approved
-- IDs: org / man / eth.
-- Short UI labels: Organs / Manus / Eters.
-- These replace obsolete Blergians / Manusians / Aetherians as **canonical faction labels** in active runtime-facing definitions.
-- See faction-identity-rename-2026-10-11.md.
+## Canonical matrix — EXACT SPELLING
 
-## Never use MIN/MID/MAX for name levels
-MIN/MID/MAX already describe *match scale* and separately *chassis scale*. Do not add third contradictory usage. Prefer:
-1. **id** (3 lowercase letters, stable machine key): org/man/eth.
-2. **display_name** (short player-facing faction label): Organs/Manus/Eters.
-3. **people_name and singular_person** (ethnonym/demonym; optional): name for members, language and lore, not automatically equal to the polity.
-4. **polity_name** (long formal political/institutional name): one federation, state, guild union or concord, not one obligatory universal biological species title.
-5. Optional epithet for scenario flavor.
-
-This is not an acronym system: ORG should not be retroactively forced to mean "Organsians Race Generality." A faction ID is an identifier. Proper long names should express actual institutions and their worldview.
-
-## User-proposed medium expansion (NOT approved)
-| id | short | expanded candidate | potential formal title |
+| Stable machine ID | Short faction label | Mid / people name | Full formal backronym |
 |---|---|---|---|
-| org | Organs | Organians | Organian Assembly of Living Guilds |
-| man | Manus | Manusians | Manusian Interstellar Commonwealth |
-| eth | Eters | Etherians | Etherian Resonance Concord |
+| `org` / **ORG** | **Organs** | **Organites** | **Organites Reproductive Generalismus** |
+| `man` / **MAN** | **Manus** | **Manusians** | **Manusians Augmented Navigators** |
+| `eth` / **ETH** | **Eters** | **Etherans** | **Etherans Transcendent Hypervisors** |
 
-### Original-IP warning: found existing names
-- **Organians** are an existing incorporeal energy-based alien species in **Star Trek**, from Organia. This is an exact naming collision and (coincidentally) much closer to the concept of Eters than Organs. See https://memory-alpha.fandom.com/wiki/Organia_system .
-- **Etherians** is used for peoples of **Etheria** in **She-Ra**, and the World of Ether setting also names its beings Etherians. See https://she-raandtheprincessesofpower.fandom.com/wiki/People_Groups and https://docs.worldofether.com/ .
-- **Manus** occurs in other media and language usages; Manusians not verified as unique.
-- This is preliminary web collision research, NOT a trademark clearance or legal opinion. Before commercial release, check relevant trademarks, confusing similarity, localization and game-store naming.
+The full formal expressions are **deliberate backronyms**: O–R–G, M–A–N, E–T–H. The three-letter labels are simultaneously compact technical identifiers and initials of the long names. Preserve the expansions **verbatim**, including **Generalismus** and **Etherans**. Do not silently rewrite them to "Generality", "Organites", "Eterans" or "Etherians", or turn the full names into unrelated formal institutions.
 
-## Alternative expanded names for testing (NOT approved)
-| id | short | people_name proposal | singular_person | formal political title example |
-|---|---|---|---|---|
-| org | Organs | **Organites** | Organite | **Organite Free Lineages** |
-| man | Manus | **Manusians** | Manusian | **Manusian Expeditionary Commonwealth** |
-| eth | Eters | **Eterans** | Eteran | **Eteran Resonance Concord** |
+The owner has approved all three full lines above. Earlier names and suggestions are no longer candidates for the original three faction naming tiers.
 
-These are phonetic/semantic proposals only, NOT guaranteed original or cleared. Other candidate systematic family: Organids / Manusids / Eterids, but "-ids" may feel clinically taxonomic. Short approved labels are sufficient for MVP; people names can stay optional until lore development.
+## Semantics / scope
+- **`id`** = lowercase three-letter durable machine identity: `org`, `man`, `eth`.
+- **`short`** = short UI / HUD / lobby faction collective label: `Organs`, `Manus`, `Eters`.
+- **`mid`** = expanded people/civilization name: `Organites`, `Manusians`, `Etherans`.
+- **`full`** = the exact in-universe long expansion of the initialism: `Organites Reproductive Generalismus`, `Manusians Augmented Navigators`, `Etherans Transcendent Hypervisors`.
+- **Political state name** = a separate, optional future field (`polity_name`) if campaigns introduce multiple governments within a civilization. Do **not** reinterpret the approved full backronym as the name of a single polity unless the owner later says so.
+- **Singular citizen terms** = not approved; never infer or hard-code them from mid labels.
+- **MTG philosophy** remains ORG Jund (B/R/G), MAN Jeskai (W/U/R), ETH Bant (W/U/G). These three-color identities are thematic analysis, not magical factions restricted to only three attributes.
 
-## Institutional distinction
-- **Organs** represent independent biological organisms and diverse lineages. A **Free Lineages** or comparable coalition is more consistent with the owner's **anti-hive-mind** requirement than a single collective mind.
-- **Manus** describes human-origin industrial communities with humans, cyborgs, robots and independent AI. A Commonwealth of Colonies/Guilds reflects loose economic and political organization.
-- **Eters** represent distinct resonant/advanced beings, technologists and spiritual schools. **Concord** expresses voluntary cooperation and avoids compulsory mind fusion.
-- Individual species, cultures, political factions and technological orders may overlap but are NOT the same schema entity. One faction can include many species; one species can have several political factions.
+## Distinguish canonical levels from existing MIN/MID/MAX dimensions
+The user casually describes expanded names as "mid", but do not reuse the capitalized game mechanics enum `MIN/MID/MAX`. Those already independently describe **match_scale** and **chassis_scale**. In code and configs use explicit field names `faction_id`, `name_short`, `name_mid`, `name_full`; do not create ambiguous `tier` or `name_scale`.
 
-## Data convention (example proposal, not active runtime schema)
-    faction_id: org
-    display_name: Organs
-    people_name: Organites
-    singular_person: Organite
-    polity_name: Organite Free Lineages
+## Suggested active YAML fields
+```yaml
+factions:
+  - id: org
+    name: Organs
+    name_short: Organs
+    name_mid: Organites
+    name_full: Organites Reproductive Generalismus
+    name_initialism: ORG
+  - id: man
+    name: Manus
+    name_short: Manus
+    name_mid: Manusians
+    name_full: Manusians Augmented Navigators
+    name_initialism: MAN
+  - id: eth
+    name: Eters
+    name_short: Eters
+    name_mid: Etherans
+    name_full: Etherans Transcendent Hypervisors
+    name_initialism: ETH
+```
+`name` is retained as backward-compatible current short display label in design definitions. The full expansions are owner-approved strings; the suggested extra fields are an authoring interface, not proof of a running game parser.
 
-Names are separate localization fields; identifiers must not be derived from localizable labels. Use org/man/eth in data/telemetry/qualified unit IDs.
+## Player-facing usage
+- HUD icons / unit tooltips: `ORG`, `MAN`, `ETH`.
+- Match setup: `Organs`, `Manus`, `Eters`.
+- Encyclopedia / selection: `Organites`, `Manusians`, `Etherans`.
+- Full faction screen and campaign opening: `Organites Reproductive Generalismus`, `Manusians Augmented Navigators`, `Etherans Transcendent Hypervisors`.
 
-## Examples
-- Lobby: ORG — Organs | MAN — Manus | ETH — Eters.
-- Short unit: ORG / Worker / MIN chassis.
-- Lore encyclopedia: "Organites" (people) vs "Organite Free Lineages" (one confederation).
+## Superseded names and history (NOT canonical)
+- Blergians / Blergian → `org` / Organs / Organites.
+- "Manusians" **as the original short faction name** is superseded by Manus; **Manusians is NOW canon at the mid level**.
+- Aetherians / Aetherian → `eth` / Eters / Etherans.
+- Previous proposed Organians, Organites Free Lineages, Eterans, Etherians, Etherian Technocracy Hypervisors, Organian Republic of Guilds, Manusian Autonomous Nations etc. are drafts, **not** canonical.
+- Old conversation notes are historical records and should not be silently rewritten to misrepresent what was discussed.
+- Historical legacy identifiers only matter for a future migration script if an actual save format exists. New design runtime IDs must be lowercase `org/man/eth`.
 
-## Decision register
-- Q1: Do expanded people names belong in MVP at all? Recommendation: leave optional until lore.
-- Q2: Should UI faction names remain Organs/Manus/Eters or show longer names?
-- Q3: Which expanded alternatives are distinctive enough after real IP search?
-- Q4: Are formal full titles universal names or names of particular political organizations? Recommendation: political.
-- Q5: Is an optional second "military order" name useful as a separate scenario-level field?
+## Intellectual-property and branding caution
+The design goal is an original non-StarCraft identity, including distinct lore, aesthetics and abilities. Canonical selection is the owner's creative decision, **not legal trademark clearance**. Search for conflicting names/marks and check commercial storefront availability before external branding. Existing-name collision concerns around unapproved *Organians* / *Etherians* do not substitute for independent checking of the **new** choices.
 
-No approved YAML name is changed by this document. See design/hero-progressions-and-three-cameras-2026-10-11.md for separate player-hero system.
+## Decision precedence and related documents
+1. **This file** is authoritative for name spellings and tier meanings.
+2. [factions.yaml](factions.yaml) is authoritative for active faction identity fields and stable IDs.
+3. [decisions.yaml](decisions.yaml) records owner-approved decisions.
+4. [prior naming migration](faction-identity-rename-2026-10-11.md) is historical support for the `org/man/eth` transition.
+5. [design bible](scalfagus-design-bible-2026-10-11.md), [hero and cameras](hero-progressions-and-three-cameras-2026-10-11.md), [three pillars](three-pillars-one-world-control-contract.md) describe gameplay, not alternate names.
+
+**Owner-approved nomenclature does NOT approve five factions, a fourth playable machine civilization, untested balance or a finished game build.**
