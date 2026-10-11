@@ -128,6 +128,16 @@ historical_future_MAN_ETH_milestone:
   prior_delivery_gates_not_active: design/MVP-DELIVERY-GATES.md
   prior_three_camera_HUD_not_active: design/mvp-hud-and-input.yaml
   previous_agent_handoff_not_active: design/AGENT-MVP-IMPLEMENTATION.md
+latest_future_faction_storage_DEC_036:
+  decision: DEC-036
+  human: design/faction-storage-specialization-and-obelisk-traffic-2026-10-11.md
+  machine: design/faction-storage-specialization-and-obelisk-traffic.yaml
+  player_facing_ETH_building_name: Obelisk
+  org_cyst_one_resource_type_only: true
+  man_UMU_mixed_or_more_efficient_single_type: true
+  eth_storage_pressure_reduces_transit_rate: true
+  eth_trunk_nodes_should_not_be_force_equalized: true
+  post_MVP0_only: true
 latest_future_three_faction_logistics_with_ETH_unit_relay:
   decision: DEC-035
   human: design/three-faction-logistics-and-eth-unit-relay-2026-10-11.md
