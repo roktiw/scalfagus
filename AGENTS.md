@@ -1,5 +1,10 @@
 # SCALFAGUS — Coding-Agent Contract
 
+## MAN UMU TRANSFORMING WINGS — DEC-040 (POST-MVP0)
+
+Read [UMU transforming belt-wing design](design/man-umu-transforming-belt-wings-2026-10-12.md) and [machine contract](design/man-umu-transforming-belt-wings.yaml) before touching future MAN UMU mechanics. Owner rule: **EVERY UMU HAS TWO ATTACHED CONVEYOR-BELT WINGS**, reused as under-hull **crawler tracks while moving**, symmetric **3- or 5-tile conveyor** when deployed (1+center+1 or 2+center+2), **folded side armor/garrison shell in BUNKER**, and **upright rotated real ground-unit-blocking wall in distinct SENTRY WALL posture**. SENTRY is terrain denial, **not an automatic sentry-gun or bunker synonym**; it blocks friendly/enemy ground units where actual collision exists. Never give one UMU full modes simultaneously, create wing copies, clip through occupied cells, or teleport/destroy resources on pack/deploy. **DEC-040 supersedes old MID-only 3/5 belt / no belt on UMU Power Dock statements for any unit designated an UMU**, but exact MID/MAX catalog mapping remains TBD. All is post-MVP0 and must not be included in DEC-033 four-template MAN mirror.
+
+
 ## MAN MVP0 MAP SOURCE CONTRACT — Verdant Divide
 
 The **only authored world topology source** is `design/mvp-verdant-divide-map.yaml`.
