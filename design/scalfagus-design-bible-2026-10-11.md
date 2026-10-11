@@ -1,4 +1,6 @@
 # SCALFAGUS — Consolidated Design Bible
+
+> **Canonical faction naming (2026-10-11): Organs (`org`), Manus (`man`), Eters (`eth`).** Earlier names are archived in historical discussion notes; see [naming decision](faction-identity-rename-2026-10-11.md).
 Date: 2026-10-11
 Version: discussion consolidation v0.1
 Language: English
@@ -66,11 +68,11 @@ Match generation concept:
 ## 3. Three factions and their identities
 | Faction | Identity | Economic topology | Power window (hypothesis) | Preferred flavor, not forced role |
 |---|---|---|---|---|
-| **Blergians** | Predatory living swarm, organic mutation | Strong connected biomass; detached outposts operate less efficiently | Early pressure | Architect |
-| **Manusians** | Modular industrial colonists and combined arms | Independent outposts, cargo hubs, deployable industrial infrastructure | Mid-game | Commander |
-| **Aetherians** | Ancient psionic/resonance civilization | Fortified center; satellites viable, stronger with resonance links | Late game | Avatar |
+| **Organs** | Predatory living swarm, organic mutation | Strong connected biomass; detached outposts operate less efficiently | Early pressure | Architect |
+| **Manus** | Modular industrial colonists and combined arms | Independent outposts, cargo hubs, deployable industrial infrastructure | Mid-game | Commander |
+| **Eters** | Ancient psionic/resonance civilization | Fortified center; satellites viable, stronger with resonance links | Late game | Avatar |
 
-All factions can perform all jobs, use every gameplay control surface and win in early/mid/late play. Affinity and power windows are character, not automatic score multipliers. Blergian mutation can be irreversible; Manusian modules configurable; Aetherian transformations expensive and reversible where designed. Each needs counterplay against rush, siege, turtling, stealth and logistics disruption.
+All factions can perform all jobs, use every gameplay control surface and win in early/mid/late play. Affinity and power windows are character, not automatic score multipliers. Organ mutation can be irreversible; Manus modules configurable; Eter transformations expensive and reversible where designed. Each needs counterplay against rush, siege, turtling, stealth and logistics disruption.
 
 ## 4. Three resources and physical economy
 **Exactly three primary resource currencies: Matter (T1), Volatiles (T2), Energy (T3).**
@@ -101,7 +103,7 @@ All orders pass an authoritative validator. Human override is protected and expl
 ## 5. Territory, terrain and Civilization strategy
 - **Territory:** sectors and strategic points matter through factories, resources, chokepoints, depots, relays and functional bases; not every building should be captured by touching a universal flag.
 - **Terrain:** elevation, cover, passes, bridges, tunnels, coastline, islands and drifting asteroids affect placement, pathing, line of sight and logistics.
-- **Faction capture flavor (proposed):** biomass assimilation for Blergians, hacking/occupation for Manusians, resonance control for Aetherians.
+- **Faction capture flavor (proposed):** biomass assimilation for Organs, hacking/occupation for Manus, resonance control for Eters.
 - **Civ I/II inspirations:** technology tree and prerequisites; fog/exploration memory; founders/engineers; colony specialization; treaties, trade and intelligence; megaprojects/wonders; long-horizon victory conditions.
 - **Real-time translation:** strategic research/diplomacy runs slower than combat; no imported turn structure, historical governments, new happiness micro-simulation or obligatory culture statistics.
 - Diplomacy, espionage, government analogues, stability and megaprojects are **proposed/deferred**, mostly MAX or scenario-specific MID—not needed in MIN.
@@ -131,7 +133,7 @@ Warcraft II-like simplicity: one worker, basic melee soldier, basic ranged soldi
 **7 archetypes × 3 chassis sizes × 3 races = 63 named baseline templates**. Their names and stats are draft, not final production commitments.
 
 ### Complete roster (MIN / MID / MAX chassis)
-| Role | Blergians MIN / MID / MAX | Manusians MIN / MID / MAX | Aetherians MIN / MID / MAX |
+| Role | Organs MIN / MID / MAX | Manus MIN / MID / MAX | Eters MIN / MID / MAX |
 |---|---|---|---|
 | Worker | Sporeling / Harvester / Brood Carrier | Utility Drone / Engineer Rig / Mobile Constructor | Wisp / Shaper / Resonance Architect |
 | Fighter | Clawling / Ravager / Behemoth | Marine / Assault Trooper / Siege Walker | Blade Adept / Templar / Ascendant |
@@ -167,12 +169,12 @@ An airborne unit does **not** automatically shoot air targets; a land unit may h
 ### Proposed specialization examples
 | Loadout | Move | Melee target | Ranged target |
 |---|---|---|---|
-| Manusian Anti-Air Gunner | Land | None | Land, Air |
-| Blergian Amphibious Ravager | Land, Water | Land, Water | None |
-| Aetherian Sky Sentinel | Air | Air | Land, Water, Air |
-| Manusian Gunship | Air | None | Land, Water |
-| Blergian Spore Caster | Land | None | Land, Water |
-| Aetherian Omnimodal Specialist | Land, Water, Air | Land, Water | Land, Water, Air |
+| Manus Anti-Air Gunner | Land | None | Land, Air |
+| Organ Amphibious Ravager | Land, Water | Land, Water | None |
+| Eter Sky Sentinel | Air | Air | Land, Water, Air |
+| Manus Gunship | Air | None | Land, Water |
+| Organ Spore Caster | Land | None | Land, Water |
+| Eter Omnimodal Specialist | Land, Water, Air | Land, Water | Land, Water, Air |
 
 ### Balance rules
 - Extra movement environments cost capacity, modules, speed, resources or specialization.
@@ -265,7 +267,7 @@ All unit names and default profiles, exact counters, anti-air ammo, complexity g
 ### Unresolved design questions
 1. Naval water surface vs underwater differentiation and whether water gameplay ships in MIN.
 2. Minimum viable roster, air detection and anti-air defaults; availability of chassis sizes by match scale.
-3. How much of unit design is fixed faction biology versus Manusian modules versus Aetherian transformation.
+3. How much of unit design is fixed faction biology versus Manus modules versus Eter transformation.
 4. Whether additional terrain layers (underground/orbit) are map locations or combat domains.
 5. Actual resource costs, recipe counts, carrier payloads, transport latency and unit HP.
 6. First victory condition, stalemate prevention, standard map count and map symmetry.
