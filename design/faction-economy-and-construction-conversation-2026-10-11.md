@@ -157,7 +157,26 @@ Recommended telemetry (no claims of measured balance): time to first delivery; c
 | SYN-17 | Enemy hits a critical ORG artery / MAN belt / ETH pylon | Measurable, observable, recoverable cost and deterministic reproducible resource state |
 | SYN-18 | RTS player disables strategic autonomy | Worker routine actions may run, but no unapproved base expansion/construction objective is invented |
 
-## 10. Follow-up construction-phase discussion (DEC-015, owner-proposed)
+## 10.1 Latest staged-construction revision — proposed, not canonically balanced
+
+The owner reconsidered the profile: **ORG stays 3→2→1**, with fast seeding,
+reduced caretakers as the cocoon matures and a patient final incubation.
+**ETH is now proposed as 1→2→3**, adding more simultaneous NETWORK
+meditating/construction workers at each third, giving a natural progression
+of pattern initiation → dual-channel Energy transfer → triadic manifestation.
+For **MAN**, the owner offered **2→3→1 or 2→1→3**; the current assistant
+recommendation for testing is **2→1→3**: two-worker frame, one-worker
+precision core installation, then three-worker final module commissioning.
+The alternate **2→3→1** is preserved to compare; neither is owner-approved
+as proven balance. Prior MAN **1→2→3** and ETH **1→3→2** were previous
+candidate profiles. All stage numbers remain maximum simultaneous legal
+contributors, not mandatory quorums. The ORG/MAN/ETH interruption, decay,
+salvage and ETH beam-refund rules continue unchanged.
+
+See [revised construction spec](construction-incubation-assembly-resonance-2026-10-11.md)
+and [revised construction data](construction-phases.yaml).
+
+## 10. Follow-up construction-phase discussion (DEC-015, historical initial proposal)
 
 The later owner message adds an additional **three-stage building-labor asymmetry** and
 three incompatible interrupted-construction outcomes. Full details are in
