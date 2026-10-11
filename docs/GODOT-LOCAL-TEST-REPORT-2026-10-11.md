@@ -52,3 +52,9 @@ Gra została uruchomiona lokalnie z aktualnego checkouta przez `scripts/game.sh`
 ## Następny agent powinien
 
 Najpierw zbudować mały pionowy fragment RTS na obecnym świecie: wybór bohatera, rozkaz ruchu, jeden cel, obrażenia, śmierć i warunek zwycięstwa. Zachować istniejące smoke testy i nie przywracać Tauri bez osobnej decyzji architektonicznej.
+
+## Ostatnia sesja Godot Editor
+
+Godot Editor został uruchomiony z `apps/game` na macOS Apple Silicon. Edytor poprawnie otworzył `menu.tscn` i projekt w wersji `4.7.2.stable`. Ponowne uruchomienie `bash scripts/check.sh` potwierdziło `SCALFAGUS_GODOT_CHECK_PASS`, w tym `SCALFAGUS_SMOKE_PASS`, `SCALFAGUS_MENU_PASS` i `ASSET_MANIFEST_PASS`.
+
+Wniosek: środowisko Godot i obecny prototyp są uruchamialne lokalnie oraz mają działającą walidację headless. Sesja nie potwierdza jeszcze kompletnej pętli RTS ani jakości eksportów platformowych; te elementy pozostają zadaniami implementacyjnymi.

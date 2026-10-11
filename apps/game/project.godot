@@ -1,4 +1,5 @@
 ; Scalfagus native Godot game. No Tauri/WebView runtime.
+
 config_version=5
 
 [application]
