@@ -63,3 +63,8 @@ Related:
 - [Realistic MVP](mvp-iso-pixel-rts.md)
 - [Individual Agency](individual-agency-and-composable-civilizations.md)
 - [Design Bible](scalfagus-design-bible-2026-10-11.md)
+
+
+## Player Hero and the three observation modes (2026-10-11 amendment)
+Each **human player starts with one existing, selectable Hero unit**. Engineer (SIM), Commander (RTS), and Specialist (direct action) are **starting presets of one shared open, choice-sensitive progression graph**; builds can pivot. Starting preset never restricts use of Overlord, Direct Unit or FPS. Decisions can exclude incompatible *future* selections; exact respec, permanent lock-in and hero death/respawn rules remain unresolved. Gameplay remains winnable by ordinary RTS commands without compulsory FPS skills. Three observation modes on one world are **Overlord RTS**, **Realm of the Mad God-like top-down Direct Unit** (optional later TPP), and **first-person possession**. MVP demonstrates all three views with one actor, but **not** three full content-complete genres.
+See: [Hero Progression and Three Cameras](hero-progressions-and-three-cameras-2026-10-11.md).
