@@ -1,11 +1,11 @@
 schema_version: 1
 project: scalfagus
-version: 0.5
+version: 0.6
 status: owner_approved_economic_roles_with_open_balance
 specification: design/colony-topologies-vascular-modular-resonant-2026-10-11.md
 legacy_unit_specification: design/logistics-min-mid-max-2026-10-11.md
 precedence: eth_mid_pylon_and_max_nexus_supersede_legacy_with_new_ether_freight_rules_dec018
-network_contract: design/three-faction-network-and-infrastructure-contract-2026-10-11.md
+network_contract: design/three-network-channels-and-destruction-2026-10-11.md
 eth_freight_config: design/eth-ether-network-mechanics.yaml
 man_power_dock_config: design/man-power-dock-and-org-vessel-mechanics.yaml
 base_ecology_specification: design/base-ecologies-and-expansion-2026-10-11.md
@@ -15,7 +15,7 @@ scale_meaning: chassis_scale_not_technology_or_match_scale
 paradigms:
   org: vascular_rooted_buildings_and_mobile_living_cargo_loops
   man: physical_conveyor_and_mobile_modular_fortifications
-  eth: courier_physically_to_nexus_then_typed_ether_pylon_network_and_nexus_class_max
+  eth: single_ether_network_with_resource_energy_information_and_nexus_conversion
 shared:
   min_can_extract_independently: true
   min_can_deliver_directly: true
@@ -79,6 +79,7 @@ factions:
         requires_growth_organs_and_connected_live_vessel: true
     max:
       role: flying_mother_transporter
+      NOT_victory_building_solely_due_to_max_size: true
       can_support_growth_of_level_3_building_if_capability_equipped: true
       is_not_rooted_nexus: true
       movement_domains: [air]
@@ -185,6 +186,12 @@ factions:
       signature_weakness: belt_cut_or_defensive_conversion
     max:
       role: ground_mobile_depot_warehouse
+      umu_name: Universal Man Unit
+      generator_umu_kit_on_existing_max_chassis: proposed
+      umu_deployed_generates_energy_and_offers_warehouse_or_bunker: true
+      umu_packed_moves_on_ground_and_pauses_generation: true
+      victory_building_tag_when_umu_equipped: true
+      real_loose_cubes_and_mined_frame_salvage: true
       nexus_can_be_distributed_across_modules: true
       movement_domains: [land]
       mobility: very_slow_ground_only
@@ -229,6 +236,10 @@ factions:
       status: owner_approved_role_with_proposed_meditation_timing
       kind: pylon
       role: anchored_pylon_obelisk_typed_ether_storage_relay_and_defensive_turret
+      one_underlying_network_for_resources_information_energy: true
+      counts_as_building_for_defeat_in_any_mode: true
+      network_relay_can_have_reduced_throughput_in_turret_mode: proposed
+      rupture_of_in_flight_ether_edge_can_drop_orbs: true
       contributes_ether_network_resonance_supply_capacity: true
       retains_control_signal_in_turret: true
       freight_transit_disabled_while_turret: proposed
