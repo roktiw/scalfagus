@@ -127,8 +127,13 @@ factions:
     radial_and_vertical_base_growth: true
     self_and_mutual_building_unit_repair: true
     universal_man_unit:
+      move_trapezoid_profile_two_crawler_wings_under_open_cage: true
+      move_open_cage_usable_for_soldiers_or_finite_physical_cargo: true
+      warehouse_one_open_wing_while_other_folded: true
+      warehouse_single_active_belt_is_local_in_out_port_not_throughline: true
+      five_operational_modes: [move_tracks, warehouse, conveyor_3_or_5, bunker, sentry_wall]
       physical_wings_count: 2
-      wing_configurations: [crawler_tracks, conveyor_3_or_5, folded_bunker_armor, upright_sentry_ground_wall]
+      wing_configurations: [crawler_tracks_open_cage, warehouse_one_side_open, conveyor_3_or_5, folded_bunker_armor, upright_sentry_ground_wall]
       sentry_wall_distinct_from_bunker: true
       no_full_cargo_flow_in_sentry_or_bunker: true
       full_name: Universal Man Unit
