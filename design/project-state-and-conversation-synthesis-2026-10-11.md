@@ -38,6 +38,25 @@ candidate experiments. The user's final ETH MAX idea was unfinished; no capabili
 This synthesis is an index only; [decisions.yaml](decisions.yaml) and
 [base ecologies](base-ecologies-and-expansion-2026-10-11.md) retain canon precedence.
 
+## Subsequent proposal — DEC-015 phased construction (2026-10-11)
+
+The owner proposed three distinct stage-worker capacity profiles across
+0–33%, 33–66%, 66–100% progress:
+**ORG 3→2→1 cocoon caretakers**, **MAN 1→2→3 on-site assemblers**,
+**ETH 1→3→2 visible NETWORK channelers**.
+Their losses differ: ORG neglected cocoon decays, MAN paused worksite
+persists and can be salvaged by any faction if exposed/destroyed,
+ETH full mandatory-link loss zeroes construction progress but returns
+a finite permitted percentage of actual paid materials to their source
+Nexus/expansion **through legitimate transfers**. This is an **unbalanced
+proposed mechanic**, not a validated equal-strength set. The ORG final
+caregiver jumping into the cocoon was an exploratory possible sacrifice,
+not an approved worker loss.
+See [three-stage construction](construction-incubation-assembly-resonance-2026-10-11.md)
+and [machine-readable stages](construction-phases.yaml).
+[DEC-015](decisions.yaml) tracks open thresholds, refund, detection and
+interruption tuning.
+
 ## Latest owner canon — DEC-012/013: base ecology and economic units (2026-10-11)
 
 The authoritative reference is [Three Base Ecologies](base-ecologies-and-expansion-2026-10-11.md) and [base-ecologies.yaml](base-ecologies.yaml). This **supersedes earlier proposed disconnected-ORG-building behavior and ETH MID/MAX economic template roles**.
