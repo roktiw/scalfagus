@@ -1,0 +1,312 @@
+schema_version: 1
+project: scalfagus
+version: 0.1
+status: owner_scoped_five_roles_per_faction_all_numbers_and_extra_names_playtest_candidates
+owner_focus:
+  factions: [man, eth]
+  simple_roles_per_faction: [mother_hq, worker_min, soldier, infrastructure_farm, barracks]
+  resource_source_forms_enabled: [solid]
+  other_source_forms_on_map: []
+  preferred_first_biome: exotic_jungle_with_tree_cover
+  out_of_slice_faction: org
+  no_complete_multiplayer_or_full_tech_tree: true
+design_reference: design/mvp-man-eth-jungle-vertical-slice-2026-10-11.md
+map_reference: design/mvp-verdant-divide-map.yaml
+acceptance_reference: design/mvp-man-eth-acceptance.yaml
+canon_dependencies:
+  - DEC-001
+  - DEC-003
+  - DEC-013
+  - DEC-015
+  - DEC-016
+  - DEC-021
+  - DEC-022
+  - DEC-023
+  - DEC-024
+  - DEC-025
+shared_simulation:
+  one_authoritative_3d_world: true
+  deterministic_fixed_tick_for_same_runtime: true
+  starting_match: local_1v1_human_vs_finite_rules_bot
+  no_required_online_connection: true
+  first_unit_art_assets_distinct: [worker, soldier]
+  hero_is_tagged_variant_of_soldier_not_new_unit_family: true
+  hero_starts_each_participating_player: true
+  hero_starting_preset: shared_single_ability_no_full_tree_in_earliest_slice
+  ranged_combat_blocked_by_tree_trunks_and_structural_cover: true
+  tree_canopy_alpha_is_visual_not_gameplay_concealment: true
+  basic_orders: [select, move, gather, deliver, build, attack, stop, hold, salvage, pack_deploy, change_mode, produce]
+  no_faction_can_collect_uncaptured_gas_or_liquid_on_this_map: true
+  default_victory:
+    predicate: destroy_all_live_complete_enemy_victory_buildings
+    includes_mobile_structural_units: true
+    includes_man_packed_umu: true
+    excludes_normal_worker_and_soldier: true
+    excludes_unfinished_site_ruin_and_loot: true
+economy:
+  available_world_source_form: solid
+  example_mvp_source_id: surface_rock_or_deadwood
+  explicit_prototype_conversion_not_universal_canon:
+    solid_to_spendable_currency: matter
+    ratio_per_depleted_world_source_unit: 1
+  canonical_currencies_remain: [matter, volatiles, energy]
+  active_build_cost_currency: matter
+  active_operating_currency: energy
+  volatiles_not_harvestable_or_spendable_in_first_map: true
+  no_recipe_on_first_map_may_require_volatiles: true
+  no_liquid_or_gas_extraction_buildings_in_this_slice: true
+  min_worker_cargo_capacity_matter_units_example: 8
+  min_worker_harvest_seconds_per_world_solid_unit_example: 2
+  min_worker_movement_influences_net_income: true
+  physical_man_cargo_does_not_teleport_from_global_account: true
+  eth_raw_cargo_must_reach_nexus_for_reencoding: true
+  starting_matter_per_player_example: 0
+  starting_energy_per_player_example: 40
+  named_nonmined_energy_sources:
+    man: command_core_starter_environmental_generation_then_deployed_umu
+    eth: nexus_ambient_resonance_intake
+  energy_generation_rate_is_finite_and_metered: true
+  energy_generation_from_named_external_environmental_input_allowed: true
+  gas_is_not_energy: true
+  example_energy_generators_need_actual_fixed_tick_output_and_local_storage: true
+  energy_not_freely_credited_to_global_infinite_wallet: true
+  prototype_matter_prices:
+    new_min_worker: 15
+    one_basic_soldier: 20
+    first_umu_or_pylon: 40
+    one_barracks: 60
+    rebuild_hq: 150
+  actual_energy_operating_prices: TBD_fixed_before_engine_sim
+  all_numbers_experimental_not_playtest_validated: true
+starter:
+  per_faction:
+    completed_mother_hq: 1
+    workers_min: 3
+    hero_variant_of_soldier: 1
+    standard_soldiers: 0
+    infrastructure_farm: 0
+    barracks: 0
+    start_support_capacity_example: 8
+    used_support_example: 5
+    start_matter: 0
+    start_energy_example: 40
+  first_infrastructure_must_be_constructible_with_start_reserve: true
+  accessible_safe_solid_resource_nodes_required: true
+  can_surrender_match: true
+shared_example_tuning:
+  support_worker: 1
+  support_basic_soldier: 1
+  support_starter_hero: 2
+  support_extra_infrastructure_example: 8
+  min_worker_health: 55
+  basic_soldier_health: 85
+  basic_soldier_range_tiles: 6
+  basic_soldier_damage_per_shot: 9
+  basic_soldier_cooldown_seconds: 1.2
+  basic_soldier_requires_los: true
+  soldier_attacks_enemy_buildings: true
+  mirror_initial_dps_to_compare_infrastructure_before_racial_combat_balance: true
+factions:
+  man:
+    machine_id: man
+    full_name: Manusians Augmented Navigators
+    five_templates:
+      mother_hq:
+        id: man_command_core
+        working_name: Command Core
+        type: completed_building
+        structural_chassis: command_module_in_same_modular_family_as_umu
+        grounded_mobility_in_this_mvp: anchored_candidate
+        future_mobility_decision: open
+        victory_building: true
+        actions: [accept_real_cargo_from_min, store_finite_matter, produce_min, issue_base_orders, hold_starting_energy_reserve]
+        produces: [man_min]
+        not_free_infinite_material_source: true
+        sample_hp: 550
+        starter_supply_cap_example: 8
+        energy_starter_output: low_finite_environmental_intake_candidate
+        no_extra_power_plant_required_for_bootstrap: true
+      worker_min:
+        id: man_min
+        working_name: SCV
+        type: mobile_unit
+        victory_building: false
+        sample_hp: 55
+        sample_cargo_matter: 8
+        produced_at: man_command_core
+        jobs: [solid_gather, local_deliver, physically_fetch_build_materials, construct, repair, excavate_ruins, pick_up_enemy_loot]
+        builder_contributor_caps_by_third: [1, 2, 2]
+        incomplete_builds_persist_after_worker_leaves: true
+        delivered_loose_crates_are_stealable: true
+        unfinished_installed_parts_require_salvage_mining: true
+      soldier:
+        id: man_rifleman
+        working_name: Rifleman
+        type: mobile_unit
+        victory_building: false
+        produced_at: man_barracks
+        sample_hp: 85
+        weapon: physical_ranged_projectile
+        sample_range_tiles: 6
+        sample_damage: 9
+        sample_cooldown_seconds: 1.2
+        can_attack_buildings: true
+        use_soldier_archetype_for_hero_variant: true
+      infrastructure_farm:
+        id: man_umu
+        full_name: Universal Man Unit
+        type: mobile_structural_unit
+        victory_building: true
+        victory_tag_persists_when_packed_or_moving: true
+        deployable_on_land: true
+        no_flight: true
+        prototype_same_existing_max_depot_bunker_family: true
+        sample_hp: 290
+        sample_matter_cost: 40
+        deployed_support_cap_addition_example: 8
+        purpose: primary_generator_and_warehouse_or_bunker
+        exclusive_modes:
+          - deployed_generator_warehouse
+          - deployed_generator_bunker
+          - packed_ground_travel
+        modes:
+          deployed_generator_warehouse:
+            generation: finite_high_relative_to_command_core
+            battery_recharge: true
+            real_physical_matter_inventory: finite
+            accepts_worker_fetch: true
+            bunker_garrison: false
+            movement: false
+          deployed_generator_bunker:
+            generation: reduced_TBD
+            battery_recharge: limited_TBD
+            access_to_warehouse_ports: restricted
+            occupied_soldier_garrison_slots: finite_TBD
+            movement: false
+          packed_ground_travel:
+            generation: false
+            warehouse_port_access: false
+            bunker_weapon: false
+            mobility: slow_ground_only
+            grid_tether: disconnected
+        network:
+          same_hybrid_cable_carries_data_and_power: true
+          power_requires_conductors_and_data_uses_fiber: true
+          local_auto_connector_placement: proposed_mvp
+          physical_matter_delivery_not_on_cables: true
+      barracks:
+        id: man_barracks
+        working_name: Barracks
+        type: completed_building
+        victory_building: true
+        sample_hp: 260
+        sample_matter_cost: 60
+        produces: [man_rifleman]
+        depends_on_available_real_materials: true
+        powered_by: reachable_eligible_man_power_grid_or_local_battery
+        local_energy_or_upkeep: finite_TBD
+        production_queue: simple_fifo
+    special_interruption: incomplete_scaffold_and_loose_crates_persist_after_builder_stops
+  eth:
+    machine_id: eth
+    full_name: Etherans Transcendent Hypervisors
+    five_templates:
+      mother_hq:
+        id: eth_nexus
+        working_name: Nexus
+        type: completed_building
+        structural_chassis: nexus_class_max_from_first_spawn
+        victory_building: true
+        sample_hp: 550
+        produced_units: [eth_min]
+        actions: [receive_legal_physical_cargo, convert_to_typed_ether, local_blueprint_cache, store_finite_resource_inventory, provide_network_authority]
+        conversion_into_ether_representation_changes_currency_id: false
+        example_starting_support_capacity: 8
+        energy_intake: low_finite_ambient_resonance_source_candidate
+      worker_min:
+        id: eth_min
+        working_name: Courier / Channeler
+        type: mobile_unit
+        victory_building: false
+        sample_hp: 55
+        sample_cargo_matter: 8
+        produced_at: eth_nexus
+        jobs: [solid_gather, physical_deliver_to_nexus, pick_up_enemy_loot, network_mode_beam_build]
+        construction_mode_requires_stationary_occupied_worker: true
+        visible_blue_beam_to_eligible_nexus: true
+        builder_contributor_caps_by_third: [1, 2, 3]
+        last_required_beam_breaks: instant_progress_zero_and_drop_all_site_committed_ingredients
+      soldier:
+        id: eth_sentinel
+        working_name: Sentinel
+        type: mobile_unit
+        victory_building: false
+        produced_at: eth_manifestation_chamber
+        sample_hp: 85
+        weapon: ranged_energy_pulse
+        sample_range_tiles: 6
+        sample_damage: 9
+        sample_cooldown_seconds: 1.2
+        can_attack_buildings: true
+        energy_use_per_shot: TBD
+        use_soldier_archetype_for_hero_variant: true
+      infrastructure_farm:
+        id: eth_pylon_obelisk
+        working_name: Pylon / Obelisk
+        type: completed_building
+        victory_building: true
+        initially_mobile: false
+        future_meditation_relocation: post_mvp_candidate
+        sample_hp: 230
+        sample_matter_cost: 40
+        deployed_support_cap_addition_example: 8
+        functions: [resonance_supply, information_data_relay, finite_typed_ether_energy_relay, storage_or_turret]
+        modes: [storage_relay, meditate, turret]
+        all_modes_keep_one_underlying_network_topology: true
+        turret_reduces_resource_transfer_bandwidth: candidate
+        local_storage_ports_closed_in_turret: candidate
+        no_free_damage_without_operational_energy: true
+        network_transport_latency_and_bandwidth: positive_and_finite_TBD
+        eventual_equalization_by_capacity_fill_ratio: proposed_not_canon
+      barracks:
+        id: eth_manifestation_chamber
+        working_name: Manifestation Chamber
+        type: completed_building
+        victory_building: true
+        sample_hp: 260
+        sample_matter_cost: 60
+        produces: [eth_sentinel]
+        actual_local_network_resource_availability_required: true
+        requires_valid_eth_nexus_or_initialized_local_authority: true
+        production_energy_rate: finite_TBD
+        production_queue: simple_fifo
+    nexus_and_pylons_one_network:
+      sends: [typed_matter_ether_representation, energy, blueprint_information]
+      source_conversion_only_at_nexus: true
+      real_transfer_escrow_and_per_node_ownership: true
+      partition_keeps_real_local_stocks: true
+      raw_solid_sources_not_automatically_ether_orbs: true
+    special_interruption:
+      building_progress_reset_on_last_required_blue_beam_loss: true
+      site_committed_matter_ejected_as_solid_amber_orbs_once: true
+      spent_operating_energy_and_time_not_refunded: true
+design_status:
+  user_selected_roles: [mother_hq, worker_min, soldier, infrastructure_farm, barracks]
+  user_selected_two_races: [man, eth]
+  user_selected_single_harvested_form: solid
+  user_map_idea: exotic_jungle_and_trees_for_cover
+  assistant_proposed:
+    - provisional_unit_and_building_names
+    - numeric_hp_dps_prices_and_source_counts
+    - map_size_and_symmetric_layout
+    - first_soldier_combat_mirror_stats
+    - two_stage_energy_bootstrap
+    - command_core_as_anchored_mvp_mother
+    - hero_using_soldier_actor_without_new_character_template
+  open:
+    - finalize_canon_source_form_to_currency_mapping_in_full_three_form_game
+    - settle_local_energy_environmental_intake_and_E_spending_rates
+    - freeze_UMU_generator_bunker_balance_and_storage
+    - define_ETH_pylon_equalization_capacity_bandwidth_and_turret_cost
+    - final_soldier_weapon_damage_building_damage_and_collision_values
+    - determine_under_which_specific_conditions_mother_can_rebuild_after_loss
