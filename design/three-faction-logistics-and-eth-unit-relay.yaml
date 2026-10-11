@@ -6,6 +6,8 @@ date: "2026-10-11"
 status: owner_approved_direction_exact_mechanics_and_balance_pending
 human_specification: design/three-faction-logistics-and-eth-unit-relay-2026-10-11.md
 latest_prior_decisions: [DEC-010, DEC-011, DEC-012, DEC-013, DEC-018, DEC-019, DEC-020, DEC-021, DEC-022, DEC-023]
+latest_three_ingress_owner_decision: DEC-039
+latest_three_ingress_contract: design/org-plug-holes-and-eth-three-ingress-methods.yaml
 first_release_guard:
   release: mvp_0_1
   decision: DEC-033
@@ -27,7 +29,7 @@ factions:
     network_unit_transport: false
     possible_physical_passenger_transport: true
   eth:
-    resource_intake: physical_courier_to_eligible_Nexus_only
+    resource_intake: Nexus_zero_Energy_or_drone_tip_shield_or_powered_Obelisk_ground_pickup
     converted_typed_resources: ether_representation_not_new_currency
     every_pylon_is_storage:
       local_inventory: finite
