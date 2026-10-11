@@ -1,5 +1,10 @@
 # SCALFAGUS — Coding-Agent Contract
 
+## LOCAL GODOT ADDONS — ACTIVE SETUP, NO ACTIONS GATE
+
+Godot 4.7.2 editor plugins: RTS Framework (WIP reference only), Keychain 2.1, Godot State Charts 0.22.5 and GUT 9.7.1. Locked revisions for new addons are tracked in `architecture/godot-addons.lock.yaml` and Git submodules. `scripts/dev.sh` / `scripts/check.sh` automatically call `scripts/install-godot-addons.sh --ensure`; the latter runs an independent headless addon manifest smoke. **GitHub Actions have pre-runner failures, so never claim CI passed; use actual local Godot logs.** LimboAI intentionally not installed. Installed editor plugins are NOT evidence that they implement RTS gameplay; never delegate GameState authority.
+
+
 ## LATEST DESIGN DISCUSSION ARCHIVE — 2026-10-11
 
 The owner's recent conversation on unit initiative, FULL MANUAL / SEMI-AUTO / FULL AUTO, group managers, -1/0/+1 doctrine temperatures, hot preset switching, X-COM / Dwarf Fortress / Dungeon Keeper inspiration, and MAN / ORG / ETH asymmetric transport is preserved in [the chronological discussion archive](inbox/2026-10-11-gameplay-autonomy-doctrines-xcom-dwarf-logistics-conversation.md). It includes original Polish user utterances, separate assistant design summaries and explicit MVP0 vs future-scope labels. Use owner-approved decisions and release-specific contracts as authority; a brainstormed podcast mechanic is not automatically a release requirement. 

@@ -22,3 +22,6 @@ anti_aliasing/quality/msaa_3d=0
 
 [physics]
 3d/default_gravity=15.0
+
+[editor_plugins]
+enabled=PackedStringArray("res://addons/rts_framework/plugin.cfg", "res://addons/keychain/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg", "res://addons/gut/plugin.cfg")
