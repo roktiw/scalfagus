@@ -75,6 +75,20 @@ map control and player micro-management.
 ## Cuts
 No mandatory individual hunger/morale cycle; no large catalog of crafting reagents; no detailed per-unit organs or damage system; no bureaucracy/legal simulation; no required micromanagement of carriers; no FPS or LLM dependency for basic skirmish.
 
+## Physical resource forms — prototype gate (DEC-016)
+
+One shared extraction-state engine with three source forms:
+**solid** loose dispersed deposits can be mined immediately by MIN without a mine;
+**liquid** manual tapping is legal but slow, with pumps/tanks as throughput investment;
+**gas** requires an actual built gas collector before any extraction. For the
+first slice test basic solid income; next extend to manual liquid versus installed
+pump; finally add gas collector and validate the no-circular-bootstrap recipe.
+Use sealed finite cargo rather than simulating full continuous fluid/gas pressure.
+Keep physical source form distinct from the existing economic currencies
+Matter, Volatiles and Energy; the owner has not yet defined their full mapping.
+See [physical forms](physical-resource-forms-and-extraction-2026-10-11.md)
+and [data](physical-resource-forms.yaml).
+
 ## Construction-phases prototype priority (DEC-015)
 
 Before numerical tuning, implement three **faction-specific construction site
