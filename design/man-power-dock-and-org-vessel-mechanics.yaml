@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 0.3
+version: 0.4
 status: approved_owner_direction_with_explicit_implementation_candidates_and_unresolved_balance
 decision_ids: [DEC-019, DEC-020]
 specification: design/three-network-channels-and-destruction-2026-10-11.md
@@ -8,6 +8,8 @@ owner_latest_concepts: design/three-network-channels-and-destruction.yaml
 world_loot_contract: design/world-loot-and-recycling.yaml
 historical_note: former_separate_small_power_dock_is_now_UMU_research_alternative
 storage_specialization_decision: DEC-036
+bidirectional_and_storage_efficiency_decision: DEC-038
+bidirectional_and_storage_efficiency_spec: design/faction-bidirectional-logistics-and-homogeneous-storage.yaml
 recovery_decision: DEC-037
 recovery_contract: design/faction-damage-recovery-shields-and-repair.yaml
 ORG_slow_passive_HP_regeneration: true
@@ -19,6 +21,11 @@ canonical_currency_ids: [matter, volatiles, energy]
 source_forms: [solid, liquid, gas]
 economic_support_is_not_spendable_currency: true
 man:
+  early_conveyor_direction_model:
+    universal_two_way_without_manual_arrow: proposed_first_post_MVP0_belt_version
+    shared_finite_capacity_and_deterministic_head_on_resolution: proposed
+    later_manual_one_way_optimized_lanes: optional_TBD
+    excluded_from_DEC_033_first_release: true
   UMU_cargo_storage:
     mixed_typed_goods_allowed: true
     dedicated_resource_mode_allows_only_selected_type: true
@@ -159,6 +166,11 @@ man:
     - whether_mid_max_are_displaced_by_power_dock
     - building_completions_from_local_stock_vs_courier_fetch
 org:
+  universal_vein_transport:
+    bidirectional_typed_resources_nutrients_Energy_information: owner_approved
+    two_way_traffic_share_finite_throughput: proposed
+    enemy_cut_causes_real_partition_not_magic_refunds: true
+  cyst_mutation_specialization_cost: required_exact_cost_and_reversibility_TBD
   cyst_storage:
     finite_single_resource_kind_per_cyst: true
     mixed_typed_goods_in_one_cyst_forbidden: true
