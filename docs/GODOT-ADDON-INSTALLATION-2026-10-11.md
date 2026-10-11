@@ -9,7 +9,7 @@ test evidence or a release gate until runners are repaired**.
 | Provider | Version / Git SHA | Editor | Runtime use |
 |---|---|---|---|
 | RTS Framework — rluders | already vendored, MIT | enabled; no-op plugin | reference only; upstream WIP |
-| Keychain — Orama Interactive | 2.1, already vendored, MIT | enabled | keybinding UI integration pending |
+| Keychain — Orama Interactive | 2.1, already vendored, MIT | explicit runtime autoload | Options embeds upstream ShortcutEdit; unverified in engine |
 | Godot State Charts — derkork | v0.22.5 / `76d226a3efac66a72aea825382b320c94808f409` | enabled after setup | future unit AI only; never authoritative match |
 | GUT — bitwes | 9.7.1 / `aeb5d4f3f7f0a6c9b5e178876d6c99b791fda605` | enabled after setup | development testing only |
 | LimboAI — limbonaut | v1.8.1 reviewed, MIT | **not installed** | excluded: native GDExtension and overlapping State Charts functionality |
@@ -56,12 +56,12 @@ source change. To inspect source and licensing, use the pinned submodules.
 
 After running the installer, open `apps/game/project.godot` via
 `bash scripts/dev.sh --editor`. Under **Project → Project Settings → Plugins**,
-confirm RTS Framework, Keychain, Godot State Charts and GUT are enabled.
+confirm RTS Framework, Godot State Charts and GUT are enabled. **Keychain is instead a direct Project Settings → Autoload singleton**, since its editor plugin only adds that singleton, and duplicating its registration is unnecessary.
 Inspect editor Output for load/parse errors. Run local
 `bash scripts/check.sh` and confirm `SCALFAGUS_ADDONS_SMOKE_PASS`.
 This tests manifests and script presence, **not full editor usability**.
 
-State Charts and Keychain are installed and enabled, **not yet wired into**
+State Charts is installed and enabled but **not yet wired into**
 the MAN mirror bot and keybindings options respectively. The authoritative
 `MirrorMatchState` remains the source of truth. LimboAI is not a required
 MVP0 dependency. For rollback, revert the commit and remove the two generated
@@ -74,3 +74,5 @@ green status can be claimed. Use the above local scripts and keep their
 real terminal output as evidence. `--check` does not use the network.
 If the initial submodule download cannot connect to GitHub, the installer
 will explain the missing dependency rather than reporting a false success.
+
+Keychain input binding wiring: [MVP0 Keychain controls](MVP0-KEYCHAIN-CONTROLS-2026-10-12.md). New test requires actual local Godot run; no Actions result is valid evidence.
