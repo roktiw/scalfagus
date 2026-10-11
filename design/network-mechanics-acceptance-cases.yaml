@@ -1,8 +1,10 @@
 schema_version: 1
 project: scalfagus
-version: 0.2
+version: 0.3
 status: design_only_not_executed
-contract: design/three-faction-network-and-infrastructure-contract-2026-10-11.md
+contract: design/three-network-channels-and-destruction-2026-10-11.md
+newer_cases: design/recycling-and-network-acceptance-cases.yaml
+precedence: DEC-021_and_DEC-022_over_old_ether_and_power_dock_assumptions
 purpose: deterministic_acceptance_fixtures_for_eventual_shared_simulator
 fixtures:
   - id: NET-001
@@ -69,12 +71,12 @@ fixtures:
       gradual_equalization_after_rejoin: true
   - id: NET-006
     faction: eth
-    scenario: turret_infrastructure_vs_freight_graphs
-    initial: {pylon_mode: storage_relay, network_signal_connected: true, ether_freight_connected: true, stored_qty: 15}
+    scenario: turret_uses_same_ether_network_at_reduced_resource_throughput
+    initial: {pylon_mode: storage_relay, unified_network_connected: true, stored_qty: 15}
     action: finish_meditation_to_turret
     expect:
-      signal_graph_still_connected: true
-      ether_freight_service_enabled: false
+      unified_network_stays_connected: true
+      resource_relay_bandwidth_reduced: proposed
       stored_qty_preserved: 15
       mode_can_return_with_paid_transition: true
   - id: NET-007
@@ -88,9 +90,10 @@ fixtures:
     action: eth_min_loses_final_required_blue_beam_during_construction_after_split
     expect:
       remaining_build_progress: 0
-      refund_is_accounted_in_its_actual_local_current_inventory_or_physical_recovery: true
+      all_site_committed_inputs_eject_as_local_world_orbs: true
+      previously_spent_operating_energy_not_refunded: true
       remote_unreachable_home_credit: false
-      exact_refund_fraction: TBD
+      no_double_refund_from_source: true
   - id: NET-009
     faction: eth
     scenario: loaded_node_destroyed
@@ -108,7 +111,7 @@ fixtures:
       old_component_freight_bandwidth_not_globally_multiplied: true
   - id: NET-011
     faction: man
-    scenario: power_dock_three_exclusive_modes
+    scenario: universal_man_unit_three_exclusive_modes
     sequence: [deployed_power_warehouse, deployed_fortified_bunker, packed_ground_travel]
     expect:
       no_ground_mobility_during_deployed_modes: true
@@ -120,19 +123,19 @@ fixtures:
     faction: man
     scenario: specializations_still_matter
     expect:
-      power_dock_single_unit_belt_length: 0
+      umu_cannot_replace_mid_3_or_5_belt_service: true
       mid_belt_length_options: [3, 5]
-      power_dock_storage_less_than_max: true
-      power_dock_bunker_garrison_less_than_max_bunker: true
-      power_dock_defensive_output_not_superior_to_specialist_mid: true
+      umu_can_reuse_existing_max_chassis_without_duplicate_extra_unit_template: true
+      umu_generator_unavailable_when_packed: true
   - id: NET-013
     faction: man
     scenario: auto_electric_connections
-    action: deployed_nearby_power_dock_connects_then_packs
+    action: deployed_nearby_umu_connects_hybrid_cable_then_packs
     expect:
       link_active_while_deployed: true
       link_inactive_while_packed: true
-      local_independent_remote_power_dock_possible: true
+      local_independent_remote_umu_possible: true
+      data_and_power_share_hybrid_cable_with_separate_service_budgets: true
       actual_material_packets_not_carried_by_grid: true
   - id: NET-014
     faction: man
