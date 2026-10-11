@@ -1,0 +1,188 @@
+schema_version: 1
+project: scalfagus
+version: 0.1
+status: owner_approved_concept_with_proposed_deterministic_protocol_and_tbd_balance
+decision: DEC-018
+contract: design/three-faction-network-and-infrastructure-contract-2026-10-11.md
+related_canon: [DEC-001, DEC-012, DEC-013, DEC-015, DEC-016]
+faction: eth
+supersedes:
+  - eth_pylons_can_only_relay_raw_courier_carried_matter_volatiles
+  - eth_mid_pylon_and_farm_obelisk_must_be_two_required_templates
+  - all_materials_physically_carried_after_nexus_conversion
+unchanged:
+  eth_min_is_physical_worker_until_conversion: true
+  eth_min_network_building_beam_requires_valid_large_node: true
+  eth_max_nexus_class_from_creation: true
+  initialized_expansion_knows_cached_blueprints: true
+  home_contact_for_unknown_blueprint_only: true
+  gas_source_extraction_requires_rig: true
+resource_model:
+  spendable_resource_ids: [matter, volatiles, energy]
+  physical_source_forms: [solid, liquid, gas]
+  source_form_to_currency_mapping: TBD_existing_open_decision
+  ether_is_fourth_currency: false
+  ether_is_transport_and_storage_representation: true
+  representation_preserves_resource_id_and_quantity: true
+  typed_payload_fields: [resource_id, amount, physical_source_form, source_lineage, owner, representation, custody_node_id]
+  no_resource_type_transmutation_by_default: true
+  physical_cargo_cannot_cross_ether_edge_before_eligible_nexus_conversion: true
+  conversion:
+    location: eligible_nexus_input_port_only_in_first_MVP
+    requires_real_arrival_and_atomic_debit_from_carrier: true
+    conversion_time_positive: true
+    conversion_rate_finite: true
+    converted_amount_credited_to_actual_nexus_local_inventory: true
+    possible_energy_cost: TBD
+    possible_conversion_loss_or_yield: TBD
+    first_simulator_fixture_lossless: proposed_only
+    no_creation_of_unaccounted_resources: true
+pylon_obelisk:
+  class_id: eth_mid_pylon
+  single_baseline_building_template: true
+  aliases: [pylon, obelisk]
+  mobile_at_match_start: false
+  anchored_on_map: true
+  capacity_for_resonance_support: finite_TBD
+  storage_capacity_for_each_resource: finite_TBD
+  signal_link_radius: finite_TBD
+  ether_freight_link_radius: finite_TBD
+  default_mode: storage_relay
+  baseline_enabled_functions:
+    signal_information_relay: true
+    blueprint_request_relay: true
+    support_capacity: true
+    typed_ether_storage: true
+    typed_ether_freight_service_only_in_storage_relay: true
+  states:
+    storage_relay:
+      knowledge_signal_forwarding: true
+      local_storage_read_write: true
+      ether_transit_service: true
+      courier_input_if_interface_equipped: true
+      turret_weapon_active: false
+    meditate_to_turret:
+      time_and_energy_spend: positive_TBD
+      knowledge_signal_forwarding: true
+      reserves_and_inventory_retained: true
+      local_storage_write_and_ether_transit: false
+      turret_weapon_active: false
+    turret:
+      knowledge_signal_forwarding: true
+      resonance_support_cap_retained: true
+      reserves_and_inventory_retained: true
+      local_storage_write_and_ether_transit: false
+      turret_weapon_active: true
+      weapon_uses_bounded_cooldown_or_real_energy: true
+    meditate_to_storage_relay:
+      time_and_energy_spend: positive_TBD
+      knowledge_signal_forwarding: true
+      reserves_and_inventory_retained: true
+      local_storage_write_and_ether_transit: false
+      turret_weapon_active: false
+  competing_balance_variant:
+    turret_reduced_freight_transit_but_no_local_courier_intake: experiment_not_approved
+  future_upgrade:
+    meditation_relocation_along_current_network_line: proposed_not_baseline
+    requires_explicit_unlock_and_legal_connected_destination: true
+    duration_cost_and_inventory_while_moving: TBD
+    cross_partition_teleport_or_new_nexus_authority: forbidden_by_default
+nexus:
+  economic_chassis: max
+  identity: nexus_class_from_initial_deployment
+  physical_intake: true
+  conversion_to_ether: true
+  local_typed_ether_storage: true
+  construction_beam_large_node_eligibility: true
+  local_blueprint_cache: true
+  bootstrap_new_outpost_once: true
+  full_turret_ability_by_default: false
+graphs:
+  one_physical_network_topology_with_two_logical_permissions: true
+  control_knowledge_support:
+    eligibility: live_connected_valid_signal_nodes
+    pylon_turret_remains_signal_connected: true
+    throughput: finite_or_TBD
+    initialized_subgraph_continues_known_blueprints_when_home_disconnected: true
+  ether_freight:
+    eligibility: active_storage_relay_or_nexus_with_open_ether_ports
+    per_link_bandwidth: positive_finite_TBD
+    per_node_service_rate: positive_finite_TBD
+    per_node_storage_capacity: finite
+    per_link_latency: nonzero_TBD
+    pathfinding: deterministic_valid_connected_path
+    no_global_instant_wallet: true
+    turret_and_meditation_closed_ports_split_freight_components: proposed_default
+  support_cap:
+    counted_by_connected_initialized_local_authority: true
+    unit_and_structure_demand_finite: true
+    supply_capacity_not_currency: true
+    no_new_unit_allocation_if_over_cap: true
+    existing_units_not_instantly_deleted: true
+equalization:
+  owner_goal: even_distribution_of_stored_resources_across_connected_ether_nodes
+  default_algorithm_status: recommended_for_playtest_not_numeric_canon
+  per_resource_id_independent: true
+  per_freight_connected_component: true
+  equilibrate_by: proportional_fraction_of_usable_resource_capacity
+  if_equal_capacity: equal_absolute_amount_per_node_after_convergence
+  formula: target_i_r_equals_component_unreserved_r_times_capacity_i_r_div_sum_capacities_r
+  exclude_inaccessible_reserved_and_escrow_inventory: true
+  priority_order: [player_approved_construction_and_production_reservations, already_ordered_deliveries, background_equalization]
+  deterministic_node_order: stable_node_id
+  bounded_per_link_and_node_in_each_fixed_tick: true
+  stop_when_no_valid_surplus_to_deficit_path: true
+  avoid_rounding_creation: carry_integer_remainders_in_deterministic_order
+  if_link_full: queue
+  when_no_available_capacity: pause_and_report
+  changes_are_committed_as_real_hop_events: true
+  complete_immediately_on_connection_merge: false
+  unconfigured_shared_dynamic_storage_pool: not_in_mvp
+transaction_contract:
+  transfer_id_unique: true
+  one_debit_and_one_credit_per_completed_hop: true
+  reserved_source_remains_custodian_until_completed_hop: true
+  no_separately_owned_in_flight_edge_inventory_in_mvp: true
+  cut_before_hop_acknowledgement_cancels_and_unlocks_source_reservation: true
+  resource_source_conservation_invariant: true
+  committed_consumption_cannot_be_refunded_twice: true
+  funds_reserved_in_subnet_and_routed_to_valid_local_building_receiver: true
+  construction_requires_valid_blue_beam_in_addition_to_resources: true
+  progress_lost_when_last_required_beam_fails_as_owner_proposed: true
+  resource_refund_from_interrupted_building_respects_current_partition: true
+partition:
+  graph_recomputed_on: [link_break, structure_death, legal_movement, port_mode_change, connectivity_obstruction]
+  component_inventory_equals_exact_sum_of_its_actual_node_balances: true
+  split_copies_resources_to_both_sides: false
+  split_automatically_redistributes_stock_across_cut: false
+  reservations_revalidated_after_split: true
+  missing_blueprints_require_reachable_knowledge_graph: true
+  locally_cached_blueprints_still_usable: true
+  local_nexus_authorization_still_required_for_building_beam: true
+  node_death_inventory_drop_or_loss_fraction: owner_choice_TBD
+  merger_adds_original_real_stocks_once_and_resumes_gradual_balancing: true
+example_fixtures:
+  six_equal_nodes:
+    starting_holding_each: 20
+    initial_total: 120
+    split_after_second:
+      left_nodes: 2
+      left_stock: 40
+      right_nodes: 4
+      right_stock: 80
+      global_after_split: 120
+  different_capacity_nodes:
+    capacities: [10, 20, 30]
+    component_total: 30
+    eventual_equalized_holdings: [5, 10, 15]
+    after_cut_left_stock: 5
+    after_cut_right_stock: 25
+acceptance_test_ids: [NET-001, NET-002, NET-003, NET-004, NET-005, NET-006, NET-007, NET-008, NET-009, NET-010, NET-018, NET-019, NET-020]
+open_questions:
+  - equalization_tick_rate_and_link_bandwidth_numbers
+  - whether_turret_allows_reduced_ether_backbone_freight
+  - pylon_destroyed_stock_drop_capture_loss_ratio
+  - conversion_technology_cost_and_loss
+  - remote_build_materialization_point_and_receiver_eligibility
+  - advanced_meditation_pylon_relocation
+  - shared_vs_resource_partitioned_dynamic_storage
