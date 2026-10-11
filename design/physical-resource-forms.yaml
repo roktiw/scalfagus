@@ -1,0 +1,165 @@
+schema_version: 1
+project: scalfagus
+version: 0.1
+status: owner_approved_form_access_gates_mapping_numbers_unresolved
+specification: design/physical-resource-forms-and-extraction-2026-10-11.md
+decision: DEC-016
+axes:
+  physical_form_values: [solid, liquid, gas]
+  canonical_economic_resources: [matter, volatiles, energy]
+  physical_form_is_not_economic_resource_id: true
+  energy_is_not_gas: true
+  canonical_resource_ids_still_active: true
+  source_form_to_spendable_resource_mapping: TBD
+  default_no_new_fourth_primary_currency: true
+  old_crystals_gas_resin_ids_are_legacy_migration_debt: true
+shared:
+  resources_are_finite_and_deplete: true
+  extraction_infinite_without_authorized_scenario: false
+  direct_min_mining_allowed_by_form:
+    solid: true
+    liquid: true
+    gas: false
+  min_manual_recovery_loop:
+    solid: available_with_only_reachable_source_and_storage
+    liquid: low_throughput_with_compatible_small_container
+    gas: requires_completed_extraction_structure_first
+  output_is_finite_physical_cargo: true
+  incompatible_containers_forbid_pickup: true
+  source_debit_and_packet_creation_are_atomic: true
+  strategic_automatic_new_expansion: false
+  no_instant_credit_to_unbounded_global_bank: true
+  source_fields:
+    - source_id
+    - physical_form
+    - position
+    - amount_remaining
+    - extraction_port_count
+    - extract_time
+    - accessible_terrain
+    - supported_container_classes
+    - legal_build_footprint_for_optional_or_required_rig
+    - output_resource_conversion_recipe
+forms:
+  solid:
+    description: loose_scattered_material_across_planet
+    scenery_examples: [crystal_patch, rubble, surface_rock, organic_wood_like_material]
+    distribution: widely_scattered_with_some_clustering
+    mine_structure_required: false
+    direct_manual_gather: true
+    direct_manual_gather_throughput: normal
+    direct_manual_portion_size: finite
+    compatible_cargo: [loose_sack, chunk, solid_crate]
+    improvements:
+      installed_drill_or_quarry: optional
+      higher_throughput_mining: upgrade_optional
+    world_extraction: source_to_worker_cargo_to_compatible_storage
+    provisional_income_output_example: matter
+    income_output_example_status: not_approved_mapping
+    default_starter_access: required
+  liquid:
+    description: local_pools_springs_seep_reservoirs
+    distribution: localized_springs_and_basins
+    mine_structure_required: false
+    direct_manual_gather: true
+    direct_manual_gather_throughput: deliberately_low
+    direct_manual_portion_size: small
+    manual_container: small_sealed_flask_or_equivalent
+    compatible_cargo: [small_liquid_flask, barrel, cistern]
+    improvement:
+      pump_intake_wellhead: optional
+      installed_output_rate_higher_than_manual_single_worker: proposed_balance_target
+      pump_requires_real_structure_construction: true
+      finite_loading_interfaces: true
+      finite_tank_capacity: true
+    pump_loss:
+      manual_gather_still_possible_from_accessible_source: true
+    provisional_income_output_example: volatiles
+    income_output_example_status: not_approved_mapping
+  gas:
+    description: gas_vent_fissure_pressurized_pocket
+    distribution: localized_capturable_fields
+    mine_structure_required: true
+    raw_source_direct_manual_gather: false
+    worker_order_without_collector: rejected_extractor_required
+    installation:
+      faction_specialized_collector_mandatory: true
+      legal_build_site_and_world_geometry: true
+      output_only_after_build_completed: true
+      finite_capture_rate: true
+      finite_local_storage_buffer: true
+      compatible_sealed_output: true
+      initial_installation_bootstrappable_without_gas: true
+    compatible_cargo: [pressurized_canister, sealed_container, on_site_conversion_product]
+    source_extraction: vent_to_capture_rig_to_finite_container_or_explicit_processing
+    source_to_income_mapping: unresolved
+    possible_later_research_outputs: [volatiles_after_refining, energy_after_on_site_conversion]
+    possible_outputs_are_not_new_canonical_resource_declarations: true
+    energy_generation_is_distinct_from_gas_capture: true
+    destroyed_rig_behavior: raw_gas_harvest_stops_until_repaired_or_rebuilt
+    isolated_captured_packets_remain_separately_accounted: true
+    no_direct_min_exception_by_faction: true
+factions:
+  org:
+    solid: physical_min_hunter_gatherer_no_rig
+    liquid_manual: min_small_organic_sac_slow_siphon
+    liquid_installed: budding_pump_along_live_nexus_vessel
+    gas_installed: budded_gas_capture_organ_requires_connected_vessel
+    gas_manual_without_rig: forbidden
+    cargo_style: biological_sealed_cargo_sacs
+    initial_mother_handoff_rules_still_apply: DEC-011
+    remote_nourishment_and_vessel_rules_still_apply: DEC-012
+  man:
+    solid: scv_like_min_harvest_no_mine_required
+    liquid_manual: small_worker_canister_slow_fill
+    liquid_installed: modular_pump_and_tank
+    gas_installed: collector_compressor_tank_rig
+    gas_manual_without_rig: forbidden
+    cargo_style: sealed_crates_barrels_canisters_on_physical_belts_or_vehicles
+    belts_do_not_carry_uncontained_liquid_or_gas: true
+    independent_expansion_allowed: true
+  eth:
+    solid: independent_min_courier_harvest
+    liquid_manual: small_resonance_container_slow_draw
+    liquid_installed: network_constructed_resonant_liquid_intake
+    gas_installed: network_constructed_gas_containment_collector
+    gas_manual_without_rig: forbidden
+    construction_requires_min_network_beam_and_eligible_large_node: true
+    cargo_style: sealed_courier_packets_with_mid_pylon_storage
+    raw_gas_is_not_free_global_energy_teleport: true
+starter_safety:
+  each_faction_has_accessible_solid_deposit_without_mine: true
+  liquid_direct_harvest_has_no_gas_research_prerequisite: true
+  gas_collector_early_recipe_cannot_require_its_own_raw_gas_output: true
+  energy_first_producer_must_be_reachable_without_self_dependency: true
+  destruction_of_liquid_pump_preserves_manual_liquid_fallback: true
+mvp_sequence:
+  first_vertical_slice: direct_solid_extraction_and_finite_cargo
+  second_step: liquid_direct_harvest_and_optional_pump
+  third_step: gas_required_extractor_with_container_output
+  three_faction_alpha: all_forms_use_shared_gate_and_faction_specific_construction
+balance_open:
+  liquid_direct_vs_pump_rate_ratio: TBD
+  deposit_amounts_and_density: TBD
+  gas_collector_build_recipe: TBD
+  container_capacities: TBD
+  target_income_mapping_for_each_form: TBD
+  energy_conversion_recipe: TBD
+  portable_tank_and_pipe_features: optional_post_mvp
+acceptance_tests:
+  - FORM-01
+  - FORM-02
+  - FORM-03
+  - FORM-04
+  - FORM-05
+  - FORM-06
+  - FORM-07
+  - FORM-08
+  - FORM-09
+  - FORM-10
+  - FORM-11
+  - FORM-12
+  - FORM-13
+  - FORM-14
+  - FORM-15
+  - FORM-16
