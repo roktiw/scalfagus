@@ -6,6 +6,14 @@ language: en
 latest_owner_scope_decision: DEC-033
 latest_research_and_view_decisions: [DEC-030, DEC-031, DEC-032, DEC-034]
 mandatory_reuse_first_policy: DEC-034
+future_MAN_UMU_transforming_belt_wings_DEC_040:
+  decision: DEC-040
+  human: design/man-umu-transforming-belt-wings-2026-10-12.md
+  machine: design/man-umu-transforming-belt-wings.yaml
+  wings_per_UMU: 2
+  modes: [move_tracks, conveyor_3_or_5, bunker, sentry_wall]
+  sentry_blocks_ground_units_by_real_collision: true
+  not_first_MVP0: true
 future_three_faction_logistics_concise_overview:
   path: design/three-faction-logistics-overview-2026-10-12.md
   covers: [MAN, ORG, ETH, DEC-035, DEC-036, DEC-037, DEC-038, DEC-039]
