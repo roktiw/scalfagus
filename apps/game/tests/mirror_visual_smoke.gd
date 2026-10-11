@@ -67,9 +67,9 @@ func _verify() -> void:
     var terrain_root: Node3D = world.get("world_root")
     for node in terrain_root.get_children():
         if node is Node3D and node.get_node_or_null("Visual") != null:
-            var visual: Node = node.get_node_or_null("Visual")
-            var sprite: Sprite3D = visual.get("sprite")
-            if sprite != null and sprite.texture != null and sprite.texture.get_width() == 40:
+            var tree_visual: Node = node.get_node_or_null("Visual")
+            var tree_sprite: Sprite3D = tree_visual.get("sprite")
+            if tree_sprite != null and tree_sprite.texture != null and tree_sprite.texture.get_width() == 40:
                 tree_sprite_count += 1
     if tree_sprite_count < 2:
         _fail("Tree terrain reverted to cube placeholders")
