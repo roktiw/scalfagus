@@ -5,6 +5,19 @@
 **CURRENT OWNER-APPROVED DELIVERY SCOPE (DEC-033):** MAN vs MAN (four templates: HQ / MIN worker / Barracks / Rifleman), Overlord RTS only, one floating platform map, finite carried Matter, basic production/combat/victory, and **Human-Human LAN/loopback, Human-Computer, Computer-Computer** (GUI watch or accelerated headless). This is an implementation plan, **not an existing playable feature**. FPP possession is future; TPP is not a production mode. ETH/ORG and advanced logistics are later milestones. Start with [agent contract](AGENTS.md), [MVP 0.1 design](design/mvp0-man-mirror-rts-2026-10-11.md), [YAML scope](design/mvp0-man-mirror-rts.yaml), [backlog](design/mvp0-man-mirror-backlog.yaml) and [headless lab](design/godot-headless-balance-lab-2026-10-11.md).
 
 
+## Godot plugins — local installation (no GitHub Actions dependency)
+
+Four MIT addons are enabled in the Godot project: RTS Framework (WIP reference), Keychain 2.1, Godot State Charts 0.22.5 and GUT 9.7.1 (dev tests). The last two are **pinned Git submodules**, copied into `apps/game/addons/` automatically on the first `bash scripts/dev.sh` or `bash scripts/check.sh` run; no manual AssetLib steps. LimboAI remains excluded due redundant AI stack and native binary portability. On initial checkout, a GitHub connection is required **once** for submodule sources. No downloads occur inside the running game.
+
+```sh
+git pull
+bash scripts/dev.sh --editor      # installs missing addons, opens editor
+bash scripts/check.sh             # independently checks real Godot locally
+bash scripts/install-godot-addons.sh --check  # offline addon inventory
+```
+
+Instructions: [Godot addon installation](docs/GODOT-ADDON-INSTALLATION-2026-10-11.md), [exact pins and status](architecture/godot-addons.lock.yaml). **GitHub Actions are currently unavailable (jobs fail before allocating a runner); never report their state as test evidence.** Keychain and State Charts gameplay integration is still a distinct future task.
+
 ## Engineering rule — DEC-034 Reuse First
 
 Do not reinvent Godot A*, raycasting, UI, keybinds, physics, generic FSMs or networking. **Wrap built-in Godot facilities first**; use **pinned and audited GitHub/AssetLib modules** only when demonstrably beneficial. Keep game rules behind stable ports and use one authoritative command validation path. Read [ADR-0004](architecture/adr-0004-godot-reuse-first-wrappers.md), [21-capability map](architecture/godot-reuse-component-map.yaml), [third-party candidates](architecture/godot-third-party-candidates.yaml), [research](docs/GODOT-REUSE-RESEARCH-2026-10-11.md) and [agent playbook](docs/AGENT-REUSE-FIRST-PLAYBOOK.md). Candidates are NOT installed or locally runtime-tested simply by being listed.
