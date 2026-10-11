@@ -1,5 +1,10 @@
 # Scalfagus MVP 0.1 — Executable Gameplay Contract for a Godot Coding Agent
 
+> **Current release scope reconciliation — DEC-033 (2026-10-11):** MAN vs ETH, full five-template/faction prototype, separate from current micro MVP 0.1. Three camera discussion below is historical: DEC-031 future product RTS+FPP only, DEC-033 ships RTS-only MAN mirrors. Use micro execution contract.
+>
+> **CURRENT owner-approved executable release: [DEC-033](decisions.yaml), [MAN mirror scope](mvp0-man-mirror-rts-2026-10-11.md), [active numerical profile](mvp0-man-mirror-balance-v0.1.yaml), [Godot execution rules](mvp0-man-mirror-execution-contract.md), [Godot ENet authority](mvp0-man-mirror-network.yaml), [M0 backlog](mvp0-man-mirror-backlog.yaml), [M0 acceptance](mvp0-man-mirror-acceptance.yaml).**
+
+
 Date: 2026-10-11
 Status: **implementation interpretation with playtest candidate values**, not a claim of completed code or proven competitive balance.
 Scope: **MAN vs ETH on a single mandatory floating space platform, with five templates per faction, three cameras and physical finite resources**.
