@@ -7,7 +7,7 @@ Current agent authority: [AGENTS.md](../AGENTS.md), [agent-source-of-truth.yaml]
 
 ## Consolidated engineering conclusions — current main snapshot
 
-**2026-10-11 source review.** This executive section is the **latest corrected interpretation** of earlier findings elsewhere in this report, which were compiled during rapid parallel changes to `main`. The report remains a **source audit only**; there is no claim of executing Godot in this review.
+**2026-10-11 source review.** The latest complete recursive tree checked during this audit had **360 tracked files including 115 under `design/`**, up from the earlier 198-file/91-design snapshot. This is a repository state snapshot only: parallel commits may change these totals. This executive section is the **latest corrected interpretation** of earlier findings elsewhere in this report, which were compiled during rapid parallel changes to `main`. The report remains a **source audit only**; there is no claim of executing Godot in this review.
 
 ### What the coding agent should implement now
 
