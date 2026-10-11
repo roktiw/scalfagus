@@ -1,0 +1,115 @@
+schema_version: 1
+project: scalfagus
+version: 0.1
+status: design_only_not_executed
+contract:
+  - design/world-loot-salvage-and-recycling-2026-10-11.md
+  - design/three-network-channels-and-destruction-2026-10-11.md
+  - design/victory-defeat-building-classification-2026-10-11.md
+shared:
+  world_drop_palette: {solid: "#E8AF42", liquid: "#36C4D8", gas: "#B58AF6"}
+  packaging_origin: {org: tetrahedron, man: cube, eth: orb}
+  economic_currency_ids: [matter, volatiles, energy]
+  drop_physical_form_and_spendable_currency_are_distinct: true
+  no_new_primary_resource_after_salvage: true
+  cross_faction_collection_allowed: true
+  no_simulator_tests_executed: true
+tests:
+  - id: LOOT-01
+    scenario: three_package_origins_and_three_physical_source_colors
+    expected: {combinations: 9, silhouette_tracks_origin_not_controller: true, color_tracks_physical_form_not_currency: true}
+  - id: LOOT-02
+    scenario: pickup_enemy_tetrahedron_with_man_worker
+    expected: {allowed_when_equipment_compatible: true, needs_real_path_and_time: true, no_remote_bank_credit: true}
+  - id: LOOT-03
+    scenario: loose_gas_pod_after_vent_capture
+    expected: {sealed_item_recoverable: true, raw_gas_vent_still_requires_installed_collector: true}
+  - id: LOOT-04
+    scenario: man_worker_interrupts_incomplete_scaffold
+    initial: {installed_matter: 30, loose_delivered_matter: 15, progress_pct: 42}
+    expected: {frame_remains_42_pct: true, loose_collectible_units: 15, installed_units_require_actual_salvage_excavation: true}
+  - id: LOOT-05
+    scenario: opponent_steals_man_site_crates
+    expected: {foreign_pickup_legal: true, original_owner_debited_once: true, installed_frame_still_requires_excavation: true}
+  - id: LOOT-06
+    scenario: manually_salvage_man_ruin
+    initial: {installed_solid_input: 100}
+    expected: {output_less_than: 100, finite_mining_work: true, no_extraneous_income: true}
+  - id: LOOT-07
+    scenario: org_worker_abandons_spore
+    initial: {embodied_resource: 60, current_stage: incubating}
+    expected: {no_instant_full_refund: true, decay_event_emits_subsets_over_time: true, total_emissions_at_most_60: true, irreversible_loss_possible: true}
+  - id: LOOT-08
+    scenario: org_vessel_severed_and_colony_starves
+    expected: {cut_segment_packets_leak_at_break: true, dying_structures_emit_progressively: true, recovered_fraction_below_original_investment: true, no_instant_every_structure_mass_ejection: true}
+  - id: LOOT-09
+    scenario: eth_last_required_blue_beam_break_after_site_commit
+    initial: {committed_site_solid: 15, committed_site_liquid: 6, spent_channel_energy: 5, remote_reserved_not_yet_delivered_solid: 3}
+    expected: {site_solids_orbs: 15, site_liquids_orbs: 6, refunded_spent_channel_energy: 0, remote_reserved_solid_remains_at_real_holder: 3, progress_after: 0, remote_auto_refund_of_dropped_site_stock: false}
+  - id: LOOT-10
+    scenario: eth_construction_abort_next_to_enemy
+    expected: {enemy_can_physically_collect_dropped_orbs: true, enemy_cannot_instantly_claim_ether_network_balance: true}
+  - id: LOOT-11
+    scenario: eth_link_ruptures_while_transfer_packet_is_in_edge_escrow
+    initial: {in_edge_escrow_resource_units: 10}
+    expected: {source_still_holds_same_transfer_packet: false, destination_received_packet: false, loss_plus_dropped_orbs_equals_10: true}
+  - id: LOOT-12
+    scenario: man_conveyor_broken_with_two_crates
+    expected: {surviving_crates_spill_at_ground_if_intact: true, other_belt_segments_retain_independent_cargo: true}
+  - id: LOOT-13
+    scenario: man_pure_hybrid_fiber_trunk_broken
+    expected: {power_and_data_links_cut: true, spontaneous_material_crates_from_empty_cable: false}
+  - id: LOOT-14
+    scenario: all_faction_world_drops_scatter_from_completed_building
+    expected: {actual_surviving_unspent_cargo_plus_sufficiently_damaged_structural_salvage_only: true, total_spent_operational_energy_not_respawned: true}
+  - id: LOOT-15
+    scenario: recycling_positive_cycle_check
+    initial: {finished_asset_embedded_matter: 100}
+    sequence: [destroy, salvage, rebuild, destroy, salvage]
+    expected: {total_recovered_after_each_finished_cycle_strictly_decreases: true}
+  - id: LOOT-16
+    scenario: dropped_item_visual_stacking
+    expected: {stack_entity_amount_exact: true, overlapping_drops_same_compatible_kind_merge_without_loss_or_duplication: true, count_visible: true}
+  - id: LOOT-17
+    scenario: destroyed_eth_orb_waiting_for_nexus
+    expected: {world_orb_is_not_network_balance: true, physical_delivery_to_nexus_required_to_reencode: true}
+  - id: LOOT-18
+    scenario: cross_type_repacking
+    expected: {origin_faction_kept_for_provenance: true, current_container_can_change: true, resource_type_unchanged_without_explicit_recipe: true}
+  - id: LOOT-19
+    scenario: fixed_seed_multiple_pylon_ruptures_and_organic_salvage
+    expected: {event_order_deterministic: true, no_duplicate_world_packet_ids: true, global_ledger_conserved_per_type_after_consumption_and_actual_loss: true}
+  - id: LOOT-20
+    scenario: eliminate_all_buildings_while_salvage_and_hero_remain
+    expected: {annihilation_match_finished: true, remaining_drops_do_not_delay_victory: true}
+  - id: NET-021
+    scenario: eth_one_graph_routes_energy_information_and_typed_resource
+    expected: {same_pylon_link_topology: true, finite_aggregate_bandwidth: true, no_separate_required_control_graph: true}
+  - id: NET-022
+    scenario: eth_last_beam_break_materializes_orbs
+    expected: {all_site_committed_material_ejected: true, no_paid_operational_energy_refund: true, no_network_double_credit: true}
+  - id: NET-023
+    scenario: org_vessel_packets_move_physically
+    expected: {finite_hop_transit: true, cut_edge_packets_drop_when_broken: true, never_abstract_equalized_network_bank: true}
+  - id: NET-024
+    scenario: org_mitochondrion_pair_bootstrap
+    initial: {alive_mitochondria_count: 0, home_bootstrap_reserves: positive}
+    expected: {first_and_second_mitochondria_can_be_built: true, full_production_after_pair_under_candidate_rule: true, no_circular_power_requirement: true}
+  - id: NET-025
+    scenario: org_remote_home_supply_distinct_from_locally_made_energy
+    expected: {two_mitochondria_dont_make_home_origin_nutrient_shipments_unnecessary: true}
+  - id: NET-026
+    scenario: man_umu_warehouse_bunker_ground_motion
+    expected: {only_one_deployed_mode: true, no_generation_during_travel: true, no_free_cargo_teleport_on_mode_change: true, unit_keeps_victory_building_tag_while_moving: true}
+  - id: NET-027
+    scenario: man_power_and_data_hybrid_trunk
+    expected: {same_cable_route: true, distinct_power_and_data_capacity: true, fiber_optics_not_used_for_bulk_power_without_conductor: true}
+  - id: NET-028
+    scenario: man_material_builder_fetch
+    expected: {real_path_and_pickup_time: true, sources_may_be_scaffold_loose_crates_or_mine_or_umu: true, never_from_information_link: true}
+  - id: NET-029
+    scenario: man_only_one_umu_max_template_variant
+    expected: {no_duplicate_heavy_umu_and_max_warehouse_assets_without_design_review: true, mid_belt_and_small_bunker_remain_distinct: true}
+  - id: NET-030
+    scenario: build_contributor_caps_after_network_updates
+    expected: {org: [3, 2, 1], man: [1, 2, 2], eth: [1, 2, 3]}
