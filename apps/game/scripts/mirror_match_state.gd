@@ -318,6 +318,27 @@ func _nearest_source(pos: Vector2i) -> String:
             choice = str(source_id)
     return choice
 
+# Stable ID order is the tie-breaker for contested source mining slots.
+# No third worker can extract Matter during the same authoritative tick.
+func _can_mine_now(worker: Dictionary, source_id: String) -> bool:
+    var admitted: int = 0
+    for wid in sorted_ids():
+        var other: Dictionary = entities[wid]
+        if str(other["kind"]) != "worker" or str(other["order"]) != "gather":
+            continue
+        if str(other["source_id"]) != source_id or str(other["gather_phase"]) != "mine":
+            continue
+        if int(other["cargo"]) >= TIMING.WORKER_CAPACITY_MATTER:
+            continue
+        if _distance(other["pos"], sources[source_id]["pos"]) > 1:
+            continue
+        admitted += 1
+        if int(other["id"]) == int(worker["id"]):
+            return admitted <= TIMING.SOURCE_MINERS_MAX
+        if admitted >= TIMING.SOURCE_MINERS_MAX:
+            return false
+    return false
+
 func _worker_tick(e: Dictionary) -> void:
     var order: String = str(e["order"])
     var side: int = int(e["owner"])
@@ -326,36 +347,67 @@ func _worker_tick(e: Dictionary) -> void:
         if e["pos"] == e["target_pos"]:
             e["order"] = "idle"
     elif order == "gather":
-        if int(e["cargo"]) > 0:
+        var phase: String = str(e["gather_phase"])
+        if phase == "pickup":
+            e["work_ticks"] = int(e["work_ticks"]) + 1
+            if int(e["work_ticks"]) >= TIMING.PICKUP_TICKS:
+                e["gather_phase"] = "return"
+                e["work_ticks"] = 0
+            return
+        if phase in ["return", "unload"]:
             var hqs: Array[int] = units_for(side, "hq")
             if hqs.is_empty():
                 e["order"] = "idle"
                 return
             var hq: Dictionary = entities[hqs[0]]
-            if _distance(e["pos"], hq["pos"]) <= 1:
+            if _distance(e["pos"], hq["pos"]) > 1:
+                e["gather_phase"] = "return"
+                _walk(e, hq["pos"])
+                return
+            e["gather_phase"] = "unload"
+            e["work_ticks"] = int(e["work_ticks"]) + 1
+            if int(e["work_ticks"]) >= TIMING.UNLOAD_TICKS:
                 players[side]["matter"] = int(players[side]["matter"]) + int(e["cargo"])
                 e["cargo"] = 0
-            else:
-                _walk(e, hq["pos"])
-        else:
-            var sid: String = str(e["source_id"])
-            if not sources.has(sid) or int(sources[sid]["stock"]) <= 0:
-                sid = _nearest_source(e["pos"])
-                e["source_id"] = sid
-            if sid == "":
-                e["order"] = "idle"
+                e["work_ticks"] = 0
+                e["gather_phase"] = "mine"
+            return
+        if int(e["cargo"]) >= TIMING.WORKER_CAPACITY_MATTER:
+            e["gather_phase"] = "pickup"
+            e["work_ticks"] = 0
+            return
+        var sid: String = str(e["source_id"])
+        if not sources.has(sid) or int(sources[sid]["stock"]) <= 0:
+            if int(e["cargo"]) > 0:
+                e["gather_phase"] = "pickup"
+                e["work_ticks"] = 0
                 return
-            var src: Dictionary = sources[sid]
-            if _distance(e["pos"], src["pos"]) <= 1:
-                e["work_ticks"] = int(e["work_ticks"]) + 1
-                if int(e["work_ticks"]) >= 6:
-                    var picked: int = mini(10, int(src["stock"]))
-                    src["stock"] = int(src["stock"]) - picked
-                    e["cargo"] = picked
-                    mined_matter += picked
-                    e["work_ticks"] = 0
-            else:
-                _walk(e, src["pos"])
+            sid = _nearest_source(e["pos"])
+            e["source_id"] = sid
+            e["work_ticks"] = 0
+        if sid == "":
+            e["order"] = "idle"
+            return
+        var src: Dictionary = sources[sid]
+        if _distance(e["pos"], src["pos"]) > 1:
+            e["work_ticks"] = 0
+            _walk(e, src["pos"])
+            return
+        if not _can_mine_now(e, sid):
+            e["work_ticks"] = 0
+            return
+        # 2.0 seconds of continuous labor per ONE extracted Matter.
+        e["work_ticks"] = int(e["work_ticks"]) + 1
+        if int(e["work_ticks"]) >= TIMING.GATHER_TICKS_PER_MATTER:
+            src["stock"] = int(src["stock"]) - 1
+            e["cargo"] = int(e["cargo"]) + 1
+            mined_matter += 1
+            e["work_ticks"] = 0
+            if (
+                    int(e["cargo"]) >= TIMING.WORKER_CAPACITY_MATTER
+                    or int(src["stock"]) <= 0
+            ):
+                e["gather_phase"] = "pickup"
     elif order == "build":
         var site: Vector2i = e["build_pos"]
         if _distance(e["pos"], site) > 1:
