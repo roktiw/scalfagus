@@ -14,6 +14,14 @@ One original, offline **retro pixel-art isometric RTS** with **three observation
 
 Every human player starts with **one Hero**, who has an Engineer / Commander / Specialist starting *preset* and one shared, open, consequence-aware skill graph; specialization can pivot. Preset choice does not block cameras. This does NOT promise three parallel complete standalone genres.
 
+## Default victory and latest economic contracts — DEC-021–024 (2026-10-11)
+
+**OWNER APPROVED DEFAULT WIN:** the opponent is defeated when all **completed living building-class entities** owned by that team are gone. This includes mobility-capable structural units such as the MAN UMU, even while traveling/packed, and ETH pylons/Nexus or ORG living buildings. It does **not** require killing all ordinary workers, soldiers or the Hero. Loose tetrahedral/cubic/orb loot, standalone conduit segments and incomplete scaffolds are not victory-preserving buildings. No resource-exhaustion timeout is implied. An optional designated-heart objective requires explicit scenario selection; it is not default.
+
+**Current owner mechanics:** [new ORG/MAN/ETH 2/3/1 networks](three-network-channels-and-destruction-2026-10-11.md): ORG finite actual cargo/energy/info in live veins and two mitochondria (precise scope TBD), MAN Universal Man Unit (UMU) + real material logistics + power/data hybrid cables, ETH one typed Ether Network for cargo/info/Energy after Nexus conversion. [Visible loot and recycling](world-loot-salvage-and-recycling-2026-10-11.md) adds cross-faction collectible tetrahedron/cube/orb material drops and per-form colors, loss-bearing salvage, ETH incomplete-site immediate drop, ORG timed spit-out and MAN persistent recoverable excavation. [Victory rule](victory-defeat-building-classification-2026-10-11.md) is the default ruleset.
+
+**MVP impact:** build a single deterministic ledger and a `WorldDrop` entity, ensure genuine salvage custody and correct no-duplication settlement. First MAN playable slice can test UMU→hybrid power/data cable→physical construction crates→scaffold/ruin loot→all-buildings victory without needing the entire three-faction economy at once. ETH and ORG adapters follow the same transaction/event contracts. Exact salvage rates, Ether pylon node rate and mitochondrial energy requirements need tests.
+
 ## Source of truth and design constraints
 - Product philosophy [product-principles.md](product-principles.md).
 - View/input semantics [three-pillars-one-world-control-contract.md](three-pillars-one-world-control-contract.md).
@@ -46,7 +54,7 @@ Every human player starts with **one Hero**, who has an Engineer / Commander / S
 - Buildings: HQ, one depot/extractor, one training/production site and a simple defense/trap (may reuse mesh art).
 - Matter working production loop; stub/fixture Volatiles and Energy internally at first, then **implement real three-resource transport** by internal MVP acceptance.
 - Overlord select/move/attack/build, Direct Unit steer/aim/fire and FPS walk/aim/fire.
-- Basic bot raid vs base and one defeat enemy HQ or survive scripted wave objective.
+- Basic bot raid vs base and **default defeat by destroying all enemy building-class entities** (including mobile structural UMU) or a specifically scripted optional survive-wave objective. A single enemy HQ is not universally sufficient to end the default match.
 - One simple skill graph with 3 starting kit names but only **one ability** needed to validate cross-camera effects.
 - Basic economy worker AI and opponent controller.
 - No advanced tech branching, training simulation or high polish required.
@@ -97,7 +105,7 @@ Every human player starts with **one Hero**, who has an Engineer / Commander / S
 1. From desktop launch, user can start a match, choose a hero starter kit and obtain one owned Hero.
 2. User can **play a complete 10–25 minute scenario** primarily through Overlord without FPS and without hand-moving cargo.
 3. Economy collects/transports/stores/spends Matter, Volatiles and Energy with one legitimate autonomous loop.
-4. Player can command ordinary army units, build a defense and defeat a fair scripted enemy/complete holdout objective.
+4. Player can command ordinary army units, build a defense and destroy **all surviving enemy buildings including mobile building-class units**, or complete an explicitly selected scenario objective; workers/loot/ruins do not block this victory.
 5. In the SAME live match Hero can switch **Overlord -> Direct Unit -> FPS -> Overlord**, move, fire and use at least one valid shared ability, with consistent HP, position, collision, sightline, costs and cooldowns.
 6. Choosing hero talents has visible effects and demonstrates at least one cross-archetype pivot while leaving other play styles accessible.
 7. On Hero death, no stuck camera or locked input; base/army remain playable.
