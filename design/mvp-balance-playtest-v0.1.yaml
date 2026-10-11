@@ -1,0 +1,300 @@
+schema_version: 1
+project: scalfagus
+profile_id: man_eth_verdant_divide_first_balance
+profile_version: 0.1
+status: proposed_numeric_fixture_not_playtested_not_owner_approved
+authoritative_for: first_mvp_balance_candidate_values_when_older_proposals_or_TBD_conflict
+approved_constraints_from: [DEC-001, DEC-016, DEC-018, DEC-019, DEC-021, DEC-022, DEC-023, DEC-024, DEC-025, DEC-026, DEC-027, DEC-030]
+references:
+  rationale: design/mvp-balance-and-simulation-plan.md
+  gameplay_specification: design/mvp-gameplay-execution-contract.md
+  source_map: design/mvp-verdant-divide-map.yaml
+  unit_catalog: design/mvp-man-eth-catalog.yaml
+  combat_candidate: design/mvp-combat.yaml
+  resource_rules: design/mvp-economy.yaml
+  network_rules: design/mvp-network-execution.yaml
+  tests: design/mvp-balance-acceptance.yaml
+interpretation:
+  owner_direction_vs_tuning: mechanic_direction_is_approved_numeric_constants_are_candidate
+  source_form_is_not_spending_currency: true
+  can_be_changed_without_rewriting_world_decisions: true
+  requires_real_gameplay_and_headless_telemetry_before_balance_claim: true
+  unit_of_time: game_seconds
+  raw_matter_units: nonnegative_integers
+  stored_energy_units: fixed_point_milli_E_in_sim
+  source_form: solid
+  map_is_flying_platform: true
+match:
+  topology: planar
+  map_id: verdant_divide
+  human_vs_bot: true
+  playable_factions: [man, eth]
+  maps_symmetric_start_economic_stock: true
+  nominal_duration_min: 10
+  nominal_duration_max: 25
+  long_run_phase_target_min: 25
+  long_run_phase_target_max: 40
+  max_match_time_forced: false
+  all_enemy_completed_building_class_destroyed_to_win: true
+  simultaneous_last_buildings_destroyed: draw_candidate
+  stalemate_requires_surrender_or_actual_last_building_kill: true
+simulation:
+  fixed_ticks_per_second: 20
+  deterministic_tick_order_and_event_ids: true
+  energy_storage_precision: milli_E
+  rounding_for_integer_materials: floor_only_at_explicit_ledger_transaction
+  no_asset_animation_time_controls_game_time: true
+  ai_decision_interval_ticks: 10
+  order_limit_per_bot_decision: 4
+  no_network_or_hosted_LLM_required: true
+starting_state_per_team:
+  mother_count: 1
+  min_workers: 3
+  basic_soldiers: 0
+  hero_variant: 1
+  infrastructure: 0
+  barracks: 0
+  matter: 0
+  stored_energy: 40
+  support_available: 8
+  support_used: 5
+  initial_energy_in_HQ_only: true
+  starting_units_must_spawn_on_valid_dry_ground: true
+resource:
+  currency_ids: [matter, volatiles, energy]
+  solid_direct_worker_harvest_only: true
+  solid_to_matter_output_per_depleted_source_unit: 1
+  active_spendable_currency_ids_in_mvp: [matter, energy]
+  volatiles_source_and_spending_enabled: false
+  liquid_and_gas_extraction_enabled: false
+  worker_cargo_max_matter: 8
+  worker_gather_time_per_matter_seconds:
+    man: 1.90
+    eth: 2.00
+  note: >
+    A deliberately small 5.3 percent MAN solid harvest advantage (2.0/1.9)
+    for the two-race solid-only slice; full three-faction extraction
+    asymmetry is specified separately and not enabled here.
+  worker_move_speed_tiles_per_second: 2.30
+  unloading_per_packet_seconds: 0.35
+  loading_per_packet_seconds: 0.35
+  eth_nexus_conversion:
+    requires_actual_worker_delivered_cargo: true
+    max_matter_units_per_second: 8
+    preserves_typed_matter_id_and_quantity: true
+    electricity_or_other_conversion_E_per_matter: 0
+    no_conversion_loss_first_MVP: true
+  finite_placed_solids_units:
+    verdant_divide_total: 1660
+    near_each_start: 400
+    central_contested: 400
+    two_side_flanks: 300
+    two_ridges: 160
+  no_tree_chopping_from_live_cover: true
+  inventory_capacities_matter:
+    man_command_core: 200
+    man_umu_warehouse: 96
+    man_umu_bunker_locked_carried_cargo: 96
+    man_umu_packed_locked_carried_cargo: 96
+    eth_nexus: 200
+    eth_pylon_storage_relay: 80
+    eth_pylon_turret_retained_but_closed_to_local_loading: 80
+  site_loose_piles_and_worker_bags_have_real_separate_packet_ids: true
+  overflow_policy: refuse_transfer_keep_at_source_not_discard
+prices:
+  man:
+    man_min: {matter: 15, energy: 1, time_s: 9, support: 1}
+    man_rifleman: {matter: 20, energy: 2, time_s: 12, support: 1}
+    man_umu: {matter: 40, energy: 5, solo_work_seconds: 24, support_cap_deployed: 8, support_cap_packed: 0}
+    man_barracks: {matter: 60, energy: 8, solo_work_seconds: 40, support_cap: 0}
+    man_command_core_rebuild: {matter: 150, energy: 15, solo_work_seconds: 75, support_cap: 8}
+  eth:
+    eth_min: {matter: 15, energy: 1, time_s: 9, support: 1}
+    eth_sentinel: {matter: 20, energy: 2, time_s: 12, support: 1}
+    eth_pylon_obelisk: {matter: 40, energy: 5, solo_work_seconds: 24, support_cap_all_modes: 8}
+    eth_manifestation_chamber: {matter: 60, energy: 8, solo_work_seconds: 40, support_cap: 0}
+    eth_nexus_rebuild: {matter: 150, energy: 15, solo_work_seconds: 75, support_cap: 8}
+  hero_reproduction_in_mvp: forbidden
+  costs_deducted_by_real_physical_or_typed_inventory_commit_not_free_global_wallet: true
+  production_requires_enough_local_support_capacity: true
+  one_FIFO_queue_per_producer: true
+  training_cost_reservation_at_queue_start: true
+  queue_cancel_before_spawn:
+    resource_refund: to_exact_real_reserving_depot_or_network_node
+    energy_refund: 0
+    matter_refund: 1.0
+    note: unused_Matter_remains_real_stock_not_ground_drop_and_is_not_credit_twice
+energy:
+  energy_is_spendable_real_currency_not_gas_or_pop_cap: true
+  explicit_first_MVP_environmental_generation_source: constant_local_solar_or_ambient_flux
+  environment_has_bounded_source_rates_booked_in_external_generation_ledger: true
+  man:
+    mother_local_generation_E_per_second: 0.20
+    umu_deployed_warehouse_generation_E_per_second: 0.40
+    umu_deployed_bunker_generation_E_per_second: 0.20
+    umu_packed_generation_E_per_second: 0
+    matter_transport_through_power_cable: forbidden
+    energy_conductor_transfer_rate_E_per_second: 4
+    cable_hybrid_link_radius_tiles: 10
+    cable_never_provides_universal_material_wallet: true
+    outpost_with_valid_local_UMU_can_run_without_original_HQ_link: true
+  eth:
+    nexus_ambient_generation_E_per_second: 0.20
+    pylons_generate_energy: false
+    pylon_transmits_energy_from_real_stores_via_Ether_network: true
+    pylon_storage_energy_capacity: 60
+    nexus_energy_capacity: 120
+    pylon_turret_energy_per_shot: 1
+    pylon_turret_brownout_turns_off_weapon: true
+  start_HQ_battery_capacity_E: 120
+  man_umu_battery_capacity_E: 80
+  no_upkeep_for_idle_worker_and_soldier_first_MVP: true
+  construction_operating_energy_included_in_price_energy_field: true
+  energy_price_deducted_once_at_start_from_valid_local_service: true
+  no_automatic_free_energy_on_production_or_build_completion: true
+  solar_energy_is_declared_external_inflow_not_a_new_mined_resource: true
+  no_enforced_gas_or_liquid_prerequisite: true
+support:
+  base_cap_from_completed_mother: 8
+  man_umu_additional_cap_if_deployed_and_alive: 8
+  man_umu_additional_cap_if_packed: 0
+  eth_pylon_additional_cap_if_alive_regardless_of_mode: 8
+  disconnected_ETH_pylon_support_behavior: count_per_alive_completed_pylon_teamwide_candidate
+  support_overcap_after_generator_packing:
+    existing_units_remain_alive: true
+    new_units_or_workers_cannot_train_until_capped: true
+    no_automatic_despawn_or_HP_damage: true
+  units_without_support_never_auto_die: true
+construction:
+  stage_percentage_boundaries: [0, 33.333, 66.667, 100]
+  cost_payment_at_site_by_integer_cumulative_allocation:
+    formula: stage_k_material=floor(total_cost*k/3)-floor(total_cost*(k-1)/3)
+    stage_k_values: [1, 2, 3]
+  workers_contributor_caps:
+    man: [1, 2, 2]
+    eth: [1, 2, 3]
+    org_future: [3, 2, 1]
+  solo_work_seconds_from_price: true
+  throughput_per_eligible_active_worker: 1
+  additional_worker_efficiency_first_mvp: full_contribution
+  progress_when_no_valid_worker_or_energy: paused_by_default
+  man_incomplete_site_persists_after_worker_loss: true
+  eth_site_requires_at_least_one_valid_sustained_min_beam: true
+  eth_last_beam_or_required_route_loss: immediate_abort_and_eject_site_committed_materials_once
+  worker_leaves_but_other_valid_worker_beam_remains: slows_not_abort
+  can_start_new_site_only_with_legal_initial_stage_materials_and_power: true
+  raw_Matter_never_sent_over_ETH_network_without_Nexus_conversion: true
+  no_site_free_bootstrap_without_inventory: true
+networks:
+  man:
+    required_services: [physical_cargo, conducted_energy, optical_data]
+    separate_resource_cargo_from_hybrid_power_data_route: true
+    cable_range_tiles: 10
+    automatically_connect_nearby_valid_deployed_ports: true
+    hand_laid_long_cables_and_power_upgrade: post_mvp
+    cargo_source_pickup_radius_tiles: 2
+    generator_or_battery_required_for_energy_service: true
+    UMU_generator_warehouse_mode_cannot_fire_as_garrison: true
+    UMU_bunker_garrison_capacity: 2
+    UMU_bunker_no_autonomous_weapon_without_occupied_soldier: true
+    UMU_packed_travel:
+      speed_tiles_per_second: 0.8
+      pack_seconds: 5
+      unpack_seconds: 5
+      retain_real_cargo_and_battery: true
+      cargo_ports_closed_until_unpacked: true
+      energy_generation_off: true
+      support_cap_off: true
+      victory_building_still_true: true
+      world_border_and_trees_block_route: true
+  eth:
+    services_on_one_network: [typed_Matter, energy, blueprint_information, resonance_support]
+    pylon_to_node_max_link_radius_tiles: 14
+    edge_total_finite_resource_bandwidth_units_per_second: 6
+    edge_packet_minimum_latency_seconds: 0.5
+    pylon_local_matter_capacity: 80
+    nexus_local_matter_capacity: 200
+    pylon_turret_bandwidth_fraction: 0.5
+    pylon_storage_relay_bandwidth_fraction: 1.0
+    data_cost_in_ledger_currency: 0
+    information_must_be_sent_over_same_eligible_graph: true
+    data_message_bandwidth_accounting: reserve_priority_tiny_metadata_event_first_mvp
+    raw_cargo_Nexus_conversion_only: true
+    pylon_default_mode: storage_relay
+    pylon_mode_switch_meditation_time_s: 5
+    pylon_mode_switch_energy_cost_E: 2
+    turret_no_freight_receipt_from_local_external_couriers: true
+    node_resource_equalization: capacity_weighted_eventual_not_global_pool
+    equalization_integer_order: stable_node_id_then_resource_id
+    reservation_priority: site_commit_then_training_then_existing_inflight_then_background_equalization
+    transport_escrow_owner: edge_packet_until_arrival
+    link_rupture_escrow_fraction_recovered_as_orbs: 0.80
+    node_destruction_resident_inventory_fraction_recovered_as_orbs: 0.35
+    disconnected_nodes_keep_exact_local_balance: true
+    first_pylon_site_legal_with_home_Nexus_in_beam_range_tiles: 14
+    worker_beam_max_distance_to_eligible_network_node_tiles: 14
+    disconnected_pylon_without_nexus_can_relay_existing_stock_but_cannot_reencode_raw_cargo: true
+    site_commit_requires_reachable_valid_Nexus_and_linked_actual_local_typed_resource: true
+combat:
+  soldier_profiles:
+    man_rifleman: {HP: 85, armor: 0, damage: 9, attack_cooldown_s: 1.2, range_tiles: 6, speed_tiles_per_s: 2.6, sight_tiles: 8}
+    eth_sentinel: {HP: 85, armor: 0, damage: 9, attack_cooldown_s: 1.2, range_tiles: 6, speed_tiles_per_s: 2.6, sight_tiles: 8}
+  worker: {HP: 55, armor: 0, attack: none, speed_tiles_per_s: 2.3, sight_tiles: 6}
+  hero: {HP: 120, armor: 0, damage: 9, attack_cooldown_s: 1.2, range_tiles: 6, sight_tiles: 9, move_speed_tiles_per_s: 2.6}
+  hero_special_ability: {name: dash, movement_distance_tiles: 2, cooldown_s: 8, energy_cost: 0, forbids_wall_or_water_collision_bypass: true}
+  buildings_HP_armor:
+    man_command_core: {HP: 550, armor: 2}
+    eth_nexus: {HP: 550, armor: 2}
+    man_umu: {HP: 290, armor: 2}
+    eth_pylon_obelisk: {HP: 230, armor: 1}
+    man_barracks: {HP: 260, armor: 1}
+    eth_manifestation_chamber: {HP: 260, armor: 1}
+  eth_pylon_turret:
+    HP_inherited_from_pylon: 230
+    damage: 8
+    range_tiles: 4
+    cooldown_seconds: 2.0
+    energy_per_shot: 1
+    cannot_shoot_through_tree_trunks_or_walls: true
+  man_UMU_bunker:
+    garrison_capacity: 2
+    no_uncrewed_autonomous_damage: true
+    garrison_troop_damage_as_normal_rifleman_with_real_line_of_sight: true
+  direct_hitscan_first_mvp: true
+  effective_damage_formula: max(1, raw_damage_minus_flat_armor)
+  friendly_fire_first_mvp: false
+  gunshot_requires_target_currently_in_true_LOS_and_current_fog_vision: true
+  no_omniscient_bot_attack_orders: true
+  raycast_colliders_include_tree_trunks_and_terrain: true
+  resource_orbs_not_attackable_soldiers_without_explicit_weapon_capability: true
+loot_salvage:
+  physical_form_color_solid: "#E8AF42"
+  shape_by_origin: {man: cube, eth: orb, org_future: tetrahedron}
+  keep_intact_loose_crate_fraction: 1.0
+  eth_site_committed_input_ejection_on_abort_fraction: 1.0
+  eth_site_energy_refund_fraction: 0.0
+  man_unfinished_embedded_material_salvage_fraction: 0.50
+  complete_destroyed_structure_embedded_material_recovery_fraction: 0.35
+  safe_disassembly_embedded_material_recovery_fraction: 0.65
+  eth_edge_rupture_inflight_packet_recovery_fraction: 0.80
+  eth_destroyed_node_stored_packet_recovery_fraction: 0.35
+  one_salvage_matter_unit_excavation_seconds: 0.75
+  salvage_rounding: floor(actual_embedded_unit_count_times_fraction)
+  world_drop_expiration_in_first_mvp: never
+  min_separation_of_merged_world_stacks_units: 1
+  no_world_drop_spawning_outside_platform: true
+  no_decay_of_existing_loose_valid_cargo_before_pickup: true
+  hard_conservation_with_irrecoverable_remainder: true
+balance_guardrails:
+  full_MAP_solid_remaining_source_stock_equals: 1660
+  each_start_reachable_stock_minimum: 400
+  initial_solids_support_40_infra_plus_60_barracks_plus_3x20_soldiers: true
+  energy_start_reserve_covers_5_infra_plus_8_barracks_plus_3x2_soldier: true
+  pylon_turret_energy_outflow_over_generation_if_firing_continuously: true
+  man_packed_UMU_generation_and_support_fall_to_zero: true
+  connected_nexus_when_ETH_network_cut_does_not_duplicate_ether: true
+  no_permanent_progress_loss_for_MAN_when_all_workers_leave: true
+  ETH_beam_lost_aborts_and_ejects_all_committed_Matter: true
+  combat_soldier_DPS_before_armor_equal_across_factions: true
+  no_needs_liquid_or_gas_for_a_first_mvp_build_or_attack: true
+  no_claim_of_win_rate_or_final_match_duration_without_matches: true
