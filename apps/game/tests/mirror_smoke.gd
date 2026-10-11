@@ -17,10 +17,31 @@ func _run() -> void:
         _fail("Incorrect mirrored initial roster")
         return
 
+    # The first battlefield must be a fair, rotationally mirrored pair of starts.
+    var left_hq: Vector2i = match_state.entities[match_state.units_for(0, "hq")[0]]["pos"]
+    var right_hq: Vector2i = match_state.entities[match_state.units_for(1, "hq")[0]]["pos"]
+    if right_hq != Vector2i(63 - left_hq.x, 63 - left_hq.y):
+        _fail("Spawn locations are not rotationally mirrored")
+        return
+    var west_source: Vector2i = match_state.sources["west"]["pos"]
+    var east_source: Vector2i = match_state.sources["east"]["pos"]
+    if east_source != Vector2i(63 - west_source.x, 63 - west_source.y):
+        _fail("Harvest start locations are not mirrored")
+        return
+    if not match_state._blocked(Vector2i(30, 25)):
+        _fail("Tree trunk is not impassable")
+        return
+    if match_state._line_clear(Vector2i(30, 23), Vector2i(30, 29)):
+        _fail("Tree trunk does not block line of sight")
+        return
+
     var west_worker: int = match_state.units_for(0, "worker")[0]
     var enemy_worker: int = match_state.units_for(1, "worker")[0]
     if match_state.issue_command(0, "move", enemy_worker, Vector2i(12, 12)):
         _fail("Human player controlled enemy worker")
+        return
+    if match_state.issue_command(0, "build_barracks", west_worker, Vector2i(13, 36)):
+        _fail("Unfunded building was accepted")
         return
     if not match_state.issue_command(0, "gather", west_worker, "west"):
         _fail("Cannot order worker to gather")
