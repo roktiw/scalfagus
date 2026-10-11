@@ -9,7 +9,7 @@ Related: [logistics.yaml](logistics.yaml), [faction-logistics.yaml](faction-logi
 **The faction determines the physical logistics paradigm; the player determines the architecture within it.** The economy must feel different to operate for each faction. Do not offer every faction the same best-in-slot workers, conveyors and pylons with cosmetic skins. These are not mere passive mining multipliers.
 
 Three recognizable economic thought processes:
-- **ORG / Organites — Living Loops:** many independent workers continually extract and load/unload massive, evolving **mother transporters** traveling in persistent loops between resource deposits and the base. The mobile mother is a high-value target.
+- **ORG / Organites — Living Loops:** independent workers mine, queue and transfer one resource item at a time, one worker per unupgraded MID/MAX transfer port. Mother transporters operate on cyclical routes but initially stop to receive/dispatch; moving handoffs unlock via research. The mobile mother is a high-value target.
 - **MAN / Manusians — Industrial Belts:** automated extraction and very fast **physical conveyor corridors** with splitters, merges, buffers and advanced routing. Cutting a key line creates real economic disruption.
 - **ETH / Etherans — Resonance Hubs:** a **hybrid network** of autonomous mobile couriers and **stationary pylons** serving as cargo handoff, buffering and routing nodes. Destroying or isolating a critical pylon fractures supply routes.
 
@@ -40,19 +40,23 @@ Canon on other axes remains intact:
 
 ## ORG / Organites — mother transports and continuous in-motion loading
 
-**Owner-specified central mechanic:** numerous small worker organisms extract resource and **load giant mother harvesters while the mothers continue their route**. Worker logistics can likewise unload a mother on the fly near the base. The mother continuously circuits a configurable deposit–base loop, ideally without parking for each packet. This is the signature economic fantasy, not just a late upgrade.
+**Owner-updated core mechanic (DEC-011):** workers load/unload a giant mother with **one physical item per completed handoff, one worker at a time**, using a single basic transfer port. The unupgraded mother runs mutually exclusive **MOVE, RECEIVE, DISPATCH, EXTRACT** modes: it flies between endpoints, but stops/holds position for loading and unloading. Flying handoffs are a mid-game researched capability; limited parallel worker ports are a further late-game upgrade. Previous starting-game moving handoffs are superseded.
 
 ### Required gameplay behavior
 
 1. A player assigns one or more loop routes to a mother: pickup zone near deposit -> delivery zone near base/depot -> return to pickup, repeating until canceled or disabled.
 2. Independent extractor organisms work the deposit. Eligible loading organisms collect cargo and approach the mother during a legal moving rendezvous.
-3. **Rolling transfer:** when the mother and loader are within compatible transfer range and relative motion/position allows, cargo moves from worker inventory into free mother capacity over a finite transfer window. The mother **does not have to stop**, but cannot transfer from arbitrarily far away. A failed rendezvous means the worker retries or uses a safe queue/holding zone.
-4. Near the base, unloading workers or configured receiving docks remove cargo **while the mother keeps moving**, subject to transfer rate, range, receiver capacity and valid pathing.
+3. **Baseline transfer:** the mother must hold position in RECEIVE or DISPATCH mode; only one worker and one resource item per completed handoff, at finite rate and legal transfer range. More workers form a queue. After mid-game research, movement and one transfer direction may overlap, still through the basic single port.
+4. Near the base, workers or compatible docks unload a hovering mother one item/receiver at a time, subject to finite transfer rate, range, and capacity. Moving unload and extra simultaneous ports are technology-gated.
 5. To sustain uninterrupted flow, the player must balance extractor rate, number of loaders/unloaders, mother cargo capacity, loop travel time, pickup/delivery window duration, and congestion.
 6. Mothers may evolve into much larger bodies at significant cost; larger size increases payload but imposes footprint/pathing, speed or investment constraints. Exact growth parameters are **TBD**.
 7. **Fatal weak point:** enemy interception of the mother may kill it and destroy/drop/release the valuable carried cargo according to an explicit, deterministic cargo-loss rule (**TBD**). Redundant mothers, escorts and split loads mitigate this.
 
-This creates a distinctive, skill-expressive industrial-feeling **living moving assembly line**, without turning ORG into an industrial belt faction.
+This creates a staged progression: early-game stop-and-load organic loops, mid-game moving handoffs, and late-game limited multiport loading — never unlimited free transport.
+
+### DEC-011: serialization, exclusive mother modes, researched upgrades
+
+**Baseline ORG MID and MAX: one transfer item per completed worker handoff, one active worker port per transporter.** Queued workers are served sequentially. A high slot count does not imply parallel loading. The unupgraded mother can occupy only one mode at a time — `MOVE`, `RECEIVE`, `DISPATCH`, `EXTRACT` — and must hold position to transfer. **Mid-game research** unlocks moving + one direction of handoff while retaining a single port; **late-game research** can add finite parallel worker ports or separate receiving/dispatch organs at real cost. Extraction overlap is not granted automatically. Numeric handling rates, port upgrades and costs are TBD. Tests: `ORG-PORT-01`, `ORG-MODE-02`, `ORG-MODE-03`, `ORG-MIDTECH-04`, `ORG-LATETECH-05`, `ORG-ECO-06`.
 
 ### ORG transport choices / doctrines (proposed)
 
@@ -123,7 +127,7 @@ Every event should expose: owner, resource (Matter/Volatiles/Energy), source inv
 - **Economics:** total cost, tech unlock, idle carrier/workforce time, footprint and failure exposure.
 - **Resilience:** throughput and recovery time after losing one critical asset.
 
-Idealized ORG mother transport capacity C on loop of length L at travel speed v supports at most C/(L/v) carried units/s *if fully loaded and unloaded each circuit*, **additionally bounded** by the extraction rate, source-worker loading rate, destination unloading rate, and the time the mother spends inside each moving handoff window. For multiple mothers, account for spacing, blocking and workforce contention. A continuous-motion mother is not a magical unlimited-loading pipe.
+Early ORG mother throughput is bounded by cargo capacity C divided by total cycle time: flight time **plus** N_loaded × single-item handling time **plus** N_unloaded × handling time **plus** state-switch delays. Extraction and worker availability can reduce it further. Researched moving handoffs overlap some travel with a single transfer direction, but one initial port remains the cap. Late-game extra ports have finite throughput and cost; multiple mothers contend for workers. A large cargo hold alone does not deliver infinite bandwidth.
 
 MAN belt throughput is bounded by producer, slowest belt edge/junction and consumer capacities. ETH network throughput is bounded by producer, slowest relay/edge/courier service stage and consumer capacities. More transfer checkpoints alone do not create free throughput; extra handoffs can be slower than direct courier transport. Balance as a coupled system, not per-unit paper stats.
 
@@ -133,7 +137,7 @@ MAN belt throughput is bounded by producer, slowest belt edge/junction and consu
 
 - Time to first unit, delivered units/min and time to 1,000.
 - Setup cost, upgrade cost, infrastructure footprint, opportunity cost and resource payback time.
-- ORG: mother occupancy %, carried inventory at destruction, time in legal rolling handoff zones, worker rendezvous misses, loop utilization.
+- ORG: mother occupancy %, active-port utilization, one-item transfer completion rate, worker queue length, receive/dispatch dwell time, mode conflicts, researched in-motion transfer windows, carried cargo at destruction, loop throughput.
 - MAN: belt utilization %, splitter backpressure, buffer occupancy, broken links, bypass capacity and time to repair.
 - ETH: pylon queue length, courier load factor, link throughput, isolated inventories, hop delay and alternate path availability.
 - Shared: idle time, damaged/stolen/dropped cargo, economic output during raids, reroute/recovery time and resulting match dynamics.
