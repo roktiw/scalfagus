@@ -1,12 +1,14 @@
 schema_version: 1
 project: scalfagus
-version: 0.4
+version: 0.5
 status: owner_approved_concept_with_proposed_deterministic_protocol_and_tbd_balance
 decision: DEC-018
 contract: design/three-network-channels-and-destruction-2026-10-11.md
 additional_owner_decision: DEC-035
 unit_relay_specification: design/three-faction-logistics-and-eth-unit-relay.yaml
 storage_pressure_decision: DEC-036
+storage_homogeneity_and_bidirectional_decision: DEC-038
+storage_homogeneity_and_bidirectional_spec: design/faction-bidirectional-logistics-and-homogeneous-storage.yaml
 recovery_decision: DEC-037
 recovery_contract: design/faction-damage-recovery-shields-and-repair.yaml
 ETH_shields_naturally_recharge_without_network: true
@@ -57,6 +59,10 @@ pylon_obelisk:
   legacy_word_pylon_only_in_internal_aliases_and_old_files: true
   inventory_visual: mixed_Ether_orbs_levitating_around_Obelisk
   storage_pressure_decreases_node_traffic_throughput: true
+  mixed_levitating_resource_kinds_allowed: true
+  homogeneous_levitating_load_has_lower_energy_upkeep_than_equal_size_mix: true
+  levitation_energy_upkeep_remains_positive: true
+  homogeneity_discount_does_not_undo_storage_pressure: true
   dedicated_storage_sidings_versus_clear_backbone_relay: player_topology_choice
   fill_to_transit_rate_curve: TBD
   nonzero_transit_minimum_in_storage_relay_mode: proposed
@@ -142,6 +148,9 @@ unit_relay:
   on_pylon_or_link_break: deterministic_last_safe_node_or_repath_candidate_not_yet_approved
   exact_energy_cost_and_mode_restrictions: TBD
 network:
+  Obelisk_edge_directions: bidirectional
+  both_directions_share_finite_link_capacity: proposed
+  raw_resource_conversion_from_non_Nexus: unresolved_not_implicitly_enabled
   topology: one_unified_connected_relay_graph
   services_on_same_edges: [typed_resource, energy, knowledge_information, resonance_support]
   finite_aggregate_link_capacity: true
