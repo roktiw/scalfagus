@@ -1,6 +1,10 @@
 schema_version: 1
 project: scalfagus
-version: 0.4
+latest_owner_network_contract: design/three-network-channels-and-destruction-2026-10-11.md
+latest_owner_network_data: design/three-network-channels-and-destruction.yaml
+world_loot_and_recycling: design/world-loot-and-recycling.yaml
+victory_classification: design/victory-defeat-building-classification-2026-10-11.md
+version: 0.5
 status: owner_approved_direction_proposed_numbers
 specification: design/base-ecologies-and-expansion-2026-10-11.md
 construction_stage_proposal: design/construction-phases.yaml
@@ -13,7 +17,7 @@ physical_source_forms_are_not_resource_id_replacements: true
 network_infrastructure_contract: design/three-faction-network-and-infrastructure-contract-2026-10-11.md
 man_power_and_org_vessels: design/man-power-dock-and-org-vessel-mechanics.yaml
 eth_typed_ether_network: design/eth-ether-network-mechanics.yaml
-latest_network_decisions: [DEC-018, DEC-019, DEC-020]
+latest_network_decisions: [DEC-018, DEC-019, DEC-020, DEC-021, DEC-022, DEC-023, DEC-024]
 invariants:
   min_independently_extracts_and_carries: true
   worker_and_building_inventory_finite: true
@@ -81,9 +85,18 @@ factions:
         passengers_and_combat: specialized_tradeoff_proposed
     vessel_resource_behavior:
       growth_and_actual_home_origin_nutrition: true
+      finite_real_resource_energy_and_information_packets_flow_in_vessels: true
+      severed_vessels_can_spill_real_tetrahedral_cargo: true
+      disconnected_and_dying_buildings_emit_some_material_over_time: true
       unrestricted_shared_wallet_for_all_currencies: false
-      construction_materials_use_real_workers_and_mother_delivery: true
+      workers_and_mothers_physically_import_resources_into_veins_and_organ_inventory: true
       disconnected_branch_wither_after_finite_local_reserves: true
+    mitochondria:
+      owner_required_number_for_energy: 2
+      exact_scope_per_network_or_colony: TBD
+      startup_reserves_fund_initial_pair: true
+      real_energy_output_transits_live_vessels: true
+      periodic_home_nourishment_remains_required: true
     supply_provider: each_completed_viable_connected_living_building
     signature_vulnerabilities: [vessel_cut, colony_starvation, mother_interception]
   man:
@@ -108,8 +121,12 @@ factions:
       hidden_until_scouted_under_normal_fog: true
       mandatory_exposed_link_to_home: false
       requires_local_equipment_and_resources: true
-    power_dock:
-      status: owner_supported_multi_function_concept_template_and_numbers_open
+    umu:
+      full_name: Universal Man Unit
+      status: owner_named_ground_mobile_generator_warehouse_or_bunker
+      reuse_existing_max_depot_with_generator_option: proposed
+      counts_as_building_even_when_packed_traveling: true
+      avoid_independent_fourth_large_power_dock_asset: true
       modes: [deployed_power_warehouse, deployed_fortified_bunker, packed_ground_travel]
       packed_mobility_domains: [land]
       deployed_generates_real_finite_energy_and_local_power_budget: true
@@ -120,8 +137,11 @@ factions:
       may_be_a_kit_on_existing_chassis_instead_of_new_building: TBD
       not_a_replacement_for_mid_high_throughput_belts_or_max_large_depot: true
     electric_connections:
+      single_hybrid_cable_carries_data_on_fiber_and_power_on_conductors: true
+      power_and_information_separate_service_quotas: true
+      long_range_single_worker_laid_cable_order: proposed
       short_range_auto_ports_with_visible_cable_edges: proposed
-      only_electricity_crosses_power_links: true
+      electricity_and_information_cross_hybrid_cables_material_cargo_does_not: true
       construction_materials_must_be_locally_carried: true
       independent_outposts_with_own_generator_and_battery: true
     economic_units:
@@ -138,6 +158,8 @@ factions:
         conveyor_disabled_when_defending: true
       max:
         role: very_slow_ground_only_modular_warehouse
+        umu_generator_equipment_if_enabled: proposed
+        victory_building_when_template_tagged_even_if_traveling: true
         movement_domains: [land]
         exclusive_modes: [travel, warehouse, multi_soldier_bunker]
         multi_soldier_bunker_capacity: TBD
@@ -151,6 +173,9 @@ factions:
     base_mobility: selective_meditation_levitation
     visual_timelapse: resonant_nodes_visible_blue_construction_beams_occasional_levitation
     ether_network:
+      one_connected_network_for_typed_resources_energy_and_information: true
+      beam_abort_spits_all_site_committed_inputs_as_real_orbs: true
+      ether_escrow_on_severed_edge_can_drop_orbs: true
       pylon_and_obelisk_are_one_mid_template: true
       pylon_initially_stationary: true
       pylon_counts_for_resonance_support_and_information_routing: true
@@ -161,7 +186,7 @@ factions:
       partition_preserves_exact_inventory_on_each_connected_subgraph: true
       cut_does_not_duplicate_or_rebalance_resources_instantly: true
       initial_pylon_mobility_upgrade: not_in_mvp
-      turret_preserves_control_links_but_freight_ports_close: proposed
+      turret_still_relays_one_network_with_reduced_bandwidth: proposed
     economic_units:
       min:
         role: independent_miner_courier_and_network_mode_builder
@@ -186,7 +211,7 @@ factions:
         modes: [storage_relay, meditating_to_turret, turret, meditating_to_storage]
         storage_cargo_remains_inside_during_mode_transition: true
         cargo_gates_closed_during_meditation: true
-        cargo_gates_closed_while_turret_active: true
+        local_courier_pickup_closed_while_turret_active: proposed
         duration_and_cost: TBD
         relocation_only_if_eligible_after_meditation: proposed
       max:
@@ -198,6 +223,7 @@ factions:
     construction:
       nearest_large_valid_node_required_for_beam: true
       no_unbounded_instant_remote_material_teleport: true
+      no_remote_refund_for_site_dropped_committed_material: true
       valid_typed_ether_stock_may_be_network_transferred_and_consumed_after_nexus_conversion: true
       moving_supported_structures_requires_meditation_first: true
       energy_and_time_cost_nonzero: true
