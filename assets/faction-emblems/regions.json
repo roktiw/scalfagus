@@ -1,0 +1,322 @@
+{
+  "schema_version": 1,
+  "version": "0.1",
+  "status": "candidate emblems; ORG symbol unapproved",
+  "variants": [
+    {
+      "size": 16,
+      "file": "faction-emblems-16.png",
+      "regions": [
+        {
+          "id": "man.01",
+          "name": "man_01_16.png",
+          "region": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "nontransparent_pixels": 196
+        },
+        {
+          "id": "man.02",
+          "name": "man_02_16.png",
+          "region": [
+            16,
+            0,
+            16,
+            16
+          ],
+          "nontransparent_pixels": 196
+        },
+        {
+          "id": "man.03",
+          "name": "man_03_16.png",
+          "region": [
+            32,
+            0,
+            16,
+            16
+          ],
+          "nontransparent_pixels": 196
+        },
+        {
+          "id": "eth.01",
+          "name": "eth_01_16.png",
+          "region": [
+            0,
+            16,
+            16,
+            16
+          ],
+          "nontransparent_pixels": 156
+        },
+        {
+          "id": "eth.02",
+          "name": "eth_02_16.png",
+          "region": [
+            16,
+            16,
+            16,
+            16
+          ],
+          "nontransparent_pixels": 156
+        },
+        {
+          "id": "eth.03",
+          "name": "eth_03_16.png",
+          "region": [
+            32,
+            16,
+            16,
+            16
+          ],
+          "nontransparent_pixels": 156
+        },
+        {
+          "id": "org.01",
+          "name": "org_01_16.png",
+          "region": [
+            0,
+            32,
+            16,
+            16
+          ],
+          "nontransparent_pixels": 113
+        },
+        {
+          "id": "org.02",
+          "name": "org_02_16.png",
+          "region": [
+            16,
+            32,
+            16,
+            16
+          ],
+          "nontransparent_pixels": 112
+        },
+        {
+          "id": "org.03",
+          "name": "org_03_16.png",
+          "region": [
+            32,
+            32,
+            16,
+            16
+          ],
+          "nontransparent_pixels": 117
+        }
+      ]
+    },
+    {
+      "size": 32,
+      "file": "faction-emblems-32.png",
+      "regions": [
+        {
+          "id": "man.01",
+          "name": "man_01_32.png",
+          "region": [
+            0,
+            0,
+            32,
+            32
+          ],
+          "nontransparent_pixels": 784
+        },
+        {
+          "id": "man.02",
+          "name": "man_02_32.png",
+          "region": [
+            32,
+            0,
+            32,
+            32
+          ],
+          "nontransparent_pixels": 784
+        },
+        {
+          "id": "man.03",
+          "name": "man_03_32.png",
+          "region": [
+            64,
+            0,
+            32,
+            32
+          ],
+          "nontransparent_pixels": 784
+        },
+        {
+          "id": "eth.01",
+          "name": "eth_01_32.png",
+          "region": [
+            0,
+            32,
+            32,
+            32
+          ],
+          "nontransparent_pixels": 616
+        },
+        {
+          "id": "eth.02",
+          "name": "eth_02_32.png",
+          "region": [
+            32,
+            32,
+            32,
+            32
+          ],
+          "nontransparent_pixels": 616
+        },
+        {
+          "id": "eth.03",
+          "name": "eth_03_32.png",
+          "region": [
+            64,
+            32,
+            32,
+            32
+          ],
+          "nontransparent_pixels": 616
+        },
+        {
+          "id": "org.01",
+          "name": "org_01_32.png",
+          "region": [
+            0,
+            64,
+            32,
+            32
+          ],
+          "nontransparent_pixels": 521
+        },
+        {
+          "id": "org.02",
+          "name": "org_02_32.png",
+          "region": [
+            32,
+            64,
+            32,
+            32
+          ],
+          "nontransparent_pixels": 521
+        },
+        {
+          "id": "org.03",
+          "name": "org_03_32.png",
+          "region": [
+            64,
+            64,
+            32,
+            32
+          ],
+          "nontransparent_pixels": 561
+        }
+      ]
+    },
+    {
+      "size": 64,
+      "file": "faction-emblems-64.png",
+      "regions": [
+        {
+          "id": "man.01",
+          "name": "man_01_64.png",
+          "region": [
+            0,
+            0,
+            64,
+            64
+          ],
+          "nontransparent_pixels": 3136
+        },
+        {
+          "id": "man.02",
+          "name": "man_02_64.png",
+          "region": [
+            64,
+            0,
+            64,
+            64
+          ],
+          "nontransparent_pixels": 3136
+        },
+        {
+          "id": "man.03",
+          "name": "man_03_64.png",
+          "region": [
+            128,
+            0,
+            64,
+            64
+          ],
+          "nontransparent_pixels": 3136
+        },
+        {
+          "id": "eth.01",
+          "name": "eth_01_64.png",
+          "region": [
+            0,
+            64,
+            64,
+            64
+          ],
+          "nontransparent_pixels": 2472
+        },
+        {
+          "id": "eth.02",
+          "name": "eth_02_64.png",
+          "region": [
+            64,
+            64,
+            64,
+            64
+          ],
+          "nontransparent_pixels": 2472
+        },
+        {
+          "id": "eth.03",
+          "name": "eth_03_64.png",
+          "region": [
+            128,
+            64,
+            64,
+            64
+          ],
+          "nontransparent_pixels": 2472
+        },
+        {
+          "id": "org.01",
+          "name": "org_01_64.png",
+          "region": [
+            0,
+            128,
+            64,
+            64
+          ],
+          "nontransparent_pixels": 2233
+        },
+        {
+          "id": "org.02",
+          "name": "org_02_64.png",
+          "region": [
+            64,
+            128,
+            64,
+            64
+          ],
+          "nontransparent_pixels": 2233
+        },
+        {
+          "id": "org.03",
+          "name": "org_03_64.png",
+          "region": [
+            128,
+            128,
+            64,
+            64
+          ],
+          "nontransparent_pixels": 2417
+        }
+      ]
+    }
+  ]
+}
