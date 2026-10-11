@@ -1,12 +1,12 @@
 schema_version: 1
 project: scalfagus
-version: 0.5
+version: 0.6
 status: approved_core_rules_with_proposed_details
 automation: medium
 faction_mechanisms:
   specification: design/faction-logistics-2026-10-11.md
   config: design/faction-logistics.yaml
-  org: rolling_load_unload_mother_transporter_loops
+  org: exclusive_initial_mother_modes_with_tech_gated_rolling_handoffs
   man: destructible_throughput_limited_conveyor_network
   eth: mobile_couriers_to_stationary_pylon_hubs
   note: Preserve common finite inventories, geometry, capacity and manual-order authority.
@@ -36,7 +36,15 @@ transfer:
   needs_transfer_range_and_compatibility: true
   energy_as_cargo: true
   rates_and_docking_delays: refer_to_economy_pending_migration
-  simultaneous_loaders: TBD
+  simultaneous_loaders:
+    org_min_worker_per_operation: 1
+    org_mid_max_initial_concurrent_handoffs: 1
+    org_mid_max_initial_items_per_handoff: 1
+    org_extra_ports: technology_gated_TBD
+    note: Single cargo item means a transfer portion, not an entire slot or cargo hold.
+  org_mother_initial_modes: [move, receive, dispatch, extract]
+  org_mother_initial_modes_mutually_exclusive: true
+  org_mother_moving_handoffs: unlocked_via_upgrades_not_baseline
   queue_priority: TBD
   fallback_if_receiver_destroyed: TBD
 asteroids:
