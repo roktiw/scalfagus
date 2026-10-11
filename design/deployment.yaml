@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 0.7
+version: 0.8
 status: approved_core_rules_with_proposed_details
 rule:
   all_units_deploy_into_buildings: false
@@ -46,10 +46,12 @@ factions:
       local_independent_outposts: true
       repair_units_and_buildings_with_supplies: true
       proposed_staged_assembly:
-        workers_by_third: [2, 1, 3]
+        workers_by_third: [1, 2, 2]
+        previous_profile: [2, 1, 3]
         man_alternate_worker_profile: [2, 3, 1]
-        previous_proposal: [1, 2, 3]
-        three_stages_explanation: [two_worker_frame, single_worker_core, three_worker_final_integration]
+        historical_first_profile: [1, 2, 3]
+        intended_tradeoff: fewer_parallel_builders_because_of_mobile_modular_independent_expansions
+        three_stages_explanation: [single_worker_foundation, two_worker_core_and_frame, two_worker_final_commissioning]
         worksite_progress_persists_when_unattended: true
         materials_at_site_persist_if_not_destroyed: true
         unfinished_or_destroyed_worksite_can_be_salvaged_by_other_factions: true
