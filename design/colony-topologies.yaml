@@ -1,6 +1,10 @@
 schema_version: 1
 project: scalfagus
-version: 0.2
+latest_owner_network_contract: design/three-network-channels-and-destruction-2026-10-11.md
+latest_owner_network_data: design/three-network-channels-and-destruction.yaml
+world_loot_and_recycling: design/world-loot-and-recycling.yaml
+victory_classification: design/victory-defeat-building-classification-2026-10-11.md
+version: 0.3
 status: approved_owner_direction_with_proposed_state_machine_details
 specification: design/colony-topologies-vascular-modular-resonant-2026-10-11.md
 authoritative_base_ecologies_specification: design/base-ecologies-and-expansion-2026-10-11.md
@@ -45,6 +49,10 @@ factions:
       edges_targetable: true
       edges_can_be_damaged_repaired_and_regrown: true
       connection_transports_structural_nourishment: true
+      real_finite_packets_of_resources_energy_and_information_flow_through_veins: true
+      paired_mitochondria_required_for_actual_energy: true
+      pair_requirement_scope_per_colony_or_root_network: TBD
+      dying_organic_buildings_emit_partial_tetrahedral_salvage: true
       instant_shared_global_inventory: false
       throughput: finite_TBD
       branch_states: [growing, connected, isolated_buffered, starving, dormant, withered]
@@ -97,14 +105,19 @@ factions:
       not_every_generic_unit_may_deploy_into_a_building: true
       upward_and_radial_growth_visualized: true
       structures_can_split_and_reassemble: true
-    power_dock_and_grid:
-      ground_mobile_basic_generator_warehouse_or_bunker: true
+    umu_and_three_man_systems:
+      full_name: Universal Man Unit
+      basic_ground_mobile_generator_warehouse_or_bunker: true
+      generator_module_on_existing_max_warehouse_bunker: proposed
+      separate_real_material_packets_scaffolds_and_salvage: true
+      one_hybrid_data_fiber_and_electric_conductor_cable: proposed
+      packed_umu_stays_building_for_defeat: true
       generator_deployed_only: true
       local_auto_power_ports_and_finite_battery: proposed
-      cable_links_carry_power_not_materials: true
+      cable_links_carry_power_and_information_not_materials: true
       worker_finite_physical_material_fetch_from_source_transporter_or_depot: true
       no_mandatory_home_grid_connection: true
-      small_power_dock_does_not_replace_mid_belt_or_max_depot: true
+      umu_reuses_or_augments_max_depot_chassis_without_duplicate_large_asset: proposed
     transport:
       model: modular_physical_conveyors
       min: scv_like_worker_builder_repairer_hauler
@@ -146,6 +159,8 @@ factions:
     transport:
       model: physical_couriers_to_nexus_then_typed_ether_freight_across_pylons
       pylon_and_obelisk_one_template: true
+      unified_network_carries_typed_resource_energy_information: true
+      site_beam_break_ejects_committed_input_orbs: true
       node_balances_reconcile_deterministically_on_split: true
       even_resource_distribution_is_finite_proportional_fill: proposed
       mobile_min_couriers: true
@@ -155,7 +170,7 @@ factions:
         local_resonance_supply_cap_contributor: true
         signal_and_knowledge_relay: true
         conversion_requires_nexus_input_before_network_stock: true
-        freight_closed_in_turret_while_signal_stays_online: proposed
+        turret_relay_carries_unified_network_at_reduced_bandwidth: proposed
         modes: [storage, network_relay, meditating, turret, levitating_move]
         storage_relay_turret_capabilities: true
         moving_requires_specialized_capability: true
