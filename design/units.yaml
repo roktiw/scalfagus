@@ -1,0 +1,114 @@
+schema_version: 1
+project: scalfagus
+status: concept_with_proposed_balance_v0_2
+references:
+  factions: design/factions.yaml
+  economy: design/economy.yaml
+  resources: design/resources.yaml
+core_model:
+  formula: "unit = core + tier + modules + transformation_rules + faction_rules"
+  applies_to: [workers, military, aircraft, fleet, transport, structures]
+  tiers: [min, mid, max]
+  tier_meaning: platform_scale_not_guaranteed_combat_power
+  common_components:
+    - core
+    - tier
+    - modules
+    - mass_budget
+    - energy_budget
+    - mobility
+    - cargo
+  module_roles: [cargo, mining, weapon, armor, mobility, sensor, support]
+  faction_specific_implementations:
+    cargo: {blergians: biological_sac, manusians: container, aetherians: energy_chamber}
+    mining: {blergians: extraction_organ, manusians: drill, aetherians: resonance_extractor}
+    weapon: {blergians: combat_organ, manusians: turret, aetherians: energy_projector}
+    armor: {blergians: chitin, manusians: armor_plates, aetherians: barrier}
+    mobility: {blergians: wings_or_limbs, manusians: engines_or_chassis, aetherians: levitation}
+    sensor: {blergians: sensory_organ, manusians: radar, aetherians: psionic_perception}
+    support: {blergians: regeneration, manusians: repair, aetherians: meditation_or_healing}
+faction_transformation:
+  - faction: blergians
+    philosophy: irreversible_evolution
+    flexibility_rank: 3
+    mechanism: biological_mutation
+    tier_upgrade: irreversible
+    tier_downgrade: forbidden
+    module_reconfiguration: irreversible_organic_specialization
+    detachable_modules: false
+    modules_can_be_left_on_map: false
+    tradeoff: permanent_commitment_for_high_specialization
+    example:
+      from: max_organic_transporter
+      to: max_flying_warship
+      effect: sacrifices_some_or_all_transport_organs_for_combat_capabilities
+      reversible: false
+    structure_conversion: permanent_rooting_into_building
+  - faction: manusians
+    philosophy: agile_modular_engineering
+    flexibility_rank: 1
+    mechanism: physical_module_attachment_and_detachment
+    tier_upgrade: reversible_platform_expansion
+    tier_downgrade: reversible_disassembly
+    module_reconfiguration: rapid
+    light_module_hot_swap_while_moving: allowed_with_constraints
+    detachable_modules: true
+    modules_can_be_left_on_map: true
+    dropped_modules_can_be_recovered: true
+    tradeoff: physical_module_inventory_transport_and_vulnerability
+    example:
+      from: max_cargo_carrier
+      to: max_mobile_artillery
+      effect: detach_cargo_modules_and_attach_weapons
+      reversible: true
+    structure_conversion: anchored_module_assembly
+  - faction: aetherians
+    philosophy: reversible_transcendence
+    flexibility_rank: 2
+    mechanism: meditation_resonance_and_energy
+    tier_upgrade: reversible_ascension
+    tier_downgrade: reversible_but_costly
+    module_reconfiguration: slow_energy_transformation
+    detachable_modules: conditional
+    modules_can_be_left_on_map: limited_energy_manifestations
+    transformation_requires: [time, energy, resources, concentration]
+    tradeoff: no_physical_module_supply_chain_but_high_time_and_energy_cost
+    example:
+      from: max_energy_transporter
+      to: max_seraph_combat_form
+      effect: transforms_function_through_resonance
+      reversible: true
+    structure_conversion: manifested_energy_structure
+proposed_transform_times_seconds:
+  blergians:
+    role_change_same_tier: [21, 55]
+    min_to_mid: 34
+    mid_to_max: 89
+    downgrade: null
+  manusians:
+    role_change_same_tier: [1, 5]
+    min_to_mid: 8
+    mid_to_max: 13
+    downgrade: [5, 13]
+  aetherians:
+    role_change_same_tier: [13, 34]
+    min_to_mid: 21
+    mid_to_max: 55
+    downgrade: [34, 89]
+transformation_costs:
+  base_core_costs_crystals: {min: 34, mid: 89, max: 233}
+  note: Refer to economy.yaml; module and transformation costs are additional
+  blergians: high_one_time_mutation_cost_no_refund
+  manusians: low_reconfiguration_cost_reusable_physical_modules
+  aetherians: recurring_resource_energy_and_time_cost
+  exact_resource_costs: TBD
+balance_rules:
+  - Larger tier does not guarantee victory against smaller armed units.
+  - Manusian flexibility requires available physical modules and logistics.
+  - Blergian permanent specialization must provide meaningful efficiency advantages.
+  - Aetherian reversibility must have significant time and energy costs.
+  - No instantaneous cost-free cargo_to_combat_conversion during combat.
+  - Unit_and_structure boundaries may be bridged by faction_specific_conversion.
+notes:
+  - Illustrative transformation timings require playtesting.
+  - Worker cargo and mining statistics remain defined in economy.yaml.
