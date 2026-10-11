@@ -1,0 +1,63 @@
+schema_version: 1
+policy: DEC-034_reuse_first
+date: 2026-10-11
+installation_type: pinned_git_submodules_then_local_vendor_copies
+installer: scripts/install-godot-addons.sh
+command: bash scripts/install-godot-addons.sh --install
+runtime_auto_download: false
+editor_plugins_enabled_when_installed:
+  - res://addons/keychain/plugin.cfg
+  - res://addons/godot_state_charts/plugin.cfg
+  - res://addons/gut/plugin.cfg
+packages:
+  - name: RTS Framework
+    upstream: https://github.com/rluders/rts-framework
+    license: MIT
+    source: apps/game/addons/rts_framework
+    vendored: true
+    editor_plugin_enabled: false
+    runtime_integration: reference_only_upstream_WIP
+    note: Do_not_replace_authoritative_GameState
+  - name: Keychain
+    upstream: https://github.com/Orama-Interactive/Keychain
+    license: MIT
+    source: apps/game/addons/keychain
+    vendored: true
+    editor_plugin_enabled: true
+    runtime_integration: input_remapping_not_yet_wired
+  - name: Godot State Charts
+    upstream: https://github.com/derkork/godot-statecharts
+    source_submodule: third_party/godot-statecharts
+    installed_source: apps/game/addons/godot_state_charts
+    pinned_commit: 76d226a3efac66a72aea825382b320c94808f409
+    version: v0.22.5
+    license: MIT
+    editor_plugin_enabled_after_setup: true
+    status: pinned_source_installer_added_requires_local_setup
+    gameplay_integration: candidate_for_future_unit_behavior_not_game_authority
+  - name: GUT
+    upstream: https://github.com/bitwes/Gut
+    source_submodule: third_party/gut
+    installed_source: apps/game/addons/gut
+    pinned_commit: aeb5d4f3f7f0a6c9b5e178876d6c99b791fda605
+    upstream_branch: godot_4_7
+    version: "9.7.1"
+    license: MIT
+    editor_plugin_enabled_after_setup: true
+    status: pinned_source_installer_added_requires_local_setup
+    integration: developer_tests_only_not_exported_gameplay
+  - name: LimboAI
+    upstream: https://github.com/limbonaut/limboai
+    version_evaluated: v1.8.1
+    license: MIT
+    status: intentionally_not_installed
+    reason: >-
+      Optional native GDExtension with larger per-platform binaries and
+      redundant FSM capabilities; not needed for MVP0 bot. Web build
+      validation required before possible future adoption.
+verification:
+  source_pins_and_paths: verified_from_upstream
+  local_godot_4_7_2_import: not_run
+  engine_plugin_activation: not_run
+  mac_windows_linux_web: not_run
+  mit_obligations: retain_upstream_copyright_and_license_notices

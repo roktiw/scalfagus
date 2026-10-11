@@ -8,3 +8,7 @@ build/
 apps/desktop/
 *.log
 logs/gha-local-*/linux-replay/godot.zip
+
+# Deterministic local copies from pinned Git submodules.
+/apps/game/addons/godot_state_charts/
+/apps/game/addons/gut/
