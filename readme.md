@@ -20,6 +20,23 @@ Do not reinvent Godot A*, raycasting, UI, keybinds, physics, generic FSMs or net
 
 **Game/runtime: Godot 4.7.2 Standard with typed GDScript, one native window.** Tauri, Rust, Vite, WebView and a separate launcher are no longer part of the product. Godot owns menu, HUD, cameras, 3D terrain, actor simulation and platform exports. JavaScript/Node is *optional offline tooling* for pixel sprite atlas validation; it is not a game runtime requirement.
 
+## Current code increment — local MAN mirror prototype (2026-10-11)
+
+A **new experimental RTS path** now exists alongside the preserved original camera/hero spike:
+- Menu **PLAY MAN vs BOT** loads `apps/game/scenes/mirror_match.tscn`. Select one MAN unit by left-click; right-click a tile to move, a yellow SOLID source to gather, or a visible enemy as a Rifleman to attack. Select a Worker, press **B** and click a valid tile to build Barracks after saving 100 Matter; select HQ and press **W** to train a Worker; select Barracks and press **R** to train a Rifleman. **WASD** pans the RTS camera; **Esc** returns to the menu.
+- Menu **WATCH BOT vs BOT** runs the same simulation with two scripted bots. **P** pauses; **+/-** changes local spectator playback speed (not Godot editor speed).
+- Headless runner (no rendering, no LLM on each tick):
+
+```sh
+godot --headless --path apps/game --editor --import --quit
+godot --headless --path apps/game --script res://tests/mirror_smoke.gd
+godot --headless --path apps/game --script res://tests/mirror_batch.gd -- --matches 10 --seed 42 --output user://mirror-results.jsonl
+```
+
+**Unverified implementation:** files are committed, but these NEW tests have not yet been executed successfully in a Godot runtime by this change. Both existing GitHub Actions Godot workflows currently report failure **before runner allocation** (`runner_id=0`, zero steps); this is not evidence of a GDScript pass or failure. A developer should run `bash scripts/check.sh` locally and inspect any script errors. Baseline graphics/3-camera prototype remains available through **LEGACY CAMERA SPIKE**.
+
+**Not implemented yet:** real LAN/loopback H-H two-client multiplayer, box selection, full fog-of-war shroud, art polish, full MAN logistics/UMU/Energy, playable ETH, FPP possession. The new RTS view is a **blockout** and these mechanics are working-code candidates pending actual executable verification, not certified release features.
+
 ## Install & run — macOS (Apple Silicon and Intel)
 
 Install Apple Command Line Tools first (`xcode-select --install`). Then:
