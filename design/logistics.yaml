@@ -1,6 +1,10 @@
 schema_version: 1
 project: scalfagus
-version: 0.9
+latest_owner_network_contract: design/three-network-channels-and-destruction-2026-10-11.md
+latest_owner_network_data: design/three-network-channels-and-destruction.yaml
+world_loot_and_recycling: design/world-loot-and-recycling.yaml
+victory_classification: design/victory-defeat-building-classification-2026-10-11.md
+version: 1.0
 status: approved_core_rules_with_proposed_details
 automation: medium
 faction_mechanisms:
@@ -12,9 +16,9 @@ faction_mechanisms:
   base_ecology: design/base-ecologies.yaml
   economic_chassis: design/logistics-unit-scales.yaml
   physical_resource_forms: design/physical-resource-forms.yaml
-  org: exclusive_initial_mother_modes_with_tech_gated_rolling_handoffs
-  man: physical_material_conveyors_plus_local_auto_electric_power_links_and_power_dock
-  eth: physical_courier_to_max_nexus_conversion_then_finite_typed_ether_freight_across_mid_pylon_obelisk_graph
+  org: finite_live_vessel_material_energy_information_transfer_plus_mitochondria_and_mother_loops
+  man: umu_ground_mobile_generator_warehouse_or_bunker_plus_real_material_haul_and_hybrid_cable
+  eth: unified_ether_network_freight_energy_information_after_nexus_input_conversion
   note: Preserve common finite inventories, geometry, capacity and manual-order authority.
 player_controls:
   - select_deposit_and_assign_workers
@@ -59,15 +63,20 @@ transfer:
   ethos:
     valid_nexus_conversion_required_before_ether_transfer: true
     ether_payload_preserves_underlying_resource_type: true
-    freight_components_keep_own_actual_balances_on_split: true
+    single_network_components_keep_own_actual_balances_on_split: true
+    broken_ether_edge_packet_escrow_can_emerge_as_world_orb: true
+    last_blue_beam_loss_drops_all_committed_inputs_at_site: true
     equalization_is_capacity_weighted_and_bandwidth_limited: proposed
     no_unlimited_global_teleport_wallet: true
   manus:
-    physical_material_transport_not_electric_cable_material_transfer: true
+    physical_material_transport_not_hybrid_data_power_cable_material_transfer: true
+    umu_reuses_existing_mobile_warehouse_bunker_chassis_as_candidate: true
     builder_can_fetch_from_eligible_local_source_transporter_depot_or_nexus: true
     auto_connected_power_ports_carry_finite_power: proposed
   organs:
-    vessels_carry_physical_nutrition_not_globally_shared_building_materials: true
+    living_vessels_carry_finite_actual_resource_packets_nutrition_energy_and_information: true
+    pair_of_mitochondria_generate_actual_energy_scope_TBD: true
+    dying_organ_buildings_spit_recoverable_partial_materials: true
   rates_and_docking_delays: refer_to_economy_pending_migration
   simultaneous_loaders:
     org_min_worker_per_operation: 1
