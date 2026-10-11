@@ -2,7 +2,7 @@ schema_version: 1
 project: scalfagus
 reviewed_on: 2026-10-11
 owner_decision: DEC-034
-status: reviewed_candidates_not_vendored_or_engine_tested
+status: reviewed_candidates_some_vendored_not_engine_verified
 engine: Godot_4_7_2_Standard
 runtime_targets: [macos, windows, linux, web]
 policy:
@@ -27,11 +27,11 @@ providers:
     latest_repository_source_context: Godot_4_6_1_updated_2026_02_20
     purpose: player_remappable_input_actions_profiles_groups_and_conflict_checks
     port: InputBindingPort
-    status: candidate_evaluate_for_options_menu
+    status: vendored_pending_runtime_wiring
     first_release_required: false
     web_compatibility: unverified
     godot_4_7_2_compatibility: unverified
-    installed_in_project: false
+    installed_in_project: true
     risk: input_plugin_registers_autoload_and_editor_plugin;_audit_action_groups_and_conflicts
     fallback: Godot_InputMap_plus_ConfigFile
     test: remap_WASD_QE_and_selection_switch_profiles_and_restart_without_action_conflicts
@@ -104,9 +104,9 @@ providers:
     upstream_state: explicitly_WIP_not_intended_for_production
     purpose: reference_design_for_selection_and_commands
     port: SelectionPort_and_CommandGateway_design_inspiration_only
-    status: reference_only_do_not_vendor_full_framework
+    status: vendored_reference_only_pending_component_validation
     first_release_required: false
-    installed_in_project: false
+    installed_in_project: true
     godot_4_7_2_compatibility: unverified
     web_compatibility: unverified
     risk: replacing_authoritative_GameState_or_core_unit_model_would_break_match_scope
