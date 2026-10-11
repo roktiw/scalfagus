@@ -153,6 +153,49 @@ func _verify() -> void:
         _fail("Costs broke custody conservation")
         return
 
+    # One hit every 20 authoritative ticks: exactly 1.0 seconds.
+    var combat = MATCH.new()
+    combat.setup(34, ["human", "human"])
+    var rifle_id: int = combat._spawn("rifleman", 0, Vector2i(12, 33))
+    var victim_id: int = combat.units_for(1, "worker")[0]
+    combat.entities[victim_id]["pos"] = Vector2i(13, 33)
+    if not combat.issue_command(0, "attack", rifle_id, victim_id):
+        _fail("Visible adjacent target could not be attacked")
+        return
+    combat.advance()
+    if int(combat.entities[victim_id]["hp"]) != 42:
+        _fail("First Rifleman shot was not eight damage")
+        return
+    for i in range(TIMING.RIFLEMAN_ATTACK_COOLDOWN_TICKS - 1):
+        combat.advance()
+    if int(combat.entities[victim_id]["hp"]) != 42:
+        _fail("Rifleman fired again before 20 ticks elapsed")
+        return
+    combat.advance()
+    if int(combat.entities[victim_id]["hp"]) != 34:
+        _fail("Rifleman did not fire at the 20-tick cooldown")
+        return
+
+    # Visual game and accelerated headless state use the SAME tick duration.
+    var packed: PackedScene = load("res://scenes/mirror_match.tscn")
+    if packed == null:
+        _fail("The visual scene is unavailable")
+        return
+    var view := packed.instantiate()
+    root.add_child(view)
+    await process_frame
+    view.set("speed", 0)
+    view.set("time_accumulator", 0.0)
+    var view_sim = view.get("sim")
+    var previous_tick: int = view_sim.tick
+    view.set("speed", 1)
+    view.call("_process", TIMING.TICK_SECONDS)
+    view.set("speed", 0)
+    if view_sim.tick != previous_tick + 1:
+        _fail("GUI did not advance exactly one fixed tick in 0.05 seconds")
+        return
+    view.queue_free()
+
     var cap = MATCH.new()
     cap.setup(44, ["human", "human"])
     cap.tick = MATCH.MAX_TICKS - 1
