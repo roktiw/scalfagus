@@ -9,14 +9,14 @@ The main [discussion consolidation](faction-economy-and-construction-conversatio
 
 ## 0. Latest proposal — revise stage crew counts
 
-**Latest working candidate:** ORG **3→2→1** (unchanged), MAN **2→1→3** (replaces old 1→2→3 as the preferred prototype), ETH **1→2→3** (replaces old 1→3→2). The owner was explicitly exploring whether MAN should be 2→3→1 or 2→1→3; **2→1→3 is an assistant recommendation for playtesting, not an owner-confirmed choice**. Preserve 2→3→1 as an alternative and old 1→2→3 / 1→3→2 as history. These are **upper caps**, not required simultaneous participants.
+**Latest working candidate:** ORG **3→2→1**, MAN **1→2→2**, ETH **1→2→3**. The owner suggested reducing MAN construction parallelism to compensate for its most mobile, independently expandable, repairable and reconfigurable base system. **1→2→2 is an owner-proposed balance hypothesis, not a measured balance outcome or final approval**. Historical MAN candidates: 2→1→3 (previous preferred), 2→3→1 (alternative), 1→2→3 (original). ETH historical candidate: 1→3→2. These are **upper caps**, not required simultaneous participants.
 
 Narrative roles:
 - ORG: **seed quickly → fewer nurturers → one patient final caretaker**. The unattended cocoon still decays and material is progressively embodied/consumed.
-- MAN: **two technicians lay frame/interfaces → one specialist fits the primary control core → three technicians commission independent final modules**. The interrupted worksite and installed materials persist.
+- MAN: **one engineer lays a physical foundation → two assemble frame, core and interfaces → the same maximum two commission the finished structure**. Its benefit is not construction burst speed but the ability to preserve and resume unfinished sites, salvage real materials, repair and relocate modules.
 - ETH: **one channeler establishes the unique pattern → two channelers align the link and transfer Energy → three channelers perform final coherent manifestation**. More workers can progressively join the visible network operation; fully losing the mandatory beam still resets progress, with bounded source-accounted material recovery.
 
-**Balancing observation:** Under comparable per-stage base work, MAN 2→1→3 has a pronounced vulnerable single-specialist middle phase and a potentially fast multi-worker finish, while ETH 1→2→3 ramps monotonically to a fast but high-risk late stage. The builder cap alone cannot establish faction balance; compare opportunity cost, real stage duration and interruption.
+**Balancing observation:** MAN 1→2→2 deliberately has one fewer aggregate stage-slot than ORG 3→2→1 and ETH 1→2→3 (5 versus 6), and its final stage cannot use three helpers. This limits parallel labor but does **not** establish a fixed percentage slowdown: stage workloads, worker efficiency and availability decide real completion time. MAN's unfinished structures survive interruption, while ORG buds wither and ETH incomplete manifestations lose progress on full link loss. This is a compensating asymmetry, not a proven fair nerf.
 
 ## 1. The core asymmetry
 
@@ -25,17 +25,17 @@ In addition to three extraction/transport/base paradigms, all three civilization
 | Question | ORG — living incubation | MAN — on-site physical assembly | ETH — channeled resonance |
 |---|---|---|---|
 | Construction fantasy | A **cocoon/spore** is tended by moving living organisms; the building is born | Workers assemble a **persistent physical site** | A worker maintains a visible blue beam to a network node to **manifest a structure** |
-| First 0–33% | **Up to 3** caretakers | **Up to 2** assemblers (frame and foundation) | **Up to 1** channeler (pattern initiation) |
-| Middle 33–66% | **Up to 2** caretakers | **Up to 1** core specialist | **Up to 2** channelers (energy transfer and alignment) |
-| Last 66–100% | **Up to 1** caretaker | **Up to 3** assemblers (parallel fit-out) | **Up to 3** channelers (final manifestation) |
+| First 0–33% | **Up to 3** caretakers | **Up to 1** assembler (foundation and frame start) | **Up to 1** channeler (pattern initiation) |
+| Middle 33–66% | **Up to 2** caretakers | **Up to 2** assemblers (core and framework) | **Up to 2** channelers (energy transfer and alignment) |
+| Last 66–100% | **Up to 1** caretaker | **Up to 2** assemblers (installation and commissioning) | **Up to 3** channelers (final manifestation) |
 | Active builder behavior | Wander/crawl around and over cocoon; regularly tend it | Physically work at the site, install modules, weld and fit | Remain channeling in NETWORK mode with blue beam; physically occupied, cannot haul/mine |
 | Builder leaves / is frightened / killed | **Tending stops; cocoon slowly decays** if no effective caretaker remains | Work stops; **structure keeps its as-built percent** | If the required connection fully breaks, **construction progress resets to zero** |
 | Materials after interruption | Consumed progressively as living biomass, with limited or no standard direct refund; decay consumes value | Invested materials remain installed at physical construction site | Fraction of reserved/invested materials becomes reclaimable and returns to original contributing **Nexus/expansion inventories via a valid, accounted return mechanism** |
 | Salvage | Primarily living repair/rescue before irreversible wither, not cheap scrap | **Incomplete or destroyed structures leave world salvage** other factions can actually collect | Unstable resonant pattern collapses; separate refund logistics/energy loss, not durable blueprint material on site |
 | Vulnerability | Raid/scare last tending caretaker, starve/cut organic branch, wait for decay | Deny builders and salvage wrecks; opponent can steal exposed materials | Break channel at a crucial point, cause total loss of labor time (potentially extreme) |
-| Relative fairness challenge | Front-loaded helpers, exposed single final caretaker | Middle single-specialist vulnerability and accelerating final integration; worksite persists | Solo start, accelerating final manifestation, catastrophic progress loss after last necessary beam breaks |
+| Relative fairness challenge | Front-loaded helpers, exposed single final caretaker | Most mobile/independent base but permanently lower helper ceiling; persistent worksite and repair compensate | Solo start, accelerating final manifestation, catastrophic progress loss after last necessary beam breaks |
 
-**Critical clarification:** 3/2/1, 2/1/3 and 1/2/3 are **maximum simultaneous contributing builders by phase**, **not** a demand to always maintain the maximum. One eligible builder can continue a project in any stage if the building-specific requirement permits; losing *one of multiple* builders reduces speed, not necessarily aborts the project. If a structure requires a quorum, that is a specialist rule still TBD.
+**Critical clarification:** 3/2/1, 1/2/2 and 1/2/3 are **maximum simultaneous contributing builders by phase**, **not** a demand to always maintain the maximum. One eligible builder can continue a project in any stage if the building-specific requirement permits; losing *one of multiple* builders reduces speed, not necessarily aborts the project. If a structure requires a quorum, that is a specialist rule still TBD.
 
 These workers are **independent labor actors**, not necessarily economic chassis MIN/MID/MAX. L1/L2/L3 building eligibility, construction equipment, mode and topology checks remain unchanged (ORG equipped MIN for L1, MID for L2, MAX for L3; MAN builds through permitted modular construction tools; ETH MIN channels to a large eligible node). Supporting units must have the appropriate *tending/assembly/channeling* capability; otherwise a raw cargo unit cannot contribute.
 
@@ -46,7 +46,7 @@ Three normalized stages:
 - Stage 2: progress in `[1/3, 2/3)`.
 - Stage 3: progress in `[2/3, 1]`.
 
-At the boundary recalculate eligible labor slots **deterministically**. If an ORG cocoon moves from stage 1 to stage 2 with three workers, exactly one worker is released by a stable ordering rule and may take another task; the extra worker does not create a hidden build-speed bonus. MAN moves from up to 2 workers to 1 at the middle-stage threshold, releasing the second, then opens 3 slots for commissioning. ETH opens one additional eligible channel at each boundary if a worker is available.
+At the boundary recalculate eligible labor slots **deterministically**. If an ORG cocoon moves from stage 1 to stage 2 with three workers, exactly one worker is released by a stable ordering rule and may take another task; the extra worker does not create a hidden build-speed bonus. MAN starts with one worker, opens a second legal slot at 33% and remains limited to two through completion. ETH opens one additional eligible channel at each boundary if a worker is available.
 
 ## 2. ORG — spore, cocoon, incubation and birth
 
@@ -67,9 +67,9 @@ At the boundary recalculate eligible labor slots **deterministically**. If an OR
 
 **Owner direction:** MAN workers physically construct on site. If all workers stop, the unfinished building **persists with the exact current construction percent**; it neither heals nor collapses automatically merely because builders walked away.
 
-- **Phase A, frame (2 slots):** up to two workers assemble foundation, chassis framing and external physical interfaces. A single worker can still start and proceed if equipped.
-- **Phase B, core integration (1 slot):** one specialist installs the control/drive/production core and checks core tolerances. The other worker(s) wait, get reassigned or prepare resources; this is deliberately an indivisible integration phase, not a compulsory unique worker entity.
-- **Phase C, distributed commissioning (3 slots):** up to three engineers install independent modules, connect defense/storage networks and commission in parallel.
+- **Phase A, foundation (1 slot):** one engineer surveys, anchors the worksite and begins the primary frame, paying actual setup materials/time.
+- **Phase B, engineering (2 slots):** a second eligible engineer may join to assemble the load-bearing frame and operational core in parallel.
+- **Phase C, commissioning (2 slots):** at most two engineers fit hardware modules, test connections and complete the building. MAN has no three-worker final sprint in this candidate.
 - **Repairs** are a separate eligible action for MIN engineering workers and equipped higher machines; resource cost, timing, damage state and repair path matter.
 
 **Interruption:** cancel, frighten, kill or move away all builders. Site stays at `progress = p` and can later continue from that exact `p` if structure survives; enemy damage can reduce HP/destroy the site but isn't an automatic build-progress rewind.
@@ -129,7 +129,7 @@ where `0 < alpha3 <= alpha2 < 1` and actual multipliers/caps are **TBD**. Then v
 | BUILD-03 | Last ORG caretaker flees/dies/leaves | Cocoon pauses then progressively loses build progress; returning caretaker may recover before wither completion |
 | BUILD-04 | ORG vascular connection fails while caretaker present | Structural constraint and resource upkeep handled without double-counted instant destruction |
 | BUILD-05 | ORG caretaker "fertilization" chosen | **Not enabled until separately approved** whether worker entity is permanently consumed or only animation |
-| BUILD-06 | MAN proposed 2→1→3 stages and work interruption | Percentage persists at interruption; legal workers can resume |
+| BUILD-06 | MAN proposed 1→2→2 stages and work interruption | Percentage persists at interruption; legal workers can resume |
 | BUILD-07 | MAN site destroyed and enemy gathers salvage | Real finite world salvage obtained at paid salvage/hauling time, no free bank credit |
 | BUILD-08 | ETH construction at phase 1/2/3 with 1→2→3 caps | Channeler role/time accounted; visible beam and eligible node maintained |
 | BUILD-09 | ETH loses all required links at 67% | Work progress resets to zero; bounded accounted refund candidates generated, without inventing cargo |
@@ -141,8 +141,8 @@ where `0 < alpha3 <= alpha2 < 1` and actual multipliers/caps are **TBD**. Then v
 
 ## 6. What should be canonized now?
 
-**Owner's newest design direction:** ORG cocoon incubation with wandering caretakers, worker intimidation/death as interruption, no instant initial Zerg-like builder transformation, stage labor caps 3/2/1 and progressive untended withering; MAN tangible on-site construction, immutable paused percentage, **new candidate** stage caps 2/1/3 (with 2/3/1 under comparison) and salvageable incomplete/destroyed worksites that other races can collect; ETH continuous worker NETWORK beam, **new candidate** caps 1/2/3, complete progress loss on fully broken required link and some source-accounted proportionate refund to original contributing local expansion/Nexus.
+**Owner's newest design direction:** ORG cocoon incubation with wandering caretakers, worker intimidation/death as interruption, no instant initial Zerg-like builder transformation, stage labor caps 3/2/1 and progressive untended withering; MAN tangible on-site construction, immutable paused percentage, **new candidate** stage caps 1/2/2 (historical 2/1/3, 2/3/1 and 1/2/3 kept as alternatives) and salvageable incomplete/destroyed worksites that other races can collect; ETH continuous worker NETWORK beam, **new candidate** caps 1/2/3, complete progress loss on fully broken required link and some source-accounted proportionate refund to original contributing local expansion/Nexus.
 
-**Not yet confirmed:** MAN choice between 2/1/3 and 2/3/1, final stage caps as proven balance, ORG finale worker jumps into cocoon and dies versus merely animates; exact ETH refund rate/curve, method of routing refund materials back physically, whether ETH allows a short link outage without full collapse, stage quorum, rates and balance constants. Treat these as research questions; never invent firm numbers or deploy the optional worker-sacrifice or free remote refunds as approved mechanics.
+**Not yet confirmed:** whether MAN 1/2/2 properly compensates its expansion/mobility economy rather than imposing excessive early-game setup, and final stage caps as proven balance, ORG finale worker jumps into cocoon and dies versus merely animates; exact ETH refund rate/curve, method of routing refund materials back physically, whether ETH allows a short link outage without full collapse, stage quorum, rates and balance constants. Treat these as research questions; never invent firm numbers or deploy the optional worker-sacrifice or free remote refunds as approved mechanics.
 
 *Stage counts correspond to simultaneous contributors to one building site, not three worker chassis tiers.*
