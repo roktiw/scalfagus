@@ -3,7 +3,12 @@ project: scalfagus
 version: 0.1
 status: owner_directed_structure_with_proposed_mechanics_and_balance_parameters
 specification: design/three-network-channels-and-destruction-2026-10-11.md
-latest_decisions: [DEC-021, DEC-022, DEC-023, DEC-035, DEC-036, DEC-038, DEC-039]
+latest_decisions: [DEC-021, DEC-022, DEC-023, DEC-035, DEC-036, DEC-038, DEC-039, DEC-040]
+MAN_UMU_transforming_wings_decision: DEC-040
+MAN_UMU_every_instance_has_two_transforming_belt_wings: true
+MAN_UMU_four_modes: [move_tracks, conveyor_3_or_5, bunker, sentry_wall]
+MAN_UMU_sentry_wall_uses_actual_ground_collisions: true
+
 latest_eth_three_ingress_decision: DEC-039
 ORG_universal_Plug_Hole_port_design: preferred_option_for_MIN_MID_MAX_not_final_owner_choice
 ETH_Nexus_conversion_energy_tariff: 0
