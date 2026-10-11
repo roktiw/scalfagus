@@ -13,6 +13,15 @@ vetted_github_module_registry: architecture/godot-third-party-candidates.yaml
 agent_reuse_intake: docs/AGENT-REUSE-FIRST-PLAYBOOK.md
 upstream_modules_are_preapproved_to_install: false
 canonical_scope: design/mvp0-man-mirror-rts-2026-10-11.md
+canonical_implementation_defaults: design/mvp0-agent-implementation-contract.yaml
+supplementary_analytical_balance_scenario_NOT_auto_loaded: design/mvp0-man-mirror-balance-v0.1.yaml
+exact_code_vs_design_parity_backlog: design/mvp0-runtime-parity-gaps.yaml
+code_vs_design_issues_MD: design/mvp0-runtime-parity-gaps.md
+authoritative_LAN_and_bot_protocol: design/mvp0-man-mirror-network.yaml
+human_execution_contract: design/mvp0-man-mirror-execution-contract.md
+additional_scenario_tests_not_executed: design/mvp0-man-mirror-balance-acceptance.yaml
+profile_and_gameplay_must_reconcile_before_balance_or_performance_claim: true
+
 acceptance: design/mvp0-man-mirror-acceptance.yaml
 task_lifecycle: [todo, in_progress, blocked, completed, verified]
 tasks:
@@ -27,6 +36,7 @@ tasks:
     priority: P0
     status: todo
     title: Same-race two-slot deterministic GameState and platform map
+    blocking_source_mismatches: [CODE-GAP-01, CODE-GAP-02, CODE-GAP-07, CODE-GAP-12]
     dependencies: [M0-00]
     done_when: mirrored_spawn_fixed_tick_world_bounds_commands_same_actor_state
     tests: [M0-01, M0-02, M0-08, M0-16]
@@ -34,6 +44,7 @@ tasks:
     priority: P0
     status: todo
     title: Select, order, gather and physical HQ Matter delivery
+    blocking_source_mismatches: [CODE-GAP-03, CODE-GAP-04, CODE-GAP-10, CODE-GAP-11]
     dependencies: [M0-01]
     done_when: finite_source_cargo_ledger_and_legal_commands_used_by_GUI
     tests: [M0-03, M0-04]
@@ -41,6 +52,7 @@ tasks:
     priority: P0
     status: todo
     title: Worker builds Barracks, queues Riflemen and Workers
+    blocking_source_mismatches: [CODE-GAP-05, CODE-GAP-13]
     dependencies: [M0-02]
     done_when: funded_construction_and_training_use_shared_validation
     tests: [M0-05, M0-06]
@@ -48,6 +60,7 @@ tasks:
     priority: P0
     status: todo
     title: Soldier combat, tree cover, loss and all-building victory
+    blocking_source_mismatches: [CODE-GAP-06, CODE-GAP-15]
     dependencies: [M0-03]
     done_when: local_manual_Mirror_match_can_end_winner_or_draw
     tests: [M0-07, M0-08, M0-09, M0-10]
@@ -62,6 +75,8 @@ tasks:
     priority: P0
     status: todo
     title: Headless accelerated C-C runner with seeds, JSONL, replay hash
+    must_normalize_GUI_and_headless_tick_timebase_first: true
+    blocking_source_mismatches: [CODE-GAP-14]
     dependencies: [M0-05]
     done_when: reproducible_completed_bot_match_and_batch_summary
     tests: [M0-04, M0-12, M0-16]
@@ -70,6 +85,7 @@ tasks:
     priority: P0
     status: todo
     title: Authoritative LAN or loopback H-H host and join clients
+    blocking_source_mismatches: [CODE-GAP-08, CODE-GAP-09]
     dependencies: [M0-04]
     done_when: two_separate_human_clients_finish_a_shared_RTS_match
     tests: [M0-13, M0-14, M0-15]
