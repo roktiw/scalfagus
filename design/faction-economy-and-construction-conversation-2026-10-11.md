@@ -6,6 +6,23 @@ Status: **conversation synthesis**. Owner-approved direction is marked **CANON**
 **Canonical sources:** [decisions.yaml](decisions.yaml) DEC-001–DEC-013; [base ecologies](base-ecologies-and-expansion-2026-10-11.md); [base ecology data](base-ecologies.yaml); [colony topologies](colony-topologies-vascular-modular-resonant-2026-10-11.md); [economic chassis](logistics-unit-scales.yaml); [logistics physics](faction-logistics.yaml); [deployable policy](deployment.yaml); [faction definitions](factions.yaml).
 **Newest separate open design:** [building relocation options](building-relocation-design-options-2026-10-11.md), [option data](building-relocation-options.yaml).
 
+## Addendum — physical source classification DEC-016 (2026-10-11)
+
+The owner requires three **resource deposit physical forms**:
+**solid** — lots of scattered surface resources, gathered directly from the world by
+the MIN with no extraction structure, inspired by classic Warcraft wood,
+Dune/C&C open-field harvesting and Factorio surface minerals;
+**liquid** — MIN can obtain small quantities very slowly by direct tapping,
+or the player can build efficient pumps/storage;
+**gas** — every race must first **construct a compatible capture rig at the source**
+before taking the first unit of gas. A collection rig cannot require its
+own as-yet-unavailable gas to build. Solid/liquid/gas are not automatically
+Matter/Volatiles/Energy; the last are canonical spendable resource IDs, and
+Energy is not a physical gas. Mapping is a separate open economy decision.
+The mechanics and test cases live in
+[physical resource forms and extraction](physical-resource-forms-and-extraction-2026-10-11.md)
+and [physical resource forms YAML](physical-resource-forms.yaml).
+
 ## 1. Core product intent
 
 Scalfagus is an original asymmetric RTS whose civilizations are not merely reskinned worker groups: **the same resource extraction, delivery, construction, repair, expansion and survival problems demand different thinking for each faction**.
