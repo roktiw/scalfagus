@@ -75,5 +75,20 @@ map control and player micro-management.
 ## Cuts
 No mandatory individual hunger/morale cycle; no large catalog of crafting reagents; no detailed per-unit organs or damage system; no bureaucracy/legal simulation; no required micromanagement of carriers; no FPS or LLM dependency for basic skirmish.
 
+## Construction-phases prototype priority (DEC-015)
+
+Before numerical tuning, implement three **faction-specific construction site
+state machines**, with up to **ORG 3→2→1** cocoon tenders, **MAN 1→2→3**
+physical assemblers, and **ETH 1→3→2** network channelers across 0–33%,
+33–66% and 66–100%. Test ORG interrupted incubation decay, MAN persistent
+unfinished structures and rival salvage, and ETH progress-reset with
+source-accounted non-magical refund. Stage caps are *not* mandatory worker
+quorums. Compare total time, resource opportunity cost, risk and recovery
+after interruption; no claim of achieved balance. Do not enable the
+proposed optional ORG worker-consumed finalization automatically.
+
+See [asymmetric construction specification](construction-incubation-assembly-resonance-2026-10-11.md)
+and [staged configuration](construction-phases.yaml).
+
 ## Questions needing future approval
 Winning condition and map roster for MIN; mandatory features vs custom toggles; starting income and pace; choice of engine after benchmark; MAX time controls and save policy; definitive roadmap scope and estimates.
