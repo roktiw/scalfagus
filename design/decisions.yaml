@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 3.2
+version: 3.3
 decisions:
   - id: DEC-001
     status: approved
@@ -871,6 +871,33 @@ decisions:
       features in DEC-033 first MAN mirror release.
     specification: design/man-umu-power-building-mobility-roof-modules-2026-10-12.md
     data_specification: design/man-umu-power-building-mobility-roof-modules.yaml
+
+  - id: DEC-042
+    status: owner_approved_precise_UMU_passengers_mixed_mono_slots_and_generalist_vs_specialist_doctrine
+    topic: MAN_UMU_4_soldiers_27_internal_45_mono_side_racks_and_light_specialization_balance
+    resolution: >-
+      Every UMU has exactly four real soldier travel seats OR physical
+      resource cargo occupying a 3 by 3 by 3 central hold (27 standard
+      cargo slots). Cargo and passengers in the same central cage are
+      mutually exclusive. When the whole physical cargo inventory
+      contains exactly one eligible resource type, two visible external
+      side attachments can carry 3 by 3 additional units each, nine
+      per side, giving 27 + 9 + 9 = 45 total. A mixed-resource load
+      is limited to the 27 internal slots; side racks may not carry a
+      single type while other kinds remain inside. The side attachments
+      take up real world space and must not clip the two transforming
+      belt wings, especially in BUNKER or SENTRY wall poses. UMU are
+      intended to be light, highly versatile, multifunctional and
+      tactically strong through role switching, but dedicated specialist
+      units must be substantially stronger at their chosen task.
+      Exact performance ratios, weight categories, mixed equipment
+      permissions and other specialist baselines require future
+      balance testing. This refines DEC-036 generic UMU storage
+      capacity and DEC-040/041 passenger/cargo modes without expanding
+      DEC-033 first MAN mirror release.
+    specification: design/man-umu-capacity-and-specialist-balance-2026-10-12.md
+    data_specification: design/man-umu-capacity-and-specialist-balance.yaml
+
 
 migration_required:
   - design/economy.yaml
