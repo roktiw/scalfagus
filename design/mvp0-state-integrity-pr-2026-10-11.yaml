@@ -1,0 +1,29 @@
+schema_version: 1
+project: scalfagus
+release: mvp_0_1
+change: state_integrity_and_headless_regressions
+owner_decision: DEC-033
+branch: feat/mvp0-state-integrity-ci-20261011
+status: implementation_proposed_tests_unverified
+canonical_summary: docs/MVP0-STATE-INTEGRITY-PR-2026-10-11.md
+new_test: apps/game/tests/mirror_integrity_smoke.gd
+runner: scripts/check.sh
+areas:
+  - reject_unreachable_commands_before_mutation
+  - reject_building_on_workers_and_resource_sources
+  - completed_buildings_block_intervening_line_of_sight
+  - wait_for_free_spawn_cell_without_recharging
+  - pause_building_if_occupied_before_completion
+  - destroy_stored_HQ_matter_and_preserve_conservation
+  - canonical_hash_includes_queues_orders_cooldowns_sources_and_map
+acceptance:
+  expected_marker: SCALFAGUS_MIRROR_INTEGRITY_PASS
+  headless_two_match_marker: SCALFAGUS_MIRROR_BATCH_PASS
+  existing_smoke_must_still_pass: true
+  actual_execution: pending_CI
+  no_Godot_runtime_claim: true
+deferred:
+  - ENet_two_client_Human_Human
+  - approved_20Hz_economy_balance_migration
+  - per_slot_filtered_snapshot_replication
+  - authored_verdant_divide_map_compiler

@@ -120,8 +120,23 @@ func _blocked(p: Vector2i) -> bool:
         return true
     return building_cells.has(p)
 
+func _mobile_at(p: Vector2i, except_id: int = -1) -> bool:
+    for id in sorted_ids():
+        if id == except_id:
+            continue
+        var e: Dictionary = entities[id]
+        if str(e["kind"]) in ["worker", "rifleman"] and e["pos"] == p:
+            return true
+    return false
+
+func _source_at(p: Vector2i) -> bool:
+    for sid in sources.keys():
+        if sources[sid]["pos"] == p:
+            return true
+    return false
+
 func _can_build(p: Vector2i, owner: int, ignore_builder_id: int = -1) -> bool:
-    if _blocked(p):
+    if _blocked(p) or _mobile_at(p, ignore_builder_id) or _source_at(p):
         return false
     for id in sorted_ids():
         var e: Dictionary = entities[id]
@@ -146,7 +161,11 @@ func _line_clear(from_pos: Vector2i, to_pos: Vector2i) -> bool:
         if doubled < dx:
             error += dx
             y += sy
-        if terrain.get(Vector2i(x, y), "") == "tree":
+        var ray_cell := Vector2i(x, y)
+        if terrain.get(ray_cell, "") == "tree":
+            return false
+        # The target itself can be a building; buildings between actors block LOS.
+        if ray_cell != to_pos and building_cells.has(ray_cell):
             return false
     return true
 
@@ -180,6 +199,8 @@ func issue_command(side: int, action: String, actor_id: int, arg: Variant = null
         "move":
             if kind not in ["worker", "rifleman"] or not (arg is Vector2i) or _blocked(arg):
                 return _reject()
+            if e["pos"] != arg and _find_route(e["pos"], arg, false).is_empty():
+                return _reject()
             e["order"] = "move"
             e["target_pos"] = arg
             e["target_id"] = -1
@@ -188,6 +209,8 @@ func issue_command(side: int, action: String, actor_id: int, arg: Variant = null
                 return _reject()
             if int(sources[arg]["stock"]) <= 0:
                 return _reject()
+            if _distance(e["pos"], sources[arg]["pos"]) > 1 and _find_route(e["pos"], sources[arg]["pos"], true).is_empty():
+                return _reject()
             e["order"] = "gather"
             e["source_id"] = arg
             e["work_ticks"] = 0
@@ -195,6 +218,8 @@ func issue_command(side: int, action: String, actor_id: int, arg: Variant = null
             if kind != "worker" or not (arg is Vector2i):
                 return _reject()
             if int(players[side]["matter"]) < COST_BARRACKS or not _can_build(arg, side):
+                return _reject()
+            if _distance(e["pos"], arg) > 1 and _find_route(e["pos"], arg, true).is_empty():
                 return _reject()
             players[side]["matter"] = int(players[side]["matter"]) - COST_BARRACKS
             spent_matter += COST_BARRACKS
@@ -335,10 +360,14 @@ func _worker_tick(e: Dictionary) -> void:
             if int(e["work_ticks"]) <= 0:
                 if _can_build(site, side, int(e["id"])):
                     _spawn("barracks", side, site)
+                    e["order"] = "idle"
+                elif _mobile_at(site, int(e["id"])):
+                    # Temporary actor occupancy pauses, rather than losing paid progress.
+                    e["work_ticks"] = 1
                 else:
-                    # Site became invalid; spent resources remain accounted as loss.
+                    # Permanently invalid worksite; spent resources stay debited.
                     events.append({"tick": tick, "owner": side, "action": "build_site_lost"})
-                e["order"] = "idle"
+                    e["order"] = "idle"
 
 func _rifleman_tick(e: Dictionary) -> void:
     if int(e["cooldown"]) > 0:
@@ -373,6 +402,10 @@ func _damage(entity_id: int, points: int, attacker: int) -> void:
         return
     if str(e["kind"]) == "worker":
         lost_matter += int(e["cargo"])
+    if str(e["kind"]) == "hq":
+        # The sole MVP0 treasury belongs to a physical HQ, not an immortal wallet.
+        lost_matter += int(players[int(e["owner"])]["matter"])
+        players[int(e["owner"])]["matter"] = 0
     players[attacker]["kills"] = int(players[attacker]["kills"]) + 1
     events.append({"tick": tick, "owner": attacker, "action": "kill", "victim": entity_id})
     if str(e["kind"]) in ["hq", "barracks"]:
@@ -387,7 +420,7 @@ func _train_tick(e: Dictionary) -> void:
         return
     for d in DIRECTIONS:
         var candidate: Vector2i = e["pos"] + d
-        if not _blocked(candidate):
+        if not _blocked(candidate) and not _mobile_at(candidate) and not _source_at(candidate):
             _spawn(str(e["train_kind"]), int(e["owner"]), candidate)
             e["train_kind"] = ""
             e["train_left"] = 0
@@ -484,17 +517,48 @@ func matter_is_conserved() -> bool:
     return mined_matter == carried + stored + spent_matter + lost_matter
 
 func replay_hash() -> String:
-    var material: String = "%d|%d|%d|%d|%d|" % [seed, tick, winner, mined_matter, spent_matter]
+    # Stable state hash includes orders, outstanding work, queues, and cooldowns.
+    # It is a pinned-runtime regression tool, not a cross-platform lockstep promise.
+    var material: String = "mvp0-man-mirror-v2|"
+    for field in [
+        seed, tick, winner, finished, finish_reason, next_id,
+        mined_matter, spent_matter, lost_matter, rejected_commands
+    ]:
+        material += str(field) + "|"
     for side in range(2):
-        material += "%d,%d;" % [int(players[side]["matter"]), int(players[side]["kills"])]
+        for field in [
+            side, controllers[side], bot_attack_thresholds[side],
+            players[side]["matter"], players[side]["kills"]
+        ]:
+            material += str(field) + "|"
     for id in sorted_ids():
         var e: Dictionary = entities[id]
         var p: Vector2i = e["pos"]
-        material += "%d,%s,%d,%d,%d,%d,%d,%s;" % [id, str(e["kind"]), int(e["owner"]), p.x, p.y, int(e["hp"]), int(e["cargo"]), str(e["order"])]
+        var target: Vector2i = e["target_pos"]
+        var site: Vector2i = e["build_pos"]
+        var route_target: Vector2i = e["route_target"]
+        for field in [
+            id, e["kind"], e["owner"], p.x, p.y, e["hp"], e["order"],
+            e["target_id"], target.x, target.y, e["source_id"], e["cargo"],
+            e["work_ticks"], e["cooldown"], e["train_kind"], e["train_left"],
+            site.x, site.y, route_target.x, route_target.y, e["route_adjacent"]
+        ]:
+            material += str(field) + "|"
+        for step in e["route"]:
+            material += "%d,%d|" % [step.x, step.y]
+        material += ";"
     var source_ids: Array = sources.keys()
     source_ids.sort()
     for sid in source_ids:
-        material += "%s:%d;" % [str(sid), int(sources[sid]["stock"])]
+        var source: Dictionary = sources[sid]
+        var p: Vector2i = source["pos"]
+        material += "source=%s,%d,%d,%d;" % [str(sid), p.x, p.y, int(source["stock"])]
+    # Map cells are hashed in a defined order, independent of Dictionary insertion.
+    for y in range(BOARD):
+        for x in range(BOARD):
+            var p := Vector2i(x, y)
+            if terrain.has(p):
+                material += "tile=%d,%d,%s;" % [x, y, str(terrain[p])]
     return material.sha256_text()
 
 func result() -> Dictionary:
@@ -504,6 +568,7 @@ func result() -> Dictionary:
         "finished": finished, "controllers": controllers.duplicate(),
         "bot_attack_thresholds": bot_attack_thresholds.duplicate(),
         "resources_mined": mined_matter, "resources_spent": spent_matter,
-        "lost_cargo": lost_matter, "rejected_commands": rejected_commands,
+        "lost_matter": lost_matter, "lost_cargo_legacy": lost_matter,
+        "rejected_commands": rejected_commands,
         "matter_conserved": matter_is_conserved(), "hash": replay_hash()
     }
