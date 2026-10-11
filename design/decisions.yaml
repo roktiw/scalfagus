@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 0.6
+version: 0.7
 decisions:
   - id: DEC-001
     status: approved
@@ -52,7 +52,18 @@ decisions:
     resolution: >-
       The original three playable civilizations are Organs (org), Manus (man),
       and Eters (eth). Earlier names are obsolete for runtime game data.
-    specification: design/faction-identity-rename-2026-10-11.md
+    specification: design/faction-naming-conventions-2026-10-11.md
+  - id: DEC-009
+    status: approved
+    topic: faction_three_level_backronym_naming
+    resolution: >-
+      Keep the stable faction IDs org/man/eth and short labels Organs/Manus/Eters.
+      The exact approved mid names are Organites, Manusians and Etherans.
+      The exact approved full backronyms are Organites Reproductive Generalismus,
+      Manusians Augmented Navigators and Etherans Transcendent Hypervisors.
+      They expand ORG/MAN/ETH, and spelling must be preserved verbatim.
+      Political state names, if any, remain separate from these faction names.
+    specification: design/faction-naming-conventions-2026-10-11.md
 migration_required:
   - design/economy.yaml
   - design/resources.yaml
