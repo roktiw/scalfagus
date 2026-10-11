@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 2.6
+version: 2.7
 decisions:
   - id: DEC-001
     status: approved
@@ -698,6 +698,30 @@ decisions:
       unresolved. This is post-MVP0, not part of DEC-033 first MAN mirror release.
     specification: design/three-faction-logistics-and-eth-unit-relay-2026-10-11.md
     data_specification: design/three-faction-logistics-and-eth-unit-relay.yaml
+
+  - id: DEC-036
+    status: owner_approved_core_storage_identity_with_numeric_balance_pending
+    topic: org_cyst_man_umu_specialization_and_eth_obelisk_storage_congestion
+    resolution: >-
+      ORG stores typed resources in cysts, each cyst dedicated to exactly
+      one resource kind at a time. MAN Universal Man Unit (UMU) cargo may
+      contain a mix, while explicitly specializing the same chassis for
+      just one selected resource increases its effective cargo capacity.
+      ETH mixed typed resources visibly levitate around each Obelisk and
+      every Obelisk has real finite local inventory. Increasing inventory
+      occupancy reduces that Obelisk's effective transit throughput.
+      Players should therefore place storage Obelisks on branches/sidings
+      and keep mainline relay Obelisks relatively lightly loaded. ETH
+      background equalization must not force-fill designated transit
+      nodes: DEC-036 supersedes the earlier unconditional network-wide
+      equal-fill proposal. The approved player-facing name is Obelisk,
+      not Pylon (to avoid StarCraft Protoss terminology); legacy code
+      identifiers and historic documentation remain compatibility aliases
+      until an explicitly tested migration. Exact storage capacities,
+      throughput penalties, technical mode interactions and interruption
+      behavior require tuning. All are post-MVP0, not part of DEC-033.
+    specification: design/faction-storage-specialization-and-obelisk-traffic-2026-10-11.md
+    data_specification: design/faction-storage-specialization-and-obelisk-traffic.yaml
 
 migration_required:
   - design/economy.yaml
