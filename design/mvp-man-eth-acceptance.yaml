@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 0.1
+version: 0.2
 status: design_acceptance_fixtures_NOT_yet_executable_or_run
 source_of_truth:
   implementation_handoff: design/AGENT-MVP-IMPLEMENTATION.md
@@ -15,6 +15,10 @@ source_of_truth:
   topology: design/world-topologies.yaml
   battlefield_frame: design/battlefield-frames.yaml
   frame_tests: design/battlefield-frame-acceptance.yaml
+  mandatory_world_contract: design/space-platform-world-contract-2026-10-11.md
+  surface_presets: design/platform-surface-presets.yaml
+  agent_delivery_plan: design/MVP-DELIVERY-GATES.md
+  native_input_contract: design/mvp-hud-and-input.yaml
   network: design/three-network-channels-and-destruction.yaml
   victory: design/victory-building-template-registry.yaml
   loot: design/world-loot-and-recycling.yaml
@@ -187,6 +191,21 @@ tests:
     name: production_release_two_race_jungle_gate
     steps: [select_each_faction_against_scripted_bot, play_until_normal_victory_or_defeat]
     expect: {complete_match_without_crash: true, no_required_online_services: true, no_ORG_units: true, no_liquid_or_gas_harvest: true}
+  - id: MVP-33
+    tier: P0
+    name: universal_world_constitution_every_playable_level_is_space_platform
+    steps: [try_to_register_normal_planet_surface_map, try_to_load_missing_frame_map, load_Verdant_Divide_with_required_floating_frame]
+    expect: {ordinary_surface_rejected: true, missing_frame_rejected: true, floating_space_platform_accepted: true, four_sided_guard_present: true}
+  - id: MVP-34
+    tier: P1
+    name: same_native_hero_and_RTS_input_leases
+    steps: [enter_F1_overlord, press_WASD_to_pan, press_Q_and_E_to_orbit, scroll_zoom, select_units, switch_to_F2_and_F3]
+    expect: {RTS_camera_moves_without_moving_Hero: true, same_Hero_id_HP_and_cooldowns_across_camera_modes: true, valid_multi_unit_selection: true, orders_cannot_move_outside_flying_platform: true}
+  - id: MVP-35
+    tier: P0
+    name: native_godot_only_game_runtime_preserved
+    steps: [launch_project_via_bash_scripts_dev_sh, open_godot_menu_then_game]
+    expect: {native_one_window: true, no_Tauri_second_launcher_required: true, map_contains_actual_3d_space_platform_geometry_and_collision: true}
 map_validation_tests:
   - id: MAP-01
     scenario: preserve_exact_collision_topology_across_cosmetic_seed_change
@@ -206,3 +225,14 @@ map_validation_tests:
   - id: MAP-06
     scenario: reject_planetoid_if_only_planar_implemented
     expected: {explicit_error: true}
+
+world_constitution_acceptance:
+  owner_decision: DEC-030
+  compulsory_frame: floating_space_platform
+  all_playable_maps_must_be_platforms: true
+  no_classic_terrestrial_playable_map: true
+  no_real_spherical_planet_gameplay_in_MVP: true
+  all_frame_cases: design/battlefield-frame-acceptance.yaml
+  sample_surface_presets: [brown_soil_jungle, industrial_metal_patchwork]
+  changing_cosmetic_material_solely_must_not_change_strategy_or_resources: true
+  design_fixtures_not_executed_by_this_document: true
