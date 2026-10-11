@@ -21,6 +21,7 @@ var winner: int = -1
 var finish_reason: String = ""
 var controllers: Array[String] = []
 var players: Array[Dictionary] = []
+var bot_attack_thresholds: Array[int] = []
 var entities: Dictionary = {}
 var sources: Dictionary = {}
 var terrain: Dictionary = {}
@@ -45,6 +46,7 @@ func setup(match_seed: int = 42, slot_controllers: Array = ["human", "bot"]) -> 
     events.clear()
     controllers.clear()
     players.clear()
+    bot_attack_thresholds.clear()
     mined_matter = 0
     lost_matter = 0
     spent_matter = 0
@@ -52,6 +54,8 @@ func setup(match_seed: int = 42, slot_controllers: Array = ["human", "bot"]) -> 
     for slot in range(2):
         controllers.append(str(slot_controllers[slot]) if slot < slot_controllers.size() else "bot")
         players.append({"matter": 0, "kills": 0})
+        # Reproducible strategy variation for headless seed sweeps.
+        bot_attack_thresholds.append(2 + posmod(match_seed / (1 if slot == 0 else 3) + slot * 17, 3))
     _build_terrain()
     sources["west"] = {"pos": Vector2i(17, 31), "stock": 900}
     sources["east"] = {"pos": Vector2i(46, 32), "stock": 900}
@@ -430,7 +434,7 @@ func _bot_tick(side: int) -> void:
                     closest = enemy_id
         if closest != -1:
             issue_command(side, "attack", rid, closest)
-        elif riflemen.size() >= 3:
+        elif riflemen.size() >= bot_attack_thresholds[side]:
             # Opponent spawn zone is common map knowledge, not live hidden-unit coordinates.
             var scouting_goal: Vector2i = Vector2i(54, 31) if side == 0 else Vector2i(9, 32)
             if str(soldier["order"]) != "move" or soldier["target_pos"] != scouting_goal:
@@ -498,6 +502,7 @@ func result() -> Dictionary:
         "rules": "mvp0-man-mirror-v1",
         "seed": seed, "ticks": tick, "winner": winner, "reason": finish_reason,
         "finished": finished, "controllers": controllers.duplicate(),
+        "bot_attack_thresholds": bot_attack_thresholds.duplicate(),
         "resources_mined": mined_matter, "resources_spent": spent_matter,
         "lost_cargo": lost_matter, "rejected_commands": rejected_commands,
         "matter_conserved": matter_is_conserved(), "hash": replay_hash()
