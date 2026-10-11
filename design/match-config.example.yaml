@@ -8,8 +8,28 @@ objective_ruleset: annihilation # annihilation default | heartstrike optional | 
 # ground-mobile units tagged victory_building even while packed/traveling.
 # Heroes, ordinary workers, soldiers, crates, cables and unfinished sites do not count.
 # Heartstrike is an OPTIONAL alternate ruleset requiring designated team heart anchors.
-map: prototype_mainland
+map: verdant_divide # first playable map; every playable map must have a flying-space-platform frame (DEC-030)
+world:
+  topology: planar
+  gravity: uniform
+battlefield_frame:
+  variant: floating_space_platform
+  required_for_all_playable_maps: true
+  visible_rim_and_underside: true
+  noninteractive_space_background: true
+  boundary: four_sided_hard_collision
+surface_preset: brown_soil_jungle # later: industrial_metal_patchwork, rocky_desert, ...
+# Bare terrestrial surfaces or bounded_planetary_surface are NOT valid map frames.
+# The authoritative complete platform shape, water, trees, resources and spawns
+# are defined in design/mvp-verdant-divide-map.yaml, not invented by lobby config.
 seed: 357
+first_mvp:
+  playable_factions: [man, eth]
+  resource_source_forms_collectible: [solid]
+  maps_must_contain_liquid_terrain_but_liquid_not_collectible: true
+  movement_domains: [ground]
+  default_victory: destroy_all_enemy_completed_building_class_entities
+  no_spherical_gravity_or_interplanetary_travel: true
 teams:
   format: "1v1"
   shared_faction_control: true
