@@ -1,7 +1,7 @@
 schema_version: 1
 project: scalfagus
 release: mvp_0_1
-version: 0.4
+version: 0.5
 status: candidate_20hz_code_implemented_not_engine_tested_or_playtested
 owner_decisions: [DEC-030, DEC-031, DEC-032, DEC-033, DEC-034]
 canonical_numeric_profile: design/mvp0-agent-implementation-contract.yaml
@@ -9,8 +9,8 @@ alternative_analytical_profile_not_active: design/mvp0-man-mirror-balance-v0.1.y
 current_GUI_advance_interval_seconds_source: apps/game/scripts/mirror_view.gd
 canonical_timing_source: apps/game/scripts/mirror_timing.gd
 patch_evidence: docs/MVP0-CANONICAL-20HZ-2026-10-12.md
-new_unverified_test: apps/game/tests/mirror_timing_smoke.gd
-branch_status: stacked_draft_pending_real_Godot_4_7_2
+new_unverified_test: [apps/game/tests/mirror_timing_smoke.gd, apps/game/tests/mirror_footprint_smoke.gd]
+branch_status: unverified_geometry_branch_pending_real_Godot_4_7_2
 current_GUI_advance_interval_seconds: 0.05
 current_GUI_sim_ticks_per_second: 20
 design_target_fixed_ticks_per_second: 20
@@ -79,7 +79,7 @@ numbers:
   target_rifle_attack_range_world_meters: 6.5
   target_tile_size_meters: 2
   target_rifle_attack_range_grid_tiles: 3.25
-  current_attack_range_Manhattan_grid_cells: 6
+  current_attack_range_world_meters_against_target_cells: 6.5
   current_single_step_each_advance_without_move_cooldown: false
   target_worker_move_speed_tiles_per_second: 2.3
   separate_analytical_alternative_speed_tiles_s: 2.4
@@ -92,7 +92,7 @@ numbers:
   desired_barracks_build_distance_from_HQ_tiles_candidate: 9
   alternate_analytical_Barracks_distance_tiles: 18
   canonical_map_world_width_meters_candidate: 128
-  current_visual_ground_block_width_world_units: 64
+  current_visual_ground_block_width_world_units: 128
   current_code_map_grid_cells: [64, 64]
   current_code_simulation_map_identifiers:
     [nw_solid_1, nw_solid_2, se_solid_1, se_solid_2, center_solid_1, center_solid_2, west_flank_solid_1, east_flank_solid_1, north_ridge_solid, south_ridge_solid]
@@ -154,7 +154,9 @@ major_gaps:
     tests: [M0B-07, M0B-13]
   - id: CODE-GAP-07
     priority: P0
-    status: source_map_and_terrain_raster_compiled_but_3D_geometry_footprints_elevation_missing
+    status: map_compiled_and_3x3_footprints_2m_view_partial_elevation_LOS_still_missing
+    partial_runtime_code: [apps/game/scripts/mirror_geometry.gd, apps/game/scripts/mirror_match_state.gd, apps/game/scripts/mirror_view.gd]
+    partial_test: apps/game/tests/mirror_footprint_smoke.gd
     issue: duplicated_planetary_jungle_map_hardcoded_in_RefCounted_state_and_3D_view_instead_of_loading_authored_Verdant_Divide_manifest
     remediation: explicit_Godot_resource_or_buildtime_JSON_map_compiler_with_consistent_tile_meters_spawns_3x3_building_footprints_and_liquid_collision
     tests: [M0B-02, M0B-13]
@@ -186,6 +188,8 @@ major_gaps:
     tests: [M0B-13, M0B-23, mirror_navigation_port_smoke.gd]
   - id: CODE-GAP-12
     priority: P0
+    status: 3x3_completed_buildings_have_native_collision_other_terrain_physics_pending
+    partial_test: apps/game/tests/mirror_visual_smoke.gd
     issue: first_ground_view_renderer_meshes_have_no_verified_physical_collision_equivalent_to_world_map
     remediation: ensure_actual_deck_tree_water_and_rim_collider_and_LOS_match_map_manifest_for_all_visual_render_scales
     tests: [M0B-13, M0B-21]
