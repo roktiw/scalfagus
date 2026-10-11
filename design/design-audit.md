@@ -3,6 +3,16 @@
 **Version:** v0.5  
 **Scope:** design documents inspected through the connected GitHub repository and the project design discussion. Full repository-tree enumeration was unavailable, so this document does **not** certify every tracked file.
 
+**Canon synchronization note (2026-10-11):** The approved detailed faction economy, construction,
+MID/MAX worker pivot and expansion dependencies are consolidated in
+[the conversation economy record](faction-economy-and-construction-conversation-2026-10-11.md)
+and [base ecologies](base-ecologies-and-expansion-2026-10-11.md).
+**DEC-014 building relocation is an open research choice**, not an accepted
+universal building-mobility rule. See
+[building relocation options](building-relocation-design-options-2026-10-11.md).
+Older generic worker/chassis and biomass references below are historical audit
+findings and **must not override DEC-011/012/013**.
+
 ## Executive assessment
 
 The project's distinguishing gameplay loop combines **three faction transformation philosophies** (irreversible Organ mutations, rapid Manus module changes, costly reversible Eter ascension), **three stored resources** (Matter, Volatiles, Energy), **three platform sizes** (MIN/MID/MAX), and **three geographic zones** (mainland, islands, drifting asteroids).
