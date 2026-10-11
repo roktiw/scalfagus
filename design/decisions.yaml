@@ -68,8 +68,8 @@ decisions:
     status: approved_direction_with_proposed_details
     topic: faction_native_logistics
     resolution: >-
-      ORG mother transporters circulate in loops and are loaded and unloaded in motion
-      by independent workers; MAN build fast but vulnerable physical conveyor networks;
+      ORG mother transporters follow source/base loops with moving load and unload
+      unlocked only after research; MAN build fast but vulnerable physical conveyor networks;
       ETH use mobile couriers and stationary pylon handoff hubs. Faction determines
       logistics physics while the player chooses architecture and resiliency.
     specification: design/faction-logistics-2026-10-11.md
