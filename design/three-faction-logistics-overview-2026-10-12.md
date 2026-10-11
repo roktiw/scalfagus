@@ -37,8 +37,12 @@ All resource transfers are **real, finite, attributable and time-consuming**. No
 
 ### UMU wing transformation update (DEC-040)
 
+**DEC-040 refinement — five UMU modes:** MOVE has two folded-under belt tracks giving a **trapezoid profile with an open-front/open-rear cage for real soldiers or transported cargo**. WAREHOUSE is a **new fifth posture** with **exactly one belt wing open** to a finite storage hold and the other folded. CONVEYOR alone opens both wings for 3/5 throughflow. In a WAREHOUSE the one active belt is a **one-sided pickup/delivery port**, not a free through-line or a mobile conveyor. Mode transition must preserve unique soldier/cargo custody. No gameplay implementation claimed.
+
+
 Every MAN **UMU has two permanently attached physical belt wings**, shared by mutually exclusive postures:
-- **MOVE:** both belt wings retract underneath and work as the left/right crawler tracks.
+- **MOVE:** both belt wings retract underneath as crawler tracks, leaving a trapezoid-shaped open-front/rear troop-or-cargo cage.
+- **WAREHOUSE:** exactly one belt wing opens as a stationary one-sided physical loader; other wing remains folded.
 - **CONVEYOR:** left/right symmetric wings extend by 1 or 2 tiles each around a 1-tile central UMU, making **3 or 5 actual connected tiles**.
 - **BUNKER:** both wings fold along the two sides of the hull for flank cover and legal garrison modules.
 - **SENTRY WALL:** both wings **rotate upright to form a real physically blocking wall** for ground units; this is separate from bunker, has real collision/nav consequences and is **not a free turret gun**.
