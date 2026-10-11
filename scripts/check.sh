@@ -5,10 +5,15 @@ cd "$SCALFAGUS_ROOT"
 require_godot
 # Optional source-level parity: PyYAML is needed only for OFFLINE authoring,
 # never to launch or export the Godot game.
-if command -v python3 >/dev/null 2>&1 && python3 -c 'import yaml' >/dev/null 2>&1; then
-  python3 scripts/compile-verdant-map.py --check
+if command -v python3 >/dev/null 2>&1; then
+  python3 scripts/check-map-source.py
+  if python3 -c 'import yaml' >/dev/null 2>&1; then
+    python3 scripts/compile-verdant-map.py --check
+  else
+    echo 'MAP_COMPILE_CHECK_SKIPPED: install PyYAML==6.0.3 for exact raster compiler parity (bash scripts/check-map.sh).'
+  fi
 else
-  echo 'MAP_SOURCE_CHECK_SKIPPED: install PyYAML==6.0.3 and run bash scripts/check-map.sh for fail-closed YAML parity.'
+  echo 'MAP_SOURCE_CHECK_SKIPPED: Python3 not found; run scripts/check-map-source.py with Python3.'
 fi
 "$GODOT_BIN" --headless --path apps/game --editor --import --quit
 "$GODOT_BIN" --headless --path apps/game --script res://tests/smoke.gd
