@@ -15,7 +15,7 @@ world_topology_reference: design/world-topologies.yaml
 battlefield_frame_reference: design/battlefield-frames.yaml
 battlefield_frame:
   variant: floating_space_platform
-  status: proposed_preferred_visual_presentation_not_new_world_topology
+  status: owner_mandatory_all_playable_maps_DEC_030
   edge:
     policy: impassable
     boundary_colliders_enabled: true
@@ -38,11 +38,14 @@ battlefield_frame:
     deck_motion_during_match: stationary
     global_gravity: uniform
     travel_between_planets: future_campaign_not_MVP
-  alternative_legal_frame: bounded_planetary_surface
+  canonical_surface_preset: brown_soil_jungle
+  surface_preset_reference: design/platform-surface-presets.yaml
+  all_playable_maps_must_be_floating_platforms: true
+  ordinary_planetary_surface_variant_forbidden: true
   applies_no_new_building_entities: true
   cosmic_frame_never_counts_for_victory: true
 map_id: verdant_divide
-map_version: 0.1
+map_version: 0.2
 name: Verdant Divide
 status: developer_playtest_fixture_not_final_balanced_map
 design_reference: design/world-environments-and-map-authoring-2026-10-11.md
@@ -51,7 +54,10 @@ factions_allowed: [man, eth]
 objective: destroy_all_enemy_victory_buildings
 environment:
   preset: earthlike_jungle
-  planet_style: mostly_earthlike_exotic_jungle
+  surface_preset: brown_soil_jungle
+  platform_location: outer_space
+  physical_surface: brown_soil_jungle_on_constructed_flying_platform
+  planet_style: earthlike_upper_soil_not_actual_planet_surface
   biome: humid_tropical_forest
   water_present: true
   any_liquid_present: true
@@ -258,6 +264,9 @@ validation:
   authored_route_polylines_are_validation_hints_not_guaranteed_walkable_lanes: true
   world_resource_source_total_must_be_recomputed_from_unique_nodes: true
   no_enforced_match_timer: true
+  mandatory_floating_platform_frame_compiled: true
+  reject_classic_planetary_surface_or_missing_frame: true
+  surface_biome_can_change_without_changing_platform_frame: true
   boundary_guard_blocks_all_ground_actor_types: true
   decorative_space_background_not_targetable_or_mineable: true
   floating_platform_infrastructure_not_faction_owned: true
