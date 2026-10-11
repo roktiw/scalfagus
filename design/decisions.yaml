@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 0.7
+version: 0.8
 decisions:
   - id: DEC-001
     status: approved
@@ -64,6 +64,16 @@ decisions:
       They expand ORG/MAN/ETH, and spelling must be preserved verbatim.
       Political state names, if any, remain separate from these faction names.
     specification: design/faction-naming-conventions-2026-10-11.md
+  - id: DEC-010
+    status: approved_direction_with_proposed_details
+    topic: faction_native_logistics
+    resolution: >-
+      ORG mother transporters circulate in loops and are loaded and unloaded in motion
+      by independent workers; MAN build fast but vulnerable physical conveyor networks;
+      ETH use mobile couriers and stationary pylon handoff hubs. Faction determines
+      logistics physics while the player chooses architecture and resiliency.
+    specification: design/faction-logistics-2026-10-11.md
+    data_specification: design/faction-logistics.yaml
 migration_required:
   - design/economy.yaml
   - design/resources.yaml
