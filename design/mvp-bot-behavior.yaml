@@ -1,4 +1,7 @@
 schema_version: 1
+release_target: post_mvp_0_1_MAN_vs_ETH
+do_not_apply_first_release_micro_MVP0: true
+current_micro_MVP0_bot_rules: design/mvp0-man-mirror-execution-contract.md
 project: scalfagus
 version: 0.2
 status: implementation_candidate_not_ai_strength_promise
