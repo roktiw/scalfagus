@@ -36,9 +36,9 @@ Civilization I's original manual describes Settlers founding cities and improvin
 - Different victory rulesets must be configurable and tested.
 
 ## Faction-specific strategic identity
-- Blergians: organic adaptation, biomass network expansion and assimilation; distant isolated colonies are weak.
-- Manusians: modular technology, distributed independent outposts, engineering and combined arms.
-- Aetherians: resonance research, linked satellites, meditation/ascension and high-value transformations.
+- Organs: organic adaptation, biomass network expansion and assimilation; distant isolated colonies are weak.
+- Manus: modular technology, distributed independent outposts, engineering and combined arms.
+- Eters: resonance research, linked satellites, meditation/ascension and high-value transformations.
 Each faction can play all roles and must retain viable early/mid/late strategies.
 
 ## Integrating the rest of the inspiration map
