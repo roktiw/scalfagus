@@ -1,7 +1,7 @@
 schema_version: 1
 project: scalfagus
 release: mvp_0_1
-version: 0.1
+version: 0.2
 status: source_inspected_engine_not_tested_or_playtested
 owner_decisions: [DEC-030, DEC-031, DEC-032, DEC-033, DEC-034]
 canonical_numeric_profile: design/mvp0-agent-implementation-contract.yaml
@@ -11,11 +11,18 @@ current_GUI_advance_interval_seconds: 0.1
 current_GUI_sim_ticks_per_second: 10
 design_target_fixed_ticks_per_second: 20
 code_uses_fixed_tick_without_GUI_timer_in_headless_batch: true
-code_gap_numbers_below_are_normalized_at_design_20_Hz_not_actual_10Hz_GUI: true
-competing_candidate_implementation_contract: design/mvp0-agent-implementation-contract.yaml
+code_gap_numbers_below_include_both_actual_GUI_10Hz_and_target_20Hz: true
+actual_selected_implementation_contract: design/mvp0-agent-implementation-contract.yaml
 current_code_inspected: apps/game/scripts/mirror_match_state.gd
 visual_code_inspected: apps/game/scripts/mirror_view.gd
-existing_unverified_tests: [apps/game/tests/mirror_smoke.gd, apps/game/tests/mirror_batch.gd]
+existing_unverified_tests: [apps/game/tests/mirror_smoke.gd, apps/game/tests/mirror_visual_smoke.gd, apps/game/tests/mirror_batch.gd]
+source_checked_test_runner: scripts/check.sh
+current_check_script_calls: [smoke.gd, menu_smoke.gd, rts_smoke.gd, navigation_smoke.gd, mirror_smoke.gd, mirror_visual_smoke.gd]
+batch_runner_NOT_in_check_script: apps/game/tests/mirror_batch.gd
+test_execution_outcome_observed_in_this_audit: none
+mirror_visual_test_expects_hardcoded_four_source_visuals: true
+mirror_visual_test_expects_real_directional_unit_and_HQ_sprites: true
+mirror_visual_test_checks_camera_zoom_and_min_window_dimensions: true
 rationale: design/mvp0-runtime-parity-gaps.md
 critical_note: >
   This is a code-review-derived gap tracker. It does NOT mean a Godot
@@ -57,12 +64,19 @@ numbers:
   target_tile_size_meters: 2
   target_rifle_attack_range_grid_tiles: 3.25
   current_attack_range_Manhattan_grid_cells: 6
-  current_single_step_each_advance_without_move_cooldown: true
+  current_cell_step_period_sim_ticks: 3
+  current_walk_gate_expression: tick_modulo_3_equals_zero
+  one_cell_every_sim_tick_claim_in_prior_audit: corrected_false
   target_worker_move_speed_tiles_per_second: 2.3
   separate_analytical_alternative_speed_tiles_s: 2.4
-  current_effective_speed_if_20Hz_unobstructed_tiles_per_second: 20
-  current_effective_speed_in_GUI_at_10Hz_unobstructed_tiles_per_second: 10
+  current_effective_speed_if_20Hz_unobstructed_cells_per_second: 6.6666667
+  current_effective_speed_in_GUI_at_10Hz_unobstructed_cells_per_second: 3.3333333
   current_bot_think_interval_ticks: 12
+  current_barracks_build_seconds_GUI_10Hz: 4.5
+  current_worker_train_seconds_GUI_10Hz: 4.5
+  current_rifleman_train_seconds_GUI_10Hz: 6.5
+  current_weapon_cooldown_seconds_GUI_10Hz: 1
+  simulated_game_time_in_unpaced_batch_must_use_normalized_tick_rate: true
   GUI_sim_tick_scheduler_must_match_headless_same_profile: true
   desired_bot_think_interval_ticks_candidate: 10
   current_barracks_Manhattan_HQ_radius_tiles: 9
@@ -93,7 +107,7 @@ major_gaps:
     tests: [M0B-03, M0B-04]
   - id: CODE-GAP-04
     priority: P0
-    issue: worker_moves_one_cell_each_sim_tick_instead_of_2p4_tiles_per_second
+    issue: worker_moves_one_cell_every_three_sim_ticks_instead_of_explicit_2p3_tiles_per_second_candidate
     remediation: move_with_integer_or_fixed_point_progress_account_and_existing_Godot_nav_adapter
     tests: [M0B-04, M0B-13]
   - id: CODE-GAP-05
@@ -138,19 +152,31 @@ major_gaps:
     tests: [M0B-13, M0B-21]
   - id: CODE-GAP-13
     priority: P1
-    issue: potential_mismatched_competing_micro_candidate_profiles_worker_speed_2p3_vs_2p4
-    remediation: load_canonical_mvp0_man_mirror_balance_profile_only_and_deprecate_other_MVP0_numeric_defaults_as_legacy_proposals
+    issue: active_mvp0_agent_profile_speed_2p3_and_alternative_balance_scenario_speed_2p4_must_not_be_mixed
+    remediation: load_only_current_mvp0_agent_implementation_contract_profile_and_mark_other_as_optional_non_active_experiment
     tests: [M0B-04, M0B-24]
   - id: CODE-GAP-14
     priority: P1
     issue: existing_HEADLESS_mirror_batch_script_is_not_proof_of_pass_or_representative_balance
-    remediation: actually_run_legacy_mirror_smoke_and_batch_pinned_Godot_report_seed_profile_engine_commands_wall_time_hardware_and_fog_legality
+    remediation: check_sh_now_includes_mirror_smoke_and_mirror_visual_smoke_but_mirror_batch_is_still_a_separate_explicit_run_execute_and_record_pinned_Godot_results
     tests: [M0B-18, M0B-20, M0B-25]
   - id: CODE-GAP-15
     priority: P1
     issue: candidate_victory_termination_does_not_have_simultaneous_elimination_batch_snapshot_guaranteed_by_event_protocol
     remediation: resolve_both_teams_damage_same_tick_then_compute_victory_or_draw_with_single_result_event
     tests: [M0B-10, M0B-11]
+  - id: CODE-GAP-16
+    priority: P0
+    issue: mirror_visual_smoke_asserts_exactly_four_hardcoded_source_render_nodes_but_canonical_authored_map_contains_ten
+    remediation: migrate_visual_assertion_to_actual_loaded_map_resource_node_count_and_stable_ids_when_map_loader_lands_preserve_sprite_and_window_regressions
+    sources: [apps/game/tests/mirror_visual_smoke.gd, design/mvp-verdant-divide-map.yaml]
+    tests: [M0B-02, M0B-13, M0B-24]
+  - id: CODE-GAP-17
+    priority: P0
+    issue: new_mirror_smoke_and_visual_smoke_in_check_sh_but_no_proven_execution_log_and_batch_separate
+    remediation: run_Godot_import_all_current_smokes_and_mirror_batch_then_record_actual_engine_platform_status_and_failure_seed_if_any
+    sources: [scripts/check.sh, apps/game/tests/mirror_smoke.gd, apps/game/tests/mirror_visual_smoke.gd, apps/game/tests/mirror_batch.gd]
+    tests: [M0B-18, M0B-20, M0B-24]
 plan:
   preferred_first_remediation: one_authoritative_map_and_economy_tick_canonical_numeric_profile
   why_first: gameplay_is_too_fast_and_has_more_source_stock_than_authorized_map_so_any_balance_result_now_is_invalid
