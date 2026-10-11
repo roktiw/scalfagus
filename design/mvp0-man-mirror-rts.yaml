@@ -1,7 +1,14 @@
 schema_version: 1
 project: scalfagus
 release: mvp_0_1
-status: owner_approved_spec_not_implemented
+status: owner_approved_scope_runtime_not_implemented_numeric_candidate
+numeric_candidate_profile: design/mvp0-man-mirror-balance-v0.1.yaml
+runtime_gameplay_contract: design/mvp0-man-mirror-execution-contract.md
+authoritative_LAN_and_controller_contract: design/mvp0-man-mirror-network.yaml
+numeric_acceptance_tests: design/mvp0-man-mirror-balance-acceptance.yaml
+do_not_import_future_MAN_ETH_profile: design/mvp-balance-playtest-v0.1.yaml
+cost_precedence: all_candidate_values_for_executable_MVP0_come_from_micro_profile
+
 decision: DEC-033
 engine: Godot_4_7_2_Standard
 language: typed_GDScript
@@ -49,6 +56,7 @@ gameplay:
   drawing_timeout: explicit_no_forced_winner
   match_duration_target_minutes: [8, 15] # development target, NOT guaranteed
   match_time_cap_minutes: 20 # candidate for initial test; timeout => draw
+  explicit_timeout_is_NOT_normal_building_elimination_victory: true
 candidate_balance_fixture_unapproved:
   matter_start_per_team: 0
   hq_hp: 1200
@@ -66,6 +74,12 @@ candidate_balance_fixture_unapproved:
   barracks_build_seconds: 18
   rifleman_training_seconds: 9
   all_candidate_values_are_tuning_start_points: true
+  canonical_MVP0_values_file: design/mvp0-man-mirror-balance-v0.1.yaml
+  never_charge_Energy_or_apply_UMU_support_cap_in_MVP0: true
+  worker_extraction_seconds_per_unit_candidate: 2.0
+  worker_speed_tiles_per_s_candidate: 2.4
+  Barracks_legal_site_distance_from_HQ_tiles_candidate: 18
+  Rifleman_range_is_WORLD_METERS_not_grid_tiles: true
 runtime:
   tick_rate_hz_proposal: 20
   host_authoritative: true
