@@ -2,7 +2,7 @@
 
 **Owner concept:** 2026-10-12.  
 **Decision:** DEC-040.  
-**Status:** owner-approved physical identities (every UMU has two belt wings; 3-/5-tile conveyor lengths; tracks when moving; folded side panels in Bunker; separately rotated wall in Sentry), with candidate tuning and collision protocols clearly noted.  
+**Status:** owner-approved physical identities (every UMU has two belt wings; 3-/5-tile conveyor lengths; trapezoid open-cage tracks when moving; one open belt when warehousing; folded side panels in Bunker; separately rotated wall in Sentry), with candidate tuning and collision protocols clearly noted.  
 **Machine contract:** [man-umu-transforming-belt-wings.yaml](man-umu-transforming-belt-wings.yaml).  
 **Release:** post-DEC-033 MVP0. Do not add UMU, belts or sentry modes to the four-template MAN mirror first release.
 
@@ -14,19 +14,45 @@
 
 The second statement clarifies that **Sentry Wall is a separate alternative mode** from Bunker, not merely another name for it.
 
-## One chassis, two persistent wings, four different functions
+> W trybie move umu zagina bełty pod siebie z dwóch stron to wygląda jak by jeździł na trapezie z otwartą klatką z żołnierzami z przodu i z tyłu kumasz? Lub jeśli jest załadowany to tak może transportować ładunek a jeśli magazynuje towar to ma tylko jeden belt otwarty
+
+The third statement clarifies the **trapezoid open-frame MOVE profile**, a **real open cage accessible from front and rear with troops or cargo**, and a separate **WAREHOUSE / ONE ACTIVE BELT** posture.
+
+## Owner refinement: trapezoid travel cage and single-wing warehouse
+
+**MOVE visual identity:** Viewed from the side, the two continuous conveyor wings bend down/under the chassis into left and right ground-contact crawler belts, giving the traveling UMU a **trapezoidal tracked silhouette**. The central structure is an **open-front-and-rear cage** carrying actual visible soldiers **or** physically placed cargo, subject to a finite manifest. It is not a sealed armored personnel carrier and not a blank warehouse whose inventory teleports aboard.
+
+- Soldier transport: compatible soldiers **physically board at the front/rear open cage access**, occupy real finite passenger slots and travel as the same existing entities; disembark at legal reachable ground positions. Open cage means passengers are physically present/visible and not implicitly invulnerable; whether they may fire while moving and exact cover/targeting require balance approval.
+- Cargo transport: the same available cage space can carry real typed stacks/containers while the UMU drives; load/unload through legal openings with a nonzero operation duration when stopped or at permitted handling speed. The tracked wings are traction equipment **not active conveyor freight ports while moving**.
+- The owner describes soldiers **or** cargo. Initial rules should choose **exclusive cabin configurations** (troop carrier versus cargo carrier) to avoid double-selling the same cage volume; mixed passenger + cargo manifests are a future size-budget candidate, not an automatic permission.
+- Loading a cage does **not** make the vehicle an always-on WAREHOUSE; packed travel cannot magically accept remote conveyor input, generate infinite physical goods or keep powered docks in a deployed posture.
+- If boarding, unloading or turn clearance is impossible, remain queued/blocked. Preserve all unique entity IDs, carried loads and soldier HP; destroyed-vehicle evacuation/salvage is an explicitly separate casualty/loot design item.
+
+**WAREHOUSE visual identity:** The stationary UMU opens **exactly one** of its two physical belt wings to the chosen **left or right loading side**; the other remains retracted/folded as a support/protective assembly. The cage/central hold becomes an accessible real finite warehouse and its one extended belt is the **active local input/output loader**, with actual queues, handling speed and real source/destination access.
+
+- This is a **one-sided local depot interface**, not a symmetric CONVEYOR line. The single open wing transfers material between its outer port and central storage (with optional dispatch in reverse under the proposed two-way belt model). **It does not create free through-transit to the folded side.**
+- The player may pick which side to open, but a valid real footprint is required on that side. Choice of exactly one extension length (1 or 2 tiles) is **TBD**; do not assume the dedicated 3/5 full-conveyor geometry applies identically.
+- The storage cargo may be **mixed** or deliberately **single-resource-specialized** for higher packing capacity (DEC-036). Switching requires actual unloading and reconfiguration as needed. Only fitted generators can produce finite Energy while properly deployed (existing power-dock policy).
+- A WAREHOUSE UMU is anchored and cannot move while the single loader belt is open. Before departure it must retract that same wing; the other already folded wing joins it as a crawler track.
+- Real topology: **open side ↔ central finite store**, closed side isolated. If the belt breaks or its unloading area is blocked, the warehouse keeps its actual inventory and stops/queues external transfers.
+
+These details **supersede the older DEC-040 four-mode diagrams and any statement that UMU must deploy both conveyor wings just to access its stored goods**.
+
+
+## One chassis, two persistent wings, five different functional modes
 
 Each Universal Man Unit has exactly **two physically persistent conveyor wings** permanently connected to a **central UMU chassis**. The wings are the **same mechanical equipment** in all modes: no spawning duplicate belts, no creating extra structures when folded or packed, and no loss of owned resource inventory merely because the collision shape changes.
 
 | Configuration | Wing physical position | Active service | Main strategic trade-off |
 | --- | --- | --- | --- |
-| **MOVE / TRACKS** | Left and right assemblies retract/rotate underneath, forming a pair of ground-contact continuous tracks | Actual ground locomotion of the same UMU entity | Belt network stops; no full deployed bunker capability; deployed-only generation/connectors unavailable |
+| **MOVE / TRACKS** | Left and right belt wings bend underneath into crawler tracks forming a trapezoid silhouette | Ground travel with an open front/rear central cage carrying finite soldiers **or** cargo | No external belt connection; passengers/cargo remain real and vulnerable to applicable damage | 
+| **WAREHOUSE / SINGLE BELT** | **One** left or right wing opens as the loading belt; the other wing remains folded | Real one-sided cargo intake/dispatch into a finite central warehouse, mixed or specialized | Stationary, no full left-to-right conveyor throughflow, physical storage and port capacity limits |
 | **CONVEYOR / SHORT** | One wing extends **1 tile** on either side of one-tile center | Real finite freight across **1 + 1 + 1 = 3 tiles** | Shorter reach, faster/safer emplacement candidate; no track locomotion or defensive wall |
 | **CONVEYOR / LONG** | One wing extends **2 tiles** on either side of center | Real finite freight across **2 + 1 + 2 = 5 tiles** | Longer reach/greater exposed footprint; not intrinsically infinite or twice the bandwidth |
 | **BUNKER** | Both wings **fold snugly alongside the central hull**, creating armored side flanks | Garrison / protection / optional defensive equipment according to chassis | Conveyor ports close; static; physical cargo may need unloading before mode switch |
 | **SENTRY WALL** | Both belt wing panels **rotate upward and out into a coherent solid barrier**, with center body anchoring/sealing the middle | **Physically obstruct ground-unit movement** across a real map corridor | Static blockade, not conveyor, not moving tracks, not automatically a turret or troop bunker |
 
-This is **four functional postures**, with 3 and 5 being two selectable submodes of CONVEYOR. No free combined "bunker + uninterrupted full-rate belt" state.
+This is **five functional postures**, with 3 and 5 being two selectable submodes of CONVEYOR. No free combined "bunker + uninterrupted full-rate belt" state.
 
 ### The 3 / 5 conveyor geometry
 
@@ -40,9 +66,13 @@ This describes the **central conveyor axis**, not a promise that a physically bu
 
 ### MOVE: conveyor wings become caterpillar tracks
 
-In packing, both conveyors retract beneath either side of the body and wrap around actual rollers. Left/right movement can turn the machine using differential track velocity as animation inspiration. Movement follows actual ground navigation, entity footprint, obstacles, map bounds and transition time. The belt freight graph is disconnected **before** the first mobile simulation step; there is no invisible stretching conveyor between old/new coordinates. Cargo on extended wings must be delivered to a real buffer or safely unloaded before retraction. Cargo physically inside a finite UMU hold may accompany the chassis.
+In packing, both conveyors **bend down under the open-cage body as two ground-contact belts**, creating a characteristic trapezoid silhouette with soldiers/cargo visible inside the cage from the front and rear. The belts wrap around actual rollers. Left/right movement can turn the machine using differential track velocity as animation inspiration. Movement follows actual ground navigation, entity footprint, obstacles, map bounds and transition time. The belt freight graph is disconnected **before** the first mobile simulation step; there is no invisible stretching conveyor between old/new coordinates. Cargo on extended wings must be delivered to a real buffer or safely unloaded before retraction. Cargo physically inside a finite UMU hold may accompany the chassis.
 
 **Not a tank buff**: tracks are slow relative to dedicated light units, the mobile UMU is not a fully functional deployed fortification, and a mobile UMU retains its building-class victory tag when that template has one. Deployed-only electrical generation and grid ports follow older power-mode gates.
+
+### WAREHOUSE: only one belt opens
+
+A WAREHOUSE has exactly **one extended working belt wing** and one retracted/folded wing. The central cage transforms into a finite accessible hold. The open belt works as the **sole loader/unloader at the selected side**; it is not a 3- or 5-cell two-sided throughput corridor. The warehouse is stationary while loading or storing and follows DEC-036 mixed-vs-one-resource storage specialization. A fully packed moving UMU may carry the same physical cargo, but its loader is unavailable until stopped, deployed and open.
 
 ### BUNKER: folded side plates, defensive shelter
 
@@ -117,6 +147,13 @@ This avoids a fatal design contradiction: an UMU cannot simultaneously be an own
 - **UMU-15:** RTS human and bot orders use the same legal transitions; zero-cost instant mode spam and indefinite unaccounted reserved cells forbidden.
 - **UMU-16:** Fixed seed/rules produce identical transitions/resource totals in Godot GUI, headless and host-authoritative LAN tests.
 - **UMU-17:** Actual source/render/world assets align 3/5 grid with center hull and both wings; not merely icons or descriptions.
-- **UMU-18:** Four modes and 3/5 conveyor variants do not creep into current DEC-033 MAN mirror MVP0.
+- **UMU-18:** Five modes including single-wing warehouse and 3/5 conveyor variants do not creep into current DEC-033 MAN mirror MVP0.
+
+- **UMU-19:** MOVE uses both existing conveyor belts as left/right under-hull tracks and presents a trapezoid-like, genuinely open front/rear central cage.
+- **UMU-20:** Eligible soldiers physically board/disembark the MOVE cage at legal endpoints, keep identity/HP, and do not receive hidden bunker invulnerability.
+- **UMU-21:** MOVE cage may alternatively transport physical cargo, preserving finite cargo capacity and nonzero loading/unloading time; no duplicated manifests.
+- **UMU-22:** WAREHOUSE extends **exactly one** physically existing left or right belt wing and the other remains folded; deposits/withdrawals use only the live side.
+- **UMU-23:** WAREHOUSE cannot give false left-to-right throughflow, move with a deployed loader, or credit a remote bank; finite inventory survives a disconnect.
+- **UMU-24:** Transform MOVE ↔ WAREHOUSE ↔ CONVEYOR/BUNKER/SENTRY preserves real wing identity, cargo and occupants; illegal footprints, occupied loading cells and insufficient passenger space block safely.
 
 **No verified Godot implementation or test pass is claimed by this design document.**
