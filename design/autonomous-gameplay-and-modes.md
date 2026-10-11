@@ -21,9 +21,9 @@ Default play is **AI-led base development with human assistance and intervention
 Historical references: https://www.mobygames.com/game/5493/aliens-versus-predator-2/ ; https://www.mobygames.com/game/30407/enemy-territory-quake-wars/ .
 
 ## Distinct FPS identities — proposals
-- **Blergians:** predatory organic locomotion; rapid close combat, wall/ceiling traversal for equipped forms, scent/biological sensing, swarm coordination, asymmetric hitboxes and movement. No universal human-style gunplay.
-- **Manusians:** precise weapon handling, equipment, squads, deployables, repair, transport and combined arms. Strongest conventional tactical FPS.
-- **Aetherians:** psionic mobility, resonance perception, energy management, temporary transformation, shielding and control effects; powerful but telegraphed abilities and counterplay.
+- **Organs:** predatory organic locomotion; rapid close combat, wall/ceiling traversal for equipped forms, scent/biological sensing, swarm coordination, asymmetric hitboxes and movement. No universal human-style gunplay.
+- **Manus:** precise weapon handling, equipment, squads, deployables, repair, transport and combined arms. Strongest conventional tactical FPS.
+- **Eters:** psionic mobility, resonance perception, energy management, temporary transformation, shielding and control effects; powerful but telegraphed abilities and counterplay.
 These are flavor/ability directions, not guaranteed Alpha features. Each must support fair combat and readable audiovisual feedback.
 
 ## AI-led base management
