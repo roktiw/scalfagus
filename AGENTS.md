@@ -1,5 +1,10 @@
 # SCALFAGUS — Coding-Agent Contract
 
+## RECOVERY / SHIELD DOCTRINE — DEC-037 (POST-MVP0)
+
+Read [faction recovery rules](design/faction-damage-recovery-shields-and-repair-2026-10-11.md) and [typed contract + HEAL scenarios](design/faction-damage-recovery-shields-and-repair.yaml): ORG has slow passive biological HP regeneration and faster healing when genuinely connected to a functioning living vein; ETH shields naturally recharge, recharge faster near properly connected **Obelisks**, and **consume an entire recharged shield to restore a finite amount of green HP**, possibly over multiple shield→health cycles; MAN biological damage needs medical treatment, mechanical damage needs service/repair, and optional MAN force shields **NEVER** recharge except by finite battery or valid powered grid. Shield durability, green HP and the stored Energy resource are distinct ledgers. Exact timing, HP per consumed ETH shield and costs are TBD. **Keep this out of DEC-033 four-template MAN mirror MVP0.**
+
+
 ## ETH OBELISK / FACTION STORAGE UPDATE — DEC-036
 
 **Canonical ETH player-facing term: OBELISK, not PYLON.** Older `eth_mid_pylon` / `pylon_obelisk` are technical compatibility IDs only; do not blindly rename serialized Godot data or old acceptance fixtures. Read [storage rules](design/faction-storage-specialization-and-obelisk-traffic-2026-10-11.md) and [YAML tests](design/faction-storage-specialization-and-obelisk-traffic.yaml): ORG stores only one resource kind per cyst; MAN UMU stores mixed goods or more of one type when deliberately specialized; ETH levitates mixed typed-resource stock around Obelisks, and greater node inventory occupancy **reduces throughput**. Use storage Obelisk sidings/clusters and lightly loaded transit backbone nodes. The old idea of unconditionally equalizing all ETH pylon fill levels is **superseded** by DEC-036: protect transit nodes from forced fill and scope background equalization to explicitly participating storage nodes. None of these systems belongs in DEC-033 MAN mirror MVP0.
