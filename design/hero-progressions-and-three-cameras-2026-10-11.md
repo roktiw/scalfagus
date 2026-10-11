@@ -1,5 +1,6 @@
 # Scalfagus — One Hero per Player, Open Specialization Graph, Three Camera Modes
 
+> **DEC-033 scope note (2026-10-11):** This file describes historical full-game Hero/three-camera concepts, NOT current first-playable deliverables. MVP 0.1 ships **one faction MAN vs MAN**, classic **Overlord RTS only**, H-H (LAN/loopback), H-C and C-C, four core MAN templates. FPP possession is a **later** approved direction under DEC-031; TPP/Direct is not a target shipped mode. See [current first-release spec](../design/mvp0-man-mirror-rts-2026-10-11.md) and [current backlog](../design/mvp0-man-mirror-backlog.yaml). Existing 3-camera technical spike is preserved as regression baseline; no code migration is implied.\n\n
 Date: 2026-10-11
 
 > Faction terminology: **Organs / Organites (ORG), Manus / Manusians (MAN), Eters / Etherans (ETH)**. See the [approved naming canon](faction-naming-conventions-2026-10-11.md). Hero roles, skill pivots and camera modes are independent of faction names.
