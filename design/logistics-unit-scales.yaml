@@ -1,10 +1,13 @@
 schema_version: 1
 project: scalfagus
-version: 0.4
+version: 0.5
 status: owner_approved_economic_roles_with_open_balance
 specification: design/colony-topologies-vascular-modular-resonant-2026-10-11.md
 legacy_unit_specification: design/logistics-min-mid-max-2026-10-11.md
-precedence: eth_mid_pylon_and_max_nexus_supersede_legacy
+precedence: eth_mid_pylon_and_max_nexus_supersede_legacy_with_new_ether_freight_rules_dec018
+network_contract: design/three-faction-network-and-infrastructure-contract-2026-10-11.md
+eth_freight_config: design/eth-ether-network-mechanics.yaml
+man_power_dock_config: design/man-power-dock-and-org-vessel-mechanics.yaml
 base_ecology_specification: design/base-ecologies-and-expansion-2026-10-11.md
 scope: economic_logistics_platforms_only
 resource_ids: [matter, volatiles, energy]
@@ -12,7 +15,7 @@ scale_meaning: chassis_scale_not_technology_or_match_scale
 paradigms:
   org: vascular_rooted_buildings_and_mobile_living_cargo_loops
   man: physical_conveyor_and_mobile_modular_fortifications
-  eth: courier_pylon_network_and_nexus_class_max
+  eth: courier_physically_to_nexus_then_typed_ether_pylon_network_and_nexus_class_max
 shared:
   min_can_extract_independently: true
   min_can_deliver_directly: true
@@ -225,7 +228,12 @@ factions:
     mid:
       status: owner_approved_role_with_proposed_meditation_timing
       kind: pylon
-      role: physical_cargo_buffer_network_relay_and_defensive_turret
+      role: anchored_pylon_obelisk_typed_ether_storage_relay_and_defensive_turret
+      contributes_ether_network_resonance_supply_capacity: true
+      retains_control_signal_in_turret: true
+      freight_transit_disabled_while_turret: proposed
+      basic_mobility: immobile
+      future_meditation_move_along_network: proposed
       mobility: meditation_gated_if_explicitly_supported
       cargo_slots: finite_several
       modes:
@@ -255,6 +263,8 @@ factions:
     max:
       status: owner_approved_nexus_class_on_initial_deployment
       role: nexus_class_pattern_library_and_major_node
+      physical_resource_receiver_and_typed_ether_converter: true
+      subnet_limited_accounting_on_network_cut: true
       construction_with_valid_source_or_bootstrap: true
       nexus_from_start: true
       local_known_pattern_store: true
