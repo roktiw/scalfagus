@@ -1,4 +1,8 @@
 schema_version: 1
+release_target: post_mvp_0_1_MAN_vs_ETH
+current_release_tests: design/mvp0-man-mirror-balance-acceptance.yaml
+current_scope_decision: DEC-033
+design_only_not_current_MVP0_test_gate: true
 project: scalfagus
 version: 0.1
 status: proposed_headless_acceptance_fixtures_not_executed
