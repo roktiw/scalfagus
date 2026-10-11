@@ -3,7 +3,11 @@ schema_version: "0.1-draft"
 session_context: skirmish # campaign | skirmish | multiplayer
 match_scale: min # min | mid | max; match duration/complexity, NOT chassis size
 control_preset: autonomous_rts # classic_rts | architect | commander | avatar | hybrid
-objective_ruleset: annihilation # control | assault | escort | extraction | custom
+objective_ruleset: annihilation # annihilation default | heartstrike optional | control | escort | extraction | custom
+# Default annihilation: every last enemy building must be lost, including
+# ground-mobile units tagged victory_building even while packed/traveling.
+# Heroes, ordinary workers, soldiers, crates, cables and unfinished sites do not count.
+# Heartstrike is an OPTIONAL alternate ruleset requiring designated team heart anchors.
 map: prototype_mainland
 seed: 357
 teams:
@@ -19,6 +23,15 @@ rules:
   fog_of_war: on
   unit_progression: on
   replay: on
+  structural_elimination:
+    count_building_class_unit_templates_as_buildings: true
+    mode_changes_do_not_change_victory_building_tag: true
+    unfinished_scaffolds_and_loose_salvage_do_not_delay_defeat: true
+    determine_at_end_of_authoritative_tick: true
+  # heartstrike_target_by_team: set only when objective_ruleset=heartstrike
+  salvage:
+    physical_ground_drops: true
+    finite_lossy_recycling: true
   pause_policy: unrestricted
 ai_policy:
   economic_posture: balanced # fortify | expand | tech | rush
