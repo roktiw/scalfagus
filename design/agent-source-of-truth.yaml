@@ -6,6 +6,11 @@ language: en
 latest_owner_scope_decision: DEC-033
 latest_research_and_view_decisions: [DEC-030, DEC-031, DEC-032, DEC-034]
 mandatory_reuse_first_policy: DEC-034
+future_three_faction_logistics_concise_overview:
+  path: design/three-faction-logistics-overview-2026-10-12.md
+  covers: [MAN, ORG, ETH, DEC-035, DEC-036, DEC-037, DEC-038, DEC-039]
+  status: summary_not_independent_balance_authority
+  excludes_first_MVP0: true
 latest_source_audit_reports: [design/mvp-repository-mechanics-audit-2026-10-11.md, design/mvp-repository-mechanics-audit.yaml]
 latest_code_vs_contract_reports: [design/mvp0-runtime-parity-gaps.md, design/mvp0-runtime-parity-gaps.yaml]
 latest_audit_status: source_only_no_Godot_execution_or_LAN_verification
