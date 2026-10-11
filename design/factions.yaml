@@ -7,9 +7,9 @@ description: >-
   archetypes and the five-color philosophy of Magic: The Gathering.
   Names, lore, art and units should be developed as independent IP.
 factions:
-  - id: blergians
-    name: Blergians
-    archetype: biological_swarm
+  - id: org
+    name: Organs
+    archetype: specialized_biological_civilization
     mtg:
       colors: [black, red, green]
       shorthand: BRG
@@ -32,8 +32,8 @@ factions:
     lore: >-
       A predatory civilization of adaptive organisms whose living
       infrastructure evolves through competition and resource consumption.
-  - id: manusians
-    name: Manusians
+  - id: man
+    name: Manus
     archetype: industrial_colonists
     mtg:
       colors: [red, white, blue]
@@ -57,8 +57,8 @@ factions:
     lore: >-
       A civilization of inventive colonists balancing individual freedom,
       coordinated defense and experimental engineering.
-  - id: aetherians
-    name: Aetherians
+  - id: eth
+    name: Eters
     archetype: ancient_energy_civilization
     mtg:
       colors: [white, blue, green]
@@ -93,7 +93,7 @@ default_playstyles:
     Default strategic identities, not exclusive faction restrictions.
     Skilled players may pursue rush, expansion, turtle, harassment,
     attrition, or tech strategies with any faction.
-  blergians:
+  org:
     default_archetype: relentless_biomass_pressure
     primary_power_window: early
     tempo: continuous_aggression_from_early_game
@@ -109,12 +109,12 @@ default_playstyles:
       role: organic_connectivity_and_operational_support
       interruption_counterplay: proposed
     preferred_assets:
-      - swarm_production
+      - specialized_biological_production
       - irreversible_combat_mutations
       - connected_biomass_territory
     strengths: [initiative, attrition, early_expansion, continuous_reinforcement]
     risks: [predictable_attack_lanes, vulnerable_biomass_links, irreversible_investments]
-  manusians:
+  man:
     default_archetype: distributed_tactical_modularity
     primary_power_window: mid
     tempo: information_driven_precision
@@ -131,7 +131,7 @@ default_playstyles:
     preferred_assets: [scouting, bunkers, flying_constructs, hot_swappable_modules]
     strengths: [mobility, surprise, flexible_responses, distributed_map_control]
     risks: [isolated_outpost_raids, supply_chain_interdiction, high_tactical_attention]
-  aetherians:
+  eth:
     default_archetype: fortified_homeworld_ascension
     primary_power_window: late
     tempo: cautious_exploration_and_defensive_development
@@ -150,12 +150,12 @@ default_playstyles:
 strategic_counterplay:
   - Baseline power windows must not become guaranteed victory windows.
   - Every faction must have viable early, mid, and late strategies.
-  - Early Blergian pressure needs defensive and economic counters.
-  - Dispersed Manusian outposts must be vulnerable to raids and disrupted logistics.
-  - An entrenched Aetherian core must have vulnerabilities to siege, containment, or resource denial.
-  - Biomass connectivity must not make Blergian mobility or expansion impossible.
-  - Flying Manusian expansion must honor specialist deployable-unit restrictions.
-  - Aetherian homeworld reconstruction describes a faction fantasy, not an automatic map-wide terrain overwrite.
+  - Early Organ pressure needs defensive and economic counters.
+  - Dispersed Manus outposts must be vulnerable to raids and disrupted logistics.
+  - An entrenched Eter core must have vulnerabilities to siege, containment, or resource denial.
+  - Biomass connectivity must not make Organ mobility or expansion impossible.
+  - Flying Manus expansion must honor specialist deployable-unit restrictions.
+  - Eter homeworld reconstruction describes a faction fantasy, not an automatic map-wide terrain overwrite.
 creative_influences:
   status: moodboard_only_not_licensed_content
   shared:
@@ -165,21 +165,21 @@ creative_influences:
     - source: Prometheus
       inspiration: [ancient_alien_ruins, unsettling_biotechnology, existential_mystery, monumental_emptiness]
       exclusions: [engineers, recognizable_props, named_locations, storylines]
-  blergians:
+  org:
     - source: Alien
       inspiration: [predatory_organic_ecology, claustrophobic_hives, architectural_biomass, visceral_mutation]
       exclusions: [xenomorph_anatomy, facehuggers, eggs_as_signature_art, franchise_names]
     - source: Warhammer 40000
       inspiration: [overwhelming_war_scale, relentless_attrition]
       exclusions: [tyranid_visual_identity, named_units, iconography]
-  manusians:
+  man:
     - source: Warhammer 40000
       inspiration: [field_fortifications, expeditionary_military_scale, industrial_density]
       exclusions: [imperium_symbols, space_marine_armor, recognizable_units]
     - source: Prometheus
       inspiration: [exploration_tension, advanced_field_equipment]
       exclusions: [recognizable_vehicles, ships, props]
-  aetherians:
+  eth:
     - source: Predator
       inspiration: [ritualized_advanced_hunting, heightened_senses, stealth, technological_superiority]
       exclusions: [yautja_anatomy, masks, wrist_blades, shoulder_cannons, signature_symbols]
@@ -190,3 +190,7 @@ creative_influences:
     - All silhouettes, terminology, worldbuilding, artwork, audio, and faction symbols must be original.
     - References guide emotional tone and high-level design, never copy franchise-specific execution.
     - Third-party imagery requires separate licensing; no unlicensed assets committed.
+
+# Naming governance: current canonical faction IDs are org/man/eth.
+# Legacy IDs blergians/manusians/aetherians are historical only and must not be used for new runtime config.
+# See design/faction-identity-rename-2026-10-11.md.
