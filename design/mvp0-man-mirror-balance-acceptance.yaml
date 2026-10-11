@@ -3,7 +3,9 @@ project: scalfagus
 release: mvp_0_1
 suite: man_mirror_numeric_and_execution_acceptance
 version: 0.1
-status: executable_test_design_ONLY_NOT_yet_run_or_implemented
+status: supplementary_numeric_scenario_tests_NOT_active_thresholds_until_profile_approved_OR_executed
+active_micro_release_profile: design/mvp0-agent-implementation-contract.yaml
+profile_change_requires_recalculate_expected_values: true
 approved_scope: DEC-033
 candidate_numbers: design/mvp0-man-mirror-balance-v0.1.yaml
 source_map: design/mvp-verdant-divide-map.yaml
