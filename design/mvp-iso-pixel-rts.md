@@ -1,7 +1,9 @@
 # Scalfagus — Internal MVP Scope: 1990s Isometric RTS, Hero and Tiny FPS Possession
 
 Date: 2026-10-11
-Status: **recommended playable scope**, not implementation. User-required product ingredients identified; unit/building counts are adjustable planning caps.
+Status: **HISTORICAL INITIAL MAN-ONLY MVP PLAN**. Preserves the one-world/three-camera/Hero vision, but its MAN-only opponent scope and engine-selection alternatives have been SUPERSEDED by DEC-025/DEC-030 and the actual Godot-only repository.
+
+> **CURRENT OWNER-APPROVED MVP:** MAN **and** ETH, five basic roles each, one local 1v1 versus a scripted fair bot, finite surface SOLID resource mining, water as nonharvestable scenery, trees as physical cover. **EVERY playable map MUST be a floating platform in outer space** with a visible rim and invisible four-sided wall, even where upper terrain is brown earth jungle or a metal patchwork deck. First map is stationary 64x64-candidate `Verdant Divide`. No selectable ordinary planetary surface or actual spherical runtime. [Agent entrypoint](../AGENTS.md), [MVP delivery gates](MVP-DELIVERY-GATES.md), [world constitution](space-platform-world-contract-2026-10-11.md), [five-role catalog](mvp-man-eth-catalog.yaml). Old MAN-only mirror and engine comparisons below are research history, NOT current execution instructions.
 
 ## Product outcome / player promise
 
