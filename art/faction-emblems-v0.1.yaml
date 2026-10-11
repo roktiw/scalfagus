@@ -1,0 +1,196 @@
+schema_version: 1
+project: scalfagus
+version: 0.1
+status: prototype_candidates_not_final_brand_approval
+source_art_reference: conversation_image_2026-10-11_three_by_three_faction_emblems
+production_technique: hand-coded_nearest_pixel_geometry_not_poster_crop
+source_generator: scripts/build-faction-emblems.mjs
+atlas_regions: assets/faction-emblems/regions.json
+ui_rules: art/faction-ui-iconography-v0.1.md
+art_spec: art/faction-emblems-pixel-art-production-v0.1.md
+name_canon: design/faction-naming-conventions-2026-10-11.md
+resolution_policy:
+  native_pixel_sizes: [16, 32, 64]
+  native_authored_for_each_size: true
+  preview_scaling: nearest_neighbor_integer_only
+  runtime_format: png_rgba
+  alpha_background: transparent
+  not_a_chroma_key: true
+  magenta_background: optional_debug_preview_only
+  source_poster_is_not_a_sprite_atlas: true
+  minimum_safe_interior_separation_px:
+    16: 1
+    32: 2
+    64: 3
+  minimum_core_shape_stroke_px:
+    16: 1
+    32: 2
+    64: 3
+  corner_padding_target_px:
+    16: 1
+    32: 2
+    64: 4
+  preview_downscale_is_not_a_16px_source: true
+  forbid_antialiasing_and_subpixel_transform: true
+  no_lettering_inside_16px_icon: true
+  language_independent_symbols: true
+  high_contrast_and_shape_first: true
+  faint_or_disabled_icon_requires_outline_not_color_only: true
+  selection_or_team_states_are_external_UI_layers: true
+  do_not_mirror_text_or_functional_equipment: true
+  no_runtime_animated_eye_tracking_default: true
+
+layout:
+  atlas_order_rows: [man, eth, org]
+  atlas_order_columns: ["01", "02", "03"]
+  atlas_grid: {columns: 3, rows: 3}
+  icon_region_formula_px: "[variant_index * size, faction_row * size, size, size]"
+  faction_row_index: {man: 0, eth: 1, org: 2}
+  variant_column_index: {"01": 0, "02": 1, "03": 2}
+  atlas_paths:
+    16: assets/faction-emblems/faction-emblems-16.png
+    32: assets/faction-emblems/faction-emblems-32.png
+    64: assets/faction-emblems/faction-emblems-64.png
+  atlas_dimensions_px:
+    16: [48, 48]
+    32: [96, 96]
+    64: [192, 192]
+  godot_selection: texture_atlas_region_not_directional_actor_sprite
+  compatibility_note: faction_heraldry_is_a_UI_decal_not_a_five_view_rotating_world_sprite
+
+factions:
+  man:
+    machine_id: man
+    name_short: Manus
+    name_mid: Manusians
+    name_full: Manusians Augmented Navigators
+    approved_outer_shape: square
+    approved_inner_category: human_hand
+    color_family: [deep_navy, construction_blue, suit_ivory, utility_orange]
+    avoids: [literal_hand_photo, mirrored_text, only_fist_as_generic_warfare_icon]
+    variants:
+      "01":
+        id: man.01
+        title: Open Palm / Builder
+        motif: open_human_palm_with_central_orange_energy_or_work_node
+        candidate_status: preferred_prototype_not_fully_ratified
+        narrative: agency_building_tools_making
+        size_16: five_fingers_maximum_simplified_to_four_vertical_pillars_large_palm_center_dot
+        size_32: visible_thumb_and_utility_blue_glove_shading_square_corners
+        size_64: palm_articulation_suit_material_panels_and_luminous_node_without_fine_typography
+        use_cases: [default_UI_faction_icon, worker_selection, faction_hub]
+      "02":
+        id: man.02
+        title: Constructor Glove
+        motif: white_pressurized_glove_with_blue_and_orange_machine_cuff
+        candidate_status: alternative
+        narrative: craftsmanship_and_industrial_survival
+        size_16: compact_palm_fingers_and_single_orange_cuff_pixel_group
+        size_32: separate_glove_segments_and_boxy_structural_cuff
+        size_64: industrial_seams_and_rivets_keep_large_silhouette
+        use_cases: [construction_subsystem, engineering_campaign, secondary_faction_badge]
+      "03":
+        id: man.03
+        title: Tool Grip / Engineering Slash
+        motif: compact_working_fist_crossed_by_diagonal_orange_industrial_stripe
+        candidate_status: alternative
+        narrative: action_technology_direct_intervention
+        size_16: readable_diagonal_high_contrast_grip_not_tiny_knuckles
+        size_32: articulated_fist_and_industrial_stripe
+        size_64: glove_panels_and_braced_knuckles
+        use_cases: [field_operations, combat_industrial_culture, optional_team_variant]
+  eth:
+    machine_id: eth
+    name_short: Eters
+    name_mid: Etherans
+    name_full: Etherans Transcendent Hypervisors
+    approved_outer_shape: circle
+    approved_inner_category: stylized_eye
+    color_family: [cosmic_navy, cyan, electric_blue, antique_gold]
+    avoids: [obvious_real_world_religious_emblem, direct_protoss_symbol_copy, eye_as_black_dot_alone]
+    variants:
+      "01":
+        id: eth.01
+        title: Watcher / Ocular Compass
+        motif: eye_lid_iris_and_four_star_cardinal_marks_within_circle
+        candidate_status: preferred_prototype_not_fully_ratified
+        narrative: observation_knowledge_mapping
+        size_16: almond_eye_with_dark_pupil_and_four_high_value_marks
+        size_32: iris_lid_and_symmetric_cardinal_sparks
+        size_64: radial_iris_inlays_gold_compass_and_orbital_trim
+        use_cases: [default_UI_faction_icon, vision_network, knowledge_hub]
+      "02":
+        id: eth.02
+        title: Radiant Iris
+        motif: luminous_round_iris_as_eye_lens_with_cardinal_beams
+        candidate_status: alternative
+        narrative: concentrated_knowledge_network_light
+        size_16: concentric_light_dark_eye_spot_and_four_outer_rays
+        size_32: two_iris_rings_and_clear_pupil
+        size_64: ring_segmentation_refraction_rim_highlight
+        use_cases: [network_relay, observatory, resonance_subsystem]
+      "03":
+        id: eth.03
+        title: Orbital Eye
+        motif: circular_eye_with_saturn_like_orbital_gold_arc
+        candidate_status: alternative
+        narrative: long_distance_travel_observation_celestial_cartography
+        size_16: circular_pupil_and_simple_horizontal_orbit_arc
+        size_32: two_stage_orbit_and_cyan_lens
+        size_64: orbital_rings_celestial_gold_details
+        use_cases: [nexus, spacefaring_campaign, navigation_subsystem]
+  org:
+    machine_id: org
+    name_short: Organs
+    name_mid: Organites
+    name_full: Organites Reproductive Generalismus
+    approved_outer_shape: triangle
+    inner_category_status: undecided_three_candidates
+    color_family: [arterial_red, bone_cream, dark_maroon, organic_moss]
+    avoids: [generic_slime_blob, omnipresent_tentacles, copying_biohazard_mark, default_eye_icon_conflicting_with_eth]
+    variants:
+      "01":
+        id: org.01
+        title: Chitin Mandibles
+        motif: paired_nonidentical_insect_crab_mandibles_guarding_red_growth_core
+        candidate_status: proposed_preferred_not_owner_approved
+        narrative: adaptation_hunting_independent_living_machines
+        size_16: two_white_jaws_one_red_core_very_low_detail
+        size_32: paired_chitin_claws_subtle_asymmetry_center_organelle
+        size_64: layered_mandible_plates_and_single_vascular_node
+        use_cases: [candidate_default_UI_faction_icon, attack_focus, aggressive_expansion]
+      "02":
+        id: org.02
+        title: Three Germination Seeds
+        motif: three_distinct_larval_egg_pods_branching_from_small_organic_stem
+        candidate_status: alternative
+        narrative: reproduction_colony_spreading_physical_lineage
+        size_16: three_red_dots_and_one_green_branch_not_bubbles_everywhere
+        size_32: three_ovoid_pods_connections_and_leaflike_nerves
+        size_64: egg_sacs_separate_stalks_vascular_veins
+        use_cases: [growth_technology, nursery, colony_branching]
+      "03":
+        id: org.03
+        title: Spined Maw
+        motif: vertical_open_arthropod_jaw_with_bone_spines_and_dark_inner_gap
+        candidate_status: alternative
+        narrative: consumption_hazard_biological_defense
+        size_16: bone_red_vertical_mouth_gap_no_eyeball
+        size_32: pinched_jaws_and_two_side_spines
+        size_64: layered_chitin_teeth_multiple_distinct_spines
+        use_cases: [combat_branch, defensive_chitin, danger_alert]
+
+branding_status:
+  approved_shape_and_motif_categories:
+    man: hand_inside_square
+    eth: eye_inside_circle
+    org: triangle_with_organic_inner_motif_not_final
+  explicitly_not_approved:
+    - org_default_variant_choice
+    - final_shades_and_hex_as_corporate_identity
+    - silhouettes_without_true_320x240_and_colorblind_tests
+    - precise_3d_facade_decals_or_player_team_colors
+  suggested_default_variants_for_mockups:
+    man: "01"
+    eth: "01"
+    org: "01"

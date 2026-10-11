@@ -1,0 +1,36 @@
+name: faction-emblems-art-pipeline
+on:
+  push:
+    paths:
+      - 'art/faction-emblems-*'
+      - 'art/faction-ui-iconography-v0.1.md'
+      - 'assets/faction-emblems/**'
+      - 'scripts/build-faction-emblems.mjs'
+      - 'scripts/test-faction-emblems.mjs'
+      - '.github/workflows/faction-emblems.yml'
+  pull_request:
+    paths:
+      - 'art/faction-emblems-*'
+      - 'art/faction-ui-iconography-v0.1.md'
+      - 'assets/faction-emblems/**'
+      - 'scripts/build-faction-emblems.mjs'
+      - 'scripts/test-faction-emblems.mjs'
+      - '.github/workflows/faction-emblems.yml'
+permissions:
+  contents: read
+jobs:
+  validate-art:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Validate committed atlas regions and alpha
+        run: node scripts/test-faction-emblems.mjs
+      - name: Build from source and verify generated images are committed
+        run: |
+          node scripts/build-faction-emblems.mjs
+          node scripts/test-faction-emblems.mjs
+          git diff --exit-code -- assets/faction-emblems
