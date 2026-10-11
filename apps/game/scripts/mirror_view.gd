@@ -270,8 +270,8 @@ func _sync_visuals() -> void:
     ]
     help_label.text = "Selected: %s  |  %s\n%s" % [
         selected_text, info,
-        "P pause / +/- speed / Esc menu" if spectator else
-        "Left-click/drag select, Shift add / Right-click orders / B then click: Barracks / W: Worker at HQ / R: Rifleman at Barracks / WASD pan / Mouse wheel zoom / Esc menu"
+        "P pause / +/- speed / Esc menu (Options: Controls)" if spectator else
+        "Left-click/drag select, Shift add / Right-click orders / B then click: Barracks / T: Worker at HQ / R: Rifleman at Barracks / WASD pan / Mouse wheel zoom / Esc menu (Options: Controls)"
     ]
 
 func _cell_at_mouse(screen_pos: Vector2) -> Vector2i:
@@ -384,31 +384,30 @@ func _issue_group_order(cell: Vector2i) -> int:
 
 func _unhandled_input(event: InputEvent) -> void:
     if event is InputEventKey and event.pressed and not event.echo:
-        match event.keycode:
-            KEY_ESCAPE:
-                if build_mode:
-                    build_mode = false
-                    info = "Barracks placement cancelled"
-                else:
-                    get_tree().change_scene_to_file(MENU_SCENE)
-                return
-            KEY_P:
-                if spectator:
-                    speed = 0 if speed != 0 else 1
-            KEY_EQUAL, KEY_KP_ADD:
-                speed = mini(16, speed + 1)
-            KEY_MINUS, KEY_KP_SUBTRACT:
-                speed = maxi(1, speed - 1)
-            KEY_B:
-                if not spectator and sim.entities.has(selected_id) and str(sim.entities[selected_id]["kind"]) == "worker":
-                    build_mode = true
-                    info = "Choose Barracks location with left click"
-            KEY_W:
-                if not spectator and sim.entities.has(selected_id):
-                    info = "Worker queued" if sim.issue_command(0, "train_worker", selected_id) else "Cannot train Worker"
-            KEY_R:
-                if not spectator and sim.entities.has(selected_id):
-                    info = "Rifleman queued" if sim.issue_command(0, "train_rifleman", selected_id) else "Cannot train Rifleman"
+        if event.keycode == KEY_ESCAPE:
+            if build_mode:
+                build_mode = false
+                info = "Barracks placement cancelled"
+            else:
+                get_tree().change_scene_to_file(MENU_SCENE)
+            return
+        if event.is_action_pressed("rts_pause"):
+            if spectator:
+                speed = 0 if speed != 0 else 1
+        elif event.is_action_pressed("rts_speed_up"):
+            speed = mini(16, speed + 1)
+        elif event.is_action_pressed("rts_speed_down"):
+            speed = maxi(1, speed - 1)
+        elif event.is_action_pressed("rts_build_barracks"):
+            if not spectator and sim.entities.has(selected_id) and str(sim.entities[selected_id]["kind"]) == "worker":
+                build_mode = true
+                info = "Choose Barracks location with left click"
+        elif event.is_action_pressed("rts_train_worker"):
+            if not spectator and sim.entities.has(selected_id):
+                info = "Worker queued" if sim.issue_command(0, "train_worker", selected_id) else "Cannot train Worker"
+        elif event.is_action_pressed("rts_train_rifleman"):
+            if not spectator and sim.entities.has(selected_id):
+                info = "Rifleman queued" if sim.issue_command(0, "train_rifleman", selected_id) else "Cannot train Rifleman"
     elif event is InputEventMouseButton:
         if event.pressed and event.button_index in [
                 MOUSE_BUTTON_WHEEL_UP, MOUSE_BUTTON_WHEEL_DOWN]:
@@ -460,8 +459,8 @@ func _unhandled_input(event: InputEvent) -> void:
 func _process(delta: float) -> void:
     var shift := Vector3.ZERO
     if not spectator:
-        shift.x = float(Input.is_key_pressed(KEY_D)) - float(Input.is_key_pressed(KEY_A))
-        shift.z = float(Input.is_key_pressed(KEY_S)) - float(Input.is_key_pressed(KEY_W))
+        shift.x = Input.get_axis("rts_pan_left", "rts_pan_right")
+        shift.z = Input.get_axis("rts_pan_up", "rts_pan_down")
     if shift.length_squared() > 0.0:
         camera_center += shift.normalized() * delta * 18.0
         camera_center.x = clampf(camera_center.x, 12.0, 52.0)

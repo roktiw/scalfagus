@@ -5,7 +5,6 @@ extends SceneTree
 # plugins have passed GUI-level interaction tests.
 const EXPECTED: Array[String] = [
     "res://addons/rts_framework/plugin.cfg",
-    "res://addons/keychain/plugin.cfg",
     "res://addons/godot_state_charts/plugin.cfg",
     "res://addons/gut/plugin.cfg",
 ]
@@ -40,6 +39,22 @@ func _verify() -> void:
         if not FileAccess.file_exists(script_path):
             _fail("Missing plugin GDScript: " + script_path)
             return
+
+    # Keychain is an explicit runtime singleton instead of an editor-managed
+    # autoload. Its upstream editor plugin only registers/removes that singleton.
+    if not ProjectSettings.has_setting("autoload/Keychain"):
+        _fail("Keychain runtime autoload is missing")
+        return
+    var runtime_path: String = str(ProjectSettings.get_setting("autoload/Keychain"))
+    if not runtime_path.ends_with("res://addons/keychain/Keychain.gd"):
+        _fail("Keychain autoload points to unexpected source")
+        return
+    if get_node_or_null("/root/Keychain") == null:
+        _fail("Keychain runtime singleton not constructed")
+        return
+    if not FileAccess.file_exists("res://addons/keychain/plugin.cfg"):
+        _fail("Keychain vendor manifest missing")
+        return
 
     for license_file in [
         "res://addons/keychain/LICENSE",

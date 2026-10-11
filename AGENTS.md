@@ -54,7 +54,7 @@ Read [faction recovery rules](design/faction-damage-recovery-shields-and-repair-
 
 ## LOCAL GODOT ADDONS — ACTIVE SETUP, NO ACTIONS GATE
 
-Godot 4.7.2 editor plugins: RTS Framework (WIP reference only), Keychain 2.1, Godot State Charts 0.22.5 and GUT 9.7.1. Locked revisions for new addons are tracked in `architecture/godot-addons.lock.yaml` and Git submodules. `scripts/dev.sh` / `scripts/check.sh` automatically call `scripts/install-godot-addons.sh --ensure`; the latter runs an independent headless addon manifest smoke. **GitHub Actions have pre-runner failures, so never claim CI passed; use actual local Godot logs.** LimboAI intentionally not installed. Installed editor plugins are NOT evidence that they implement RTS gameplay; never delegate GameState authority.
+Godot 4.7.2 editor plugins: RTS Framework (WIP reference only), Godot State Charts 0.22.5 and GUT 9.7.1. Keychain 2.1 is an **explicit runtime autoload** so native games do not depend on launching the editor to register its singleton. The Keychain editor plugin is disabled to avoid duplicate singleton management; the vendored Keychain library remains installed. Locked revisions for new addons are tracked in `architecture/godot-addons.lock.yaml` and Git submodules. `scripts/dev.sh` / `scripts/check.sh` automatically call `scripts/install-godot-addons.sh --ensure`; the latter runs an independent headless addon manifest smoke. **GitHub Actions have pre-runner failures, so never claim CI passed; use actual local Godot logs.** LimboAI intentionally not installed. Installed editor plugins are NOT evidence that they implement RTS gameplay; never delegate GameState authority.
 
 
 ## LATEST DESIGN DISCUSSION ARCHIVE — 2026-10-11

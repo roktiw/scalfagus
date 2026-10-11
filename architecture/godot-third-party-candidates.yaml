@@ -27,14 +27,14 @@ providers:
     latest_repository_source_context: Godot_4_6_1_updated_2026_02_20
     purpose: player_remappable_input_actions_profiles_groups_and_conflict_checks
     port: InputBindingPort
-    status: vendored_editor_enabled_gameplay_wiring_pending
+    status: vendored_runtime_autoload_and_RTS_Options_wired_pending_Godot_verification
     first_release_required: false
     web_compatibility: unverified
     godot_4_7_2_compatibility: unverified
     installed_in_project: true
-    risk: input_plugin_registers_autoload_and_editor_plugin;_audit_action_groups_and_conflicts
+    risk: native_autoload_replaces_duplicate_editor_registration;_verify_user_profiles_and_conflicts
     fallback: Godot_InputMap_plus_ConfigFile
-    test: remap_WASD_QE_and_selection_switch_profiles_and_restart_without_action_conflicts
+    test: headless_keychain_rts_smoke_then_manual_profiles_restart_WASD_T_and_conflicts
 
   - id: godot_statecharts
     name: Godot State Charts

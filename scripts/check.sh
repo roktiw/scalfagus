@@ -20,6 +20,7 @@ fi
 "$GODOT_BIN" --headless --path apps/game --script res://tests/addons_smoke.gd
 "$GODOT_BIN" --headless --path apps/game --script res://tests/smoke.gd
 "$GODOT_BIN" --headless --path apps/game --script res://tests/menu_smoke.gd
+"$GODOT_BIN" --headless --path apps/game --script res://tests/keychain_rts_smoke.gd
 "$GODOT_BIN" --headless --path apps/game --script res://tests/rts_smoke.gd
 "$GODOT_BIN" --headless --path apps/game --script res://tests/navigation_smoke.gd
 "$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_smoke.gd

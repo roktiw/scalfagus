@@ -16,7 +16,7 @@ bash scripts/check.sh             # independently checks real Godot locally
 bash scripts/install-godot-addons.sh --check  # offline addon inventory
 ```
 
-Instructions: [Godot addon installation](docs/GODOT-ADDON-INSTALLATION-2026-10-11.md), [exact pins and status](architecture/godot-addons.lock.yaml). **GitHub Actions are currently unavailable (jobs fail before allocating a runner); never report their state as test evidence.** Keychain and State Charts gameplay integration is still a distinct future task.
+Instructions: [Godot addon installation](docs/GODOT-ADDON-INSTALLATION-2026-10-11.md), [exact pins and status](architecture/godot-addons.lock.yaml). **GitHub Actions are currently unavailable (jobs fail before allocating a runner); never report their state as test evidence.** Keychain's RTS control editor and InputMap dispatch now have a code integration (not engine-verified); State Charts game AI integration remains future work. See [MVP0 Keychain controls](docs/MVP0-KEYCHAIN-CONTROLS-2026-10-12.md).
 
 ## Runtime map — Verdant Divide (stacked draft PR)
 
