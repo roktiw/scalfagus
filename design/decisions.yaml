@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 2.2
+version: 2.3
 decisions:
   - id: DEC-001
     status: approved
@@ -575,6 +575,51 @@ decisions:
     map_format: design/map-authoring-format-v0.1.yaml
     coding_agent_plan: design/AGENT-MVP-IMPLEMENTATION.md
     acceptance: design/battlefield-frame-acceptance.yaml
+
+  - id: DEC-031
+    status: owner_approved_supersedes_prior_three_view_product_requirement
+    topic: two_gameplay_perspectives_rts_overlord_and_first_person_possession_only
+    resolution: >-
+      Scalfagus exposes exactly TWO playable perspectives: F1 Overlord RTS
+      for base building, logistics and army command, and F2 literal FPP/FPS
+      Possession of an existing owned eligible unit. Third-person TPP,
+      shoulder camera and overhead Direct Unit are NOT separate gameplay
+      modes and should not receive independent polishing or controller
+      mechanics. The current F1/F2/F3 spike may remain for debugging
+      until it is safely migrated; the actual game input mapping has NOT
+      yet been changed. F3 is unassigned/reserved for internal diagnostics.
+      Esc while possessed returns safely to Overlord. RTS-only play
+      must remain fully viable.
+    invariants: >-
+      One Godot authoritative world and one physical actor per unit across
+      modes; input lease, legal aim and fire, health, economy and ability
+      rules are shared; no second game simulation.
+    supersedes: >-
+      Earlier three-user-facing-camera scope across historical Hero,
+      MVP and architecture documents; does not remove Hero presets,
+      progressions or the Architect/Commander/Avatar playstyle disciplines.
+    specification: design/overlord-fpp-possession-contract-2026-10-11.md
+  - id: DEC-032
+    status: owner_approved_architecture_implementation_pending
+    topic: godot_native_headless_self_play_balance_lab
+    resolution: >-
+      Use Godot 4.7.2 with typed GDScript and ONE shared authoritative
+      simulation core for both normal play and accelerated headless batches.
+      Build bots following the same legal fog, resource and command rules;
+      run paired-seed, side-swapped, strategy-varied matches to evaluate
+      economy, military interactions, tactics and faction balance.
+      LLMs may analyze summaries and propose parameter changes offline,
+      never drive each simulation tick or auto-approve balance.
+      ASCII is optional debug output, not a parallel text-game engine.
+      Godot headless alone does not imply acceleration: implement
+      unpaced deterministic fixed-tick match batching and profile it.
+    mvp_scope_note: >-
+      Current approved wider MVP remains MAN vs ETH (DEC-025).
+      One-faction MAN mirror matches are a possible implementation
+      stepping stone, but a one-faction playable-release scope was NOT
+      approved in this decision. ORG is deferred until separately playable.
+    specification: design/godot-headless-balance-lab-2026-10-11.md
+
 migration_required:
   - design/economy.yaml
   - design/resources.yaml
