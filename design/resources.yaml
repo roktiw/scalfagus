@@ -1,9 +1,20 @@
 schema_version: 1
 project: scalfagus
-status: proposed_balance_v0_2
+status: legacy_proposed_balance_pending_physical_form_and_currency_migration
+superseded_extraction_gates: design/physical-resource-forms.yaml
+owner_approved_current_access:
+  solid: direct_worker_extraction_no_mine_required
+  liquid: direct_worker_extraction_small_slow_or_optional_pump
+  gas: compatible_capture_installation_required
+legacy_resource_ids_are_not_current_currency_ids: true
+note: >-
+  crystals/gas/resin IDs and historic rates below are obsolete draft sample
+  figures, not canonical active economic spending or source-extraction gates.
+  See DEC-016; do not assume old ID gas equals canonical Energy or a gas-form vent.
 references:
   economy: design/economy.yaml
   units: design/units.yaml
+  current_physical_forms: design/physical-resource-forms.yaml
 geography:
   - id: mainland
     tier: 1
