@@ -1,0 +1,80 @@
+schema_version: 1
+project: scalfagus
+version: 0.1
+status: open_options_not_approved
+document: design/building-relocation-design-options-2026-10-11.md
+conversation_synthesis: design/faction-economy-and-construction-conversation-2026-10-11.md
+current_canon:
+  authoritative_base_topology: design/base-ecologies.yaml
+  canonical_decisions: [DEC-010, DEC-011, DEC-012, DEC-013]
+  org_existing_buildings_are_rooted: true
+  man_specialist_modules_can_pack_and_relocate: true
+  man_independent_outposts_can_operate_without_home: true
+  eth_selected_structure_levitation_requires_meditation: true
+  eth_blue_min_construction_beam_is_not_building_transfer: true
+  generic_units_cannot_deploy_without_capability: true
+  universal_all_buildings_relocatable: false
+unapproved_candidates:
+  org_vascular_transplant:
+    status: proposed_not_approved
+    relative_speed: very_slow
+    investment: expensive
+    only_existing_connected_vascular_network: true
+    existing_building_identity_transferred: proposed
+    requires_destination_live_vessel_before_reformation: true
+    may_not_move_original_root_nexus_by_default: true
+    production_and_transfer_paused: true
+    chain_cut_interrupts_move: true
+    preserve_or_unload_cargo_policy: TBD
+    articulation_building_relocation: blocked_unless_other_live_route
+    expansion_home_nourishment_still_required: true
+  eth_resonant_railgun_beam:
+    status: proposed_not_approved
+    faster_than_org_vascular_transplant: desired_direction_not_numeric_target
+    requires_legitimate_source_and_initialized_destination_node: true
+    explicit_specialist_template_eligibility: true
+    requires_finite_energy_cost: true
+    requires_finite_transfer_time_and_bandwidth: true
+    meditation_required_before_transfer: proposed
+    production_and_storage_service_paused: true
+    actual_entity_not_blueprint_only: TBD
+    enemy_visibility_under_fog: TBD
+    interruption_loss_and_recovery: TBD
+    no_remote_uninitialized_free_expansion: true
+  man_extended_structure_relocation:
+    status: expand_approved_selective_module_mobility_only_after_tests
+    pack_move_unload_redeploy: true
+    requires_mobile_capability: true
+    permanent_foundations_remain_possible: true
+    stop_operations_during_move: true
+    modules_reconnect_physical_belts_at_new_location: true
+  unrestricted_building_mobility:
+    status: option_discussed_not_approved
+    universal_move_any_building_command: not_approved
+    main_risk: destroys_expansion_placement_and_overwhelms_macro
+assistant_recommendation_not_owner_decision:
+  default_building_categories: [anchored, relocatable, mobile_logistics, mode_switching_only]
+  narrow_selected_relocation_policy: preferred_for_prototype
+  first_playable_min: no_new_full_building_transplant
+  progression: [existing_mobile_modules, selected_eth_levitation, optional_org_transplant_experiment, optional_eth_structure_beam_experiment]
+proposed_common_rules:
+  no_free_global_cargo_or_technology_teleport: true
+  physical_and_network_eligibility: true
+  endpoint_foundation_and_expansion_still_matter: true
+  cost_and_time_nonzero: true
+  no_operational_production_during_transfer: true
+  cargo_garrison_health_and_upgrade_state_reconciled_once: true
+  interruption_can_pause_fail_or_salvage: true
+  fog_visibility_rules_tested_before_shipping: true
+  no_forced_micromanagement_of_each_transfer: true
+  network_and_relocation_operations_are_order_validated: true
+explicit_unresolved_input:
+  user_mentioned_eth_max_pylon_idea_but_did_not_finish: true
+  do_not_infer_new_max_pylon_powers: true
+historic_gameplay_comparison_leads_not_balance_evidence:
+  - starcraft_terran_selected_liftable_buildings
+  - warcraft_iii_night_elf_uprootable_tree_buildings
+  - factorio_robot_assisted_cut_paste_deconstruct_rebuild
+  - against_the_storm_selected_relocatable_buildings
+  - radiant_ruins_mobile_buildings_marketing_to_verify
+acceptance_tests: [RELOC-01, RELOC-02, RELOC-03, RELOC-04, RELOC-05, RELOC-06, RELOC-07, RELOC-08, RELOC-09, RELOC-10]
