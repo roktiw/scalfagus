@@ -1,8 +1,9 @@
 schema_version: 1
 project: scalfagus
-version: 0.3
-status: owner_directed_roles_with_proposed_eth_mid_and_balance
+version: 0.4
+status: owner_approved_economic_roles_with_open_balance
 specification: design/logistics-min-mid-max-2026-10-11.md
+base_ecology_specification: design/base-ecologies-and-expansion-2026-10-11.md
 scope: economic_logistics_platforms_only
 resource_ids: [matter, volatiles, energy]
 scale_meaning: chassis_scale_not_technology_or_match_scale
@@ -42,6 +43,9 @@ factions:
       direct_base_delivery: true
       cargo_slots: few
       combat: proposed_basic_equipped_self_defense
+      construction:
+        permitted_level: l1
+        requires_growth_organs_and_connected_live_vessel: true
     mid:
       role: medium_biological_harvester
       movement_domains: [land]
@@ -56,6 +60,9 @@ factions:
         throughput_upgrade_required_for_multiple_simultaneous_handoffs: true
       passengers: proposed_limited_min_capacity
       optional_combat: proposed_with_transport_tradeoff
+      construction:
+        permitted_level: l2
+        requires_growth_organs_and_connected_live_vessel: true
     max:
       role: flying_mother_transporter
       movement_domains: [air]
@@ -94,6 +101,9 @@ factions:
       optional_combat: proposed_with_mass_and_payload_tradeoff
       own_extraction: proposed_slow_specialist
       signature_weakness: intercept_loaded_mother
+      construction:
+        permitted_level: l3
+        requires_growth_organs_and_connected_live_vessel: true
     mode_design:
       required_default: [harvest_and_carry, exclusive_move_receive_dispatch_extract_modes, stop_to_load_unload]
       proposed_unlocks: [midgame_moving_handoffs, lategame_parallel_transfer_ports]
@@ -103,18 +113,26 @@ factions:
   man:
     name_mid: Manusians
     gathering_style: physical_conveyor_network
+    nexus_model: composable_relocatable_modular_base
+    independent_unlinked_expansions: true
+    home_communication_required_for_outpost: false
+    extensive_unit_and_building_repair: true
     min:
       role: self_sufficient_ground_miner_and_manual_hauler
       movement_domains: [land]
       can_extract: true
       direct_base_delivery: true
       cargo_slots: few
+      build_prefabs_and_repair_eligible_units_structures: true
+      repairs_need_spare_materials_time_and_tools: true
     mid:
       role: mobile_conveyor_segment
       movement_domains: [land]
       belt_length_tiles_options: [3, 5]
       cargo_slots: several_buffer_compartments
       can_extract_if_equipped: true
+      tracked_ground_chassis: true
+      mode_changes_are_mutually_exclusive: true
       modes:
         conveyor:
           finite_rate: true
@@ -128,6 +146,12 @@ factions:
           ejection_requires_legal_space_or_receiver: true
           package_is_world_inventory_not_base_credit: true
           garrison_slots: 0
+        one_soldier_bunker:
+          mode_capability_required: true
+          conveyor_flow: disabled
+          garrison_slots: 1
+          unfolds_as_small_defensive_post: true
+          construction_or_unpack_time_required: true
       reversible_wall_to_belt: proposed_costed
       signature_weakness: belt_cut_or_defensive_conversion
     max:
@@ -149,45 +173,43 @@ factions:
           soldier_slots: finite_TBD
       bunker_to_depot: proposed_costed
       signature_weakness: isolated_depot_or_critical_belt
+      nexus_model: warehouse_or_bunker_is_one_module_not_the_entire_base
   eth:
     name_mid: Etherans
-    gathering_style: courier_relay_hub_graph
+    gathering_style: mobile_min_couriers_to_fixed_pylon_relay_and_nexus_cores
+    base_model: distributed_resonance_network
+    initial_home_contact_for_new_expansion: true
+    continuous_home_contact_for_operating_expansion: false
+    unknown_blueprints_need_home_contact: true
     min:
-      role: independent_small_extractor_and_courier
+      role: independent_extractor_courier_and_network_builder
       movement_domains: [land]
       can_extract: true
       direct_base_delivery: true
       cargo_slots: few
+      construction:
+        mode: network
+        worker_remains_at_build_site_until_finished_or_cancelled: true
+        blue_beam_visible_as_strategic_signal: true
+        beam_target: nearest_eligible_large_node
+        spends_real_stored_energy: true
+        matter_and_volatiles_physically_delivered: true
+        beam_visibility_vs_fog_of_war: TBD
+        mode_excludes_extraction_and_courier_work: true
     mid:
-      status: proposed_not_owner_approved
-      working_name: Relay Conductor
-      role: mobile_courier_and_temporary_handoff_node
-      movement_domains: [land]
-      cargo_slots: several
-      can_extract_if_equipped: proposed
-      modes:
-        travel: physical_batch_courier
-        relay: parked_bounded_buffer_and_dispatch
-      handoffs_require_range_queue_and_slot_capacity: true
-      no_free_teleport: true
-      optional_self_defense: not_decided
-      signature_weakness: interception_and_buffer_saturation
-      other_candidates: [batch_courier, fixed_micro_pylon]
-    max:
-      role: giant_stationary_pylon_storage_hub
+      status: owner_approved_role_numeric_balance_tbd
+      role: pylon_cargo_storage_relay_or_turret
+      mobile_while_operating: false
       movement_domains: []
-      mobile: false
-      constructed_in_place_by_authorized_specialist: true
-      cargo_slots: many
-      finite_docking_and_queues: true
+      cargo_slots: several
+      handoffs_require_range_queue_and_slot_capacity: true
       modes:
-        storage:
+        storage_relay:
           accepts_cargo: true
           dispatches_cargo: true
           turret_enabled: false
         meditating_to_turret:
           duration: positive_TBD
-          energy_cost: TBD
           cargo_remains_inside: true
           accepts_cargo: false
           dispatches_cargo: false
@@ -196,7 +218,6 @@ factions:
           cargo_remains_inside: true
           accepts_cargo: false
           dispatches_cargo: false
-          cargo_gates_locked_while_turret_active: proposed_strict_exclusivity
           turret_enabled: true
           finite_weapon_cost_or_cooldown: TBD
         meditating_to_storage:
@@ -205,8 +226,26 @@ factions:
           accepts_cargo: false
           dispatches_cargo: false
           turret_enabled: false
+      future_levitating_relocation: only_if_explicitly_equipped_and_meditated
+      signature_weakness: node_disruption_and_logistics_downtime
+    max:
+      status: owner_approved_role_numeric_balance_tbd
+      role: nexus_class_core_node
+      mobile_while_operating: false
+      movement_domains: []
+      acts_as_nexus_from_creation: true
+      cargo_slots: many
+      large_node: true
+      local_blueprint_cache: true
+      initial_expansion_contact_to_home: true
+      known_buildings_work_offline_after_initialization: true
+      receives_network_construction_beams: true
+      major_storage_and_routing: true
+      not_default_mid_pylon_turret: true
+      eligible_structure_can_levitate_after_meditation: proposed_template_specific
       no_free_teleport: true
-      signature_weakness: locked_economy_during_defensive_conversion
+      signature_weakness: knowledge_and_high_value_core_loss
+
 mode_rules:
   resource_ejection_creates_finite_world_packages: true
   resource_ejection_does_not_credit_base: true
@@ -216,7 +255,11 @@ mode_rules:
   reservations_settled_before_mode_gate_locks: true
   passenger_manifests_have_finite_capacity: true
   generic_max_without_deployable_tag_cannot_transform: true
+  eth_pylon_defensive_modes_belong_to_mid: true
+  eth_max_nexus_role_supersedes_old_max_turret_pylon: true
+  man_mid_bunker_slots_exact: 1
 balance_status: TBD_after_playtests
+canonical_role_specification: design/base-ecologies-and-expansion-2026-10-11.md
 acceptance_test_ids:
   - SCALE-01
   - SCALE-02
