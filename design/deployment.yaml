@@ -1,0 +1,39 @@
+schema_version: 1
+project: scalfagus
+version: 0.4
+status: approved_core_rules_with_proposed_details
+rule:
+  all_units_deploy_into_buildings: false
+  deployable_tag_required: true
+  general_worker_min_mid_max_deploy_by_default: false
+  terrain_space_resource_and_time_checks_required: true
+  deploy_can_be_interrupted: true
+  deployment_cooldown: TBD
+  combat_behavior_during_deployment: TBD
+  unit_persistence_after_deploy: faction_or_template_specific
+factions:
+  blergians:
+    proposed_specialist: colony_seed
+    mechanism: rooting_and_organic_growth
+    reversible: false
+    cost: TBD
+  manusians:
+    proposed_specialist: modular_constructor
+    mechanism: prefab_modules_anchored_into_structure
+    reversible: proposed
+    detached_components_persist_in_world: true
+    cost: TBD
+  aetherians:
+    proposed_specialist: resonance_anchor
+    mechanism: meditation_and_energy_manifestation
+    reversible: proposed_costly
+    cost: TBD
+structure_lifecycle:
+  ownership: TBD
+  capture_rules: TBD
+  destruction_and_salvage: TBD
+  placement_restrictions: TBD
+  terrain_and_asteroid_movement: TBD
+constraints:
+  - MAX transporter does not automatically become any building.
+  - Combat and construction functions depend on explicit modules and specialist capabilities.
