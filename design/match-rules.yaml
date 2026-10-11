@@ -1,7 +1,11 @@
 schema_version: 1
 project: scalfagus
-version: 0.4
-status: approved_target_with_proposed_phase_windows
+version: 0.5
+status: approved_default_all_buildings_victory_with_proposed_phase_windows_and_edge_cases
+victory_specification: design/victory-defeat-building-classification-2026-10-11.md
+victory_acceptance: design/victory-defeat-acceptance-cases.yaml
+new_network_economy: design/three-network-channels-and-destruction-2026-10-11.md
+salvage_economy: design/world-loot-and-recycling.yaml
 mode: competitive_1v1
 target_duration_minutes: {min: 25, max: 40}
 phase_windows_minutes:
@@ -10,15 +14,51 @@ phase_windows_minutes:
   late: {from: 22, to: 40}
   note: Illustrative; phases emerge through technology and economy rather than fixed timers.
 phase_identity:
-  early: {emphasis: [matter, scouting, first_expansion], faction_economic_spike: blergians}
-  mid: {emphasis: [volatiles, mid_platforms, islands], faction_economic_spike: manusians}
-  late: {emphasis: [energy, max_platforms, asteroids], faction_economic_spike: aetherians}
-victory_conditions: TBD
+  early: {emphasis: [matter, scouting, first_expansion], faction_economic_spike: org}
+  mid: {emphasis: [volatiles, mid_platforms, islands], faction_economic_spike: man}
+  late: {emphasis: [energy, max_platforms, asteroids], faction_economic_spike: eth}
+victory_conditions:
+  default_objective: annihilation
+  owner_approved: true
+  requirement: no_living_complete_enemy_building_class_entities_remain
+  includes_mobile_units_classified_as_buildings: true
+  building_classification_by_template_tag: victory_building
+  building_classification_stable_across_modes: true
+  travel_packing_transforming_do_not_remove_existing_structural_count: true
+  count_each_living_complete_building_entity_once: true
+  count_by_team_not_worker: true
+  check_at_end_of_authoritative_simulation_tick: true
+  ordinary_combat_units_heroes_and_min_workers_not_buildings_by_default: true
+  unfinished_construction_ghosts_scaffolds_ruins_not_buildings: true
+  free_loot_stacks_depleted_deposits_single_vein_segments_and_cables_not_buildings: true
+  completed_structural_organic_nexus_mitochondrion_eth_pylon_and_nexus_are_buildings: true
+  man_umu_mobile_generator_depot_or_bunker_counts: true
+  man_deployable_mid_structure_class_template_flag_needs_content_audit: true
+  org_flying_mother_does_not_count_solely_due_to_max_size: true
+  surviving_workers_cannot_rescue_zero_building_team_by_starting_new_scaffold: true
+  source_exhaustion_not_required_for_victory: true
+  no_need_to_destroy_all_mobile_soldiers_or_workers: true
+  optional_rulesets:
+    heartstrike:
+      status: scenario_selected_optional_not_default
+      win_if_designated_enemy_command_structure_destroyed: true
+      separate_target_identity_from_required_original_nexus: true
+      man_command_structure_must_be_explicitly_designated: true
+      invalid_if_team_has_no_eligible_designated_structure: true
+    control:
+      status: future_scenario_optional
+    escort:
+      status: future_scenario_optional
 starting_conditions: TBD
 population_limit: TBD
 unit_build_times: TBD
 economic_growth_curve: TBD
-tie_or_stalemate_resolution: TBD
+tie_or_stalemate_resolution:
+  same_authoritative_tick_all_competitors_reach_zero_buildings: draw_proposed
+  surrender_allowed: true
+  match_target_minutes_is_balance_goal_not_forced_time_limit: true
+  no_automatic_defeat_for_low_resources_or_missing_ore: true
+  optional_delayed_last_building_reveal_if_gameplay_stalls: research_only
 balance:
   economic_spikes_not_guaranteed_win_rates: true
   target_equal_skill_overall_faction_win_rate: approximately_50_percent
@@ -33,3 +73,7 @@ balance:
     - tech_unlock_timing
     - combat_losses
     - map_control
+    - surviving_building_count_by_team_and_template
+    - time_hunting_last_ground_mobile_building
+    - recycled_vs_newly_mined_resource_fraction
+    - repeated_destroy_salvage_rebuild_loops
