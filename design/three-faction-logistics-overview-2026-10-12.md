@@ -61,6 +61,14 @@ Exactly one posture operates at a time. Transformations require finite time, val
 
 See [DEC-041 human spec](man-umu-power-building-mobility-roof-modules-2026-10-12.md) and [DEC-041 YAML](man-umu-power-building-mobility-roof-modules.yaml). All is POST-MVP0, not verified game code.
 
+### UMU fixed capacity and dedicated-specialist balance (DEC-042)
+
+**Owner-fixed UMU capacity (not a balance placeholder):** **4 actual soldiers OR real cargo**; 3×3×3 = **27 standardized inside cargo units** when mixing resource types; when cargo is entirely **one homogeneous resource type**, two physical outside side racks add 3×3 = 9 units on each side, making **27 + 9 + 9 = 45 total** (18 bonus units, roughly 66.7% more). External racks are visible and affect occupancy and belt-wing transformation; do not allow mixed cargo inside and monotype side racks outside. Troops and cargo are not simultaneous cabin profiles.
+
+**Qualitative power hierarchy:** UMU are **light, flexible multi-role generalists**; a dedicated purpose-built hauler, warehouse, fixed power plant, miner, conveyor or military defender should be **substantially more effective at that specific job**, while UMU remains exceptional at fast redeployment, emergency rebuilding and changing function. No specific specialist ratio has yet been owner-approved. The same UMU performs exactly one active job (DEC-041); do not give it multiple simultaneous production/defense/storage powers.
+
+Read [DEC-042 design](man-umu-capacity-and-specialist-balance-2026-10-12.md) and [DEC-042 YAML](man-umu-capacity-and-specialist-balance.yaml). This is **post-DEC-033 MVP0** and not implemented in Godot.
+
 ### ORG: biology, vein logistics and cysts
 
 1. Gatherers and large living carrier organisms haul physical finite materials into a real bidirectional living vein system. Roots/veins transfer material, nutrients, Energy and information both ways with finite throughput, meaningful cuts, a nourishment need and biological power support.
