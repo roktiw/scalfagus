@@ -1,4 +1,8 @@
 schema_version: 1
+release_target: post_mvp_0_1_MAN_vs_ETH
+do_not_instantiate_five_templates_per_faction_in_micro_MVP0: true
+current_micro_MVP0_templates: [man_command_core, man_min, man_barracks, man_rifleman]
+current_release_owner_decision: DEC-033
 project: scalfagus
 version: 0.2
 status: owner_scoped_five_roles_per_faction_all_numbers_and_extra_names_playtest_candidates
