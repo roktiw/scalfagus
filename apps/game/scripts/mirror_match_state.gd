@@ -505,15 +505,19 @@ func _bot_tick(side: int) -> void:
         # from the superseded horizontal prototype; maintain deterministic order.
         var home: Vector2i = entities[hqs[0]]["pos"]
         var candidate: Vector2i = home + (Vector2i(4, 3) if side == 0 else Vector2i(-4, -3))
+        var ordered: bool = false
         if _can_build(candidate, side):
-            issue_command(side, "build_barracks", workers[0], candidate)
-        else:
+            ordered = issue_command(side, "build_barracks", workers[0], candidate)
+        if not ordered:
             for dy in range(-6, 7):
+                if ordered:
+                    break
                 for dx in range(-6, 7):
                     var test_cell: Vector2i = home + Vector2i(dx, dy)
                     if _can_build(test_cell, side):
-                        issue_command(side, "build_barracks", workers[0], test_cell)
-                        return
+                        ordered = issue_command(side, "build_barracks", workers[0], test_cell)
+                        if ordered:
+                            break
     for wid in workers:
         var w: Dictionary = entities[wid]
         if str(w["order"]) == "idle":
