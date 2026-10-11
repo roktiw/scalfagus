@@ -5,13 +5,56 @@ Status: **source-based design/implementation audit; fixes and recommendations, N
 Companion actionable machine-readable register: [mvp-repository-mechanics-audit.yaml](mvp-repository-mechanics-audit.yaml).
 Current agent authority: [AGENTS.md](../AGENTS.md), [agent-source-of-truth.yaml](agent-source-of-truth.yaml).
 
+## Consolidated engineering conclusions — current main snapshot
+
+**2026-10-11 source review.** This executive section is the **latest corrected interpretation** of earlier findings elsewhere in this report, which were compiled during rapid parallel changes to `main`. The report remains a **source audit only**; there is no claim of executing Godot in this review.
+
+### What the coding agent should implement now
+
+**Ship DEC-033:** a full **MAN vs MAN** RTS using exactly four templates (Command Core, MIN Worker, Barracks, Rifleman), only finite SOLID → worker cargo → owned HQ Matter, combat/LOS/victory, one mandatory floating Verdant Divide space platform, and controller combinations **H–H LAN/loopback, H–C and C–C observed/headless**. Release MVP 0.1 is **RTS only**. Future Overlord + FPP is DEC-031. Do not import earlier MAN–ETH five-role + Energy, UMU, Pylon, ORG or extra cameras. Reuse existing Godot/addons under DEC-034, but do not allow third-party source to own authoritative game rules.
+
+| Finding | Verified current state | Mandatory next action |
+|---|---|---|
+| **Runnable RTS source exists** | `mirror_match_state.gd`, `mirror_view.gd`, `mirror_match.tscn`, `mirror_smoke.gd`, `mirror_batch.gd` and visual smoke exist on `main`. Includes local H–C/C–C prototypes. **Not verified by this review** | Preserve code and run actual pinned Godot checks before declaring completion |
+| **One wrong timebase** | GUI calls `sim.advance()` approximately **10 times/s** at speed 1; design candidate is **20Hz**. State `MAX_TICKS=5400` yields **9 GUI minutes**, or **4.5 simulated minutes** if moved to 20Hz unchanged, not the 20-minute candidate timeout | Define one authoritative tick duration and derive movement, extraction, queues, combat, timeout and headless simulation time from that profile |
+| **One wrong map fixture** | State hardcodes source stock **2,500** in four deposits and a local cell-layout/spawn; authored YAML defines **1,660** stock in **ten** deposits, starting clusters 400 per side | Compile the authored Verdant Divide map to Godot Resource/JSON and load identical terrain, source IDs, spawns, LOS/nav and render collision in GUI/headless |
+| **Extraction and production much too fast** | Mine a **full 10-Matter bag after 6 ticks** (0.6s in normal GUI) vs 2s per unit candidate. Barracks + training timers are 45/65 ticks rather than profile times | Remove prototype magic numbers, load **one release-specific numeric profile** into runtime, recompute tick durations and test |
+| **Movement is gated every 3 ticks** | `_walk()` explicitly returns unless `tick % 3 == 0`. This corrects the earlier incorrect claim of movement every tick: theoretical unobstructed 3.33 cells/s in current 10Hz GUI, 6.67 cells/s if simply moved to 20Hz | Convert target 2.3 tiles/s and 2-metre tile mapping consistently; reuse `AStarGrid2D`/existing adapters per DEC-034 rather than duplicating general pathfinding |
+| **Source-authority security missing** | Local `issue_command(side,...)` is not a peer-bound LAN command protocol. No authoritative two-human host/join flow identified | ENet host binds physical peer → slot, validates/fog-filters commands/snapshots and uses one GameState for H-H/H-C/C-C |
+| **Test scripts already integrated partially** | Latest `scripts/check.sh` **does invoke** `mirror_smoke.gd` and **`mirror_visual_smoke.gd`** (correcting earlier source-refresh text); it does **not invoke `mirror_batch.gd`**. This review has **no execution logs** | Execute actual Godot checks and explicit headless batch; capture engine SHA/version, commit, command, exit codes, failure seeds and hashes |
+| **Visual regressions now protected** | `mirror_visual_smoke.gd` checks real 5-view sprites, camera zoom and minimum startup window dimensions, but asserts **exactly four** source visuals, matching the hardcoded map not authored ten-node map | Keep the sprite/window checks; migrate source count/IDs to the compiled canonical map so tests do not force obsolete layout |
+| **Candidate balance ≠ measured balance** | Matching MAN costs on two sides are a useful mirror design; there are still no verified run distributions/playtest win rates in this audit | Run side-swapped paired seeds, replay invariants, H-H LAN tests and real humans before making balance claims |
+
+### One numerical authority and release data separation
+
+- **Current selected first-release candidate numeric profile:** [`mvp0-agent-implementation-contract.yaml`](mvp0-agent-implementation-contract.yaml), according to [`agent-source-of-truth.yaml`](agent-source-of-truth.yaml). These values remain **proposals**, not owner-approved competitive balance.
+- [`mvp0-man-mirror-balance-v0.1.yaml`](mvp0-man-mirror-balance-v0.1.yaml) is a **separate, non-active analytical scenario** (e.g. worker speed 2.4 vs current selected 2.3, and build-radius differences). Its [supplementary numerical acceptance cases](mvp0-man-mirror-balance-acceptance.yaml) must be recalculated or converted into profile-independent invariant tests before running as current release gates.
+- **Only post-MVP0:** [MAN–ETH numeric prototype](mvp-balance-playtest-v0.1.yaml), [finite multi-faction networks](mvp-network-execution.yaml), [inverse source-form specialization](resource-balance.yaml), advanced construction, Energy, salvage, supplies/farms, UMU and ETH Pylon. Preserve these as future design, not mandatory code for the first complete match.
+
+### Definition of ready for the coding agent
+
+**Documentation/specification:** enough linked MD/YAML now exists to start an implementation PR without inventing the release scope, provisional prices, LAN host semantics, ledger conservation or legal win behavior. Entry points are [AGENTS.md](../AGENTS.md), [current decision registry](decisions.yaml), [machine-readable authority](agent-source-of-truth.yaml), [MVP0 agent backlog](mvp0-man-mirror-backlog.yaml), [micro execution contract](mvp0-man-mirror-execution-contract.md), [LAN protocol](mvp0-man-mirror-network.yaml) and [code parity tracker](mvp0-runtime-parity-gaps.yaml).
+
+**Code/release-ready:** **NOT YET.** Critical work remains in source; YAML acceptance scenarios are **not self-running Godot tests**. A real successful GUI H-C match, paired C-C graphical/headless run, two separately connected human clients using one authoritative host, correct authored map, conservation replay hash and actual Godot/CI evidence are required before calling Scalfagus MVP0 playable or balanced.
+
+### P0 coding sequence
+
+1. **Normalize timebase, units and profile:** pick fixed 20Hz sim, ensure GUI steps and Godot headless advance exactly the same logical seconds; parameterize hardcoded economy, movement, weapon and timeout ticks from one selected profile.
+2. **Unify world truth:** compile ten-node authored map; validate two mirrored MAN starts, dry route access, actual deck/trees/water/rim collision, sight rays, source stock 1660 and visible 5-view sprites/window.
+3. **Prove a full paid single-process RTS match:** worker gathers/carries/delivers, one Barracks starts only with deposited Matter, riflemen train/attack, completed building-class elimination/draw; no negative balances, fog cheating or duplicate refunds.
+4. **Prove bots and headless:** H-C, C-C spectator and unpaced Godot batches; seeds/side swaps, trace+hash+timings, real command log and passing smoke.
+5. **Ship H-H LAN:** Godot ENet host/clients, authenticated peer-slot binding, rejection of hostile/duplicate/out-of-order orders, fog-filtered snapshots and abort-on-disconnect.
+6. **Verify and tune:** actual end-to-end local and two-process runs; turn relevant YAML acceptance into real tests, report failures and sampling uncertainty; do not claim 50% win rate from designed symmetry alone.
+
+All individual blockers and tests are tracked by [CODE-GAP-01…17](mvp0-runtime-parity-gaps.yaml) and [M0-00…09](mvp0-man-mirror-backlog.yaml).
+
 ## Source refresh — later same-day Godot changes and DEC-034
 
 **This section overrides stale code-status claims in the initial audit pass below.** While this review was being written, the repository received additional source commits. The newest verified GitHub contents include:
 
 - **`apps/game/scripts/mirror_match_state.gd`** — a new `RefCounted` **two-slot MAN mirror rules prototype** with four templates (`hq, worker, barracks, rifleman`), finite Matter bookkeeping, orders, cell movement, an internal scripted bot, a building-annihilation predicate and a replay hash. This is source code, **not a confirmed passing Godot test**.
 - **`apps/game/scripts/mirror_view.gd`** + `apps/game/scenes/mirror_match.tscn` — new local Godot tactical world/H–C and C–C spectator UI. `apps/game/scripts/menu.gd` now shows **PLAY MAN vs BOT** and **WATCH BOT vs BOT**, explicitly stating LAN H–H is unimplemented.
-- **`apps/game/tests/mirror_smoke.gd`** and **`mirror_batch.gd`** — real candidate GDScript test/runner files exist. **The latest retrieved `scripts/check.sh` still does not call either**; tests remain unverified in this audit and must be run before any pass claim.
+- **`apps/game/tests/mirror_smoke.gd`** and **`mirror_batch.gd`** — real candidate GDScript test/runner files exist. **Correction in the consolidated section above:** the current `scripts/check.sh` *does call* `mirror_smoke.gd` and `mirror_visual_smoke.gd`; the standalone `mirror_batch.gd` remains separate. No pass was observed in this audit.
 - **DEC-034** adds a mandatory **reuse-first engineering policy**: existing repo code → Godot 4.7.2 built-ins → vetted pinned GitHub/AssetLib modules → unique domain code. See [reuse architecture](../architecture/adr-0004-godot-reuse-first-wrappers.md), [component map](../architecture/godot-reuse-component-map.yaml), and [agent playbook](../docs/AGENT-REUSE-FIRST-PLAYBOOK.md). **Third-party candidate lists are research, not permission to install unreviewed addons.**
 
 **New P0 source-to-design mismatches, verified directly from the new source:**
