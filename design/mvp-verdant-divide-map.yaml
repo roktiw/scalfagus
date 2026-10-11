@@ -12,6 +12,35 @@ world:
     enabled: false
     note: future_real_planetoid_topology_not_implemented_for_first_MVP
 world_topology_reference: design/world-topologies.yaml
+battlefield_frame_reference: design/battlefield-frames.yaml
+battlefield_frame:
+  variant: floating_space_platform
+  status: proposed_preferred_visual_presentation_not_new_world_topology
+  edge:
+    policy: impassable
+    boundary_colliders_enabled: true
+    visible_rim: ancient_jungle_habitat_terrace
+    wall_invisible_physics_guard: true
+    units_can_fall_off: false
+    projectiles_stop_at_legal_world_bounds: true
+    loot_and_building_sites_outside_bounds: forbidden
+  backdrop:
+    sky: low_contrast_orbital_starfield
+    distant_body: earthlike_planet_below
+    cosmetic_parallax_only: true
+    no_gameplay_collision: true
+  platform:
+    upper_deck: living_earthlike_jungle_soil
+    geometry: rectangular_flat_habitat_with_visible_underside
+    rim_decoration: [hanging_roots, aged_metal_supports, soil_retaining_edges]
+    underside_decoration: [giant_supports, dormant_thrusters]
+    retains_water_and_local_atmosphere: lore_only
+    deck_motion_during_match: stationary
+    global_gravity: uniform
+    travel_between_planets: future_campaign_not_MVP
+  alternative_legal_frame: bounded_planetary_surface
+  applies_no_new_building_entities: true
+  cosmic_frame_never_counts_for_victory: true
 map_id: verdant_divide
 map_version: 0.1
 name: Verdant Divide
@@ -42,6 +71,9 @@ grid:
   physical_width_m: 128.0
   physical_length_m: 128.0
   border_cells_blocked: 1
+  playable_ground_stops_at_platform_edge: true
+  edge_nav_and_3d_physics_barrier: true
+  no_toroidal_wrap_and_no_spherical_surface: true
 procedural:
   seed: 357
   generator_version: decorative_scatter_v0.1
@@ -226,3 +258,8 @@ validation:
   authored_route_polylines_are_validation_hints_not_guaranteed_walkable_lanes: true
   world_resource_source_total_must_be_recomputed_from_unique_nodes: true
   no_enforced_match_timer: true
+  boundary_guard_blocks_all_ground_actor_types: true
+  decorative_space_background_not_targetable_or_mineable: true
+  floating_platform_infrastructure_not_faction_owned: true
+  map_rules_unchanged_when_changing_battlefield_frame: true
+  no_orbital_travel_or_map_motion_in_first_MVP: true
