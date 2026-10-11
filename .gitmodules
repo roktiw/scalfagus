@@ -1,0 +1,6 @@
+[submodule "third_party/godot-statecharts"]
+	path = third_party/godot-statecharts
+	url = https://github.com/derkork/godot-statecharts.git
+[submodule "third_party/gut"]
+	path = third_party/gut
+	url = https://github.com/bitwes/Gut.git
