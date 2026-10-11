@@ -4,7 +4,7 @@ Date: 2026-10-11
 Status: **static source inspection ONLY**, not a Godot run, benchmark or confirmation of a compiler failure.
 Owner authority: DEC-033 (MAN mirror RTS first release), DEC-034 (Reuse First), DEC-030 (all maps floating platforms).
 Machine-readable P0/P1 tasks: [mvp0-runtime-parity-gaps.yaml](mvp0-runtime-parity-gaps.yaml).
-Active release **numerical hypothesis:** [mvp0-man-mirror-balance-v0.1.yaml](mvp0-man-mirror-balance-v0.1.yaml); other agent-authored draft [mvp0-agent-implementation-contract.yaml](mvp0-agent-implementation-contract.yaml) includes alternative proposal values and must not silently become a **second active** balance profile.
+**CURRENT micro-release selected numerical hypothesis:** [mvp0-agent-implementation-contract.yaml](mvp0-agent-implementation-contract.yaml), as linked by the latest agent source-of-truth. [mvp0-man-mirror-balance-v0.1.yaml](mvp0-man-mirror-balance-v0.1.yaml) is a distinct **alternative analytical scenario**, not an automatically loaded second profile. Candidate differences must be resolved before a real release.
 Actual prototype code inspected on GitHub `main`: `apps/game/scripts/mirror_match_state.gd`, `mirror_view.gd`, `mirror_smoke.gd`, `mirror_batch.gd`; later concurrent edits must be re-fetched before applying patches.
 
 ## What exists in the latest source
@@ -13,18 +13,20 @@ Godot-only **MAN mirror experimental implementation** now exists on `main` (an u
 
 ## High-impact mismatches requiring coding-agent fixes
 
+**IMPORTANT timebase correction after inspecting `mirror_view.gd`:** graphical runtime advances one `sim.advance()` every **0.1 wall-clock seconds** at speed 1 (**10Hz**), while candidate profiles call for **20Hz**. Table below normalizes source tick durations at the *intended 20Hz* to expose mismatch. At the **current GUI 10Hz** rate, 5400 ticks last **9 minutes** (not 4.5), 6-tick 10-Matter mining takes **0.6s**, 45-tick Barracks/worker-training takes **4.5s**, 65-tick Rifleman training takes **6.5s**, a 10-tick rifle cooldown takes **1.0s**. Headless mode advances ticks without pacing, so results depend on whether code consistently defines one tick's game-time meaning. **Fix the tick timebase first**, then compare timing/TTK benchmarks.
+
 | System | Current hard-coded `mirror_match_state.gd` | Candidate release contract | Effect / required action |
 |---|---|---|---|
 | 20Hz match timeout | `MAX_TICKS = 5400` = **4.5 min** | `24000` ticks = **20 min**, timeout is draw | Bot self-play truncated; load profile |
 | Finite source placement | West 900 + East 900 + North 350 + South 350 = **2500** total | Canonical Verdant Divide YAML nodes sum **1660**, two near-start clusters **400** each | Cannot balance against real map; compile authored YAML |
 | SOLID extraction | Fills 10 Matter after **6 ticks** = 0.30s at 20Hz | **2.0s per Matter** = 20s for full 10 bag | Current theoretical harvesting ~67× faster for full bag alone |
-| Unit motion | One full grid cell per `advance()` tick | **2.4 tiles/s** worker, 20Hz => 0.12 tiles/tick | Current unblocked 20 tiles/s (~8.3× target) |
+| Unit motion | One full grid cell per `advance()` tick | **2.3 tiles/s** worker from the active candidate, 20Hz => 0.12 tiles/tick | Current unblocked 20 tiles/s (~8.3× target) |
 | Barracks build | `work_ticks = 45` = **2.25s** | **18s** = 360 ticks | Very large early rush distortion |
 | Worker training | `train_left = 45` = **2.25s** | **7s** = 140 ticks | Unit snowball too fast |
 | Rifleman training | `train_left = 65` = **3.25s** | **9s** = 180 ticks | Army spawn too fast |
 | Rifle cooldown | `cooldown = 10` = **0.50s** | **1.0s** = 20 ticks | Twice intended sustained damage |
 | Rifle range units | Manhattan `distance <= 6` **cells** | **6.5 world metres = 3.25 two-metre tiles**, using 3D LOS | Weapon has incompatible space/time scale |
-| Build radius | Manhattan HQ distance `<=9` | Candidate **18 tiles** (profile proposed) | Agent must use one legal region and consistent path-distance metric |
+| Build radius | Manhattan HQ distance `<=9` | Candidate **9 tiles** (active candidate) | Agent must use one legal region and consistent path-distance metric |
 | Bot decisions | Every 12 ticks | Candidate every 10 ticks | Tuning/command count differs |
 | World geometry | Hand-coded trees/water in state; 64×64 one-unit-wide 3D deck art | Versioned `Verdant Divide` YAML, proposed **2 world metres/tile**, ramps, 1660 real source units | Visual and simulation can disagree; map source of truth not implemented |
 | Pathfinding | Hand-written generic breadth-first queue in `_find_route` | DEC-034 reuse `AStarGrid2D` / vetted existing `grid_navigator.gd` adapter | Replace general algorithm when integrating |
@@ -40,7 +42,7 @@ The code uses `mirror_view.gd` to render deck rim and dark sky, which is a usefu
 
 Owner fixed: four MAN templates, two player slots and all H-H/H-C/C-C, finite SOLID→Matter, platform jungle, building-annihilation, 20-minute *candidate* test timeout as draw. Source of active numeric **implementation target** in this audit is `design/mvp0-man-mirror-balance-v0.1.yaml`. Existing `design/mvp0-agent-implementation-contract.yaml` gives a second, independently authored set of candidate defaults, e.g., worker speed 2.3 instead of 2.4. It is supplemental architecture/readiness research until merged and the owner/test lead selects a single profile; do not import a mixture.
 
-**Paper balance check:** 3 workers, 10 Matter capacity each, mining 2s/unit, 8 tiles travel each way at 2.4 tiles/s, 0.5s handling per trip → ~27.17s per 10-unit cycle, ~66.26 Matter/min combined. Locally reachable 400 Matter funds **one 100-Matter Barracks plus 6×50-Matter Riflemen** or **one Barracks + 3 Riflemen + 3 extra Workers =355 Matter**, leaving45. This is a sustainable legal opening against symmetric mirror starts *on paper*. Robot path congestion, delivery ports and actual first shots must still be measured. Until the actual map is compiled and navigable, **start parity is not proven**.
+**Paper balance check:** 3 workers, 10 Matter capacity each, mining 2s/unit, 8 tiles travel each way at 2.3 tiles/s, 0.7s handling per trip → ~27.66s per 10-unit cycle, ~65.09 Matter/min combined. Locally reachable 400 Matter funds **one 100-Matter Barracks plus 6×50-Matter Riflemen** or **one Barracks + 3 Riflemen + 3 extra Workers =355 Matter**, leaving45. This is a sustainable legal opening against symmetric mirror starts *on paper*. Robot path congestion, delivery ports and actual first shots must still be measured. Until the actual map is compiled and navigable, **start parity is not proven**.
 
 ## Agent priorities
 
