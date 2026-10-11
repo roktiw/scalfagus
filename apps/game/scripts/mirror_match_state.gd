@@ -174,7 +174,7 @@ func issue_command(side: int, action: String, actor_id: int, arg: Variant = null
             e["order"] = "idle"
             e["target_id"] = -1
         "move":
-            if kind not in ["worker", "rifleman"] or not (arg is Vector2i) or not _in_bounds(arg):
+            if kind not in ["worker", "rifleman"] or not (arg is Vector2i) or _blocked(arg):
                 return _reject()
             e["order"] = "move"
             e["target_pos"] = arg
