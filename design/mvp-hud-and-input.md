@@ -1,5 +1,10 @@
 # Scalfagus MVP — Native Godot RTS HUD, Orders and Three-Camera Input
 
+> **Current release scope reconciliation — DEC-033 (2026-10-11):** Post-MVP future RTS+FPP HUD exploration; DEC-031 disallows a third player-facing Direct/TPP mode, and DEC-033 first release is RTS-only MAN mirror. Three-mode descriptions below are historical spike behavior, NOT shippable requirements.
+>
+> **CURRENT executable release: [MAN mirror scope](mvp0-man-mirror-rts-2026-10-11.md), [active numbers](mvp0-man-mirror-balance-v0.1.yaml), [execution](mvp0-man-mirror-execution-contract.md), [authority](mvp0-man-mirror-network.yaml), [M0 backlog](mvp0-man-mirror-backlog.yaml), [acceptance](mvp0-man-mirror-acceptance.yaml).**
+
+
 Date: 2026-10-11
 Status: proposed executable MVP contract for coding agents; exact UI geometry and hotkey refinements are candidate values.
 Owner baseline: F1 Overlord RTS, F2 Direct Unit/TPP, F3 FPS on **the same Hero/entity/world**; RTS WASD pans map, Q/E rotate, scroll zoom; unit selection and a usable RTS HUD. Current native Godot spike already has menu and three cameras but not the complete RTS selection/economy/HUD. Preserve existing stable actor state.
