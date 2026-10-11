@@ -1,13 +1,13 @@
 schema_version: 1
 project: scalfagus
-version: 0.3
+version: 0.4
 status: owner_approved_domains_and_mvp_land_only_with_world_preset_proposals
 specification: design/world-environments-and-map-authoring-2026-10-11.md
 decision: DEC-026
 newest_environment_frame_decision: DEC-030
 universal_flying_platform_documentation: design/space-platform-world-contract-2026-10-11.md
 platform_surface_variants: design/platform-surface-presets.yaml
-frame_specification: design/floating-platform-battlefields-2026-10-11.md
+frame_specification: design/space-platform-world-contract-2026-10-11.md
 frame_machine_contract: design/battlefield-frames.yaml
 natural_domains:
   man:
@@ -59,7 +59,7 @@ world_frame_compatibility:
   artificial_atmosphere_and_gravity_are_lore_only_in_mvp: true
   platform_visual_backdrop_has_no_collision_navigation_or_resources: true
   battle_remains_ground_only_and_bounded: true
-  floating_platform_for_every_future_map: open_owner_art_direction
+  floating_platform_for_every_future_map: owner_approved_mandatory
 world_presets:
   earthlike_jungle:
     first_mvp: true
@@ -81,12 +81,13 @@ world_presets:
     default_substance_id: dense_synthetic_coolant
     geometry: [metal_platforms, coolant_basins, engineering_pipes]
     no_assumption_that_space_vacuum_is_liquid: true
-  waterless_arid_planet:
+  arid_waterless_platform:
     first_mvp: false
     water_present: false
     possible_nonwater_liquids: [hydrocarbon_pool, liquid_salt, cryogenic_fluid]
     no_open_water_required: true
     classical_desert_or_barren_rts_visual_tone: true
+    required_battlefield_frame: floating_space_platform
   bare_rock_dry_exception:
     first_mvp: false
     water_present: false
@@ -103,6 +104,5 @@ first_mvp_liquid_assertions:
   no_swimming_flying_or_sailing_abilities: true
   hero_first_person_collider_uses_same_liquid_blocking_as_rts: true
 owner_vs_candidate:
-  approved: [man_earth, eth_air, org_water, land_only_mvp, environmental_liquid_bodies_mandatory_in_first_supported_maps, jungle_earthlike]
-  approved: [all_future_maps_are_floating_space_platforms, surface_material_is_independent_of_frame]
+  approved: [man_earth, eth_air, org_water, land_only_mvp, environmental_liquid_bodies_mandatory_in_first_supported_maps, jungle_earthlike, all_future_maps_are_floating_space_platforms, surface_material_is_independent_of_frame]
   proposed: [additional_world_substance_names, future_movement_domains, waterless_exception_preset, exact_liquid_collision_rules_and_visuals, per_biome_material_combinations]
