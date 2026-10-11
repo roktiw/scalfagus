@@ -2,7 +2,10 @@ schema_version: 1
 project: scalfagus
 version: 0.3
 status: owner_approved_identity_with_proposed_mechanics
-specification: design/faction-logistics-2026-10-11.md
+specification: design/colony-topologies-vascular-modular-resonant-2026-10-11.md
+legacy_transport_specification: design/faction-logistics-2026-10-11.md
+topology_data_specification: design/colony-topologies.yaml
+precedence_note: newer_topology_changes_eth_mid_max_and_expansion_rules
 base_ecology_specification: design/base-ecologies-and-expansion-2026-10-11.md
 base_ecology_config: design/base-ecologies.yaml
 canonical_resources: [matter, volatiles, energy]
@@ -69,6 +72,17 @@ factions:
       upgrade_costs_and_timing: TBD_after_playtests
     scaling: [worker_count, mother_count, mother_cargo_capacity, organism_growth, transfer_port_upgrades]
     critical_asset: mother_transporter
+    living_base:
+      rooted_nexus_required: true
+      physically_connected_vascular_edges: true
+      branch_budding_requires_vessel_path: true
+      remote_branch_upkeep_requires_nourishment: true
+      detached_branch_finite_local_reserves: true
+      cut_branch_wither_is_gradual: proposed_state_machine
+      emergency_feeding_requires_real_worker_deliveries: true
+      remote_fully_independent_outposts_default: false
+      network_is_not_mandatory_shared_hive_mind: true
+    branch_feeding_priority: ensure_survival_before_growth
     loss_policy: TBD
     proposed_doctrines: [swarm, giant, symbiosis]
   man:
@@ -86,25 +100,57 @@ factions:
     breakage_interrupts_flow: true
     backpressure_required: true
     critical_asset: chokepoint_belt_or_junction
+    mobile_modular_base:
+      nexus_is_module_system_not_single_immobile_structure: true
+      purpose_built_buildings_can_walk_or_use_tracks: true
+      locomotion_capability_required: true
+      remote_islands_can_be_fully_self_sufficient: true
+      periodic_home_sync_required: false
+      normal_fog_of_war_applies_to_discovery: true
+    specialized_mid:
+      one_person_bunker: approved_direction
+      conveyor_mode: true
+      sentry_wall_mode: true
+      cargo_conservation_during_deploy: true
+    specialized_max:
+      mobile_warehouse_and_garrison_bunker: true
+      cargo_must_be_ejected_to_legal_space_before_bunker: true
     mobile_fallback: proposed_emergency_hauler
     proposed_doctrines: [belt, rail, automation]
   eth:
     name_mid: Etherans
-    model: resonance_hubs
-    signature: mobile_couriers_between_static_pylon_hubs
-    core_elements: [source_extractor, mobile_courier, stationary_mid_pylon, nexus_class_max_node, destination]
-    mid_role: pylon_storage_relay_or_meditated_turret
-    max_role: nexus_class_core_from_creation
-    min_construction_mode: stationary_network_builder_with_visible_blue_beam_to_nearest_eligible_large_node
-    home_contact: expansion_initialization_and_unknown_blueprints_only
-    eligible_structure_relocation: meditation_then_levitation
-    blueprint_knowledge_not_new_resource: true
-    stationary_pylons: true
-    pylon_inbound_outbound_queues: finite
-    courier_payload_and_travel_time: finite
+    model: resonant_knowledge_hubs
+    signature: visible_network_beam_construction_and_nexus_class_max
+    architecture_status: owner_direction_supersedes_mid_as_mobile_courier_and_max_as_warehouse_only
+    core_elements: [min_worker_network_beam, mid_pylon_multi_mode, max_nexus_class, finite_couriers, local_pattern_archive]
+    physical_cargo_and_couriers: true
     free_teleportation: false
-    scaling: [courier_count, pylon_rate, graph_topology, parallel_paths]
-    critical_asset: articulation_pylon
+    beam_construction:
+      worker_enters_network_mode: true
+      connected_to_eligible_larger_node: true
+      blue_beam_visible_subject_to_detection_policy: true
+      worker_must_channel_for_finite_duration: true
+      energy_and_material_costs_recorded: true
+      stealth_reveal_balance: TBD
+    mid:
+      kind: pylon
+      modes: [storage, network_relay, meditation, turret, conditional_levitating_move]
+      finite_buffer_and_port_queues: true
+      storage_and_network_handoffs: true
+      meditating_to_defend_preserves_cargo: true
+      gates_locked_during_meditation: true
+      gates_locked_during_active_turret: proposed_pending_balance
+      movement_requires_specialized_meditation: true
+    max:
+      kind: nexus_immediately
+      local_pattern_library: true
+      nexus_class_role_on_initial_deploy: true
+      bootstrap_sync_required_on_expansion: true
+      sync_new_blueprints_when_not_locally_held: true
+      home_link_for_normal_local_functions_after_bootstrap: false
+      mobile_only_with_specialized_slow_meditation: proposed
+    critical_asset: relay_or_nexus_under_attack
+    scaling: [min_couriers, mid_mode_capacity, network_topology, local_nexus_knowledge, parallel_paths]
     proposed_doctrines: [relay, mesh, phase]
     phase_costed_energy_shortcut: speculative_not_approved
 balance:
@@ -113,7 +159,7 @@ balance:
   test_scenarios: [short_range, long_range, chokepoint, interruption, fallback, islands, drifting_asteroids]
   no_arbitrary_global_faction_throughput_bonus: true
 implementation:
-  phase_0: [shared_inventory_model, org_stopping_mother_loop_single_transfer_port, man_destructible_belt, eth_static_pylon_couriers]
-  phase_1: [org_two_mothers_and_contested_workers, man_bypass_and_buffer, eth_mesh_and_hub_attack]
-  phase_2: [org_midgame_moving_handoff_upgrade, org_lategame_extra_ports, doctrine_playtests, terrain_docking, competitive_balance]
+  phase_0: [shared_inventory_model, org_stopping_mother_loop_single_transfer_port, man_destructible_belt, eth_mid_pylon_with_min_couriers_and_max_nexus]
+  phase_1: [org_vascular_budding_and_cut_branch_feed, man_independent_expansion_and_mid_one_person_bunker, eth_network_builder_beam_and_novel_pattern_sync]
+  phase_2: [org_midgame_moving_handoff_upgrade, org_lategame_extra_ports, eth_meditation_levitation, doctrine_playtests, terrain_docking, competitive_balance]
 acceptance_test_ids: [LOG-F01, LOG-F02, LOG-F03, LOG-F04, LOG-F05, LOG-F06, LOG-F07, LOG-F08, LOG-F09, LOG-F10, LOG-F11, LOG-F12, LOG-F13]
