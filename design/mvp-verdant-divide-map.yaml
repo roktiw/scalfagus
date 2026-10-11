@@ -1,0 +1,214 @@
+schema_version: 1
+map_format: scalfagus_map_manifest
+map_format_version: 0.1
+map_id: verdant_divide
+map_version: 0.1
+name: Verdant Divide
+status: developer_playtest_fixture_not_final_balanced_map
+design_reference: design/world-environments-and-map-authoring-2026-10-11.md
+format_reference: design/map-authoring-format-v0.1.yaml
+factions_allowed: [man, eth]
+objective: destroy_all_enemy_victory_buildings
+environment:
+  preset: earthlike_jungle
+  planet_style: mostly_earthlike_exotic_jungle
+  biome: humid_tropical_forest
+  water_present: true
+  any_liquid_present: true
+  required_liquid_substance: freshwater
+  liquid_is_visual_collision_not_harvestable_resource: true
+  weather_first_mvp: clear
+  time_of_day_first_mvp: daytime
+  future_alternates: [space_platform_dense_fluid, waterless_planet_with_nonwater_liquid]
+grid:
+  width: 64
+  height: 64
+  origin: northwest_top_left
+  coordinates: integer_tile_indices
+  world_y_is_up: true
+  tile_meters: 2.0
+  elevation_step_meters: 1.0
+  physical_width_m: 128.0
+  physical_length_m: 128.0
+  border_cells_blocked: 1
+procedural:
+  seed: 357
+  generator_version: decorative_scatter_v0.1
+  fixed_gameplay_topology_for_any_cosmetic_seed: true
+  randomize_resource_amounts_or_positions_at_match_start: false
+  randomize_trunk_collision_at_match_start: false
+  cosmetic_seed_changes_derived_map_hash_if_render_assets_differ: true
+  deterministic_resolved_simulation_geometry_hash_required: true
+default_terrain:
+  id: humid_jungle_soil
+  height_level: 0
+  traversable_ground: true
+  wetness_visual_only: true
+terrain_regions:
+  - id: north_start_clearing
+    kind: clearing
+    shape: {type: circle, cx: 9, cy: 9, radius: 7}
+    removes_only_noncritical_decorations: true
+  - id: south_start_clearing
+    kind: clearing
+    shape: {type: circle, cx: 54, cy: 54, radius: 7}
+    removes_only_noncritical_decorations: true
+  - id: central_meadow
+    kind: clearing
+    shape: {type: circle, cx: 32, cy: 32, radius: 7}
+  - id: northern_understory
+    kind: dense_forest
+    shape: {type: rect, x: 14, y: 4, width: 40, height: 17}
+  - id: southern_understory
+    kind: dense_forest
+    shape: {type: rect, x: 9, y: 43, width: 41, height: 16}
+elevation_features:
+  - id: northern_observation_ridge
+    shape: {type: rect, x: 29, y: 5, width: 7, height: 4}
+    height_level: 1
+    gameplay_effect: physically_higher_ground_and_3d_los
+  - id: southern_observation_ridge
+    shape: {type: rect, x: 28, y: 55, width: 7, height: 4}
+    height_level: 1
+    gameplay_effect: physically_higher_ground_and_3d_los
+ramps:
+  - id: north_ridge_ramp
+    from_height_level: 0
+    to_height_level: 1
+    footprint: {type: rect, x: 30, y: 9, width: 4, height: 2}
+    traversal_direction: north_south
+  - id: south_ridge_ramp
+    from_height_level: 0
+    to_height_level: 1
+    footprint: {type: rect, x: 29, y: 53, width: 4, height: 2}
+    traversal_direction: north_south
+liquid_bodies:
+  - id: blue_mirror_pond_north
+    substance_id: freshwater
+    shape: {type: circle, cx: 32, cy: 20, radius: 4}
+    surface_height_level: 0
+    depth_m: 1.5
+    ground_passable: false
+    swimming_allowed_for_mvp_units: false
+    harvestable_resource_source: false
+    shore_visual: muddy_reeds
+  - id: blue_mirror_pond_south
+    substance_id: freshwater
+    shape: {type: circle, cx: 31, cy: 44, radius: 4}
+    surface_height_level: 0
+    depth_m: 1.5
+    ground_passable: false
+    swimming_allowed_for_mvp_units: false
+    harvestable_resource_source: false
+    shore_visual: muddy_reeds
+  - id: west_border_stream
+    substance_id: freshwater
+    shape:
+      type: polygon
+      points: [[2, 24], [5, 24], [6, 30], [4, 36], [2, 36]]
+    surface_height_level: 0
+    depth_m: 0.5
+    ground_passable: false
+    swimming_allowed_for_mvp_units: false
+    harvestable_resource_source: false
+    shore_visual: wet_roots
+ground_routes:
+  - id: direct_center
+    points: [[11, 11], [21, 21], [32, 32], [44, 44], [53, 53]]
+    width_tiles_min: 5
+    intent: short_and_exposed_contested_clearing
+  - id: northern_forest_flank
+    points: [[11, 11], [17, 10], [31, 10], [45, 29], [53, 53]]
+    width_tiles_min: 4
+    intent: longest_ranged_cover_route_with_optional_ridge
+  - id: southern_understory_flank
+    points: [[11, 11], [10, 26], [14, 40], [29, 53], [53, 53]]
+    width_tiles_min: 4
+    intent: alternate_dry_approach_through_forest
+  - id: route_validation
+    note: listed_routes_are_targets_not_force_walkable_stamps
+    ensure_rasterized_corridor_disjoint_liquid_and_fixed_colliders: true
+    if_constraint_not_met_fail_validation_not_erase_water: true
+start_slots:
+  - id: northwest
+    location: {x: 9, y: 9}
+    hero_location: {x: 10, y: 11}
+    min_worker_locations: [[7, 11], [9, 12], [12, 9]]
+    free_ground_radius_tiles: 5
+    hq_footprint_tiles: [3, 3]
+    starter_solid_nodes: [nw_solid_1, nw_solid_2]
+    initial_owned_entities_from_catalog: true
+  - id: southeast
+    location: {x: 54, y: 54}
+    hero_location: {x: 53, y: 52}
+    min_worker_locations: [[56, 52], [54, 51], [51, 54]]
+    free_ground_radius_tiles: 5
+    hq_footprint_tiles: [3, 3]
+    starter_solid_nodes: [se_solid_1, se_solid_2]
+    initial_owned_entities_from_catalog: true
+spawn_assignment:
+  randomly_swap_faction_to_slot_with_seed_if_desired: true
+  no_automatic_terrain_bonus_for_man_or_eth: true
+  identical_starter_unit_counts_and_stored_resources: true
+  never_spawn_aircraft_or_swimmers: true
+fixed_cover:
+  - {id: trunk_n_01, type: giant_living_tree, tile: [21, 15], blocking_trunk_radius_tiles: 1.2, canopy_radius_tiles: 3.8}
+  - {id: trunk_n_02, type: giant_living_tree, tile: [26, 17], blocking_trunk_radius_tiles: 1.0, canopy_radius_tiles: 3.3}
+  - {id: trunk_n_03, type: giant_living_tree, tile: [39, 17], blocking_trunk_radius_tiles: 1.2, canopy_radius_tiles: 3.5}
+  - {id: trunk_n_04, type: giant_living_tree, tile: [41, 23], blocking_trunk_radius_tiles: 1.0, canopy_radius_tiles: 3.0}
+  - {id: trunk_c_01, type: giant_living_tree, tile: [24, 30], blocking_trunk_radius_tiles: 1.0, canopy_radius_tiles: 3.2}
+  - {id: trunk_c_02, type: giant_living_tree, tile: [39, 35], blocking_trunk_radius_tiles: 1.0, canopy_radius_tiles: 3.2}
+  - {id: trunk_s_01, type: giant_living_tree, tile: [22, 48], blocking_trunk_radius_tiles: 1.2, canopy_radius_tiles: 3.8}
+  - {id: trunk_s_02, type: giant_living_tree, tile: [27, 46], blocking_trunk_radius_tiles: 1.0, canopy_radius_tiles: 3.3}
+  - {id: trunk_s_03, type: giant_living_tree, tile: [38, 48], blocking_trunk_radius_tiles: 1.2, canopy_radius_tiles: 3.5}
+  - {id: trunk_s_04, type: giant_living_tree, tile: [42, 40], blocking_trunk_radius_tiles: 1.0, canopy_radius_tiles: 3.0}
+cover_rules:
+  tree_trunk_blocks: [ground_navigation, line_of_sight, bullets_and_basic_projectiles]
+  leafy_canopy_blocks: []
+  canopy_fades_in_view_when_hiding_player_selected_units: true
+  canopy_visibility_does_not_change_combat_los: true
+  trees_attackable: false
+  player_can_chop_tree_for_resources: false
+  future_forest_clearance: out_of_scope
+resource_nodes:
+  - {id: nw_solid_1, physical_form: solid, kind: surface_rock, tile: [10, 17], stored_source_units: 200, prototype_currency_output: matter, extraction_rig_required: false}
+  - {id: nw_solid_2, physical_form: solid, kind: deadwood_deposit, tile: [17, 10], stored_source_units: 200, prototype_currency_output: matter, extraction_rig_required: false}
+  - {id: se_solid_1, physical_form: solid, kind: surface_rock, tile: [53, 46], stored_source_units: 200, prototype_currency_output: matter, extraction_rig_required: false}
+  - {id: se_solid_2, physical_form: solid, kind: deadwood_deposit, tile: [46, 53], stored_source_units: 200, prototype_currency_output: matter, extraction_rig_required: false}
+  - {id: center_solid_1, physical_form: solid, kind: surface_rock, tile: [30, 31], stored_source_units: 200, prototype_currency_output: matter, extraction_rig_required: false}
+  - {id: center_solid_2, physical_form: solid, kind: deadwood_deposit, tile: [34, 33], stored_source_units: 200, prototype_currency_output: matter, extraction_rig_required: false}
+  - {id: west_flank_solid_1, physical_form: solid, kind: deadwood_deposit, tile: [16, 34], stored_source_units: 150, prototype_currency_output: matter, extraction_rig_required: false}
+  - {id: east_flank_solid_1, physical_form: solid, kind: deadwood_deposit, tile: [48, 30], stored_source_units: 150, prototype_currency_output: matter, extraction_rig_required: false}
+  - {id: north_ridge_solid, physical_form: solid, kind: surface_rock, tile: [32, 7], stored_source_units: 80, prototype_currency_output: matter, extraction_rig_required: false}
+  - {id: south_ridge_solid, physical_form: solid, kind: surface_rock, tile: [31, 57], stored_source_units: 80, prototype_currency_output: matter, extraction_rig_required: false}
+resource_policy:
+  enabled_source_forms: [solid]
+  liquid_resource_node_count: 0
+  gas_resource_node_count: 0
+  liquid_terrain_exists_without_collectibility: true
+  source_amounts_candidate_not_final_balance: true
+  no_mine_required_for_direct_solid_gather: true
+  material_output_is_finite_world_cargo: true
+  intial_total_world_solid_source_units: 1720
+decoration:
+  fixed_colliding_cover_is_not_procedural: true
+  seeded_nonblocking_sprites: [grass, fern, moss, flowers, leaf_particles, small_ground_rocks]
+  no_cosmetic_spawn_on_hq_or_resource_pickup_cells: true
+  no_cosmetic_collision_affecting_navigation_or_los: true
+  counts_seeded_for_art_only: TBD
+validation:
+  min_factions: 2
+  legal_start_slots: 2
+  at_least_three_authorable_ground_route_hints: true
+  independent_actual_walkable_paths_minimum: 2
+  both_starts_can_reach_own_source_clusters: true
+  initial_accessible_matter_around_each_spawn_equal: 400
+  no_essential_route_crosses_unbridged_liquid: true
+  liquid_bodies_present_minimum: 1
+  unharvestable_liquid_bodies_present: true
+  floating_or_airborne_units_enabled: false
+  swimming_or_naval_units_enabled: false
+  tree_trunks_provide_true_tactical_cover: true
+  forest_alpha_fade_visual_only: true
+  collision_paths_and_resource_reachability_need_runtime_compiler_verification: true
+  no_enforced_match_timer: true
