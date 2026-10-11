@@ -1,0 +1,31 @@
+schema_version: 1
+project: scalfagus
+version: 0.4
+decisions:
+  - id: DEC-001
+    status: approved
+    topic: energy_resource
+    resolution: Energy is the third stored, transportable, spendable resource.
+    specification: design/energy.yaml
+  - id: DEC-002
+    status: approved
+    topic: unit_to_structure
+    resolution: Only explicitly specialized deployable units may become structures.
+    specification: design/deployment.yaml
+  - id: DEC-003
+    status: approved
+    topic: logistics_automation
+    resolution: Medium automation; classic RTS commands plus automatic compatible cargo transfer.
+    specification: design/logistics.yaml
+  - id: DEC-004
+    status: approved
+    topic: match_length
+    resolution: Standard competitive 1v1 targets 25–40 minutes.
+    specification: design/match-rules.yaml
+migration_required:
+  - design/economy.yaml
+  - design/resources.yaml
+  - design/units.yaml
+notes:
+  - Approved design decisions are distinct from tentative balance numbers.
+  - See design/decisions-v0.4.md for implementation questions and acceptance criteria.
