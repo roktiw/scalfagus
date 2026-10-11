@@ -1,4 +1,6 @@
-# Scalfagus Godot-Native Implementation Contract — MVP 0.1
+# Scalfagus Godot-Native Component Architecture — Future Expanded MAN–ETH Scope
+
+> **DEC-033 first playable MVP 0.1 is MAN mirror, RTS-only, four templates and Matter-only**. This architecture is a forward-looking component reference for additional systems; it is **not** an instruction to introduce ETH, Energy, UMU, loot salvage or FPS now. The active micro-MVP documents are [scope](mvp0-man-mirror-rts.yaml), [proposed implementation values](mvp0-agent-implementation-contract.yaml) and [current audit](mvp-repository-mechanics-audit-2026-10-11.md). **DEC-034** requires built-in Godot and vetted wrappers before writing generic new pathfinding, raycasts, networking transport or FSM frameworks.
 
 > **Current release scope reconciliation — DEC-033 (2026-10-11):** Broad future two-faction architecture reference only. Implement MVP0 four MAN templates, Godot RTS-only GUI, Godot ENet LAN and headless C-C before ETH networks/UMU/Hero FPP. The native one-world design principle still applies.
 >
