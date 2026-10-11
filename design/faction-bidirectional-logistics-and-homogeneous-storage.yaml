@@ -1,0 +1,87 @@
+schema_version: 1
+project: scalfagus
+decision_id: DEC-038
+date: "2026-10-12"
+version: 0.1
+status: ETH_homogeneous_energy_and_ORG_ETH_bidirectionality_owner_directed_MAN_two_way_early_candidate
+narrative: design/faction-bidirectional-logistics-and-homogeneous-storage-2026-10-12.md
+prior_decisions: [DEC-010, DEC-011, DEC-012, DEC-018, DEC-021, DEC-023, DEC-033, DEC-035, DEC-036, DEC-037]
+scope:
+  DEC_033_MVP0_MAN_four_templates_unchanged: true
+  no_conveyor_ETH_or_ORG_work_before_first_MVP: true
+common:
+  single_authoritative_resource_ledger: true
+  conservation_of_goods_and_separate_shield_energy_currency: true
+  bidirectional_edges_are_finite_shared_capacity_not_instant_double_bandwidth: true
+  explicit_real_custody_and_per_hop_time: true
+  manual_command_priority: true
+  no_unapproved_strategic_expenditure: true
+factions:
+  org:
+    living_veins:
+      approved_bidirectional: true
+      supported_services: [real_typed_resource_packets, nutrition, energy, information]
+      initial_shared_edge_throughput_across_both_directions: proposed
+      finite_traffic_and_backpressure: true
+      biological_needs_and_branch_cut_rules_from: DEC-023
+    cysts:
+      holds_exactly_one_resource_type: true
+      biological_specialization_mutation_has_cost: true
+      empty_cyst_mutation_cost_or_timing: TBD
+      nonempty_rebind_must_first_physically_unload: true
+      irreversible_vs_costly_reverse_mutation: undecided
+  eth:
+    Obelisk_links:
+      approved_bidirectional_tip_to_tip_resource_freight: true
+      approved_bidirectional_ground_drone_routes: true
+      physical_Obelisk_foot_flags_remain_valid: true
+      initial_shared_edge_throughput_across_both_directions: proposed
+      positive_latency_and_finite_bandwidth: true
+      no_free_raw_to_Ether_conversion_at_all_Obelisks: true
+      unchanged_baseline_raw_Nexus_only_conversion: DEC-021
+      ETH_unit_relay_can_use_both_directions: true
+    levitated_storage:
+      mixed_typed_goods_allowed: true
+      positive_energy_upkeep_for_nonzero_suspended_stock: true
+      lower_diversity_means_lower_energy_cost_at_fixed_total: true
+      mono_resource_is_more_energy_efficient_than_equal_size_mixture: true
+      homogeneity_measure: max_type_share_or_concentration_index_TBD
+      homogeneous_all_one_type_maintenance_energy_cost_is_positive: true
+      cost_function: positive_amount_cost_times_diversity_factor_candidate
+      exact_diversity_discount_curve: TBD
+      inventory_fullness_reduces_throughput_independently: DEC-036
+      same_fullness_same_congestion_even_when_resource_homogeneous: true
+      no_network_sustain_results_in_finite_once_only_ground_drop: true
+      ground_flags_do_not_consume_levitation_upkeep: true
+      no_energy_generation_by_levitating: true
+  man:
+    conveyor:
+      early_post_MVP_default_two_way: proposed_from_owner_suggestion
+      manual_arrow_selection_required_for_first_belt_version: false_proposed
+      same_real_segment_is_bidirectional: true_candidate
+      shared_aggregate_capacity_across_both_directions: proposed
+      finite_buffer_and_real_cargo: true
+      opposing_cargo_conflict_resolution: deterministic_reservations_or_single_shared_service_candidate
+      no_automatic_cloning_or_arbitrary_unrequested_routes: true
+      future_manual_directional_mode: optional_and_not_yet_owner_approved
+      possible_directional_capacity_bonus: balance_TBD
+      actual_mechanical_belts_not_ETH_teleportation: true
+    UMU:
+      mixed_resource_storage: true
+      dedicated_one_type_better_physical_packing: DEC-036
+      specialization_does_not_reduce_levitation_Energy: not_applicable
+strategic_tradeoffs:
+  man_gain: packing_density_and_transport_layout
+  org_gain: monotypic_cyst_specialization_with_mutation_cost
+  eth_gain: lower_per_tick_levitation_energy_for_homogeneous_cargo
+  ETH_mono_store_remains_congestion_bottleneck_when_full: true
+tests:
+  direction: [DIR-01, DIR-02, DIR-03, DIR-04, DIR-05, DIR-06, DIR-07, DIR-08]
+  homogeneity: [HOMO-01, HOMO-02, HOMO-03, HOMO-04, HOMO-05, HOMO-06, HOMO-07, HOMO-08]
+open_questions:
+  - mono_discount_curve_absolute_Energy_rate_and_integer_rounding
+  - shared_full_duplex_vs_serialized_each_edge_capacity
+  - MAN_belt_head_on_collision_rules_and_passable_lanes
+  - MAN_manual_directional_belt_is_upgrade_UI_or_unlock
+  - ORG_reverse_mutation_legality_and_cost
+  - raw_ETH_injection_beyond_Nexus_still_separate_open_question
