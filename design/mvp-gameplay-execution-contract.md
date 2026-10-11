@@ -1,4 +1,6 @@
-# Scalfagus MVP 0.1 — Executable Gameplay Contract for a Godot Coding Agent
+# Scalfagus — Future MAN–ETH Expanded-Slice Gameplay Contract (NOT Current MVP 0.1)
+
+> **SUPERCEDING RELEASE SCOPE — DEC-033:** First playable MVP 0.1 is **MAN vs MAN**, four templates, Matter-only, RTS-only, H–H LAN / H–C / C–C; see [MVP0 scope](mvp0-man-mirror-rts.yaml), [MVP0 implementation candidates](mvp0-agent-implementation-contract.yaml), [current audit](mvp-repository-mechanics-audit-2026-10-11.md). This document covers the **later** MAN–ETH five-role/Energy/network scope and its numerical values must NEVER be mixed into current MAN mirror gameplay. DEC-034 also requires Godot-native reuse-first wrappers.
 
 > **Current release scope reconciliation — DEC-033 (2026-10-11):** MAN vs ETH, full five-template/faction prototype, separate from current micro MVP 0.1. Three camera discussion below is historical: DEC-031 future product RTS+FPP only, DEC-033 ships RTS-only MAN mirrors. Use micro execution contract.
 >
@@ -6,7 +8,7 @@
 
 
 Date: 2026-10-11
-Status: **implementation interpretation with playtest candidate values**, not a claim of completed code or proven competitive balance.
+Status: **POST-MVP-0.1 design implementation interpretation with playtest candidate values**, not a claim of completed code or proven competitive balance.
 Scope: **MAN vs ETH on a single mandatory floating space platform, with five templates per faction, three cameras and physical finite resources**.
 Canonical owner decisions: [DEC-001, DEC-016, DEC-018–019, DEC-021–027, DEC-030](decisions.yaml).
 One source of **actual provisional numerical tuning**: [mvp-balance-playtest-v0.1.yaml](mvp-balance-playtest-v0.1.yaml). Existing `mvp-economy.yaml`, `mvp-combat.yaml` and `mvp-man-eth-catalog.yaml` remain semantic definitions and historical prototype hypotheses where their numbers disagree. **Do not sum or mix different profiles.**
