@@ -30,5 +30,10 @@ func _verify() -> void:
         push_error("Start scene missing")
         quit(5)
         return
+    var mirror := load("res://scenes/mirror_match.tscn") as PackedScene
+    if mirror == null:
+        push_error("MVP 0.1 mirror RTS scene missing")
+        quit(6)
+        return
     print("SCALFAGUS_MENU_PASS")
     quit(0)
