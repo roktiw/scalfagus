@@ -1,0 +1,124 @@
+schema_version: 1
+project: scalfagus
+version: 0.1
+status: developer_playtest_fixtures_NOT_canon_balance
+specification: design/mvp-man-eth-jungle-vertical-slice-2026-10-11.md
+catalog: design/mvp-man-eth-catalog.yaml
+map: design/mvp-verdant-divide-map.yaml
+acceptance: design/mvp-man-eth-acceptance.yaml
+world:
+  runtime_geometry: authoritative_3d
+  initial_topology: planar
+  topology_implementation_interface: design/world-topologies.yaml
+  sim_fixed_ticks_per_second_candidate: 20
+  time_delta_seconds: 0.05
+  same_runtime_ordering_deterministic: true
+  render_frames_do_not_change_gameplay_outcomes: true
+  movement_domain_available: [ground]
+  no_swimming_flying_or_naval_orders: true
+combat:
+  health_positive_integer: true
+  armor_kind: flat_integer_reduction
+  damage_formula: "effective_damage = max(1, raw_damage - target_flat_armor)"
+  friendly_fire_first_MVP: false
+  target_requires_alive_enemy_and_true_vision_or_explicit_known_target: true
+  auto_target_reveal_from_fog: forbidden
+  attack_ground_without_known_target: out_of_scope
+  projectiles_have_actual_3d_origin_and_hitbox_trace: true
+  first_MVP_weapon_resolution: simple_deterministic_hitscan_or_projectile_fixed_step
+  LOS_terrain_rules:
+    tree_trunk_collision_blocks: [movement, ordinary_projectile, sight]
+    tree_canopy_opacity_blocks: []
+    buildings_can_occlude_lines_and_projectiles: true
+    water_crossing_by_ground_unit: forbidden
+    combat_visibility_also_obeys_fog_of_war: true
+    elevated_ground_can_block_projectile_trace: true
+    same_physics_in_RTS_Direct_and_FPS: true
+  attack_when_target_unreachable: path_to_legal_firing_point_or_report_blocked
+  auto_target_priority_proposed: [manual_player_target, current_attacker, nearest_visible_hostile]
+  order_priority_manual_over_auto: true
+  no_free_infinite_vision_for_bot: true
+  projectile_hit_and_damage_applied_once_per_authoritative_tick: true
+  armor_and_damage_research_tree: out_of_scope
+soldier_profiles:
+  man_rifleman:
+    max_health: 85
+    armor: 0
+    path_domain: ground
+    footprint_radius_m_candidate: 0.45
+    speed_tiles_per_second_candidate: 2.6
+    weapon_id: man_ballistic_rifle
+    range_tiles: 6
+    damage_per_shot: 9
+    cooldown_seconds: 1.2
+    needs_line_of_sight: true
+    can_target_buildings: true
+    attack_resource_orb_without_specific_interaction: false
+  eth_sentinel:
+    max_health: 85
+    armor: 0
+    path_domain: ground
+    footprint_radius_m_candidate: 0.45
+    speed_tiles_per_second_candidate: 2.6
+    weapon_id: eth_resonant_pulse
+    range_tiles: 6
+    damage_per_shot: 9
+    cooldown_seconds: 1.2
+    needs_line_of_sight: true
+    can_target_buildings: true
+    operational_energy_per_shot: TBD_balance_before_real_sim
+  hero_variant:
+    created_from_soldier_actor_without_new_template: true
+    owns_one_hero_identity_in_all_cameras: true
+    sample_health: 120
+    one_ability_proposed: short_cooldown_dash
+    ability_cost_and_damage: TBD
+    does_not_count_as_building_for_victory: true
+    first_MVP_cameras: [overlord_RTS, direct_unit, FPS]
+    possession_does_not_spawn_a_duplicate_actor: true
+workers:
+  man_min: {max_health: 55, armor: 0, movement_domain: ground, weapon: none_in_first_slice, cargo_matter: 8}
+  eth_min: {max_health: 55, armor: 0, movement_domain: ground, weapon: none_in_first_slice, cargo_matter: 8}
+building_profiles:
+  man_command_core: {max_health: 550, armor: 2, counts_for_victory: true}
+  eth_nexus: {max_health: 550, armor: 2, counts_for_victory: true}
+  man_umu: {max_health: 290, armor: 2, counts_for_victory_including_packed: true}
+  eth_pylon_obelisk: {max_health: 230, armor: 1, counts_for_victory_even_in_turret: true}
+  man_barracks: {max_health: 260, armor: 1, counts_for_victory: true}
+  eth_manifestation_chamber: {max_health: 260, armor: 1, counts_for_victory: true}
+  mode_change:
+    man_umu_bunker_garrison_slots: TBD
+    eth_pylon_turret_attack_range_damage_cooldown_energy: TBD
+    no_full_rate_energy_generation_and_full_bunker_shelter_simultaneously: true
+    eth_pylon_ether_relay_remains_same_graph_while_turret_at_reduced_rate: proposed
+tree_cover:
+  id_tag: tree_trunk_cover
+  movement_collider_and_ray_collider_consistent: true
+  texture_canopy_fade_is_visual_only: true
+  no_realistic_ballistic_tree_penetration_model_in_MVP: true
+  tree_destruction: disabled_first_MVP
+pathfinding:
+  algorithm_candidates: [A_star_on_valid_ground_cells, navmesh_with_dynamic_obstacles]
+  slope_and_ramp_require_explicit_legal_traversal: true
+  respect_building_footprints_and_tree_trunks: true
+  respect_liquid_ground_block: true
+  moving_umu_cannot_walk_through_minute_chokepoint_without_clearance: true
+  navigation_updates_after_building_completed_or_destroyed: true
+  avoid_expensive_global_navigation_rebuild_every_frame: true
+victory:
+  canonical_decision: DEC-024
+  source: design/victory-building-template-registry.yaml
+  surviving_workers_soldiers_hero_and_world_drops_not_evidence_of_living_building: true
+  mobile_deployed_building_has_same_victory_flag_every_mode: true
+  check_after_end_of_fixed_tick_event_batch: true
+  simultaneous_both_team_last_building_losses: draw_proposed
+telemetry:
+  - time_to_first_soldier
+  - time_to_first_building_kill
+  - LOS_denied_shots_due_to_trees
+  - unit_stuck_and_failed_UMU_navigation
+  - per_faction_unit_losses_and_building_damage
+  - bot_targeting_in_fog_rejected
+  - mean_1v1_match_duration
+  - deterministic_replay_end_state_hash
+test_ids: [MVP-07, MVP-08, MVP-09, MVP-10, MVP-11, MVP-12, MVP-18, MVP-20]
