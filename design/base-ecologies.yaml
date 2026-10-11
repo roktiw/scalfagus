@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 0.3
+version: 0.4
 status: owner_approved_direction_proposed_numbers
 specification: design/base-ecologies-and-expansion-2026-10-11.md
 construction_stage_proposal: design/construction-phases.yaml
@@ -10,6 +10,10 @@ canonical_resources: [matter, volatiles, energy]
 physical_source_forms_reference: design/physical-resource-forms.yaml
 physical_source_form_access_identical_for_all_factions: true
 physical_source_forms_are_not_resource_id_replacements: true
+network_infrastructure_contract: design/three-faction-network-and-infrastructure-contract-2026-10-11.md
+man_power_and_org_vessels: design/man-power-dock-and-org-vessel-mechanics.yaml
+eth_typed_ether_network: design/eth-ether-network-mechanics.yaml
+latest_network_decisions: [DEC-018, DEC-019, DEC-020]
 invariants:
   min_independently_extracts_and_carries: true
   worker_and_building_inventory_finite: true
@@ -75,6 +79,12 @@ factions:
         simultaneous_ports: researched_lategame
         stationary_hoard_mode: tactical_alternative_not_default
         passengers_and_combat: specialized_tradeoff_proposed
+    vessel_resource_behavior:
+      growth_and_actual_home_origin_nutrition: true
+      unrestricted_shared_wallet_for_all_currencies: false
+      construction_materials_use_real_workers_and_mother_delivery: true
+      disconnected_branch_wither_after_finite_local_reserves: true
+    supply_provider: each_completed_viable_connected_living_building
     signature_vulnerabilities: [vessel_cut, colony_starvation, mother_interception]
   man:
     name_mid: Manusians
@@ -98,6 +108,22 @@ factions:
       hidden_until_scouted_under_normal_fog: true
       mandatory_exposed_link_to_home: false
       requires_local_equipment_and_resources: true
+    power_dock:
+      status: owner_supported_multi_function_concept_template_and_numbers_open
+      modes: [deployed_power_warehouse, deployed_fortified_bunker, packed_ground_travel]
+      packed_mobility_domains: [land]
+      deployed_generates_real_finite_energy_and_local_power_budget: true
+      warehouse_mode_small_material_buffer: true
+      bunker_mode_reduced_generation_restricted_warehouse_handling: true
+      parked_recharges_eligible_batteries: true
+      packing_disconnects_electric_links_and_generation: true
+      may_be_a_kit_on_existing_chassis_instead_of_new_building: TBD
+      not_a_replacement_for_mid_high_throughput_belts_or_max_large_depot: true
+    electric_connections:
+      short_range_auto_ports_with_visible_cable_edges: proposed
+      only_electricity_crosses_power_links: true
+      construction_materials_must_be_locally_carried: true
+      independent_outposts_with_own_generator_and_battery: true
     economic_units:
       min:
         role: scv_like_miner_builder_repairer
@@ -124,6 +150,18 @@ factions:
     base_topology: distributed_nexus_and_pylon_network
     base_mobility: selective_meditation_levitation
     visual_timelapse: resonant_nodes_visible_blue_construction_beams_occasional_levitation
+    ether_network:
+      pylon_and_obelisk_are_one_mid_template: true
+      pylon_initially_stationary: true
+      pylon_counts_for_resonance_support_and_information_routing: true
+      physical_materials_must_arrive_at_eligible_nexus_for_conversion: true
+      nexus_converts_to_typed_ether_preserving_resource_id: true
+      converted_stock_can_move_between_connected_pylons: true
+      equalize_target_by_proportional_available_capacity_at_finite_rates: proposed
+      partition_preserves_exact_inventory_on_each_connected_subgraph: true
+      cut_does_not_duplicate_or_rebalance_resources_instantly: true
+      initial_pylon_mobility_upgrade: not_in_mvp
+      turret_preserves_control_links_but_freight_ports_close: proposed
     economic_units:
       min:
         role: independent_miner_courier_and_network_mode_builder
@@ -135,10 +173,15 @@ factions:
           worker_remains_busy_until_job_finished_or_cancelled: true
           not_drop_energy_orb_and_leave: true
           energy_spent_from_accounted_inventory: true
-          matter_volatiles_must_be_physically_delivered: true
+          physical_materials_must_reach_nexus_before_ether_conversion: true
+          construction_can_consume_locally_reachable_typed_ether_after_finite_routing: true
+          no_remote_free_wallet_access: true
           enemy_visibility_rules: TBD
       mid:
-        role: stationary_pylon_storage_and_relay_or_turret
+        role: anchored_pylon_obelisk_resonance_support_typed_ether_storage_relay_or_turret
+        alias_for_ether_network_farm: obelisk
+        signals_and_support_available_when_turret: true
+        typed_ether_freight_gates_closed_while_turret: proposed
         replaces_old_mobile_relay_conductor: true
         modes: [storage_relay, meditating_to_turret, turret, meditating_to_storage]
         storage_cargo_remains_inside_during_mode_transition: true
@@ -149,12 +192,13 @@ factions:
       max:
         role: nexus_class_core_node
         nexus_capabilities_from_creation: true
-        functions: [local_base_anchor, local_blueprint_cache, construction_beam_receiver, major_storage_and_routing]
+        functions: [local_base_anchor, local_blueprint_cache, construction_beam_receiver, physical_cargo_to_typed_ether_converter, large_network_storage_and_routing]
         not_automatically_turret: true
         levitating_relocation_for_eligible_models_only: true
     construction:
       nearest_large_valid_node_required_for_beam: true
-      no_free_material_teleport: true
+      no_unbounded_instant_remote_material_teleport: true
+      valid_typed_ether_stock_may_be_network_transferred_and_consumed_after_nexus_conversion: true
       moving_supported_structures_requires_meditation_first: true
       energy_and_time_cost_nonzero: true
       during_meditation_incompatible_operations_disabled: true
@@ -165,7 +209,8 @@ factions:
       local_cached_known_blueprints: true
       unknown_blueprints_require_new_home_contact: true
       local_operation_without_home_for_known_plans: true
-      physical_costs_and_local_inventory_still_required: true
+      physical_costs_and_actual_subnet_inventory_still_required: true
+      disconnected_expansion_only_spends_its_local_network_share: true
       fog_and_beam_detection: TBD
     signature_vulnerabilities: [visible_build_beams, forced_pylon_turret_downtime, unavailable_uncached_blueprints]
 balance_telemetry:
