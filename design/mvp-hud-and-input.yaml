@@ -1,0 +1,107 @@
+schema_version: 1
+project: scalfagus
+version: 0.1
+status: agent_implementation_targets_not_real_engine_bindings_yet
+specification: design/mvp-hud-and-input.md
+implementation: native_Godot_Control_InputMap_and_single_3D_world
+product:
+  native_one_window_only: true
+  tauri_or_webview_game_runtime: false
+  current_three_camera_spike_reused: true
+  Hero_identity_HP_and_cooldowns_shared_across_modes: true
+  current_game_scene_screens: [Godot_main_menu, gameplay, pause, victory_or_defeat]
+camera_modes:
+  overlord_rts:
+    shortcut: F1
+    tab_cycles_to_mode: true
+    input_lease: camera_and_orders_not_Hero_movement
+    pan_buttons: [W, A, S, D]
+    rotate_left: Q
+    rotate_right: E
+    zoom_in: mouse_scroll_up
+    zoom_out: mouse_scroll_down
+    right_mouse_drag_orbit: existing_spike_supported_optional
+    camera_can_show_rim_and_a_little_space: true
+    camera_cannot_order_any_unit_beyond_platform_bounds: true
+  direct:
+    shortcut: F2
+    tab_cycles_to_mode: true
+    input_lease: one_existing_Hero_actor
+    movement_buttons: [W, A, S, D]
+    collision_authority: same_world_as_RTS
+  fps:
+    shortcut: F3
+    tab_cycles_to_mode: true
+    input_lease: same_Hero_actor_as_direct
+    movement_buttons: [W, A, S, D]
+    mouse_controls_camera_pitch_and_yaw: true
+    ESC_releases_captured_cursor: true
+    collision_authority: same_world_as_RTS
+mouse_orders_in_RTS:
+  left_click: select_friendly_unit_or_building
+  left_drag: rectangular_multiselect_friendly_visible_mobile_units
+  shift_left_click: toggle_selection_candidate
+  right_click_on_walkable_ground: move_selected_mobile_units
+  right_click_on_visible_enemy: attack_with_eligible_units
+  right_click_on_solid_source: gather_if_worker_eligible
+  right_click_on_ground_world_drop: collect_if_worker_eligible
+  right_click_on_invalid_water_ground: reject_and_show_reason
+  right_click_outside_floating_platform: reject
+  right_click_on_background_planet_or_stars: do_nothing
+hud:
+  render_system: Godot_Control
+  first_layout_target: "960x540"
+  test_window_presets: ["960x540", "640x360", "320x240"]
+  regions:
+    top_bar:
+      fields: [available_legal_matter, owned_energy, current_support_and_cap, faction, match_phase]
+      do_not_emit_unavailable_liquid_gas_harvest_demands: true
+    bottom_left:
+      widget: minimap
+      show: [owned_units, discovered_enemy_units, known_solid_sources, legal_ground, platform_boundary]
+      no_interactive_space_navigation: true
+    bottom_center:
+      widget: selection
+      show: [entity_type, health, selected_count, current_order, cargo, progress, power_status]
+    bottom_right:
+      widget: context_actions
+      actions: [worker_train, basic_soldier_train, gather, build, attack, stop, repair, salvage, UMU_pack_deploy, Pylon_storage_turret]
+    mode_label: [Overlord_RTS, Direct, FPS]
+    match_result_panel: [Victory, Defeat, Restart, Main_Menu]
+warnings:
+  more_solids: We need more Solids
+  more_liquids: We need more Liquids
+  more_gas: We need more Gas
+  only_solids_warning_eligible_first_MVP: true
+  separate_energy_warning: Insufficient Energy
+  separate_storage_and_network_warnings: true
+  no_free_credits_after_failed_actions: true
+authoritative_orders:
+  validate_selection_and_ownership: true
+  validate_ground_traversal_and_visibility: true
+  validate_finite_real_resource_custody: true
+  reject_out_of_bounds_target: true
+  command_resolves_on_fixed_simulation_tick: true
+  deterministic_failed_order_status_for_HUD: true
+faction_panels:
+  man:
+    displayed_information: [UMU_mode, generator_output, warehouse_capacity, real_Matter_crates_near_site, cable_power_and_data_state]
+    UMU_victory_building_tag_survives_motion: true
+  eth:
+    displayed_information: [single_Ether_network_connected, typed_Matter_local_amount, Energy_local_amount, relay_bandwidth, Pylon_mode, construction_beam_connection]
+    no_separate_data_network_overlay: true
+world_interaction:
+  platform_frame_selectable: false
+  platform_is_victory_building: false
+  tree_trunk_LOS_blocks_weapon: true
+  foliage_visual_can_fade_without_los_change: true
+  water_terrain_harvestable_first_MVP: false
+  solid_source_directly_harvestable: true
+acceptance:
+  native_Hero_movement_not_affect_RTS_camera_when_RTS_active: true
+  no_duplicate_Hero_on_camera_change: true
+  direct_and_fps_see_same_platform_collision: true
+  selection_multi_action_works_in_RTS: true
+  all_boundary_and_resource_actions_reject_illegal_targets: true
+  match_end_when_last_enemy_building_class_entity_dies: true
+  HUD_not_a_second_simulation: true
