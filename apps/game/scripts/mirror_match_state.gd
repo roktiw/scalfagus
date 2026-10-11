@@ -501,8 +501,19 @@ func _bot_tick(side: int) -> void:
         if str(entities[wid]["order"]) == "build":
             building = true
     if barracks.is_empty() and not building and int(players[side]["matter"]) >= COST_BARRACKS:
-        var candidate: Vector2i = Vector2i(13, 36) if side == 0 else Vector2i(50, 27)
-        issue_command(side, "build_barracks", workers[0], candidate)
+        # Use a site near this authored HQ rather than hardcoded positions
+        # from the superseded horizontal prototype; maintain deterministic order.
+        var home: Vector2i = entities[hqs[0]]["pos"]
+        var candidate: Vector2i = home + (Vector2i(4, 3) if side == 0 else Vector2i(-4, -3))
+        if _can_build(candidate, side):
+            issue_command(side, "build_barracks", workers[0], candidate)
+        else:
+            for dy in range(-6, 7):
+                for dx in range(-6, 7):
+                    var test_cell: Vector2i = home + Vector2i(dx, dy)
+                    if _can_build(test_cell, side):
+                        issue_command(side, "build_barracks", workers[0], test_cell)
+                        return
     for wid in workers:
         var w: Dictionary = entities[wid]
         if str(w["order"]) == "idle":
@@ -531,7 +542,7 @@ func _bot_tick(side: int) -> void:
             issue_command(side, "attack", rid, closest)
         elif riflemen.size() >= bot_attack_thresholds[side]:
             # Opponent spawn zone is common map knowledge, not live hidden-unit coordinates.
-            var scouting_goal: Vector2i = Vector2i(54, 31) if side == 0 else Vector2i(9, 32)
+            var scouting_goal: Vector2i = Vector2i(54, 54) if side == 0 else Vector2i(9, 9)
             if str(soldier["order"]) != "move" or soldier["target_pos"] != scouting_goal:
                 issue_command(side, "move", rid, scouting_goal)
 
