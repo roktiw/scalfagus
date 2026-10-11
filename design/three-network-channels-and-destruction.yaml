@@ -6,7 +6,10 @@ specification: design/three-network-channels-and-destruction-2026-10-11.md
 latest_decisions: [DEC-021, DEC-022, DEC-023, DEC-035, DEC-036, DEC-038, DEC-039, DEC-040]
 MAN_UMU_transforming_wings_decision: DEC-040
 MAN_UMU_every_instance_has_two_transforming_belt_wings: true
-MAN_UMU_four_modes: [move_tracks, conveyor_3_or_5, bunker, sentry_wall]
+MAN_UMU_five_modes: [move_tracks, warehouse_one_open_belt, conveyor_3_or_5, bunker, sentry_wall]
+MAN_UMU_move_tracks_form_trapezoid_with_open_front_rear_cage: true
+MAN_UMU_move_cage_can_haul_soldiers_or_cargo: true
+MAN_UMU_warehouse_only_one_belt_open: true
 MAN_UMU_sentry_wall_uses_actual_ground_collisions: true
 
 latest_eth_three_ingress_decision: DEC-039
