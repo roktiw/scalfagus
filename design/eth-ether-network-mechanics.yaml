@@ -1,10 +1,13 @@
 schema_version: 1
 project: scalfagus
-version: 0.5
+version: 0.6
 status: owner_approved_concept_with_proposed_deterministic_protocol_and_tbd_balance
 decision: DEC-018
 contract: design/three-network-channels-and-destruction-2026-10-11.md
 additional_owner_decision: DEC-035
+resource_ingress_three_methods_decision: DEC-039
+resource_ingress_three_methods_contract: design/org-plug-holes-and-eth-three-ingress-methods.yaml
+nexus_only_legacy_ingress_violated_by_DEC_039: true
 unit_relay_specification: design/three-faction-logistics-and-eth-unit-relay.yaml
 storage_pressure_decision: DEC-036
 storage_homogeneity_and_bidirectional_decision: DEC-038
@@ -43,9 +46,16 @@ resource_model:
   representation_preserves_resource_id_and_quantity: true
   typed_payload_fields: [resource_id, amount, physical_source_form, source_lineage, owner, representation, custody_node_id]
   no_resource_type_transmutation_by_default: true
-  physical_cargo_cannot_cross_ether_edge_before_eligible_nexus_conversion: true
+  physical_cargo_cannot_cross_ether_edge_before_legal_ingress_conversion: true
+  raw_to_Ether_eligible_ingress: [Nexus_free_upload, ETH_shield_drone_Obelisk_tip_upload, expensive_powered_Obelisk_ground_pickup]
+  legacy_Nexus_only_rule_superseded_for_post_MVP0: true
   conversion:
-    location: eligible_nexus_input_port_only_in_first_MVP
+    location: Nexus_or_legally_paid_Obelisk_ingress_per_DEC_039
+    Nexus_ingress_energy_tariff: zero
+    drone_tip_ingress_shield_tariff: 33_percent_of_drone_own_shield_basis_TBD
+    drone_tip_ingress_finite_batch_and_docking_required: true
+    Obelisk_ground_pickup_ingress_tariff: high_finite_real_Energy_TBD
+    ongoing_levitation_cost_separate_from_ingress_tariffs: true
     requires_real_arrival_and_atomic_debit_from_carrier: true
     conversion_time_positive: true
     conversion_rate_finite: true
@@ -150,7 +160,7 @@ unit_relay:
 network:
   Obelisk_edge_directions: bidirectional
   both_directions_share_finite_link_capacity: proposed
-  raw_resource_conversion_from_non_Nexus: unresolved_not_implicitly_enabled
+  raw_resource_conversion_from_non_Nexus: allowed_by_DEC_039_drone_tip_or_costly_ground_pickup
   topology: one_unified_connected_relay_graph
   services_on_same_edges: [typed_resource, energy, knowledge_information, resonance_support]
   finite_aggregate_link_capacity: true
@@ -213,7 +223,8 @@ partition:
   local_nexus_authorization_still_required_for_building_beam: true
   node_death_inventory_drop_or_loss_fraction: owner_choice_TBD
   ejected_loot_shape: orb
-  collected_world_orbs_need_courier_to_nexus_to_reenter_ether_network: true
+  collected_world_orbs_require_legal_ingress: [Nexus_dropoff, paid_drone_tip_upload, powered_ground_pickup]
+  no_free_reentry_when_world_orb_is_previously_converted: true
   merger_adds_original_real_stocks_once_and_resumes_gradual_balancing: true
 example_fixtures:
   six_equal_nodes:
