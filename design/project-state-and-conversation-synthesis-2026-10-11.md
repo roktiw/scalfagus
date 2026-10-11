@@ -2,7 +2,17 @@
 
 Date: 2026-10-11
 Status: **living index of approved decisions, owner directions, design proposals and unresolved engineering choices**.
-This consolidates the current conversation and points to earlier detailed records. It is NOT a word-for-word transcript. The game is in **design/research, not implemented**.
+This consolidates the current conversation and points to earlier detailed records. It is NOT a word-for-word transcript. The current **Godot-only engine/camera/menu spike exists**, while full MAN–ETH match economy/combat/AI/platform maps remain unimplemented gameplay contracts.
+
+## Latest universal world and coding-agent scope — DEC-030
+
+**ALL playable Scalfagus maps MUST be floating platforms in outer space**, regardless of surface material. No ordinary planetary ground map option. The first gameplay world is a hard-bounded square PLANAR **floating jungle deck** with actual brown soil, giant tree-trunk cover, water bodies, surface SOLID deposits, visible rim/underside and noninteractive starfield. Other authored decks may contain **industrial metal patchwork**, rocky desert, wetlands or mixed terrain. The world frame itself is neutral and never counts for victory, while destroyed enemy building-class mobile UMU does count.
+
+**Actual native runtime:** Godot 4.7.2 GDScript in ONE window; do not reintroduce Tauri or another gameplay window. **Two-race first MVP:** MAN/ETH five roles each (mother, worker, soldier, UMU/Pylon, barracks); finite SOLID→Matter gathering, MAN cargo and ETH Nexus-only conversion, single ETH network, construction interruption/loot, one scripted legal bot, basic battle and default all-building-class elimination. Surface liquid is environmental only, ground movement only. Real sphere, travel between planets, ORG playable and harvesting gas/liquid deferred.
+
+**Agent entrypoints:** [root AGENTS](../AGENTS.md), [universal world](space-platform-world-contract-2026-10-11.md), [machine platform rule](battlefield-frames.yaml), [surface presets](platform-surface-presets.yaml), [MVP delivery gates](MVP-DELIVERY-GATES.md), [task YAML](mvp-implementation-backlog.yaml), [map YAML](mvp-verdant-divide-map.yaml), [map tests](battlefield-frame-acceptance.yaml), [game tests](mvp-man-eth-acceptance.yaml).
+
+
 
 ## TL;DR: one game, three player experiences, three base civilizations
 Scalfagus is an **original** 1990s-feeling isometric pixel-art RTS inspired by Warcraft II, StarCraft I, Z, Dungeon Keeper I, Settlers II, Transport Tycoon Deluxe, SimCity, Factorio, tower defense, Realm of the Mad God, Quake/Enemy Territory and the owner's MTG-as-Code ontology. The nontrivial product proposition is **Simple Surface, Deep Simulation**: automated base logistics and independent specialist units, precise RTS control and real direct unit control coexist on **one authoritative world**, not three games with divergent physics or economies.
