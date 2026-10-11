@@ -1,0 +1,75 @@
+schema_version: 1
+project: scalfagus
+version: 0.1
+status: owner_approved_identity_with_proposed_mechanics
+specification: design/faction-logistics-2026-10-11.md
+canonical_resources: [matter, volatiles, energy]
+core_rule: faction_determines_logistics_physics_player_determines_architecture
+identity_variation_ratio: qualitative_80_20_not_numeric_balance
+common:
+  deterministic_simulation: true
+  authoritative_finite_inventories: true
+  cargo_conservation: true
+  finite_transfer_rates: true
+  geometry_and_range_required: true
+  resource_energy_not_mandatory_power_grid: true
+  independent_specialized_units: true
+  autonomous_routine_delivery: true
+  player_orders_precede_automation: true
+  strategic_expansion_requires_permission: true
+factions:
+  org:
+    name_mid: Organites
+    model: living_loops
+    signature: mother_transporter_continuous_moving_load_unload
+    core_elements: [extractor_workers, loader_workers, mobile_mother_carrier, unloaders_or_receiving_dock]
+    movement: repeating_player_configured_source_base_loop
+    loading:
+      mother_can_continue_moving: true
+      range_limited: true
+      time_window_limited: true
+      rate_limited: true
+      compatible_sender_required: true
+      available_receiver_capacity_required: true
+    unloading:
+      mother_can_continue_moving: true
+      rate_and_range_limited: true
+      destination_capacity_required: true
+    scaling: [worker_count, mother_count, mother_cargo_capacity, organism_growth]
+    critical_asset: mother_transporter
+    loss_policy: TBD
+    proposed_doctrines: [swarm, giant, symbiosis]
+  man:
+    name_mid: Manusians
+    model: industrial_belts
+    signature: continuous_destructible_conveyor_flow
+    core_elements: [industrial_extractor, belt_segments, splitter_merger, finite_buffer, depot]
+    scaling: [belt_speed, parallel_lanes, junction_efficiency, storage_buffers]
+    breakage_interrupts_flow: true
+    backpressure_required: true
+    critical_asset: chokepoint_belt_or_junction
+    mobile_fallback: proposed_emergency_hauler
+    proposed_doctrines: [belt, rail, automation]
+  eth:
+    name_mid: Etherans
+    model: resonance_hubs
+    signature: mobile_couriers_between_static_pylon_hubs
+    core_elements: [source_extractor, mobile_courier, stationary_pylon, finite_pylon_buffer, destination]
+    stationary_pylons: true
+    pylon_inbound_outbound_queues: finite
+    courier_payload_and_travel_time: finite
+    free_teleportation: false
+    scaling: [courier_count, pylon_rate, graph_topology, parallel_paths]
+    critical_asset: articulation_pylon
+    proposed_doctrines: [relay, mesh, phase]
+    phase_costed_energy_shortcut: speculative_not_approved
+balance:
+  objective: total_cost_and_time_to_deliver_1000_resource_units
+  independent_dimensions: [first_delivery_latency, sustained_throughput, setup_cost, ongoing_cost, footprint, risk, recovery]
+  test_scenarios: [short_range, long_range, chokepoint, interruption, fallback, islands, drifting_asteroids]
+  no_arbitrary_global_faction_throughput_bonus: true
+implementation:
+  phase_0: [shared_inventory_model, org_moving_mother_loop, man_destructible_belt, eth_static_pylon_couriers]
+  phase_1: [org_two_mothers_and_contested_workers, man_bypass_and_buffer, eth_mesh_and_hub_attack]
+  phase_2: [doctrine_playtests, terrain_docking, competitive_balance]
+acceptance_test_ids: [LOG-F01, LOG-F02, LOG-F03, LOG-F04, LOG-F05, LOG-F06, LOG-F07, LOG-F08, LOG-F09, LOG-F10, LOG-F11, LOG-F12, LOG-F13]
