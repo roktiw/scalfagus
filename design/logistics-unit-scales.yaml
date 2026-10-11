@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 0.2
+version: 0.3
 status: owner_directed_roles_with_proposed_eth_mid_and_balance
 specification: design/logistics-min-mid-max-2026-10-11.md
 scope: economic_logistics_platforms_only
@@ -49,6 +49,11 @@ factions:
       cargo_slots: several
       can_receive_min_cargo: true
       can_load_flying_mother: true
+      initial_handoff_limits:
+        items_per_completed_worker_handoff: 1
+        concurrent_worker_handoffs_to_or_from_this_mid: 1
+        unloading_or_loading_requires_sequential_service: true
+        throughput_upgrade_required_for_multiple_simultaneous_handoffs: true
       passengers: proposed_limited_min_capacity
       optional_combat: proposed_with_transport_tradeoff
     max:
@@ -57,15 +62,42 @@ factions:
       mobile: true
       cargo_slots: many
       flight_loop: deposit_pickup_base_unload_return
-      can_receive_in_motion: true
-      can_unload_in_motion: true
+      can_receive_in_motion: technology_gated_midgame_not_initial
+      can_unload_in_motion: technology_gated_midgame_not_initial
       finite_transfer_range_and_rate: true
+      initial_transfer_limits:
+        items_per_completed_worker_handoff: 1
+        concurrent_worker_handoffs_to_or_from_this_max: 1
+        transfer_ports: 1
+        receiving_and_dispatching_simultaneously: false
+        simultaneous_moving_and_transfer: false
+        simultaneous_harvest_and_other_activity: false
+      initial_operating_modes:
+        - move
+        - receive
+        - dispatch
+        - extract
+      initial_mode_exclusivity: exactly_one_active_mode
+      route_behavior_without_upgrades: travel_then_stop_and_receive_then_travel_then_stop_and_dispatch
+      extract_mode_requires_eligible_extraction_organs: true
+      midgame_upgrade_proposal:
+        unlocks: [moving_while_receiving, moving_while_dispatching]
+        single_item_per_handoff_remains: true
+        max_simultaneous_handoffs: 1
+        receiving_and_dispatching_simultaneously: false
+      lategame_upgrade_proposal:
+        unlocks: [additional_transfer_ports, concurrent_inbound_outbound_subject_to_bandwidth]
+        transfer_port_count: TBD
+        aggregate_transfer_rate_and_mass_budget: finite
+        extracting_while_other_activities: separately_gated_not_default
       passengers: proposed_min_mid_or_soldiers_with_manifest
       optional_combat: proposed_with_mass_and_payload_tradeoff
       own_extraction: proposed_slow_specialist
       signature_weakness: intercept_loaded_mother
     mode_design:
-      required_default: [harvest_and_carry, cargo_loop]
+      required_default: [harvest_and_carry, exclusive_move_receive_dispatch_extract_modes, stop_to_load_unload]
+      proposed_unlocks: [midgame_moving_handoffs, lategame_parallel_transfer_ports]
+      note: Cargo loops are route orders; uninterrupted moving handoffs are unlocked, not baseline.
       proposed: [passenger_transport, escorted_defensive_carrier]
       mutation_reversible: false
   man:
