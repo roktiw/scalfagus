@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 0.7
+version: 0.8
 status: approved_owner_direction_with_explicit_implementation_candidates_and_unresolved_balance
 decision_ids: [DEC-019, DEC-020]
 specification: design/three-network-channels-and-destruction-2026-10-11.md
@@ -10,6 +10,11 @@ historical_note: former_separate_small_power_dock_is_now_UMU_research_alternativ
 storage_specialization_decision: DEC-036
 latest_UMU_physical_wings_decision: DEC-040
 latest_UMU_generator_and_building_drive_decision: DEC-041
+latest_UMU_capacity_specialization_decision: DEC-042
+latest_UMU_capacity_specialization_contract: design/man-umu-capacity-and-specialist-balance.yaml
+UMU_four_soldiers_or_twenty_seven_mixed_cargo_or_forty_five_mono_cargo: true
+UMU_persistent_two_external_9_unit_racks_for_mono: true
+UMU_multifunction_but_specialists_substantially_stronger_in_one_role: true
 latest_UMU_generator_and_building_drive_contract: design/man-umu-power-building-mobility-roof-modules.yaml
 UMU_canonical_full_name_change: not_approved
 UMU_one_active_job_even_with_roof_modules: true
@@ -39,6 +44,12 @@ man:
     later_manual_one_way_optimized_lanes: optional_TBD
     excluded_from_DEC_033_first_release: true
   UMU_cargo_storage:
+    allowed_passenger_manifest: four_soldiers_or_cargo_only
+    base_3x3x3_physical_slots: 27
+    mixed_max: 27
+    mono_rack_left_plus_right: [9, 9]
+    mono_max: 45
+    external_racks_must_pass_mode_collision_checks: true
     mixed_typed_goods_allowed: true
     dedicated_resource_mode_allows_only_selected_type: true
     dedicated_resource_mode_has_greater_effective_capacity_than_mixed: true
