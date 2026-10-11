@@ -1,0 +1,155 @@
+schema_version: 1
+project: scalfagus
+version: 0.1
+status: owner_directed_visuals_and_event_outcomes_numeric_rates_proposed
+specification: design/world-loot-salvage-and-recycling-2026-10-11.md
+decision: DEC-022
+invariants:
+  shared_resource_currency_ids: [matter, volatiles, energy]
+  physical_source_forms: [solid, liquid, gas]
+  conversion_between_currency_types_only_by_explicit_paid_recipe: true
+  ether_is_typed_storage_representation_not_new_currency: true
+  all_items_have_actual_position_and_inventory_owner: true
+  all_factions_can_collect_foreign_drops_with_legal_equipment: true
+  no_instant_global_credit_on_pickup: true
+  no_double_credit_on_drop_and_refund: true
+  no_positive_yield_from_closed_salvage_rebuild_loop: true
+  destroyed_deployable_cannot_refund_fuel_already_spent: true
+  fixed_tick_authoritative_events_and_repeatable_scatter: true
+visuals:
+  packaging_by_origin:
+    org: {shape: tetrahedron, 3d_faces: 4, metaphor: chitinous_pod}
+    man: {shape: cube, 3d_faces: 6, metaphor: industrial_crate}
+    eth: {shape: sphere_or_orb, metaphor: stabilized_material_orb}
+  color_by_physical_form:
+    solid: {name: amber_gold, hex: "#E8AF42", ui_glyph: S}
+    liquid: {name: cyan_turquoise, hex: "#36C4D8", ui_glyph: L}
+    gas: {name: violet_lavender, hex: "#B58AF6", ui_glyph: G}
+  origin_shape_is_not_ownership_permission: true
+  current_package_can_change_on_legal_repacking: true
+  shape_and_color_are_independent_visual_axes: true
+  separate_readability_via_glyph_pattern_outline_tooltip: true
+  gas_drops_remain_sealed_container_objects: true
+  rendering: five_direction_sprite_or_simple_low_poly_in_shared_three_d_world
+  no_required_new_asset_per_currency_or_faction_form_combo: true
+  visible_pile_stacks_with_quantities: true
+  merge_nearby_same_kind_deterministically: true
+  example_sprites_per_large_battlefield: capped_by_visible_stack_coalescing
+world_drop_entity:
+  fields:
+    - packet_id
+    - world_position_xyz
+    - resource_id
+    - physical_form
+    - quantity
+    - packaging_origin_faction
+    - last_controller_faction
+    - ancestor_entity_id
+    - source_lineage
+    - packet_integrity
+    - eligible_pickup_capabilities
+    - recovery_time
+    - reserved_by
+    - custody_type
+    - generated_by_event_id
+    - expiration_policy
+  valid_custody_types: [physical_inventory, construction_committed, embedded_material, ether_node, ether_edge_escrow, loose_world_drop, ruin_salvage, consumed_or_lost]
+  allowed_pickup_actions: [collect, salvage, reclaim, haul]
+  collection_needs_real_worker_movement_and_time: true
+  pickup_race_restriction: none
+  worker_must_be_able_to_carry_or_repack_that_physical_form: true
+  resource_ledger_moves_custody_exactly_once: true
+event_policies:
+  loose_build_crates_before_installation:
+    status: owner_approved
+    preserve_original_quantity: true
+    steals_possible: true
+    no_extra_refund_when_worksite_destroyed: true
+  man_builder_interrupt:
+    status: owner_approved
+    incomplete_frame_persists_at_current_percentage: true
+    installed_inputs_remain_embedded: true
+    uninstalled_delivered_input_packets_remain_loose_at_site: true
+    owner_or_enemy_can_collect_delivered_loose_input: true
+    unfinished_ruin_can_be_excavated_by_eligible_workers_of_any_faction: true
+    reclaim_has_nonzero_work_time: true
+    embedded_fraction_recovered: TBD
+  org_worker_leaves_incubation:
+    status: owner_approved
+    cocoon_progress_gradually_decreases: true
+    resource_emission_over_multiple_decay_ticks: true
+    spit_out_some_of_embodied_input: true
+    cannot_eject_more_than_actually_embodied_stock: true
+    survival_if_caretaker_returns_soon_enough: true
+  org_vessel_break:
+    status: owner_approved
+    actual_carried_contents_can_leak_as_tetrahedra: true
+    dying_connected_buildings_can_spit_out_salvage_over_time: true
+    active_world_units_not_instantly_removed: true
+    stages: [buffered, underfed, withering, death_and_drop]
+    emitted_fraction: TBD
+  eth_last_required_beam_break:
+    status: owner_approved
+    construction_progress_instant_zero: true
+    physical_location_of_drop: actual_construction_site
+    drop_all_committed_material_ingredients_once: true
+    no_double_refund_to_original_remote_nexus: true
+    already_consumed_operational_energy_not_regenerated: true
+    build_materials_must_have_reached_site_custody_via_actual_nexus_and_network_routing: true
+    newly_physical_world_orbs_require_courier_to_nexus_for_reconversion: true
+  eth_ether_link_break_with_packet_in_flight:
+    status: owner_directed_chain_spill_with_escrow_policy_proposed
+    escrow_owned_by_edge_while_in_flight: true
+    materializes_on_rupture_into_eth_orb: true
+    part_lost_if_rupture_damage_calls_for_it: true
+    future_delivery_cannot_complete_after_spill: true
+    pylon_stored_stock_does_not_automatically_spill_only_due_to_link_cut: true
+  man_belt_interrupted:
+    status: owner_approved
+    real_packets_at_break_location_can_spill: true
+    other_surviving_belt_packets_retained: true
+    bare_power_fiber_break_has_no_physical_raw_crates: true
+  unit_or_finished_building_destroyed:
+    status: owner_approved
+    unspent_cargo_may_spill: true
+    embedded_material_sometimes_salvageable: true
+    irrecoverable_loss_required: true
+    no_full_return_of_already_consumed_energy_fuel_ammunition: true
+numeric_playtest_defaults_NOT_CANON:
+  intact_loose_crates:
+    recovery_fraction_of_still_existing_quantity: 1.0
+  eth_incomplete_structure_abort:
+    committed_material_ejection_fraction: 1.0
+    spent_channel_energy_refund_fraction: 0.0
+  org_dying_embodied_structure:
+    illustrative_recoverable_fraction_range: [0.20, 0.50]
+  man_wreck_embedded_material:
+    illustrative_recoverable_fraction_range: [0.35, 0.55]
+  damaged_completed_assets:
+    illustrative_recoverable_fraction_range: [0.20, 0.45]
+  voluntary_safe_disassembly:
+    illustrative_recoverable_fraction_range: [0.50, 0.70]
+  salvage_fraction_above_one_for_finished_structures_forbidden: true
+  recycling_catalytic_profit_without_actual_paid_inputs_forbidden: true
+simulation_efficiency:
+  individual_packets_may_contain_multiple_quantity_units: true
+  nearby_identical_drop_packets_can_merge_visually_and_accountably: true
+  keep_unique_ids_or_lineage_in_merged_stacks: true
+  render_scatter_deterministic_from_event_id: true
+  paused_drop_visuals_may_be_static: true
+  no_n_squared_agent_polling_every_loot_particle: true
+  auto_collect_routine_around_owned_sites_with_player_authorized_policy: proposed
+  manual_focus_on_contested_battlefield_salvage: optional
+  physical_gas_leak_simulation: defer_post_mvp
+economy:
+  sources_are_finite_or_scenario_authored: true
+  recovery_reduces_net_attrition_but_not_reverse_resource_exhaustion: true
+  globally_account_source_deposits_inventories_ether_escrow_world_drops_ruins_installed_components_explicit_consumption_and_loss: true
+  destruction_to_recovery_cycles_strictly_less_than_full_for_finished_structures: true
+  preserve_explicit_unchanged_loose_crates_exemption: true
+  combat_winner_can_collect_enemy_drops: true
+  loser_may_recapture_or_interdict_loot: true
+  win_condition_should_prevent_indefinite_rebuild_stalemates: open
+  loot_ttl_and_decay_beyond_race_decays: TBD
+  possible_salvage_cost_and_fog_benchmarks: [cost_per_reclaimed_unit, time_to_salvage, third_party_capture_rate, replay_match_duration, world_drop_stack_count]
+acceptance_test_ids: [LOOT-01, LOOT-02, LOOT-03, LOOT-04, LOOT-05, LOOT-06, LOOT-07, LOOT-08, LOOT-09, LOOT-10, LOOT-11, LOOT-12, LOOT-13, LOOT-14, LOOT-15, LOOT-16, LOOT-17, LOOT-18, LOOT-19, LOOT-20]
