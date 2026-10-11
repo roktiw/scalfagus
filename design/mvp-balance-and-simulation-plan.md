@@ -1,4 +1,6 @@
-# Scalfagus — Balance Audit, First Numerical Baseline and Headless Simulation Plan
+# Scalfagus — Future MAN–ETH Balance Study and Headless Simulation Plan
+
+> **Current DEC-033 micro-MVP first:** MAN mirror, four templates, Matter only, no Energy/Pylons/UMU/FPP. This file concerns the **next MAN–ETH five-role milestone** only. Current [MVP0 contract](mvp0-agent-implementation-contract.yaml), [headless plan](godot-headless-balance-lab-2026-10-11.md) and [current mechanics audit](mvp-repository-mechanics-audit-2026-10-11.md) take precedence. Do not use this document to tune first-release MAN mirror prices.
 
 > **Current release scope reconciliation — DEC-033 (2026-10-11):** MAN vs ETH three-form extraction and network balance for a POST-MVP0 milestone. First release under DEC-033 is MAN vs MAN with four templates and no Energy, UMU, ETH or FPP. Use micro balance YAML.
 >
