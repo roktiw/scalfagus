@@ -4,6 +4,13 @@ class_name PrototypeHero
 # One real physics actor, independently of presentation camera and sprite view.
 var desired_movement: Vector3 = Vector3.ZERO
 var controlled: bool = false
+var selected: bool = false
+var command_target: Vector3 = Vector3.ZERO
+var has_command: bool = false
+var navigation_waypoints: Array[Vector3] = []
+var faction_id: String = "man"
+var unit_name: String = "MAN SCV"
+var selection_corners: Array[MeshInstance3D] = []
 var move_speed: float = 5.5
 var display: DirectionalSprite5
 var idle_source: Texture2D
@@ -50,6 +57,28 @@ func setup(atlas: Texture2D, walk_reference: Texture2D, world_position: Vector3)
         marker.material_override = mat
         marker.position = Vector3((-0.52 if i % 2 == 0 else 0.52), 0.08, (-0.52 if i < 2 else 0.52))
         add_child(marker)
+        selection_corners.append(marker)
+    set_selected(false)
+
+func set_selected(value: bool) -> void:
+    selected = value
+    for corner in selection_corners:
+        corner.visible = selected
+
+func issue_move(target: Vector3) -> void:
+    # Compatibility with existing scripting tests and direct move orders.
+    var one: Array[Vector3] = [target]
+    issue_route(one)
+
+func issue_route(waypoints: Array[Vector3]) -> void:
+    navigation_waypoints = waypoints.duplicate()
+    has_command = not navigation_waypoints.is_empty()
+    if has_command:
+        command_target = navigation_waypoints[0]
+
+func cancel_order() -> void:
+    navigation_waypoints.clear()
+    has_command = false
 
 func _physics_process(delta: float) -> void:
     if not is_on_floor():
@@ -57,6 +86,18 @@ func _physics_process(delta: float) -> void:
     else:
         velocity.y = -0.1
     var input_motion: Vector3 = desired_movement if controlled else Vector3.ZERO
+    if not controlled and has_command:
+        # Consume reached grid waypoints; preserve the final authored target.
+        while not navigation_waypoints.is_empty():
+            var delta_target: Vector3 = navigation_waypoints[0] - global_position
+            delta_target.y = 0.0
+            if delta_target.length_squared() > 0.40:
+                input_motion = delta_target.normalized()
+                command_target = navigation_waypoints[0]
+                break
+            navigation_waypoints.pop_front()
+        if navigation_waypoints.is_empty():
+            has_command = false
     velocity.x = input_motion.x * move_speed
     velocity.z = input_motion.z * move_speed
     if input_motion.length_squared() > 0.001:

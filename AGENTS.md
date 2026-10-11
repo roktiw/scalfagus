@@ -21,7 +21,7 @@
 
 **Most important latest owner decision (DEC-030): EVERY PLAYABLE SCALFAGUS MAP IS A FLYING PLATFORM IN OUTER SPACE.** This is mandatory for all maps, not an optional aesthetic preset. Soil with jungle trees, welded metal patchwork, rocks, sand, marshland or mixed materials may cover the platform, but the world always visibly has a space-facing rim/underside and a cosmic exterior. No ordinary planet-surface playable map. In MVP, the surface is a bounded planar **64×64 candidate square** with real elevation/ramps, invisible hard outer walls, a visible space-platform edge, one gameplay ground deck and uniform gravity. The platform does NOT physically move during matches; its backdrop planet/stars are noninteractive.
 
-## Required reading (in precedence order)
+**Current implementation handoff:** [RTS navigation & minimap](docs/RTS-NAVIGATION-DEVELOPMENT-2026-10-11.md) and [first RTS slice](docs/RTS-FIRST-SLICE-2026-10-11.md). Treat the coarse A* map, mock ETH actors and debug minimap as prototype code. The canonical map YAML and economic/combat MVP are NOT yet implemented. Import and run new Godot headless tests before merge; never report completion from source review alone.\n\n## Required reading (in precedence order)
 
 1. **Owner decisions:** [design/decisions.yaml](design/decisions.yaml), especially **DEC-030** for every map, DEC-024 for victory, DEC-025 for roster/MVP, DEC-026 for environmental affinities, DEC-021–023 for networks and loot.
 2. **Universal world law:** [design/space-platform-world-contract-2026-10-11.md](design/space-platform-world-contract-2026-10-11.md); compulsory [design/battlefield-frames.yaml](design/battlefield-frames.yaml); valid [surface/biome presets](design/platform-surface-presets.yaml).

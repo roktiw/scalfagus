@@ -37,7 +37,7 @@ Linux/Windows: install official **Godot 4.7.2 Standard** and its matching export
 
 ## Current technical spike UI and keys (NOT finished MVP 0.1)
 
-The Godot main menu includes **START GAME / OPTIONS / QUIT**. Start opens the *existing* technical prototype world without a second window. In game: F1 RTS, F2 Direct/TPP, F3 FPS, Tab cycles views; Q/E orbit; right drag orbit; wheel zoom; WASD controls actor in Direct/FPS. **RTS WASD camera panning, HUD, unit selection and right-click orders are a separate upcoming gameplay change and are not yet in main.**
+The Godot main menu includes **START GAME / OPTIONS / QUIT**. Start opens the *existing* technical prototype world without a second window. In game: F1 RTS, F2 Direct/TPP, F3 FPS, Tab cycles views; Q/E orbit; right drag orbit; wheel zoom; WASD controls actor in Direct/FPS. **New RTS navigation slice (in integration PR):** WASD camera-relative pan, Q/E rotate, wheel zoom, LMB/drag selection, Shift-add selection, RMB route around blocked jungle obstacles via 64×64 A* grid, and a debug minimap. Godot GUI acceptance is pending.
 
 ## Project layout
 
@@ -46,6 +46,10 @@ The Godot main menu includes **START GAME / OPTIONS / QUIT**. Start opens the *e
 - `scripts/{bootstrap,dev,game,check,build}.sh` — game install, execution and export.
 - `scripts/*.mjs` — optional Node.js art validation and generation tools.
 
-The game is currently an **engine vertical slice**, not a complete RTS. All new mandatory floating-platform/map/roster/economy/combat/HUD/AI YAML and Markdown are **requirements and agent design fixtures**, NOT already implemented gameplay. The MAN/ETH Verdant Divide 64×64 jungle gameplay specification exists, but resource collection, squads, production, opponent AI, victory flow, unit selection and RTS orders still need implementation. Refer to `design/mvp-man-eth-jungle-vertical-slice-2026-10-11.md`.
+The game is currently an **engine vertical slice**, not a complete RTS. All new mandatory floating-platform/map/roster/economy/combat/HUD/AI YAML and Markdown are **requirements and agent design fixtures**, NOT already implemented gameplay. The MAN/ETH Verdant Divide 64×64 jungle gameplay specification exists, but resource collection, production, opponent AI and victory flow still need implementation. Selection, formation commands and a coarse static A* path are part of the RTS integration slice, not full RTS AI. Refer to `design/mvp-man-eth-jungle-vertical-slice-2026-10-11.md`.
 
 **Historical note:** `docs/INSTALLATION-BUILD-REPORT-2026-10-11.md` records an older local Tauri build. It is not the current product architecture. Old local `~/Applications/Scalfagus.app` Tauri bundle is not modified by updating this repository; uninstall it manually if no longer desired.
+
+## RTS navigation development handoff
+
+[RTS navigation + minimap implementation notes](docs/RTS-NAVIGATION-DEVELOPMENT-2026-10-11.md). This code adds a simplified floating-jungle fixture and static A* pathing. It is **not** a YAML-complete Verdant Divide map or a proven native Godot release until `scripts/check.sh` and manual macOS visual tests pass.
