@@ -3,6 +3,13 @@ set -euo pipefail
 source "$(dirname "$0")/env.sh"
 cd "$SCALFAGUS_ROOT"
 require_godot
+# Optional source-level parity: PyYAML is needed only for OFFLINE authoring,
+# never to launch or export the Godot game.
+if command -v python3 >/dev/null 2>&1 && python3 -c 'import yaml' >/dev/null 2>&1; then
+  python3 scripts/compile-verdant-map.py --check
+else
+  echo 'MAP_SOURCE_CHECK_SKIPPED: install PyYAML==6.0.3 and run bash scripts/check-map.sh for fail-closed YAML parity.'
+fi
 "$GODOT_BIN" --headless --path apps/game --editor --import --quit
 "$GODOT_BIN" --headless --path apps/game --script res://tests/smoke.gd
 "$GODOT_BIN" --headless --path apps/game --script res://tests/menu_smoke.gd
@@ -12,6 +19,7 @@ require_godot
 "$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_integrity_smoke.gd
 "$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_timing_smoke.gd
 "$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_navigation_port_smoke.gd
+"$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_authored_map_smoke.gd
 "$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_batch.gd -- --matches 1 --seed 42
 "$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_visual_smoke.gd
 if command -v node >/dev/null 2>&1; then
