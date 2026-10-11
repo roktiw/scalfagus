@@ -1,5 +1,21 @@
 # SCALFAGUS — Coding-Agent Contract
 
+## MVP0 3×3 FOOTPRINT & 2M WORLD GEOMETRY (DRAFT, UNVERIFIED)
+
+Use the single `apps/game/scripts/mirror_geometry.gd` contract for all
+HQ/Barracks 3×3 (nine tiles) occupancy and the twelve exterior access cells.
+Every gameplay cell represents **2 metres** in the visual world. The authoritative
+`MirrorMatchState.building_cells` and native `AStarGrid2D` agree on all nine
+blocked cells, and the 3D `StaticBody3D` on the Sprite actor covers the same
+6×6m area. No alternate grid spacing/collision tables may be introduced.
+Resource delivery, building, training, and targeting use exterior footprint
+cells. Draw / line-of-sight remain grid-authoritative; elevation, physical
+terrain colliders and 3D raycast LOS are **NOT FINISHED**. Test:
+`apps/game/tests/mirror_footprint_smoke.gd` and `scripts/check.sh` locally
+using real Godot 4.7.2, not broken GitHub Actions.
+Details: `docs/MVP0-FOOTPRINT-WORLD-SCALE-2026-10-12.md`.
+
+
 ## UMU MOVE CAGE AND ONE-BELT WAREHOUSE — DEC-040 REFINEMENT
 
 **The current UMU contract has FIVE exclusive modes**, not four: [MOVE open-cage trapezoid tracks, WAREHOUSE one active belt, CONVEYOR symmetric 3/5 cells, BUNKER side armor, SENTRY wall]. See the [updated design](design/man-umu-transforming-belt-wings-2026-10-12.md) and [updated YAML](design/man-umu-transforming-belt-wings.yaml). In MOVE both conveyor wings **bend under the vehicle as two crawler tracks**, producing a characteristic **trapezoid silhouette around an open front-and-rear cage** capable of transporting actual soldiers **or** finite cargo. In WAREHOUSE **exactly one** of those physical belt wings opens to the left/right for local loading/unloading while the other stays folded. Do NOT require a symmetric two-wing CONVEYOR deployment to access warehouse goods, do NOT treat the cage's carried inventory as a free remote deposit, and do NOT allow MOVE to keep live external belt connections. Soldier/cargo mix and exact warehouse-wing length are TBD. Keep DEC-033 MVP0 scope unchanged.
