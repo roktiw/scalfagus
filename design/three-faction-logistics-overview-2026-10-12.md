@@ -49,6 +49,18 @@ Every MAN **UMU has two permanently attached physical belt wings**, shared by mu
 
 Exactly one posture operates at a time. Transformations require finite time, valid collision-free geometry, settlement of real cargo and connector states, and preservation of the same unit identity, actual materials and victory tag. These owner rules refine older "MID belt only" / "UMU Power Dock no continuous belt" candidates wherever a template is **actually** an UMU. Exact classification of tiered MID/MAX types remains open. See [DEC-040 full design](man-umu-transforming-belt-wings-2026-10-12.md) and [YAML machine contract](man-umu-transforming-belt-wings.yaml). **Post-MVP0 only.**
 
+### UMU power plant, mobile buildings and rooftop modules (DEC-041)
+
+**New owner rule:** each UMU performs **exactly one active job** at any time. A generator can accept real resources via a finite physical intake and **consume eligible fuel** (Matter/Volatiles only when legal recipes permit) to create finite stored/transmitted **Energy**. It is **not simultaneously an open-ended warehouse or powered combat turret**. Dedicated roof solar belongs to the generator role, not a free always-on income stream.
+
+**Whole buildings move using attached real UMU as wheels/crawler bogies:** **4 for small, 6 for medium, 8 for large**. Each involved UMU is reserved exclusively for one building's mobility, requiring real mounts, pathing, clear footprint, coordination and finite time. No duplicated UMU, conjured building, or simultaneous warehouse/belt/power jobs from a mounted drive.
+
+**Rooftop equipment proposals** (not a finalized roster): infantry/heavy/AA turret, solid drill, liquid pump, gas collection/compressor, solar panels, real-fuel generator, battery bank, repair manipulator, sensors and loaders. Such modules can remain **physically mounted** across role switches but only work within their dedicated active job; installing/replacing them is costed.
+
+**Name expansion pending approval:** `Universal Modular Unit` is recommended as an alternative to established `Universal Man Unit`; also consider `Universal Module Unit`, `Universal Mobility Unit`, `Universal Mechanical Unit`. Keep canonical name and serialization IDs until owner selects one.
+
+See [DEC-041 human spec](man-umu-power-building-mobility-roof-modules-2026-10-12.md) and [DEC-041 YAML](man-umu-power-building-mobility-roof-modules.yaml). All is POST-MVP0, not verified game code.
+
 ### ORG: biology, vein logistics and cysts
 
 1. Gatherers and large living carrier organisms haul physical finite materials into a real bidirectional living vein system. Roots/veins transfer material, nutrients, Energy and information both ways with finite throughput, meaningful cuts, a nourishment need and biological power support.
