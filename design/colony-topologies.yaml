@@ -1,0 +1,176 @@
+schema_version: 1
+project: scalfagus
+version: 0.1
+status: approved_owner_direction_with_proposed_state_machine_details
+specification: design/colony-topologies-vascular-modular-resonant-2026-10-11.md
+name_ids: [org, man, eth]
+canonical_resources: [matter, volatiles, energy]
+single_authoritative_world: true
+combat_and_build_orders_validate_owner: true
+units_have_individual_local_agency: true
+no_compulsory_hivemind: true
+no_free_cargo_teleportation: true
+common:
+  cell_placement_requires_valid_terrain: true
+  actual_source_destination_ledger: true
+  construction_costs_finite: true
+  construction_time_positive: true
+  site_is_visible_to_enemies_only_under_detection_rules: true
+  workers_can_still_operate_after_loss_of_optional_comm_links: true
+  local_inventories_persist_during_disconnection: true
+  no_additional_global_currency: true
+factions:
+  org:
+    name_mid: Organites
+    primary_spatial_form: vascular_connected_budding_body
+    base_mobility_rank: lowest_of_three
+    main_nexus: rooted_structural_and_nourishment_origin
+    structure_budding:
+      requires_actual_live_vascular_path: true
+      grow_conduit_to_destination_first: true
+      visually_traceable_branch: true
+      biomass_creep_carpet_as_default: false
+      construction_levels:
+        min: [level_1, conduit]
+        mid: [level_2, conduit_support]
+        max: [level_3_support_when_equipped]
+    network:
+      kind: vascular_mycelial
+      edges_targetable: true
+      edges_can_be_damaged_repaired_and_regrown: true
+      connection_transports_structural_nourishment: true
+      instant_shared_global_inventory: false
+      throughput: finite_TBD
+      branch_states: [growing, connected, isolated_buffered, starving, dormant, withered]
+      state_transitions: proposed_to_balance
+      branch_local_reserves: finite
+      cut_link_does_not_instant_destroy_every_building: true
+      cut_link_does_not_disable_individual_unit_ai: true
+      starvation_has_telegraphing: true
+    expansion:
+      home_dependency: continuous_nourishment
+      permanent_fully_independent_expansion: false_by_default
+      physical_worker_feeding: true
+      worker_feeding_costed_from_real_inventory: true
+      feeding_can_temporarily_keep_branch_alive: true
+      unlimited_autonomous_self_nourishment: not_approved
+    transport:
+      model: living_loops
+      min: fast_independent_gatherer_and_branch_tender
+      mid: slower_armored_harvester_and_temporary_supply_reservoir
+      max: flying_mother_transporter_and_high_level_growth_support
+      max_preferred_route: cyclic_source_to_colony_nourishment_delivery
+      moving_handoff_starting_tech: false
+      early_handoff: stop_and_one_worker_one_item_at_a_time
+      moving_handoff_upgrade: researched_midgame
+      additional_ports_upgrade: researched_lategame
+      preexisting_decision: DEC-011
+    strategic_weaknesses: [severed_vascular_artery, starvation, flying_mother_ambush]
+    proposed_recovery: [repair_vessel_with_min, worker_feeding, fallback_small_carrier]
+  man:
+    name_mid: Manusians
+    primary_spatial_form: modular_mobile_independent_islands
+    base_mobility_rank: highest_of_three
+    nexus_definition: assembly_of_specialized_modules_and_units
+    independent_expansion_requires_home_ping: false
+    independent_outpost_minimum:
+      must_have_actual_sources_and_storage: true
+      must_obey_resources_and_build_costs: true
+      can_operate_without_parent_communications: true
+      invisible_without_enemy_scouting_only_due_to_normal_fog: true
+    construction:
+      mobile_buildings_are_capability_tagged: true
+      walking_and_tracked_structures_allowed: true
+      deployed_footprints_terrain_and_collision_checked: true
+      not_every_generic_unit_may_deploy_into_a_building: true
+      upward_and_radial_growth_visualized: true
+      structures_can_split_and_reassemble: true
+    transport:
+      model: modular_physical_conveyors
+      min: scv_like_worker_builder_repairer_hauler
+      mid:
+        kind: tracked_belt_and_fortification_module
+        belt_lengths_cells: [3, 5]
+        one_person_bunker_capability: true
+        modes: [move, conveyor, one_person_bunker, sentry_wall]
+        all_modes_full_output_simultaneously: false
+        sentry_wall_uses_explicit_protected_facing: true
+        sentry_wall_ejects_cargo_behind_to_legal_cells: true
+        cargo_ejection_not_instant_resource_credit: true
+        bunker_and_wall_mode_simultaneity: unresolved
+      max:
+        kind: slow_ground_mobile_depot_bunker
+        can_fly: false
+        modes: [mobile_depot, deployed_depot, soldier_bunker]
+        finite_soldier_garrison_slots: true
+        cargo_ejected_to_legal_inventory_before_bunker: true
+        military_and_logistics_throughput_tradeoff: true
+    strategic_weaknesses: [splitter_interdiction, exposed_belts, isolated_base_raids]
+  eth:
+    name_mid: Etherans
+    primary_spatial_form: resonant_knowledge_nodes
+    base_mobility_rank: middle_of_three
+    architecture_pivot_supersedes:
+      - mid_only_courier_relay_conductor_default
+      - max_storage_pylon_only
+    construction:
+      min: worker_extractor_courier_network_builder
+      builder_network_mode_required: true
+      visible_blue_energy_beam_to_eligible_larger_node: true
+      beam_active_during_finite_construction_job: true
+      beam_is_not_protoss_orb_drop_and_fly_away: true
+      line_of_sight_visibility_balance: TBD
+      resource_and_build_time_costs_apply: true
+      no_free_resource_teleportation: true
+    transport:
+      model: physical_couriers_plus_resonant_network
+      mobile_min_couriers: true
+      physical_cargo_and_finite_node_buffers: true
+      mid:
+        kind: pylon
+        modes: [storage, network_relay, meditating, turret, levitating_move]
+        storage_relay_turret_capabilities: true
+        moving_requires_specialized_capability: true
+        movement_requires_meditation_duration: true
+        cargo_preserved_during_meditation: true
+        cargo_gates_locked_during_meditation: true
+        active_turret_cargo_gates_locked: proposed_pending_balance
+        construction_beam_can_terminate_here_when_eligible: true
+      max:
+        kind: nexus_class_from_first_deployment
+        nexus_role_immediate: true
+        local_pattern_store_and_authority: true
+        can_seed_local_expansion: true
+        initial_synchronization_from_existing_node: true
+        no_mandatory_home_link_after_bootstrap_for_known_patterns: true
+        new_unheld_pattern_requires_remote_sync: true
+        stationary_by_default: true
+        special_meditation_move: proposal_not_universal
+    expansions:
+      needs_home_contact_at_founding: true
+      needs_home_contact_for_missing_blueprints: true
+      constant_nutrient_home_ping: false
+      local_independence_for_known_patterns: true
+    strategic_weaknesses: [detectable_build_beam, relay_interdiction, meditation_downtime, missing_pattern_sync]
+balance:
+  mobility_order: [org, eth, man]
+  home_dependency_order_high_to_low: [org, eth, man]
+  order_is_qualitative_not_balanced_numeric_constants: true
+  no_instant_economic_softlock_from_single_minor_disconnection: true
+  numeric_upkeep_rates_TBD: true
+  numeric_build_time_TBD: true
+  tested_by_scenarios_not_assumed_equal: true
+acceptance_test_ids:
+  - ORG-BUD-01
+  - ORG-DECAY-02
+  - ORG-LOOP-03
+  - ORG-RESUPPLY-04
+  - MAN-MID-01
+  - MAN-WALL-02
+  - MAN-ISLAND-03
+  - MAN-MOVE-04
+  - ETH-BUILD-01
+  - ETH-PYLON-02
+  - ETH-NEXUS-03
+  - ETH-SYNC-04
+  - ALL-LEDGER-05
