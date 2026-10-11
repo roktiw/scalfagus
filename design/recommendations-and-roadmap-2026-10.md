@@ -60,6 +60,18 @@ P6. FPS hybrid and larger multiplayer: one authoritative RTS world, faction-spec
 - In LLM matches record accepted actions, model metadata, token/cost stats and timeouts for replay and comparisons.
 - Do not let non-shipping features pollute MIN UX.
 
+## Follow-up to DEC-014: full building relocation is optional research
+
+The complete conversation is indexed in [faction economy and construction](faction-economy-and-construction-conversation-2026-10-11.md).
+The proposed ability to transplant whole ORG buildings slowly through living vessels or
+move ETH buildings faster via an Energy-costed railgun beam remains **OPEN / NOT APPROVED**;
+see [building relocation options](building-relocation-design-options-2026-10-11.md).
+Existing MAN tracked/mobile modules and selected ETH meditation/levitation are kept distinct
+from free-moving every constructed building. A first playable MIN economy should
+be complete and balanced **without** whole-building translocation. Evaluate any such
+feature later against strategic expansion, fog of war, cargo conservation, siege,
+map control and player micro-management.
+
 ## Cuts
 No mandatory individual hunger/morale cycle; no large catalog of crafting reagents; no detailed per-unit organs or damage system; no bureaucracy/legal simulation; no required micromanagement of carriers; no FPS or LLM dependency for basic skirmish.
 
