@@ -1,7 +1,11 @@
 schema_version: 1
 project: scalfagus
-status: proposed_art_technical_standard_needs_godot_visual_spike_with_approved_unit_role_illustrations
+status: updated_for_dec_017_five_authored_yaw_views_one_source_all_cameras_pending_visual_spike
 reference: art/faction-art-direction-and-transport-v0.2-2026-10-11.md
+canonical_direction_rendering: art/directional-sprite-five-view-v0.1.yaml
+canonical_renderer_architecture: architecture/adr-0003-five-view-mirrored-3d-sprites.md
+rendering_decision: DEC-017
+note: archived_eight_unique_direction_suggestions_superseded
 canonical_base_role_reference: design/base-ecologies-and-expansion-2026-10-11.md
 eth_folklore_moodboard_reference: art/eth-ancient-aliens-folklore-and-pixel-lineages-2026-10-11.md
 resolution:
@@ -58,7 +62,7 @@ pixel_art:
     mode: smooth_camera_optional
     tradeoff: nearest_neighbor_fractional_shimmer_needs_visual_test
   lod_rules:
-    near: authored_detailed_frames_or_simple_3D_actor_proxy
+    near: use_same_five_authored_view_family_even_in_first_person_art_quality_must_be_tested
     far: small_distinct_silhouette_or_pixel_art_lod
     no_crop_concept_poster_as_final_atlas: true
   ui_scaling:
@@ -91,13 +95,17 @@ asset_classes:
     proposed_frame_pixels: [32, 48]
   - id: economic_max
     proposed_frame_pixels: [128, 96]
-    note: ETH_stationary_pylon_has_tall_custom_frame
+    note: ETH_MAX_is_nexus_class_immediately_and_uses_custom_tall_frame
   - id: headquarters
     proposed_frame_pixels: [128, 128]
 animation_first_slice:
-  directions: [front, rear, left, right]
+  authored_direction_views: [front, front_right, right_side, back_right, back]
+  displayed_sector_count: 8
+  sector_map_rows: [0, 1, 2, 3, 4, 3, 2, 1]
+  sector_mirror_flags: [false, false, false, false, false, true, true, true]
+  shared_source_across_cameras: [overlord, direct_unit_tpp, fps_possession]
   minimum_states: [idle, move, work, transfer, damaged]
-  later_directions: 8
+  later_direction_rule: eight_displayed_from_five_authored_in_first_spike
   vfx_layer_separate: true
   shadow_layer_separate: true
   team_color_areas_explicit: true
@@ -149,5 +157,9 @@ quality_gates:
   - no_cargo_disappears_when_MAN_wall_or_bunker_deploys
   - no_cargo_transfer_while_ETH_pylon_meditates_or_turrets
   - giant_ORG_mother_remains_targetable_without_obscuring_entire_map
+  - first_person_and_overlord_reuse_same_five_authoring_views
   - first_person_proxy_and_overlord_sprite_share_one_actor_and_collision_model
+  - atlas_mirrored_tools_and_building_doors_do_not_switch_physical_sides
+  - perspective_camera_bearing_is_per_object_ortho_camera_axis_is_parallel
+  - pitch_mismatch_tested_not_assumed_solved
   - no_original_IP_lookalikes_or_unlicensed_art
