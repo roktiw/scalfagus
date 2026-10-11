@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 0.7
+version: 0.8
 status: approved_core_rules_with_proposed_details
 automation: medium
 faction_mechanisms:
@@ -8,6 +8,7 @@ faction_mechanisms:
   config: design/faction-logistics.yaml
   base_ecology: design/base-ecologies.yaml
   economic_chassis: design/logistics-unit-scales.yaml
+  physical_resource_forms: design/physical-resource-forms.yaml
   org: exclusive_initial_mother_modes_with_tech_gated_rolling_handoffs
   man: destructible_throughput_limited_conveyor_network
   eth: mobile_min_couriers_to_mid_pylon_relays_and_max_nexus_cores
@@ -37,6 +38,18 @@ transfer:
   permitted_chain: [min_to_mid, min_to_max, mid_to_max]
   source_of_truth: design/economy.yaml
   supports_resources: [matter, volatiles, energy]
+  physical_source_forms: [solid, liquid, gas]
+  form_access_gates:
+    solid: manual_worker_gather_without_mine
+    liquid: slow_small_direct_worker_draw_or_optional_pump
+    gas: raw_source_requires_completed_collector
+  packaging:
+    solid: finite_loose_sack_or_crate
+    liquid: sealed_vessel_cistern_or_flask
+    gas: pressurized_sealed_canister_or_processed_output
+  man_conveyor_uncontained_liquid_or_gas_forbidden: true
+  energy_is_not_gas: true
+  physical_form_to_spendable_resource_mapping: TBD
   needs_receiver_capacity: true
   needs_transfer_range_and_compatibility: true
   energy_as_cargo: true
