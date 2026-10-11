@@ -7,8 +7,11 @@ candidate_profile_still_usable_for_later_asymmetric_MVP: true
 project: scalfagus
 profile_id: man_eth_verdant_divide_first_balance
 profile_version: 0.1
-status: proposed_numeric_fixture_not_playtested_not_owner_approved
-authoritative_for: first_mvp_balance_candidate_values_when_older_proposals_or_TBD_conflict
+status: post_mvp_0_1_MAN_ETH_candidate_only_not_playtested_not_owner_approved
+release_scope: future_MAN_ETH_five_role_slice_AFTER_DEC_033
+NOT_valid_for_first_playable_MAN_mirror_mvp_0_1: true
+current_release_numeric_source: design/mvp0-agent-implementation-contract.yaml
+authoritative_for: future_MAN_ETH_expanded_slice_only_NEVER_current_DEC_033_MVP0
 approved_constraints_from: [DEC-001, DEC-016, DEC-018, DEC-019, DEC-021, DEC-022, DEC-023, DEC-024, DEC-025, DEC-026, DEC-027, DEC-030]
 references:
   rationale: design/mvp-balance-and-simulation-plan.md
