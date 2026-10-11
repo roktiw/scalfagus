@@ -1,1 +1,2 @@
-# Offline map authoring only; Godot runtime has zero Python dependencies.\nPyYAML==6.0.3\n
+# Offline map authoring only; Godot runtime has zero Python dependencies.
+PyYAML==6.0.3
