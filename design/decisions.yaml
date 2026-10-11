@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 2.7
+version: 2.8
 decisions:
   - id: DEC-001
     status: approved
@@ -722,6 +722,29 @@ decisions:
       behavior require tuning. All are post-MVP0, not part of DEC-033.
     specification: design/faction-storage-specialization-and-obelisk-traffic-2026-10-11.md
     data_specification: design/faction-storage-specialization-and-obelisk-traffic.yaml
+
+  - id: DEC-037
+    status: owner_approved_recovery_asymmetry_rates_thresholds_and_costs_TBD
+    topic: org_living_HP_regen_eth_shield_HP_cycle_man_bio_medical_mechanical_service
+    resolution: >-
+      ORG biological HP regenerates automatically at a slow base rate
+      and faster with actual valid connected living-vein access. ETH
+      blue shields regenerate on their own and faster using a live
+      connected Obelisk network. ETH can recover missing green HP by
+      consuming its entire charged blue shield to heal a limited amount;
+      a seriously wounded ETH actor requires several recharge-then-
+      sacrifice cycles. The precise full-charge activation threshold,
+      yield, timing and Energy/bandwidth costs are design/balance TBD.
+      MAN biological units require external medical healing and
+      mechanical units require service/repair for lost green HP.
+      Certain MAN unit templates may have force shields, but MAN blue
+      shield regeneration ALWAYS needs a finite local battery or valid
+      powered MAN network; never passive recharge when isolated without
+      energy. Health, shield and resource Energy remain distinct tracked
+      quantities. This post-MVP direction does not add shields,
+      medical or vein/Obelisk systems to DEC-033 MAN mirror MVP0.
+    specification: design/faction-damage-recovery-shields-and-repair-2026-10-11.md
+    data_specification: design/faction-damage-recovery-shields-and-repair.yaml
 
 migration_required:
   - design/economy.yaml
