@@ -1,0 +1,96 @@
+extends SceneTree
+
+# Self-contained checks for the first MAN mirror economy/combat loop.
+const MATCH = preload("res://scripts/mirror_match_state.gd")
+
+func _initialize() -> void:
+    call_deferred("_run")
+
+func _fail(reason: String) -> void:
+    push_error("SCALFAGUS_MIRROR_FAIL: " + reason)
+    quit(1)
+
+func _run() -> void:
+    var match_state = MATCH.new()
+    match_state.setup(42, ["human", "human"])
+    if match_state.units_for(0, "hq").size() != 1 or match_state.units_for(1, "worker").size() != 3:
+        _fail("Incorrect mirrored initial roster")
+        return
+
+    var west_worker: int = match_state.units_for(0, "worker")[0]
+    var enemy_worker: int = match_state.units_for(1, "worker")[0]
+    if match_state.issue_command(0, "move", enemy_worker, Vector2i(12, 12)):
+        _fail("Human player controlled enemy worker")
+        return
+    if not match_state.issue_command(0, "gather", west_worker, "west"):
+        _fail("Cannot order worker to gather")
+        return
+    for id in match_state.units_for(0, "worker"):
+        if id != west_worker:
+            match_state.issue_command(0, "gather", id, "west")
+    for i in range(800):
+        match_state.advance()
+        if int(match_state.players[0]["matter"]) >= 100:
+            break
+    if int(match_state.players[0]["matter"]) < 100 or not match_state.matter_is_conserved():
+        _fail("Physical Matter gathering/delivery or conservation failed")
+        return
+
+    if not match_state.issue_command(0, "build_barracks", west_worker, Vector2i(13, 36)):
+        _fail("Funded worker cannot build Barracks")
+        return
+    for i in range(300):
+        match_state.advance()
+        if match_state.units_for(0, "barracks").size() > 0:
+            break
+    if match_state.units_for(0, "barracks").size() != 1:
+        _fail("Barracks build never completed")
+        return
+    if not match_state.matter_is_conserved():
+        _fail("Matter was duplicated during building")
+        return
+
+    # Additional gathering funds Rifleman training.
+    for i in range(700):
+        match_state.advance()
+        if int(match_state.players[0]["matter"]) >= 50:
+            break
+    var barracks_id: int = match_state.units_for(0, "barracks")[0]
+    if not match_state.issue_command(0, "train_rifleman", barracks_id):
+        _fail("Barracks cannot train funded Rifleman")
+        return
+    for i in range(80):
+        match_state.advance()
+    if match_state.units_for(0, "rifleman").is_empty():
+        _fail("Training failed")
+        return
+
+    # A real state hash must be stable for equal state and sensitive to updates.
+    var before_hash: String = match_state.replay_hash()
+    match_state.advance()
+    if before_hash == match_state.replay_hash():
+        _fail("Replay hash did not change with the authoritative tick")
+        return
+
+    var opponent_hq: int = match_state.units_for(1, "hq")[0]
+    match_state._damage(opponent_hq, 2000, 0)
+    match_state._check_end()
+    if not match_state.finished or match_state.winner != 0 or match_state.finish_reason != "buildings_eliminated":
+        _fail("All-completed-buildings victory condition failed")
+        return
+    if not match_state.matter_is_conserved():
+        _fail("End-of-match Matter conservation failed")
+        return
+
+    var a = MATCH.new()
+    var b = MATCH.new()
+    a.setup(99, ["bot", "bot"])
+    b.setup(99, ["bot", "bot"])
+    for i in range(200):
+        a.advance()
+        b.advance()
+    if a.replay_hash() != b.replay_hash() or not a.matter_is_conserved() or not b.matter_is_conserved():
+        _fail("Bot match is not reproducible or resource-safe")
+        return
+    print("SCALFAGUS_MIRROR_SMOKE_PASS")
+    quit(0)
