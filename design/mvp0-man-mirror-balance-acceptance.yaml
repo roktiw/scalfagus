@@ -1,0 +1,122 @@
+schema_version: 1
+project: scalfagus
+release: mvp_0_1
+suite: man_mirror_numeric_and_execution_acceptance
+version: 0.1
+status: executable_test_design_ONLY_NOT_yet_run_or_implemented
+approved_scope: DEC-033
+candidate_numbers: design/mvp0-man-mirror-balance-v0.1.yaml
+source_map: design/mvp-verdant-divide-map.yaml
+network_authority: design/mvp0-man-mirror-network.yaml
+gameplay: design/mvp0-man-mirror-execution-contract.md
+traditional_cases: design/mvp0-man-mirror-acceptance.yaml
+cases:
+  - id: M0B-01
+    title: exactly_two_MAN_teams_four_template_registry
+    expect: {teams: 2, faction_per_team: man, templates: [man_command_core, man_min, man_barracks, man_rifleman], start_HQ_total: 2, start_worker_total: 6, active_Energy_mechanic: false, active_UMU: false}
+  - id: M0B-02
+    title: equal_symmetric_starting_inventory
+    expect: {matter_in_each_HQ: 0, available_safe_SOLID_per_slot: 400, total_map_SOLID_stocks: 1660, starts_mirror_economic_access: true}
+  - id: M0B-03
+    title: deliver_only_on_physical_arrival
+    initial: {source_remaining: 10, worker_carrying_Matter: 0, HQ_Matter: 0}
+    actions: [gather_10_units_of_SOLID, move_toward_HQ]
+    expect_before_HQ_port_contact: {source_remaining: 0, worker_Matter: 10, HQ_Matter: 0}
+    expect_after_HQ_port_contact: {source_remaining: 0, worker_Matter: 0, HQ_Matter: 10, duplicate_credit: 0}
+  - id: M0B-04
+    title: paper_mining_cycle_calculation_not_measured_real_match
+    input: {carry_units: 10, seconds_per_source_unit: 2.0, tiles_one_way: 8, speed_tiles_s: 2.4, combined_loading_overhead_s: 0.5}
+    expectation_approx: {full_cycle_s: 27.1667, one_worker_Matter_min: 22.086, three_workers_Matter_min: 66.258, tolerance: 0.15}
+  - id: M0B-05
+    title: Barracks_plus_six_Riflemen_fits_safe_initial_SOLID
+    inputs: {Barracks_Matter: 100, Rifleman_Matter: 50, count: 6, safe_SOLID_Matter: 400}
+    expected: {total_cost: 400, remaining_safe_stock: 0, any_Energy_or_Pylon_requirement: false}
+  - id: M0B-06
+    title: Barracks_plus_three_Riflemen_and_three_extra_workers_fits
+    inputs: {Barracks_Matter: 100, Rifleman_Matter: 50, Riflemen_count: 3, Worker_Matter: 35, Workers_extra_count: 3, safe_SOLID_Matter: 400}
+    expected: {total_spend: 355, remaining_safe_Matter: 45, valid_without_contested_center: true}
+  - id: M0B-07
+    title: one_Rifleman_building_damage_and_TTK_no_armor
+    inputs: {rifleman_damage: 8, cooldown_s: 1, HQ_HP: 1200, Barracks_HP: 650}
+    expected_approx: {rifleman_DPS: 8, theoretical_one_soldier_HQ_TTK_s: 150, five_soldiers_HQ_TTK_s: 30, five_soldiers_Barracks_TTK_s: 16.25}
+    note: ideal_continuous_fire_average_DPS_no_movement_aim_or_fire_initial_delay
+  - id: M0B-08
+    title: no_energy_or_population_cap_accidentally_imported_from_future_profile
+    expect: {MVP0_worker_price_in_Matter: 35, MVP0_rifleman_price_in_Matter: 50, active_Energy_cost_for_build_or_training: 0, active_supply_system: false, advanced_PROFILE_price_15_20_rejected: true}
+  - id: M0B-09
+    title: idle_constructor_pause_no_free_refund
+    actions: [deposit_at_least_100_Matter, start_one_Barracks, withdraw_builder, resume_same_worker]
+    expected: {HQ_debit_once: 100, building_progress_pauses_without_builder: true, building_progress_resumes: true, duplicate_site_spend: 0}
+  - id: M0B-10
+    title: unfinished_site_not_victory_building
+    actions: [destroy_HQ_leaving_only_enemy_incomplete_Barracks_and_workers]
+    expected: {enemy_eliminated: true, unfinished_site_not_a_completed_building: true}
+  - id: M0B-11
+    title: both_final_completed_buildings_dead_same_tick_is_draw
+    actions: [apply_both_last_building_damage_in_same_authoritative_tick]
+    expected: {outcome: draw, reason: simultaneous_elimination}
+  - id: M0B-12
+    title: explicit_timeout_cannot_award_invented_winner
+    inputs: {timeout_game_seconds: 1200, time_tick_hz: 20, timeout_tick: 24000}
+    expected: {result: draw, reason: draw_timeout, no_winner_fabricated: true}
+  - id: M0B-13
+    title: only_ground_and_mandatory_space_platform
+    actions: [attempt_cross_each_map_edge, attempt_path_through_pond, attempt_shoot_through_tree_trunk]
+    expected: {world_frame: floating_space_platform, topology: planar, ground_paths_blocked_by_water: true, tree_LOS_blocks_damage: true, no_edge_escape: true}
+  - id: M0B-14
+    title: worker_death_cargo_leaves_custody_once
+    initial: {worker_carried_Matter: 7}
+    actions: [kill_worker, settle_actual_packet_fate]
+    expected: {worker_after_death_cargo: 0, real_Matter_also_HQ_refunded: 0, logged_ground_or_loss_total: 7, duplication: 0}
+  - id: M0B-15
+    title: fog_is_not_shared_without_authorization
+    actions: [spawn_unseen_enemy_worker_behind_tree, query_player_slot_0_client_state, query_bot_observation]
+    expected: {hidden_enemy_actor_ID_visible_to_player_client: false, hidden_enemy_actor_ID_visible_to_bot: false, host_full_world_record_still_exists: true}
+  - id: M0B-16
+    title: reject_command_spoof_duplicate_and_out_of_order_without_state_mutation
+    actions: [send_enemy_owned_actor_command, duplicate_previous_sequence, send_out_of_order_sequence]
+    expected: {all_illegal_actions_not_applied: true, no_Matter_debit: true, no_HP_or_position_mutation: true, sender_peer_binding_used_over_supplied_slot: true}
+  - id: M0B-17
+    title: HH_LAN_two_clients_one_world
+    actions: [launch_two_distinct_Godot_native_clients, start_Host_and_Join_on_loopback_or_LAN, issue_commands_on_each_client]
+    expected: {players: 2, clients: 2, authoritative_hosts: 1, same_final_match_hash: true, no_split_screen: true}
+  - id: M0B-18
+    title: HC_and_CC_same_bot_command_api
+    actions: [play_HC, play_CC_observer, run_CC_accelerated_headless_same_seed_and_commands]
+    expected: {controller_types: [human, bot], same_build_costs: true, no_LLM_per_tick: true, no_hidden_resource_credit: true, same_final_hash_when_command_log_equal: true}
+  - id: M0B-19
+    title: host_disconnect_is_abort_not_win
+    actions: [disconnect_host_during_HH_match]
+    expected: {match_abort_is_explicit: true, opponent_not_awarded_fake_elimination_victory: true, UI_return_to_menu_available: true}
+  - id: M0B-20
+    title: headless_acceleration_and_log_provenance
+    actions: [run_multiple_Godot_host_CC_matches_unpaced_same_process_if_supported, emit_JSONL_and_summary]
+    expected: {same_gameplay_core: true, result_records_have_seed_rules_map_bot_hashes: true, measured_simulation_to_wall_time_ratio_recorded: true, no_unproven_performance_claim: true}
+  - id: M0B-21
+    title: real_rts_controls_only_shipped_menu
+    actions: [open_MVP0_match, move_RTS_camera_WASD, select_workers_box, issue_move_and_build, inspect_gameplay_modes]
+    expected: {F1_overlord_RTS_works: true, FPP_and_TPP_not_promised_in_MVP0: true, no_Hero_required_in_match: true}
+  - id: M0B-22
+    title: stage_and_queue_do_not_create_ghost_units
+    actions: [start_production_when_spawn_cells_full, wait_until_valid_cell_clears]
+    expected: {debit_on_started_queue_only_once: true, no_unit_spawns_into_blocked_cell: true, one_unit_spawns_when_cell_available: true}
+  - id: M0B-23
+    title: economic_performance_mirror_side_swap
+    actions: [run_identical_policy_on_NW_then_SE_same_seed_and_match_rules]
+    expect_hard: {map_stock_equal: true, prices_equal: true, no_unreachable_safe_source: true}
+    warn_only: {first_Barracks_time_difference_percent_above: 15}
+  - id: M0B-24
+    title: old_legacy_camera_sprite_smoke_preserved_during_MVP0_build
+    actions: [bash_scripts_check_sh]
+    expected: {existing_menu_smoke_and_sprites_not_removed_preemptively: true}
+  - id: M0B-25
+    title: first_complete_match_has_valid_loser_winner_and_replay_hash
+    actions: [run_complete_HC_or_CC_until_all_enemy_completed_buildings_die]
+    expected: {final_winner_is_0_or_1: true, event_reason: elimination, no_outstanding_duplicate_stock: true, pinned_replay_hash_repeats: true}
+sampling_plan_NOT_executed:
+  initial_paired_seeds: 20
+  bot_policies_initial: [economy_attack]
+  later_strategy_policy_candidates: [rush, turtle, random_legal]
+  sampled_spawn_swap_both_orders: true
+  never_confuse_Mirror_side_fairness_with_asymmetric_faction_balance: true
+  no_actual_godot_matches_run_during_document_edit: true
