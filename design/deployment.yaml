@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 0.6
+version: 0.7
 status: approved_core_rules_with_proposed_details
 rule:
   all_units_deploy_into_buildings: false
@@ -46,7 +46,10 @@ factions:
       local_independent_outposts: true
       repair_units_and_buildings_with_supplies: true
       proposed_staged_assembly:
-        workers_by_third: [1, 2, 3]
+        workers_by_third: [2, 1, 3]
+        man_alternate_worker_profile: [2, 3, 1]
+        previous_proposal: [1, 2, 3]
+        three_stages_explanation: [two_worker_frame, single_worker_core, three_worker_final_integration]
         worksite_progress_persists_when_unattended: true
         materials_at_site_persist_if_not_destroyed: true
         unfinished_or_destroyed_worksite_can_be_salvaged_by_other_factions: true
@@ -69,7 +72,9 @@ factions:
       actual_energy_spend: true
       physical_materials_required: true
       proposed_staged_channeling:
-        channelers_by_third: [1, 3, 2]
+        channelers_by_third: [1, 2, 3]
+        previous_proposal: [1, 3, 2]
+        three_stages_explanation: [single_pattern_seeding, dual_beam_energy_transfer, triadic_final_manifestation]
         breaking_all_required_links_loses_all_build_progress: true
         partial_refund_to_attributed_nexus_expansion_sources: true
         refundable_materials_require_actual_return_transfer: true
