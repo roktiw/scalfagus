@@ -18,11 +18,28 @@ These names describe **logistics behavior**, not mandatory manual clicks: routin
 
 | Faction | MIN: independent | MID: intermediate | MAX: economic anchor |
 |---|---|---|---|
-| **ORG / Organites** | Small fast **worker**, mines and hand-carries a small load to base or another cargo organism. May scout/fend for itself if specialized. | **Mid-size harvester** with several separate cargo slots. Mines independently, carries more than MIN, moves and mines slower than MIN. Can take MIN-sized passengers if equipped; can pass supplies to flying MAX. | **Huge flying mother transporter** with many resource slots; player-defined continuous deposit-to-base loops. **Load/unload while mother remains flying and moving**, using finite in-range transfer windows. May transport compatible living troops/workers in passenger bays and optionally defend itself at a real cargo/speed/cost tradeoff. |
+| **ORG / Organites** | Small fast **worker**, mines and hand-carries a small load to base or another cargo organism. May scout/fend for itself if specialized. | **Mid-size harvester** with several separate cargo slots. Mines independently, carries more than MIN, moves and mines slower than MIN. Can take MIN-sized passengers if equipped; can pass supplies to flying MAX. | **Huge flying mother transporter** with many resource slots; player-defined continuous deposit-to-base loops. **Baseline: stop to receive/dispatch one item per worker handoff, one worker at a time. Moving handoffs unlock in mid game; extra ports unlock in late game.** May transport compatible living troops/workers in passenger bays and optionally defend itself at a real cargo/speed/cost tradeoff. |
 | **MAN / Manusians** | Small versatile **ground mining robot**; independently gathers, hauls and deposits or feeds belt input. Provides emergency manual haul fallback. | Mobile conveyor segment **3 or 5 tiles long**, finite buffer compartments. In logistics mode it links two compatible belt endpoints. **Sentry Wall mode:** disconnects belt, releases carried resource **packages behind the wall**, then becomes a blocking fortified wall segment. | Very slow **ground-only mobile warehouse** with slots. **Depot mode:** collect, distribute and store. **Bunker mode:** explicitly deploy, **eject stored resource packages into legal nearby cells** and become a garrisonable bunker for soldiers. No flying. |
 | **ETH / Etherans** | Small independent **extractor/courier**. Delivers directly or shuttles physical loads to hub/relay nodes. | **OPEN DESIGN — proposed “Relay Conductor”**: mobile intermediate courier with several slots. Travel mode ferries batches; parked relay mode serves as a **temporary local handoff node** among MIN couriers (bounded buffer, queue, range). Optional extraction module. | **Large stationary pylon** with many finite storage slots and courier handoff capacity. **Storage / Meditation / Turret modes:** keeps its cargo across meditation; input/output locked during meditation **and turret operation** under the proposed strict exclusivity rule. Turns into a powerful defensive emplacement after a timed meditation. |
 
 **Naming scope:** ORG/MAN/ETH are the stable machine IDs; Organites/Manusians/Etherans are the canonical mid names of the peoples, *not* unit size MID. Names like Relay Conductor, Sentry Wall and Bunker are descriptive working labels, not approved fiction names. This table refines *economic worker/transport variants only*; military unit archetypes retain separate role definitions.
+
+## DEC-011 — ORG baseline bandwidth and mode constraints (owner-approved)
+
+These rules override any legacy suggestion that ORG has free in-motion transfers at the start.
+
+- A basic **MIN worker transfers only one resource item/portion per completed handoff** to/from ORG **MID or MAX**. One item is not an entire compartment or full cargo inventory; repeated transfers take finite time.
+- Each unupgraded ORG **MID and MAX has one active transfer port**. Only one worker can be served at a time, whether loading or unloading; others wait. A worker likewise performs only one transfer at a time.
+- **Many cargo slots increase total carrying capacity, not loading bandwidth.** Port count and handling rate must be tracked separately; upgrades in later eras can raise parallelism.
+- Before research, the ORG mother has exactly **one active mode**: `MOVE` (travel/carry but do not transfer), `RECEIVE` (hover and load, one item/worker at a time), `DISPATCH` (hover and unload, one item/worker at a time), or `EXTRACT` (stationary self-mining, only if equipped).
+- A base-level mother can automatically perform a loop of `MOVE → RECEIVE → MOVE → DISPATCH`, but it **holds position at each handoff**. It need not land. State switching, worker queues, finite distance and slot validation apply.
+- **Mid-game biological upgrade (proposed):** allow movement **plus either RECEIVE or DISPATCH** as a combined authorized operating state; **still one handoff port and one item per completed worker transfer**, never receive and dispatch at once with that one port. Self-extraction cannot overlap.
+- **Late-game biological upgrade (proposed):** add costly loading/unloading organs for a limited number of **simultaneous worker handoffs** and possibly separate intake/output while moving. Each worker's transaction remains finite. Number of ports, cost, throughput budget and constraints need playtesting. Self-extraction overlap remains separately gated, not presumed.
+- Damaged mothers, mode changes, disconnected workers and canceled transfers reconcile inventory atomically; no duplication, phantom deliveries, infinite transfer rate, or zero-time handoff.
+
+**Balance rationale:** the most mobile faction must pay with loading dwell time and sequential handling. This keeps early hunter–gatherer logistics distinct from MAN continuous conveyors and ETH distributed relays. Mid/late upgrades earn improved concurrency through research/resource investment rather than granting free throughput from minute one.
+
+**Acceptance tests:** `ORG-PORT-01` two workers requesting one MID/MAX port queue; `ORG-MODE-02` no moving transfer without research; `ORG-MODE-03` all four basic modes are mutually exclusive; `ORG-MIDTECH-04` movement plus one handoff after research still uses one port; `ORG-LATETECH-05` multiple ports remain finitely capped; `ORG-ECO-06` benchmark ORG early/mid/late with port occupancy, handling delay and opportunity cost versus MAN and ETH.
 
 ## ORG: an intentionally simple organic size tree
 
@@ -30,7 +47,7 @@ For economic workers **MIN → MID → MAX**:
 - **Cargo capacity and compartment count increase** with scale.
 - **Personal extraction rate and movement speed decrease** with scale. MAX is airborne; this measures speed within the legal movement domain and does not imply a ground path.
 - All MIN can extract and carry. MID can harvest and load/unload in several slots. The MAX's *primary* purpose is bulk transport, not mining; any MAX self-extraction is an optional specialist fitting that remains slower than MIN/MID, never a prerequisite.
-- The mother follows a route such as deposit rendezvous → base rendezvous → return. MIN/MID workers load/unload **in flight and in motion**, at finite rate, over a legal space/time window; the mother need not dock on land.
+- The mother follows deposit rendezvous → base rendezvous → return. **Initially it holds position to load/unload without landing**. Researched mid-game organs permit a moving mother to receive OR dispatch, still via a single port; researched late-game organs may add more ports.
 - Some **specialized** transport organisms can also **transport smaller units as passengers**. Passenger manifest/size, boarding/exiting, attackability, and survival after carrier loss need explicit rules. **Cargo slots and passenger berths must be counted separately or compete for a single finite mass budget**; units are not free extra cargo.
 - Limited self-defense / armed carrier variants are **proposed**. Combat organs cost biomass/resources/module budget and must reduce available transport capability or increase vulnerability/upkeep. Mobile cargo assets must not outperform dedicated fighters by default.
 - Counterplay: intercept the mother (anti-air), raid the loading workers, cut safe pickup zones. ORG's strengths are resilience through redeployment and independent gathering, not a safe indestructible airborne warehouse.
@@ -108,7 +125,7 @@ Mode switches are intentional economic/combat actions, **not role changes that h
 
 ## Prototype acceptance criteria
 1. All three MIN workers mine and carry home without MID/MAX support.
-2. ORG MIN→MID→MAX capacity rises while movement/personal mining speed falls; MAX flies and can receive/send cargo without stopping if workers are in legal range.
+2. ORG MIN→MID→MAX capacity rises while movement/personal mining speed falls; basic MAX stops to receive/dispatch, with researched moving transfer later.
 3. ORG carries compatible worker/soldier passengers only with sufficient berths/mass, and manifests are never duplicated on boarding/destruction.
 4. MAN MID belt in 3/5 tile versions has finite flow and blocks when destroyed/disconnected.
 5. A MAN MID filled with packets cannot instantly deploy wall with free bank delivery; packets must be placed on legal protected-side ground/depot cells before mode completion.
@@ -123,6 +140,6 @@ Mode switches are intentional economic/combat actions, **not role changes that h
 14. Attack-induced defensive conversion has a measurable **opportunity cost** for MAN and ETH; never free simultaneous full-output economy and defense.
 
 ## Approval boundary
-**Owner decisions:** hunter–gatherer ORG economy, possible transport/combat specialists; mobile MAN 3/5-tile conveyors that can become defensive walls and eject packages behind them, MAN MAX that unloads cargo and becomes soldier bunker; ETH courier relay network supporting late-game survival, ETH MAX turret conversion through timed meditation **without ejecting cargo**, with receiving/dispatch disabled during meditation; all three MIN/MID/MAX roles as specified in previous discussions.
+**Owner decisions:** hunter–gatherer ORG economy with one-item single-port handoffs, strictly exclusive unupgraded mother modes, and researched in-motion / multiport upgrades; possible transport/combat specialists; mobile MAN 3/5-tile conveyors that can become defensive walls and eject packages behind them, MAN MAX that unloads cargo and becomes soldier bunker; ETH courier relay network supporting late-game survival, ETH MAX turret conversion through timed meditation **without ejecting cargo**, with receiving/dispatch disabled during meditation; all three MIN/MID/MAX roles as specified in previous discussions.
 
 **Proposals needing confirmation or playtest:** ETH MID Relay Conductor and its two stances; defensive capabilities for ORG cargo creatures, exact passenger seats and tradeoffs; reversibility/packing policies; eth pylon cargo lock continuing through active turret mode; numerical mode/weapon balance and exact tile placement logic.
