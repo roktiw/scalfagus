@@ -7,6 +7,7 @@ on:
       - 'assets/faction-emblems/**'
       - 'scripts/build-faction-emblems.mjs'
       - 'scripts/test-faction-emblems.mjs'
+      - 'scripts/compare-faction-emblems.mjs'
       - '.github/workflows/faction-emblems.yml'
   pull_request:
     paths:
@@ -29,8 +30,12 @@ jobs:
           node-version: '24'
       - name: Validate committed atlas regions and alpha
         run: node scripts/test-faction-emblems.mjs
-      - name: Build from source and verify generated images are committed
+      - name: Regenerate in isolated directory and verify committed pixels
         run: |
-          node scripts/build-faction-emblems.mjs
-          node scripts/test-faction-emblems.mjs
+          set -euo pipefail
+          OUT="$(mktemp -d)"
+          trap 'rm -rf "$OUT"' EXIT
+          node scripts/build-faction-emblems.mjs "$OUT"
+          node scripts/test-faction-emblems.mjs "$OUT"
+          node scripts/compare-faction-emblems.mjs assets/faction-emblems "$OUT"
           git diff --exit-code -- assets/faction-emblems
