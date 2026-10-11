@@ -1,8 +1,15 @@
 schema_version: 1
 project: scalfagus
-version: 0.4
+version: 0.5
 status: approved_core_rules_with_proposed_details
 automation: medium
+faction_mechanisms:
+  specification: design/faction-logistics-2026-10-11.md
+  config: design/faction-logistics.yaml
+  org: rolling_load_unload_mother_transporter_loops
+  man: destructible_throughput_limited_conveyor_network
+  eth: mobile_couriers_to_stationary_pylon_hubs
+  note: Preserve common finite inventories, geometry, capacity and manual-order authority.
 player_controls:
   - select_deposit_and_assign_workers
   - place_transfer_points_and_storage
