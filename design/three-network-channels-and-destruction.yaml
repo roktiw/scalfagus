@@ -3,7 +3,13 @@ project: scalfagus
 version: 0.1
 status: owner_directed_structure_with_proposed_mechanics_and_balance_parameters
 specification: design/three-network-channels-and-destruction-2026-10-11.md
-latest_decisions: [DEC-021, DEC-022, DEC-023, DEC-035, DEC-036, DEC-038]
+latest_decisions: [DEC-021, DEC-022, DEC-023, DEC-035, DEC-036, DEC-038, DEC-039]
+latest_eth_three_ingress_decision: DEC-039
+ORG_universal_Plug_Hole_port_design: preferred_option_for_MIN_MID_MAX_not_final_owner_choice
+ETH_Nexus_conversion_energy_tariff: 0
+ETH_shield_drone_tip_upload_tariff: 33_percent_drone_shield
+ETH_expensive_ground_pickup: powered_Obelisk_uses_real_Energy
+legacy_Nexus_only_conversion_exclusivity: superseded_for_post_MVP0
 latest_bidirectional_economics_decision: DEC-038
 ORG_living_veins_allow_both_traffic_directions: true
 ETH_Obelisk_tip_links_allow_both_traffic_directions: true
