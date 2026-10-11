@@ -86,6 +86,12 @@ mkdir -p "$DEST"
 verify_bundled
 
 if [[ "$MODE" == --check ]]; then
+  if [[ -f "$ROOT/third_party/godot-statecharts/.git" || -d "$ROOT/third_party/godot-statecharts/.git" ]]; then
+    verify_checkout third_party/godot-statecharts "$STATE_SHA"
+  fi
+  if [[ -f "$ROOT/third_party/gut/.git" || -d "$ROOT/third_party/gut/.git" ]]; then
+    verify_checkout third_party/gut "$GUT_SHA"
+  fi
   matches third_party/godot-statecharts godot_state_charts "$STATE_SHA" \
     || fail "State Charts absent/incomplete; run bash scripts/install-godot-addons.sh --install"
   matches third_party/gut gut "$GUT_SHA" \
