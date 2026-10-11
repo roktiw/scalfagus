@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 0.9
+version: 1.0
 decisions:
   - id: DEC-001
     status: approved
@@ -86,6 +86,36 @@ decisions:
       loading/unloading while flying and moving is a researched mid/late-game
       capability rather than a free starting rule. Upgrade values and costs
       remain proposals requiring balance testing.
+    specification: design/logistics-min-mid-max-2026-10-11.md
+    data_specification: design/logistics-unit-scales.yaml
+  - id: DEC-012
+    status: owner_approved_direction_details_tbd
+    topic: faction_base_ecologies_and_expansion_dependence
+    resolution: >-
+      ORG buildings bud only along a physically connected living vascular branch
+      rooted at the home Nexus; severed branches wither, and remote expansions
+      require recurring nourishment deliveries from home. MAN bases are modular,
+      largely relocatable systems of units/structures, supporting independent
+      self-sufficient outposts without obligatory home contact. ETH bases are
+      networks of pylons and Nexus-class core nodes; a new expansion initializes
+      from home and later contacts home only for unknown building blueprints.
+      ETH construction MIN units remain in NETWORK mode with a visible blue
+      beam to the nearest eligible large node while performing the build.
+    specification: design/base-ecologies-and-expansion-2026-10-11.md
+    data_specification: design/base-ecologies.yaml
+  - id: DEC-013
+    status: owner_approved_direction_details_tbd
+    topic: revised_economic_chassis_roles
+    resolution: >-
+      ORG MIN/MID/MAX with growth capability can bud levels L1/L2/L3
+      respectively. MAN MIN is a versatile mining, construction and repair
+      worker; tracked MID is a 3/5-tile conveyor/relay, one-soldier bunker or
+      outward-facing sentry wall; slow land-only MAX is a modular warehouse
+      or larger soldier bunker. ETH MIN is an independent gatherer and
+      occupied blue-beam NETWORK builder; MID is a pylon in cargo
+      storage/relay or meditated turret mode; MAX is a Nexus-class core node
+      immediately. Prior proposed ETH mobile MID relay and ETH MAX turret
+      pylon roles are superseded.
     specification: design/logistics-min-mid-max-2026-10-11.md
     data_specification: design/logistics-unit-scales.yaml
 migration_required:
