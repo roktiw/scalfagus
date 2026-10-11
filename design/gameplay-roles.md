@@ -3,6 +3,9 @@ Date: 2026-10-11
 Status: design discussion; distinguish approved directions from implementation proposals
 
 ## Three gameplay disciplines
+
+One human player starts with one Hero (Engineer, Commander or Specialist starter kit), shared open pivotable talents, and may switch Overlord / Direct Unit / FPS perspectives; see [Hero and Three Cameras](hero-progressions-and-three-cameras-2026-10-11.md). This takes precedence over older language placing *all* possession after MVP: minimal FPS is required in the internal playable MVP, advanced FPS later.
+
 1. **Architect (simulation/Factorio):** construction, production, storage, resource flow, logistics, base connectivity and infrastructure.
 2. **Commander (classic RTS/Warcraft/StarCraft):** reconnaissance, strategic objectives, combat groups, orders, formations, defenses and battlefield control.
 3. **Avatar (Dungeon Keeper possession; eventual FPS):** direct control of a compatible unit. Advanced Quake III-style FPS is well beyond MVP.
@@ -16,9 +19,9 @@ These are capabilities, not compulsory player slots. One player can perform all 
 
 ## Faction-to-role affinity
 All factions support all roles; each emphasizes one:
-- **Blergians -> Architect/simulation:** living biomass infrastructure; disconnected islands are weak, mother-base connectivity provides major synergies.
-- **Manusians -> Commander/strategy:** modular, tactical, highly dispersed and relatively autonomous outposts; best value from independent islands.
-- **Aetherians -> Avatar/direct control:** expressive psionic and resonance-based units; balanced satellite viability, with an advantage toward connection to the mother base.
+- **Organs -> Architect/simulation:** living biomass infrastructure; disconnected islands are weak, mother-base connectivity provides major synergies.
+- **Manus -> Commander/strategy:** modular, tactical, highly dispersed and relatively autonomous outposts; best value from independent islands.
+- **Eters -> Avatar/direct control:** expressive psionic and resonance-based units; balanced satellite viability, with an advantage toward connection to the mother base.
 
 Affinity means richer decisions and distinctive skill expression, not an unconditional power multiplier. Each of the nine faction × role combinations should be meaningful.
 
@@ -30,15 +33,15 @@ Proposed priority: direct Avatar control > explicit player orders > assigned doc
 ## Unit AI and progression
 - Configurable doctrines: defend, patrol, escort, attack, retreat, harvest, repair and similar role-appropriate behaviors.
 - Experience from meaningful activity, not just kills.
-- Blergians: adaptation and irreversible mutations.
-- Manusians: training, specialization and modular equipment proficiency.
-- Aetherians: meditation, resonance mastery and costly reversible ascension.
+- Organs: adaptation and irreversible mutations.
+- Manus: training, specialization and modular equipment proficiency.
+- Eters: meditation, resonance mastery and costly reversible ascension.
 - Experience must not erase MIN/MID/MAX chassis tradeoffs or replace the technology tree.
 
 ## Functional base synergies
-- **Blergians:** weak isolated satellite bases, strong biomass connection to mother-base ecosystem. Isolation should not make them entirely unusable; disruptions need counterplay.
-- **Manusians:** strongest standalone islands and distributed infrastructure, but pay real transport, protection and module-supply costs.
-- **Aetherians:** moderately capable satellites with a clear advantage when linked to the central resonance/homeworld core.
+- **Organs:** weak isolated satellite bases, strong biomass connection to mother-base ecosystem. Isolation should not make them entirely unusable; disruptions need counterplay.
+- **Manus:** strongest standalone islands and distributed infrastructure, but pay real transport, protection and module-supply costs.
+- **Eters:** moderately capable satellites with a clear advantage when linked to the central resonance/homeworld core.
 
 ## Other Dungeon Keeper 1 inspirations considered
 Territory claiming; functional rooms; imps; training; creature needs and personalities; traps and doors; dungeon heart; prison/conversion; Keeper spells; Hand of Evil. These are inspirations, not all approved features. Avoid excessive morale micromanagement, free unit teleportation, or copying protected characters/artwork.
