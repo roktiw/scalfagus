@@ -1,7 +1,7 @@
 # Scalfagus original faction definitions
 schema_version: 1
 project: scalfagus
-status: concept
+status: concept # gameplay mechanics remain conceptual; naming fields are owner-approved
 description: >-
   Three original playable science-fiction factions inspired by broad RTS
   archetypes and the five-color philosophy of Magic: The Gathering.
@@ -9,6 +9,10 @@ description: >-
 factions:
   - id: org
     name: Organs
+    name_short: Organs
+    name_mid: Organites
+    name_full: Organites Reproductive Generalismus
+    name_initialism: ORG
     archetype: specialized_biological_civilization
     mtg:
       colors: [black, red, green]
@@ -34,6 +38,10 @@ factions:
       infrastructure evolves through competition and resource consumption.
   - id: man
     name: Manus
+    name_short: Manus
+    name_mid: Manusians
+    name_full: Manusians Augmented Navigators
+    name_initialism: MAN
     archetype: industrial_colonists
     mtg:
       colors: [red, white, blue]
@@ -59,6 +67,10 @@ factions:
       coordinated defense and experimental engineering.
   - id: eth
     name: Eters
+    name_short: Eters
+    name_mid: Etherans
+    name_full: Etherans Transcendent Hypervisors
+    name_initialism: ETH
     archetype: ancient_energy_civilization
     mtg:
       colors: [white, blue, green]
@@ -194,3 +206,6 @@ creative_influences:
 # Naming governance: current canonical faction IDs are org/man/eth.
 # Legacy IDs blergians/manusians/aetherians are historical only and must not be used for new runtime config.
 # See design/faction-identity-rename-2026-10-11.md.
+
+# Canonical names approved on 2026-10-11: short/mid/full; see design/faction-naming-conventions-2026-10-11.md.
+# The full names are intentional ORG/MAN/ETH backronyms, not separate inferred political-state names.
