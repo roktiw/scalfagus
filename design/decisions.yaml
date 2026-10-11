@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 3.0
+version: 3.1
 decisions:
   - id: DEC-001
     status: approved
@@ -801,6 +801,34 @@ decisions:
       preservation remain. This does not change MAN mirror MVP0.
     specification: design/org-plug-holes-and-eth-three-ingress-methods-2026-10-12.md
     data_specification: design/org-plug-holes-and-eth-three-ingress-methods.yaml
+
+  - id: DEC-040
+    status: owner_approved_UMU_two_wings_four_modes_exact_conveyor_lengths_balance_open
+    topic: MAN_UMU_transforming_belt_wings_tracks_conveyor_bunker_and_sentry_wall
+    resolution: >-
+      Every MAN Universal Man Unit (UMU) has two attached conveyor-belt
+      wings. When deployed as a conveyor they extend symmetrically by one
+      or two tiles per side around a one-tile center, yielding exactly
+      3 or 5 tiles of axial conveyor length. For ground travel both wings
+      fold and rotate underneath the chassis to work as left and right
+      crawler tracks. In BUNKER mode the wings fold against both sides
+      of the body to provide side protection/garrison functionality
+      where actually equipped. In the separate SENTRY WALL mode the
+      wings rotate upright to form an actual physical barrier denying
+      passage to ground units, not simply a turret variant and not
+      a cosmetically impassable effect. The four mutually exclusive
+      postures are MOVE/TRACKS, CONVEYOR (3 or 5), BUNKER, and
+      SENTRY WALL. Transformation takes finite time and preserves
+      one actor identity, actual cargo, legal deployment footprint,
+      ownership and real navigation collision. Historical limits
+      reserving the 3/5 belt solely for MID or denying a belt to an
+      UMU Power Dock are superseded for units designated UMU; exact
+      tier catalog, defensive parameters, wall width and energy
+      details remain for playtesting. This is future work beyond
+      DEC-033 MAN mirror MVP0.
+    specification: design/man-umu-transforming-belt-wings-2026-10-12.md
+    data_specification: design/man-umu-transforming-belt-wings.yaml
+
 
 migration_required:
   - design/economy.yaml
