@@ -2,6 +2,11 @@ schema_version: 1
 project: scalfagus
 suite: mvp0_man_mirror_rts_acceptance
 status: design_fixtures_not_executed
+numeric_acceptance: design/mvp0-man-mirror-balance-acceptance.yaml
+active_numeric_profile: design/mvp0-man-mirror-balance-v0.1.yaml
+active_execution_contract: design/mvp0-man-mirror-execution-contract.md
+active_network_contract: design/mvp0-man-mirror-network.yaml
+old_five_role_and_FPP_tests_not_a_micro_MVP_release_gate: true
 cases:
   - id: M0-01
     category: startup
