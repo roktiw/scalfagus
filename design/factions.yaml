@@ -116,10 +116,14 @@ default_playstyles:
     territorial_pattern: concentrated_clustering
     satellite_base_dispersion: low
     base_network:
-      requires_biomass_connection: proposed
+      requires_biomass_connection: true
+      required_connection_type: physical_living_vessel_to_home_nexus
       biomass_generated_by_structures: true
-      role: organic_connectivity_and_operational_support
-      interruption_counterplay: proposed
+      role: obligatory_rooted_building_placement_and_viability
+      disconnected_branch: gradual_wither_with_grace
+      recurring_home_origin_nourishment_to_expansions: true
+      individuality_of_detached_units_preserved: true
+      interruption_counterplay: root_cut_or_starvation
     preferred_assets:
       - specialized_biological_production
       - irreversible_combat_mutations
@@ -140,6 +144,15 @@ default_playstyles:
       - modular_deployable_structures
       - airborne_deployable_structures
       - reusable_building_modules
+      - fully_independent_outposts_without_home_tether
+      - optional_linking_between_independent_bases
+    base_architecture:
+      nexus_is_composed_of_units_and_buildings: true
+      mobile_crawling_modular_structure: true
+      typical_expansion_geometry: radial_and_vertical
+      few_structures_permanently_foundation_bound: true
+      obligatory_home_contact: false
+      repair_specialization: can_repair_units_and_buildings
     preferred_assets: [scouting, bunkers, flying_constructs, hot_swappable_modules]
     strengths: [mobility, surprise, flexible_responses, distributed_map_control]
     risks: [isolated_outpost_raids, supply_chain_interdiction, high_tactical_attention]
@@ -156,6 +169,14 @@ default_playstyles:
       fantasy: reconstruct_the_homeworld_as_a_living_sanctuary
       preservation_priority: very_high
       roles: [fortification, technology, resonance, energy_storage]
+    base_architecture:
+      topology: distributed_nexus_class_nodes_and_mid_pylons
+      min_building_requires_network_mode_visible_blue_beam: true
+      mid_pylon_modes: [cargo_storage_and_relay, meditated_turret]
+      max_role: nexus_class_core_node_from_creation
+      structure_relocation: optional_meditation_then_levitation_for_eligible_models
+      expansion_home_contact: initial_setup_and_unknown_blueprints_only
+      local_known_blueprints_survive_home_disconnection: true
     preferred_assets: [layered_defenses, shields, advanced_units, meditation]
     strengths: [strong_defensive_position, advanced_late_game_units, energy_specialization]
     risks: [early_pressure, core_base_dependency, costly_slow_transformations]
@@ -165,7 +186,7 @@ strategic_counterplay:
   - Early Organ pressure needs defensive and economic counters.
   - Dispersed Manus outposts must be vulnerable to raids and disrupted logistics.
   - An entrenched Eter core must have vulnerabilities to siege, containment, or resource denial.
-  - Biomass connectivity must not make Organ mobility or expansion impossible.
+  - Organ live-vessel dependence and recurring home nutrition must include measurable grace, cheap recoverable branching, and meaningful raid counterplay rather than instantaneous unavoidable colony death.
   - Flying Manus expansion must honor specialist deployable-unit restrictions.
   - Eter homeworld reconstruction describes a faction fantasy, not an automatic map-wide terrain overwrite.
 creative_influences:
