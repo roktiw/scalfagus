@@ -6,6 +6,11 @@ language: en
 latest_owner_scope_decision: DEC-033
 latest_research_and_view_decisions: [DEC-030, DEC-031, DEC-032, DEC-034]
 mandatory_reuse_first_policy: DEC-034
+future_three_faction_logistics_concise_overview:
+  path: design/three-faction-logistics-overview-2026-10-12.md
+  covers: [MAN, ORG, ETH, DEC-035, DEC-036, DEC-037, DEC-038, DEC-039]
+  status: summary_not_independent_balance_authority
+  excludes_first_MVP0: true
 latest_source_audit_reports: [design/mvp-repository-mechanics-audit-2026-10-11.md, design/mvp-repository-mechanics-audit.yaml]
 latest_code_vs_contract_reports: [design/mvp0-runtime-parity-gaps.md, design/mvp0-runtime-parity-gaps.yaml]
 latest_audit_status: source_only_no_Godot_execution_or_LAN_verification
@@ -128,6 +133,40 @@ historical_future_MAN_ETH_milestone:
   prior_delivery_gates_not_active: design/MVP-DELIVERY-GATES.md
   prior_three_camera_HUD_not_active: design/mvp-hud-and-input.yaml
   previous_agent_handoff_not_active: design/AGENT-MVP-IMPLEMENTATION.md
+latest_future_org_ports_and_eth_ingress_DEC_039:
+  decision: DEC-039
+  human: design/org-plug-holes-and-eth-three-ingress-methods-2026-10-12.md
+  machine: design/org-plug-holes-and-eth-three-ingress-methods.yaml
+  org_Plug_Hole_port_vs_specialized_Mouth: design_candidate_not_final_owner_choice
+  eth_three_ingress_methods: [Nexus_free_conversion, drone_Obelisk_tip_33_percent_shield, costly_Obelisk_ground_pickup]
+  eth_non_Nexus_ingress_supersedes_old_Nexus_only_baseline: true
+  no_ETH_in_MVP0: true
+latest_future_bidirectional_and_storage_economics_DEC_038:
+  decision: DEC-038
+  human: design/faction-bidirectional-logistics-and-homogeneous-storage-2026-10-12.md
+  machine: design/faction-bidirectional-logistics-and-homogeneous-storage.yaml
+  org: real_finite_two_way_veins_with_cyst_mutation_cost
+  eth: two_way_Obelisk_links_homogeneous_levitation_lower_Energy_cost_independent_of_storage_congestion
+  man: proposed_initial_two_way_conveyor_without_manual_facing_optional_future_one_way
+  mvp0_excluded: true
+future_ETH_dual_transport_proposal_2026_10_12:
+  proposal_status: owner_direction_on_two_loops_raw_uplink_authority_open
+  human: design/eth-dual-loop-ground-flags-and-aerial-freight-2026-10-12.md
+  machine: design/eth-dual-loop-ground-flags-and-aerial-freight.yaml
+  ground: physical_drone_handoffs_at_Obelisk_foot_flags
+  elevated: resource_freight_on_straight_tip_to_tip_links_with_costed_levitation
+  on_power_loss: local_suspended_stock_falls_once_to_ground
+  DEC_039_supersedes_old_DEC_021_Nexus_only_raw_ingress: true
+  DEC_039_three_ways_owner_selected_exact_drone_shield_basis_and_tech_unlock_open: true
+  MVP0_excluded: true
+latest_future_faction_recovery_DEC_037:
+  decision: DEC-037
+  human: design/faction-damage-recovery-shields-and-repair-2026-10-11.md
+  machine: design/faction-damage-recovery-shields-and-repair.yaml
+  org: slow_passive_HP_regen_fast_with_valid_live_vein
+  eth: natural_shield_regen_boosted_on_connected_Obelisk_and_whole_shield_consumed_for_partial_HP_cycles
+  man: biological_medicine_mechanical_service_optional_shields_require_battery_or_grid
+  post_MVP0_only: true
 latest_future_faction_storage_DEC_036:
   decision: DEC-036
   human: design/faction-storage-specialization-and-obelisk-traffic-2026-10-11.md

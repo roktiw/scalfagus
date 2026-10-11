@@ -3,6 +3,8 @@ project: scalfagus
 status: concept_with_proposed_balance_v0_2
 references:
   factions: design/factions.yaml
+  recovery_decision: DEC-037
+  recovery_contract: design/faction-damage-recovery-shields-and-repair.yaml
   economy: design/economy.yaml
   resources: design/resources.yaml
 core_model:
@@ -26,7 +28,7 @@ core_model:
     armor: {org: chitin, man: armor_plates, eth: barrier}
     mobility: {org: wings_or_limbs, man: engines_or_chassis, eth: levitation}
     sensor: {org: sensory_organ, man: radar, eth: psionic_perception}
-    support: {org: regeneration, man: repair, eth: meditation_or_healing}
+    support: {org: passive_regen_plus_living_vein_boost, man: medical_or_mechanical_repair_with_power_only_shields, eth: passive_shields_and_whole_shield_to_HP_cycles}
 faction_transformation:
   - faction: org
     philosophy: irreversible_evolution

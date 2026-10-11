@@ -16,9 +16,17 @@ bash scripts/check.sh             # independently checks real Godot locally
 bash scripts/install-godot-addons.sh --check  # offline addon inventory
 ```
 
-Standalone local GUT test suite: `bash scripts/check-gut.sh` (two initial suites; not yet engine-verified).
-
 Instructions: [Godot addon installation](docs/GODOT-ADDON-INSTALLATION-2026-10-11.md), [exact pins and status](architecture/godot-addons.lock.yaml). **GitHub Actions are currently unavailable (jobs fail before allocating a runner); never report their state as test evidence.** Keychain's RTS control editor and InputMap dispatch now have a code integration (not engine-verified); State Charts game AI integration remains future work. See [MVP0 Keychain controls](docs/MVP0-KEYCHAIN-CONTROLS-2026-10-12.md).
+
+## Runtime map — Verdant Divide (stacked draft PR)
+
+Canonical YAML: `design/mvp-verdant-divide-map.yaml`; compiled native Godot JSON:
+`apps/game/maps/verdant_divide.compiled.json`. Includes 10 fixed SOLID Matter
+sources (1660 stock), two diagonal MAN starts, fixed water and trunk collision.
+`MirrorMapPort` shares authored terrain and sources between simulation, renderer
+and Godot AStarGrid2D. **Pending actual Godot engine run.** For source-parity
+checks with pinned PyYAML: `bash scripts/check-map.sh`. See
+[Verdant runtime contract](docs/MVP0-VERDANT-MAP-RUNTIME-2026-10-12.md).
 
 ## Engineering rule — DEC-034 Reuse First
 
@@ -40,7 +48,7 @@ Do not reinvent Godot A*, raycasting, UI, keybinds, physics, generic FSMs or net
 ## Current code increment — local MAN mirror prototype (2026-10-11)
 
 A **new experimental RTS path** now exists alongside the preserved original camera/hero spike:
-- Menu **PLAY MAN vs BOT** loads `apps/game/scenes/mirror_match.tscn`. Select one MAN unit by left-click; right-click a tile to move, a yellow SOLID source to gather, or a visible enemy as a Rifleman to attack. Select a Worker, press **B** and click a valid tile to build Barracks after saving 100 Matter; select HQ and press **T** to train a Worker; select Barracks and press **R** to train a Rifleman. **WASD** pans the RTS camera; **Esc** returns to the menu.
+- Menu **PLAY MAN vs BOT** loads `apps/game/scenes/mirror_match.tscn`. Select one MAN unit by left-click; right-click a tile to move, a yellow SOLID source to gather, or a visible enemy as a Rifleman to attack. Select a Worker, press **B** and click a valid tile to build Barracks after saving 100 Matter; select HQ and press **W** to train a Worker; select Barracks and press **R** to train a Rifleman. **WASD** pans the RTS camera; **Esc** returns to the menu.
 - Menu **WATCH BOT vs BOT** runs the same simulation with two scripted bots. **P** pauses; **+/-** changes local spectator playback speed (not Godot editor speed).
 - Headless runner (no rendering, no LLM on each tick):
 

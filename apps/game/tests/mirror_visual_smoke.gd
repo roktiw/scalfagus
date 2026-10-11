@@ -54,8 +54,8 @@ func _verify() -> void:
         return
 
     var resources: Dictionary = world.get("source_nodes")
-    if resources.size() != 4:
-        _fail("Expected all four resource sources")
+    if resources.size() != 10:
+        _fail("Expected all ten authored resource sources")
         return
     for sid in resources.keys():
         var ore: Node3D = resources[sid]

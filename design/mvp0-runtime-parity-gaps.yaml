@@ -1,82 +1,91 @@
 schema_version: 1
 project: scalfagus
 release: mvp_0_1
-version: 0.2
-status: source_inspected_engine_not_tested_or_playtested
+version: 0.4
+status: candidate_20hz_code_implemented_not_engine_tested_or_playtested
 owner_decisions: [DEC-030, DEC-031, DEC-032, DEC-033, DEC-034]
 canonical_numeric_profile: design/mvp0-agent-implementation-contract.yaml
 alternative_analytical_profile_not_active: design/mvp0-man-mirror-balance-v0.1.yaml
 current_GUI_advance_interval_seconds_source: apps/game/scripts/mirror_view.gd
-current_GUI_advance_interval_seconds: 0.1
-current_GUI_sim_ticks_per_second: 10
+canonical_timing_source: apps/game/scripts/mirror_timing.gd
+patch_evidence: docs/MVP0-CANONICAL-20HZ-2026-10-12.md
+new_unverified_test: apps/game/tests/mirror_timing_smoke.gd
+branch_status: stacked_draft_pending_real_Godot_4_7_2
+current_GUI_advance_interval_seconds: 0.05
+current_GUI_sim_ticks_per_second: 20
 design_target_fixed_ticks_per_second: 20
 code_uses_fixed_tick_without_GUI_timer_in_headless_batch: true
-code_gap_numbers_below_include_both_actual_GUI_10Hz_and_target_20Hz: true
-actual_selected_implementation_contract: design/mvp0-agent-implementation-contract.yaml
+code_gap_numbers_below_are_normalized_at_design_20_Hz_not_actual_10Hz_GUI: false
+competing_candidate_implementation_contract: design/mvp0-agent-implementation-contract.yaml
 current_code_inspected: apps/game/scripts/mirror_match_state.gd
 visual_code_inspected: apps/game/scripts/mirror_view.gd
-existing_unverified_tests: [apps/game/tests/mirror_smoke.gd, apps/game/tests/mirror_visual_smoke.gd, apps/game/tests/mirror_batch.gd]
-source_checked_test_runner: scripts/check.sh
-current_check_script_calls: [smoke.gd, menu_smoke.gd, rts_smoke.gd, navigation_smoke.gd, mirror_smoke.gd, mirror_visual_smoke.gd]
-batch_runner_NOT_in_check_script: apps/game/tests/mirror_batch.gd
-test_execution_outcome_observed_in_this_audit: none
-mirror_visual_test_expects_hardcoded_four_source_visuals: true
-mirror_visual_test_expects_real_directional_unit_and_HQ_sprites: true
-mirror_visual_test_checks_camera_zoom_and_min_window_dimensions: true
+existing_unverified_tests: [apps/game/tests/mirror_smoke.gd, apps/game/tests/mirror_batch.gd]
 rationale: design/mvp0-runtime-parity-gaps.md
 critical_note: >
   This is a code-review-derived gap tracker. It does NOT mean a Godot
   execution, benchmark, test failure or compiler result was observed.
   The first code prototype intentionally uses simplified hardcoded rules.
   Agent must align one authoritative validated profile before claiming MVP.
+code_gap_numbers_below_include_both_actual_GUI_10Hz_and_target_20Hz: true
+actual_selected_implementation_contract: design/mvp0-agent-implementation-contract.yaml
+source_checked_test_runner: scripts/check.sh
+current_check_script_calls: [addons_smoke.gd, smoke.gd, menu_smoke.gd, rts_smoke.gd, navigation_smoke.gd, mirror_smoke.gd, mirror_integrity_smoke.gd, mirror_navigation_port_smoke.gd, mirror_timing_smoke.gd, mirror_visual_smoke.gd]
+batch_runner_NOT_in_check_script: apps/game/tests/mirror_batch.gd
+test_execution_outcome_observed_in_this_audit: none
+mirror_visual_test_expects_hardcoded_four_source_visuals: true
+mirror_visual_test_expects_real_directional_unit_and_HQ_sprites: true
+mirror_visual_test_checks_camera_zoom_and_min_window_dimensions: true
 numbers:
   tick_hz_target: 20
   target_timeout_ticks: 24000
-  current_mirror_state_MAX_TICKS: 5400
-  difference: 18600
-  current_timeout_minutes_at_20Hz: 4.5
-  current_timeout_minutes_in_actual_GUI_at_10Hz: 9.0
+  current_mirror_state_MAX_TICKS: 24000
+  difference: 0
+  current_timeout_minutes_at_20Hz: 20.0
+  previous_timeout_minutes_in_GUI_at_10Hz: 9.0
   target_timeout_minutes: 20
   expected_map_source_total: 1660
-  current_hardcoded_source_total: 2500
-  current_nodes: {west: 900, east: 900, center_n: 350, center_s: 350}
+  current_compiled_source_total: 1660
+  current_nodes:
+    nw_solid_1: 200
+    nw_solid_2: 200
+    se_solid_1: 200
+    se_solid_2: 200
+    center_solid_1: 200
+    center_solid_2: 200
+    west_flank_solid_1: 150
+    east_flank_solid_1: 150
+    north_ridge_solid: 80
+    south_ridge_solid: 80
   candidate_near_start_stock: 400
-  current_near_start_stock_in_code: 900
+  current_near_start_stock_in_code: 400
   target_worker_gather_one_unit_seconds: 2.0
-  current_worker_gather_batch_units: 10
-  current_worker_gather_batch_ticks: 6
-  current_worker_gather_ten_units_seconds_if_20Hz: 0.30
-  current_worker_gather_ten_units_seconds_in_GUI_at_10Hz: 0.60
+  current_worker_gather_batch_units: 1
+  current_worker_gather_batch_ticks: 40
+  current_worker_gather_ten_units_seconds_if_20Hz: 20.0
+  previous_worker_gather_ten_units_seconds_in_GUI_at_10Hz: 0.60
   target_worker_gather_ten_units_seconds: 20
   target_worker_train_seconds: 7
-  current_worker_train_ticks: 45
-  current_worker_train_seconds_if_20Hz: 2.25
+  current_worker_train_ticks: 140
+  current_worker_train_seconds_if_20Hz: 7.0
   target_rifleman_train_seconds: 9
-  current_rifleman_train_ticks: 65
-  current_rifleman_train_seconds_if_20Hz: 3.25
+  current_rifleman_train_ticks: 180
+  current_rifleman_train_seconds_if_20Hz: 9.0
   target_barracks_solo_build_seconds: 18
-  current_barracks_build_ticks: 45
-  current_barracks_build_seconds_if_20Hz: 2.25
+  current_barracks_build_ticks: 360
+  current_barracks_build_seconds_if_20Hz: 18.0
   target_rifle_attack_cooldown_seconds: 1
-  current_rifle_attack_cooldown_ticks: 10
-  current_rifle_attack_cooldown_seconds_if_20Hz: 0.5
+  current_rifle_attack_cooldown_ticks: 20
+  current_rifle_attack_cooldown_seconds_if_20Hz: 1.0
   target_rifle_attack_range_world_meters: 6.5
   target_tile_size_meters: 2
   target_rifle_attack_range_grid_tiles: 3.25
   current_attack_range_Manhattan_grid_cells: 6
-  current_cell_step_period_sim_ticks: 3
-  current_walk_gate_expression: tick_modulo_3_equals_zero
-  one_cell_every_sim_tick_claim_in_prior_audit: corrected_false
+  current_single_step_each_advance_without_move_cooldown: false
   target_worker_move_speed_tiles_per_second: 2.3
   separate_analytical_alternative_speed_tiles_s: 2.4
-  current_effective_speed_if_20Hz_unobstructed_cells_per_second: 6.6666667
-  current_effective_speed_in_GUI_at_10Hz_unobstructed_cells_per_second: 3.3333333
-  current_bot_think_interval_ticks: 12
-  current_barracks_build_seconds_GUI_10Hz: 4.5
-  current_worker_train_seconds_GUI_10Hz: 4.5
-  current_rifleman_train_seconds_GUI_10Hz: 6.5
-  current_weapon_cooldown_seconds_GUI_10Hz: 1
-  simulated_game_time_in_unpaced_batch_must_use_normalized_tick_rate: true
+  current_effective_speed_if_20Hz_unobstructed_tiles_per_second: 2.3
+  previous_effective_speed_in_GUI_at_10Hz_unobstructed_tiles_per_second: 10
+  current_bot_think_interval_ticks: 10
   GUI_sim_tick_scheduler_must_match_headless_same_profile: true
   desired_bot_think_interval_ticks_candidate: 10
   current_barracks_Manhattan_HQ_radius_tiles: 9
@@ -85,43 +94,67 @@ numbers:
   canonical_map_world_width_meters_candidate: 128
   current_visual_ground_block_width_world_units: 64
   current_code_map_grid_cells: [64, 64]
-  current_code_simulation_map_identifiers: [west, east, center_n, center_s]
-  canonical_YAML_map_world_source_ids_are_different: true
-  source_not_identical_in_code_and_map_manifest: true
+  current_code_simulation_map_identifiers:
+    [nw_solid_1, nw_solid_2, se_solid_1, se_solid_2, center_solid_1, center_solid_2, west_flank_solid_1, east_flank_solid_1, north_ridge_solid, south_ridge_solid]
+  canonical_YAML_map_world_source_ids_are_different: false
+  source_not_identical_in_code_and_map_manifest: false
+  current_hardcoded_source_total: 2500
+  current_timeout_minutes_in_actual_GUI_at_10Hz: 9.0
+  current_worker_gather_ten_units_seconds_in_GUI_at_10Hz: 0.60
+  current_cell_step_period_sim_ticks: 3
+  current_walk_gate_expression: tick_modulo_3_equals_zero
+  one_cell_every_sim_tick_claim_in_prior_audit: corrected_false
+  current_effective_speed_if_20Hz_unobstructed_cells_per_second: 6.6666667
+  current_effective_speed_in_GUI_at_10Hz_unobstructed_cells_per_second: 3.3333333
+  current_barracks_build_seconds_GUI_10Hz: 4.5
+  current_worker_train_seconds_GUI_10Hz: 4.5
+  current_rifleman_train_seconds_GUI_10Hz: 6.5
+  current_weapon_cooldown_seconds_GUI_10Hz: 1
+  simulated_game_time_in_unpaced_batch_must_use_normalized_tick_rate: true
 major_gaps:
   - id: CODE-GAP-01
     priority: P0
+    status: implementation_in_stacked_draft_PR_runtime_not_verified
     issue: timeout_5400_ticks_vs_profile_24000_ticks
     exact_source: apps/game/scripts/mirror_match_state.gd
     remediation: load_20_game_min_cap_as_24000_fixed_ticks_from_resolved_profile_not_magic_int
     test: M0B-12
   - id: CODE-GAP-02
     priority: P0
+    status: compiled_runtime_map_implemented_in_dependent_draft_not_engine_verified
+    runtime_json: apps/game/maps/verdant_divide.compiled.json
+    compiler: scripts/compile-verdant-map.py
+    evidence: docs/MVP0-VERDANT-MAP-RUNTIME-2026-10-12.md
     issue: four_hardcoded_source_nodes_sum_2500_vs_map_YAML_1660
     remediation: implement_map_manifest_loader_and_use_same_stable_source_positions_amounts_and_terrain_for_headless_and_GUI
     tests: [M0B-02, M0B-13]
   - id: CODE-GAP-03
     priority: P0
+    status: implementation_in_stacked_draft_PR_runtime_not_verified
     issue: worker_mines_full_ten_Matter_in_six_ticks_instead_of_two_seconds_per_one
     remediation: tick_quantized_extraction_every_40_ticks_one_unit_with_atomic_source_to_worker_transfer_and_legal_carry_cap
     tests: [M0B-03, M0B-04]
   - id: CODE-GAP-04
     priority: P0
-    issue: worker_moves_one_cell_every_three_sim_ticks_instead_of_explicit_2p3_tiles_per_second_candidate
+    status: implementation_in_stacked_draft_PR_runtime_not_verified
+    issue: worker_moves_one_cell_each_sim_tick_instead_of_2p4_tiles_per_second
     remediation: move_with_integer_or_fixed_point_progress_account_and_existing_Godot_nav_adapter
     tests: [M0B-04, M0B-13]
   - id: CODE-GAP-05
     priority: P0
+    status: implementation_in_stacked_draft_PR_runtime_not_verified
     issue: Barracks_45_ticks_worker_train_45_ticks_Rifleman_train_65_ticks_vs_target_360_140_180_ticks
     remediation: parameterize_from_single_MVP0_profile_and_integer_tick_quantizer
     tests: [M0B-05, M0B-06, M0B-09]
   - id: CODE-GAP-06
     priority: P0
+    status: cooldown_fixed_range_and_3d_LOS_still_P0
     issue: weapon_cooldown_current_10_ticks_vs_20_ticks_and_range_6_Manhattan_cells_vs_6p5_world_metres
     remediation: use_shared_projected_world_scale_and_actual_3d_LOS_raycast_through_tree_collision
     tests: [M0B-07, M0B-13]
   - id: CODE-GAP-07
     priority: P0
+    status: source_map_and_terrain_raster_compiled_but_3D_geometry_footprints_elevation_missing
     issue: duplicated_planetary_jungle_map_hardcoded_in_RefCounted_state_and_3D_view_instead_of_loading_authored_Verdant_Divide_manifest
     remediation: explicit_Godot_resource_or_buildtime_JSON_map_compiler_with_consistent_tile_meters_spawns_3x3_building_footprints_and_liquid_collision
     tests: [M0B-02, M0B-13]
@@ -142,9 +175,15 @@ major_gaps:
     tests: [M0B-03, M0B-09]
   - id: CODE-GAP-11
     priority: P1
+    status: code_implemented_in_dependent_draft_PR_not_engine_verified
     issue: custom_breadth_first_route_function_vs_reuse_first_DEC_034_Godot_AStarGrid2D_existing_grid_navigator
-    remediation: replace_ad_hoc_generic_pathfinder_with_existing_approved_adapter_without_reimplementing_Astar
-    tests: [M0B-13, M0B-23]
+    remediation: >-
+      Native AStarGrid2D wrapper now implemented in
+      apps/game/scripts/mirror_navigation_port.gd on dependent draft PR.
+      Must run real Godot engine, preserve source/world geometry
+      contract and benchmark 20/100 units before closing gap.
+    evidence: docs/MVP0-NATIVE-ASTAR-NAVIGATION-2026-10-11.md
+    tests: [M0B-13, M0B-23, mirror_navigation_port_smoke.gd]
   - id: CODE-GAP-12
     priority: P0
     issue: first_ground_view_renderer_meshes_have_no_verified_physical_collision_equivalent_to_world_map
@@ -152,13 +191,13 @@ major_gaps:
     tests: [M0B-13, M0B-21]
   - id: CODE-GAP-13
     priority: P1
-    issue: active_mvp0_agent_profile_speed_2p3_and_alternative_balance_scenario_speed_2p4_must_not_be_mixed
-    remediation: load_only_current_mvp0_agent_implementation_contract_profile_and_mark_other_as_optional_non_active_experiment
+    issue: potential_mismatched_competing_micro_candidate_profiles_worker_speed_2p3_vs_2p4
+    remediation: load_canonical_mvp0_man_mirror_balance_profile_only_and_deprecate_other_MVP0_numeric_defaults_as_legacy_proposals
     tests: [M0B-04, M0B-24]
   - id: CODE-GAP-14
     priority: P1
     issue: existing_HEADLESS_mirror_batch_script_is_not_proof_of_pass_or_representative_balance
-    remediation: check_sh_now_includes_mirror_smoke_and_mirror_visual_smoke_but_mirror_batch_is_still_a_separate_explicit_run_execute_and_record_pinned_Godot_results
+    remediation: actually_run_legacy_mirror_smoke_and_batch_pinned_Godot_report_seed_profile_engine_commands_wall_time_hardware_and_fog_legality
     tests: [M0B-18, M0B-20, M0B-25]
   - id: CODE-GAP-15
     priority: P1

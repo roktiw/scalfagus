@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 2.7
+version: 3.0
 decisions:
   - id: DEC-001
     status: approved
@@ -336,6 +336,12 @@ decisions:
       Power Dock must be a separate extra building rather than the
       owner's UMU, or that light-only optical fiber transmits bulk power.
       Earlier logistical chassis remain where not contradicted.
+    historical_Nexus_only_conversion_superseded_by: DEC-039
+    historical_cargo_conversion_ambiguity_note: >-
+      The earlier Nexus-only raw conversion wording is historical.
+      DEC-039 adds two finite non-Nexus ingress methods for ETH future
+      gameplay while retaining the ONE-network topology and typed
+      resource accounting. See DEC-039 for current mechanics.
     specification: design/three-network-channels-and-destruction-2026-10-11.md
     data_specification: design/three-network-channels-and-destruction.yaml
     acceptance_scenarios: design/recycling-and-network-acceptance-cases.yaml
@@ -722,6 +728,79 @@ decisions:
       behavior require tuning. All are post-MVP0, not part of DEC-033.
     specification: design/faction-storage-specialization-and-obelisk-traffic-2026-10-11.md
     data_specification: design/faction-storage-specialization-and-obelisk-traffic.yaml
+
+  - id: DEC-037
+    status: owner_approved_recovery_asymmetry_rates_thresholds_and_costs_TBD
+    topic: org_living_HP_regen_eth_shield_HP_cycle_man_bio_medical_mechanical_service
+    resolution: >-
+      ORG biological HP regenerates automatically at a slow base rate
+      and faster with actual valid connected living-vein access. ETH
+      blue shields regenerate on their own and faster using a live
+      connected Obelisk network. ETH can recover missing green HP by
+      consuming its entire charged blue shield to heal a limited amount;
+      a seriously wounded ETH actor requires several recharge-then-
+      sacrifice cycles. The precise full-charge activation threshold,
+      yield, timing and Energy/bandwidth costs are design/balance TBD.
+      MAN biological units require external medical healing and
+      mechanical units require service/repair for lost green HP.
+      Certain MAN unit templates may have force shields, but MAN blue
+      shield regeneration ALWAYS needs a finite local battery or valid
+      powered MAN network; never passive recharge when isolated without
+      energy. Health, shield and resource Energy remain distinct tracked
+      quantities. This post-MVP direction does not add shields,
+      medical or vein/Obelisk systems to DEC-033 MAN mirror MVP0.
+    specification: design/faction-damage-recovery-shields-and-repair-2026-10-11.md
+    data_specification: design/faction-damage-recovery-shields-and-repair.yaml
+
+  - id: DEC-038
+    status: approved_ETH_mono_storage_energy_and_ORG_ETH_bidirectional_direction_MAN_two_way_first_belts_proposed
+    topic: faction_network_bidirectionality_and_homogeneous_storage_energy_economics
+    resolution: >-
+      ETH Obelisks can levitate mixed resource types but, for equal total
+      levitated inventory, a more homogeneous store consumes less Energy
+      per tick than a mixed store; cost remains positive and high storage
+      occupancy still reduces transit throughput independently (DEC-036).
+      ORG universal living vein links and ETH Obelisk network links allow
+      real finite flows in both directions. The same material network
+      capacity must be accounted for and not doubled for opposing flows.
+      ORG cysts remain single-resource and biological specialization
+      or mutation carries real commitment cost; reversibility and cost
+      remain open. For early post-MVP MAN conveyor implementation, the
+      owner proposed universal two-way belts requiring no player-set
+      direction, with later optional Factorio-like one-way operation
+      considered for advanced optimization. That belt default remains
+      a proposed initial implementation rather than a finalized
+      permanent requirement. No systems here enter DEC-033 MAN MVP0.
+    specification: design/faction-bidirectional-logistics-and-homogeneous-storage-2026-10-12.md
+    data_specification: design/faction-bidirectional-logistics-and-homogeneous-storage.yaml
+
+  - id: DEC-039
+    status: owner_selected_ETH_three_ingress_methods_ORG_Plug_Holes_preferred_candidate
+    topic: ORG_universal_vein_docking_and_ETH_raw_material_ingress_methods
+    resolution: >-
+      For ORG, universal bidirectional Plug Holes are the recommended
+      logistics ports for compatible MIN, MID and MAX transport workers,
+      possibly complemented by specialist Mouth organs for feeding and
+      digestion; owner has asked for comparison and not yet finally
+      selected Plug Hole-only versus hybrid. DEC-011 early sequential
+      handoffs, mode exclusivity and finite living vessel capacity remain.
+      For ETH, the owner selects THREE ways to inject physical cargo into
+      an elevated Ether Network: carry it physically to a Nexus with
+      zero incremental upload Energy tariff (travel and finite port
+      processing still cost time), have a shielded drone physically
+      insert a finite batch at an Obelisk tip while losing 33 percent
+      of its own blue shield, or enable the expensive Energy-consuming
+      automatic pickup of real nearby ground stock by an Obelisk. The
+      preferred initial interpretation is 33 percent of maximum shield
+      per bounded transaction but its exact charge basis and packet
+      size remain owner/balance TBD. Secondary non-Nexus ingress is now
+      part of the future ETH direction and supersedes the older
+      DEC-021 assumption that ONLY Nexus can admit raw physical cargo;
+      Nexus conversion authority for blueprints, physical accounting,
+      finite network services, levitation upkeep and resource identity
+      preservation remain. This does not change MAN mirror MVP0.
+    specification: design/org-plug-holes-and-eth-three-ingress-methods-2026-10-12.md
+    data_specification: design/org-plug-holes-and-eth-three-ingress-methods.yaml
 
 migration_required:
   - design/economy.yaml

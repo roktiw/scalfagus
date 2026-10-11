@@ -5,6 +5,8 @@ version: 0.1
 date: "2026-10-11"
 status: owner_approved_storage_identity_engineering_values_and_edge_cases_proposed
 narrative: design/faction-storage-specialization-and-obelisk-traffic-2026-10-11.md
+homogeneous_levitation_efficiency: design/faction-bidirectional-logistics-and-homogeneous-storage.yaml
+latest_directional_transport_decision: DEC-038
 precedence:
   current_release: DEC-033
   prior_faction_logistics: [DEC-010, DEC-012, DEC-013, DEC-018, DEC-021, DEC-023, DEC-035]
@@ -29,6 +31,8 @@ factions:
   org:
     storage_object: cyst
     one_resource_kind_per_cyst: true
+    specialization_mutation_has_real_cost: true
+    mutation_undo_irreversibility_or_second_cost: TBD
     accepts_mixed_resources: false
     eligible_cyst_resource_kind: one_at_a_time
     initial_empty_unassigned_possible: true
@@ -62,6 +66,9 @@ factions:
   eth:
     building_canonical_name: Obelisk
     cargo_visual: mixed_typed_Ether_orbs_levitating_around_Obelisk
+    more_homogeneous_levitated_mix_reduces_ongoing_energy_cost_at_equal_stock: true
+    mono_resource_levitation_energy_discount_is_not_free_or_zero_cost: true
+    resource_mix_energy_upkeep_is_independent_of_fullness_congestion: true
     each_Obelisk_has_real_finite_local_storage: true
     accepts_multiple_typed_resource_ids: true
     same_existing_unified_Ether_Network: true
@@ -114,6 +121,7 @@ open_questions:
   - whether_organic_nutrition_is_a_separate_cyst_resource_class
   - UMU_specialized_capacity_multiplier_and_switch_time
   - ETH_storage_pressure_curve_minimum_transit_service_and_energy_effects
+  - ETH_homogeneity_based_levitation_energy_cost_curve
   - how_ETH_unit_relay_shares_node_service_with_resource_and_energy_payload
   - which_Obelisks_participate_in_any_stock_equalization_by_default
   - warehouse_Obelisk_cluster_blueprints_and_expansion_costs

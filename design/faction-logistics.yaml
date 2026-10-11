@@ -1,8 +1,16 @@
 schema_version: 1
 project: scalfagus
+human_canonical_logistics_summary: design/three-faction-logistics-overview-2026-10-12.md
+human_summary_is_index_not_a_new_numeric_balance_contract: true
 latest_owner_network_contract: design/three-network-channels-and-destruction-2026-10-11.md
+eth_three_ingress_decision: DEC-039
+eth_three_ingress_contract: design/org-plug-holes-and-eth-three-ingress-methods.yaml
+org_universal_vein_port_design: Plug_Hole_preferred_not_final
+eth_baseline_Nexus_only_exclusivity: superseded
 unit_relay_extension: design/three-faction-logistics-and-eth-unit-relay.yaml
 storage_specialization_extension: design/faction-storage-specialization-and-obelisk-traffic.yaml
+latest_bidirectional_and_storage_economics_decision: DEC-038
+latest_bidirectional_and_storage_economics_spec: design/faction-bidirectional-logistics-and-homogeneous-storage.yaml
 storage_specialization_owner_decision: DEC-036
 ETH_new_player_facing_name: Obelisk
 ETH_legacy_runtime_alias: eth_mid_pylon
@@ -39,6 +47,7 @@ factions:
   org:
     name_mid: Organites
     model: living_loops
+    live_vessels_transport_both_directions: true
     signature: mother_transporter_loop_with_tech_gated_moving_handoffs
     core_elements: [extractor_workers, loader_workers, mobile_mother_carrier, unloaders_or_receiving_dock]
     base_topology: living_vessels_rooted_at_home_nexus
@@ -105,6 +114,9 @@ factions:
   man:
     name_mid: Manusians
     model: industrial_belts
+    initial_conveyor_bidirectional_without_manual_direction: proposed_early_post_MVP
+    conveyor_both_directions_share_real_capacity: proposed
+    later_one_way_opt_in: optional_balance_TBD
     signature: continuous_destructible_conveyor_flow
     core_elements: [industrial_extractor, belt_segments, splitter_merger, finite_buffer, depot]
     base_topology: composable_relocatable_modules_not_single_fixed_nexus
@@ -153,6 +165,9 @@ factions:
   eth:
     name_mid: Etherans
     model: resonant_knowledge_hubs
+    Obelisk_links_are_bidirectional: true
+    homogeneous_levitated_cargo_has_lower_energy_upkeep_at_same_quantity: true
+    fullness_still_reduces_throughput: true
     signature: visible_network_beam_construction_and_nexus_class_max
     architecture_status: owner_direction_supersedes_mid_as_mobile_courier_and_max_as_warehouse_only
     core_elements: [min_worker_network_beam, mid_pylon_multi_mode, max_nexus_class, finite_couriers, local_pattern_archive]
