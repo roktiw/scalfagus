@@ -176,7 +176,7 @@ func _build_scene() -> void:
     add_child(camera)
     _position_camera()
 
-    selection_marker = _block(Vector3(3.3, 0.16, 3.3), Color("#f5f18d"), world_root)
+    selection_marker = _block(Vector3(2.1, 0.16, 2.1), Color("#f5f18d"), world_root)
     selection_marker.visible = false
 
     var ui := CanvasLayer.new()
@@ -271,7 +271,7 @@ func _sync_visuals() -> void:
         if id == selected_id:
             continue
         if not group_markers.has(id):
-            group_markers[id] = _block(Vector3(2.9, 0.12, 2.9),
+            group_markers[id] = _block(Vector3(2.1, 0.12, 2.1),
                 Color("#92d8ff"), world_root)
         var p: Vector2i = sim.entities[id]["pos"]
         (group_markers[id] as Node3D).position = GEOM.tile_to_world(p, 0.24)
