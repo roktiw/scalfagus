@@ -45,7 +45,10 @@ func is_blocked(cell: Vector2i) -> bool:
 func set_blocked(cell: Vector2i, blocked: bool) -> void:
     if not in_bounds(cell):
         return
-    var desired: bool = blocked or cell.x == 0 or cell.y == 0         or cell.x == side_length - 1 or cell.y == side_length - 1
+    var desired: bool = (
+        blocked or cell.x == 0 or cell.y == 0
+        or cell.x == side_length - 1 or cell.y == side_length - 1
+    )
     if graph.is_point_solid(cell) == desired:
         return
     graph.set_point_solid(cell, desired)
