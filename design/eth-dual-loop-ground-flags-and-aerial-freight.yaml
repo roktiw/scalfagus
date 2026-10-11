@@ -1,0 +1,90 @@
+schema_version: 1
+project: scalfagus
+proposal_id: eth_dual_loop_ground_flags_and_aerial_freight
+date: "2026-10-12"
+version: 0.1
+status: owner_approved_visual_and_flow_direction_raw_uplink_authority_still_open
+human_specification: design/eth-dual-loop-ground-flags-and-aerial-freight-2026-10-12.md
+related_existing_canon: [DEC-012, DEC-018, DEC-021, DEC-022, DEC-023, DEC-033, DEC-035, DEC-036, DEC-037]
+next_DEC_candidate: DEC-038_only_after_owner_decision
+release_scope:
+  first_release: DEC-033_MAN_mirror_RTS_only
+  eth_features_in_mvp0: false
+faction: eth
+canonical_player_name: Obelisk
+legacy_internal_template_id: eth_mid_pylon
+two_logistics_loops:
+  ground:
+    place: Obelisk_foot
+    interface: physical_Settlers_like_flag
+    carriers: independent_ETH_drones
+    movement: real_pathfinding_and_per_hop_physical_resource_handoffs
+    cargo: real_resource_items_or_stacks
+    stocks_are_visible_and_pickupable: true
+    does_not_credit_elevated_Nexus_or_remote_nodes_automatically: true
+    valid_when_no_Ether_levitation_service: true
+    requires_real_local_ground_access: true
+    rate_and_storage: finite_TBD
+  elevated:
+    interface: straight_tip_to_tip_visible_Ether_connections
+    transfer: finite_real_resource_parcels_leaking_no_global_wallet
+    representation: typed_Ether_preserves_Matter_Volatiles_Energy_identity
+    local_stock: real_mixed_resources_levitating_around_Obelisk
+    upkeep: positive_operational_network_Energy_or_service_per_stored_quantity_and_time
+    storage_pressure_reduces_throughput: DEC-036
+    on_construction_order: actual_parcels_descend_to_destination_Obelisk_foot_then_physical_worksite_delivery
+    link_geometry_and_obstruction: TBD
+    bandwidth_and_latency: finite_TBD
+  network_topology:
+    elevated_graph: existing_unified_Ether_Network_not_a_new_second_backbone
+    ground_graph: physical_drones_routes_not_a_global_shared_remote_stock
+    no_instant_ground_to_elevated_conversion: true
+states_and_custody:
+  - foot_world_stack
+  - drone_carried_cargo
+  - tip_local_levitated_inventory
+  - elevated_edge_in_flight
+  - construction_site_committed
+  conservation: each_packet_exactly_one_custody_at_a_time
+  origin_and_resource_type_persist: true
+  no_teleportation_duplication_or_automatic_global_refund: true
+power_failure:
+  user_direction: loss_of_actual_levitation_support_causes_all_locally_suspended_resources_to_fall
+  isolated_and_unpowered_node: drop_suspended_stock_to_actual_ground_once
+  ground_stacks_remain_in_place_on_levitation_failure: true
+  broken_elevated_edge: drop_exclusively_owned_in_flight_packets_at_actual_world_position_once
+  damaged_map_edge_or_fall_out_of_world: deterministic_loss_ledger_candidate
+  isolated_component_with_local_valid_reserves: may_retains_service_until_support_exhaustion_TBD
+  local_reserve_buffer_and_grace_period: TBD
+  rendering_animation_mutates_inventory: false
+entry_to_elevated_network:
+  baseline_authoritative_canon_DEC_021:
+    fresh_raw_material_converted_by: eligible_Nexus_input_only
+    preexisting_raw_cargo_must_arrive_physically: true
+  alternative_owner_question: can_additional_non_Nexus_ingress_points_exist
+  candidate_advanced_variant:
+    recommendation: costly_researched_specialized_Obelisk_uplink_not_unrestricted_generic_Obelisks
+    consumes_real_energy_and_port_capacity: true
+    finite_conversion_rate: true
+    no_automatic_Nexus_pattern_authority: true
+    approved_by_owner: false
+  candidate_re_lift:
+    previously_converted_typed_Ether_cargo_fallen_at_Obelisk_foot_may_be_relevitated: proposed_only
+    fresh_raw_cargo_automatic_re_lift: false
+    source_lineage_and_custody_preserved: true
+    requires_real_Energy_time_and_authorization: true
+    approved_by_owner: false
+  unresolved_approval_question: Nexus_only_forever_or_costed_secondary_uplink_upgrade_later
+construction:
+  site_must_be_legal_and_connected: true
+  blue_beam_worker_eligibility_from_existing_canon_still_required: true
+  cargo_descends_to_local_ground_station: true
+  worksite_material_commit_is_real_local_transaction: true
+  no_direct_remote_inventory_to_structure_creation: true
+traffic_and_economy:
+  ground_storage_upkeep: no_network_levitation_cost
+  levitated_storage_upkeep: positive_cost_TBD
+  flying_tips_storage_penalty: must_obey_DEC_036
+  ETH_slow_unit_network_transport_remains_distinct: DEC-035
+  ground_drones_cannot_move_combat_units_through_a_beam: true
+acceptance_test_ids: [ETH-DUAL-01, ETH-DUAL-02, ETH-DUAL-03, ETH-DUAL-04, ETH-DUAL-05, ETH-DUAL-06, ETH-DUAL-07, ETH-DUAL-08, ETH-DUAL-09, ETH-DUAL-10, ETH-DUAL-11, ETH-DUAL-12, ETH-DUAL-13, ETH-DUAL-14, ETH-DUAL-15, ETH-DUAL-16]
