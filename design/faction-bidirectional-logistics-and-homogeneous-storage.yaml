@@ -32,13 +32,17 @@ factions:
       irreversible_vs_costly_reverse_mutation: undecided
   eth:
     Obelisk_links:
+      three_ways_to_ingress_owner_decision: DEC-039
+      Nexus_free_direct_conversion: true
+      eligible_drone_tip_ingress_pays_shield: true
+      Obelisk_ground_pickup_pays_high_Energy: true
       approved_bidirectional_tip_to_tip_resource_freight: true
       approved_bidirectional_ground_drone_routes: true
       physical_Obelisk_foot_flags_remain_valid: true
       initial_shared_edge_throughput_across_both_directions: proposed
       positive_latency_and_finite_bandwidth: true
-      no_free_raw_to_Ether_conversion_at_all_Obelisks: true
-      unchanged_baseline_raw_Nexus_only_conversion: DEC-021
+      no_unrestricted_free_raw_to_Ether_at_all_Obelisks: true
+      newer_legal_Obelisk_ingress_by_drone_shield_or_powered_pickup: DEC-039
       ETH_unit_relay_can_use_both_directions: true
     levitated_storage:
       mixed_typed_goods_allowed: true
@@ -84,4 +88,4 @@ open_questions:
   - MAN_belt_head_on_collision_rules_and_passable_lanes
   - MAN_manual_directional_belt_is_upgrade_UI_or_unlock
   - ORG_reverse_mutation_legality_and_cost
-  - raw_ETH_injection_beyond_Nexus_still_separate_open_question
+  - non_Nexus_upload_packet_shield_basis_Energy_cost_and_tech_unlock
