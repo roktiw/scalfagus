@@ -35,6 +35,16 @@ All resource transfers are **real, finite, attributable and time-consuming**. No
 3. For the **first actual belt implementation after MVP0**, the owner floated **universal two-way belt segments without mandatory manual orientation**. Recommended deterministic implementation arbitrates shared finite bandwidth, head-on traffic and backpressure. Expert one-way belt lanes with optional optimization are possible later, **not yet a permanent requirement**.
 4. Separate power and data channels share physical cable-routing infrastructure but never transport cargo themselves. Damage may leave nearby warehouses with their contents still physically accessible if ordinary material routes survive.
 
+### UMU wing transformation update (DEC-040)
+
+Every MAN **UMU has two permanently attached physical belt wings**, shared by mutually exclusive postures:
+- **MOVE:** both belt wings retract underneath and work as the left/right crawler tracks.
+- **CONVEYOR:** left/right symmetric wings extend by 1 or 2 tiles each around a 1-tile central UMU, making **3 or 5 actual connected tiles**.
+- **BUNKER:** both wings fold along the two sides of the hull for flank cover and legal garrison modules.
+- **SENTRY WALL:** both wings **rotate upright to form a real physically blocking wall** for ground units; this is separate from bunker, has real collision/nav consequences and is **not a free turret gun**.
+
+Exactly one posture operates at a time. Transformations require finite time, valid collision-free geometry, settlement of real cargo and connector states, and preservation of the same unit identity, actual materials and victory tag. These owner rules refine older "MID belt only" / "UMU Power Dock no continuous belt" candidates wherever a template is **actually** an UMU. Exact classification of tiered MID/MAX types remains open. See [DEC-040 full design](man-umu-transforming-belt-wings-2026-10-12.md) and [YAML machine contract](man-umu-transforming-belt-wings.yaml). **Post-MVP0 only.**
+
 ### ORG: biology, vein logistics and cysts
 
 1. Gatherers and large living carrier organisms haul physical finite materials into a real bidirectional living vein system. Roots/veins transfer material, nutrients, Energy and information both ways with finite throughput, meaningful cuts, a nourishment need and biological power support.
