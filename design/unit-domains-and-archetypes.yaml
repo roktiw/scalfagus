@@ -1,0 +1,547 @@
+# Scalfagus unit taxonomy — DESIGN PROPOSAL, not a runtime contract.
+# 7 archetypes x 3 chassis scales x 3 factions = 63 named templates.
+# MIN/MID/MAX chassis size is independent of match_scale MIN/MID/MAX.
+schema_version: '0.1-draft'
+status: proposed
+chassis_scales: [min, mid, max]
+domains: [land, water, air]
+domain_combinations:
+  ground: [land]
+  aquatic: [water]
+  aerial: [air]
+  amphibious: [land, water]
+  air_ground: [land, air]
+  air_water: [water, air]
+  omnimodal: [land, water, air]
+combat_rules:
+  movement_domains: 'Traversable domains, not guaranteed attack targets'
+  melee_targets: 'Target domains reachable in close combat'
+  ranged_targets: 'Target domains addressable by installed weapons'
+  empty_targets: 'No attack capability of that kind'
+  target_domain_is_not_accuracy: true
+  future_extensions: [water_surface, submerged, altitude, orbital]
+archetypes:
+  worker:
+    description: 'Extraction, hauling, construction and repair, subject to equipment.'
+  fighter:
+    description: 'Basic close-combat line unit.'
+  shooter:
+    description: 'Basic direct ranged damage.'
+  artillery:
+    description: 'Long-range siege and area denial.'
+  tank:
+    description: 'Durability, screening and frontline breakthrough; a role, not chassis size.'
+  flyer:
+    description: 'Air-oriented scouting, mobility or combat; not the only role permitted to fly.'
+  specialist:
+    description: 'Faction-specific utility, support, disruption or control.'
+units:
+  blergians:
+    worker:
+      min:
+        name: 'Sporeling'
+        chassis_scale: min
+        movement_domains: [land]
+        melee_targets: []
+        ranged_targets: []
+        status: baseline_proposal
+      mid:
+        name: 'Harvester'
+        chassis_scale: mid
+        movement_domains: [land]
+        melee_targets: []
+        ranged_targets: []
+        status: baseline_proposal
+      max:
+        name: 'Brood Carrier'
+        chassis_scale: max
+        movement_domains: [land]
+        melee_targets: []
+        ranged_targets: []
+        status: baseline_proposal
+    fighter:
+      min:
+        name: 'Clawling'
+        chassis_scale: min
+        movement_domains: [land]
+        melee_targets: [land]
+        ranged_targets: []
+        status: baseline_proposal
+      mid:
+        name: 'Ravager'
+        chassis_scale: mid
+        movement_domains: [land]
+        melee_targets: [land]
+        ranged_targets: []
+        status: baseline_proposal
+      max:
+        name: 'Behemoth'
+        chassis_scale: max
+        movement_domains: [land]
+        melee_targets: [land]
+        ranged_targets: []
+        status: baseline_proposal
+    shooter:
+      min:
+        name: 'Spitter'
+        chassis_scale: min
+        movement_domains: [land]
+        melee_targets: []
+        ranged_targets: [land]
+        status: baseline_proposal
+      mid:
+        name: 'Acid Hunter'
+        chassis_scale: mid
+        movement_domains: [land]
+        melee_targets: []
+        ranged_targets: [land]
+        status: baseline_proposal
+      max:
+        name: 'Corrosive Hive'
+        chassis_scale: max
+        movement_domains: [land]
+        melee_targets: []
+        ranged_targets: [land]
+        status: baseline_proposal
+    artillery:
+      min:
+        name: 'Spore Caster'
+        chassis_scale: min
+        movement_domains: [land]
+        melee_targets: []
+        ranged_targets: [land]
+        status: baseline_proposal
+      mid:
+        name: 'Bile Lobber'
+        chassis_scale: mid
+        movement_domains: [land]
+        melee_targets: []
+        ranged_targets: [land]
+        status: baseline_proposal
+      max:
+        name: 'Siege Organ'
+        chassis_scale: max
+        movement_domains: [land]
+        melee_targets: []
+        ranged_targets: [land]
+        status: baseline_proposal
+    tank:
+      min:
+        name: 'Carapace'
+        chassis_scale: min
+        movement_domains: [land]
+        melee_targets: [land]
+        ranged_targets: []
+        status: baseline_proposal
+      mid:
+        name: 'Bulwark'
+        chassis_scale: mid
+        movement_domains: [land]
+        melee_targets: [land]
+        ranged_targets: []
+        status: baseline_proposal
+      max:
+        name: 'Colossus'
+        chassis_scale: max
+        movement_domains: [land]
+        melee_targets: [land]
+        ranged_targets: []
+        status: baseline_proposal
+    flyer:
+      min:
+        name: 'Mothling'
+        chassis_scale: min
+        movement_domains: [air]
+        melee_targets: []
+        ranged_targets: [land, air]
+        status: baseline_proposal
+      mid:
+        name: 'Razorwing'
+        chassis_scale: mid
+        movement_domains: [air]
+        melee_targets: []
+        ranged_targets: [land, air]
+        status: baseline_proposal
+      max:
+        name: 'Sky Brood'
+        chassis_scale: max
+        movement_domains: [air]
+        melee_targets: []
+        ranged_targets: [land, air]
+        status: baseline_proposal
+    specialist:
+      min:
+        name: 'Parasite'
+        chassis_scale: min
+        movement_domains: [land]
+        melee_targets: []
+        ranged_targets: []
+        status: baseline_proposal
+      mid:
+        name: 'Mutator'
+        chassis_scale: mid
+        movement_domains: [land]
+        melee_targets: []
+        ranged_targets: []
+        status: baseline_proposal
+      max:
+        name: 'Hive Mind'
+        chassis_scale: max
+        movement_domains: [land]
+        melee_targets: []
+        ranged_targets: []
+        status: baseline_proposal
+  manusians:
+    worker:
+      min:
+        name: 'Utility Drone'
+        chassis_scale: min
+        movement_domains: [land]
+        melee_targets: []
+        ranged_targets: []
+        status: baseline_proposal
+      mid:
+        name: 'Engineer Rig'
+        chassis_scale: mid
+        movement_domains: [land]
+        melee_targets: []
+        ranged_targets: []
+        status: baseline_proposal
+      max:
+        name: 'Mobile Constructor'
+        chassis_scale: max
+        movement_domains: [land]
+        melee_targets: []
+        ranged_targets: []
+        status: baseline_proposal
+    fighter:
+      min:
+        name: 'Marine'
+        chassis_scale: min
+        movement_domains: [land]
+        melee_targets: [land]
+        ranged_targets: []
+        status: baseline_proposal
+      mid:
+        name: 'Assault Trooper'
+        chassis_scale: mid
+        movement_domains: [land]
+        melee_targets: [land]
+        ranged_targets: []
+        status: baseline_proposal
+      max:
+        name: 'Siege Walker'
+        chassis_scale: max
+        movement_domains: [land]
+        melee_targets: [land]
+        ranged_targets: []
+        status: baseline_proposal
+    shooter:
+      min:
+        name: 'Rifleman'
+        chassis_scale: min
+        movement_domains: [land]
+        melee_targets: []
+        ranged_targets: [land]
+        status: baseline_proposal
+      mid:
+        name: 'Gunner'
+        chassis_scale: mid
+        movement_domains: [land]
+        melee_targets: []
+        ranged_targets: [land]
+        status: baseline_proposal
+      max:
+        name: 'Fire Support Rig'
+        chassis_scale: max
+        movement_domains: [land]
+        melee_targets: []
+        ranged_targets: [land]
+        status: baseline_proposal
+    artillery:
+      min:
+        name: 'Mortar Drone'
+        chassis_scale: min
+        movement_domains: [land]
+        melee_targets: []
+        ranged_targets: [land]
+        status: baseline_proposal
+      mid:
+        name: 'Mobile Howitzer'
+        chassis_scale: mid
+        movement_domains: [land]
+        melee_targets: []
+        ranged_targets: [land]
+        status: baseline_proposal
+      max:
+        name: 'Siege Platform'
+        chassis_scale: max
+        movement_domains: [land]
+        melee_targets: []
+        ranged_targets: [land]
+        status: baseline_proposal
+    tank:
+      min:
+        name: 'Shield Trooper'
+        chassis_scale: min
+        movement_domains: [land]
+        melee_targets: [land]
+        ranged_targets: []
+        status: baseline_proposal
+      mid:
+        name: 'Battle Tank'
+        chassis_scale: mid
+        movement_domains: [land]
+        melee_targets: [land]
+        ranged_targets: []
+        status: baseline_proposal
+      max:
+        name: 'Land Fortress'
+        chassis_scale: max
+        movement_domains: [land]
+        melee_targets: [land]
+        ranged_targets: []
+        status: baseline_proposal
+    flyer:
+      min:
+        name: 'Scout Drone'
+        chassis_scale: min
+        movement_domains: [air]
+        melee_targets: []
+        ranged_targets: [land, air]
+        status: baseline_proposal
+      mid:
+        name: 'Gunship'
+        chassis_scale: mid
+        movement_domains: [air]
+        melee_targets: []
+        ranged_targets: [land, air]
+        status: baseline_proposal
+      max:
+        name: 'Heavy Carrier'
+        chassis_scale: max
+        movement_domains: [air]
+        melee_targets: []
+        ranged_targets: [land, air]
+        status: baseline_proposal
+    specialist:
+      min:
+        name: 'Saboteur'
+        chassis_scale: min
+        movement_domains: [land]
+        melee_targets: []
+        ranged_targets: []
+        status: baseline_proposal
+      mid:
+        name: 'Field Engineer'
+        chassis_scale: mid
+        movement_domains: [land]
+        melee_targets: []
+        ranged_targets: []
+        status: baseline_proposal
+      max:
+        name: 'Command Platform'
+        chassis_scale: max
+        movement_domains: [land]
+        melee_targets: []
+        ranged_targets: []
+        status: baseline_proposal
+  aetherians:
+    worker:
+      min:
+        name: 'Wisp'
+        chassis_scale: min
+        movement_domains: [land]
+        melee_targets: []
+        ranged_targets: []
+        status: baseline_proposal
+      mid:
+        name: 'Shaper'
+        chassis_scale: mid
+        movement_domains: [land]
+        melee_targets: []
+        ranged_targets: []
+        status: baseline_proposal
+      max:
+        name: 'Resonance Architect'
+        chassis_scale: max
+        movement_domains: [land]
+        melee_targets: []
+        ranged_targets: []
+        status: baseline_proposal
+    fighter:
+      min:
+        name: 'Blade Adept'
+        chassis_scale: min
+        movement_domains: [land]
+        melee_targets: [land]
+        ranged_targets: []
+        status: baseline_proposal
+      mid:
+        name: 'Templar'
+        chassis_scale: mid
+        movement_domains: [land]
+        melee_targets: [land]
+        ranged_targets: []
+        status: baseline_proposal
+      max:
+        name: 'Ascendant'
+        chassis_scale: max
+        movement_domains: [land]
+        melee_targets: [land]
+        ranged_targets: []
+        status: baseline_proposal
+    shooter:
+      min:
+        name: 'Spark Adept'
+        chassis_scale: min
+        movement_domains: [land]
+        melee_targets: []
+        ranged_targets: [land]
+        status: baseline_proposal
+      mid:
+        name: 'Pulse Weaver'
+        chassis_scale: mid
+        movement_domains: [land]
+        melee_targets: []
+        ranged_targets: [land]
+        status: baseline_proposal
+      max:
+        name: 'Storm Conduit'
+        chassis_scale: max
+        movement_domains: [land]
+        melee_targets: []
+        ranged_targets: [land]
+        status: baseline_proposal
+    artillery:
+      min:
+        name: 'Resonance Orb'
+        chassis_scale: min
+        movement_domains: [land]
+        melee_targets: []
+        ranged_targets: [land]
+        status: baseline_proposal
+      mid:
+        name: 'Prism Caster'
+        chassis_scale: mid
+        movement_domains: [land]
+        melee_targets: []
+        ranged_targets: [land]
+        status: baseline_proposal
+      max:
+        name: 'Celestial Array'
+        chassis_scale: max
+        movement_domains: [land]
+        melee_targets: []
+        ranged_targets: [land]
+        status: baseline_proposal
+    tank:
+      min:
+        name: 'Ward'
+        chassis_scale: min
+        movement_domains: [land]
+        melee_targets: [land]
+        ranged_targets: []
+        status: baseline_proposal
+      mid:
+        name: 'Aegis Guardian'
+        chassis_scale: mid
+        movement_domains: [land]
+        melee_targets: [land]
+        ranged_targets: []
+        status: baseline_proposal
+      max:
+        name: 'Monolith'
+        chassis_scale: max
+        movement_domains: [land]
+        melee_targets: [land]
+        ranged_targets: []
+        status: baseline_proposal
+    flyer:
+      min:
+        name: 'Glimmer'
+        chassis_scale: min
+        movement_domains: [air]
+        melee_targets: []
+        ranged_targets: [land, air]
+        status: baseline_proposal
+      mid:
+        name: 'Sky Sentinel'
+        chassis_scale: mid
+        movement_domains: [air]
+        melee_targets: []
+        ranged_targets: [land, air]
+        status: baseline_proposal
+      max:
+        name: 'Astral Vessel'
+        chassis_scale: max
+        movement_domains: [air]
+        melee_targets: []
+        ranged_targets: [land, air]
+        status: baseline_proposal
+    specialist:
+      min:
+        name: 'Seer'
+        chassis_scale: min
+        movement_domains: [land]
+        melee_targets: []
+        ranged_targets: []
+        status: baseline_proposal
+      mid:
+        name: 'Phase Weaver'
+        chassis_scale: mid
+        movement_domains: [land]
+        melee_targets: []
+        ranged_targets: []
+        status: baseline_proposal
+      max:
+        name: 'Oracle'
+        chassis_scale: max
+        movement_domains: [land]
+        melee_targets: []
+        ranged_targets: []
+        status: baseline_proposal
+illustrative_specializations:
+  # Optional equipment/variants; do not overwrite baseline roster automatically.
+  manusian_anti_air_gunner:
+    base_template: manusians.shooter.mid
+    movement_domains: [land]
+    melee_targets: []
+    ranged_targets: [land, air]
+  blergian_amphibious_ravager:
+    base_template: blergians.fighter.mid
+    movement_domains: [land, water]
+    melee_targets: [land, water]
+    ranged_targets: []
+  aetherian_sky_sentinel:
+    base_template: aetherians.flyer.mid
+    movement_domains: [air]
+    melee_targets: [air]
+    ranged_targets: [land, water, air]
+  manusian_gunship:
+    base_template: manusians.flyer.mid
+    movement_domains: [air]
+    melee_targets: []
+    ranged_targets: [land, water]
+  blergian_spore_caster:
+    base_template: blergians.artillery.min
+    movement_domains: [land]
+    melee_targets: []
+    ranged_targets: [land, water]
+  aetherian_omnimodal_specialist:
+    base_template: aetherians.specialist.max
+    movement_domains: [land, water, air]
+    melee_targets: [land, water]
+    ranged_targets: [land, water, air]
+balance_principles:
+  - 'Additional movement domains must trade off cost, capacity, mobility or vulnerability.'
+  - 'Anti-air targeting requires a compatible weapon or ability, not merely air movement.'
+  - 'Artillery trades damage/range for reload, minimum range, vulnerability or cost.'
+  - 'Tank archetype trades protection for mobility or economic burden.'
+  - 'Omnimodal variants must be costly or deliberately weak in specialization.'
+  - 'All factions retain counterplay across land, water and air.'
+  - 'Chassis scale never directly grants combat domains or tech tier.'
+prototype:
+  first_slice: '7 min-chassis archetypes per faction, 21 templates total'
+  full_design_catalog: 63
+  validate: [domain_pathing, legal_targeting, anti_air_counterplay, amphibious_transitions, faction_distinctiveness, ai_orders, replay]
