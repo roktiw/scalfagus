@@ -1,12 +1,15 @@
 schema_version: 1
 project: scalfagus
-version: 0.2
+version: 0.3
 status: owner_approved_direction_proposed_numbers
 specification: design/base-ecologies-and-expansion-2026-10-11.md
 construction_stage_proposal: design/construction-phases.yaml
 construction_stage_status: owner_proposed_not_yet_balanced
 canonical_faction_ids: [org, man, eth]
 canonical_resources: [matter, volatiles, energy]
+physical_source_forms_reference: design/physical-resource-forms.yaml
+physical_source_form_access_identical_for_all_factions: true
+physical_source_forms_are_not_resource_id_replacements: true
 invariants:
   min_independently_extracts_and_carries: true
   worker_and_building_inventory_finite: true
