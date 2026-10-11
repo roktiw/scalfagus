@@ -1,14 +1,16 @@
 schema_version: 1
 project: scalfagus
-version: 0.6
+version: 0.7
 status: approved_core_rules_with_proposed_details
 automation: medium
 faction_mechanisms:
   specification: design/faction-logistics-2026-10-11.md
   config: design/faction-logistics.yaml
+  base_ecology: design/base-ecologies.yaml
+  economic_chassis: design/logistics-unit-scales.yaml
   org: exclusive_initial_mother_modes_with_tech_gated_rolling_handoffs
   man: destructible_throughput_limited_conveyor_network
-  eth: mobile_couriers_to_stationary_pylon_hubs
+  eth: mobile_min_couriers_to_mid_pylon_relays_and_max_nexus_cores
   note: Preserve common finite inventories, geometry, capacity and manual-order authority.
 player_controls:
   - select_deposit_and_assign_workers
@@ -17,6 +19,9 @@ player_controls:
   - choose_island_or_asteroid_for_expansion
   - initiate_docking_operations
   - change_strategic_routes
+  - designate_org_vessel_branch_and_expansion_nourishment_route
+  - reposition_man_modular_base
+  - authorize_eth_min_network_construction_and_blueprint_sync
 automatic:
   - repeat_ordered_extraction
   - transfer_cargo_when_compatible_receiver_in_range_and_has_capacity
