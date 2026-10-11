@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 1.5
+version: 1.6
 decisions:
   - id: DEC-001
     status: approved
@@ -197,6 +197,38 @@ decisions:
       resources available without harvesting that gas first.
     specification: design/physical-resource-forms-and-extraction-2026-10-11.md
     data_specification: design/physical-resource-forms.yaml
+  - id: DEC-017
+    status: approved_first_prototype_direction_not_yet_visually_tested
+    topic: five_source_sprite_views_mirror_to_eight_one_atlas_all_camera_modes
+    resolution: >-
+      The first Scalfagus 3D-world sprite-rendering prototype shall use five
+      unique authored horizontal viewpoints per object action (front,
+      front-right, right, back-right, back), mirrored to display eight camera-
+      relative 45-degree sectors. The camera itself rotates freely 360 degrees
+      and smoothly zooms and changes between Overlord RTS, Direct/TPP and
+      first-person possession, while the SAME source visual view family
+      represents the object in every camera mode. Visual sprite orientation
+      depends on the observer bearing relative to actor forward: use the
+      camera world position for perspective and the common camera view axis
+      for orthographic; never treat camera yaw alone as sufficient. There is
+      one real 3D terrain and collision world and one authoritative actor.
+      This supersedes previous default expectations of 8/16 unique authored
+      directions and a mandatory second top-down/FPS sprite family.
+    mirror_policy: >-
+      Horizontal mirroring is allowed only when anatomy, equipment, markings
+      and functional building doors or ports remain artistically consistent.
+      Prefer symmetric source design or a separate world-anchored overlay;
+      explicit eight-unique-view exceptions require a failed proof and review.
+    open_visual_risks: >-
+      A single azimuth-only sprite family does not reconstruct camera pitch,
+      roof/underside parallax, close FPS occlusion or all asymmetric shapes.
+      A proof with a MAN worker, lunar lander, tree, rock and terrain must
+      verify those limitations before mass sprite production. The artist and
+      engineer may propose exceptions after evidence; no guaranteed solution
+      or tested Godot gameplay is implied by this decision.
+    specification: architecture/adr-0003-five-view-mirrored-3d-sprites.md
+    data_specification: art/directional-sprite-five-view-v0.1.yaml
+    conversation_record: research/five-view-mirroring-renderer-discussion-2026-10-11.md
 migration_required:
   - design/economy.yaml
   - design/resources.yaml
