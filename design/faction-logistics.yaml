@@ -2,6 +2,10 @@ schema_version: 1
 project: scalfagus
 latest_owner_network_contract: design/three-network-channels-and-destruction-2026-10-11.md
 unit_relay_extension: design/three-faction-logistics-and-eth-unit-relay.yaml
+storage_specialization_extension: design/faction-storage-specialization-and-obelisk-traffic.yaml
+storage_specialization_owner_decision: DEC-036
+ETH_new_player_facing_name: Obelisk
+ETH_legacy_runtime_alias: eth_mid_pylon
 unit_relay_owner_decision: DEC-035
 latest_owner_network_data: design/three-network-channels-and-destruction.yaml
 world_loot_and_recycling: design/world-loot-and-recycling.yaml
