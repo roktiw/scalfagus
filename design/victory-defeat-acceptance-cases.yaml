@@ -64,7 +64,7 @@ fixtures:
     expect: draw_proposed_not_yet_playtested
   - id: WIN-012
     name: no_buildings_but_stealable_cargo_and_ruin
-    opponent_entities: [incomplete_man_ruin, abandoned_crates, salveageable_matter_drop]
+    opponent_entities: [incomplete_man_ruin, abandoned_crates, salvageable_matter_drop]
     expect: defeat
   - id: WIN-013
     name: heartstrike_is_optional_and_requires_defined_team_target
