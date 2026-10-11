@@ -1,4 +1,7 @@
 # Scalfagus — Faction Naming Decision: Organs / Manus / Eters
+
+> **Naming canon expanded later on 2026-10-11:** ID `org/man/eth`, short `Organs/Manus/Eters`, mid `Organites/Manusians/Etherans`, full **Organites Reproductive Generalismus / Manusians Augmented Navigators / Etherans Transcendent Hypervisors**. The exact three-tier canon is authoritative in [faction-naming-conventions-2026-10-11.md](faction-naming-conventions-2026-10-11.md). This document is primarily a historical migration record. In particular, **Manusians is canonical again at the MID naming level**, though no longer the short UI name.
+
 Date: 2026-10-11
 Status: **approved by project owner for the original three faction identities**, not a decision to add more playable races.
 
