@@ -8,6 +8,8 @@ require_godot
 "$GODOT_BIN" --headless --path apps/game --script res://tests/menu_smoke.gd
 "$GODOT_BIN" --headless --path apps/game --script res://tests/rts_smoke.gd
 "$GODOT_BIN" --headless --path apps/game --script res://tests/navigation_smoke.gd
+"$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_smoke.gd
+"$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_visual_smoke.gd
 if command -v node >/dev/null 2>&1; then
   node scripts/verify_atlases.mjs
   node scripts/test-faction-emblems.mjs
