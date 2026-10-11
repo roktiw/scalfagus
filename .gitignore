@@ -4,4 +4,6 @@ dist/
 build/
 **/.godot/
 **/target/
+*.uid
+apps/desktop/
 *.log
