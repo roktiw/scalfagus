@@ -35,15 +35,20 @@ func _verify() -> void:
         if not InputMap.has_action(action):
             _fail("Missing InputMap action " + str(action))
             return
+        # Read project defaults rather than the mutable runtime InputMap:
+        # users are explicitly allowed to remap all of these actions.
+        var project_action: Dictionary = ProjectSettings.get_setting(
+            "input/" + str(action), {}
+        )
         var found: bool = false
-        for mapping in InputMap.action_get_events(action):
+        for mapping in project_action.get("events", []):
             var mapped_key := mapping as InputEventKey
             if mapped_key != null and (
                     mapped_key.physical_keycode == int(expected[action])
                     or mapped_key.keycode == int(expected[action])):
                 found = true
         if not found:
-            _fail("Default binding missing for " + str(action))
+            _fail("Project default binding missing for " + str(action))
             return
 
     var editor: PackedScene = load("res://addons/keychain/ShortcutEdit.tscn")
@@ -76,6 +81,14 @@ func _verify() -> void:
     var hq: Dictionary = sim.entities[hqs[0]]
     game.set("selected_id", int(hqs[0]))
 
+    # Isolate keyboard test from the user's saved Keychain profile.
+    # Temporarily map the action to T; restore their mapping afterwards.
+    var saved_bindings: Array[InputEvent] = InputMap.action_get_events("rts_train_worker")
+    InputMap.action_erase_events("rts_train_worker")
+    var temporary_t := InputEventKey.new()
+    temporary_t.physical_keycode = KEY_T
+    InputMap.action_add_event("rts_train_worker", temporary_t)
+
     # Pressing W must not train Workers anymore. Keychain remapping must be
     # observed by event.is_action_pressed, not duplicated hardcoded KEY_W.
     var w := InputEventKey.new()
@@ -100,7 +113,6 @@ func _verify() -> void:
     # WITHOUT editing mirror_view.gd or sending a fabricated direct order.
     hq["train_kind"] = ""
     hq["train_left"] = 0
-    var saved_bindings: Array[InputEvent] = InputMap.action_get_events("rts_train_worker")
     InputMap.action_erase_events("rts_train_worker")
     var remapped := InputEventKey.new()
     remapped.physical_keycode = KEY_Y
