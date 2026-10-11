@@ -277,7 +277,8 @@ func _walk(e: Dictionary, dest: Vector2i, adjacent_ok: bool = true) -> void:
     # tiles/s for workers; 130 milli-tiles/tick = 2.6 for Riflemen.
     # Headless and GUI execute identical movement for identical tick input.
     var gain: int = TIMING.RIFLEMAN_MILLI_PER_TICK if str(e["kind"]) == "rifleman" else TIMING.WORKER_MILLI_PER_TICK
-    e["move_progress"] = mini(TIMING.MILLI_TILES_PER_CELL, int(e["move_progress"]) + gain)
+    # Preserve fractional remainder after each step (otherwise 2.3 becomes 2.22).
+    e["move_progress"] = mini(TIMING.MILLI_TILES_PER_CELL + gain - 1, int(e["move_progress"]) + gain)
     if int(e["move_progress"]) < TIMING.MILLI_TILES_PER_CELL:
         return
     var route: Array = e["route"]
