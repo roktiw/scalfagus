@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 1.7
+version: 1.8
 decisions:
   - id: DEC-001
     status: approved
@@ -302,6 +302,117 @@ decisions:
     specification: design/three-faction-network-and-infrastructure-contract-2026-10-11.md
     data_specification: design/man-power-dock-and-org-vessel-mechanics.yaml
     acceptance_scenarios: design/network-mechanics-acceptance-cases.yaml
+  - id: DEC-021
+    status: owner_approved_latest_network_topology_with_mitochondria_scope_and_cable_numbers_open
+    topic: org_two_man_three_eth_one_networks_and_universal_man_unit
+    resolution: >-
+      The newest faction-network contract is ETH ONE Ether Network
+      carrying typed resources, Energy and information, with pylon/obelisk
+      relays acting like Settlers flags, Nexus-only conversion from physical
+      raw cargo, and real preserved subnet inventory on rupture. ORG has
+      TWO cooperating responsibilities: one physically connected living
+      VESSEL network that transfers finite actual resources, nutrition,
+      Energy and information, and a system of energy-producing
+      MITOCHONDRIA; the owner specified building TWO mitochondria to
+      obtain Energy, while exact per-colony versus per-network scope is
+      open. MAN has THREE responsibilities: a ground-only
+      Universal Man Unit (UMU) acting as deployed power generator and
+      warehouse or bunker; separately moved actual construction-material
+      packets; and a distinct physical Energy-plus-information cable
+      infrastructure. MAN UMU is the owner-selected name.
+    proposed_mechanisms: >-
+      Prototype UMU as a generator-capable configuration of existing MAN
+      MAX heavy warehouse/bunker instead of duplicating its entire chassis.
+      Hybrid optical-data and conductive-electricity tethers use one
+      player cable order while power and data capacities are distinct.
+      ORG first-two-mitochondria must bootstrap from eligible start
+      reserves without requiring energy they cannot yet make. ETH
+      pylons preserve one underlying connected graph even when turret,
+      with reduced freight service balancing still pending.
+    supersedes: >-
+      Any DEC-018 suggested physically separate control/freight networks
+      for ETH; any DEC-020 statement that ORG veins can carry nourishment
+      but NOT other real typed resources; any DEC-019 implication that
+      Power Dock must be a separate extra building rather than the
+      owner's UMU, or that light-only optical fiber transmits bulk power.
+      Earlier logistical chassis remain where not contradicted.
+    specification: design/three-network-channels-and-destruction-2026-10-11.md
+    data_specification: design/three-network-channels-and-destruction.yaml
+    acceptance_scenarios: design/recycling-and-network-acceptance-cases.yaml
+  - id: DEC-022
+    status: owner_approved_world_drop_and_interrupt_outcomes_palette_candidate
+    topic: physical_pickups_shapes_resource_colors_and_cross_faction_salvage
+    resolution: >-
+      Real material packets appear as collectible world objects when
+      buildings, units, logistics chains or unfinished construction
+      break. Origin controls packaging silhouette: ORG tetrahedron,
+      MAN cube, ETH round orb. Physical source form controls color:
+      SOLID amber, LIQUID cyan and GAS violet (specific hex values
+      proposed). Compatible workers from EVERY faction may recover
+      or steal packets through real pickup and haul actions.
+      ETH interruption of an incomplete active build instantly
+      ejects all actually committed material ingredients at the build
+      site as orbs, but already consumed channeling Energy/time is
+      not regenerated. ORG neglected or severed buds/buildings decay
+      and eject some of their embodied matter progressively. MAN
+      unfinished scaffolds persist, loose construction crates remain
+      collectible, and embedded rubble requires deliberate salvage
+      excavation available to every faction.
+    anti_exploit: >-
+      A dropped item and source-account refund may not both credit the
+      same input. Unconverted world ETH orbs need real carriage to
+      Nexus for reinsertion into Ether Network. Broken material edge
+      cargo has a single custody owner, including actual edge escrow.
+    specification: design/world-loot-salvage-and-recycling-2026-10-11.md
+    data_specification: design/world-loot-and-recycling.yaml
+    acceptance_scenarios: design/recycling-and-network-acceptance-cases.yaml
+  - id: DEC-023
+    status: owner_approved_recycling_with_irrecoverable_loss_numeric_ratios_open
+    topic: lossy_resource_circulation_and_reuse_after_battles
+    resolution: >-
+      Resources may circulate through collection, structures, combat
+      destruction, salvage and rebuilding, and enemy players may
+      physically collect battlefield materials. Wreck recycling is
+      NOT 1:1 and irrecoverable losses/spent operating inputs make
+      successive closed destroy-recover-rebuild cycles net-negative
+      without new extraction or explicit external inputs. Intact
+      never-installed crates and ETH canceled unfinished construction
+      inputs are separate custody transfers and need not incur the
+      normal completed-asset recycling penalty.
+    risks: >-
+      Potential match extension, resource snowball for battlefield
+      victor, abusive self-destruction, loot clutter and labor micro
+      require playtests, finite stack merges, real reclaim time,
+      honest resource ledger and appropriate victory conditions.
+    specification: design/world-loot-salvage-and-recycling-2026-10-11.md
+    data_specification: design/world-loot-and-recycling.yaml
+    acceptance_scenarios: design/recycling-and-network-acceptance-cases.yaml
+  - id: DEC-024
+    status: owner_approved_default_victory_rule_with_structural_tag_details_proposed
+    topic: eliminate_all_enemy_buildings_including_units_that_are_buildings
+    resolution: >-
+      The DEFAULT Scalfagus competitive/skirmish match is won when
+      the opposing team loses ALL living completed BUILDINGS.
+      Unit entities classified as BUILDINGS count, including
+      ground-mobile MAN infrastructure and pylon-like ETH units;
+      their packed, traveling, bunker, warehouse, turret or meditation
+      modes cannot make them vanish from defeat checks. Ordinary
+      heroes, soldiers, workers, raw resource stacks, unfinished
+      scaffolds, debris, cables and vein segments alone do NOT
+      prolong a match. Destroying every mobile unit is NOT required;
+      exhausting source deposits is NOT the victory criterion.
+    implementation_proposal: >-
+      Assign each finished structural template a persistent
+      victory_building flag that survives legitimate travel/mode
+      changes and complete reincarnations. End-of-tick deterministic
+      team-owned valid building counts trigger elimination at zero;
+      same-tick simultaneous zero defaults to draw. Decide which
+      specialized MID configurations qualify before implementation.
+      A separate optional Heartstrike objective may use designated
+      command modules if explicitly enabled by match configuration.
+    specification: design/victory-defeat-building-classification-2026-10-11.md
+    data_specification: design/match-rules.yaml
+    acceptance_scenarios: design/victory-defeat-acceptance-cases.yaml
 migration_required:
   - design/economy.yaml
   - design/resources.yaml
