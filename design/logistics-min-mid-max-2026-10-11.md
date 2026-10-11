@@ -2,6 +2,7 @@
 
 Date: 2026-10-11  
 Status: **owner-directed logistics and defensive transformations**, with ETH MID architecture and numerical parameters explicitly **proposed**.  
+**Newest role and base-canon precedence:** [base ecologies (DEC-012/013)](base-ecologies-and-expansion-2026-10-11.md), [base ecologies YAML](base-ecologies.yaml). This document contains previous candidate roles; below they are aligned with the updated owner canon.
 References: [canonical faction logistics](faction-logistics-2026-10-11.md), [3×3 config](logistics-unit-scales.yaml), [transformation policy](deployment.yaml), [faction config](faction-logistics.yaml), [worker roster](unit-domains-and-archetypes.yaml).
 
 ## A single economy, three ways of thinking
@@ -18,9 +19,9 @@ These names describe **logistics behavior**, not mandatory manual clicks: routin
 
 | Faction | MIN: independent | MID: intermediate | MAX: economic anchor |
 |---|---|---|---|
-| **ORG / Organites** | Small fast **worker**, mines and hand-carries a small load to base or another cargo organism. May scout/fend for itself if specialized. | **Mid-size harvester** with several separate cargo slots. Mines independently, carries more than MIN, moves and mines slower than MIN. Can take MIN-sized passengers if equipped; can pass supplies to flying MAX. | **Huge flying mother transporter** with many resource slots; player-defined continuous deposit-to-base loops. **Baseline: stop to receive/dispatch one item per worker handoff, one worker at a time. Moving handoffs unlock in mid game; extra ports unlock in late game.** May transport compatible living troops/workers in passenger bays and optionally defend itself at a real cargo/speed/cost tradeoff. |
-| **MAN / Manusians** | Small versatile **ground mining robot**; independently gathers, hauls and deposits or feeds belt input. Provides emergency manual haul fallback. | Mobile conveyor segment **3 or 5 tiles long**, finite buffer compartments. In logistics mode it links two compatible belt endpoints. **Sentry Wall mode:** disconnects belt, releases carried resource **packages behind the wall**, then becomes a blocking fortified wall segment. | Very slow **ground-only mobile warehouse** with slots. **Depot mode:** collect, distribute and store. **Bunker mode:** explicitly deploy, **eject stored resource packages into legal nearby cells** and become a garrisonable bunker for soldiers. No flying. |
-| **ETH / Etherans** | Small independent **extractor/courier**. Delivers directly or shuttles physical loads to hub/relay nodes. | **OPEN DESIGN — proposed “Relay Conductor”**: mobile intermediate courier with several slots. Travel mode ferries batches; parked relay mode serves as a **temporary local handoff node** among MIN couriers (bounded buffer, queue, range). Optional extraction module. | **Large stationary pylon** with many finite storage slots and courier handoff capacity. **Storage / Meditation / Turret modes:** keeps its cargo across meditation; input/output locked during meditation **and turret operation** under the proposed strict exclusivity rule. Turns into a powerful defensive emplacement after a timed meditation. |
+| **ORG / Organites** | Small fast **worker**, mines, carries, **buds L1** at live connected vessel tips. May scout/fend for itself if specialized. | **Mid-size harvester** with multiple slots, slow mining/carriage, **buds L2** at live vessel tips when growth-equipped; can load MAX. | **Huge flying mother transporter** with many resource slots; source/home feeding loops, specialist L3 buds only along a connected living vessel. **Baseline: stop to receive/dispatch one item per worker handoff, one worker at a time. Moving handoffs unlock in mid game; extra ports unlock in late game.** May transport compatible living troops/workers in passenger bays and optionally defend itself at a real cargo/speed/cost tradeoff. |
+| **MAN / Manusians** | **SCV-like ground miner, builder and repairer**; independently hauls and feeds conveyor input, repairs eligible units and buildings. | **Tracked relay / conveyor** length 3 or 5 tiles, finite buffers. In **one-person bunker** mode carries one soldier; in **Sentry Wall** mode flips to an outward barrier and ejects packets safely, disabling conveyor flow. | Very slow **ground-only mobile warehouse** with slots. **Depot mode:** collect, distribute and store. **Bunker mode:** explicitly deploy, **eject stored resource packages into legal nearby cells** and become a garrisonable bunker for soldiers. No flying. |
+| **ETH / Etherans** | Small independent extractor/courier; construction **NETWORK mode** occupies worker and visibly beams blue Energy to nearest eligible large node for the whole build. | **Stationary MID pylon**: finite storage/relay OR defensive turret via time-costed meditation; retains cargo but seals intake/output during meditation/turret. | **Nexus-class MAX immediately**, local stock, knowledge cache and large construction-support node, not the former oversized turret pylon. |
 
 **Naming scope:** ORG/MAN/ETH are the stable machine IDs; Organites/Manusians/Etherans are the canonical mid names of the peoples, *not* unit size MID. Names like Relay Conductor, Sentry Wall and Bunker are descriptive working labels, not approved fiction names. This table refines *economic worker/transport variants only*; military unit archetypes retain separate role definitions.
 
@@ -73,25 +74,17 @@ Fast scattered MIN collectors versus fewer MID harvesters; a single economical l
 
 **Deployability:** these form-changing **specialized economic MID/MAX templates** must explicitly hold `deployable`/mode capability. Ordinary soldiers, generic workers and unrelated MAX chassis do **not** morph into arbitrary buildings.
 
-## ETH: durable relay infrastructure with timed defense conversion
+## ETH: Network builder MIN, pylon MID and Nexus MAX (DEC-013)
 
-**MIN — Courier-gatherer:** independent extraction and direct short-haul. It can join relay lines automatically with compatible authorization. Real travel and handoff times apply.
+**This supersedes the old mobile Relay Conductor MID and MAX turret-pylon models.** The new MID and MAX identities are owner-approved; precise times, health, ranges and costs are not.
 
-**MID — unresolved; recommended Relay Conductor (working label):**
-- **Travel mode:** moves physical cargo among deposits, short-haul couriers, hubs, and pylons; medium compartment count.
-- **Relay mode:** parks temporarily as a finite **handoff/buffer and dispatch point**, allowing multiple MIN units to leave/pick up cargo with queuing and route priority. It remains more mobile, lower-capacity and quicker to establish than the static MAX.
-- It **does not teleport**, grant free mining bonuses or become a second full-capacity stationary pylon. Its value is flexible *last-mile relay*, emergency bypass around a destroyed pylon, and covering scouting/defense perimeters.
-- Alternatives still open: (A) traveling batch courier, (B) fixed micro-pylon, (C) mobile relay conductor. (C) currently recommended for meaningful MIN/MID/MAX distinctions.
-- An optional protective stance or extraction fitting could be researched later, but neither is approved and neither may erase the economic/tactical tradeoff.
+- **MIN:** independent direct-to-base courier/extractor. On a construction job it enters **NETWORK** mode and stays at the site throughout work, maintaining a **visible blue beam** to the nearest valid **large node** (typically MAX). The beam draws finite accounted Energy; Matter/Volatiles are actually delivered. It cannot harvest or haul while busy. Opponent visibility relative to fog, stealth and detection remains to be tuned.
+- **MID:** physical **pylon**. In STORAGE/RELAY mode accepts and dispatches cargo via finite service queues. Its alternate TURRET mode costs meditation time, **retains all cargo without unloading**, and locks receipt/dispatch throughout meditation and turret operation. Reverting similarly takes time/cost. Optional future relocation/levitation is a separate specialist capability, not intrinsic to this MID.
+- **MAX:** **Nexus-class hub from creation**, with major storage, construction-beam support, a local knowledge cache and authorization/initialization of expansions. It is not just a larger MID and not automatically a turret. Only specifically eligible buildings may meditate, levitate to new sites and reconnect; this is not unrestricted mobile construction.
+- **ETH expansions:** initial home contact provides an operating seed and known blueprints. Afterwards the local Nexus/MID network handles extraction, production and known structures without constant home contact. An **unknown blueprint** causes a fresh permitted home request; losing a distant home connection alone cannot erase already learned structures or inventories.
+- **Faction identity:** staggered relay economy; strategically visible active construction; costed defensive timing and slow relocation. A construction beam is **not** a free cross-map matter teleport or a Protoss-like energy orb left behind by a departing builder.
 
-**MAX — stationary storage pylon with a closed-gate turret transformation:**
-- **STORAGE:** pylon receives, holds and dispatches cargo. It connects courier graph edges only through finite compatible intake/outtake buffers.
-- **MEDITATING_TO_TURRET:** transformation has a visible nonzero duration, potential resource/Energy cost, vulnerability and cancellation policy. **All stored cargo stays in the pylon**, *no unloading*, but **all cargo intake, withdrawals and handoffs are locked** for the entire meditation. Outstanding queues wait or reroute; reserved transfers are committed/canceled deterministically before lock. The resource ledger remains unchanged.
-- **TURRET:** a powered combat emplacement retaining sealed cargo inventory. **Default design interpretation: cargo transfers stay locked while turret is active** so the player truly trades network throughput for survival; this is a balancing interpretation to confirm. A finite magazine/cooldown/energy cost and real attack vulnerability prevent an invulnerable turret wall.
-- **MEDITATING_TO_STORAGE:** proposed return transition, also slow and possibly costly, with cargo gates closed until finished. After the pylon resumes STORAGE, cargo handoffs may resume. Whether a faction can keep weapon and cargo output simultaneously is explicitly **not** enabled in the current proposal.
-- A turret mode does *not* spend, erase or eject the stored cargo unless an explicit combat ability with a priced resource cost is separately authorized.
-
-**Strategic implication:** ETH can sacrifice current delivery capacity and temporarily lock valuable inventory to defend its core through an enemy rush, aiming for late-game technology. Enemy counterplay includes force-drawing pylons into turret mode, cutting relay paths, bypassing firing arcs and hitting vulnerable meditation windows. Turrets must not guarantee invulnerability or create a faction-wide energy grid.
+See [the canonical base ecology spec](base-ecologies-and-expansion-2026-10-11.md) for the expansion-dependence comparison and acceptance tests.
 
 ## Common mode-switch state machine
 
@@ -104,8 +97,8 @@ Mode switches are intentional economic/combat actions, **not role changes that h
 | ORG MID/MAX | Gather/Carry/Flying Loop | Equipped organic specialist adaptation (proposed, possibly irreversible) | Optional escort / defensive organs | Cargo remains on unit; transport/payload competes with combat/passenger mass |
 | MAN MID | Conveyor | Isolate edge → drain/eject packages behind facing → deploy wall | Sentry Wall | Packages physically spawn or move into valid defended-side inventory; belt unavailable |
 | MAN MAX | Mobile Depot | Finish reservations → unload/eject resource crates → deploy bunker | Soldier Bunker | Stored packages are expelled before defense mode; soldiers occupy finite garrison slots |
-| ETH MID (proposed) | Courier | Position → enter relay stance | Temporary handoff node (not weapon) | Cargo remains in finite local compartments |
-| ETH MAX | Storage Pylon | Finish reservations → **lock transfer gates** → meditate | Turret | **Keep all cargo inside sealed slots**; intake/output locked through meditation and turret mode |
+| ETH MID | Pylon Storage/Relay | Lock gates → meditate | Turret | Keep cargo in compartments; no inbound/outbound during meditation or turret mode |
+| ETH MAX | Nexus-class core | Eligible structure only: meditate → levitate → resettle | Relocated Nexus | Keeps finite stock/known-blueprint state; downtime, legal space and Energy cost required |
 
 ### Cargo accounting and recovery
 - Any resource transfer is source reservation → physically legal handoff/ejection → destination commit. Never subtract twice; never credit the base just because a package dropped behind a wall.
@@ -116,7 +109,7 @@ Mode switches are intentional economic/combat actions, **not role changes that h
 - Converting modes disables incompatible workers/jobs and triggers explainable retries and routing suggestions rather than phantom deliveries.
 
 ## Identity, fairness and balance
-- ORG **mobility:** good fast expansion, independently functional gatherers and transported units, but mother interception concentrates risk.
+- ORG **mobile gatherers but rooted base:** workers and mothers travel, while every viable rooted building needs the physical Nexus vessel and remote colony nourishment. Branch cutting/starvation and mother interception are separate threats.
 - MAN **space:** high peak throughput and sophisticated routing with convertible fortifications, but any conversion may choke an entire industrial corridor.
 - ETH **time:** redundant courier graphs, durable core pylons and a carefully timed defensive conversion, but sustained turret mode starves network output and delays late tech.
 - Give each faction fair map access and **low-cost MIN-only recovery** when signature infrastructure is lost. No automatic global extraction/throughput buffs.
@@ -132,14 +125,14 @@ Mode switches are intentional economic/combat actions, **not role changes that h
 6. While MAN MID is wall, belt throughput on that segment is zero; reverting requires an explicit and legal transition.
 7. MAN MAX only moves on ground, very slowly; correctly ejects stored resource packages and converts to an explicit specialist bunker that can garrison real soldiers.
 8. An ordinary MAX without the specialized mode capability cannot become a bunker or wall.
-9. ETH proposed MID handles real finite courier↔relay handoffs; no cargo teleportation and no requirement to use MID on short routes.
-10. ETH pylon with cargo converts STORAGE→MEDITATION→TURRET with **no unloading**; its slots remain filled and *zero* cargo enters/leaves during meditation and turret mode.
-11. ETH pylon can return to STORAGE only through a costed, explicit reverse transition (proposed); cargo resumes delivery without being created/destroyed.
+9. ETH MID pylon stores/relays finite courier cargo; MIN alone still delivers directly on short routes; no free teleportation.
+10. ETH **MID pylon** with cargo converts STORAGE→MEDITATION→TURRET with **no unloading**; its slots remain filled and *zero* cargo enters/leaves during meditation and turret mode.
+11. ETH MID pylon returns to STORAGE through a costed reverse transition; **ETH MAX is Nexus-capable immediately**, including local knowledge/blueprint services (cost/range TBD).
 12. Destroying a mother, wall, bunker or pylon reconciles slot cargo, packages and passenger units exactly once.
 13. With seed + orders fixed, state hashes, package positions, mode timings and ledger remain reproducible.
 14. Attack-induced defensive conversion has a measurable **opportunity cost** for MAN and ETH; never free simultaneous full-output economy and defense.
 
 ## Approval boundary
-**Owner decisions:** hunter–gatherer ORG economy with one-item single-port handoffs, strictly exclusive unupgraded mother modes, and researched in-motion / multiport upgrades; possible transport/combat specialists; mobile MAN 3/5-tile conveyors that can become defensive walls and eject packages behind them, MAN MAX that unloads cargo and becomes soldier bunker; ETH courier relay network supporting late-game survival, ETH MAX turret conversion through timed meditation **without ejecting cargo**, with receiving/dispatch disabled during meditation; all three MIN/MID/MAX roles as specified in previous discussions.
+**Owner decisions (DEC-011/012/013):** ORG sequential handoffs, baseline mode-exclusive flying mothers and researched moving handoffs; **living-vessel-only rooted buildings and recurring home nourishment**; equipped MIN/MID/MAX bud L1/L2/L3. MAN SCV repair MIN, tracked 3/5-tile MID with **one-person bunker**, conveyor or sentry wall, and ground MAX warehouse or multi-soldier bunker; **mobile composite bases and independent expansion**. ETH MIN occupied visible blue-beam NETWORK builder, **MID cargo/turret pylon** and **MAX Nexus-class core from creation**, with conditional blueprint-only home requests.
 
-**Proposals needing confirmation or playtest:** ETH MID Relay Conductor and its two stances; defensive capabilities for ORG cargo creatures, exact passenger seats and tradeoffs; reversibility/packing policies; eth pylon cargo lock continuing through active turret mode; numerical mode/weapon balance and exact tile placement logic.
+**Proposals needing confirmation or playtest:** defensive capabilities for ORG cargo creatures and passenger berths; nourishment interval/wither grace; MAN bunkering footprints and reconfiguration costs; ETH beam visibility relative to fog, Nexus range, eligible levitation templates and blueprint delivery logic; numeric balance and exact tile placement.
