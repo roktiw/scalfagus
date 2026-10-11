@@ -1,6 +1,8 @@
 # MAN / Manusians — MIN Astronaut Worker: Isometric Pixel-Art Production Specification v0.1
 
 Date: 2026-10-11
+> **2026-10-11 CANON UPDATE — DEC-017.** The original eight-uniquely-authored-direction and mandatory close-FPS-proxy recommendations below are **historical proposals**, not current S0/S1 implementation requirements. The first renderer prototype uses **five authored yaw views + horizontal mirroring to eight runtime sectors and the same authored source atlas across Overlord, Direct/TPP and FPS**. See [ADR-0003](../architecture/adr-0003-five-view-mirrored-3d-sprites.md) and [current renderer YAML](directional-sprite-five-view-v0.1.yaml). Source frame size **24×32**, transparent PNG, 3D collision, pivot and MAN style remain proposed and reusable. DO NOT infer eight uniquely painted views or a second FPS art set from the old atlas-size examples. Functional asymmetric tools must pass mirroring safety review. Existing concept art is not a validated five-angle turntable.
+
 Status: **proposed production specification**, based on user-approved *cute moon-landing / human in a spacesuit with minimal exoskeleton* visual direction, and the current proposed isometric pixel/camera standard. **No production sprites or Godot render tests are claimed.**
 
 ## Sources, precedence and scope
