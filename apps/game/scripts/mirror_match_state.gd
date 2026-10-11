@@ -24,6 +24,7 @@ var players: Array[Dictionary] = []
 var entities: Dictionary = {}
 var sources: Dictionary = {}
 var terrain: Dictionary = {}
+var building_cells: Dictionary = {}
 var events: Array[Dictionary] = []
 var mined_matter: int = 0
 var lost_matter: int = 0
@@ -40,6 +41,7 @@ func setup(match_seed: int = 42, slot_controllers: Array = ["human", "bot"]) -> 
     entities.clear()
     sources.clear()
     terrain.clear()
+    building_cells.clear()
     events.clear()
     controllers.clear()
     players.clear()
@@ -82,6 +84,8 @@ func _spawn(kind: String, owner: int, pos: Vector2i) -> int:
         "cargo": 0, "work_ticks": 0, "cooldown": 0,
         "train_kind": "", "train_left": 0, "build_pos": Vector2i(-1, -1)
     }
+    if kind in ["hq", "barracks"]:
+        building_cells[pos] = id
     return id
 
 func sorted_ids() -> Array[int]:
@@ -108,11 +112,7 @@ func _in_bounds(p: Vector2i) -> bool:
 func _blocked(p: Vector2i) -> bool:
     if not _in_bounds(p) or terrain.has(p):
         return true
-    for id in sorted_ids():
-        var e: Dictionary = entities[id]
-        if str(e["kind"]) in ["hq", "barracks"] and e["pos"] == p:
-            return true
-    return false
+    return building_cells.has(p)
 
 func _can_build(p: Vector2i, owner: int, ignore_builder_id: int = -1) -> bool:
     if _blocked(p):
@@ -352,6 +352,8 @@ func _damage(entity_id: int, points: int, attacker: int) -> void:
         lost_matter += int(e["cargo"])
     players[attacker]["kills"] = int(players[attacker]["kills"]) + 1
     events.append({"tick": tick, "owner": attacker, "action": "kill", "victim": entity_id})
+    if str(e["kind"]) in ["hq", "barracks"]:
+        building_cells.erase(e["pos"])
     entities.erase(entity_id)
 
 func _train_tick(e: Dictionary) -> void:
