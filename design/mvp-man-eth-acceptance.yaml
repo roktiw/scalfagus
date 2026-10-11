@@ -1,4 +1,7 @@
 schema_version: 1
+release_target: post_mvp_0_1_MAN_vs_ETH
+current_micro_MVP0_tests: [design/mvp0-man-mirror-acceptance.yaml, design/mvp0-man-mirror-balance-acceptance.yaml]
+do_not_require_ETH_or_FPP_to_ship_micro_MVP0: true
 project: scalfagus
 version: 0.2
 status: design_acceptance_fixtures_NOT_yet_executable_or_run
