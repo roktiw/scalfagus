@@ -1,0 +1,28 @@
+# Scalfagus — illustrative match configuration schema (proposal, not runtime contract)
+schema_version: "0.1-draft"
+session_context: skirmish # campaign | skirmish | multiplayer
+control_preset: autonomous_rts # classic_rts | architect | commander | avatar | hybrid
+objective_ruleset: annihilation # control | assault | escort | extraction | custom
+map: prototype_mainland
+seed: 357
+teams:
+  format: "1v1"
+  shared_faction_control: true
+rules:
+  base_ai: autonomous # off | assist | autonomous
+  strategy_ai: execute # off | suggest | execute
+  worker_ai: full # off | doctrine | full
+  combat_ai: doctrine # manual | doctrine | autonomous
+  possession: disabled # enabled after the FPS feature is implemented
+  player_roles: unrestricted # advisory | enforced (later)
+  fog_of_war: on
+  unit_progression: on
+  replay: on
+  pause_policy: unrestricted
+ai_policy:
+  economic_posture: balanced # fortify | expand | tech | rush
+  expansion_allowed: true
+  manual_override_protection: true
+  require_approval_for_critical_actions: false
+# A resolver must validate feature availability, preset overrides, ranked restrictions,
+# map/objective compatibility and deterministic serialization before launching a match.
