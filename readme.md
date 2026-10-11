@@ -1,5 +1,12 @@
 # Scalfagus — Godot-only RTS / Direct / Possession prototype
 
+## Universal world rule — DEC-030
+
+**Every playable Scalfagus battlefield is a floating platform in outer space.** The top can be brown-earth jungle with trees, welded metal patchwork, rock, desert, marshland or mixed terrain. Each platform has real traversable ground, visible outer rim/underside, hard invisible gameplay walls and space/starfield around it; the distant planet is backdrop only. **Ordinary planet-surface maps are not a valid alternative.** The first `Verdant Divide` map is a **stationary 64×64 candidate floating jungle platform**. No orbital movement, starship travel, spherical gravity, sailing/flying units or fluid harvesting in MVP.
+
+**Coding agents start here:** [AGENTS.md](AGENTS.md) → [MVP delivery gates](design/MVP-DELIVERY-GATES.md) → [machine-readable task backlog](design/mvp-implementation-backlog.yaml). World law: [space-platform-world-contract](design/space-platform-world-contract-2026-10-11.md), [frame YAML](design/battlefield-frames.yaml), [surface material presets](design/platform-surface-presets.yaml), [first playable map YAML](design/mvp-verdant-divide-map.yaml), [acceptance](design/battlefield-frame-acceptance.yaml). The first game loop remains MAN vs ETH, 5 base roles per side, solid-only harvest, tree cover, one deterministic match versus an economically fair bot, all enemy building-class structures destroyed to win.
+
+
 **Game/runtime: Godot 4.7.2 Standard with typed GDScript, one native window.** Tauri, Rust, Vite, WebView and a separate launcher are no longer part of the product. Godot owns menu, HUD, cameras, 3D terrain, actor simulation and platform exports. JavaScript/Node is *optional offline tooling* for pixel sprite atlas validation; it is not a game runtime requirement.
 
 ## Install & run — macOS (Apple Silicon and Intel)
@@ -28,6 +35,6 @@ The Godot main menu includes **START GAME / OPTIONS / QUIT**. Start opens the *e
 - `scripts/{bootstrap,dev,game,check,build}.sh` — game install, execution and export.
 - `scripts/*.mjs` — optional Node.js art validation and generation tools.
 
-The game is currently an **engine vertical slice**, not a complete RTS. The MAN/ETH Verdant Divide 64×64 jungle gameplay specification exists, but resource collection, squads, production, opponent AI, victory flow, unit selection and RTS orders still need implementation. Refer to `design/mvp-man-eth-jungle-vertical-slice-2026-10-11.md`.
+The game is currently an **engine vertical slice**, not a complete RTS. All new mandatory floating-platform/map/roster/economy/combat/HUD/AI YAML and Markdown are **requirements and agent design fixtures**, NOT already implemented gameplay. The MAN/ETH Verdant Divide 64×64 jungle gameplay specification exists, but resource collection, squads, production, opponent AI, victory flow, unit selection and RTS orders still need implementation. Refer to `design/mvp-man-eth-jungle-vertical-slice-2026-10-11.md`.
 
 **Historical note:** `docs/INSTALLATION-BUILD-REPORT-2026-10-11.md` records an older local Tauri build. It is not the current product architecture. Old local `~/Applications/Scalfagus.app` Tauri bundle is not modified by updating this repository; uninstall it manually if no longer desired.
