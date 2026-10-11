@@ -1,4 +1,6 @@
-# Scalfagus — Coding Agent Handoff: MAN vs ETH, Verdant Divide
+# Scalfagus — HISTORICAL Coding Agent Handoff: MAN vs ETH, Verdant Divide
+
+**DEC-033 NOTICE:** The first playable MVP is now **MAN-vs-MAN, Overlord RTS only**, with two player slots H-H LAN/loopback, H-C and C-C, four MAN templates and a small Matter economy. This earlier MAN+ETH handoff and three-camera PR-09 are **post-MVP reference** rather than active coding tasks. Follow [current release spec](mvp0-man-mirror-rts-2026-10-11.md), [YAML](mvp0-man-mirror-rts.yaml), [backlog](mvp0-man-mirror-backlog.yaml), [acceptance](mvp0-man-mirror-acceptance.yaml), and [DEC-033](decisions.yaml). The older three-camera technical spike stays preserved for regression only. Also see DEC-031 (future Overlord+FPP only).
 
 Date: 2026-10-11
 Status: **implementation tasking / documentation, not a claim that code is complete or tests have passed**.
