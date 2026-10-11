@@ -49,7 +49,7 @@ func _verify() -> void:
     if not runtime_path.ends_with("res://addons/keychain/Keychain.gd"):
         _fail("Keychain autoload points to unexpected source")
         return
-    if get_node_or_null("/root/Keychain") == null:
+    if root.get_node_or_null("/root/Keychain") == null:
         _fail("Keychain runtime singleton not constructed")
         return
     if not FileAccess.file_exists("res://addons/keychain/plugin.cfg"):

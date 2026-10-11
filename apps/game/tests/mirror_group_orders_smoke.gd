@@ -78,7 +78,7 @@ func _run() -> void:
         return
 
     # Both workers may gather from the same physical Matter source.
-    sent = game._issue_group_order(Vector2i(17, 31))
+    sent = game._issue_group_order(Vector2i(17, 10))
     if sent != 2 or str(sim.entities[workers[0]]["order"]) != "gather":
         _fail("Group gathering did not reuse the legal command gateway")
         return
