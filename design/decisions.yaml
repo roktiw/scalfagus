@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 1.3
+version: 1.4
 decisions:
   - id: DEC-001
     status: approved
@@ -148,9 +148,10 @@ decisions:
       per 0-33, 33-66, 66-100 percent stage; workers tend the living spore
       rather than instantly morphing into buildings, and unattended growth
       gradually withers while embodied materials are consumed over time.
-      MAN builds physically on site; the latest PROPOSED 2, then 1, then 3
-      simultaneous worker caps replace the older 1, then 2, then 3 candidate,
-      while 2, then 3, then 1 remains an explicitly open alternative.
+      MAN builds physically on site; the newest owner-proposed 1, then 2,
+      then 2 simultaneous worker caps may compensate its unusually mobile,
+      modular, independently expanding and self-repairing base economy.
+      Earlier 2-1-3, 2-3-1 and 1-2-3 variants remain historical alternatives.
       Paused MAN construction persists at its precise built percentage,
       and unfinished/destroyed worksites offer finite real salvage even
       to other factions. ETH NETWORK construction's revised proposed
@@ -160,8 +161,9 @@ decisions:
       through valid finite return logistics. Labor caps are upper bounds,
       not compulsory worker counts.
     open_balance: >-
-      MAN 2-1-3 versus 2-3-1 still requires owner selection and playtests;
-      the 1-2-3 ETH ramp also remains exploratory. Exact stage durations,
+      Whether the owner-proposed MAN 1-2-2 labor cap sufficiently offsets
+      mobile independent expansions remains a playtest question; 2-1-3 and
+      2-3-1 are prior alternatives. ETH 1-2-3 remains exploratory. Exact stage durations,
       additional-worker speed modifiers, ORG caretaker final cocoon-entry
       sacrifice or animation, incubation decay, ETH disconnect grace (if any),
       and material recovery percent/cost remain unspecified; balanced faction
