@@ -7,6 +7,12 @@ contract: design/three-network-channels-and-destruction-2026-10-11.md
 additional_owner_decision: DEC-035
 unit_relay_specification: design/three-faction-logistics-and-eth-unit-relay.yaml
 storage_pressure_decision: DEC-036
+recovery_decision: DEC-037
+recovery_contract: design/faction-damage-recovery-shields-and-repair.yaml
+ETH_shields_naturally_recharge_without_network: true
+ETH_connected_Obelisk_accelerates_shield_recharge: true
+ETH_green_HP_regeneration_consumes_whole_blue_shield_in_repeated_cycles: true
+ETH_network_boost_vs_storage_pressure_priority: TBD
 storage_pressure_specification: design/faction-storage-specialization-and-obelisk-traffic.yaml
 canonical_player_facing_mid_name: Obelisk
 legacy_internal_class_id_remains: eth_mid_pylon
