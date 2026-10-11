@@ -1,8 +1,9 @@
 schema_version: 1
 project: scalfagus
-version: 0.5
+version: 0.6
 status: approved_default_all_buildings_victory_with_proposed_phase_windows_and_edge_cases
 victory_specification: design/victory-defeat-building-classification-2026-10-11.md
+victory_building_template_registry: design/victory-building-template-registry.yaml
 victory_acceptance: design/victory-defeat-acceptance-cases.yaml
 new_network_economy: design/three-network-channels-and-destruction-2026-10-11.md
 salvage_economy: design/world-loot-and-recycling.yaml
