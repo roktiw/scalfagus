@@ -4,6 +4,9 @@ Date: 2026-10-11
 Status: **recommended playable scope**, not implementation. User-required product ingredients identified; unit/building counts are adjustable planning caps.
 
 ## Product outcome / player promise
+
+Current three faction names: **Organs (ORG / Organites), Manus (MAN / Manusians), Eters (ETH / Etherans)**. Full names and backronyms: [Naming Canon](faction-naming-conventions-2026-10-11.md). The initial prototype remains Manus-only.
+
 One original, offline **retro pixel-art isometric RTS** with **three observation/control views on the SAME game world**:
 1. Overlord — build a small autonomous settlement, transport finite cargo, command a small army, place basic defense.
 2. Direct Unit — `Realm of the Mad God`-like near-isometric/top-down action with the player's existing Hero (simple move + aim + attack; TPP optional later).
@@ -17,7 +20,7 @@ Every human player starts with **one Hero**, who has an Engineer / Commander / S
 - Hero contract [hero-progressions-and-three-cameras-2026-10-11.md](hero-progressions-and-three-cameras-2026-10-11.md).
 - Engine benchmark [engine-selection-rts-possession-2026-10-11.md](../research/engine-selection-rts-possession-2026-10-11.md).
 - Three resources Matter, Volatiles, Energy; no fourth primary currency. Existing Crystals/Gas/Resin legacy YAML must be migrated before production config.
-- One initial playable Manusian side; scripted Manusian mirror opponent. Fourth machine civilization remains post-MVP exploratory. No hive mind requirement.
+- One initial playable Manus side; scripted Manus mirror opponent. Fourth machine civilization remains post-MVP exploratory. No hive mind requirement.
 - Shared units and weapons obey domain, LOS, cost, control lease, cooldown and fog rules. FPS does not grant free damage or global scouting.
 
 ## Phase 0 — engine selection / kill-test (must precede serious content)
