@@ -13,13 +13,15 @@ source_of_truth:
   map: design/mvp-verdant-divide-map.yaml
   environment: design/world-environments.yaml
   topology: design/world-topologies.yaml
+  battlefield_frame: design/battlefield-frames.yaml
+  frame_tests: design/battlefield-frame-acceptance.yaml
   network: design/three-network-channels-and-destruction.yaml
   victory: design/victory-building-template-registry.yaml
   loot: design/world-loot-and-recycling.yaml
 initial_implementation_priority:
   P0: engine_solid_gathering_base_roster_combat_win_bot
   P1: complete_ETH_network_modes_recycling_and_three_camera_Hero_integration
-  future: true_spherical_planetoids_liquid_harvesting_gas_ORG_multiplayer_editor
+  future: true_spherical_planetoids_liquid_harvesting_gas_ORG_multiplayer_editor_interplanetary_ship_travel
 tests:
   - id: MVP-01
     tier: P0
