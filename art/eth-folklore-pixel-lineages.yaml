@@ -1,0 +1,94 @@
+schema_version: 1
+project: scalfagus
+version: 0.1
+status: exploratory_fiction_visual_moodboard_not_canonical_species
+specification: art/eth-ancient-aliens-folklore-and-pixel-lineages-2026-10-11.md
+faction_id: eth
+name_mid: Etherans
+provenance_notice:
+  motifs_come_from: contemporary_ufo_contactee_folklore_and_science_fiction
+  historical_claim_of_actual_earth_visits: unverified
+  no_empirical_claim_about_alien_species: true
+  owner_phrase_aster_seran: uncertain_spelling_likely_ashtar_sheran_tradition
+  original_names_and_silhouettes_required: true
+  fictional_motifs_only: true
+  avoid_copyrighted_costumes_or_signatures: true
+art_palette:
+  base: [deep_navy, cosmic_black, ceramic_white]
+  accents: [electric_blue, lilac, pale_cyan, rare_warm_amber]
+  blue_skin_and_eyes_allowed: true
+  separate_beams_and_halos_fx: true
+  glow_not_required_to_read_silhouette: true
+environment:
+  structures: [abstract_stepped_pyramid, ziggurat, quasi_sphinx_platform, dome, orb, halo, astronomical_ring, circular_uap_hangar]
+  architecture_motif: [interstellar_geometry, measured_asymmetry, precise_curves, negative_space, optional_fibonacci_rhythm]
+  fixed_real_world_heritage_copies: false
+  cultural_appropriation_caution: true
+lineages:
+  - id: harmonic_envoy
+    inspiration: humanlike_contactee_ashtar_sheran_style_folklore
+    working_role: architect_and_pattern_synchronizer
+    silhouette: slender_tapered_mantle_and_off_axis_small_halo
+    proposed_frame_px: [32, 48]
+    avoid: [branded_costume, photoreal_celebrity_or_contactee_portrait]
+  - id: orbital_surveyor
+    inspiration: grey_alien_reports
+    working_role: min_scout_or_courier
+    silhouette: large_lens_shaped_head_small_body_asymmetric_sensors
+    proposed_frame_px: [24, 32]
+    avoid: [identical_pop_culture_grey_face]
+  - id: saurian_sentinel
+    inspiration: reptilian_folklore
+    working_role: hunter_or_guardian
+    silhouette: low_stance_wedge_crested_head_tail_and_uneven_armor
+    proposed_frame_px: [32, 48]
+    avoid: [predator_armor_or_mask_copy, equating_reptile_anatomy_with_evil]
+  - id: stellar_archivist
+    inspiration: nordic_contactee_folklore
+    working_role: historian_seer_and_knowledge_custodian
+    silhouette: long_ceramic_frame_and_separate_palm_ring
+    proposed_frame_px: [32, 48]
+    avoid: [racial_superiority_mythology, alleged_real_earth_ancestry_claims]
+  - id: vector_cantor
+    inspiration: insectoid_ufo_narratives
+    working_role: precision_emitter_technician
+    silhouette: geometric_three_lobed_sensor_head_and_angular_back_fins
+    proposed_frame_px: [32, 48]
+    avoid: [generic_bug_walker_same_as_org]
+  - id: lens_bound_ascendant
+    inspiration: energy_form_folklore
+    working_role: rare_resonance_field_specialist
+    silhouette: central_dark_core_with_three_offset_rings
+    proposed_frame_px: [48, 48]
+    avoid: [amorphous_omniscient_blob, free_resurrection]
+economic_visual_fixture:
+  min:
+    type: network_beam_builder
+    source_node_required: eligible_larger_node
+    pose: anchored_focus_to_visible_blue_beam
+    move_while_building: false
+    color_is_secondary_to_pose: true
+  mid:
+    type: modal_pylon
+    active_modes: [storage, network_relay, turret]
+    transition: visible_meditation_with_cargo_gates_locked
+    optional_movement: levitation_after_specialized_meditation
+    silhouette_must_differ_from_max: true
+  max:
+    type: nexus_class_from_start
+    silhouette: stepped_monument_dome_and_orbital_halo
+    knowledge_pattern_archive: visible_as_animation_prop
+    founding_beam: finite_duration_under_visibility_rules
+eight_direction_sprite_policy:
+  unit_angles: [N, NE, E, SE, S, SW, W, NW]
+  prototype_allowed_angles: [N, E, S, W]
+  unreviewed_mirroring_for_asymmetric_characters: false
+  architecture_rotations_only_when_gameplay_permits: true
+quality_gates:
+  - silhouettes_read_in_grayscale_at_320x240
+  - no_lineage_is_declared_empirically_real
+  - skin_color_does_not_determine_moral_alignment
+  - faction_remains_eth_even_with_multiple_lineages
+  - beam_has_real_constructor_and_node_endpoints
+  - full_eight_direction_art_not_required_in_first_mvp
+  - source_or_license_recorded_for_any_final_asset
