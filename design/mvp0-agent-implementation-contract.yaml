@@ -1,0 +1,248 @@
+schema_version: 1
+project: scalfagus
+version: 0.1
+release: mvp_0_1
+status: developer_proposed_implementation_defaults_NOT_owner_approved_OR_measured
+owner_scope_decision: DEC-033
+owner_world_decision: DEC-030
+owner_victory_decision: DEC-024
+canonical_first_release_scope: design/mvp0-man-mirror-rts.yaml
+human_audit: design/mvp-repository-mechanics-audit-2026-10-11.md
+code_handoff: design/godot-runtime-component-contract.md
+headless_plan: design/godot-headless-balance-lab-2026-10-11.md
+acceptance: [design/mvp0-man-mirror-acceptance.yaml, design/mvp0-man-mirror-rts-runtime-tests.yaml]
+interpretation:
+  exact_owner_policy_must_win_over_candidate_values: true
+  values_are_stopgap_defaults_for_FIRST_micro_release_only: true
+  do_not_load_future_MAN_ETH_balance_yaml: true
+  rerun_automated_tests_when_any_number_changes: true
+  preserve_pinned_profile_id_in_replay_and_network_lobby: true
+profile:
+  id: man_mirror_solid_only_first_godot_profile
+  all_active_players_use_same_stats: true
+  active_template_ids: [man_command_core, man_min, man_barracks, man_rifleman]
+  no_hero_spawn: true
+  no_UMU: true
+  no_eth_or_org: true
+  resource_types: [matter]
+  material_source_forms_mineable: [solid]
+  external_Matter_generation: 0
+  energy_currency_implementation: disabled
+  first_map_id: verdant_divide
+  required_frame: floating_space_platform
+  world_topology: planar
+  map_size_tiles: [64, 64]
+  world_tile_meters: 2.0
+  no_new_scripted_collision_objects_beyond_semantic_map: true
+ruleset:
+  match_slots: 2
+  controller_types: [human, bot]
+  supported_controller_pairs: [[human, human], [human, bot], [bot, bot]]
+  host_simulation_authoritative: true
+  first_public_view: overlord_rts
+  spectator_not_a_player_slot: true
+  default_timeout_ticks: 24000
+  default_timeout_at_20Hz_minutes: 20
+  timeout_reason: draw_time_limit
+  same_tick_double_last_building_loss: draw
+  attack_ground_without_visible_target: disabled
+  automatic_respawn_or_unit_reproduction: false
+  surrender_result: optional_not_required
+  game_over_freezes_economic_commands: true
+sim:
+  fixed_ticks_per_second: 20
+  continuous_unpaced_tick_supported_for_headless: true
+  gameplay_time_uses_ticks_not_render_frames: true
+  stable_order: [tick, player_slot, player_command_sequence, entity_id]
+  accepted_command_logs_versioned: true
+  same_rules_for_single_process_HC_CC_and_hosted_HH: true
+  headless_requires_real_core_execution_not_fake_results: true
+  rendering_and_backdrop_unable_to_mutate_state: true
+  authoritative_state_hash_serialization_order: stable_sorted_keys_and_entity_ids
+  deterministic_source_of_rng: host_seeded_versioned_PRNG
+  cross_platform_bitwise_equality_guarantee: false
+start:
+  players: 2
+  spawn_slot_ids: [northwest, southeast]
+  each_player:
+    man_command_core: 1
+    man_min: 3
+    man_barracks: 0
+    man_rifleman: 0
+    start_Matter_in_real_HQ: 0
+    starting_supply_limit: disabled_first_micro_MVP
+    faction: man
+    starting_hero: 0
+  source_clusters_near_start_each_Matter: 400
+  total_world_SOLID_source_stock: 1660
+  safe_start_positions_must_be_validated_against_collision: true
+  source_and_routes_must_be_real_and_reachable: true
+economy:
+  resource_currency: matter
+  physical_mineable_form: solid
+  conversion: {source_units_in: 1, Matter_units_out: 1}
+  worker_cargo_capacity_Matter: 10
+  source_gather_seconds_per_Matter: 2.0
+  per_source_max_simultaneous_mining_workers: 2
+  worker_ground_move_speed_tiles_per_second: 2.3
+  worker_pickup_fixed_overhead_s_per_full_trip: 0.35
+  worker_HQ_unload_fixed_overhead_s_per_full_trip: 0.35
+  on_depletion: no_further_pickup
+  deposit_requires_worker_reaches_OWN_completed_HQ_input_port: true
+  source_debit_worker_cargo_credit_one_atomic_event: true
+  worker_cargo_debit_HQ_Matter_credit_one_atomic_event: true
+  HQ_Matter_is_the_only_spendable_store_first_MVP: true
+  local_team_Matter_HUD_is_view_on_actual_HQ_stock: true
+  other_team_HQ_cannot_receive_packet_for_deposit: true
+  destroyed_HQ_inventory_on_death: mark_lost_once_no_recapture_implementation_first_MVP
+  death_of_worker_with_bag: deposit_remainder_into_irrecoverably_lost_ledger_first_MVP
+  physical_warehouse_or_site_crate_recycling: deferred_post_MVP0
+  no_ether_conversion_or_pylon: true
+  no_liquid_or_gas_extraction: true
+  no_harvestable_living_trees: true
+  negative_Matter_balance: forbidden
+  duplicate_custody_transfer: forbidden
+costs:
+  man_command_core:
+    start_only_in_first_MVP: true
+    rebuild_available: false
+    HP: 1200
+    victory_building: true
+  man_min:
+    Matter: 35
+    HP: 50
+    worker_training_seconds: 7
+    producer: man_command_core
+    victory_building: false
+  man_barracks:
+    Matter: 100
+    HP: 650
+    build_seconds_solo: 18
+    producer: worker_build_order
+    victory_building_when_complete: true
+    initial_footprint_tiles: [3, 3]
+  man_rifleman:
+    Matter: 50
+    HP: 100
+    training_seconds: 9
+    producer: man_barracks
+    victory_building: false
+    damage_per_shot: 8
+    attack_cooldown_seconds: 1.0
+    range_world_units: 6.5
+    ground_speed_tiles_per_second: 2.6
+    visual_projectile_resolution: fixed_tick_hitscan_to_simplify_first_MVP
+  armor_first_MVP: 0_for_all_templates
+  no_energy_cost_on_production: true
+construction:
+  only_constructible_player_building: man_barracks
+  site_requires_authorized_worker_and_visible_valid_dry_ground: true
+  worker_must_move_to_site_and_physically_be_nearby: true
+  maximum_simultaneous_builders_on_one_site: 1
+  reserve_100_Matter_atomically_from_REAL_completed_own_HQ_when_build_accepted: true
+  staged_local_cargo_hauling_for_site_Matter: deferred_post_MVP0_due_DEC_033_simplification
+  note: >
+    The only real physical delivery gate in MVP0 is source->worker->HQ.
+    Site cost is reserved directly from actual local HQ stock, a
+    documented simplification, NOT proof that future MAN materials
+    teleport across the full universe.
+  site_completion_requires_positive_worker_labor_for_all_18s: true
+  worker_leaves_or_dies: site_progress_pauses_without_decay
+  previously_spent_material_not_credited_twice: true
+  unfinished_site_counts_as_victory_building: false
+  unfinished_site_blocks_placement_and_los_if_real_collider_present: true
+  cancel_build_command_in_first_release: not_exposed
+  destroyed_incomplete_structure_refund: 0
+  avoid_external_UMU_or_Energy_prerequisites: true
+production:
+  one_fifo_queue_per_producer: true
+  training_Matter_reserved_once_at_queue_start_from_OWN_HQ: true
+  barracks_training_uses_OWN_HQ_Matter_same_physical_account: true
+  queued_unit_owner_same_as_producer: true
+  if_spawn_cell_blocked: completed_paid_unit_waits_for_legal_spawn_no_duplicate_payment
+  if_producer_destroyed_before_finish: unfinished_paid_queue_items_considered_spent_no_refund_first_MVP
+  cancel_queued_unit_command: not_exposed_first_release
+  no_population_supply_capacity_or_energy_gate_first_MVP: true
+  finite_source_stock_still_caps_indefinite_training: true
+combat:
+  grounded_basic_rifleman_only: true
+  soldiers_can_hit_enemy_HQ_Barracks_MIN_and_Rifleman: true
+  workers_have_no_attack_in_first_slice: true
+  friendly_fire: false
+  enemy_visible_from_true_team_vision_required: true
+  reveal_hidden_enemy_entity_id_on_client: false
+  vision_radius_tiles:
+    man_command_core: 10
+    man_min: 6
+    man_barracks: 8
+    man_rifleman: 9
+  target_must_be_in_range_and_unobstructed: true
+  tree_trunk_blocks_movement_vision_and_shot: true
+  tree_canopy_visual_only_does_not_block_LOS: true
+  buildings_and_terrain_block_LOS_where_real_colliders_present: true
+  water_and_map_edges_impassable: true
+  damage_formula: max_1_raw_damage_minus_0_flat_armor
+  hit_applied_once_per_authoritative_tick: true
+  target_destroyed_remove_living_state_before_victory_test: true
+  attack_on_unknown_fog_target_rejected: true
+  attack_on_last_known_map_cell_may_move_but_not_free_target: true
+victory:
+  check_at_end_of_tick_after_all_deaths_and_construction_completions: true
+  completed_HQ_and_completed_Barracks_count: true
+  incomplete_Barracks_worker_Rifleman_loose_Matter_and_neutral_platform_not_counted: true
+  team_with_no_living_completed_victory_building_is_defeated: true
+  if_both_teams_have_zero_completed_buildings_after_tick: draw
+  if_20_minute_testing_cap_reached: draw_time_limit
+network:
+  suggested_Godot_transport: ENetMultiplayerPeer_and_Godot_RPC
+  human_human_needs_two_separate_Godot_clients: true
+  port_candidate: 24680
+  public_internet_matchmaking: disabled
+  auth_accounts: disabled
+  authoritative_host:
+    owns_all_game_state: true
+    owns_PRNG_and_command_sequences: true
+    validates_player_slot_ownership: true
+    validates_map_bounds_visibility_Matter_and_attack_legality: true
+    duplicate_sequence_rejected_without_second_mutation: true
+    out_of_order_command_rejected_or_resequenced_deterministically: true
+    player_client_cannot_submit_unit_HP_or_resource_balance: true
+  replication:
+    state_snapshot_interval_ticks_candidate: 4
+    full_snapshot_interval_ticks_candidate: 20
+    client_orders_only: true
+    host_shares_authoritative_end_result: true
+    prohibit_double_spawning_on_clients: true
+  disconnect:
+    host_unavailable: abort_match_with_reason
+    client_unavailable: abort_session_with_reason_first_MVP
+    no_host_migration: true
+    no_fabricated_winner: true
+bots:
+  policies_first_release: [economy_attack]
+  policies_later_testing: [rush, defend, random_legal]
+  decision_interval_ticks: 10
+  max_commands_per_decision: 4
+  observation_is_same_fog_filtered_state_as_human: true
+  priority: [gather, return_cargo, construct_Barracks_if_funded, train_Riflemen_if_funded, scout_visible_ground, attack_visible_enemy_buildings]
+  target_memory_only_after_prior_observation: true
+  stuck_path_policy: retry_legal_alternative_then_report
+  same_costs_as_human: true
+  guaranteed_winner: false
+result_format:
+  one_result_per_match_jsonl: true
+  required_fields: [seed, map_id, map_hash, release, rules_hash, bot_policy_version, player_slots, winner_or_draw, reason, tick_count, Matter_mined, Matter_spent, units_lost, accepted_commands, rejected_commands, state_hash]
+  headless_runner_command: proposed_not_yet_implemented
+  run_replay_on_same_pinned_Godot_version: true
+  do_not_assert_100_percent_repeatability_of_cross_OS_physics: true
+analytic_sanity_checks_not_actual_results:
+  safe_start_source_Matter: 400
+  one_Barracks_plus_three_Riflemen_plus_two_extra_workers_Matter: 320
+  remaining_source_if_no_other_spending: 80
+  reference_distance_one_way_tiles: 8
+  worker_full_10_Matter_round_trip_seconds_approx: 27.66
+  three_uninterrupted_workers_income_Matter_per_min_approx: 65.08
+  note: >
+    Assumes 2s/unit gather, constant 2.3 tiles/s, no path congestion,
+    0.7s loading/unloading overhead and no source queue.
+    These are algebra checks not measured runtime behavior.
