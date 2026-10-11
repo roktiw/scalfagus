@@ -1,6 +1,6 @@
 schema_version: 1
 map_format: scalfagus_map_manifest
-map_format_version: 0.2
+map_format_version: 0.3
 world:
   topology: planar
   gravity: uniform
@@ -8,9 +8,7 @@ world:
     width_tiles: 64
     height_tiles: 64
     tile_meters: 2.0
-  spherical:
-    enabled: false
-    note: future_real_planetoid_topology_not_implemented_for_first_MVP
+  spherical_variant_rejected_for_playable_mvp: true
 world_topology_reference: design/world-topologies.yaml
 battlefield_frame_reference: design/battlefield-frames.yaml
 battlefield_frame:
@@ -33,6 +31,8 @@ battlefield_frame:
     upper_deck: living_earthlike_jungle_soil
     geometry: rectangular_flat_habitat_with_visible_underside
     rim_decoration: [hanging_roots, aged_metal_supports, soil_retaining_edges]
+    # Additional region materials (e.g. metal patchwork) must be authored
+    # separately from biome identity and never alter cover collision implicitly.
     underside_decoration: [giant_supports, dormant_thrusters]
     retains_water_and_local_atmosphere: lore_only
     deck_motion_during_match: stationary
@@ -65,7 +65,7 @@ environment:
   liquid_is_visual_collision_not_harvestable_resource: true
   weather_first_mvp: clear
   time_of_day_first_mvp: daytime
-  future_alternates: [space_platform_dense_fluid, waterless_planet_with_nonwater_liquid]
+  future_alternates: [space_platform_dense_fluid, arid_waterless_platform]
 grid:
   width: 64
   height: 64
@@ -265,10 +265,13 @@ validation:
   world_resource_source_total_must_be_recomputed_from_unique_nodes: true
   no_enforced_match_timer: true
   mandatory_floating_platform_frame_compiled: true
+  requires_frame_contract_DEC_030: true
+  surface_preset_reference: design/platform-surface-presets.yaml
+  solid_source_positions_and_amounts_fixed: true
   reject_classic_planetary_surface_or_missing_frame: true
   surface_biome_can_change_without_changing_platform_frame: true
   boundary_guard_blocks_all_ground_actor_types: true
   decorative_space_background_not_targetable_or_mineable: true
   floating_platform_infrastructure_not_faction_owned: true
-  map_rules_unchanged_when_changing_battlefield_frame: true
+  map_rules_unchanged_when_changing_cosmetic_surface_materials: true
   no_orbital_travel_or_map_motion_in_first_MVP: true
