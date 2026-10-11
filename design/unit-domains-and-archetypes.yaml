@@ -36,7 +36,7 @@ archetypes:
   specialist:
     description: 'Faction-specific utility, support, disruption or control.'
 units:
-  blergians:
+  org:
     worker:
       min:
         name: 'Sporeling'
@@ -191,7 +191,7 @@ units:
         melee_targets: []
         ranged_targets: []
         status: baseline_proposal
-  manusians:
+  man:
     worker:
       min:
         name: 'Utility Drone'
@@ -346,7 +346,7 @@ units:
         melee_targets: []
         ranged_targets: []
         status: baseline_proposal
-  aetherians:
+  eth:
     worker:
       min:
         name: 'Wisp'
@@ -503,33 +503,33 @@ units:
         status: baseline_proposal
 illustrative_specializations:
   # Optional equipment/variants; do not overwrite baseline roster automatically.
-  manusian_anti_air_gunner:
-    base_template: manusians.shooter.mid
+  man_anti_air_gunner:
+    base_template: man.shooter.mid
     movement_domains: [land]
     melee_targets: []
     ranged_targets: [land, air]
-  blergian_amphibious_ravager:
-    base_template: blergians.fighter.mid
+  org_amphibious_ravager:
+    base_template: org.fighter.mid
     movement_domains: [land, water]
     melee_targets: [land, water]
     ranged_targets: []
-  aetherian_sky_sentinel:
-    base_template: aetherians.flyer.mid
+  eth_sky_sentinel:
+    base_template: eth.flyer.mid
     movement_domains: [air]
     melee_targets: [air]
     ranged_targets: [land, water, air]
-  manusian_gunship:
-    base_template: manusians.flyer.mid
+  man_gunship:
+    base_template: man.flyer.mid
     movement_domains: [air]
     melee_targets: []
     ranged_targets: [land, water]
-  blergian_spore_caster:
-    base_template: blergians.artillery.min
+  org_spore_caster:
+    base_template: org.artillery.min
     movement_domains: [land]
     melee_targets: []
     ranged_targets: [land, water]
-  aetherian_omnimodal_specialist:
-    base_template: aetherians.specialist.max
+  eth_omnimodal_specialist:
+    base_template: eth.specialist.max
     movement_domains: [land, water, air]
     melee_targets: [land, water]
     ranged_targets: [land, water, air]
