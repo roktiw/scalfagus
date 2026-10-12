@@ -10,4 +10,8 @@ if bash scripts/godot-qa-run.sh bash -c 'exit 7'; then
   echo 'FAIL: nonzero process exit was accepted' >&2
   exit 1
 fi
+if bash scripts/godot-qa-run.sh --strict-errors bash -c 'echo "ERROR: export fixture failure"; exit 0'; then
+  echo 'FAIL: zero-exit export engine error was accepted' >&2
+  exit 1
+fi
 echo SCALFAGUS_QA_RUNNER_REGRESSION_PASS

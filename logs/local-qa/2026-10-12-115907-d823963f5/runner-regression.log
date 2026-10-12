@@ -1,0 +1,6 @@
+SCRIPT ERROR: Parse Error
+SCALFAGUS_QA_FAIL: Godot reported a script failure despite exit 0.
+SCALFAGUS_FIXTURE_PASS
+ERROR: export fixture failure
+SCALFAGUS_QA_FAIL: export reported an engine error despite exit 0.
+SCALFAGUS_QA_RUNNER_REGRESSION_PASS

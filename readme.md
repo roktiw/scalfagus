@@ -110,7 +110,7 @@ The Godot main menu includes **START GAME / OPTIONS / QUIT**. Start opens the *e
 
 The game is currently an **engine vertical slice**, not a complete RTS. All new mandatory floating-platform/map/roster/economy/combat/HUD/AI YAML and Markdown are **requirements and agent design fixtures**, NOT already implemented gameplay. The MAN/ETH Verdant Divide 64×64 jungle gameplay specification exists, but resource collection, production, opponent AI and victory flow still need implementation. Selection, formation commands and a coarse static A* path are part of the RTS integration slice, not full RTS AI. Refer to `design/mvp-man-eth-jungle-vertical-slice-2026-10-11.md`.
 
-**Historical note:** `docs/INSTALLATION-BUILD-REPORT-2026-10-11.md` records an older local Tauri build. It is not the current product architecture. Old local `~/Applications/Scalfagus.app` Tauri bundle is not modified by updating this repository; uninstall it manually if no longer desired.
+**Development environment:** [Godot setup, editor, diagnostics and tests](docs/GODOT-DEVELOPMENT.md). Run `bash scripts/dev-tools.sh setup --templates` on a new machine. Historical installation reports describe retired software; updating Git alone does not install a new application bundle.
 
 ## RTS navigation development handoff
 

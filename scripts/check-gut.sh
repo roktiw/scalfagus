@@ -5,14 +5,14 @@ source "$(dirname "$0")/env.sh"
 cd "$SCALFAGUS_ROOT"
 require_godot
 bash scripts/install-godot-addons.sh --ensure
-"$GODOT_BIN" --headless --path apps/game --editor --import --quit
+bash scripts/godot-qa-run.sh "$GODOT_BIN" --headless --path apps/game --editor --import --quit
 
 log="$(mktemp "${TMPDIR:-/tmp}/scalfagus-gut.XXXXXX")"
 trap 'rm -f "$log"' EXIT
 set +e
 "$GODOT_BIN" --headless --path apps/game \
   --script res://addons/gut/gut_cmdln.gd \
-  -gdir=res://tests/gut -gexit -glog=1 2>&1 | tee "$log"
+  -gconfig=res://.gutconfig.json -gexit -glog=1 2>&1 | tee "$log"
 status=${PIPESTATUS[0]}
 set -e
 if [[ "$status" -ne 0 ]]; then

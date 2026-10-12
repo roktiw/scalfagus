@@ -2,6 +2,10 @@
 # Source this from other scripts. No Rust/Tauri tooling is required.
 SCALFAGUS_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 export SCALFAGUS_ROOT
+if [[ -x "$SCALFAGUS_ROOT/.tools/map-venv/bin/python" ]]; then
+  export MAP_PYTHON="${MAP_PYTHON:-$SCALFAGUS_ROOT/.tools/map-venv/bin/python}"
+  export PATH="$SCALFAGUS_ROOT/.tools/map-venv/bin:$PATH"
+fi
 export PATH="/opt/homebrew/opt/node@24/bin:/usr/local/opt/node@24/bin:$PATH"
 if [[ -z "${GODOT_BIN:-}" ]]; then
   if [[ -x "$SCALFAGUS_ROOT/.tools/Godot.app/Contents/MacOS/Godot" ]]; then

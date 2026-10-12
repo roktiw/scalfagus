@@ -33,6 +33,8 @@ run_gate() {
   printf "| %s | %s | %s | %s |\n" "$*" "$rc" "$result" "$log" >> "$REPORT"
   echo "SCALFAGUS_QA_GATE_${result}: $label (exit=$rc)"
 }
+run_gate native-source bash scripts/check-native-source.sh
+run_gate runner-regression bash scripts/test-godot-qa-run.sh
 run_gate addon-inventory bash scripts/install-godot-addons.sh --check
 run_gate godot-smoke bash scripts/check.sh
 run_gate gut bash scripts/check-gut.sh
