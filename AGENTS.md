@@ -1,5 +1,10 @@
 # SCALFAGUS — Coding-Agent Contract
 
+## LOCAL QA AGENT — REQUIRED TEST / FIX / REPORT CONTRACT
+
+When working on Scalfagus locally, follow [QA instructions](docs/qa/LOCAL-AGENT-TESTING.md) and [report template](docs/qa/REPORT-TEMPLATE.md). Run `bash scripts/qa-local.sh` on a clean branch from fresh `origin/main`, inspect logs, fix only technical defects or invalid fixtures, never silently change canonical rules, and publish a new Markdown report in `docs/qa/reports/` plus an evidence-backed fix PR. Do not claim unrun GitHub Actions as PASS. Include `HANDOFF TO CHATGPT` with report permalink, baseline/tested SHAs and blockers.
+
+
 ## MVP0 NATIVE 3D LOS AUDIT (DRAFT / REAL GODOT NOT TESTED)
 
 `MirrorPhysicsLos3D` creates `StaticBody3D` colliders from the compiled
