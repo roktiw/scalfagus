@@ -1,5 +1,24 @@
 # SCALFAGUS — Coding-Agent Contract
 
+## MVP0 BARRACKS INTERRUPTION / REPLAY v2 — LOCAL QA REQUIRED
+
+`MirrorMatchState` now explicitly releases a 3×3 Barracks reservation on
+accepted Stop, Move, Gather, legal new Build, builder death or a permanently
+invalid foundation. Invalid attempts do not interrupt paid work. No instant
+Matter refund, salvage or persistence-of-partial-foundation is added:
+those are owner-proposed **future MAN** rules in
+`design/construction-phases.yaml`, not approved for DEC-033 mirror MVP0.
+`build_abandoned` events carry typed site and remaining ticks; on completed
+Barracks the builder's route/timer/site are cleared. The runtime rules
+marker is `mvp0-man-mirror-v6-construction-lifecycle`, deliberately
+invalidating older v5 replays while keeping the **v2 replay JSON format**
+and independent command history digest. Run
+`mirror_construction_lifecycle_smoke.gd` through `scripts/check.sh`
+on real Godot 4.7.2, including genuine gathered-funds cancellation
+and replay; do not claim PASS from source inspection.
+See `docs/MVP0-CONSTRUCTION-LIFECYCLE-2026-10-12.md`.
+
+
 ## PLANET X16 — REFERENCE ONLY (2026-10-12)
 
 Owner requested **Planet X16 (2023; David Murray / 8-Bit Productions, Commander X16)** as an additional Scalfagus inspiration. Read [the sourced analysis](research/planet-x16-rts-inspiration-2026-10-12.md) and [the existing inspiration map](research/gameplay-inspirations.md) for pixel readability, real mineral pickup/dropoff and low-friction RTS orders. **Do NOT import its graphics, icons, maps, exact palette, source/code, economy values, camera, lack of fog-of-war or early-attack timings.** Current **Godot isometric 5-source-view sprite pipeline**, existing three-faction art grammar and **DEC-033 MAN-only four-template first-release boundary** have priority. An inspiration's 7/7 relevance is **not** a feature, balance or production acceptance decision.
