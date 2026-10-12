@@ -14,12 +14,12 @@ func _fail(message: String) -> void:
     quit(1)
 
 func _verify() -> void:
-    var name: String = "last-human-match"
+    var name: String = "qa-replay-ui-42"
+    ProjectSettings.set_setting("scalfagus/replay_basename", name)
     var path: String = "user://replays/" + name + ".json"
-    # Do not silently replace an existing personal replay during test runs.
-    var backup: String = ""
     if FileAccess.file_exists(path):
-        backup = FileAccess.get_file_as_string(path)
+        _fail("QA replay fixture already exists: refusing to overwrite it")
+        return
     ProjectSettings.set_setting("scalfagus/mirror_mode", "human_bot")
     var game = GAME.instantiate()
     root.add_child(game)
@@ -80,7 +80,7 @@ func _verify() -> void:
         return
     var hq: int = replay_game.sim.units_for(0, "hq")[0]
     replay_game.selected_id = hq
-    replay_game.selected_ids = [hq]
+    replay_game.selected_ids.assign([hq])
     replay_game._sync_visuals()
     var before: String = replay_game.sim.replay_hash()
     replay_game._hud_command("train_worker")
@@ -107,11 +107,7 @@ func _verify() -> void:
     replay_game.queue_free()
     await process_frame
 
-    if backup.is_empty():
-        DirAccess.remove_absolute(ProjectSettings.globalize_path(path))
-    else:
-        var original: FileAccess = FileAccess.open(path, FileAccess.WRITE)
-        if original != null:
-            original.store_string(backup)
+    DirAccess.remove_absolute(ProjectSettings.globalize_path(path))
+    ProjectSettings.set_setting("scalfagus/replay_basename", "last-human-match")
     print("SCALFAGUS_REPLAY_UI_PASS")
     quit(0)
