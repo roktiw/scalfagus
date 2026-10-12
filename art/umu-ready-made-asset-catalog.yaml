@@ -1,7 +1,7 @@
 schema_version: 1
 project: scalfagus
 catalog_id: man_umu_ready_made_art_component_candidates
-version: 0.1
+version: 0.2
 research_date: "2026-10-12"
 status: catalog_only_external_sources_verified_license_claims_archive_contents_uninspected
 human_report: art/umu-ready-made-asset-shortlist-2026-10-12.md
@@ -23,13 +23,18 @@ research_finding:
   full_finished_UMU_with_exact_twinned_folding_belts_found: false
   recommendation: original_UMU_chassis_assembled_from_individually_licensed_CC0_components
   preferred_assembly_id: candidate_industrial_crawler
+  pack_lineage_checked: kenney_factory_kit_3_0_completely_remade_from_older_kenney_conveyor_kit
+  publisher_lineage_source_url: https://kenney.itch.io/kenney-game-assets/devlog/1526460/update-version-35
+  do_not_assume_both_Kenney_belt_packs_are_compatible_or_distinct_dependencies: true
+  first_trial_pack: asset_kenney_factory_kit
+  legacy_belt_parts_fallback_pack: asset_kenney_conveyor_kit
   clean_license_default: CC0-1.0
   require_validated_downloaded_archive_before_any_reuse: true
   no_gameplay_changes_required_for_art_catalog: true
 
 external_asset_candidates:
   - id: asset_kenney_conveyor_kit
-    rank: A1
+    rank: A2_legacy
     publisher: Kenney
     exact_pack_title: Conveyor Kit
     original_page_url: https://kenney-assets.itch.io/conveyor-kit
@@ -47,6 +52,10 @@ external_asset_candidates:
     UMU_component_roles: [physical_left_belt, physical_right_belt, loading_feeder, conveyor_3, conveyor_5, belt_side_panels]
     candidate_mode_coverage: [move_tracks_visual, warehouse, conveyor, power_generator_intake]
     match_quality_candidate_score_out_of_5: 5
+    prior_version_lineage: factory_kit_is_newer_complete_remake_of_this_pack
+    source_lineage_url: https://kenney.itch.io/kenney-game-assets/devlog/1526460/update-version-35
+    acquisition_policy: inspect_only_if_modern_factory_kit_lacks_belt_parts_needed_for_UMU
+    do_not_assume_compatible_with_Factory_Kit_3_0: true
     caveat: parts_do_not_self_transform_to_tracked_vehicle_and_rig_must_be_authored
     model_file_names_confirmed: []
     archive_sha256: null
@@ -65,6 +74,10 @@ external_asset_candidates:
     advertised_file_count: 140
     advertised_animation_or_variation: true
     advertised_release_version: "3.0"
+    predecessor_pack_name: Conveyor_Kit
+    renamed_completely_remade: true
+    original_publisher_rename_changelog_url: https://kenney.itch.io/kenney-game-assets/devlog/1526460/update-version-35
+    use_as_first_Kenney_belt_model_source: true
     source_formats_on_page: unknown_await_zip_inventory
     UMU_component_roles: [industrial_core, hopper, generator_casing, warehouse_facade, loader, belt_connection, equipment_shell]
     candidate_mode_coverage: [warehouse, power_generator, harvest, conveyor]
@@ -239,18 +252,21 @@ not_permitted_as_direct_asset_without_independent_rights:
 source_groups:
   preferred_first_proof:
     id: candidate_industrial_crawler
-    source_candidate_ids: [asset_kenney_conveyor_kit, asset_kenney_factory_kit, asset_kaykit_space_base_bits]
+    source_candidate_ids: [asset_kenney_factory_kit, asset_kaykit_space_base_bits]
+    optional_fallback_asset_ids: [asset_kenney_conveyor_kit]
     recommendation_priority: first
     no_finished_UMU_model_claim: true
     needs_original_rigging_and_five_view_sprite_export: true
   alternate_scifi:
     id: candidate_orbital_colony_utility_skid
-    source_candidate_ids: [asset_kenney_conveyor_kit, asset_quaternius_modular_scifi_megakit, asset_quaternius_scifi_essentials]
+    source_candidate_ids: [asset_kenney_factory_kit, asset_quaternius_modular_scifi_megakit, asset_quaternius_scifi_essentials]
+    optional_fallback_asset_ids: [asset_kenney_conveyor_kit]
     recommendation_priority: second
     needs_open_front_rear_cage_and_nonmagical_ports: true
   fastest_blockout:
     id: candidate_tank_proxy
-    source_candidate_ids: [asset_opengameart_lowpoly_tank, asset_kenney_factory_kit, asset_kenney_conveyor_kit]
+    source_candidate_ids: [asset_opengameart_lowpoly_tank, asset_kenney_factory_kit]
+    optional_fallback_asset_ids: [asset_kenney_conveyor_kit]
     recommendation_priority: collision_and_navigation_dev_only
     not_final_owner_silhouette: true
 
