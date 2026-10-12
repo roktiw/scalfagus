@@ -25,6 +25,23 @@ MAP_PYTHON=.tools/map-venv/bin/python bash scripts/check-map.sh
 
 Jeśli lokalnych submodułów brakuje, najpierw `bash scripts/install-godot-addons.sh --ensure`, potem `--check`; nie podmieniaj pinned addonów. Zachowaj log pierwszej awarii i ponów pełen pakiet po poprawkach.
 
+## P0: Full viewport + real pointer acceptance
+
+The current user priority is **one human vs bot, not LAN**. First run
+`apps/game/tests/menu_pointer_smoke.gd` via `scripts/check.sh`:
+real `Viewport.push_input` down/up must open Options, return via
+Back and start a `MirrorMatch` with `[human, bot]`.
+Then perform a **manual Mac mouse acceptance test** both in the editor
+(Game bar size policy **Stretch to Fit**) and standalone (window
+maximized). Check background fills all available space, all menu
+buttons respond to a single physical click, Game UI input and the
+Keychain remap/restart sequence. Editor embedding defaults to
+**Fixed Size** and blocks fullscreen switches: document the selected
+setting, don't report code PASS from a different surface. Record
+separately CLI/embedded/external-window results, screenshots,
+Godot 4.7.2 logs, and whether keyboard 1/2/O or Enter works.
+Reference `docs/qa/MVP0-PLAYABLE-VIEWPORT-MENU-2026-10-12.md`.
+
 ## Kolejność testów
 
 | Priorytet | Warunek odbioru | Test / dowód |
