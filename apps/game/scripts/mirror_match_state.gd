@@ -289,6 +289,32 @@ static func _replay_argument(arg: Variant) -> Dictionary:
         return {"type": "string", "value": arg}
     return {"type": "unsupported", "value": null}
 
+func _clear_build_fields(e: Dictionary) -> void:
+    e["build_pos"] = Vector2i(-1, -1)
+    e["work_ticks"] = 0
+    e["route"] = []
+    e["route_target"] = Vector2i(-1, -1)
+    e["route_adjacent"] = false
+    e["route_revision"] = -1
+
+func _abandon_build(e: Dictionary, reason: String) -> void:
+    if str(e["kind"]) != "worker" or str(e["order"]) != "build":
+        return
+    var old_site: Vector2i = e["build_pos"]
+    var ticks_left: int = maxi(0, int(e["work_ticks"]))
+    var side: int = int(e["owner"])
+    var actor: int = int(e["id"])
+    # MVP0 spends construction Matter at order acceptance. Never refund or
+    # debit it twice on cancellation: the future MAN salvage rules are
+    # explicitly outside this simplified MAN mirror slice.
+    _clear_build_fields(e)
+    e["order"] = "idle"
+    events.append({
+        "tick": tick, "owner": side, "actor": actor,
+        "action": "build_abandoned", "reason": reason,
+        "site": _replay_argument(old_site), "remaining_ticks": ticks_left
+    })
+
 func issue_command(side: int, action: String, actor_id: int, arg: Variant = null) -> bool:
     var applied: bool = _execute_command(side, action, actor_id, arg)
     # Bots are replayed from their deterministic policy using the same
@@ -312,6 +338,7 @@ func _execute_command(side: int, action: String, actor_id: int, arg: Variant = n
         "stop":
             if kind not in ["worker", "rifleman"]:
                 return _reject()
+            _abandon_build(e, "stop")
             e["order"] = "idle"
             e["target_id"] = -1
         "move":
@@ -319,6 +346,7 @@ func _execute_command(side: int, action: String, actor_id: int, arg: Variant = n
                 return _reject()
             if e["pos"] != arg and _find_route(e["pos"], arg, false).is_empty():
                 return _reject()
+            _abandon_build(e, "move")
             e["order"] = "move"
             e["target_pos"] = arg
             e["target_id"] = -1
@@ -329,6 +357,7 @@ func _execute_command(side: int, action: String, actor_id: int, arg: Variant = n
                 return _reject()
             if _distance(e["pos"], sources[arg]["pos"]) > 1 and _find_route(e["pos"], sources[arg]["pos"], true).is_empty():
                 return _reject()
+            _abandon_build(e, "gather")
             e["order"] = "gather"
             e["source_id"] = arg
             e["gather_phase"] = "return" if int(e["cargo"]) > 0 else "mine"
@@ -340,6 +369,7 @@ func _execute_command(side: int, action: String, actor_id: int, arg: Variant = n
                 return _reject()
             if _footprint_distance(e["pos"], arg) > 1 and _route_to_building_ring(e["pos"], arg).is_empty():
                 return _reject()
+            _abandon_build(e, "new_build_order")
             players[side]["matter"] = int(players[side]["matter"]) - COST_BARRACKS
             spent_matter += COST_BARRACKS
             e["order"] = "build"
@@ -525,6 +555,7 @@ func _worker_tick(e: Dictionary) -> void:
             if int(e["work_ticks"]) <= 0:
                 if _can_build(site, side, int(e["id"])):
                     _spawn("barracks", side, site)
+                    _clear_build_fields(e)
                     e["order"] = "idle"
                 elif _footprint_has_mobile(site, int(e["id"])):
                     # Temporary actor occupancy pauses, rather than losing paid progress.
@@ -532,7 +563,7 @@ func _worker_tick(e: Dictionary) -> void:
                 else:
                     # Permanently invalid worksite; spent resources stay debited.
                     events.append({"tick": tick, "owner": side, "action": "build_site_lost"})
-                    e["order"] = "idle"
+                    _abandon_build(e, "site_invalidated")
 
 func _rifleman_tick(e: Dictionary) -> void:
     if int(e["cooldown"]) > 0:
@@ -566,6 +597,7 @@ func _damage(entity_id: int, points: int, attacker: int) -> void:
     if int(e["hp"]) > 0:
         return
     if str(e["kind"]) == "worker":
+        _abandon_build(e, "builder_dead")
         lost_matter += int(e["cargo"])
     if str(e["kind"]) == "hq":
         # The sole MVP0 treasury belongs to a physical HQ, not an immortal wallet.
@@ -702,7 +734,7 @@ func matter_is_conserved() -> bool:
 func replay_hash() -> String:
     # Stable state hash includes orders, outstanding work, queues, and cooldowns.
     # It is a pinned-runtime regression tool, not a cross-platform lockstep promise.
-    var material: String = "mvp0-man-mirror-v5-3x3-world2m|"
+    var material: String = "mvp0-man-mirror-v6-construction-lifecycle|"
     material += map_id + "|" + map_hash + "|"
     for field in [
         seed, tick, winner, finished, finish_reason, next_id,
