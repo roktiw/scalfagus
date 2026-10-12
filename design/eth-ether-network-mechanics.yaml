@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 0.6
+version: 0.7
 status: owner_approved_concept_with_proposed_deterministic_protocol_and_tbd_balance
 decision: DEC-018
 contract: design/three-network-channels-and-destruction-2026-10-11.md
@@ -10,6 +10,9 @@ resource_ingress_three_methods_contract: design/org-plug-holes-and-eth-three-ing
 nexus_only_legacy_ingress_violated_by_DEC_039: true
 unit_relay_specification: design/three-faction-logistics-and-eth-unit-relay.yaml
 storage_pressure_decision: DEC-036
+three_temperature_storage_decision: DEC-048
+three_temperature_storage_machine: design/eth-obelisk-hot-warm-cold-storage.yaml
+three_temperature_storage_human: design/eth-obelisk-hot-warm-cold-storage-2026-10-12.md
 storage_homogeneity_and_bidirectional_decision: DEC-038
 storage_homogeneity_and_bidirectional_spec: design/faction-bidirectional-logistics-and-homogeneous-storage.yaml
 recovery_decision: DEC-037
@@ -68,6 +71,16 @@ pylon_obelisk:
   preferred_player_facing_name: Obelisk
   legacy_word_pylon_only_in_internal_aliases_and_old_files: true
   inventory_visual: mixed_Ether_orbs_levitating_around_Obelisk
+  owner_approved_storage_temperatures:
+    hot: vertical_above_tip_juggling_stream_real_parcels
+    warm: orbital_around_tower_halo_real_parcels
+    cold: manual_physical_ground_stacks_at_foot
+  prior_tip_local_levitated_inventory_now_hot_plus_warm: true
+  hot_warm_strictly_positive_levitation_energy: true
+  cold_zero_levitation_energy_not_zero_drone_handling: true
+  elevated_node_storage_pressure_counts: hot_plus_warm
+  inter_Obelisk_edge_in_flight_distinct_from_local_hot: true
+  ground_ingress_only_DEC_039_three_methods: true
   storage_pressure_decreases_node_traffic_throughput: true
   mixed_levitating_resource_kinds_allowed: true
   homogeneous_levitating_load_has_lower_energy_upkeep_than_equal_size_mix: true
