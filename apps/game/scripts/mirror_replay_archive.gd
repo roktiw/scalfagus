@@ -118,7 +118,6 @@ static func playback(archive: Variant) -> Dictionary:
 
     var commands: Array = archive["commands"]
     var last_tick: int = -1
-    var previous_command_index: int = -1
     for i in range(commands.size()):
         var cmd: Variant = commands[i]
         if not (cmd is Dictionary) or cmd.size() != 6:
