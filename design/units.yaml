@@ -3,6 +3,12 @@ project: scalfagus
 status: concept_with_proposed_balance_v0_2
 references:
   factions: design/factions.yaml
+  cross_faction_union_decision: DEC-047
+  cross_faction_union_human: design/three-faction-assembly-fusion-resonance-2026-10-12.md
+  cross_faction_union_machine: design/three-faction-assembly-fusion-resonance.yaml
+  ORG_unit_permanent_multi_body_fusion_and_consumption: owner_approved
+  ETH_deep_energetic_merger_and_meditation_collective: owner_direction
+  ETH_deep_merger_exact_reversibility: TBD
   MAN_human_training_equipment_decision: DEC-043
   MAN_human_training_equipment_contract: design/man-basic-astronaut-professions-training-equipment.yaml
   MAN_professional_job_requires_certification_and_issued_tool: true
@@ -41,6 +47,23 @@ core_model:
     mobility: {org: wings_or_limbs, man: engines_or_chassis, eth: levitation}
     sensor: {org: sensory_organ, man: radar, eth: psionic_perception}
     support: {org: passive_regen_plus_living_vein_boost, man: medical_or_mechanical_repair_with_power_only_shields, eth: passive_shields_and_whole_shield_to_HP_cycles}
+faction_union_extension_DEC_047:
+  man:
+    mode: reversible_independent_machine_composition
+    source_actor_identity: persists_as_real_assembly_components
+    under: DEC-046
+  org:
+    modes: [permanent_fusion_of_two_or_more_organisms, devouring_or_absorbing_organisms]
+    mutation: one_way
+    original_precursors_return_on_decombine: false
+    real_biomass_nutrition_energy_constraints: true
+  eth:
+    modes: [deep_energetic_merger_into_complex_being, meditative_link_into_collective_system]
+    simple_physical_mount_dismount: false
+    deep_fusion_identity_reversal: TBD
+    finite_energy_and_meditation: true
+  lore_and_unit_names_from_podcast: proposed_not_approved
+  first_DEC_033_MVP0: excluded
 faction_transformation:
   - faction: org
     philosophy: irreversible_evolution

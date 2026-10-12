@@ -1,0 +1,108 @@
+schema_version: 1
+project: scalfagus
+date: "2026-10-12"
+decision_id: DEC-047
+version: 0.1
+status: owner_approved_cross_faction_union_mechanisms_with_podcast_names_and_detailed_balance_only_proposed
+source_raw_discussion: inbox/2026-10-12-man-org-eth-fusion-transformation-discussion.md
+human_specification: design/three-faction-assembly-fusion-resonance-2026-10-12.md
+related_decisions: [DEC-001, DEC-011, DEC-012, DEC-013, DEC-020, DEC-021, DEC-030, DEC-033, DEC-035, DEC-037, DEC-038, DEC-039, DEC-040, DEC-041, DEC-042, DEC-045, DEC-046]
+first_release:
+  mvp0_MAN_mirror_four_templates_unchanged: true
+  no_fusion_or_chorus_in_first_mvp0: true
+doctrine:
+  MAN: mechanically_reversible_composition_of_real_persistent_parts
+  ORG: one_way_biological_fusion_or_consumptive_absorption
+  ETH: energetically_merged_complex_being_or_meditative_joint_system
+  all_three_use_different_source_identity_semantics: true
+  aggregate_body_not_free_extra_unit: true
+MAN:
+  previous_authority: DEC-046
+  same_actor_chassis_can_transform_physically: true
+  multiple_real_machines_can_join_meta_machine: true
+  constituent_machine_IDs_persist_under_assembly_group_ID: true
+  legal_separation_of_surviving_components: true
+  equipment_damage_and_cargo_persist: true
+  one_active_job_for_attached_UMU: true
+  titan_scale_late_game_direction: true
+  mech_component_recipes_approved: false
+  building_drive_UMUs_4_6_8_still_distinct_from_combiner_recipe: true
+ORG:
+  user_approved_permanent_multi_organism_fusion: true
+  minimum_multiple_distinct_units_for_fusion: 2
+  user_approved_devouring_or_absorbing_as_alternative: true
+  owner_requires_mutation_transformation_one_way: true
+  consumed_precursor_units_do_not_return_by_decombine: true
+  identity:
+    source_actors_cease_independent_existences: true
+    new_fusion_result_actor_ID: proposed
+    absorption_host_retained_or_new_actor_ID: TBD
+    source_lineage_and_consumption_ledger: proposed
+  resources:
+    real_biomass_inputs: true
+    genuine_nutrition_vessel_dependency_preserved: true
+    no_free_skill_DNA_or_weapon_copies: true
+    regrowth_under_existing_bounded_HP_rules: true
+  proposed_mechanisms:
+    - {id: biological_fusion, lore_name: Fuzja, status: user_concept_name_proposed}
+    - {id: consumptive_absorption, lore_name: Pozeranie, status: user_concept_name_proposed}
+    - {id: one_way_metamorphosis, lore_name: Metamorfoza, status: older_one_way_rule_plus_podcast_example}
+  proposed_structures: [Lono_Mutacji]
+  proposed_titan_equivalent: Lewiatan
+  exact_nourishment_costs_recipe_compatibility_and_target_ownership: TBD
+ETH:
+  user_positions_between_MAN_and_ORG: true
+  user_says_not_simple_mount_dismount: true
+  user_approved_energetic_merger_into_more_complex_entity: true
+  user_approved_meditative_connection_into_new_joint_system: true
+  modes:
+    energetic_deep_merger:
+      physical_mechanical_attach_not_required: true
+      one_complex_resulting_being: true
+      exact_retained_source_identity: TBD
+      irreversible_vs_costly_reversible: owner_TBD
+      source_inventory_HP_shields_Energy_consistent_ledgers: true
+      proposed_lore_mechanism: Synteza
+      proposed_result_name: Ascendent
+    meditation_collective:
+      underlying_individual_actors_still_physically_present: proposed_starting_model
+      joint_coordination_system: true
+      finite_real_Energy_and_meditation_time: true
+      can_end_without_full_organism_split: proposed_starting_model
+      interruption_handling_and_recovery: TBD
+      proposed_lore_mechanism: Chor
+    obelisk_connected_system:
+      current_network_rules_apply: true
+      no_infinite_information_or_cargo_transfer: true
+      tip_to_tip_Ether_graph_when_used: true
+      proposed_lore_name: Konstelacja
+  lore_personality_memory_merge_and_split: proposed_not_owner_approved
+common:
+  no_free_health_or_resource_duplication: true
+  physical_or_resonance_eligibility_and_valid_space_required: true
+  unit_identity_custody_records_required: true
+  no_fog_cheats_or_teleporting_inventory: true
+  fixed_tick_authoritative_simulation_and_replay: true
+  transformation_real_time_and_material_Energy_upkeep_costs: true
+  giant_entities_have_distinct_weaknesses_not_unbounded_power: true
+balancing:
+  MAN_opportunity_cost: constituent_units_locked_and_target_more_concentrated
+  ORG_opportunity_cost: irreversible_loss_of_precursor_organisms_and_nourishment
+  ETH_opportunity_cost: costly_Resonance_Energy_time_and_independent_action
+  unapproved_quantitative_coefficients: true
+  future_tests: [FUSE-01, FUSE-02, FUSE-03, FUSE-04, FUSE-05, FUSE-06, FUSE-07, FUSE-08, FUSE-09, FUSE-10, FUSE-11, FUSE-12, FUSE-13, FUSE-14, FUSE-15, FUSE-16, FUSE-17, FUSE-18]
+lore_names:
+  Goliat: assistant_proposal
+  Lewiatan: assistant_proposal
+  Lono_Mutacji: assistant_proposal
+  Chor: assistant_proposal
+  Synteza: assistant_proposal
+  Ascendent: assistant_proposal
+  Konstelacja: assistant_proposal
+open_owner:
+  - exact_fusion_composition_recipes_and_minimums_except_ORG_two_or_more
+  - permanent_ETH_deep_union_vs_reversibility_cost
+  - source_identity_and_personality_in_ETH_deep_merger
+  - ORG_predecessor_skill_lineage_and_live_victims
+  - ETH_chorus_requirements_Obelisks_or_independent
+  - approve_or_rename_assistant_proposed_lore

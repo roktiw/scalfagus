@@ -1,5 +1,10 @@
 # SCALFAGUS — Coding-Agent Contract
 
+## CROSS-FACTION FUSION / RECOMBINATION / RESONANCE — DEC-047 (FUTURE ONLY)
+
+Read the [owner dialogue archive](inbox/2026-10-12-man-org-eth-fusion-transformation-discussion.md), [three-faction identity/fusion doctrine](design/three-faction-assembly-fusion-resonance-2026-10-12.md) and [machine-readable contract](design/three-faction-assembly-fusion-resonance.yaml) before introducing future combining, mutating and meta-entities. OWNER DIRECTION: **MAN** physically combines actual existing machines into separable mechanical meta-machines with original component IDs/damage/cargo preserved (DEC-046); **ORG** irreversibly creates a new organism by **permanently fusing multiple precursor organisms, or physically devouring/absorbing them**, with one-way mutation and no free original-unit restoration; **ETH** takes the intermediate path, either **energetically merging beings into one more complex entity** or **meditating/connecting into one new collective system**, not by casual MAN-like mount/dismount. **Deep ETH energetic-fusion reversibility is OPEN**; do not silently assume free separation or total permanence. Names **Fuzja, Pożeranie, Łono Mutacji, Lewiatan, Chór, Synteza, Ascendent, Konstelacja** are **assistant podcast proposals, not owner-final canonical units or buildings**. Keep actual source identities/custody rules DIFFERENT for MAN/ORG/ETH and preserve physical finite Energy/resources/HP/shields/fog/vascular upkeep. Do not build any of this into DEC-033 first-release MAN-vs-MAN four-template match.
+
+
 ## LOCAL QA AGENT — REQUIRED TEST / FIX / REPORT CONTRACT
 
 When working on Scalfagus locally, follow [QA instructions](docs/qa/LOCAL-AGENT-TESTING.md) and [report template](docs/qa/REPORT-TEMPLATE.md). Run `bash scripts/qa-local.sh` on a clean branch from fresh `origin/main`, inspect logs, fix only technical defects or invalid fixtures, never silently change canonical rules, and publish a new Markdown report in `docs/qa/reports/` plus an evidence-backed fix PR. Do not claim unrun GitHub Actions as PASS. Include `HANDOFF TO CHATGPT` with report permalink, baseline/tested SHAs and blockers.
