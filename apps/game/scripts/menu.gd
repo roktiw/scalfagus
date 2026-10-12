@@ -19,6 +19,7 @@ var first_button: Button
 var play_button: Button
 var options_button: Button
 var watch_button: Button
+var replay_button: Button
 
 func _ready() -> void:
     set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -61,6 +62,9 @@ func _ready() -> void:
     first_button = _add_button(choices, "Play against computer", _start_mirror_vs_bot)
     play_button = first_button
     watch_button = _add_button(choices, "Watch computer vs computer", _start_mirror_bots)
+    replay_button = _add_button(choices, "Watch last saved replay", _start_last_replay)
+    replay_button.disabled = not FileAccess.file_exists("user://replays/last-human-match.json")
+    replay_button.tooltip_text = "Save a Human vs Bot match from the in-game pause menu to enable this."
     options_button = _add_button(choices, "Settings", _open_options)
     _add_button(choices, "Quit game", _quit)
     var debug := _add_button(menu_panel, "Development: camera prototype", _start_game)
@@ -160,6 +164,12 @@ func _start_mirror_vs_bot() -> void:
 
 func _start_mirror_bots() -> void:
     ProjectSettings.set_setting("scalfagus/mirror_mode", "bot_bot")
+    get_tree().change_scene_to_file("res://scenes/mirror_match.tscn")
+
+func _start_last_replay() -> void:
+    if not FileAccess.file_exists("user://replays/last-human-match.json"):
+        return
+    ProjectSettings.set_setting("scalfagus/mirror_mode", "replay")
     get_tree().change_scene_to_file("res://scenes/mirror_match.tscn")
 
 func _start_game() -> void:
