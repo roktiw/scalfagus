@@ -1,0 +1,17 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+SCALFAGUS_REPLAY_CHECKPOINT production-and-build-queued tick=2584 commands=5
+SCALFAGUS_REPLAY_CHECKPOINT rifleman-queued tick=3549 commands=7
+SCALFAGUS_REPLAY_CHECKPOINT accepted-attack tick=4253 commands=9
+SCRIPT ERROR: Invalid operands 'String' and 'Dictionary' in operator '!='.
+          at: playback (res://scripts/mirror_replay_archive.gd:114)
+          GDScript backtrace (most recent call first):
+              [0] playback (res://scripts/mirror_replay_archive.gd:114)
+              [1] _run (res://tests/mirror_replay_lifecycle_smoke.gd:105)
+ERROR: SCALFAGUS_REPLAY_LIFECYCLE_FAIL: Malformed map_hash was not rejected cleanly: {  }
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _fail (res://tests/mirror_replay_lifecycle_smoke.gd:9)
+       [1] _run (res://tests/mirror_replay_lifecycle_smoke.gd:107)

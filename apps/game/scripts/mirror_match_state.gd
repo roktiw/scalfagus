@@ -38,6 +38,9 @@ var terrain: Dictionary = {}
 var navigation: MirrorNavigationPort
 var building_cells: Dictionary = {}
 var events: Array[Dictionary] = []
+# All human attempts (including rejected commands) are captured for exact
+# replay, without exposing this diagnostic history in the match-state hash.
+var human_command_history: Array[Dictionary] = []
 var mined_matter: int = 0
 var lost_matter: int = 0
 var spent_matter: int = 0
@@ -55,6 +58,7 @@ func setup(match_seed: int = 42, slot_controllers: Array = ["human", "bot"]) -> 
     terrain.clear()
     building_cells.clear()
     events.clear()
+    human_command_history.clear()
     controllers.clear()
     players.clear()
     bot_attack_thresholds.clear()
@@ -267,7 +271,37 @@ func _reject() -> bool:
     rejected_commands += 1
     return false
 
+static func _replay_argument(arg: Variant) -> Dictionary:
+    # Only JSON-safe primitive command arguments can go into an archive.
+    # Explicit tags retain int-vs-float and distinguish no target from
+    # coordinates; arbitrary Objects are never serialized as live objects.
+    if arg == null:
+        return {"type": "nil", "value": null}
+    if arg is Vector2i:
+        return {"type": "cell", "value": [arg.x, arg.y]}
+    if arg is bool:
+        return {"type": "bool", "value": arg}
+    if arg is int:
+        return {"type": "int", "value": arg}
+    if arg is float:
+        return {"type": "float", "value": arg}
+    if arg is String:
+        return {"type": "string", "value": arg}
+    return {"type": "unsupported", "value": null}
+
 func issue_command(side: int, action: String, actor_id: int, arg: Variant = null) -> bool:
+    var applied: bool = _execute_command(side, action, actor_id, arg)
+    # Bots are replayed from their deterministic policy using the same
+    # seed/controllers, not double-applied from recorded bot commands.
+    if side >= 0 and side < controllers.size() and controllers[side] == "human":
+        human_command_history.append({
+            "tick": tick, "slot": side, "action": action,
+            "actor_id": actor_id, "argument": _replay_argument(arg),
+            "accepted": applied
+        })
+    return applied
+
+func _execute_command(side: int, action: String, actor_id: int, arg: Variant = null) -> bool:
     if finished or side < 0 or side > 1 or not entities.has(actor_id):
         return _reject()
     var e: Dictionary = entities[actor_id]
@@ -332,7 +366,12 @@ func issue_command(side: int, action: String, actor_id: int, arg: Variant = null
             e["target_id"] = arg
         _:
             return _reject()
-    events.append({"tick": tick, "owner": side, "actor": actor_id, "action": action})
+    # Legacy events retain their keys; now also carry a serializable
+    # argument so accepted move/gather/attack orders are reconstructible.
+    events.append({
+        "tick": tick, "owner": side, "actor": actor_id,
+        "action": action, "argument": _replay_argument(arg)
+    })
     return true
 
 func _find_route(start: Vector2i, goal: Vector2i, adjacent_ok: bool) -> Array[Vector2i]:

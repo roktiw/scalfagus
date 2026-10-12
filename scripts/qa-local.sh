@@ -3,7 +3,7 @@
 set -uo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT" || exit 2
-[[ -d .git ]] || { echo "Run in a Git checkout, not a source archive" >&2; exit 2; }
+git rev-parse --is-inside-work-tree >/dev/null 2>&1 || { echo "Run in a Git checkout, not a source archive" >&2; exit 2; }
 source scripts/env.sh
 BASE="$(git rev-parse HEAD)"
 SHORT="$(git rev-parse --short=9 HEAD)"
