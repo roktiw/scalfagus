@@ -42,6 +42,11 @@ latest_man_umu_wings_human: design/man-umu-transforming-belt-wings-2026-10-12.md
 human_summary_is_index_not_a_new_numeric_balance_contract: true
 latest_owner_network_contract: design/three-network-channels-and-destruction-2026-10-11.md
 eth_three_ingress_decision: DEC-039
+eth_Obelisk_hot_warm_cold_storage_decision: DEC-048
+eth_Obelisk_hot_warm_cold_storage_contract: design/eth-obelisk-hot-warm-cold-storage.yaml
+eth_hot_above_tip_juggling_stream_warm_halo_cold_foot: owner_approved
+eth_hot_warm_levitation_cost_positive_cold_no_levitation_cost: true
+eth_no_new_fourth_ingress_method: true
 eth_three_ingress_contract: design/org-plug-holes-and-eth-three-ingress-methods.yaml
 org_universal_vein_port_design: Plug_Hole_preferred_not_final
 eth_baseline_Nexus_only_exclusivity: superseded
@@ -227,6 +232,12 @@ factions:
     mobile_fallback: proposed_emergency_hauler
     proposed_doctrines: [belt, rail, automation]
   eth:
+    Obelisk_three_physical_storage_tiers:
+      HOT: above_tip_vertical_juggling_stream
+      WARM: local_orbital_halo_around_tower
+      COLD: manual_physical_ground_storage_at_foot
+    HOT_and_WARM_elevated_real_stock: true
+    COLD_manual_ground_drones_only: true
     name_mid: Etherans
     model: resonant_knowledge_hubs
     Obelisk_links_are_bidirectional: true
