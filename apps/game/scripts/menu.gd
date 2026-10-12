@@ -16,8 +16,13 @@ const UI = preload("res://scripts/command_ui_theme.gd")
 var back_button: Button
 var settings_scroll: ScrollContainer
 var first_button: Button
+var play_button: Button
+var options_button: Button
+var watch_button: Button
 
 func _ready() -> void:
+    set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+    mouse_filter = Control.MOUSE_FILTER_PASS
     theme = UI.create()
     var bg := ColorRect.new()
     bg.color = Color("#080f19")
@@ -54,8 +59,9 @@ func _ready() -> void:
     var description := UI.label("Verdant Divide · Manus vs Manus", 16)
     choices.add_child(description)
     first_button = _add_button(choices, "Play against computer", _start_mirror_vs_bot)
-    _add_button(choices, "Watch computer vs computer", _start_mirror_bots)
-    _add_button(choices, "Settings", _open_options)
+    play_button = first_button
+    watch_button = _add_button(choices, "Watch computer vs computer", _start_mirror_bots)
+    options_button = _add_button(choices, "Settings", _open_options)
     _add_button(choices, "Quit game", _quit)
     var debug := _add_button(menu_panel, "Development: camera prototype", _start_game)
     debug.size_flags_horizontal = Control.SIZE_SHRINK_END
@@ -114,12 +120,16 @@ func _ready() -> void:
     else:
         shortcut_status.text = "Controls could not be loaded. Verify the Keychain addon."
     _load_display_settings()
+    if get_parent() == get_tree().root and not Engine.is_embedded_in_editor() and DisplayServer.get_name() != "headless" and not FileAccess.file_exists("user://display_settings.cfg"):
+        get_window().mode = Window.MODE_MAXIMIZED
     first_button.grab_focus()
 
 func _add_button(parent: VBoxContainer, caption: String, callback: Callable) -> Button:
     var button := Button.new()
     button.text = caption
     button.custom_minimum_size.y = 48
+    button.mouse_filter = Control.MOUSE_FILTER_STOP
+    button.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
     button.pressed.connect(callback)
     parent.add_child(button)
     return button
@@ -128,6 +138,21 @@ func _unhandled_input(event: InputEvent) -> void:
     if options_panel.visible and event.is_action_pressed("ui_cancel"):
         _close_options()
         get_viewport().set_input_as_handled()
+
+func _unhandled_key_input(event: InputEvent) -> void:
+    var key := event as InputEventKey
+    if key == null or not key.pressed or key.echo or options_panel.visible:
+        return
+    match key.keycode:
+        KEY_1:
+            _start_mirror_vs_bot()
+        KEY_2:
+            _start_mirror_bots()
+        KEY_O:
+            _open_options()
+        _:
+            return
+    get_viewport().set_input_as_handled()
 
 func _start_mirror_vs_bot() -> void:
     ProjectSettings.set_setting("scalfagus/mirror_mode", "human_bot")
@@ -154,14 +179,24 @@ func _close_options() -> void:
     settings_closed.emit()
 
 func _set_resolution(index: int) -> void:
+    if Engine.is_embedded_in_editor():
+        shortcut_status.text = "Set embedded viewport size in Game → Stretch to Fit."
+        return
+    get_window().mode = Window.MODE_WINDOWED
     get_window().size = [Vector2i(1280,720), Vector2i(1440,810), Vector2i(1600,900)][index]
     _save_display_settings()
 
 func _set_fullscreen(enabled: bool) -> void:
+    if Engine.is_embedded_in_editor():
+        shortcut_status.text = "Run in a separate window to change fullscreen mode."
+        fullscreen_toggle.set_pressed_no_signal(false)
+        return
     get_window().mode = Window.MODE_FULLSCREEN if enabled else Window.MODE_WINDOWED
     _save_display_settings()
 
 func _load_display_settings() -> void:
+    if Engine.is_embedded_in_editor():
+        return
     var config := ConfigFile.new()
     if config.load("user://display_settings.cfg") != OK:
         return
