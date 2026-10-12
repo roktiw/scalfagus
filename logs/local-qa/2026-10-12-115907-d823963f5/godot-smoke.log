@@ -1,0 +1,88 @@
+SCALFAGUS_ADDONS_CHECK_PASS (no network)
+SCALFAGUS_ADDON_SETUP_OK
+VERDANT_SOURCE_SHA_PASS
+VERDANT_MAP_COMPILED_PASS (source YAML matches committed JSON)
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+[   0% ] first_scan_filesystem | Started Project initialization (5 steps)
+[   0% ] first_scan_filesystem | Scanning file structure...
+[  16% ] first_scan_filesystem | Loading global class names...
+[  33% ] first_scan_filesystem | Verifying GDExtensions...
+[  50% ] first_scan_filesystem | Creating autoload scripts...
+[  66% ] first_scan_filesystem | Initializing plugins...
+[  83% ] first_scan_filesystem | Starting file scan...
+[ DONE ] first_scan_filesystem
+
+[   0% ] loading_editor_layout | Started Loading editor (5 steps)
+[   0% ] loading_editor_layout | Loading editor layout...
+[  16% ] loading_editor_layout | Loading docks...
+[  33% ] loading_editor_layout | Reopening scenes...
+[  50% ] loading_editor_layout | Loading central editor layout...
+[  66% ] loading_editor_layout | Loading plugin window layout...
+[  83% ] loading_editor_layout | Editor layout ready.
+[ DONE ] loading_editor_layout
+
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_ADDONS_SMOKE_PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_SMOKE_PASS: one world, three modes, 5->8 mapping, same hero, PNG import
+WARNING: 4 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 4 RID allocations of type 'N17RendererSceneCull8InstanceE' were leaked at exit.
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_MENU_PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_KEYCHAIN_RTS_PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_RTS_SMOKE_PASS: camera focus, two-faction fixture, commands, selection, shared actor
+WARNING: 4 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 4 RID allocations of type 'N17RendererSceneCull8InstanceE' were leaked at exit.
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_NAV_SMOKE_PASS: A*, 3D obstacles, waypoints, minimap, actor identity
+WARNING: 4 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 4 RID allocations of type 'N17RendererSceneCull8InstanceE' were leaked at exit.
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_MIRROR_SMOKE_PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_MIRROR_INTEGRITY_PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_MIRROR_TIMING_PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_MIRROR_ASTAR_PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_MIRROR_FOOTPRINT_PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_VERDANT_MAP_PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_MIRROR_RESULT {"bot_attack_thresholds":[2,3],"controllers":["bot","bot"],"finished":true,"hash":"5bc6e08eed48b37188f2eaf5a03d1996f4afde5ddd57b0d7ce3c214526a1486b","lost_cargo_legacy":27,"lost_matter":27,"map_hash":"6b9054d78ae619f258cf1ffe8ce1b69e33c3d493b92dfdfc03e9f37ae7534083","map_id":"verdant_divide","map_source_sha":"036c23dbc582af6c63e2c2e901d3a74e3286e5e8","matter_conserved":true,"max_ticks":24000,"reason":"buildings_eliminated","rejected_commands":0,"resources_mined":855,"resources_spent":800,"rules":"mvp0-man-mirror-v5-3x3-world2m","seed":42,"tick_hz":20,"ticks":10111,"winner":1}
+SCALFAGUS_MIRROR_BATCH_PASS {"draws":0,"matches":1,"matches_per_second":2.38663484486874,"seconds":0.419,"wins":[0,1]}
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_MIRROR_VISUAL_PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_MIRROR_PHYSICS_LOS_PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_MIRROR_GROUP_PASS
+ASSET_MANIFEST_PASS 7 transparent, region-aligned PNG atlases (prototype only)
+OK 16x16: atlas 48x48, 9 icons, 1398 opaque pixels
+OK 32x32: atlas 96x96, 9 icons, 5803 opaque pixels
+OK 64x64: atlas 192x192, 9 icons, 23707 opaque pixels
+OK 27 RGBA icons and 3 atlases, all atlas rectangles match standalone source bytes
+SCALFAGUS_GODOT_CHECK_PASS
