@@ -117,7 +117,7 @@ func _run() -> void:
         return
 
     tampered = archive.duplicate(true)
-    tampered["commands"][3]["tick"] = 0
+    tampered["commands"][4]["tick"] = 1
     if REPLAY.playback(tampered).get("reason", "") != "non_monotonic_commands":
         _fail("Reordered command ticks were not rejected")
         return
