@@ -6,12 +6,25 @@ language: en
 latest_owner_scope_decision: DEC-033
 latest_research_and_view_decisions: [DEC-030, DEC-031, DEC-032, DEC-034]
 mandatory_reuse_first_policy: DEC-034
+future_MAN_three_academies_nine_faculties_DEC_044:
+  decision: DEC-044
+  human: design/man-three-academies-nine-faculties-2026-10-12.md
+  machine: design/man-three-academies-nine-faculties.yaml
+  supersedes_old_DEC_043_seven_qualification_roster: true
+  Basic_Manus_personal_slots: 3
+  academies: [technical, military, scientific]
+  faculties_per_academy: 3
+  nine_total_faculties: [construction_engineer, machine_operator, industrial_engineer, infantry, navy, aviation, medicine, research_science, cybernetics]
+  two_owner_unconfirmed_third_names: [industrial_engineer, cybernetics]
+  one_active_trained_and_equipped_job: true
+  future_not_DEC_033_MVP0: true
 future_MAN_personal_professions_DEC_043:
   decision: DEC-043
   human: design/man-basic-astronaut-professions-training-equipment-2026-10-12.md
   machine: design/man-basic-astronaut-professions-training-equipment.yaml
   Basic_Manus_has_three_initially_empty_certification_slots: true
-  owner_requests_seven_professional_choices: true
+  old_owner_seven_professional_choices_now_superseded_by_DEC_044: true
+  older_proposed_ids_are_historical_migration_only: true
   proposed_ids: [industrial, engineer, soldier, scientist, medic, operator, specops]
   Soldier_requires_Barracks_and_issued_weapon: true
   Scientist_requires_Academy_and_issued_research_kit_to_work_at_Lab: true
