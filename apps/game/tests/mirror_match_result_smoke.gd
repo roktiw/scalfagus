@@ -43,7 +43,7 @@ func _verify() -> void:
     if overlay.restart_button == null or overlay.menu_button == null or not overlay.save_button.visible:
         _fail("Victory menu lost Play Again, Main Menu or Save Replay")
         return
-    if overlay.mouse_filter != Control.MOUSE_FILTER_STOP or not overlay.get_node("ResultShade").mouse_filter == Control.MOUSE_FILTER_STOP:
+    if overlay.mouse_filter != Control.MOUSE_FILTER_STOP or (overlay.get_node("ResultShade") as Control).mouse_filter != Control.MOUSE_FILTER_STOP:
         _fail("Terminal modal fails to block world pointer input")
         return
     var post_victory_hash: String = sim.replay_hash()
