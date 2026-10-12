@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 3.3
+version: 3.4
 decisions:
   - id: DEC-001
     status: approved
@@ -897,6 +897,34 @@ decisions:
       DEC-033 first MAN mirror release.
     specification: design/man-umu-capacity-and-specialist-balance-2026-10-12.md
     data_specification: design/man-umu-capacity-and-specialist-balance.yaml
+
+
+  - id: DEC-043
+    status: owner_approved_Basic_Manus_three_credential_slots_and_seven_specialization_choices_names_proposed
+    topic: MAN_basic_astronaut_three_training_faculties_seven_role_qualification_tracks_equipment_required
+    resolution: >-
+      The MAN Command Core produces Basic Manus astronauts, each
+      initially untrained with EXACTLY THREE persistent qualification
+      slots. The player selects and earns at most three distinct
+      faculties from SEVEN available profession types. No actor works
+      as a trained miner, engineer, shooter, operator, medic, scientist
+      or covert specialist without the appropriate personal training
+      AND physically issued equipment. A Soldier must train at Barracks
+      and a Scientist at Academy before legally performing Lab research.
+      A person has one active profession at a time and retains the
+      same actor identity when switching certified roles and real kits.
+      The OWNER requested seven specialization categories and named
+      Engineer, Soldier, Scientist, SpecOps, Machine Operator and Medic.
+      The seventh proposed group Industrial Technician consolidates
+      raw extraction and basic physical logistics. Engineer includes
+      energy-grid expertise rather than adding an eighth basic track.
+      Exact naming/facility roles of the seven remain design candidates.
+      Extra weapon types, skill ranks and equipment variants do not
+      cost further faculty slots. Preserve current DEC-033 MAN mirror
+      direct worker/rifleman training until a separate feature-gated
+      post-MVP migration with real Basic Manus population ledgers.
+    specification: design/man-basic-astronaut-professions-training-equipment-2026-10-12.md
+    data_specification: design/man-basic-astronaut-professions-training-equipment.yaml
 
 
 migration_required:
