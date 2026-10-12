@@ -351,6 +351,14 @@ func _toggle_pause() -> void:
     choices.custom_minimum_size.x = 360
     center.add_child(choices)
     choices.add_child(COMMAND_HUD.UI.label("REPLAY PAUSED" if replay_mode else "MATCH PAUSED", 28))
+    if replay_mode:
+        for entry in [["Step one tick", _step_replay_once], ["Restart replay", _restart_replay]]:
+            var replay_button := Button.new()
+            replay_button.name = "ReplayStep" if entry[0] == "Step one tick" else "ReplayRestart"
+            replay_button.text = entry[0]
+            replay_button.custom_minimum_size.y = 48
+            replay_button.pressed.connect(entry[1])
+            choices.add_child(replay_button)
     if not spectator and not replay_mode:
         var save: Button = Button.new()
         save.name = "SaveReplay"
@@ -371,6 +379,39 @@ func _toggle_pause() -> void:
         if item is Button and item.text == "Resume":
             item.grab_focus()
             break
+
+func _step_replay_once() -> Dictionary:
+    if not replay_mode or replay_session == null or replay_session.sim == null:
+        return {"ok": false, "reason": "not_in_replay"}
+    var frame: Dictionary = replay_session.step()
+    if not bool(frame.get("ok", false)):
+        speed = 0
+        info = "REPLAY DIVERGED: " + str(frame.get("reason", "unknown"))
+    elif bool(frame.get("complete", false)):
+        speed = 0
+        info = "REPLAY VERIFIED  ·  " + str(frame.get("hash", "")).substr(0, 12)
+    else:
+        info = "Replay tick %d/%d" % [sim.tick, replay_session.final_tick]
+    _sync_visuals()
+    return frame
+
+func _restart_replay() -> void:
+    if not replay_mode or replay_session == null:
+        return
+    var started: Dictionary = replay_session.restart()
+    if not bool(started.get("ok", false)):
+        info = "REPLAY RESTART FAILED: " + str(started.get("reason", "unknown"))
+        speed = 0
+        _sync_visuals()
+        return
+    sim = replay_session.sim
+    time_accumulator = 0.0
+    speed = 1
+    selected_id = -1
+    selected_ids.clear()
+    build_mode = false
+    info = "Replay restarted from tick 0"
+    _sync_visuals()
 
 func _save_current_replay() -> void:
     if spectator or replay_mode or sim == null:
@@ -607,18 +648,8 @@ func _process(delta: float) -> void:
         var steps: int = 0
         while time_accumulator >= TIMING.TICK_SECONDS and steps < 32:
             if replay_mode:
-                if replay_session == null or replay_session.sim == null:
-                    speed = 0
-                    break
-                var frame: Dictionary = replay_session.step()
-                if not bool(frame.get("ok", false)):
-                    speed = 0
-                    info = "REPLAY DIVERGED: " + str(frame.get("reason", "unknown"))
-                    steps += 1
-                    break
-                if bool(frame.get("complete", false)):
-                    speed = 0
-                    info = "REPLAY VERIFIED  ·  " + str(frame.get("hash", "")).substr(0, 12)
+                var frame: Dictionary = _step_replay_once()
+                if not bool(frame.get("ok", false)) or bool(frame.get("complete", false)):
                     steps += 1
                     break
             else:
