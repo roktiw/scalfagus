@@ -81,6 +81,9 @@ func _verify() -> void:
     if replay_game.sim.controllers != ["human", "bot"]:
         _fail("Playback changed Human vs Bot controller mapping")
         return
+    if not replay_game.command_hud.replay_progress.visible:
+        _fail("Replay UI did not expose progress to the player")
+        return
     var hq: int = replay_game.sim.units_for(0, "hq")[0]
     replay_game.selected_id = hq
     replay_game.selected_ids.assign([hq])
@@ -106,6 +109,12 @@ func _verify() -> void:
         return
     if replay_game.speed != 0:
         _fail("Verified replay did not stop advancing at its recorded last tick")
+        return
+    if not str(replay_game.command_hud.status.text).contains("REPLAY VERIFIED"):
+        _fail("Visible HUD concealed successful verification")
+        return
+    if int(replay_game.command_hud.replay_progress.value) != expected_tick:
+        _fail("Replay progress bar did not reach final saved tick")
         return
     replay_game.queue_free()
     await process_frame
