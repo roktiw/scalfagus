@@ -116,6 +116,30 @@ func _verify() -> void:
     if int(replay_game.command_hud.replay_progress.value) != expected_tick:
         _fail("Replay progress bar did not reach final saved tick")
         return
+    # Exercise *native* pause buttons, not just direct session methods.
+    replay_game._toggle_pause()
+    if not replay_game.paused:
+        _fail("Verified replay did not open its pause controls")
+        return
+    var restart_button: Button = replay_game.pause_overlay.find_child("ReplayRestart", true, false) as Button
+    var step_button: Button = replay_game.pause_overlay.find_child("ReplayStep", true, false) as Button
+    if restart_button == null or step_button == null:
+        _fail("Replay pause menu has no native Restart / Step controls")
+        return
+    restart_button.pressed.emit()
+    if replay_game.sim.tick != 0 or replay_game.replay_session.finished or replay_game.speed != 1:
+        _fail("Native restart did not reset state, completion and replay speed")
+        return
+    if not replay_game.paused:
+        _fail("Restart unexpectedly closed the paused replay controls")
+        return
+    step_button.pressed.emit()
+    if replay_game.sim.tick != 1 or not replay_game.paused:
+        _fail("Paused Step button must advance precisely one replay tick")
+        return
+    if replay_game.command_hud.replay_progress.value != 1:
+        _fail("Replay progress did not follow the single-tick control")
+        return
     replay_game.queue_free()
     await process_frame
 
