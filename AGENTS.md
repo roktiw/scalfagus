@@ -1,5 +1,9 @@
 # SCALFAGUS — Coding-Agent Contract
 
+## OWNER STACK MIGRATION — UNITY + BLENDER (2026-10-12)
+
+The owner now directs migration to Unity + Blender with procedural worlds, units and content. This supersedes older Godot-only stack instructions below for new migration work. Read [the repository migration map](docs/migration/UNITY-BLENDER-REPOSITORY-MAP.md) and [machine inventory](docs/migration/repository-map.json) first. Preserve canonical gameplay decisions and the Godot reference until evidence-backed Unity parity; do not delete it during bootstrap. Documentation-only migration mapping requires path/inventory validation, not a new gameplay PASS claim. Unity/Blender implementations require actual pinned-tool tests and reports.
+
 ## MVP0 HOST-BOUND COMMAND GATEWAY (UNVERIFIED FEATURE BRANCH)
 
 P0 network acceptance (M0-07, CODE-GAP-08/09) requires one
