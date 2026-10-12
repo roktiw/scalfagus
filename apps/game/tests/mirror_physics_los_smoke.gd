@@ -67,7 +67,9 @@ func _verify() -> void:
     var sim = world.get("sim")
     var hq_id: int = sim.units_for(0, "hq")[0]
     var hq: Dictionary = sim.entities[hq_id]
-    var hq_body: StaticBody3D = world.get("unit_nodes")[hq_id].get_node_or_null("FootprintBody") as StaticBody3D
+    var actors: Dictionary = world.get("unit_nodes")
+    var actor: Node3D = actors[hq_id]
+    var hq_body: StaticBody3D = actor.get_node_or_null("FootprintBody") as StaticBody3D
     if hq_body == null or int(hq_body.get_meta("scalfagus_entity_id", -1)) != hq_id:
         _fail("Completed building collider lost stable authoritative entity ID")
         return
