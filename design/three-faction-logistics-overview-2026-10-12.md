@@ -91,6 +91,12 @@ Owner direction for **original MAN technological fantasy**: single machines phys
 
 This is distinct from **DEC-041's fixed 4/6/8 real UMU building undercarriage**. Those are owner-approved *building motion* counts; **the number and recipes for meta-mechs and Titans remain open**. The nine candidate MAN chassis families from DEC-045 are **not secretly expanded** merely by adding composite forms. Trained human machine operator and crewless AI both can control the same assembled machine via one coordinator under DEC-044/045. Costs/heat/ammo/mass/power/footprint and vulnerability to component loss are mandatory. Read [DEC-046 concept](man-machine-recombination-meta-mechs-titans-2026-10-12.md) and [YAML](man-machine-recombination-meta-mechs-titans.yaml). **No inclusion in DEC-033 MVP0.**
 
+### Three forms of unit union: MAN assembly, ORG absorption, ETH resonance (DEC-047)
+
+In addition to distinct freight infrastructure, each faction has a distinct **physical/identity mechanism for combining units**: **MAN** combines existing detachable machines with preserving source component IDs (DEC-046). **ORG** permanently fuses **two or more actual organisms**, or devours/absorbs real organism sources for **one-way biological mutation**; original live units cannot pop back out of their successor. **ETH** lies between: beings may **energetically merge into a more complex new being**, or **meditate into a connected collective system**; it is not a reversible MAN socket operation by default. The exact permanence and identity mapping of a deep ETH fusion remain **OPEN** under existing costly ascension/downgrade rules.
+
+The podcast's names **Chór / Synteza / Ascendent / Konstelacja / Lewiatan / Łono Mutacji** remain **proposals** only. No conversion generates free HP, bodies, materials, Energy, shields, vision or cargo; ORG biomass and ETH energy/network limits apply. See [raw owner conversation](../inbox/2026-10-12-man-org-eth-fusion-transformation-discussion.md), [DEC-047 specification](three-faction-assembly-fusion-resonance-2026-10-12.md) and [DEC-047 YAML](three-faction-assembly-fusion-resonance.yaml). All **post-DEC-033 MVP0**.
+
 ### ORG: biology, vein logistics and cysts
 
 1. Gatherers and large living carrier organisms haul physical finite materials into a real bidirectional living vein system. Roots/veins transfer material, nutrients, Energy and information both ways with finite throughput, meaningful cuts, a nourishment need and biological power support.
