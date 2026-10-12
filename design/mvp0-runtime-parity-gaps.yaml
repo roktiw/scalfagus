@@ -167,6 +167,9 @@ major_gaps:
     tests: [M0B-16, M0B-17, M0B-19]
   - id: CODE-GAP-09
     priority: P0
+    status: peer_bound_command_gateway_implemented_in_draft_ENet_sender_binding_and_two_client_runtime_pending
+    implementation: apps/game/scripts/mirror_command_gateway.gd
+    test: apps/game/tests/mirror_gateway_smoke.gd
     issue: current_state_code_accepts_plain_issue_command_direct_mutation_without_host_bound_slot_sequence_envelope
     remediation: validated_command_gateway_shared_between_local_bot_GUI_and_authoritative_ENet_HH
     tests: [M0B-16, M0B-18]
