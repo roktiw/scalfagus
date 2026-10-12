@@ -1,0 +1,174 @@
+schema_version: 1
+project: scalfagus
+date: "2026-10-12"
+version: 0.1
+decision_id: DEC-048
+status: owner_approved_three_visual_storage_locations_engineering_balance_and_transfer_policy_proposed
+human_specification: design/eth-obelisk-hot-warm-cold-storage-2026-10-12.md
+owner_source: chat_2026_10_12_ETH_whiteboard_and_hot_warm_cold_statement
+canonical_structure_name: Obelisk
+legacy_internal_structure_alias: eth_mid_pylon
+release:
+  first_MVP0: DEC-033
+  future_ETH_only: true
+  no_new_implementation_claim: true
+related_decisions: [DEC-018, DEC-021, DEC-035, DEC-036, DEC-037, DEC-038, DEC-039, DEC-047]
+scope:
+  one_existing_ether_network: true
+  two_existing_logistics_loops: [physical_ground_drones_at_foot, straight_tip_to_tip_elevated_freight]
+  storage_temperature_is_NOT_new_resource_kind: true
+  canonical_resources: [matter, volatiles, energy]
+  owner_three_physical_storage_zones: true
+  HOT_not_equal_interobelisk_edge_in_flight: true
+  WARM_not_independent_transport_network: true
+  COLD_not_automatic_network_wallet: true
+storage_layers:
+  hot:
+    owner_approved_location: above_obelisk_tip_vertical_stream
+    owner_approved_animation: juggling_real_resource_objects
+    physical_resource_custodian: obelisk_hot_custody
+    levitated: true
+    recommended_role: priority_immediate_routing_and_hot_dispatch_buffer
+    recommended_access_tier: fastest_when_uncongested
+    requires_positive_actual_levitation_energy: true
+    proposed_relative_energy_upkeep: greater_than_warm_for_comparable_cargo
+    finite_storage_capacity: TBD
+    finite_port_service_bandwidth: TBD
+    real_typed_stock: true
+    visibly_separate_from_inter_obelisk_beam: true
+  warm:
+    owner_approved_location: halo_orbital_aureola_around_obelisk
+    owner_approved_animation: orbiting_real_resource_objects
+    physical_resource_custodian: obelisk_warm_custody
+    levitated: true
+    recommended_role: medium_latency_local_buffer_and_waiting_stock
+    recommended_access_tier: medium_when_uncongested
+    requires_positive_actual_levitation_energy: true
+    proposed_relative_energy_upkeep: less_than_hot_for_comparable_cargo_but_not_zero
+    finite_storage_capacity: TBD
+    finite_transfer_service: true
+    real_typed_stock: true
+  cold:
+    owner_approved_location: ground_at_obelisk_foot_flag
+    owner_approved_animation: real_grounded_piles_and_manual_drone_handling
+    physical_resource_custodian: foot_world_stack
+    levitated: false
+    role: manual_ground_storage_and_local_drone_logistics
+    network_levitation_energy_upkeep: zero
+    no_claim_of_zero_drone_handling_energy_or_labor: true
+    finite_real_world_footprint: true
+    capacity_by_real_ground_geometry: TBD
+    physical_pickup_dropoff_and_pathfinding: true
+node_accounting:
+  previously_unsplit_local_elevated_stock: tip_local_levitated_inventory
+  current_authoritative_local_levitated_components:
+    - obelisk_hot_custody
+    - obelisk_warm_custody
+  pressure_occupied_stock: hot_plus_warm
+  ground_cold_not_in_levitated_fill: true
+  edge_in_flight_not_in_local_hot_stock: true
+  more_total_levitated_fill_reduces_node_traffic_throughput: DEC-036
+  homogeneous_levitated_inventory_lower_energy_upkeep_than_equal_size_mixed: DEC-038
+  levitation_energy_never_zero_for_supported_elevated_stock: true
+  all_parcels_each_have_one_legal_custodian_per_tick: true
+  cargo_visual_not_a_resource_minting_event: true
+  no_global_shared_automatic_material_wallet: true
+  equalization_policy_requires_existing_node_opt_in: true
+proposed_local_routing:
+  hot_to_warm:
+    requires_real_finite_time: true
+    real_intra_node_custody_transfer: true
+    bypasses_extra_raw_ingress_charge_for_already_levitated_cargo: true
+  warm_to_hot:
+    requires_real_finite_time: true
+    real_intra_node_custody_transfer: true
+    finite_service_and_positive_operating_energy: true
+  hot_to_elevated_edge:
+    requires_reserved_real_link_bandwidth: true
+    edge_exclusive_packet_custody_after_commit: true
+  inbound_edge_to_hot_or_warm:
+    requires_actual_receiving_capacity_and_time: true
+    destination_selected_by_authorized_policy: true
+  elevated_to_cold_foot:
+    physical_descent_not_instant_refund: true
+    requires_real_legal_ground_location_and_positive_time: true
+    after_landing_no_levitation_upkeep: true
+  cold_to_elevated:
+    only_via_previously_approved_three_ingress_methods: DEC-039
+    zero_tariff_for_all_COLD_uploads: false
+    direct_free_fourth_upload_path: forbidden
+  cold_pickup_by_drone:
+    physical_actor_carries_packet: true
+    requires_nonzero_pickup_and_delivery_time: true
+  automatic_cooling_on_normal_overload:
+    owner_approved: false
+    proposed_optional_opt_in_policy: true
+    cannot_silently_dump_cargo_to_ground: true
+previously_approved_three_ingress_methods:
+  nexus_physical_intake:
+    physically_delivered_actual_raw_cargo: true
+    extra_conversion_ingress_energy_tariff: zero
+    finite_time_and_port_rate: true
+    elevated_storage_levitation_upkeep_still_required: true
+  shield_drone_physical_obelisk_tip:
+    eligible_drone_reaches_actual_tip: true
+    bounded_actual_uploaded_cargo: true
+    one_upload_cost: 33_percent_blue_shield
+    percent_basis_max_or_current_shield: TBD
+    still_requires_levitation_upkeep: true
+  powered_obelisk_ground_uplift:
+    actual_raw_ground_stock_and_local_power: true
+    legal_upgrade_radius_batch: TBD
+    ingress_energy_tariff: highest_real_positive_finite_TBD
+    still_requires_levitation_upkeep: true
+  ground_to_warm_or_hot_without_valid_ingress: forbidden
+mode_and_failure_rules:
+  Obelisk_storage_relay_gate_canon: DEC-021
+  turret_and_meditation_lock_local_writes_as_previously_defined: true
+  already_held_hot_warm_stock_does_not_vanish_on_mode_change: true
+  lose_ACTUAL_levitation_support:
+    hot_and_warm_fall_to_actual_ground_once: true
+    cold_existing_ground_items_stay: true
+    no_source_refund_duplicate_or_remote_deposit: true
+    physical_landing_or_deterministic_loss_if_void: true
+  mere_network_partition_while_still_locally_supported:
+    no_forced_hot_or_warm_drop: true
+  broken_edge:
+    in_flight_packet_spill_separate_from_local_hot_warm_spill: true
+visual_authoring:
+  original_whiteboard_author_reference: true
+  original_binary_photos_currently_in_repository: unverified_not_claimed
+  hot: above_tip_vertical_orb_juggling
+  warm: mid_tower_horizontal_orbital_halo
+  cold: tangible_ground_foot_piles_with_drones
+  inter_obelisk_links: straight_tip_to_tip_not_same_as_hot_column
+  gameplay_zoom_should_distinguish_all_three_without_color_only: true
+  drone_whiteboard_states: [fly, sit, stand, carry_resource, hide_three_stage]
+acceptance_test_ids:
+  - ETH-TEMP-01
+  - ETH-TEMP-02
+  - ETH-TEMP-03
+  - ETH-TEMP-04
+  - ETH-TEMP-05
+  - ETH-TEMP-06
+  - ETH-TEMP-07
+  - ETH-TEMP-08
+  - ETH-TEMP-09
+  - ETH-TEMP-10
+  - ETH-TEMP-11
+  - ETH-TEMP-12
+  - ETH-TEMP-13
+  - ETH-TEMP-14
+  - ETH-TEMP-15
+  - ETH-TEMP-16
+  - ETH-TEMP-17
+  - ETH-TEMP-18
+open_balance:
+  - capacity_per_hot_warm_and_ground
+  - hot_warm_energy_ratio_exact_rate_homogeneity_mix
+  - cooldown_tick_latency_and_priority_queue
+  - orbit_height_and_visual_radius
+  - tip_shield_drone_batch_limit_and_blue_shield_basis
+  - turret_meditation_and_resonance_during_queued_stock
+  - cold_stock_protection_theft_and_world_stack_capacity
+  - auto_cooling_overflow_policy_requires_owner_approval
