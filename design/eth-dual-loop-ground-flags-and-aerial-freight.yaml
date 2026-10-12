@@ -2,10 +2,18 @@ schema_version: 1
 project: scalfagus
 proposal_id: eth_dual_loop_ground_flags_and_aerial_freight
 date: "2026-10-12"
-version: 0.1
+version: 0.2
 status: owner_approved_dual_loops_and_DEC_039_three_legal_ingress_methods
 human_specification: design/eth-dual-loop-ground-flags-and-aerial-freight-2026-10-12.md
 ingress_three_methods_decision: DEC-039
+three_temperature_local_storage_DEC_048: design/eth-obelisk-hot-warm-cold-storage.yaml
+owner_approved_local_storage:
+  hot: real_vertical_juggling_stream_above_Obelisk_tip
+  warm: real_local_levitated_orbit_halo_around_Obelisk
+  cold: real_manual_courier_ground_piles_at_Obelisk_foot
+  hot_plus_warm_replace_old_tip_local_levitated_inventory: true
+  hot_not_network_link_edge_packet: true
+  cold_manual_still_no_extra_ingress_path: true
 ingress_three_methods_contract: design/org-plug-holes-and-eth-three-ingress-methods.yaml
 bidirectional_homogeneity_extension: design/faction-bidirectional-logistics-and-homogeneous-storage.yaml
 owner_decision_after_this_design: DEC-038
@@ -50,7 +58,8 @@ two_logistics_loops:
 states_and_custody:
   - foot_world_stack
   - drone_carried_cargo
-  - tip_local_levitated_inventory
+  - obelisk_hot_custody
+  - obelisk_warm_custody
   - elevated_edge_in_flight
   - construction_site_committed
   conservation: each_packet_exactly_one_custody_at_a_time
