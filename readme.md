@@ -2,6 +2,19 @@
 
 **Local agent QA:** [Runbook](docs/qa/LOCAL-AGENT-TESTING.md) · [Report template](docs/qa/REPORT-TEMPLATE.md) · [Historical branch integration](docs/qa/BRANCH-INTEGRATION-2026-10-12.md). Start with `bash scripts/qa-local.sh`; report via Markdown on GitHub (GitHub Actions do not replace local tests).
 
+## Construction lifecycle in single-player MVP0 (pending Mac QA)
+
+Paid Barracks orders now close cleanly on accepted Stop/Move/Gather/new
+Build, builder death, terrain invalidation or successful completion.
+The old 3×3 reservation no longer lingers, worksite and path fields are
+cleared, and every interruption produces a replay-safe event. **No new
+Matter refunds or future partial-foundation persistence rules are
+introduced.** Runtime rules version is now `v6-construction-lifecycle`
+(v2 replay archives remain schema-compatible but older-rule files
+reject cleanly). Read the [construction acceptance document](docs/MVP0-CONSTRUCTION-LIFECYCLE-2026-10-12.md).
+The new headless smoke runs under `scripts/check.sh` but has **not yet
+been verified with Godot** for this branch.
+
 ## MVP 0.1 — one race, two player slots, classic RTS
 
 **CURRENT OWNER-APPROVED DELIVERY SCOPE (DEC-033):** MAN vs MAN (four templates: HQ / MIN worker / Barracks / Rifleman), Overlord RTS only, one floating platform map, finite carried Matter, basic production/combat/victory, and **Human-Human LAN/loopback, Human-Computer, Computer-Computer** (GUI watch or accelerated headless). This is an implementation plan, **not an existing playable feature**. FPP possession is future; TPP is not a production mode. ETH/ORG and advanced logistics are later milestones. Start with [agent contract](AGENTS.md), [MVP 0.1 design](design/mvp0-man-mirror-rts-2026-10-11.md), [YAML scope](design/mvp0-man-mirror-rts.yaml), [backlog](design/mvp0-man-mirror-backlog.yaml) and [headless lab](design/godot-headless-balance-lab-2026-10-11.md).
