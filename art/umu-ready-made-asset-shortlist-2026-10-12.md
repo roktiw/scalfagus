@@ -8,7 +8,7 @@
 
 ## Decision: best candidate is NOT a prebuilt vehicle
 
-**Recommended asset sourcing strategy:** use **Kenney Conveyor Kit** for the **two actual transforming belt wings** + **Kenney Factory Kit** for machine body/feeds + **KayKit Space Base Bits** or **Quaternius Modular Sci-Fi Megakit** for the open cabin, armor/rib frames, bunker covers and roof hardpoints. Build one **original Scalfagus physical chassis/rig** in Godot or Blender, then render directional action sprites conforming to DEC-017.
+**Recommended asset sourcing strategy:** start with **Kenney Factory Kit 3.0** (the **new/remade former Conveyor Kit**) for the two transforming belt-wings and factory/feed mechanics, plus **KayKit Space Base Bits** for open cage, hard surface shell and rooftop modules. If the 3.0 belt geometry is unsuitable, evaluate the **older publisher-hosted Kenney Conveyor Kit** as an **alternate legacy component source**, not automatically a compatible independent mandatory pack. Quaternius Modular Sci-Fi Megakit provides an optional sci-fi chassis/aesthetic alternative. Build one **original Scalfagus physical chassis/rig** in Godot or Blender, then render directional action sprites conforming to DEC-017.
 
 No identified third-party finished model demonstrably contains the exact UMU mechanism (two convertible belt-wings that become **tracks under an open trapezoid cage**, one belt for **warehouse**, both at **3/5-cell conveyor span**, folded body for **bunker**, turned upright for **sentry wall**) **as a licensed ready-to-ship entity**. **Ready-made models here are real component assets, not a magically 100% ready UMU.** Designing/rigging the transform and the five-view pixel art remain essential original art work.
 
@@ -18,8 +18,8 @@ Scores express qualitative UMU component suitability, **not tested compatibility
 
 | Priority / source (open link) | What actually exists | UMU application | License seen | Main caveat |
 |---|---|---|---|---|
-| **A1 — [Kenney Conveyor Kit](https://kenney-assets.itch.io/conveyor-kit)** | **60+** CC0 low-poly models for factory conveyors; publisher lists single texture/color map and an actual ZIP download | The **two wing-belts**; powered belt surface/rails/loader and left/right loading connection | **CC0 1.0**, verified on publisher itch page | No tracked-mode transforms prebuilt; verify meshes are segmentable, model dimensions/pivots and formats after download |
-| **A1 — [Kenney Factory Kit 3.0](https://kenney.nl/assets/factory-kit)** | **140** industrial/conveyor/warehouse/factory assets; animation/variations advertised | Machine core, hopper, feeder, fuel intake, equipment housing, warehouse doors, mechanical details | **CC0**, Kenney original page | Static modular building pieces; not necessarily a vehicle or complete UMU rig |
+| **A2 (legacy alternate) — [Kenney Conveyor Kit](https://kenney-assets.itch.io/conveyor-kit)** | **60+** CC0 low-poly models; earlier publisher-hosted conveyor ZIP | Alternative belt/rail geometry if newer Factory Kit doesn't give the hinged wing silhouette | **CC0 1.0**, verified on publisher itch page | **Factory Kit 3.0 is the complete remake/rename of this earlier kit**; do not mix both blindly or assume compatible atlas/pivots |
+| **A1 — [Kenney Factory Kit 3.0](https://kenney.nl/assets/factory-kit)** | **140** newer industrial/conveyor/warehouse assets; animation/variations advertised; **renamed and completely remade from older Conveyor Kit** | **First source for both working belt-wings**, industrial core, hopper, feeder, fuel intake and loading doors | **CC0**, original Kenney page | Not a complete articulated vehicle; inspect specific belt parts, pivots and model dimensions before choosing |
 | **A1 — [KayKit Space Base Bits](https://godotengine.org/asset-library/asset/2124)** | **48+** low-poly optimized base/colony items in Godot Asset Library; single gradient texture atlas | Trapezoid open cage framing, shelter/garrison shell, hard-surface machine panels, rooftop foundation | **CC0**, official Godot library listing | Listing created for Godot 4.1, **must test in pinned Godot 4.7.2**; exact useful part names unknown until archive inspection |
 | **A2 — [Quaternius Modular Sci-Fi Megakit](https://quaternius.com/packs/modularscifimegakit.html)** | **277** advertised modular sci-fi props/architecture in full pack; OBJ/FBX/glTF; Standard **60–70% free**, full Source tier separate | Original industrial sci-fi body shell, sliding hatches, corridor ribs, armored bunker/wall panels, roof socket | **CC0**, publisher lists commercial reuse | Grid/rooms parts, not real tracked vehicle; **do not assume all 277 models are in free tier** or Source-version Godot scene is free |
 | **A2 — [Quaternius Sci-Fi Essentials Kit](https://quaternius.com/packs/scifiessentialskit.html)** | **65** advertised futuristic asset models (crates, screens, guns, animated robots/props); OBJ/FBX/glTF; Standard subset free | Actual visible cargo cubes and racks, display/port props, garrison detail, roof optics | **CC0**, publisher | Props are not a full UMU or guaranteed turret; Standard includes only a subset |
@@ -34,13 +34,17 @@ Scores express qualitative UMU component suitability, **not tested compatibility
 
 **Paid Synty POLYGON Sci-Fi/Construction packs:** real commercial packages exist, but marketplace EULAs, possible asset redistribution/derivative restrictions, price and lack of official Godot support make them **nonpreferred and explicitly unapproved** for the first UMU asset intake. [Synty's publisher FAQ](https://syntystore.com/community/faq) says to check each pack for compatibility and that official support is Unity/Unreal, not Godot. Do not assume paid = shippable Godot meshes.
 
+## Compatibility caveat: two Kenney kits are not two independent mandatory dependencies
+
+Kenney's official [All-in-1 v3.5 developer changelog](https://kenney.itch.io/kenney-game-assets/devlog/1526460/update-version-35) explicitly says **“Added Factory Kit (previously known as 'Conveyor Kit', completely remade)”**. Thus the itch [Conveyor Kit](https://kenney-assets.itch.io/conveyor-kit) is a publisher-hosted **older-generation kit**, while [Factory Kit 3.0](https://kenney.nl/assets/factory-kit) is its modern replacement. **First inspect Factory Kit, then acquire the older pack only if its exact pieces add something missing.** Do not install two entire kits by default, assume shared palette files, or confuse a pack rename with two distinct base dependencies.
+
 ## Three concrete art assembly proposals from those *real* kits
 
 These are ORIGINAL planned composites, **not claims that a downloaded pack contains that exact assembled model**.
 
 ### Option A — Industrial Crawler (strongest first prototype)
 
-**Component supply:** Kenney Conveyor Kit + Factory Kit + KayKit Space Base Bits.  
+**Component supply:** Kenney **Factory Kit 3.0** + KayKit Space Base Bits; optionally audition the **older Conveyor Kit** only if its specific wing-belt geometry proves better. The two Kenney kits are historically related generations, not preverified interchangeable components.  
 **Core silhouette:** **narrow rectangular machine core**, two detachable/rotating *identical continuous original belt-wings*, **open front/rear trapezoid cage**, orange-gray hardpoints, blue energy status indicators, **one roof socket**. The same belt mesh becomes an underbody left/right crawler track or a standing belt depending on transform.
 
 Why: directly communicates ownership of the two persistent belt wings and makes all original mechanical poses recognizable at tiny RTS pixel sizes. Factory kit also supplies one-side fuel intake visual and warehouse hopper.
@@ -49,7 +53,7 @@ Why: directly communicates ownership of the two persistent belt wings and makes 
 
 ### Option B — Orbital Colony Utility Skid
 
-**Component supply:** Quaternius Modular Sci-Fi Megakit + Kenney Conveyor Kit + Sci-Fi Essentials Kit.  
+**Component supply:** Quaternius Modular Sci-Fi Megakit + **Kenney Factory Kit 3.0** + Sci-Fi Essentials Kit (optional legacy Conveyor Kit after asset audition).  
 **Core silhouette:** sci-fi maintenance container/airlock on a physical tracked platform, sealed tool compartments, bright port/status strips and a roof solar/antenna/hardpoint. More technical, factory-colony/spaceborn aesthetic, less cute.
 
 Why: arguably strongest long-term look for large modular MAN bases in a floating-space-platform universe; credible machine can attach to and move entire small/medium/large buildings in 4/6/8 coordinated drive groups.
@@ -58,7 +62,7 @@ Why: arguably strongest long-term look for large modular MAN bases in a floating
 
 ### Option C — Temporary Tracked-Bunker Blockout
 
-**Component supply:** original-author CC0 Low-Poly Tank + Kenney Factory Kit + Conveyor Kit.  
+**Component supply:** original-author CC0 Low-Poly Tank + **Kenney Factory Kit 3.0**; old Conveyor Kit only if track/belt geometry needs a comparison.  
 **Core silhouette:** simple tracked low-poly armor cradle with blue/orange generic industrial equipment. Ideal **prototype only** to verify footprint, navigation, rotating/wall colliders and soldier seating in Godot.
 
 Why: fastest *plausibly recognized crawler*. Risk: tracks may be embedded inside one tank mesh, requiring geometry surgery; placeholder can easily bias final design toward "tank with panels", not the two original transformed belt-wings.
@@ -113,13 +117,14 @@ A4 **Approval**: art/geometry/collision/checksum/source/license review, 5-view S
 
 ## Decision and next steps
 
-**Recommend Option A (Industrial Crawler)** built with **Kenney Conveyor Kit + Factory Kit + KayKit Space Base Bits**. Quaternius Modular Sci-Fi Megakit is a **strong visual alternate**, ideal to prototype separately for an industrial sci-fi enclosed-deck aesthetic. Reserve the CC0 tank as an **underbody proxy only**.
+**Recommend Option A (Industrial Crawler)** built with **Kenney Factory Kit 3.0 + KayKit Space Base Bits**, with **legacy Kenney Conveyor Kit** as a separately reviewed fallback for distinct belt models. Quaternius Modular Sci-Fi Megakit is a **strong visual alternate**, ideal to prototype separately for an industrial sci-fi enclosed-deck aesthetic. Reserve the CC0 tank as an **underbody proxy only**.
 
 **This research delivery only writes designs and source links.** No externally downloaded zip/mesh, license file, generated sprite, Godot scene, pack installation, PR merge or gameplay code was created by this task. The user may now select the first composition for a real art and rig PoC in a **separate explicit step**, without accidentally changing first MVP0 scope.
 
 ### Primary publisher references (viewed 2026-10-12)
 
-- Kenney Conveyor Kit: https://kenney-assets.itch.io/conveyor-kit
+- Kenney Conveyor Kit (legacy publisher-hosted): https://kenney-assets.itch.io/conveyor-kit
+- Publisher's lineage / rename of Conveyor Kit → completely remade Factory Kit 3.0: https://kenney.itch.io/kenney-game-assets/devlog/1526460/update-version-35
 - Kenney Factory Kit: https://kenney.nl/assets/factory-kit
 - KayKit Space Base Bits (official Godot Asset Library): https://godotengine.org/asset-library/asset/2124
 - Quaternius Modular Sci-Fi Megakit: https://quaternius.com/packs/modularscifimegakit.html
