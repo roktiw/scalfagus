@@ -87,7 +87,7 @@ func _ready() -> void:
 
     back_button = _add_button(options_panel, "BACK", _close_options)
     footer = Label.new()
-    footer.text = "LAN Human vs Human: not yet implemented"
+    footer.text = "1: Play vs Bot    2: Watch Bots    O: Options    Enter: Select"
     footer.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
     stack.add_child(footer)
     get_viewport().size_changed.connect(_update_layout)
@@ -176,6 +176,24 @@ func _set_fullscreen(enabled: bool) -> void:
         fullscreen_toggle.set_pressed_no_signal(false)
         return
     get_window().mode = Window.MODE_FULLSCREEN if enabled else Window.MODE_WINDOWED
+
+# Keyboard fallback is intentionally independent of mouse and Keychain
+# gameplay shortcuts. Enter/Space also activate the focused native Button.
+func _unhandled_key_input(event: InputEvent) -> void:
+    if not (event is InputEventKey) or not event.pressed or event.echo:
+        return
+    if event.keycode == KEY_ESCAPE and options_panel.visible:
+        _close_options()
+        get_viewport().set_input_as_handled()
+    elif not options_panel.visible and event.keycode == KEY_1:
+        _start_mirror_vs_bot()
+        get_viewport().set_input_as_handled()
+    elif not options_panel.visible and event.keycode == KEY_2:
+        _start_mirror_bots()
+        get_viewport().set_input_as_handled()
+    elif not options_panel.visible and event.keycode == KEY_O:
+        _open_options()
+        get_viewport().set_input_as_handled()
 
 func _quit() -> void:
     get_tree().quit()
