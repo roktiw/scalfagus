@@ -27,6 +27,7 @@ fi
 "$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_integrity_smoke.gd
 "$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_timing_smoke.gd
 "$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_navigation_port_smoke.gd
+"$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_footprint_smoke.gd
 "$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_authored_map_smoke.gd
 "$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_batch.gd -- --matches 1 --seed 42
 "$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_visual_smoke.gd

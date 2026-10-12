@@ -1,5 +1,22 @@
 # SCALFAGUS — Coding-Agent Contract
 
+
+## MVP0 3×3 FOOTPRINT & 2M WORLD GEOMETRY (DRAFT, UNVERIFIED)
+
+Use the single `apps/game/scripts/mirror_geometry.gd` contract for all
+HQ/Barracks 3×3 (nine tiles) occupancy and the twelve exterior access cells.
+Every gameplay cell represents **2 metres** in the visual world. The authoritative
+`MirrorMatchState.building_cells` and native `AStarGrid2D` agree on all nine
+blocked cells, and the 3D `StaticBody3D` on the Sprite actor covers the same
+6×6m area. No alternate grid spacing/collision tables may be introduced.
+Resource delivery, building, training, and targeting use exterior footprint
+cells. Draw / line-of-sight remain grid-authoritative; elevation, physical
+terrain colliders and 3D raycast LOS are **NOT FINISHED**. Test:
+`apps/game/tests/mirror_footprint_smoke.gd` and `scripts/check.sh` locally
+using real Godot 4.7.2, not broken GitHub Actions.
+Details: `docs/MVP0-FOOTPRINT-WORLD-SCALE-2026-10-12.md`.
+
+
 ## MAN 3 ACADEMIES / 9 FACULTIES — DEC-044 (POST-MVP0)
 
 **This NEWER owner design supersedes DEC-043's earlier SEVEN-faculty roster.** Read [three academies / nine faculties](design/man-three-academies-nine-faculties-2026-10-12.md) and [machine contract](design/man-three-academies-nine-faculties.yaml) **before** the dated DEC-043 professions file. Basic Manus retains **exactly THREE personal credential slots** and one active job needing trained qualification AND real issued kit. **TECHNICAL** = Construction Engineering, Machine Operator (mechs/UMU), **proposed** Industrial Engineering (mining/transport/industry); **MILITARY** = Infantry, Navy, Aviation (all owner-named; SpecOps is advanced Infantry, not a tenth faculty); **SCIENTIFIC** = Medicine, Research Science, **proposed** Cybernetics (AI/telemetry/digital control). All three academies have THREE degree choices; the two proposed third names need final owner confirmation. Barracks remains Infantry training for Military Academy, while Science research uses the existing Academy/Lab training/work separation. Do not collapse Navy/Aviation into Machine Operator or turn every credential into a free physical tool. **Do not edit DEC-033 MVP0's working man_min/man_rifleman or train_worker/train_rifleman as part of future academic design.**

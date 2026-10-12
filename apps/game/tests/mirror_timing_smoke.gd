@@ -49,7 +49,7 @@ func _verify() -> void:
     if str(worker["gather_phase"]) != "return":
         _fail("Pickup delay did not last exactly seven ticks")
         return
-    worker["pos"] = Vector2i(9, 10) # Adjacent to own HQ; no teleport occurs in gameplay.
+    worker["pos"] = Vector2i(9, 11) # Adjacent to the HQ footprint, not inside it.
     for i in range(TIMING.UNLOAD_TICKS - 1):
         mine.advance()
     if int(mine.players[0]["matter"]) != 0:
@@ -123,7 +123,7 @@ func _verify() -> void:
         _fail("Worker was not trained at the 140th tick")
         return
     var builder_id: int = production.units_for(0, "worker")[0]
-    production.entities[builder_id]["pos"] = Vector2i(12, 12)
+    production.entities[builder_id]["pos"] = Vector2i(11, 12)
     if not production.issue_command(0, "build_barracks", builder_id, Vector2i(13, 12)):
         _fail("Funded Barracks site was refused")
         return

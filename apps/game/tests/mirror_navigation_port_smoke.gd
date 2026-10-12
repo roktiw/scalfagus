@@ -4,6 +4,7 @@ extends SceneTree
 # responds to dynamic construction / destruction without inventing new A*.
 const PORT = preload("res://scripts/mirror_navigation_port.gd")
 const MATCH = preload("res://scripts/mirror_match_state.gd")
+const GEOM = preload("res://scripts/mirror_geometry.gd")
 
 func _initialize() -> void:
     call_deferred("_verify")
@@ -59,27 +60,30 @@ func _verify() -> void:
     # previously cached routes when structures change.
     var sim = MATCH.new()
     sim.setup(42, ["human", "human"])
-    var worker_id: int = sim.units_for(0, "worker")[0]
-    var worker: Dictionary = sim.entities[worker_id]
-    var origin: Vector2i = worker["pos"]
-    var end: Vector2i = origin + Vector2i(4, 0)
+    var origin: Vector2i = Vector2i(37, 25)
+    var end: Vector2i = Vector2i(47, 25)
     var direct: Array[Vector2i] = sim._find_route(origin, end, false)
     if direct.is_empty() or direct[0] != origin + Vector2i(1, 0):
         _fail("Initial MAN match route was not direct")
         return
-    var obstacle_cell: Vector2i = direct[0]
+    var obstacle_cell: Vector2i = Vector2i(42, 25)
     var revision_before: int = sim.navigation.revision
     var building_id: int = sim._spawn("barracks", 1, obstacle_cell)
     if sim.navigation.revision <= revision_before:
         _fail("Constructing a building did not invalidate cached routes")
         return
     var detour: Array[Vector2i] = sim._find_route(origin, end, false)
-    if detour.is_empty() or detour.has(obstacle_cell):
+    var footprint: Array[Vector2i] = GEOM.occupied_cells(obstacle_cell)
+    var crosses_footprint: bool = false
+    for step in detour:
+        if footprint.has(step):
+            crosses_footprint = true
+    if detour.is_empty() or crosses_foot:
         _fail("An active building is not excluded from routes")
         return
     sim._damage(building_id, 5000, 0)
     var restored: Array[Vector2i] = sim._find_route(origin, end, false)
-    if restored.is_empty() or restored[0] != obstacle_cell:
+    if restored.is_empty() or not restored.has(obstacle_cell):
         _fail("Destroyed building did not restore traversability")
         return
 

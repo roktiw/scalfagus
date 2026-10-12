@@ -2,6 +2,7 @@ extends SceneTree
 
 # MVP0: authority, physical occupancy, Matter custody and replay integrity.
 const MATCH = preload("res://scripts/mirror_match_state.gd")
+const GEOM = preload("res://scripts/mirror_geometry.gd")
 
 func _initialize() -> void:
     call_deferred("_verify")
@@ -41,14 +42,15 @@ func _verify() -> void:
         return
 
     # An existing building blocks fire through it but is itself a valid target.
-    var from_cell := Vector2i(13, 40)
-    var building_cell := Vector2i(14, 40)
-    var behind := Vector2i(15, 40)
+    var from_cell := Vector2i(37, 25)
+    var building_cell := Vector2i(42, 25)
+    var face_cell := Vector2i(41, 25)
+    var behind := Vector2i(47, 25)
     sim._spawn("barracks", 0, building_cell)
     if sim._line_clear(from_cell, behind):
         _fail("Projectile passed through an intervening building")
         return
-    if not sim._line_clear(from_cell, building_cell):
+    if not sim._line_clear(from_cell, face_cell):
         _fail("A target building blocked its own hit")
         return
 
@@ -59,8 +61,9 @@ func _verify() -> void:
     var hq: Dictionary = spawn_sim.entities[hq_id]
     var hq_pos: Vector2i = hq["pos"]
     var blocking_ids: Array[int] = []
-    for delta in MATCH.DIRECTIONS:
-        blocking_ids.append(spawn_sim._spawn("worker", 0, hq_pos + delta))
+    for cell in GEOM.perimeter_cells(hq_pos):
+        if not spawn_sim._mobile_at(cell) and not spawn_sim._source_at(cell):
+            blocking_ids.append(spawn_sim._spawn("worker", 0, cell))
     var count_before: int = spawn_sim.units_for(0, "worker").size()
     hq["train_kind"] = "worker"
     hq["train_left"] = 1
