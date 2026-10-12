@@ -48,3 +48,30 @@ Manual GUI test (not substitutable with an API call): **Play vs Bot → gather �
 - The main menu validates v2 before switching scenes. Malformed metadata or an incorrect `commands_hash` leaves the menu in place and shows the structured reason.
 - Synthetic GUI QA uses a unique process/timestamp basename and never overwrites `last-human-match.json`.
 - **Combined GUI QA has not run on Mac yet.** See the PR #23 report for backend-only evidence.
+
+## Playback controls and replay v2 regression extensions
+
+The paused replay now has two native buttons: **Step one tick** executes
+exactly one deterministic simulation step while the replay remains paused,
+and **Restart replay** resets to tick zero from the in-memory, validated
+archive (no file reload, no future-tick precomputation). Speed remains
+adjustable from keyboard during normal playback; world renderer updates
+once per frame even when 16× runs multiple 20Hz ticks per frame.
+
+`MirrorReplaySession.begin()` clears the old state **before** attempting
+to validate a new archive. If the user reloads a malformed JSON document,
+`sim` and the stored original commands are cleared, and `restart()`
+cannot secretly restart the previous match.
+
+The streaming smoke now checks:
+1. checksum mismatch from an unsealed edit, including a rejected order;
+2. a deliberately resealed v2 command edit that passes structural checksum
+   validation but must fail deterministic command/outcome/final-state
+   verification;
+3. restart after successful completion, an exact one-tick step, and
+   fail-closed clearing after a bad reload;
+4. genuine Godot pause-menu buttons Restart and Step, with a visible
+   progress bar tracking the exact current tick.
+
+Run `bash scripts/check.sh` locally on this **final branch SHA**. Do not
+infer a PASS for these tests from PR #23's earlier successful Mac logs.
