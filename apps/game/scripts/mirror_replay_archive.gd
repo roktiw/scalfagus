@@ -87,8 +87,15 @@ static func playback(archive: Variant) -> Dictionary:
             return _failure("missing_field_" + key)
     if not _integer(archive["format_version"], FORMAT_VERSION, FORMAT_VERSION):
         return _failure("unsupported_format")
-    if archive["archive_type"] != "scalfagus-human-mirror":
+    if not (archive["archive_type"] is String) or archive["archive_type"] != "scalfagus-human-mirror":
         return _failure("unsupported_archive")
+    # Validate untrusted JSON types before String comparisons: comparing a
+    # String with an Array/Dictionary raises a GDScript runtime error.
+    for key in ["map_id", "map_hash", "map_source_sha"]:
+        if not (archive[key] is String):
+            return _failure("invalid_map_metadata")
+    if not (archive["rules"] is String):
+        return _failure("invalid_rules_metadata")
     if not _integer(archive["seed"], 0, MAX_SEED):
         return _failure("invalid_seed")
     if not _integer(archive["final_tick"], 0, MATCH.MAX_TICKS):

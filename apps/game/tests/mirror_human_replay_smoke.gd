@@ -77,7 +77,8 @@ func _run() -> void:
         _fail("Human-bot playback produced a different deterministic hash")
         return
 
-    var name: String = "qa-mirror-human-42"
+    # Do not overwrite or delete an existing user replay with a fixed QA name.
+    var name: String = "qa-human-42-%d-%d" % [OS.get_process_id(), Time.get_ticks_usec()]
     var destination: String = REPLAY.save_user(archive, name)
     if destination.is_empty():
         _fail("Replay could not be written to local user://replays")
