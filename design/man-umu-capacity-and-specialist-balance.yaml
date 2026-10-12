@@ -1,0 +1,99 @@
+schema_version: 1
+project: scalfagus
+decision_id: DEC-042
+date: "2026-10-12"
+version: 0.1
+status: owner_approved_numerical_capacity_and_light_generalist_specialist_superiority_direction
+human_specification: design/man-umu-capacity-and-specialist-balance-2026-10-12.md
+previous_canon: [DEC-033, DEC-036, DEC-038, DEC-040, DEC-041]
+scope:
+  first_MVP0_MAN_mirror_still_four_templates: true
+  physical_UMU_and_specialized_roster_are_post_MVP0: true
+  does_not_add_new_resource_currency: true
+UMU:
+  type: Universal_Man_Unit
+  owner_philosophy: lightweight_flexible_multifunction_generalist
+  one_active_job_at_a_time: DEC-041
+  actual_transforming_belt_wings: 2
+  capacity:
+    profiles_mutually_exclusive: [troop_transport, mixed_resource_cargo, monotypic_resource_cargo, empty]
+    troop_capacity_soldiers: 4
+    passenger_manifest_entities_real_and_persistent: true
+    soldier_transport_and_cargo_at_same_time: false
+    standard_unit_slot_size: physical_cargo_cube_or_compatible_normalized_container
+    internal:
+      dimensions: [3, 3, 3]
+      volume_slots: 27
+    mixed_resource:
+      max_total_slots: 27
+      side_racks_allowed: false
+      multiple_legal_resource_types_allowed: true
+    monotypic_resource:
+      selected_one_resource_type_required: true
+      all_inside_and_both_side_racks_same_resource_type: true
+      internal_max_slots: 27
+      left_external_rack:
+        dimensions: [3, 3]
+        max_slots: 9
+      right_external_rack:
+        dimensions: [3, 3]
+        max_slots: 9
+      extra_slots_from_two_racks: 18
+      max_total_slots: 45
+      mono_minus_mixed_bonus_slots: 18
+      mono_capacity_relative_to_mixed: 5_over_3
+    cargo_ledger_finite_and_nonduplicating: true
+    troop_manifest_and_cargo_occupancy_same_cage: false
+  geometry:
+    real_3x3_side_racks_are_visible_objects: true
+    external_racks_must_not_clip_transforming_wings: true
+    side_loaded_pathing_collision_footprint: dynamically_wider_when_attached
+    visual_mount_candidate: above_or_outboard_of_undercarriage_belts
+    block_mode_transitions_if_racks_overlap_wing_swept_geometry: true
+    prohibit_racks_passthrough_building_drive_without_legal_clearance: true
+    cargo_mount_health_susceptibility_salvage: balance_TBD
+  role_interactions:
+    MOVE: troops_4_OR_mixed_27_OR_mono_45_if_clearance
+    WAREHOUSE: one_belt_loader_same_real_27_OR_45_inventory
+    CONVEYOR: belt_lane_packets_are_not_free_45_capacity_general_warehouse
+    POWER_GENERATOR: fuel_buffer_is_not_general_WAREHOUSE
+    HARVEST: extracted_output_buffer_is_not_general_WAREHOUSE
+    BUNKER: passenger_seats_4_do_not_automatically_define_garrison_slots
+    SENTRY_WALL: side_racks_must_not_intersect_wall_collider
+    BUILDING_DRIVE: exclusive_drive_role_and_side_rack_clearance_required
+balance:
+  owner_requires_specialized_units_much_stronger_at_own_single_jobs: true
+  UMU_edge: [versatility, role_change, redeployment, adaptable_logistics, emergency_infrastructure]
+  specialist_advantages_candidate:
+    dedicated_hauler: higher_sustained_cargo_throughput_or_more_capacity
+    fixed_warehouse: higher_storage_capacity_and_handling_ports
+    dedicated_conveyor: stronger_sustained_transport_capacity
+    power_plant: higher_fuel_to_Energy_conversion_rate_or_efficiency
+    dedicated_drill: higher_extraction_rate
+    military_APC_or_bunker: stronger_combat_protection_or_firepower
+  no_unapproved_exact_specialist_multiplier: true
+  raw_size_class_and_locomotion_speed_do_not_auto_change: true
+  cost_equivalence_and_absolute_specialist_multiplier: playtesting_TBD
+  pure_UMU_only_spam_should_not_dominate_developed_specialized_economy: true
+test_ids:
+  - UMU-43
+  - UMU-44
+  - UMU-45
+  - UMU-46
+  - UMU-47
+  - UMU-48
+  - UMU-49
+  - UMU-50
+  - UMU-51
+  - UMU-52
+  - UMU-53
+  - UMU-54
+  - UMU-55
+  - UMU-56
+open_questions:
+  - external_racks_mount_geometry_and_wall_mode_clearance
+  - combat_damage_salvage_lashing_loss_of_side_rack_cargo
+  - mixed_to_mono_switch_when_partially_loaded
+  - whether_sealed_liquids_and_gas_container_sizes_need_weighted_slots
+  - exact_specialist_performance_cost_speed_durability_metrics
+  - whether_all_UMU_chassis_are_lightweight_relative_to_MAX_legacy_mass

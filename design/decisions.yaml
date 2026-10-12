@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 3.1
+version: 3.5
 decisions:
   - id: DEC-001
     status: approved
@@ -841,6 +841,108 @@ decisions:
       single-belt loader extension remain open.
     specification: design/man-umu-transforming-belt-wings-2026-10-12.md
     data_specification: design/man-umu-transforming-belt-wings.yaml
+
+
+  - id: DEC-041
+    status: owner_directed_core_generator_4_6_8_building_drive_and_one_function_naming_roof_proposals_open
+    topic: MAN_UMU_name_power_generator_building_undercarriage_roof_modules_and_exclusive_role
+    resolution: >-
+      A MAN UMU can operate as an actual fuel-consuming power plant:
+      physical raw cargo enters through a lawful finite intake port,
+      an eligible fuel recipe debits real Matter or Volatiles as
+      appropriate and creates finite stored/transmitted Energy. It
+      cannot simultaneously operate as an unrestricted WAREHOUSE,
+      CONVEYOR, BUNKER or military hauler. Each UMU performs exactly
+      ONE active job at a time even if other tools remain physically
+      installed. Groups of distinct real UMU can act as wheels or
+      crawler undercarriages for compatible complete buildings:
+      exactly FOUR for small, SIX for medium and EIGHT for large.
+      During a grouped building move those units are dedicated to
+      the one building's locomotion, lose their individual services,
+      and respect actual footprint/pathfinding/cargo constraints.
+      Fixed roof modules are an owner-proposed direction, including
+      mounted guns, Matter drills and rooftop solar panels; exact
+      module set, recipe rates, roof socket size and building mobility
+      speed are open. Proposed name variants include Universal Modular
+      Unit, Universal Module Unit and Universal Mobility Unit, but
+      the established name Universal Man Unit remains until owner
+      chooses an official replacement. These post-MVP0 additions
+      refine DEC-040's physical pose doctrine without requiring new
+      features in DEC-033 first MAN mirror release.
+    specification: design/man-umu-power-building-mobility-roof-modules-2026-10-12.md
+    data_specification: design/man-umu-power-building-mobility-roof-modules.yaml
+
+  - id: DEC-042
+    status: owner_approved_precise_UMU_passengers_mixed_mono_slots_and_generalist_vs_specialist_doctrine
+    topic: MAN_UMU_4_soldiers_27_internal_45_mono_side_racks_and_light_specialization_balance
+    resolution: >-
+      Every UMU has exactly four real soldier travel seats OR physical
+      resource cargo occupying a 3 by 3 by 3 central hold (27 standard
+      cargo slots). Cargo and passengers in the same central cage are
+      mutually exclusive. When the whole physical cargo inventory
+      contains exactly one eligible resource type, two visible external
+      side attachments can carry 3 by 3 additional units each, nine
+      per side, giving 27 + 9 + 9 = 45 total. A mixed-resource load
+      is limited to the 27 internal slots; side racks may not carry a
+      single type while other kinds remain inside. The side attachments
+      take up real world space and must not clip the two transforming
+      belt wings, especially in BUNKER or SENTRY wall poses. UMU are
+      intended to be light, highly versatile, multifunctional and
+      tactically strong through role switching, but dedicated specialist
+      units must be substantially stronger at their chosen task.
+      Exact performance ratios, weight categories, mixed equipment
+      permissions and other specialist baselines require future
+      balance testing. This refines DEC-036 generic UMU storage
+      capacity and DEC-040/041 passenger/cargo modes without expanding
+      DEC-033 first MAN mirror release.
+    specification: design/man-umu-capacity-and-specialist-balance-2026-10-12.md
+    data_specification: design/man-umu-capacity-and-specialist-balance.yaml
+
+
+  - id: DEC-043
+    status: owner_approved_Basic_Manus_three_credential_slots_and_seven_specialization_choices_names_proposed
+    topic: MAN_basic_astronaut_three_training_faculties_seven_role_qualification_tracks_equipment_required
+    resolution: >-
+      The MAN Command Core produces Basic Manus astronauts, each
+      initially untrained with EXACTLY THREE persistent qualification
+      slots. The player selects and earns at most three distinct
+      faculties from SEVEN available profession types. No actor works
+      as a trained miner, engineer, shooter, operator, medic, scientist
+      or covert specialist without the appropriate personal training
+      AND physically issued equipment. A Soldier must train at Barracks
+      and a Scientist at Academy before legally performing Lab research.
+      A person has one active profession at a time and retains the
+      same actor identity when switching certified roles and real kits.
+      The OWNER requested seven specialization categories and named
+      Engineer, Soldier, Scientist, SpecOps, Machine Operator and Medic.
+      The seventh proposed group Industrial Technician consolidates
+      raw extraction and basic physical logistics. Engineer includes
+      energy-grid expertise rather than adding an eighth basic track.
+      Exact naming/facility roles of the seven remain design candidates.
+      Extra weapon types, skill ranks and equipment variants do not
+      cost further faculty slots. Preserve current DEC-033 MAN mirror
+      direct worker/rifleman training until a separate feature-gated
+      post-MVP migration with real Basic Manus population ledgers.
+    specification: design/man-basic-astronaut-professions-training-equipment-2026-10-12.md
+    data_specification: design/man-basic-astronaut-professions-training-equipment.yaml
+
+
+  - id: DEC-044
+    status: owner_three_academies_two_additional_faculty_names_pending
+    topic: MAN_three_academies_nine_faculties
+    resolution: >-
+      Three academy groups replace the earlier seven-faculty draft:
+      Technical with Construction Engineering, Machine Operator and
+      a proposed Industrial Engineering track; Military with Infantry,
+      Navy and Aviation; Scientific with Medicine, Research Science
+      and a proposed Cybernetics track. Every Basic Manus retains three
+      persistent certificate slots, one active trained and equipped
+      profession and real training institutions. The two proposed
+      final track names remain for owner confirmation. This supersedes
+      the DEC-043 seven-name roster but preserves its three-slot rules
+      and the DEC-033 first-release boundary.
+    specification: design/man-three-academies-nine-faculties-2026-10-12.md
+    data_specification: design/man-three-academies-nine-faculties.yaml
 
 
 migration_required:

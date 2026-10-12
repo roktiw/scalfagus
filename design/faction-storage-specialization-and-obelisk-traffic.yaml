@@ -47,15 +47,24 @@ factions:
     storage_object: Universal_Man_Unit
     abbreviation: UMU
     modes: [mixed_cargo, dedicated_single_resource]
+    UMU_capacity_owner_DEC_042: design/man-umu-capacity-and-specialist-balance.yaml
+    UMU_usable_hold_3x3x3_standard_cubes: 27
+    UMU_mixed_max_standard_cargo_units: 27
+    UMU_monotypic_two_3x3_external_racks: [9, 9]
+    UMU_monotypic_total_max_standard_cargo_units: 45
+    UMU_passenger_manifest_exclusive_of_cargo: 4_soldiers
+    UMU_side_racks_physically_affect_collision: true
     mixed_cargo:
       allows_multiple_typed_resource_ids: true
-      shared_physical_capacity: finite
+      shared_physical_capacity: 27_standard_cargo_units_for_UMU
       per_type_combination_allowed: true
     dedicated_single_resource:
       selected_resource_id_required: true
       only_selected_resource_accepted: true
       strictly_more_usable_capacity_than_mixed_at_equal_chassis: true
-      packing_density_and_exact_capacity_bonus: TBD
+      UMU_specific_extra_capacity: 18_units_from_two_visible_9_unit_racks
+      UMU_specific_total_capacity: 45_units
+      other_MAN_depot_capacity_bonus: TBD
     changing_mode:
       explicit_player_or_authorized_manager_order: true
       incompatible_existing_cargo_must_be_physically_unloaded: true

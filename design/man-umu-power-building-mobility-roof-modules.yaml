@@ -1,0 +1,149 @@
+schema_version: 1
+project: scalfagus
+decision_id: DEC-041
+date: "2026-10-12"
+version: 0.1
+status: owner_directed_generator_consumes_resources_building_drive_4_6_8_one_function_roof_and_name_candidates
+human: design/man-umu-power-building-mobility-roof-modules-2026-10-12.md
+prior_decisions: [DEC-001, DEC-010, DEC-019, DEC-021, DEC-033, DEC-036, DEC-038, DEC-040]
+release:
+  mvp0_still_MAN_vs_MAN_only_four_templates: true
+  all_UMU_extensions_post_MVP0: true
+naming:
+  current_canonical_from_older_docs: Universal_Man_Unit
+  acronym: UMU
+  owner_requests_alternatives: true
+  final_expansion_selected_by_owner: false
+  recommended_candidate: Universal_Modular_Unit
+  candidates:
+    - Universal_Modular_Unit
+    - Universal_Module_Unit
+    - Universal_Mobility_Unit
+    - Universal_Mechanical_Unit
+    - Universal_Multipurpose_Unit
+    - Universal_Manufacturing_Unit
+    - Universal_Man_Unit
+core:
+  real_two_transforming_conveyor_wings: DEC-040
+  physical_transport_capacity_owner_DEC_042: design/man-umu-capacity-and-specialist-balance.yaml
+  MOVE_passengers_soldiers: 4
+  MOVE_standard_mixed_cargo_units: 27
+  MOVE_mono_cargo_units_with_two_9_unit_side_racks: 45
+  owner_balance_light_UMU_versus_much_stronger_specialists: true
+  passengers_and_cargo_in_same_cage_forbidden: true
+  only_one_active_operational_role_per_UMU: true
+  rooftop_equipment_persists_but_not_all_services_active: true
+  no_resource_or_actors_created_during_transformation: true
+  one_authoritative_role_enum: true
+  allowed_role_family:
+    - move_tracks
+    - warehouse
+    - conveyor
+    - power_generator
+    - harvest
+    - bunker
+    - sentry_wall
+    - building_drive
+  future_optional_specialist_roles: [repair, survey]
+  mutually_exclusive: true
+  roof_solar_is_power_generator_submode_not_background_service: true
+power_generator:
+  owner_approved_consumes_real_resource_input_for_actual_Energy: true
+  uses_actual_finite_physical_fuel_input_buffer: true
+  same_persistent_wing_single_side_feeder_layout: proposed
+  input_material_types: [matter, volatiles]
+  not_all_generic_matter_is_fuel: true
+  legal_recipes_only: true
+  recipe_quantities_and_positive_timing: TBD
+  finite_converted_output_existing_resource: energy
+  not_new_power_currency: true
+  energy_destination: [real_local_battery, valid_connected_MAN_electric_grid]
+  cannot_act_as_open_general_warehouse_during_generator_operation: true
+  consume_once_credit_once_authoritative_transaction: true
+  energy_only_reprocessing_for_net_energy_gain: forbidden
+  block_on_invalid_fuel_or_no_real_output_capacity: true
+  finite_real_input_and_grid_bandwidth: true
+  production_requires_actual_source_or_recipe: true
+  generator_variants:
+    fuel_conversion:
+      fuel_options_by_eligible_recipe: [volatiles, processed_eligible_matter]
+      exact_yields: TBD
+    roof_solar:
+      candidate: true
+      draws_actual_irradiance_not_minting_stored_fuel: true
+      output_limited_by_light_panel_area_and_time: true
+      zero_output_when_other_operational_role_selected: true
+building_drive:
+  owner_approved_UMU_are_building_wheels_or_bogies: true
+  physically_same_real_tracked_UMU_actors: true
+  required_UNIQUE_UMU:
+    small: 4
+    medium: 6
+    large: 8
+  counts_do_not_imply_free_wheels_spawned: true
+  must_reach_legal_real_mount_points: true
+  one_UMU_may_attach_to_only_one_building_at_a_time: true
+  joined_UMU_locked_to_building_drive_role: true
+  convoy_assembly_one_coordinated_move_order: true
+  all_eligible_drive_units_required_for_motion: true
+  shared_footprint_and_terrain_collision: true
+  deployed_building_services_pause_for_transit: proposed_default
+  losing_any_required_drive_stops_convoy: proposed_initial_safety
+  no_map_edge_void_crossing_or_teleport: true
+  actual_building_and_all_UMU_identities_persist: true
+  preserves_legal_cargo_garrison_HP_ownership: true
+  building_mass_limits_speed_mounting_costs: TBD
+roof_modules:
+  owner_requests_permanent_on_roof: true
+  physical_installation_persists_across_mode_changes: true
+  changes_require_time_parts_and_eligible_service: proposed
+  default_active_roof_tool_socket_count: 1_proposed
+  no_unapproved_multi_job_operation: true
+  catalogue:
+    - {id: light_turret, active_role: bunker, primary_effect: anti_infantry_defense, status: proposed}
+    - {id: heavy_cannon, active_role: bunker, primary_effect: anti_armor_fire, status: proposed}
+    - {id: anti_air, active_role: bunker, primary_effect: anti_air_defense, status: proposed}
+    - {id: solid_drill, active_role: harvest, primary_effect: eligible_solid_matter_extraction, status: user_suggested_type}
+    - {id: liquid_pump, active_role: harvest, primary_effect: real_liquid_extraction, status: proposed}
+    - {id: gas_capture_compressor, active_role: harvest, primary_effect: captured_gas_volatiles, status: proposed}
+    - {id: photovoltaic_array, active_role: power_generator, primary_effect: irradiance_to_Energy, status: user_suggested_type}
+    - {id: fuel_turbine, active_role: power_generator, primary_effect: real_fuel_to_Energy, status: proposed}
+    - {id: battery_bank, active_role: supports_selected_role_only, primary_effect: real_stored_Energy_buffer, status: proposed}
+    - {id: repair_manipulator, active_role: repair, primary_effect: finite_mechanical_repair, status: proposed}
+    - {id: radar_sensor, active_role: survey, primary_effect: finite_legitimate_information, status: proposed}
+    - {id: industrial_loader, active_role: warehouse, primary_effect: finite_one_side_port_handling, status: proposed}
+  solar_inactive_outside_power_generator: true
+  turrets_inactive_outside_defense_role: true
+  drill_inactive_outside_harvest: true
+  battery_storage_not_energy_generation: true
+  sentry_wall_primarily_blockade_no_free_weapon: true
+  module_mount_collision_when_attached_below_building: TBD
+tests:
+  - UMU-25
+  - UMU-26
+  - UMU-27
+  - UMU-28
+  - UMU-29
+  - UMU-30
+  - UMU-31
+  - UMU-32
+  - UMU-33
+  - UMU-34
+  - UMU-35
+  - UMU-36
+  - UMU-37
+  - UMU-38
+  - UMU-39
+  - UMU-40
+  - UMU-41
+  - UMU-42
+open_owner_or_balancing:
+  - final_English_name_expansion
+  - roof_module_inventory_socket_counts_and_gun_balance
+  - fuel_eligible_resource_recipes_and_conversion_rates
+  - generator_input_one_wing_confirm_if_warehouse_same_physical_port
+  - solar_irradiance_map_rules
+  - troop_and_cargo_seats_during_non_drive_move
+  - actual_4_6_8_arrangement_by_building_footprint
+  - convoy_speed_energy_and_mounted_UMU_damage_response
+  - can_ANY_building_be_lifted_or_requires_transport_mount_points

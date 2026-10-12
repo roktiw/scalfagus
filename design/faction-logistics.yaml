@@ -1,7 +1,25 @@
 schema_version: 1
 project: scalfagus
 human_canonical_logistics_summary: design/three-faction-logistics-overview-2026-10-12.md
+MAN_human_profession_equipment_contract_DEC_043: design/man-basic-astronaut-professions-training-equipment.yaml
+MAN_Basic_Manus_personal_qualification_slots: 3
+MAN_earlier_seven_faculties_superseded_by: DEC-044
+MAN_three_academies_nine_faculties_DEC_044: design/man-three-academies-nine-faculties.yaml
+MAN_academy_groups: [technical, military, scientific]
+MAN_faculty_count: 9
+MAN_faculties: [construction_engineer, machine_operator, industrial_engineer, infantry, navy, aviation, medicine, research_science, cybernetics]
+MAN_unapproved_third_faculty_name_candidates: [industrial_engineer, cybernetics]
+MAN_training_and_physical_kit_required: true
+MAN_one_active_profession_per_person: true
+MAN_mvp0_direct_worker_rifleman_unchanged: true
 latest_man_umu_wings_decision: DEC-040
+man_umu_generator_building_drive_roof_extension_decision: DEC-041
+man_umu_capacity_and_specialist_balance_DEC_042: design/man-umu-capacity-and-specialist-balance.yaml
+man_umu_four_soldiers_or_cargo: true
+man_umu_mixed_base_27_mono_external_9_plus_9_total_45: true
+man_specialists_stronger_in_single_role_than_universal_UMU: true
+man_umu_generator_building_drive_roof_extension_contract: design/man-umu-power-building-mobility-roof-modules.yaml
+MAN_UMU_one_active_role_rule_supersedes_parallel_generator_plus_warehouse: true
 latest_man_umu_wings_contract: design/man-umu-transforming-belt-wings.yaml
 latest_man_umu_wings_human: design/man-umu-transforming-belt-wings-2026-10-12.md
 human_summary_is_index_not_a_new_numeric_balance_contract: true
@@ -127,6 +145,18 @@ factions:
     radial_and_vertical_base_growth: true
     self_and_mutual_building_unit_repair: true
     universal_man_unit:
+      troop_transport_manifest_limit: 4
+      inner_standard_cargo_storage_3x3x3: 27
+      mixed_cargo_total_capacity: 27
+      monotypic_cargo_side_rack_sizes: [9, 9]
+      monotypic_cargo_total_capacity: 45
+      soldiers_or_cargo_profile_not_both: true
+      generalist_is_light_versatile_specialists_have_clear_role_specific_superiority: true
+      owner_multi_function_constraint: exactly_one_active_function
+      power_generator_consumes_actual_fuel_into_actual_Energy: true
+      roof_installation_is_not_simultaneous_service: true
+      building_drive_unique_UMUs: {small: 4, medium: 6, large: 8}
+      name_expansion_review: Universal_Modular_Unit_proposed_not_owner_selected
       move_trapezoid_profile_two_crawler_wings_under_open_cage: true
       move_open_cage_usable_for_soldiers_or_finite_physical_cargo: true
       warehouse_one_open_wing_while_other_folded: true
@@ -138,10 +168,10 @@ factions:
       no_full_cargo_flow_in_sentry_or_bunker: true
       full_name: Universal Man Unit
       abbreviation: UMU
-      ground_mobile_generator_and_warehouse_or_bunker: true
+      mode_selectable_mobile_or_generator_or_warehouse_or_bunker: true
       reuse_existing_max_chassis_with_generator_kit: proposed
       building_flag_persists_during_travel: true
-      generates_only_while_deployed_with_valid_source: true
+      generates_only_in_dedicated_power_generator_role_with_valid_input_recipe: true
       small_storage_and_small_defensive_capacity: true
       optional_chassis_kit_to_avoid_extra_asset: TBD
       no_specialist_mid_max_role_replacement: true

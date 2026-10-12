@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 0.6
+version: 0.8
 status: approved_owner_direction_with_explicit_implementation_candidates_and_unresolved_balance
 decision_ids: [DEC-019, DEC-020]
 specification: design/three-network-channels-and-destruction-2026-10-11.md
@@ -9,6 +9,17 @@ world_loot_contract: design/world-loot-and-recycling.yaml
 historical_note: former_separate_small_power_dock_is_now_UMU_research_alternative
 storage_specialization_decision: DEC-036
 latest_UMU_physical_wings_decision: DEC-040
+latest_UMU_generator_and_building_drive_decision: DEC-041
+latest_UMU_capacity_specialization_decision: DEC-042
+latest_UMU_capacity_specialization_contract: design/man-umu-capacity-and-specialist-balance.yaml
+UMU_four_soldiers_or_twenty_seven_mixed_cargo_or_forty_five_mono_cargo: true
+UMU_persistent_two_external_9_unit_racks_for_mono: true
+UMU_multifunction_but_specialists_substantially_stronger_in_one_role: true
+latest_UMU_generator_and_building_drive_contract: design/man-umu-power-building-mobility-roof-modules.yaml
+UMU_canonical_full_name_change: not_approved
+UMU_one_active_job_even_with_roof_modules: true
+UMU_power_generator_consumes_real_input_fuel_for_finite_Energy: true
+UMU_building_drive_required_counts: {small: 4, medium: 6, large: 8}
 latest_UMU_physical_wings_contract: design/man-umu-transforming-belt-wings.yaml
 UMU_all_instances_have_two_belt_wings: true
 UMU_five_postures: [move_tracks, warehouse_one_open_belt, conveyor_3_or_5, bunker, sentry_wall]
@@ -33,6 +44,12 @@ man:
     later_manual_one_way_optimized_lanes: optional_TBD
     excluded_from_DEC_033_first_release: true
   UMU_cargo_storage:
+    allowed_passenger_manifest: four_soldiers_or_cargo_only
+    base_3x3x3_physical_slots: 27
+    mixed_max: 27
+    mono_rack_left_plus_right: [9, 9]
+    mono_max: 45
+    external_racks_must_pass_mode_collision_checks: true
     mixed_typed_goods_allowed: true
     dedicated_resource_mode_allows_only_selected_type: true
     dedicated_resource_mode_has_greater_effective_capacity_than_mixed: true
@@ -43,7 +60,7 @@ man:
   owner_direction:
     basic_infrastructure_module_is_ground_mobile: true
     basic_infrastructure_module_is_power_producer: true
-    basic_infrastructure_module_has_warehouse_or_bunker_modes: true
+    basic_infrastructure_module_has_exclusive_warehouse_generator_bunker_or_other_job: true
     builder_requires_actual_material_access_at_or_near_site: true
     supply_can_come_from_universal_transporter_nexus_or_direct_mine_pickup: true
     remote_outpost_requires_no_mandatory_home_link: true
@@ -52,7 +69,7 @@ man:
   historical_working_name: power_dock
   template_implementation:
     status: candidate_not_fixed_chassis_decision
-    default_variant: existing_man_max_warehouse_bunker_with_generator_kit
+    default_variant: existing_man_max_chassis_with_one_of_warehouse_or_bunker_or_generator_roles
     no_duplicate_fourth_major_chassis_without_playtest: true
     counts_as_building_while_packed_and_ground_mobile: true
     alternative_variants:
@@ -60,15 +77,23 @@ man:
       - support_module_option_for_existing_max_depot
     avoid_new_big_independent_unit_catalog: true
   power_dock:
+    DEC_041_power_generator_role_replaces_historical_concurrent_generator_plus_warehouse: true
+    power_generator:
+      uses_eligible_real_cargo_as_fuel: true
+      input_buffer_finite: true
+      produces_existing_stored_Energy_resource: true
+      requires_positive_work_time_and_valid_output_capacity: true
+      cannot_warehouse_and_generate_simultaneously: true
+      candidate_one_open_fuel_feeder_wing_other_folded: true
     mobility_domains: [land]
     can_fly: false
     pack_move_unpack_costed: true
-    power_dock_cannot_be_simultaneously_full_warehouse_and_large_bunker: true
+    power_dock_cannot_be_simultaneously_full_warehouse_bunker_generator_or_building_drive: true
     default_modes:
       deployed_power_warehouse:
         legal_ground_footprint_required: true
-        finite_power_generation: true
-        local_recharging: true
+        finite_power_generation: false_during_warehouse_mode_under_DEC_041
+        local_recharging: false_without_power_generator_role
         finite_small_physical_cargo_buffer: true
         warehouse_pickup_ports_open: true
         single_wing_loader_open_other_folded_if_actual_UMU: true
@@ -76,7 +101,7 @@ man:
         generator_input_recipe: TBD
       deployed_fortified_bunker:
         legal_ground_footprint_required: true
-        finite_power_generation: reduced_TBD
+        finite_power_generation: false_in_bunker_unless_new_explicit_owner_exception
         fast_recharging: restricted_or_disabled_TBD
         warehouse_pickup_ports_open: false
         garrison_capacity: small_TBD
@@ -137,6 +162,15 @@ man:
     installed_materials_require_real_mining_salvage_and_have_recovery_loss: true
     physical_embedded_materials_remain_or_explicitly_salvage: true
     salvage_is_collectible_by_all_factions_at_actual_cost: true
+  UMU_exclusive_job_extension:
+    selected_role_is_single_enum: true
+    active_generator_has_finite_fuel_intake_buffer_not_general_warehouse: true
+    fuel_to_Energy_needs_legal_recipe_and_real_debit: true
+    roof_installations_persist_but_inactive_in_other_modes: true
+    solar_roof_generation_requires_power_generator_role: true
+    one_building_requires_distinct_UMU: {small: 4, medium: 6, large: 8}
+    attached_building_drive_UMU_disables_all_other_services: true
+    base_motion_pauses_external_production_and_grid: proposed
   UMU_transforming_wings:
     MOVE_uses_two_bent_under_chassis_tracks: true
     MOVE_has_open_front_rear_real_passenger_or_cargo_cage: true

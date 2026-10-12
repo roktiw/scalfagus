@@ -1,0 +1,133 @@
+schema_version: 1
+project: scalfagus
+decision_id: DEC-044
+version: 0.1
+date: "2026-10-12"
+status: owner_three_academies_seven_named_faculties_two_proposed_options_exact_three_personal_slots
+human_specification: design/man-three-academies-nine-faculties-2026-10-12.md
+precedence:
+  supersedes_prior_seven_career_roster_in: DEC-043
+  keeps_Basic_Manus_identity_training_equipment_and_three_slots_from: DEC-043
+  first_MAN_mirror_scope_unchanged: DEC-033
+  compatible_UMU_owner_constraints: [DEC-040, DEC-041, DEC-042]
+  post_MVP0_only: true
+core:
+  academy_count: 3
+  faculty_slots_per_person: 3
+  selectable_faculty_count: 9
+  faculties_per_academy: 3
+  all_nine_courses_are_distinct: true
+  any_three_from_all_nine: proposed_default
+  one_per_academy_restriction: not_owner_requested
+  one_active_profession_at_a_time: true
+  professional_capability_requires: [individual_certificate, physically_issued_compatible_kit, active_role, valid_facility_or_work_target]
+  actor_identity_HP_and_certificates_persist_during_equipment_swap: true
+  no_new_resource_currencies: true
+academies:
+  technical:
+    user_named: true
+    display_name: Technical_Academy
+    faculties:
+      - id: construction_engineer
+        owner_named: true
+        display_name: Construction_Engineering
+        training_module: engineering_workshop
+        kit: construction_and_mechanical_repair_tools
+        capabilities: [real_building_construction, mechanical_unit_repair, power_grid_structural_service]
+      - id: machine_operator
+        owner_named: true
+        display_name: Machine_Operator
+        training_module: vehicle_simulator_and_hangar
+        kit: eligible_ground_machine_cockpit_interface
+        capabilities: [crewed_ground_mechs, heavy_machinery, permitted_UMU_control]
+        autonomous_UMU_requires_crew_by_default: false
+      - id: industrial_engineer
+        owner_named: false
+        recommended_third_faculty: true
+        display_name: Industrial_Engineering
+        alternatives: [Mining_and_Logistics, Industrial_Operations, Resource_Engineering]
+        training_module: industry_extraction_training_bay
+        kit: compatible_mining_extraction_cargo_or_process_tools
+        capabilities: [resource_extraction, physical_logistics, warehouse_handling, authorized_industrial_production]
+  military:
+    user_named: true
+    display_name: Military_Academy
+    faculties:
+      - id: infantry
+        owner_named: true
+        display_name: Infantry
+        training_module: barracks_infantry_wing
+        kit: legal_infantry_weapon_armor_and_ammunition
+        capabilities: [ground_combat, heavy_infantry_with_extra_training, specops_endorsement_with_extra_training]
+        previous_Barracks_training_restriction_preserved: true
+      - id: navy
+        owner_named: true
+        display_name: Navy
+        training_module: naval_simulator
+        kit: eligible_fleet_vessel_interface
+        capabilities: [ship_operation, fleet_navigation, naval_systems]
+        space_fleet_flavour: proposed
+      - id: aviation
+        owner_named: true
+        display_name: Aviation
+        training_module: flight_school_and_hangar
+        kit: eligible_aircraft_cockpit_interface
+        capabilities: [aircraft_operation, aerospace_flight, aviation_combat_with_legal_kit]
+  scientific:
+    user_named: true
+    display_name: Scientific_Academy
+    faculties:
+      - id: medicine
+        owner_named: true
+        display_name: Medicine
+        training_module: teaching_clinic
+        kit: medical_treatment_kit
+        capabilities: [biological_Manus_HP_healing, field_medicine, clinic_care]
+      - id: research_science
+        owner_named: true
+        display_name: Research_Science
+        training_module: academy_lab_school
+        kit: real_science_lab_research_instruments
+        capabilities: [Lab_technology_research, real_experiments]
+      - id: cybernetics
+        owner_named: false
+        recommended_third_faculty: true
+        display_name: Cybernetics
+        alternatives: [Computer_Science, Systems_Analysis, Applied_Informatics]
+        training_module: data_and_ai_lab
+        kit: computation_telemetry_and_legal_EW_tools
+        capabilities: [AI_autonomy, data_and_telemetry, secure_control_systems, legal_electronic_warfare]
+        no_free_enemy_system_hacking_or_unlimited_map_reveal: true
+legacy_mapping_from_DEC_043:
+  industrial: industrial_engineer
+  engineer: construction_engineer
+  soldier: infantry
+  scientist: research_science
+  medic: medicine
+  operator: machine_operator
+  specops: infantry_advanced_training_not_new_basic_faculty
+facility_rules:
+  each_academy_can_have_physical_modules: true
+  training_requires_positive_ticks_real_course_station_and_qualified_person: true
+  Barracks_is_infantry_course_inside_Military_Academy_design: true
+  Academy_Scientific_research_school_is_not_actual_free_Lab_work: true
+  medical_training_requires_real_teaching_clinic: proposed
+  physical_equipment_not_created_by_training: true
+  equipment_alone_grants_no_certification: true
+  bootstrap_starter_training_or_prequalified_founders: owner_option_TBD
+  DEC_033_MVP0_train_worker_rifleman_remains_unchanged: true
+balance:
+  ranks_within_faculty_do_not_consume_more_slots: true
+  specops_sniper_grenadier_are_infantry_endorsements_or_kits_not_basic_faculties: true
+  technical_operator_mechs_vs_aviation_aircraft_vs_navy_ships_distinct: true
+  broad_generalists_do_not_gain_three_simultaneous_jobs: true
+  dedicated_specialist_quality_vs_multifaculty_flexibility: balance_later
+tests: [ACADEMY-01, ACADEMY-02, ACADEMY-03, ACADEMY-04, ACADEMY-05, ACADEMY-06, ACADEMY-07, ACADEMY-08, ACADEMY-09, ACADEMY-10, ACADEMY-11, ACADEMY-12, ACADEMY-13, ACADEMY-14, ACADEMY-15, ACADEMY-16]
+open_questions:
+  - final_owner_name_for_technical_third_faculty
+  - final_owner_name_for_scientific_third_faculty
+  - distinction_academy_campus_vs_standalone_training_module_UX
+  - navy_space_water_aerospace_fleet_operational_boundary
+  - starter_basic_induction_or_pretrained_founders
+  - if_multiple_same_academy_faculties_any_three_should_remain_unrestricted
+  - physical_equipment_subtype_specific_roles_ranks_training_duration

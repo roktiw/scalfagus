@@ -49,6 +49,36 @@ Every MAN **UMU has two permanently attached physical belt wings**, shared by mu
 
 Exactly one posture operates at a time. Transformations require finite time, valid collision-free geometry, settlement of real cargo and connector states, and preservation of the same unit identity, actual materials and victory tag. These owner rules refine older "MID belt only" / "UMU Power Dock no continuous belt" candidates wherever a template is **actually** an UMU. Exact classification of tiered MID/MAX types remains open. See [DEC-040 full design](man-umu-transforming-belt-wings-2026-10-12.md) and [YAML machine contract](man-umu-transforming-belt-wings.yaml). **Post-MVP0 only.**
 
+### UMU power plant, mobile buildings and rooftop modules (DEC-041)
+
+**New owner rule:** each UMU performs **exactly one active job** at any time. A generator can accept real resources via a finite physical intake and **consume eligible fuel** (Matter/Volatiles only when legal recipes permit) to create finite stored/transmitted **Energy**. It is **not simultaneously an open-ended warehouse or powered combat turret**. Dedicated roof solar belongs to the generator role, not a free always-on income stream.
+
+**Whole buildings move using attached real UMU as wheels/crawler bogies:** **4 for small, 6 for medium, 8 for large**. Each involved UMU is reserved exclusively for one building's mobility, requiring real mounts, pathing, clear footprint, coordination and finite time. No duplicated UMU, conjured building, or simultaneous warehouse/belt/power jobs from a mounted drive.
+
+**Rooftop equipment proposals** (not a finalized roster): infantry/heavy/AA turret, solid drill, liquid pump, gas collection/compressor, solar panels, real-fuel generator, battery bank, repair manipulator, sensors and loaders. Such modules can remain **physically mounted** across role switches but only work within their dedicated active job; installing/replacing them is costed.
+
+**Name expansion pending approval:** `Universal Modular Unit` is recommended as an alternative to established `Universal Man Unit`; also consider `Universal Module Unit`, `Universal Mobility Unit`, `Universal Mechanical Unit`. Keep canonical name and serialization IDs until owner selects one.
+
+See [DEC-041 human spec](man-umu-power-building-mobility-roof-modules-2026-10-12.md) and [DEC-041 YAML](man-umu-power-building-mobility-roof-modules.yaml). All is POST-MVP0, not verified game code.
+
+### UMU fixed capacity and dedicated-specialist balance (DEC-042)
+
+**Owner-fixed UMU capacity (not a balance placeholder):** **4 actual soldiers OR real cargo**; 3×3×3 = **27 standardized inside cargo units** when mixing resource types; when cargo is entirely **one homogeneous resource type**, two physical outside side racks add 3×3 = 9 units on each side, making **27 + 9 + 9 = 45 total** (18 bonus units, roughly 66.7% more). External racks are visible and affect occupancy and belt-wing transformation; do not allow mixed cargo inside and monotype side racks outside. Troops and cargo are not simultaneous cabin profiles.
+
+**Qualitative power hierarchy:** UMU are **light, flexible multi-role generalists**; a dedicated purpose-built hauler, warehouse, fixed power plant, miner, conveyor or military defender should be **substantially more effective at that specific job**, while UMU remains exceptional at fast redeployment, emergency rebuilding and changing function. No specific specialist ratio has yet been owner-approved. The same UMU performs exactly one active job (DEC-041); do not give it multiple simultaneous production/defense/storage powers.
+
+Read [DEC-042 design](man-umu-capacity-and-specialist-balance-2026-10-12.md) and [DEC-042 YAML](man-umu-capacity-and-specialist-balance.yaml). This is **post-DEC-033 MVP0** and not implemented in Godot.
+
+### MAN three academies and nine qualification choices (DEC-044)
+
+**Latest owner concept supersedes the DEC-043 historical seven-option list below:** Basic Manus has **three credential slots** and selects from **nine faculties across three academy institutions**. **Technical**: Construction Engineering, Machine Operator, **proposed Industrial Engineering**. **Military**: Infantry, Navy, Aviation. **Scientific**: Medicine, Research Science, **proposed Cybernetics**. Owner specified the groupings and seven names and requested choices for the two missing branches; the two proposed names and exact training boundaries await owner selection. A person may train any three distinct legal faculties (including multiple in one academy under the recommended default), one active job at a time, after physically collecting the requisite kit. Infantry maintains Barracks training, Scientific research requires Academy course + legal Lab kit/work; SpecOps is an advanced Infantry qualification/gear type, not a tenth basic faculty. Current DEC-033 worker/rifleman MVP0 remains unchanged.
+
+[Current DEC-044 design](man-three-academies-nine-faculties-2026-10-12.md) / [YAML contract](man-three-academies-nine-faculties.yaml). The following dated DEC-043 seven-faculty summary is **historical only**, not authoritative for current implementation.
+
+### MAN astronaut career slot doctrine (DEC-043)
+
+MAN Command Core eventually produces **Basic Manus astronauts** rather than intrinsically specialized people. A living person has **exactly three initially empty qualification slots** and can learn any **three out of seven career families**. Owner examples: Engineer, Soldier, Scientist, SpecOps, Machine Operator (mechs) and Medic; seventh recommended basic faculty is **Industrial Technician** (Miner + Logistician). Electrical specialties belong under Engineer. A person can perform only **one active profession at once**, requiring both real completed certification and actual physically issued role tools/weapon/research kit. Barracks certification is required for combat Soldiers, Academy certification for Scientists working in a real Lab. Different weapons and later proficiency levels within an earned faculty **do not consume a new slot**. Exact seven names and school arrangements remain recommended design, not owner-fixed labels. See [DEC-043 human design](man-basic-astronaut-professions-training-equipment-2026-10-12.md) and [YAML](man-basic-astronaut-professions-training-equipment.yaml). This is **post-MVP0**; current four-template worker/Rifleman actions persist.
+
 ### ORG: biology, vein logistics and cysts
 
 1. Gatherers and large living carrier organisms haul physical finite materials into a real bidirectional living vein system. Roots/veins transfer material, nutrients, Energy and information both ways with finite throughput, meaningful cuts, a nourishment need and biological power support.

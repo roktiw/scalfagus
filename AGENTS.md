@@ -1,5 +1,6 @@
 # SCALFAGUS — Coding-Agent Contract
 
+
 ## MVP0 3×3 FOOTPRINT & 2M WORLD GEOMETRY (DRAFT, UNVERIFIED)
 
 Use the single `apps/game/scripts/mirror_geometry.gd` contract for all
@@ -14,6 +15,26 @@ terrain colliders and 3D raycast LOS are **NOT FINISHED**. Test:
 `apps/game/tests/mirror_footprint_smoke.gd` and `scripts/check.sh` locally
 using real Godot 4.7.2, not broken GitHub Actions.
 Details: `docs/MVP0-FOOTPRINT-WORLD-SCALE-2026-10-12.md`.
+
+
+## MAN 3 ACADEMIES / 9 FACULTIES — DEC-044 (POST-MVP0)
+
+**This NEWER owner design supersedes DEC-043's earlier SEVEN-faculty roster.** Read [three academies / nine faculties](design/man-three-academies-nine-faculties-2026-10-12.md) and [machine contract](design/man-three-academies-nine-faculties.yaml) **before** the dated DEC-043 professions file. Basic Manus retains **exactly THREE personal credential slots** and one active job needing trained qualification AND real issued kit. **TECHNICAL** = Construction Engineering, Machine Operator (mechs/UMU), **proposed** Industrial Engineering (mining/transport/industry); **MILITARY** = Infantry, Navy, Aviation (all owner-named; SpecOps is advanced Infantry, not a tenth faculty); **SCIENTIFIC** = Medicine, Research Science, **proposed** Cybernetics (AI/telemetry/digital control). All three academies have THREE degree choices; the two proposed third names need final owner confirmation. Barracks remains Infantry training for Military Academy, while Science research uses the existing Academy/Lab training/work separation. Do not collapse Navy/Aviation into Machine Operator or turn every credential into a free physical tool. **Do not edit DEC-033 MVP0's working man_min/man_rifleman or train_worker/train_rifleman as part of future academic design.**
+
+
+## MAN BASIC ASTRONAUT / PREVIOUS SEVEN-ROLE ROSTER — DEC-043 (HISTORICAL, SUPERSEDED BY DEC-044)
+
+Read [Basic Manus, professions, training and equipment](design/man-basic-astronaut-professions-training-equipment-2026-10-12.md) and [machine contract](design/man-basic-astronaut-professions-training-equipment.yaml). DEC-043 historically established: MAN base creates **Basic Manus astronauts** with **exactly THREE initially empty persistent vocational slots**. Its older **SEVEN-career draft below is superseded by DEC-044**, which defines THREE academies and NINE possible courses. Current recommended names: **Industrial Technician** (miners + physical logisticians), **Engineer** (including grid engineering), **Soldier**, **Scientist**, **Medic**, **Machine Operator** (mechs, heavy machinery) and **SpecOps** (recon, sabotage, EW). These names/boundaries are proposed in response to owner's request, but 3 slots and 7 choices are binding. Person must **TRAIN in appropriate facility** (Barracks for soldier, Academy for scientist/Lab) **AND physically equip a compatible tool/kit** before doing that job. Only ONE profession active; weapon/tool variants and proficiency within same faculty don't eat extra slots. Preserve stable actor ID, HP, certifications and physical kit/cargo ledgers; do not create classes by respawning persons. **Do not mutate DEC-033 MVP0 train_worker/train_rifleman, four templates or current Godot simulation** without explicit later migration. UMU's separate exclusive machine-role system remains DEC-041.
+
+
+## UMU PRECISE CAPACITY / LIGHT GENERALIST BALANCE — DEC-042 (POST-MVP0)
+
+Read [UMU cargo packing and specialist balance](design/man-umu-capacity-and-specialist-balance-2026-10-12.md) and [machine contract](design/man-umu-capacity-and-specialist-balance.yaml). Owner-set, **not candidate**, capacities are **FOUR soldiers OR cargo**, with **3×3×3 = 27** real standardized resource units in the open cage, or **27 + 3×3 left + 3×3 right = 45** cargo units when **every unit of cargo is of ONE resource type**. Passenger and cargo profiles are exclusive. The additional two visible nine-unit side racks are **real objects**, not free abstract slots; account for collisions/clearances with the same two changing conveyor-belt wings and with any building-drive mounts. This replaces "UMU packing bonus TBD" in older docs; it **does not** set other MAN warehouse capacity. UMU is **light, versatile and strong because it can change jobs**, but **DEDICATED SPECIALIST units must clearly outperform UMU in their one chosen function**. Exact specialist performance multipliers TBD in balance testing. Maintain DEC-041 exclusive one active UMU function and DEC-033 first-release exclusion.
+
+
+## UMU EXCLUSIVE POWER / MOBILE BUILDING / ROOF TOOLS — DEC-041 (POST-MVP0)
+
+Read [UMU fuel generation, building drive, naming and roof-module design](design/man-umu-power-building-mobility-roof-modules-2026-10-12.md) and [machine contract](design/man-umu-power-building-mobility-roof-modules.yaml). Owner rule: **each real UMU has EXACTLY ONE ACTIVE FUNCTION at any time**, independent of the roof equipment physically installed. In **POWER_GENERATOR**, the UMU physically consumes eligible real source materials delivered into a finite intake buffer, converts them via a timed legal recipe to the existing stored **Energy** resource, and is **not a general WAREHOUSE** at the same time; solar panels require the dedicated generation role. In **BUILDING_DRIVE** distinct real UMU act as wheels/crawlers of a whole compatible building: **4 small, 6 medium, 8 large**, locked to collective locomotion, unavailable for any independent tasks; full real-building collision/path/motion and resource conservatism apply. The fixed roof gun/drill/pump/solar/battery/repair/sensor roster and official English expansion of UMU are **owner-requested candidates, not settled**. Existing name remains `Universal Man Unit`; `Universal Modular Unit` is the working recommendation only. This supersedes older suggestions of simultaneous warehouse/generation. **Do not put any of these features in the DEC-033 first MAN mirror.**
 
 
 ## UMU MOVE CAGE AND ONE-BELT WAREHOUSE — DEC-040 REFINEMENT
