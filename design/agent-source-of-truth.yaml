@@ -17,6 +17,17 @@ future_MAN_human_piloted_AI_machine_roster_DEC_045:
   no_new_tenth_faculty: true
   first_MAN_mirror_MVP0_excluded: true
 mandatory_reuse_first_policy: DEC-034
+future_MAN_meta_machine_recombination_and_titans_DEC_046:
+  decision: DEC-046
+  human: design/man-machine-recombination-meta-mechs-titans-2026-10-12.md
+  machine: design/man-machine-recombination-meta-mechs-titans.yaml
+  source_chassis_original_IDs_must_persist: true
+  one_assembly_group_controller_no_duplicate_actors: true
+  true_UMU_assembly_member_role_exclusive_of_generator_warehouse_sentry: true
+  human_or_AI_control_allowed: DEC-045
+  building_drive_4_6_8_owner_counts_remain_distinct: DEC-041
+  exact_combiner_titan_recipe_counts: owner_TBD
+  post_first_MVP0_only: true
 future_MAN_three_academies_nine_faculties_DEC_044:
   decision: DEC-044
   human: design/man-three-academies-nine-faculties-2026-10-12.md

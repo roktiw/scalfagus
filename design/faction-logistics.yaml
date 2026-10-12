@@ -6,6 +6,11 @@ MAN_Basic_Manus_personal_qualification_slots: 3
 MAN_earlier_seven_faculties_superseded_by: DEC-044
 MAN_three_academies_nine_faculties_DEC_044: design/man-three-academies-nine-faculties.yaml
 MAN_machine_families_operators_AI_DEC_045: design/man-nine-machines-crews-and-autonomy.yaml
+man_meta_machine_combiner_Titan_decision: DEC-046
+man_meta_machine_combiner_Titan_contract: design/man-machine-recombination-meta-mechs-titans.yaml
+MAN_physically_combined_existing_machines_as_meta_actor_group: true
+MAN_source_parts_keep_ID_and_real_HPs_after_combine_decombine: true
+MAN_technofantasy_titans_post_MVP0: true
 MAN_nine_chassis_types_owner_desired: true
 MAN_final_exact_roster_pending: true
 MAN_machine_can_use_trained_human_operator_or_uncrewed_local_AI: true

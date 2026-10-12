@@ -10,6 +10,11 @@ source_contracts:
   UMU_postures_modes: DEC-040
   UMU_one_job_and_modules: DEC-041
   UMU_fixed_seats_and_cargo: DEC-042
+  meta_machine_recombination_DEC_046: design/man-machine-recombination-meta-mechs-titans.yaml
+  one_or_many_existing_chassis_transform_or_combine: true
+  meta_machine_new_assembly_not_a_tenth_base_chassis_family: true
+  composed_unit_preserves_original_human_crew_machine_and_AI_IDs: true
+  group_controller_single_authority: true
   training_3_academies_9_faculties_3_personal_slots: DEC-044
   commander_manual_auto: design/command-autonomy-modes.yaml
 release:
