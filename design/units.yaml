@@ -7,7 +7,12 @@ references:
   MAN_human_training_equipment_contract: design/man-basic-astronaut-professions-training-equipment.yaml
   MAN_professional_job_requires_certification_and_issued_tool: true
   MAN_each_Basic_Manus_has_exactly_three_slots: true
-  MAN_seven_professional_families: [industrial, engineer, soldier, scientist, medic, operator, specops]
+  MAN_historical_seven_professional_families_superseded_by_DEC_044: true
+  MAN_latest_academy_decision: DEC-044
+  MAN_latest_academy_contract: design/man-three-academies-nine-faculties.yaml
+  MAN_current_three_academies: [technical, military, scientific]
+  MAN_current_nine_faculties: [construction_engineer, machine_operator, industrial_engineer, infantry, navy, aviation, medicine, research_science, cybernetics]
+  MAN_two_proposed_faculty_names_not_owner_final: [industrial_engineer, cybernetics]
   MAN_one_active_job_per_person: true
   DEC_033_training_preserved_until_explicit_migration: true
   recovery_decision: DEC-037
