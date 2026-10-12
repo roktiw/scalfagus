@@ -1,0 +1,116 @@
+schema_version: 1
+project: scalfagus
+decision_id: DEC-045
+version: 0.1
+date: "2026-10-12"
+status: owner_approved_human_and_AI_machine_control_nine_families_desired_candidate_roster
+narrative: design/man-nine-machines-crews-and-autonomy-2026-10-12.md
+source_contracts:
+  current_release: DEC-033
+  UMU_postures_modes: DEC-040
+  UMU_one_job_and_modules: DEC-041
+  UMU_fixed_seats_and_cargo: DEC-042
+  training_3_academies_9_faculties_3_personal_slots: DEC-044
+  commander_manual_auto: design/command-autonomy-modes.yaml
+release:
+  first_release_is_four_template_MAN_mirror: true
+  candidate_nine_machines_not_required_for_MVP0: true
+owner_direction:
+  humans_can_physically_operate_machines: true
+  machines_can_run_independently_without_human_crew_using_AI: true
+  distinct_machine_count_requested: 9
+  named_examples: [mech, tank, bolide]
+  final_nine_exact_names_and_composition_approved: false
+  whether_UMU_is_counted_among_nine: proposed_include_UMU_not_owner_confirmed
+machine:
+  same_real_entity_across_controller_changes: true
+  machine_id_HP_ammo_energy_inventory_and_chassis_persist: true
+  no_ghost_human_created_when_autonomous: true
+  no_duplicate_pilot_entity_when_boarded: true
+  owner_and_fog_visibility_permissions_preserved: true
+  one_active_operational_role_per_machine: true
+  human_pilot:
+    physical_actual_person_actor_required: true
+    legal_training_and_equipment_required: true
+    max_person_faculty_slots: 3
+    eligible_qualification_for_ground_machine: machine_operator
+    infantry_alone_does_not_grant_machine_operator: true
+    extra_subtype_endorsements_without_extra_faculty: candidate
+    driver_is_distinct_from_APC_passenger: true
+    safe_nonzero_boarding_and_disembark_time: true
+    retains_person_ID_HP_equipment_and_faculties: true
+  native_autonomous_AI:
+    does_not_require_human_pilot: true
+    fitted_compatible_controller_and_power_required: true
+    deterministic_small_FSM_and_utility_AI_recommended: true
+    permitted_by_manual_semi_auto_full_auto_global_policy: true
+    cannot_spend_resources_or_attack_outside_authorized_limits: true
+    cannot_see_through_fog_or_terrain: true
+    carries_no_free_human_certifications: true
+  player_direct_future:
+    possession_of_same_machine_not_second_pawn: true
+    is_future_FPP_TPP_post_MVP0: true
+    human_crew_not_automatically_spawned: true
+    manual_control_preempts_AI_and_manager: true
+    release_preserves_state_and_prior_legal_policy: true
+  authority:
+    one_driver_steering_authority_at_any_tick: true
+    manual_direct_precedence: higher_than_AI
+    explicit_owner_order_precedence: higher_than_local_AI
+    AI_on_pilot_exit_if_allowed_fitted_and_powered: true
+    otherwise_safe_hold_stop: true
+    global_autonomy_mode_is_not_equal_to_current_vehicle_pilot_type: true
+  crew_casualty_exit_and_capture:
+    damage_and_destruction_fate: TBD
+    crew_vs_hull_damage_separate_ledgers: true
+    no_magic_capture_on_enter_enemy_cockpit: true
+candidate_roster:
+  count: 9
+  interpretation: total_families_including_UMU_proposed
+  status: proposed_eight_specialists_not_owner_ratified
+  families:
+    - {id: umu, label: UMU, specialist_job: flexible_generalist, domain: land, crew_human: qualified_operator, AI_uncrewed: true, note: four_troops_or_27_mixed_45_mono_one_job}
+    - {id: bolide, label: Bolid, specialist_job: fast_ground_recon_and_raids, domain: land, crew_human: qualified_operator, AI_uncrewed: true}
+    - {id: apc, label: Armored_Personnel_Carrier, specialist_job: protected_troop_transport, domain: land, crew_human: qualified_operator, AI_uncrewed: true}
+    - {id: tank, label: Battle_Tank, specialist_job: heavy_armored_ground_combat, domain: land, crew_human: qualified_operator, AI_uncrewed: true}
+    - {id: combat_mech, label: Combat_Mech, specialist_job: rough_terrain_and_manipulator_combat, domain: land, crew_human: qualified_operator, AI_uncrewed: true}
+    - {id: self_propelled_artillery, label: Self_Propelled_Artillery, specialist_job: long_range_siege, domain: land, crew_human: qualified_operator, AI_uncrewed: true}
+    - {id: mobile_anti_air, label: Mobile_Anti_Air, specialist_job: air_defense_and_detection, domain: land, crew_human: qualified_operator, AI_uncrewed: true}
+    - {id: heavy_drill, label: Heavy_Drill, specialist_job: high_rate_matter_extraction, domain: land, crew_human: qualified_operator, AI_uncrewed: true}
+    - {id: heavy_hauler, label: Heavy_Hauler, specialist_job: heavy_cargo_logistics, domain: land, crew_human: qualified_operator, AI_uncrewed: true}
+  air_and_naval_catalogue: future_alternative_or_expansion_candidate
+  no_unapproved_exact_speed_armor_seat_count_or_damage_stats: true
+comparative_balance:
+  UMU_value: versatility_and_redeployment
+  dedicated_specialists_must_win_benchmarked_primary_job: DEC-042
+  no_parallel_free_secondary_roles: true
+  human_benefit_skill_from_real_qualification_not_free_omniscience: true
+  AI_benefit_autonomy_no_human_manpower_but_real_controller_and_Energy: true
+tests:
+  - MACHINE-01
+  - MACHINE-02
+  - MACHINE-03
+  - MACHINE-04
+  - MACHINE-05
+  - MACHINE-06
+  - MACHINE-07
+  - MACHINE-08
+  - MACHINE-09
+  - MACHINE-10
+  - MACHINE-11
+  - MACHINE-12
+  - MACHINE-13
+  - MACHINE-14
+  - MACHINE-15
+  - MACHINE-16
+  - MACHINE-17
+  - MACHINE-18
+open_decisions:
+  - confirm_nine_includes_UMU_or_nine_specialists_plus_UMU
+  - confirm_or_revise_eight_specialist_families
+  - crew_size_drive_gun_station_and_training_endorsements
+  - crewless_AI_controller_cost_reliability_and_telemetry
+  - direct_player_possession_remote_link_or_physical_avatar_policy
+  - air_or_space_vehicle_in_initial_nine
+  - passenger_casualty_damage_and_ejection
+  - capture_EW_and_hacking_rules
