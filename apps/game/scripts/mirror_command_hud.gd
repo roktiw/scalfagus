@@ -104,7 +104,8 @@ func configure(owner_world: Node3D) -> void:
 func refresh() -> void:
     var sim = world.sim
     var seconds: int = sim.tick / 20
-    top.text = "MANUS  /  VERDANT DIVIDE     %02d:%02d     MATTER  %d     %s  ·  ×%d" % [seconds / 60, seconds % 60, sim.players[0]["matter"], "SPECTATING" if world.spectator else "HUMAN vs BOT", world.speed]
+    var mode: String = "REPLAY" if world.replay_mode else ("SPECTATING" if world.spectator else "HUMAN vs BOT")
+    top.text = "MANUS  /  VERDANT DIVIDE     %02d:%02d     MATTER  %d     %s  ·  ×%d" % [seconds / 60, seconds % 60, sim.players[0]["matter"], mode, world.speed]
     status.text = world.info if world.info != "" else "Select units · Right-click terrain, Matter or an enemy to give orders"
     if sim.finished:
         status.text = "MATCH COMPLETE  ·  %s  ·  %s" % ["DRAW" if sim.winner < 0 else "VICTORY" if sim.winner == 0 else "DEFEAT", sim.finish_reason.replace("_", " ")]
@@ -132,7 +133,7 @@ func refresh() -> void:
         stats.text = "Click / drag to select\nShift adds units\nRight-click to order"
     for action in buttons:
         var button: Button = buttons[action]
-        var allowed: bool = not world.spectator and not sim.finished and not selected.is_empty()
+        var allowed: bool = not world.spectator and not world.replay_mode and not sim.finished and not selected.is_empty()
         var cost: int = 0
         match action:
             "build_barracks":
