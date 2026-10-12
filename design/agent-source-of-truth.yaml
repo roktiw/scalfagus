@@ -6,6 +6,17 @@ language: en
 latest_owner_scope_decision: DEC-033
 latest_research_and_view_decisions: [DEC-030, DEC-031, DEC-032, DEC-034]
 mandatory_reuse_first_policy: DEC-034
+future_MAN_personal_professions_DEC_043:
+  decision: DEC-043
+  human: design/man-basic-astronaut-professions-training-equipment-2026-10-12.md
+  machine: design/man-basic-astronaut-professions-training-equipment.yaml
+  Basic_Manus_has_three_initially_empty_certification_slots: true
+  owner_requests_seven_professional_choices: true
+  proposed_ids: [industrial, engineer, soldier, scientist, medic, operator, specops]
+  Soldier_requires_Barracks_and_issued_weapon: true
+  Scientist_requires_Academy_and_issued_research_kit_to_work_at_Lab: true
+  exactly_one_active_profession: true
+  do_not_change_DEC_033_first_release: true
 future_MAN_UMU_precise_capacity_and_specialists_DEC_042:
   decision: DEC-042
   human: design/man-umu-capacity-and-specialist-balance-2026-10-12.md
