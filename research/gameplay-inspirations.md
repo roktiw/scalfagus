@@ -22,12 +22,18 @@ One shared simulation with three human interfaces: Architect (economy and autono
 | Tribes 2 (2001) | Terrain, large maps, vertical mobility, sensors, generators, deployables | 6 | FPS terrain/control |
 | Parkan: Iron Strategy (2001) | Customizable robots, equipment and direct control | 6 | Units/Avatar |
 | Warcraft I/II | Classic RTS UX, selection, orders, groups, map readability, retro art | 7 | Commander/UI |
+| Planet X16 (2023) | Compact readable retro RTS pixel art, tangible resource pickup/drop to processing, economy/defense dependencies, mouse-first orders | 7 (inspiration relevance, not sprint priority) | Pixel art / logistics / Commander UX |
 | StarCraft (1998) | Strong faction asymmetry, counters, timing and strategic clarity | 7 | Combat/balance |
 | Return to Castle Wolfenstein (2001) | Responsive FPS feedback, atmosphere, weapon readability | 5 | Avatar |
 | Quake III Arena (1999) | High-skill movement and aiming, immediate input response | 5 | Avatar |
 
+## Planet X16 — owner-added inspiration (2026-10-12)
+
+[Dedicated source-based reference and Scalfagus transfer boundaries](planet-x16-rts-inspiration-2026-10-12.md). This is David Murray / 8-Bit Productions' modern **Commander X16 RTS**, spiritually succeeding Planet X3, **not a game released in the original 1990s**. Learn from clear tiny sprites, physical mineral carrying and drop-off to a Smelter, compact building/energy feedback, accessible selection/hotkeys, and mode clarity. **Do not copy** maps, interface, characters, sprite art, buildings, code, stats, no-fog-of-war policy or fixed first-attack timing. Our Godot isometric/5-view art contract and DEC-033 MVP0 scope remain unchanged.
+
 ## Cross-game synthesis
 - **The Settlers II + Factorio:** physical logistics with inspectable throughput, buffers, and automation.
+- **Planet X16 + Warcraft I/II:** a low-pixel-count RTS can show understandable workers, pick-up/drop-off logistics, buildings, minimap and commands with minimal visual noise; Scalfagus adds original factions and 5-view isometric sprites.
 - **Dungeon Keeper + The Settlers:** autonomous units and AI-led base operations, with human intervention.
 - **Z + The Settlers II:** territory capture matters because it changes infrastructure and real supply lines.
 - **Earth 2150 + Scalfagus MIN/MID/MAX:** chassis-scale unit designer, equipment-based jobs and terrain-sensitive deployment.
