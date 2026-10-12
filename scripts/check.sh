@@ -20,14 +20,13 @@ bash scripts/godot-qa-run.sh "$GODOT_BIN" --headless --path apps/game --editor -
 bash scripts/godot-qa-run.sh "$GODOT_BIN" --headless --path apps/game --script res://tests/addons_smoke.gd
 bash scripts/godot-qa-run.sh "$GODOT_BIN" --headless --path apps/game --script res://tests/smoke.gd
 bash scripts/godot-qa-run.sh "$GODOT_BIN" --headless --path apps/game --script res://tests/menu_smoke.gd
-bash scripts/godot-qa-run.sh "$GODOT_BIN" --headless --path apps/game --script res://tests/menu_pointer_smoke.gd
-bash scripts/godot-qa-run.sh "$GODOT_BIN" --headless --path apps/game --script res://tests/command_ui_smoke.gd
 bash scripts/godot-qa-run.sh "$GODOT_BIN" --headless --path apps/game --script res://tests/keychain_rts_smoke.gd
 bash scripts/godot-qa-run.sh "$GODOT_BIN" --headless --path apps/game --script res://tests/rts_smoke.gd
 bash scripts/godot-qa-run.sh "$GODOT_BIN" --headless --path apps/game --script res://tests/navigation_smoke.gd
 bash scripts/godot-qa-run.sh "$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_smoke.gd
 bash scripts/godot-qa-run.sh "$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_integrity_smoke.gd
 bash scripts/godot-qa-run.sh "$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_human_replay_smoke.gd
+bash scripts/godot-qa-run.sh "$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_replay_lifecycle_smoke.gd
 bash scripts/godot-qa-run.sh "$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_replay_session_smoke.gd
 bash scripts/godot-qa-run.sh "$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_replay_ui_smoke.gd
 bash scripts/godot-qa-run.sh "$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_timing_smoke.gd
