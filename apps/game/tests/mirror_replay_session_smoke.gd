@@ -32,6 +32,9 @@ func _verify() -> void:
         recorded.advance()
     var original_hash: String = recorded.replay_hash()
     var original_archive: Dictionary = REPLAY.capture(recorded)
+    if original_archive["format_version"] != 2 or not original_archive.has("commands_hash"):
+        _fail("Session fixture missing Mac-verified replay format 2 integrity")
+        return
     var roundtrip: Variant = JSON.parse_string(JSON.stringify(original_archive))
     var session: MirrorReplaySession = SESSION.new()
     var start: Dictionary = session.begin(roundtrip)
@@ -77,6 +80,14 @@ func _verify() -> void:
     var blocked: MirrorReplaySession = SESSION.new()
     if bool(blocked.begin(invalid).get("ok", true)) or blocked.sim != null:
         _fail("Forged map provenance started an invalid replay")
+        return
+    # Edits to rejected commands are invisible to the state hash, but
+    # MUST be rejected by the new format-2 ordered command checksum.
+    var forged_history: Dictionary = original_archive.duplicate(true)
+    forged_history["commands"][2]["action"] = "changed-rejected-command"
+    var hash_guard: MirrorReplaySession = SESSION.new()
+    if hash_guard.begin(forged_history).get("reason", "") != "command_history_mismatch" or hash_guard.sim != null:
+        _fail("Interactive replay bypassed rejected-command history integrity")
         return
     var changed: Dictionary = original_archive.duplicate(true)
     changed["commands"][0]["argument"] = {"type": "string", "value": "nw_solid_2"}
