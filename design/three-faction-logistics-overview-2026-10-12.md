@@ -69,6 +69,10 @@ See [DEC-041 human spec](man-umu-power-building-mobility-roof-modules-2026-10-12
 
 Read [DEC-042 design](man-umu-capacity-and-specialist-balance-2026-10-12.md) and [DEC-042 YAML](man-umu-capacity-and-specialist-balance.yaml). This is **post-DEC-033 MVP0** and not implemented in Godot.
 
+### MAN astronaut career slot doctrine (DEC-043)
+
+MAN Command Core eventually produces **Basic Manus astronauts** rather than intrinsically specialized people. A living person has **exactly three initially empty qualification slots** and can learn any **three out of seven career families**. Owner examples: Engineer, Soldier, Scientist, SpecOps, Machine Operator (mechs) and Medic; seventh recommended basic faculty is **Industrial Technician** (Miner + Logistician). Electrical specialties belong under Engineer. A person can perform only **one active profession at once**, requiring both real completed certification and actual physically issued role tools/weapon/research kit. Barracks certification is required for combat Soldiers, Academy certification for Scientists working in a real Lab. Different weapons and later proficiency levels within an earned faculty **do not consume a new slot**. Exact seven names and school arrangements remain recommended design, not owner-fixed labels. See [DEC-043 human design](man-basic-astronaut-professions-training-equipment-2026-10-12.md) and [YAML](man-basic-astronaut-professions-training-equipment.yaml). This is **post-MVP0**; current four-template worker/Rifleman actions persist.
+
 ### ORG: biology, vein logistics and cysts
 
 1. Gatherers and large living carrier organisms haul physical finite materials into a real bidirectional living vein system. Roots/veins transfer material, nutrients, Energy and information both ways with finite throughput, meaningful cuts, a nourishment need and biological power support.
