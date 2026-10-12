@@ -111,5 +111,27 @@ func _verify() -> void:
         _fail("Altered human target passed verification")
         return
 
+    # Restart the exact, validated in-memory revision after finishing.
+    var replay_again: Dictionary = session.restart()
+    if not bool(replay_again.get("ok", false)) or session.sim.tick != 0 or session.finished:
+        _fail("Finished replay could not safely restart at its initial tick")
+        return
+    if not bool(session.step().get("ok", false)) or session.sim.tick != 1:
+        _fail("Restarted session did not advance exactly one tick")
+        return
+    # A later malformed load must fail closed and leave no previous match
+    # behind that could be accidentally resumed from GUI state.
+    var malformed_reload: Dictionary = original_archive.duplicate(true)
+    malformed_reload["map_hash"] = ["not-a-string"]
+    if session.begin(malformed_reload).get("reason", "") != "invalid_map_metadata":
+        _fail("Reloading malformed metadata did not produce typed validation error")
+        return
+    if session.sim != null or not session.commands.is_empty() or not session.original_document.is_empty():
+        _fail("Failed replay load kept the previous authoritative simulation")
+        return
+    if session.restart().get("reason", "") != "no_valid_archive":
+        _fail("Failed reload allowed restart of an unrelated archived match")
+        return
+
     print("SCALFAGUS_REPLAY_SESSION_PASS")
     quit(0)
