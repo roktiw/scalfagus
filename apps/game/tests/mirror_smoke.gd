@@ -58,7 +58,7 @@ func _run() -> void:
         _fail("Physical Matter gathering/delivery or conservation failed")
         return
 
-    if not match_state.issue_command(0, "build_barracks", west_worker, Vector2i(13, 36)):
+    if not match_state.issue_command(0, "build_barracks", west_worker, Vector2i(13, 12)):
         _fail("Funded worker cannot build Barracks")
         return
     for i in range(1500):

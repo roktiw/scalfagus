@@ -1,0 +1,14 @@
+✔ eight sectors map to five source rows and three mirrors (0.670084ms)
+✔ angle wrap works in both directions (0.105209ms)
+✔ near-sector boundary is stable unless threshold is actually crossed (0.054791ms)
+✔ orthographic camera shares bearing regardless of actor position (0.070083ms)
+✔ perspective camera bearing differs for actors on opposite sides of camera (0.354208ms)
+✔ zero horizontal camera-to-actor vector does not yield NaN (0.039958ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 66.073333
