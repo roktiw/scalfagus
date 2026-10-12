@@ -14,7 +14,7 @@ func _fail(message: String) -> void:
     quit(1)
 
 func _verify() -> void:
-    var name: String = "qa-replay-ui-42"
+    var name: String = "qa-replay-ui-%d-%d" % [OS.get_process_id(), Time.get_ticks_usec()]
     ProjectSettings.set_setting("scalfagus/replay_basename", name)
     var path: String = "user://replays/" + name + ".json"
     if FileAccess.file_exists(path):
@@ -50,6 +50,9 @@ func _verify() -> void:
     var saved: Dictionary = REPLAY.load_user(name)
     if saved.is_empty() or saved["final_hash"] != expected_hash:
         _fail("Saved match hash differs from paused simulation")
+        return
+    if int(saved.get("format_version", -1)) != 2 or str(saved.get("commands_hash", "")) != REPLAY.command_digest(saved["commands"]):
+        _fail("Native pause Save Replay did not use verified archive format 2")
         return
     game.queue_free()
     await process_frame
@@ -107,6 +110,30 @@ func _verify() -> void:
     replay_game.queue_free()
     await process_frame
 
+    # A corrupted local replay must leave the currently displayed menu
+    # untouched, rather than silently starting a fresh Human-vs-Bot match.
+    var corrupted: Dictionary = saved.duplicate(true)
+    corrupted["commands"][0]["action"] = "altered-rejected-command"
+    var forged: FileAccess = FileAccess.open(path, FileAccess.WRITE)
+    if forged == null:
+        _fail("Could not write isolated test-only corrupted replay fixture")
+        return
+    forged.store_string(JSON.stringify(corrupted) + "\n")
+    forged.close()
+    var faulty_menu = MENU.instantiate()
+    root.add_child(faulty_menu)
+    current_scene = faulty_menu
+    await process_frame
+    faulty_menu.replay_button.pressed.emit()
+    await process_frame
+    if current_scene != faulty_menu:
+        _fail("Corrupted format-2 replay changed the current scene")
+        return
+    if not faulty_menu.replay_error.visible or not str(faulty_menu.replay_error.text).contains("command_history_mismatch"):
+        _fail("Corrupted replay did not show command hash mismatch to player")
+        return
+    faulty_menu.queue_free()
+    await process_frame
     DirAccess.remove_absolute(ProjectSettings.globalize_path(path))
     ProjectSettings.set_setting("scalfagus/replay_basename", "last-human-match")
     print("SCALFAGUS_REPLAY_UI_PASS")
