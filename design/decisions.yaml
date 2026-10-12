@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 3.7
+version: 3.8
 decisions:
   - id: DEC-001
     status: approved
@@ -1006,6 +1006,39 @@ decisions:
       four-template mirror MVP0.
     specification: design/man-machine-recombination-meta-mechs-titans-2026-10-12.md
     data_specification: design/man-machine-recombination-meta-mechs-titans.yaml
+
+  - id: DEC-047
+    status: owner_direction_faction_composition_fusion_absorption_resonance_mechanisms_names_details_open
+    topic: MAN_mechanical_recombination_ORG_permanent_biological_fusion_and_consumption_ETH_energetic_or_meditative_unification
+    resolution: >-
+      The user further distinguishes the three factions' way of
+      combining existing units. MAN preserves physical machine
+      identity when multiple compatible machines form detachable
+      meta-machines under DEC-046, with legal surviving parts
+      separable again. ORG creates new biological units by the
+      PERMANENT joining of two or more real existing organisms,
+      or by actual devouring/absorbing organisms. Its mutation
+      and transformation is ONE-WAY; consumed precursor units
+      cannot be recovered as independent healthy actors by any
+      free DECOMBINE action. ETH is conceptually BETWEEN MAN
+      and ORG: its beings can energetically merge into a more
+      complex being, OR meditate to form a new connected collective
+      system, not simply mount/dismount physical pieces.
+      Deep ETH energetic merger source identity and exact
+      reversibility are not yet approved; established ETH
+      meditative reconfiguration is costly, not free. Real
+      component identities, resources, Energy, shields, cargo
+      and growth/metabolic/network upkeep remain conserved and
+      lawful according to faction-specific source semantics.
+      Podcast-invented working names (Chor, Synteza,
+      Ascendent, Konstelacja, Lewiatan, Lono Mutacji,
+      Goliat) are proposals, NOT approved units or recipes.
+      Preserve three distinct ontologies rather than a single
+      implementation of merge-and-undo. This is future
+      gameplay beyond DEC-033 first MAN mirror MVP0.
+    specification: design/three-faction-assembly-fusion-resonance-2026-10-12.md
+    data_specification: design/three-faction-assembly-fusion-resonance.yaml
+    original_discussion: inbox/2026-10-12-man-org-eth-fusion-transformation-discussion.md
 
 migration_required:
   - design/economy.yaml

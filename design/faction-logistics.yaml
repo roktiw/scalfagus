@@ -1,6 +1,13 @@
 schema_version: 1
 project: scalfagus
 human_canonical_logistics_summary: design/three-faction-logistics-overview-2026-10-12.md
+cross_faction_fusion_recombination_resonance_DEC_047: design/three-faction-assembly-fusion-resonance.yaml
+cross_faction_fusion_conversation: inbox/2026-10-12-man-org-eth-fusion-transformation-discussion.md
+MAN_mechanical_composition_real_components_CAN_unlink: true
+ORG_permanent_multi_body_fusion_or_consumptive_absorption: true
+ORG_mutation_one_way: true
+ETH_energetic_merged_new_being_or_meditative_joint_system: true
+ETH_exact_deep_fusion_reversibility: TBD
 MAN_human_profession_equipment_contract_DEC_043: design/man-basic-astronaut-professions-training-equipment.yaml
 MAN_Basic_Manus_personal_qualification_slots: 3
 MAN_earlier_seven_faculties_superseded_by: DEC-044
