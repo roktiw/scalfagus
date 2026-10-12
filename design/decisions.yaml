@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 3.4
+version: 3.5
 decisions:
   - id: DEC-001
     status: approved
@@ -925,6 +925,24 @@ decisions:
       post-MVP migration with real Basic Manus population ledgers.
     specification: design/man-basic-astronaut-professions-training-equipment-2026-10-12.md
     data_specification: design/man-basic-astronaut-professions-training-equipment.yaml
+
+
+  - id: DEC-044
+    status: owner_three_academies_two_additional_faculty_names_pending
+    topic: MAN_three_academies_nine_faculties
+    resolution: >-
+      Three academy groups replace the earlier seven-faculty draft:
+      Technical with Construction Engineering, Machine Operator and
+      a proposed Industrial Engineering track; Military with Infantry,
+      Navy and Aviation; Scientific with Medicine, Research Science
+      and a proposed Cybernetics track. Every Basic Manus retains three
+      persistent certificate slots, one active trained and equipped
+      profession and real training institutions. The two proposed
+      final track names remain for owner confirmation. This supersedes
+      the DEC-043 seven-name roster but preserves its three-slot rules
+      and the DEC-033 first-release boundary.
+    specification: design/man-three-academies-nine-faculties-2026-10-12.md
+    data_specification: design/man-three-academies-nine-faculties.yaml
 
 
 migration_required:
