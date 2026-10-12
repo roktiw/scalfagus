@@ -1,6 +1,12 @@
 schema_version: 1
 project: scalfagus
 human_canonical_logistics_summary: design/three-faction-logistics-overview-2026-10-12.md
+MAN_human_profession_equipment_contract_DEC_043: design/man-basic-astronaut-professions-training-equipment.yaml
+MAN_Basic_Manus_personal_qualification_slots: 3
+MAN_seven_faculties_owner_requested: [industrial, engineer, soldier, scientist, medic, operator, specops]
+MAN_training_and_physical_kit_required: true
+MAN_one_active_profession_per_person: true
+MAN_mvp0_direct_worker_rifleman_unchanged: true
 latest_man_umu_wings_decision: DEC-040
 man_umu_generator_building_drive_roof_extension_decision: DEC-041
 man_umu_capacity_and_specialist_balance_DEC_042: design/man-umu-capacity-and-specialist-balance.yaml
