@@ -25,6 +25,7 @@ fi
 "$GODOT_BIN" --headless --path apps/game --script res://tests/navigation_smoke.gd
 "$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_smoke.gd
 "$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_integrity_smoke.gd
+"$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_gateway_smoke.gd
 "$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_timing_smoke.gd
 "$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_navigation_port_smoke.gd
 "$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_footprint_smoke.gd
