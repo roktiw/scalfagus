@@ -11,6 +11,11 @@ man_power_dock_config: design/man-power-dock-and-org-vessel-mechanics.yaml
 man_umu_wing_transform_contract: design/man-umu-transforming-belt-wings.yaml
 man_power_building_roof_contract_DEC_041: design/man-umu-power-building-mobility-roof-modules.yaml
 man_umu_capacity_and_specialists_DEC_042: design/man-umu-capacity-and-specialist-balance.yaml
+MAN_human_AI_machine_roster_DEC_045: design/man-nine-machines-crews-and-autonomy.yaml
+MAN_nine_distinct_machine_families_target: owner_direction
+MAN_ground_machines_qualified_human_or_uncrewed_AI: true
+MAN_specialists_outperform_multirole_UMU_in_own_job: true
+MAN_machine_roster_composition_includes_UMU: proposed_not_approved
 man_umu_troop_capacity: 4
 man_umu_mixed_standard_cargo_capacity: 27
 man_umu_mono_standard_cargo_capacity: 45
