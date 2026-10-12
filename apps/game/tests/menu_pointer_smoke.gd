@@ -31,18 +31,18 @@ func _click(button: Button) -> void:
     root.push_input(up, true)
 
 func _verify() -> void:
-    var menu := MENU.instantiate()
+    var menu: Control = MENU.instantiate() as Control
     root.add_child(menu)
     current_scene = menu
     await process_frame
     await process_frame
 
     var background: ColorRect = menu.get_child(0) as ColorRect
-    var play: Button = menu.get("play_button")
-    var options: Button = menu.get("options_button")
-    var back: Button = menu.get("back_button")
-    var menu_controls: VBoxContainer = menu.get("menu_panel")
-    var option_controls: VBoxContainer = menu.get("options_panel")
+    var play: Button = menu.get("play_button") as Button
+    var options: Button = menu.get("options_button") as Button
+    var back: Button = menu.get("back_button") as Button
+    var menu_controls: VBoxContainer = menu.get("menu_panel") as VBoxContainer
+    var option_controls: VBoxContainer = menu.get("options_panel") as VBoxContainer
     if background == null or play == null or options == null or back == null:
         _fail("Missing viewport background or native clickable menu buttons")
         return
