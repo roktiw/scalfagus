@@ -1,0 +1,246 @@
+=== SCALFAGUS QA: addon-inventory ===
+SCALFAGUS_ADDONS_CHECK_PASS (no network)
+SCALFAGUS_QA_GATE_PASS: addon-inventory (exit=0)
+=== SCALFAGUS QA: godot-smoke ===
+SCALFAGUS_ADDONS_CHECK_PASS (no network)
+SCALFAGUS_ADDON_SETUP_OK
+VERDANT_SOURCE_SHA_PASS
+VERDANT_MAP_COMPILED_PASS (source YAML matches committed JSON)
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+[   0% ] first_scan_filesystem | Started Project initialization (5 steps)
+[   0% ] first_scan_filesystem | Scanning file structure...
+[  16% ] first_scan_filesystem | Loading global class names...
+[  33% ] first_scan_filesystem | Verifying GDExtensions...
+[  50% ] first_scan_filesystem | Creating autoload scripts...
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+[  66% ] first_scan_filesystem | Initializing plugins...
+[  83% ] first_scan_filesystem | Starting file scan...
+[ DONE ] first_scan_filesystem
+
+[   0% ] update_scripts_classes | Started Registering global classes... (3 steps)
+[   0% ] update_scripts_classes | MirrorReplayArchive
+[  25% ] update_scripts_classes | 
+[  50% ] update_scripts_classes | 
+[ DONE ] update_scripts_classes
+
+[   0% ] loading_editor_layout | Started Loading editor (5 steps)
+[   0% ] loading_editor_layout | Loading editor layout...
+[  16% ] loading_editor_layout | Loading docks...
+[ DONE ] loading_editor_layout
+
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+SCALFAGUS_ADDONS_SMOKE_PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+SCALFAGUS_SMOKE_PASS: one world, three modes, 5->8 mapping, same hero, PNG import
+WARNING: 4 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 4 RID allocations of type 'N17RendererSceneCull8InstanceE' were leaked at exit.
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+WARNING: res://addons/keychain/ShortcutEdit.tscn:3 - ext_resource, invalid UID: uid://dpciapd2x2va6 - using text path instead: res://addons/keychain/ShortcutEdit.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+     GDScript backtrace (most recent call first):
+         [0] _open_options (res://scripts/menu.gd:102)
+         [1] _verify (res://tests/menu_smoke.gd:19)
+WARNING: res://addons/keychain/ShortcutSelectorDialog.tscn:3 - ext_resource, invalid UID: uid://ji2g5biygmmd - using text path instead: res://addons/keychain/ShortcutSelectorDialog.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+     GDScript backtrace (most recent call first):
+         [0] _open_options (res://scripts/menu.gd:102)
+         [1] _verify (res://tests/menu_smoke.gd:19)
+SCALFAGUS_MENU_PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+WARNING: res://addons/keychain/ShortcutEdit.tscn:3 - ext_resource, invalid UID: uid://dpciapd2x2va6 - using text path instead: res://addons/keychain/ShortcutEdit.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+     GDScript backtrace (most recent call first):
+         [0] _verify (res://tests/keychain_rts_smoke.gd:54)
+WARNING: res://addons/keychain/ShortcutSelectorDialog.tscn:3 - ext_resource, invalid UID: uid://ji2g5biygmmd - using text path instead: res://addons/keychain/ShortcutSelectorDialog.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+     GDScript backtrace (most recent call first):
+         [0] _verify (res://tests/keychain_rts_smoke.gd:54)
+SCALFAGUS_KEYCHAIN_RTS_PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+SCALFAGUS_RTS_SMOKE_PASS: camera focus, two-faction fixture, commands, selection, shared actor
+WARNING: 4 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 4 RID allocations of type 'N17RendererSceneCull8InstanceE' were leaked at exit.
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+SCALFAGUS_NAV_SMOKE_PASS: A*, 3D obstacles, waypoints, minimap, actor identity
+WARNING: 4 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 4 RID allocations of type 'N17RendererSceneCull8InstanceE' were leaked at exit.
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+SCALFAGUS_MIRROR_SMOKE_PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+SCALFAGUS_MIRROR_INTEGRITY_PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+SCALFAGUS_HUMAN_REPLAY_PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+SCALFAGUS_REPLAY_CHECKPOINT production-and-build-queued tick=2584 commands=5 hash=99533e7e497ea05fcfead7520cde8ba3b37e10b78789a3b72dbbbaa1d1002ba9
+SCALFAGUS_REPLAY_CHECKPOINT rifleman-queued tick=3549 commands=7 hash=a309a783ca7286219c6660fdbc77efa499e7bc3a572e07eb750c6f2f4848a4f8
+SCALFAGUS_REPLAY_CHECKPOINT accepted-attack tick=4253 commands=9 hash=30499017c8a74743abb85aca418c4e32e11a33522f0f5c008649dca655afbbab
+SCALFAGUS_REPLAY_VALIDATION_PASS: 15 malformed schema cases
+SCALFAGUS_REPLAY_CHECKPOINT terminal-with-rejected-command tick=6833 commands=10 hash=7a997e7b63a1abd60687c5efeba3eff551ddf0cf091e7e8b38a9f743d383a8d4
+SCALFAGUS_REPLAY_CHECKPOINT setup-clears-history tick=0 commands=0 hash=67f9c3d8d95a8b0e4dcbf76ffa947868548a00b4358c378927a7a838e8f483ed
+SCALFAGUS_REPLAY_LIFECYCLE_PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+SCALFAGUS_MIRROR_TIMING_PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+SCALFAGUS_MIRROR_ASTAR_PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+SCALFAGUS_MIRROR_FOOTPRINT_PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+SCALFAGUS_VERDANT_MAP_PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+SCALFAGUS_MIRROR_RESULT {"bot_attack_thresholds":[2,3],"controllers":["bot","bot"],"finished":true,"hash":"5bc6e08eed48b37188f2eaf5a03d1996f4afde5ddd57b0d7ce3c214526a1486b","lost_cargo_legacy":27,"lost_matter":27,"map_hash":"6b9054d78ae619f258cf1ffe8ce1b69e33c3d493b92dfdfc03e9f37ae7534083","map_id":"verdant_divide","map_source_sha":"036c23dbc582af6c63e2c2e901d3a74e3286e5e8","matter_conserved":true,"max_ticks":24000,"reason":"buildings_eliminated","rejected_commands":0,"resources_mined":855,"resources_spent":800,"rules":"mvp0-man-mirror-v5-3x3-world2m","seed":42,"tick_hz":20,"ticks":10111,"winner":1}
+SCALFAGUS_MIRROR_BATCH_PASS {"draws":0,"matches":1,"matches_per_second":2.47524752475248,"seconds":0.404,"wins":[0,1]}
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+SCALFAGUS_MIRROR_VISUAL_PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+SCALFAGUS_MIRROR_PHYSICS_LOS_PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+SCALFAGUS_MIRROR_GROUP_PASS
+ASSET_MANIFEST_PASS 7 transparent, region-aligned PNG atlases (prototype only)
+OK 16x16: atlas 48x48, 9 icons, 1398 opaque pixels
+OK 32x32: atlas 96x96, 9 icons, 5803 opaque pixels
+OK 64x64: atlas 192x192, 9 icons, 23707 opaque pixels
+OK 27 RGBA icons and 3 atlases, all atlas rectangles match standalone source bytes
+SCALFAGUS_GODOT_CHECK_PASS
+SCALFAGUS_QA_GATE_PASS: godot-smoke (exit=0)
+=== SCALFAGUS QA: gut ===
+SCALFAGUS_ADDONS_CHECK_PASS (no network)
+SCALFAGUS_ADDON_SETUP_OK
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+[   0% ] first_scan_filesystem | Started Project initialization (5 steps)
+[   0% ] first_scan_filesystem | Scanning file structure...
+[  16% ] first_scan_filesystem | Loading global class names...
+[  33% ] first_scan_filesystem | Verifying GDExtensions...
+[  50% ] first_scan_filesystem | Creating autoload scripts...
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+[  66% ] first_scan_filesystem | Initializing plugins...
+[  83% ] first_scan_filesystem | Starting file scan...
+[ DONE ] first_scan_filesystem
+
+[   0% ] loading_editor_layout | Started Loading editor (5 steps)
+[   0% ] loading_editor_layout | Loading editor layout...
+[  16% ] loading_editor_layout | Loading docks...
+[ DONE ] loading_editor_layout
+
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+---  GUT  ---
+[INFO]:  using [<LOCAL_USER_HOME>/Library/Application Support/Godot/app_userdata/Scalfagus] for temporary output.
+Godot version:  4.7.2
+GUT version:  9.7.1
+
+
+res://tests/gut/test_mirror_authority.gd
+* test_initial_MIRROR_state_is_repeatable
+* test_enemy_unit_orders_are_rejected
+2/2 passed.
+
+
+res://tests/gut/test_rts_input_map.gd
+* test_all_RTS_actions_have_project_defaults
+* test_camera_and_training_do_not_share_default_physical_key
+2/2 passed.
+
+
+
+
+==============================================
+= Run Summary
+==============================================
+
+Totals
+------
+Scripts               2
+Tests                 4
+Passing Tests         4
+Asserts              32
+Time              0.454s
+
+
+---- All tests passed! ----
+
+SCALFAGUS_GUT_CHECK_PASS
+SCALFAGUS_QA_GATE_PASS: gut (exit=0)
+=== SCALFAGUS QA: map ===
+VERDANT_MAP_COMPILED_PASS (source YAML matches committed JSON)
+SCALFAGUS_QA_GATE_PASS: map (exit=0)
+=== SCALFAGUS QA: five-view ===
+✔ eight sectors map to five source rows and three mirrors (0.594792ms)
+✔ angle wrap works in both directions (0.098875ms)
+✔ near-sector boundary is stable unless threshold is actually crossed (0.051916ms)
+✔ orthographic camera shares bearing regardless of actor position (0.066042ms)
+✔ perspective camera bearing differs for actors on opposite sides of camera (0.336209ms)
+✔ zero horizontal camera-to-actor vector does not yield NaN (0.041667ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 58.2635
+SCALFAGUS_QA_GATE_PASS: five-view (exit=0)
+QA report: docs/qa/reports/2026-10-12-130442-0f7dcaf15.md
+QA logs: logs/local-qa/2026-10-12-130442-0f7dcaf15
