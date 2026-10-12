@@ -1,0 +1,160 @@
+ADDON_INSTALLED godot_state_charts 76d226a3efac66a72aea825382b320c94808f409
+SCALFAGUS_ADDONS_CHECK_PASS (no network)
+SCALFAGUS_ADDON_SETUP_OK
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+[   0% ] [90m[1mfirst_scan_filesystem[22m | Started Project initialization (5 steps)[39m[0m
+[   0% ] [90m[1mfirst_scan_filesystem[22m | Scanning file structure...[39m[0m
+[  16% ] [90m[1mfirst_scan_filesystem[22m | Loading global class names...[39m[0m
+[  33% ] [90m[1mfirst_scan_filesystem[22m | Verifying GDExtensions...[39m[0m
+[  50% ] [90m[1mfirst_scan_filesystem[22m | Creating autoload scripts...[39m[0m
+[  66% ] [90m[1mfirst_scan_filesystem[22m | Initializing plugins...[39m[0m
+[  83% ] [90m[1mfirst_scan_filesystem[22m | Starting file scan...[39m[0m
+[92m[ DONE ][39m [1mfirst_scan_filesystem[22m
+[0m
+[   0% ] [90m[1mupdate_scripts_classes[22m | Started Registering global classes... (36 steps)[39m[0m
+[   0% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[   2% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[   5% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[   8% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  10% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  13% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  16% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  18% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  21% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  24% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  27% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  29% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  32% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  35% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  37% ] [90m[1mupdate_scripts_classes[22m | AllOfGuard[39m[0m
+[  40% ] [90m[1mupdate_scripts_classes[22m | AnimationPlayerState[39m[0m
+[  43% ] [90m[1mupdate_scripts_classes[22m | AnimationTreeState[39m[0m
+[  45% ] [90m[1mupdate_scripts_classes[22m | AnyOfGuard[39m[0m
+[  48% ] [90m[1mupdate_scripts_classes[22m | AtomicState[39m[0m
+[  51% ] [90m[1mupdate_scripts_classes[22m | CompoundState[39m[0m
+[  54% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  56% ] [90m[1mupdate_scripts_classes[22m | ExpressionGuard[39m[0m
+[  59% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  62% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  64% ] [90m[1mupdate_scripts_classes[22m | Guard[39m[0m
+[  67% ] [90m[1mupdate_scripts_classes[22m | HistoryState[39m[0m
+[  70% ] [90m[1mupdate_scripts_classes[22m | NotGuard[39m[0m
+[  72% ] [90m[1mupdate_scripts_classes[22m | ParallelState[39m[0m
+[  75% ] [90m[1mupdate_scripts_classes[22m | SavedState[39m[0m
+[  78% ] [90m[1mupdate_scripts_classes[22m | SerializedStateChart[39m[0m
+[  81% ] [90m[1mupdate_scripts_classes[22m | SerializedStateChartState[39m[0m
+[  83% ] [90m[1mupdate_scripts_classes[22m | StateChart[39m[0m
+[  86% ] [90m[1mupdate_scripts_classes[22m | StateChartSerializer[39m[0m
+[  89% ] [90m[1mupdate_scripts_classes[22m | StateChartState[39m[0m
+[  91% ] [90m[1mupdate_scripts_classes[22m | StateIsActiveGuard[39m[0m
+[  94% ] [90m[1mupdate_scripts_classes[22m | Transition[39m[0m
+[92m[ DONE ][39m [1mupdate_scripts_classes[22m
+[0m
+[   0% ] [90m[1m_update_scan_actions[22m | Started Scanning actions... (16 steps)[39m[0m
+[   0% ] [90m[1m_update_scan_actions[22m | state_chart_debugger.svg[39m[0m
+[   5% ] [90m[1m_update_scan_actions[22m | all_of_guard.svg[39m[0m
+[  11% ] [90m[1m_update_scan_actions[22m | animation_player_state.svg[39m[0m
+[  17% ] [90m[1m_update_scan_actions[22m | animation_tree_state.svg[39m[0m
+[  23% ] [90m[1m_update_scan_actions[22m | any_of_guard.svg[39m[0m
+[  29% ] [90m[1m_update_scan_actions[22m | atomic_state.svg[39m[0m
+[  35% ] [90m[1m_update_scan_actions[22m | compound_state.svg[39m[0m
+[  41% ] [90m[1m_update_scan_actions[22m | expression_guard.svg[39m[0m
+[  47% ] [90m[1m_update_scan_actions[22m | guard.svg[39m[0m
+[  52% ] [90m[1m_update_scan_actions[22m | history_state.svg[39m[0m
+[  58% ] [90m[1m_update_scan_actions[22m | not_guard.svg[39m[0m
+[  64% ] [90m[1m_update_scan_actions[22m | parallel_state.svg[39m[0m
+[  70% ] [90m[1m_update_scan_actions[22m | state_chart.svg[39m[0m
+[  76% ] [90m[1m_update_scan_actions[22m | state_is_active_guard.svg[39m[0m
+[  82% ] [90m[1m_update_scan_actions[22m | toggle_sidebar.svg[39m[0m
+[  88% ] [90m[1m_update_scan_actions[22m | transition.svg[39m[0m
+[92m[ DONE ][39m [1m_update_scan_actions[22m
+[0m
+[   0% ] [90m[1mreimport[22m | Started (Re)Importing Assets (16 steps)[39m[0m
+[   0% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[   5% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[  11% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[  17% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[  23% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[  29% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[  35% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[  41% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[  47% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[  52% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[  58% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[  64% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[  70% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[  76% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[  82% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[  88% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[   0% ] [90m[1mreimport[22m | Executing pre-reimport operations...[39m[0m
+[   0% ] [90m[1mreimport[22m | state_chart_debugger.svg[39m[0m
+[   5% ] [90m[1mreimport[22m | all_of_guard.svg[39m[0m
+[  11% ] [90m[1mreimport[22m | animation_player_state.svg[39m[0m
+[  17% ] [90m[1mreimport[22m | animation_tree_state.svg[39m[0m
+[  23% ] [90m[1mreimport[22m | any_of_guard.svg[39m[0m
+[  29% ] [90m[1mreimport[22m | atomic_state.svg[39m[0m
+[  35% ] [90m[1mreimport[22m | compound_state.svg[39m[0m
+[  41% ] [90m[1mreimport[22m | expression_guard.svg[39m[0m
+[  47% ] [90m[1mreimport[22m | guard.svg[39m[0m
+[  52% ] [90m[1mreimport[22m | history_state.svg[39m[0m
+[  58% ] [90m[1mreimport[22m | not_guard.svg[39m[0m
+[  64% ] [90m[1mreimport[22m | parallel_state.svg[39m[0m
+[  70% ] [90m[1mreimport[22m | state_chart.svg[39m[0m
+[  76% ] [90m[1mreimport[22m | state_is_active_guard.svg[39m[0m
+[  82% ] [90m[1mreimport[22m | toggle_sidebar.svg[39m[0m
+[  88% ] [90m[1mreimport[22m | transition.svg[39m[0m
+[  94% ] [90m[1mreimport[22m | Finalizing Asset Import...[39m[0m
+[92m[ DONE ][39m [1mreimport[22m
+[0m
+[   0% ] [90m[1mreimport[22m | Started (Re)Importing Assets (16 steps)[39m[0m
+[   0% ] [90m[1mreimport[22m | Executing post-reimport operations...[39m[0m
+[92m[ DONE ][39m [1mreimport[22m
+[0m
+[   0% ] [90m[1mloading_editor_layout[22m | Started Loading editor (5 steps)[39m[0m
+[   0% ] [90m[1mloading_editor_layout[22m | Loading editor layout...[39m[0m
+[  16% ] [90m[1mloading_editor_layout[22m | Loading docks...[39m[0m
+[  33% ] [90m[1mloading_editor_layout[22m | Reopening scenes...[39m[0m
+[  50% ] [90m[1mloading_editor_layout[22m | Loading central editor layout...[39m[0m
+[  66% ] [90m[1mloading_editor_layout[22m | Loading plugin window layout...[39m[0m
+[  83% ] [90m[1mloading_editor_layout[22m | Editor layout ready.[39m[0m
+[92m[ DONE ][39m [1mloading_editor_layout[22m
+[0m
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+---  GUT  ---
+[1m[INFO]:  [0musing [/Users/wiktorswiatkowski/Library/Application Support/Godot/app_userdata/Scalfagus] for temporary output.
+Godot version:  4.7.2
+GUT version:  9.7.1
+[4m
+
+res://tests/gut/test_mirror_authority.gd
+[0m* test_initial_MIRROR_state_is_repeatable
+* test_enemy_unit_orders_are_rejected
+[1m2/2 passed.
+[0m[4m
+
+res://tests/gut/test_rts_input_map.gd
+[0m* test_all_RTS_actions_have_project_defaults
+* test_camera_and_training_do_not_share_default_physical_key
+[1m2/2 passed.
+[0m
+
+
+
+[33m==============================================
+[0m[33m= Run Summary
+[0m[33m==============================================
+[0m
+Totals
+------
+Scripts               2
+Tests                 4
+Passing Tests         4
+Asserts              32
+Time              0.451s
+
+
+[32m---- All tests passed! ----
+[0m
+SCALFAGUS_GUT_CHECK_PASS

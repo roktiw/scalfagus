@@ -60,13 +60,13 @@ func _verify() -> void:
     # previously cached routes when structures change.
     var sim = MATCH.new()
     sim.setup(42, ["human", "human"])
-    var origin: Vector2i = Vector2i(37, 25)
-    var end: Vector2i = Vector2i(47, 25)
+    var origin: Vector2i = Vector2i(37, 28)
+    var end: Vector2i = Vector2i(53, 28)
     var direct: Array[Vector2i] = sim._find_route(origin, end, false)
     if direct.is_empty() or direct[0] != origin + Vector2i(1, 0):
         _fail("Initial MAN match route was not direct")
         return
-    var obstacle_cell: Vector2i = Vector2i(42, 25)
+    var obstacle_cell: Vector2i = Vector2i(45, 28)
     var revision_before: int = sim.navigation.revision
     var building_id: int = sim._spawn("barracks", 1, obstacle_cell)
     if sim.navigation.revision <= revision_before:
@@ -78,7 +78,7 @@ func _verify() -> void:
     for step in detour:
         if footprint.has(step):
             crosses_footprint = true
-    if detour.is_empty() or crosses_foot:
+    if detour.is_empty() or crosses_footprint:
         _fail("An active building is not excluded from routes")
         return
     sim._damage(building_id, 5000, 0)
