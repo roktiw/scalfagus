@@ -108,6 +108,10 @@ func _verify() -> void:
     if str(hq["train_kind"]) != "worker" or int(sim.players[0]["matter"]) != 65:
         _fail("T did not route legal Worker production through MatchState")
         return
+    var host_gateway = game.get("command_gateway")
+    if host_gateway == null or host_gateway.accepted_log.size() != 1:
+        _fail("Keychain action bypassed peer-bound command gateway")
+        return
 
     # Swap the mapped key at runtime. InputMap must change the command
     # WITHOUT editing mirror_view.gd or sending a fabricated direct order.
