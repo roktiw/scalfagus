@@ -91,9 +91,16 @@ func _verify() -> void:
         return
     var changed: Dictionary = original_archive.duplicate(true)
     changed["commands"][0]["argument"] = {"type": "string", "value": "nw_solid_2"}
+    # A checksum catches a casual edit before playback. Re-sealing the
+    # altered archive proves simulation-level divergence is checked too;
+    # commands_hash is an integrity checksum, not cryptographic identity.
+    if SESSION.new().begin(changed).get("reason", "") != "command_history_mismatch":
+        _fail("Unsealed altered command was not rejected before simulation")
+        return
+    changed["commands_hash"] = REPLAY.command_digest(changed["commands"])
     var failed: MirrorReplaySession = SESSION.new()
     if not bool(failed.begin(changed).get("ok", false)):
-        _fail("Well-formed but altered replay did not initialize")
+        _fail("Validly resealed replay did not reach simulation verification")
         return
     var mismatch: Dictionary = {}
     for i in range(int(changed["final_tick"]) + 2):
