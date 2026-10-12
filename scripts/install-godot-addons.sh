@@ -41,6 +41,9 @@ matches() {
   [[ -f "$target/plugin.cfg" ]] || return 1
   if [[ -d "$source" && -f "$source/plugin.cfg" ]]; then
     while IFS= read -r -d '' file; do
+      # Godot rewrites import metadata for the host renderer/platform.
+      # Source assets and scripts remain byte-checked against the pinned checkout.
+      [[ "$file" == *.import ]] && continue
       cmp -s "$source/$file" "$target/$file" || return 1
     done < <(cd "$source" && find . -type f -print0)
   fi
