@@ -93,8 +93,10 @@ func _run() -> void:
     for mutation in [
         ["seed", -1, "invalid_seed"],
         ["format_version", 1.5, "unsupported_format"],
+        ["format_version", 1, "unsupported_format"],
         ["final_tick", MATCH.MAX_TICKS + 1, "invalid_final_tick"],
         ["final_hash", 123, "invalid_final_hash"],
+        ["commands_hash", "short", "invalid_commands_hash"],
         ["commands", "wrong-type", "invalid_commands"],
         ["controllers", ["human", true], "invalid_controllers"],
         ["map_hash", {}, "invalid_map_metadata"],
@@ -119,11 +121,16 @@ func _run() -> void:
     if REPLAY.playback(malformed).get("reason", "") != "unsupported_argument":
         _fail("Fractional tile coordinates passed validation")
         return
-    print("SCALFAGUS_REPLAY_VALIDATION_PASS: 13 malformed schema cases")
+    print("SCALFAGUS_REPLAY_VALIDATION_PASS: 15 malformed schema cases")
     while not sim.finished:
         sim.advance()
     sim.issue_command(0, "stop", rifle)
     if not _verified(sim, "terminal-with-rejected-command"):
+        return
+    var altered_history: Dictionary = REPLAY.capture(sim)
+    altered_history["commands"][-1]["action"] = "changed-terminal-attempt"
+    if REPLAY.playback(altered_history).get("reason", "") != "command_history_mismatch":
+        _fail("Changed rejected command history was accepted with unchanged state hash")
         return
     var basename: String = "qa-full-replay-%d-%d" % [OS.get_process_id(), Time.get_ticks_usec()]
     var saved: String = REPLAY.save_user(REPLAY.capture(sim), basename)

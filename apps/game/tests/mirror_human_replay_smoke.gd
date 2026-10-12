@@ -107,6 +107,9 @@ func _run() -> void:
 
     tampered = archive.duplicate(true)
     tampered["commands"][1]["accepted"] = false
+    # Reseal the history to exercise simulation-outcome validation as well
+    # as the independent archive integrity check.
+    tampered["commands_hash"] = REPLAY.command_digest(tampered["commands"])
     if REPLAY.playback(tampered).get("reason", "") != "command_outcome_diverged":
         _fail("Forged success/failure outcome was silently accepted")
         return
