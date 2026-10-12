@@ -1,0 +1,22 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 4.1 Metal - 91.6 - Compatibility - Using Device: Apple - Apple M4
+
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+WARNING: res://addons/keychain/ShortcutEdit.tscn:3 - ext_resource, invalid UID: uid://dpciapd2x2va6 - using text path instead: res://addons/keychain/ShortcutEdit.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+     GDScript backtrace (most recent call first):
+         [0] _open_options (res://scripts/menu.gd:143)
+         [1] _click (res://tests/menu_pointer_smoke.gd:33)
+         [2] _verify (res://tests/menu_pointer_smoke.gd:62)
+WARNING: res://addons/keychain/ShortcutSelectorDialog.tscn:3 - ext_resource, invalid UID: uid://ji2g5biygmmd - using text path instead: res://addons/keychain/ShortcutSelectorDialog.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+     GDScript backtrace (most recent call first):
+         [0] _open_options (res://scripts/menu.gd:143)
+         [1] _click (res://tests/menu_pointer_smoke.gd:33)
+         [2] _verify (res://tests/menu_pointer_smoke.gd:62)
+ERROR: SCALFAGUS_MENU_POINTER_FAIL: Actual pointer click did not activate BACK
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _fail (res://tests/menu_pointer_smoke.gd:11)
+       [1] _verify (res://tests/menu_pointer_smoke.gd:70)
