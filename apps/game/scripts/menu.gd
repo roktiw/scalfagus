@@ -1,4 +1,5 @@
 extends Control
+const REPLAY_ARCHIVE = preload("res://scripts/mirror_replay_archive.gd")
 
 signal settings_closed
 
@@ -19,6 +20,8 @@ var first_button: Button
 var play_button: Button
 var options_button: Button
 var watch_button: Button
+var replay_button: Button
+var replay_error: Label
 
 func _ready() -> void:
     set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -61,6 +64,13 @@ func _ready() -> void:
     first_button = _add_button(choices, "Play against computer", _start_mirror_vs_bot)
     play_button = first_button
     watch_button = _add_button(choices, "Watch computer vs computer", _start_mirror_bots)
+    replay_button = _add_button(choices, "Watch last saved replay", _start_last_replay)
+    replay_button.disabled = not FileAccess.file_exists("user://replays/" + REPLAY_ARCHIVE.last_basename() + ".json")
+    replay_button.tooltip_text = "Save a Human vs Bot match from the in-game pause menu to enable this."
+    replay_error = UI.label("", 14)
+    replay_error.visible = false
+    replay_error.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+    choices.add_child(replay_error)
     options_button = _add_button(choices, "Settings", _open_options)
     _add_button(choices, "Quit game", _quit)
     var debug := _add_button(menu_panel, "Development: camera prototype", _start_game)
@@ -160,6 +170,23 @@ func _start_mirror_vs_bot() -> void:
 
 func _start_mirror_bots() -> void:
     ProjectSettings.set_setting("scalfagus/mirror_mode", "bot_bot")
+    get_tree().change_scene_to_file("res://scenes/mirror_match.tscn")
+
+func _start_last_replay() -> void:
+    if not FileAccess.file_exists("user://replays/" + REPLAY_ARCHIVE.last_basename() + ".json"):
+        replay_error.text = "No replay has been saved yet."
+        replay_error.visible = true
+        return
+    # Replay file is untrusted local data. Validate v2 metadata, typed commands
+    # and the independent ordered-command hash *before* leaving the live menu.
+    var candidate: Dictionary = REPLAY_ARCHIVE.load_user(REPLAY_ARCHIVE.last_basename())
+    var prepared: Dictionary = REPLAY_ARCHIVE.prepare(candidate)
+    if not bool(prepared.get("ok", false)):
+        replay_error.text = "Cannot open replay: " + str(prepared.get("reason", "invalid_file"))
+        replay_error.visible = true
+        return
+    replay_error.visible = false
+    ProjectSettings.set_setting("scalfagus/mirror_mode", "replay")
     get_tree().change_scene_to_file("res://scenes/mirror_match.tscn")
 
 func _start_game() -> void:

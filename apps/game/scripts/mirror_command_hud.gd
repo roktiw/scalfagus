@@ -14,6 +14,7 @@ var unit_name: Label
 var stats: Label
 var health: ProgressBar
 var progress: ProgressBar
+var replay_progress: ProgressBar
 var buttons: Dictionary = {}
 var minimap: Control
 var dock: PanelContainer
@@ -32,6 +33,12 @@ func configure(owner_world: Node3D) -> void:
     top = UI.label("", 16)
     top.size_flags_horizontal = Control.SIZE_EXPAND_FILL
     row.add_child(top)
+    replay_progress = ProgressBar.new()
+    replay_progress.custom_minimum_size.x = 160
+    replay_progress.custom_minimum_size.y = 12
+    replay_progress.show_percentage = false
+    replay_progress.visible = false
+    row.add_child(replay_progress)
     var menu := Button.new()
     menu.text = "Menu  ·  Esc"
     menu.pressed.connect(func(): menu_requested.emit())
@@ -104,10 +111,21 @@ func configure(owner_world: Node3D) -> void:
 func refresh() -> void:
     var sim = world.sim
     var seconds: int = sim.tick / 20
-    top.text = "MANUS  /  VERDANT DIVIDE     %02d:%02d     MATTER  %d     %s  ·  ×%d" % [seconds / 60, seconds % 60, sim.players[0]["matter"], "SPECTATING" if world.spectator else "HUMAN vs BOT", world.speed]
+    var mode: String = "REPLAY" if world.replay_mode else ("SPECTATING" if world.spectator else "HUMAN vs BOT")
+    top.text = "MANUS  /  VERDANT DIVIDE     %02d:%02d     MATTER  %d     %s  ·  ×%d" % [seconds / 60, seconds % 60, sim.players[0]["matter"], mode, world.speed]
     status.text = world.info if world.info != "" else "Select units · Right-click terrain, Matter or an enemy to give orders"
-    if sim.finished:
+    replay_progress.visible = world.replay_mode and world.replay_session != null and world.replay_session.sim != null
+    if replay_progress.visible:
+        replay_progress.max_value = maxi(1, world.replay_session.final_tick)
+        replay_progress.value = mini(sim.tick, world.replay_session.final_tick)
+        replay_progress.tooltip_text = "REPLAY  tick %d/%d  ·  %d/%d commands" % [
+            sim.tick, world.replay_session.final_tick,
+            world.replay_session.next_command, world.replay_session.commands.size()
+        ]
+    if sim.finished and not world.replay_mode:
         status.text = "MATCH COMPLETE  ·  %s  ·  %s" % ["DRAW" if sim.winner < 0 else "VICTORY" if sim.winner == 0 else "DEFEAT", sim.finish_reason.replace("_", " ")]
+    elif world.replay_mode and world.replay_session != null and world.replay_session.finished:
+        status.text = world.info if world.info != "" else "REPLAY COMPLETE"
     var selected: Dictionary = sim.entities.get(world.selected_id, {})
     var kind: String = str(selected.get("kind", ""))
     unit_name.text = {"hq": "COMMAND CORE", "worker": "MIN WORKER", "barracks": "BARRACKS", "rifleman": "RIFLEMAN"}.get(kind, "NO SELECTION")
@@ -132,7 +150,7 @@ func refresh() -> void:
         stats.text = "Click / drag to select\nShift adds units\nRight-click to order"
     for action in buttons:
         var button: Button = buttons[action]
-        var allowed: bool = not world.spectator and not sim.finished and not selected.is_empty()
+        var allowed: bool = not world.spectator and not world.replay_mode and not sim.finished and not selected.is_empty()
         var cost: int = 0
         match action:
             "build_barracks":

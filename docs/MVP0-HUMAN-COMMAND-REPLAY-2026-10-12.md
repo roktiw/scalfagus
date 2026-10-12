@@ -1,6 +1,6 @@
 # MVP0 — Deterministic HUMAN command replay (one human vs bot)
 
-Status: **locally tested in Godot 4.7.2 on macOS**. See [local QA evidence](qa/reports/2026-10-12-pr23-human-replay.md).
+Status: **feature code committed, NOT RUN in Godot 4.7.2 on this branch**.
 Priority: P1 gap in the locally executed QA report in PR #19.
 Avoid UI/viewport files: other developers are concurrently working on the
 menu/HUD and local Godot tooling in PRs #20, #21 and #22.
@@ -23,9 +23,9 @@ not proof that the human input stream can be reproduced.
   Existing bot control behavior and economy timings are unchanged.
 - Accepted `events` now contain the typed `argument`, too, while
   retaining their old fields for any legacy UI/tests.
-- `MirrorReplayArchive.capture(sim)` stores version 2, seed,
+- `MirrorReplayArchive.capture(sim)` stores version 1, seed,
   controller mapping, rules version, map identity and source SHA, final tick,
-  final SHA-256 replay hash, a canonical command-history SHA-256, and human attempt stream in issue order. Version 1 archives are rejected; no silent migration is attempted.
+  final SHA-256 replay hash, and human attempt stream in issue order.
 - `playback(json)` strictly validates schema, tick monotonicity,
   controller ownership, numeric types, allowed command argument types and
   map/rules provenance before recreating the original `MirrorMatchState`.
@@ -70,8 +70,10 @@ bash scripts/check-gut.sh
 bash scripts/check-map.sh
 ```
 
-Markers: `SCALFAGUS_HUMAN_REPLAY_PASS` and `SCALFAGUS_REPLAY_LIFECYCLE_PASS`.
-Local tests also cover real resource-funded construction/production, accepted attack, terminal rejected commands, malformed metadata and command-history integrity. The report includes before/after failures, final QA logs and ten identical terminal hashes.
+Expected NEW marker: `SCALFAGUS_HUMAN_REPLAY_PASS`.
+Local agent must submit the complete Godot 4.7.2 log and actual replay
+hashes from the tested branch SHA. This assistant environment has
+**no Godot executable**; success is therefore not asserted.
 
 ## Boundaries and next steps
 

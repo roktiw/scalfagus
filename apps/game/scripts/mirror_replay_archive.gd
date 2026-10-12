@@ -89,7 +89,7 @@ static func command_digest(commands: Array) -> String:
         ])
     return JSON.stringify(canonical).sha256_text()
 
-static func playback(archive: Variant) -> Dictionary:
+static func prepare(archive: Variant) -> Dictionary:
     if not (archive is Dictionary):
         return _failure("invalid_document")
     var required: Array[String] = [
@@ -170,6 +170,19 @@ static func playback(archive: Variant) -> Dictionary:
     if command_digest(commands) != archive["commands_hash"]:
         return _failure("command_history_mismatch")
 
+    return {
+        "ok": true, "sim": sim, "commands": commands,
+        "final_tick": int(archive["final_tick"]),
+        "final_hash": str(archive["final_hash"]),
+        "commands_hash": str(archive["commands_hash"])
+    }
+
+static func playback(archive: Variant) -> Dictionary:
+    var prepared: Dictionary = prepare(archive)
+    if not bool(prepared.get("ok", false)):
+        return prepared
+    var sim: MirrorMatchState = prepared["sim"]
+    var commands: Array = prepared["commands"]
     var next_command: int = 0
     var terminal_tick: int = int(archive["final_tick"])
     for t in range(terminal_tick + 1):
@@ -211,6 +224,14 @@ static func _valid_basename(name: String) -> bool:
         if not ((c >= 48 and c <= 57) or (c >= 65 and c <= 90) or (c >= 97 and c <= 122) or c == 45 or c == 95):
             return false
     return true
+
+static func last_basename() -> String:
+    # QA can isolate its playback fixture without ever overwriting real user
+    # saves. The default game always uses the most recent human replay.
+    var requested: String = str(ProjectSettings.get_setting(
+        "scalfagus/replay_basename", "last-human-match"
+    ))
+    return requested if _valid_basename(requested) else "last-human-match"
 
 static func save_user(archive: Dictionary, basename: String) -> String:
     if not _valid_basename(basename):

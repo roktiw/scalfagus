@@ -31,10 +31,17 @@ var spectator: bool = false
 var time_accumulator: float = 0.0
 var speed: int = 1
 const COMMAND_HUD = preload("res://scripts/mirror_command_hud.gd")
+const REPLAY_ARCHIVE = preload("res://scripts/mirror_replay_archive.gd")
+const REPLAY_SESSION = preload("res://scripts/mirror_replay_session.gd")
+const RESULT_OVERLAY = preload("res://scripts/mirror_match_result_overlay.gd")
 var command_hud: Control
 var paused: bool = false
 var pause_overlay: Control
 var settings_overlay: Control
+var replay_mode: bool = false
+var replay_session: MirrorReplaySession
+var replay_save_status: Label
+var match_result_overlay: MirrorMatchResultOverlay
 var hud: Label
 var help_label: Label
 var selection_marker: MeshInstance3D
@@ -45,11 +52,25 @@ var zoom_size: float = 100.0
 func _ready() -> void:
     sim = MATCH.new()
     var mode: String = str(ProjectSettings.get_setting("scalfagus/mirror_mode", "human_bot"))
+    replay_mode = mode == "replay"
     spectator = mode == "bot_bot"
     if spectator:
         camera_center = Vector3(63.0, 0.0, 63.0)
         zoom_size = 152.0
-    sim.setup(42, ["bot", "bot"] if spectator else ["human", "bot"])
+    if replay_mode:
+        replay_session = REPLAY_SESSION.new()
+        var document: Dictionary = REPLAY_ARCHIVE.load_user(REPLAY_ARCHIVE.last_basename())
+        var start: Dictionary = replay_session.begin(document)
+        if bool(start.get("ok", false)):
+            sim = replay_session.sim
+        else:
+            # Never silently replay with a different seed/map or controller.
+            # Leave a visible error in a paused, non-commandable match.
+            sim.setup(42, ["human", "bot"])
+            info = "Replay unavailable: " + str(start.get("reason", "missing_save"))
+            speed = 0
+    else:
+        sim.setup(42, ["bot", "bot"] if spectator else ["human", "bot"])
     _build_scene()
     _sync_visuals()
 
@@ -292,9 +313,40 @@ func _sync_visuals() -> void:
         (group_markers[id] as Node3D).position = GEOM.tile_to_world(p, 0.24)
         (group_markers[id] as Node3D).scale = Vector3(3.0, 1.0, 3.0) if GEOM.is_building(str(sim.entities[id]["kind"])) else Vector3.ONE
     command_hud.refresh()
+    _show_result_if_finished()
+
+func _show_result_if_finished() -> void:
+    if not sim.finished or replay_mode or is_instance_valid(match_result_overlay):
+        return
+    # MatchState alone determined win/defeat/draw. The modal is UI only and
+    # never awards units/Matter or generates extra simulation events.
+    match_result_overlay = RESULT_OVERLAY.new()
+    command_hud.add_child(match_result_overlay)
+    match_result_overlay.configure(sim, spectator)
+    match_result_overlay.play_again_requested.connect(_play_again)
+    match_result_overlay.main_menu_requested.connect(_return_to_menu)
+    match_result_overlay.save_replay_requested.connect(_save_finished_replay)
+
+func _save_finished_replay() -> void:
+    if spectator or replay_mode or not sim.finished:
+        return
+    _save_current_replay()
+    if is_instance_valid(match_result_overlay):
+        match_result_overlay.set_feedback(info)
+
+func _play_again() -> void:
+    # Same human/bot preset, fresh sim/map and no carried orders or old FOW.
+    ProjectSettings.set_setting(
+        "scalfagus/mirror_mode", "bot_bot" if spectator else "human_bot"
+    )
+    get_tree().change_scene_to_file("res://scenes/mirror_match.tscn")
+
+func _return_to_menu() -> void:
+    ProjectSettings.set_setting("scalfagus/mirror_mode", "human_bot")
+    get_tree().change_scene_to_file(MENU_SCENE)
 
 func _hud_command(action: String) -> void:
-    if spectator or sim.finished or paused or not sim.entities.has(selected_id):
+    if spectator or replay_mode or sim.finished or paused or not sim.entities.has(selected_id):
         return
     if action == "build_barracks":
         build_mode = true
@@ -308,6 +360,8 @@ func _hud_command(action: String) -> void:
     _sync_visuals()
 
 func _toggle_pause() -> void:
+    if is_instance_valid(match_result_overlay):
+        return
     if settings_overlay != null:
         return
     if pause_overlay != null:
@@ -331,14 +385,79 @@ func _toggle_pause() -> void:
     var choices := VBoxContainer.new()
     choices.custom_minimum_size.x = 360
     center.add_child(choices)
-    choices.add_child(COMMAND_HUD.UI.label("MATCH PAUSED", 28))
+    choices.add_child(COMMAND_HUD.UI.label("REPLAY PAUSED" if replay_mode else "MATCH PAUSED", 28))
+    if replay_mode:
+        for entry in [["Step one tick", _step_replay_once], ["Restart replay", _restart_replay]]:
+            var replay_button := Button.new()
+            replay_button.name = "ReplayStep" if entry[0] == "Step one tick" else "ReplayRestart"
+            replay_button.text = entry[0]
+            replay_button.custom_minimum_size.y = 48
+            replay_button.pressed.connect(entry[1])
+            choices.add_child(replay_button)
+    if not spectator and not replay_mode:
+        var save: Button = Button.new()
+        save.name = "SaveReplay"
+        save.text = "Save replay"
+        save.custom_minimum_size.y = 48
+        save.pressed.connect(_save_current_replay)
+        choices.add_child(save)
+        replay_save_status = COMMAND_HUD.UI.label("", 14)
+        choices.add_child(replay_save_status)
     for entry in [["Resume", _toggle_pause], ["Settings", _match_settings], ["Return to main menu", func(): get_tree().change_scene_to_file(MENU_SCENE)]]:
         var button := Button.new()
         button.text = entry[0]
         button.custom_minimum_size.y = 48
         button.pressed.connect(entry[1])
         choices.add_child(button)
-    (choices.get_child(1) as Button).grab_focus()
+    # Focus actual Resume button; optional Save Replay may precede it.
+    for item in choices.get_children():
+        if item is Button and item.text == "Resume":
+            item.grab_focus()
+            break
+
+func _step_replay_once(refresh_visuals: bool = true) -> Dictionary:
+    if not replay_mode or replay_session == null or replay_session.sim == null:
+        return {"ok": false, "reason": "not_in_replay"}
+    var frame: Dictionary = replay_session.step()
+    if not bool(frame.get("ok", false)):
+        speed = 0
+        info = "REPLAY DIVERGED: " + str(frame.get("reason", "unknown"))
+    elif bool(frame.get("complete", false)):
+        speed = 0
+        info = "REPLAY VERIFIED  ·  " + str(frame.get("hash", sim.replay_hash())).substr(0, 12)
+    else:
+        info = "Replay tick %d/%d" % [sim.tick, replay_session.final_tick]
+    if refresh_visuals:
+        _sync_visuals()
+    return frame
+
+func _restart_replay() -> void:
+    if not replay_mode or replay_session == null:
+        return
+    var started: Dictionary = replay_session.restart()
+    if not bool(started.get("ok", false)):
+        info = "REPLAY RESTART FAILED: " + str(started.get("reason", "unknown"))
+        speed = 0
+        _sync_visuals()
+        return
+    sim = replay_session.sim
+    time_accumulator = 0.0
+    speed = 1
+    selected_id = -1
+    selected_ids.clear()
+    build_mode = false
+    info = "Replay restarted from tick 0"
+    _sync_visuals()
+
+func _save_current_replay() -> void:
+    if spectator or replay_mode or sim == null:
+        return
+    var data: Dictionary = REPLAY_ARCHIVE.capture(sim)
+    var path: String = REPLAY_ARCHIVE.save_user(data, REPLAY_ARCHIVE.last_basename())
+    info = "Replay saved: " + path if not path.is_empty() else "Replay save failed"
+    if replay_save_status != null:
+        replay_save_status.text = info
+    _sync_visuals()
 
 func _match_settings() -> void:
     settings_overlay = load(MENU_SCENE).instantiate()
@@ -459,7 +578,17 @@ func _issue_group_order(cell: Vector2i) -> int:
     return applied
 
 func _unhandled_input(event: InputEvent) -> void:
+    if is_instance_valid(match_result_overlay):
+        return
     if paused and not (event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE):
+        return
+    if replay_mode and event is InputEventKey and event.pressed and not event.echo:
+        if event.keycode == KEY_ESCAPE:
+            _toggle_pause()
+        elif event.is_action_pressed("rts_speed_up"):
+            speed = mini(16, speed + 1)
+        elif event.is_action_pressed("rts_speed_down"):
+            speed = maxi(1, speed - 1)
         return
     if event is InputEventKey and event.pressed and not event.echo:
         if event.keycode == KEY_ESCAPE:
@@ -494,7 +623,7 @@ func _unhandled_input(event: InputEvent) -> void:
                 48.0, 192.0)
             camera.size = zoom_size
             return
-        if spectator:
+        if spectator or replay_mode:
             return
         if event.button_index == MOUSE_BUTTON_LEFT:
             if event.pressed:
@@ -523,7 +652,7 @@ func _unhandled_input(event: InputEvent) -> void:
                 var count: int = _issue_group_order(destination)
                 info = "%d unit order(s) accepted" % count
                 _sync_visuals()
-    elif event is InputEventMouseMotion and drag_active and not spectator:
+    elif event is InputEventMouseMotion and drag_active and not spectator and not replay_mode:
         if drag_start.distance_to(event.position) > 8.0:
             drag_moved = true
         if drag_moved and not build_mode:
@@ -535,7 +664,7 @@ func _unhandled_input(event: InputEvent) -> void:
             selection_box.visible = true
 
 func _process(delta: float) -> void:
-    if paused:
+    if paused or is_instance_valid(match_result_overlay):
         return
     var shift := Vector3.ZERO
     if not spectator:
@@ -546,11 +675,23 @@ func _process(delta: float) -> void:
         camera_center.x = clampf(camera_center.x, 24.0, 104.0)
         camera_center.z = clampf(camera_center.z, 24.0, 104.0)
         _position_camera()
-    if not sim.finished and speed > 0:
+    # Replay has to execute its *terminal* tick's recorded attempts and
+    # verify both checksums even if sim.finished was already set by combat.
+    # Otherwise a complete saved victory stalls one tick before verification.
+    var may_advance: bool = not sim.finished
+    if replay_mode:
+        may_advance = replay_session != null and replay_session.sim != null and not replay_session.finished
+    if may_advance and speed > 0:
         time_accumulator += delta * float(speed)
         var steps: int = 0
         while time_accumulator >= TIMING.TICK_SECONDS and steps < 32:
-            sim.advance()
+            if replay_mode:
+                var frame: Dictionary = _step_replay_once(false)
+                if not bool(frame.get("ok", false)) or bool(frame.get("complete", false)):
+                    steps += 1
+                    break
+            else:
+                sim.advance()
             time_accumulator -= TIMING.TICK_SECONDS
             steps += 1
         if steps > 0:
