@@ -4,6 +4,17 @@ version: 0.5
 status: active_agent_document_authority_after_owner_DEC_033
 language: en
 latest_owner_scope_decision: DEC-033
+future_three_faction_assembly_fusion_resonance_DEC_047:
+  decision: DEC-047
+  discussion: inbox/2026-10-12-man-org-eth-fusion-transformation-discussion.md
+  human: design/three-faction-assembly-fusion-resonance-2026-10-12.md
+  machine: design/three-faction-assembly-fusion-resonance.yaml
+  MAN: composed_real_machine_persistent_IDs_can_legally_separate
+  ORG: irreversible_multi_organism_fusion_or_devouring_absorption
+  ETH: deep_energetic_merger_or_meditative_collective
+  ETH_deep_fusion_reversal: not_approved_or_resolved
+  podcast_names: creative_proposals_not_owner_selected
+  excluded_from_first_MVP0: true
 latest_research_and_view_decisions: [DEC-030, DEC-031, DEC-032, DEC-034]
 future_MAN_human_piloted_AI_machine_roster_DEC_045:
   decision: DEC-045
