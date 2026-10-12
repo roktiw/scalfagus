@@ -99,12 +99,11 @@ func _verify() -> void:
     if nw_node.position != Vector3(nw_cell.x * 2.0, 0.0, nw_cell.y * 2.0):
         _fail("Simulation grid and render space are misaligned")
         return
-    var window_width: int = int(ProjectSettings.get_setting(
-        "display/window/size/window_width_override", 0))
-    var window_height: int = int(ProjectSettings.get_setting(
-        "display/window/size/window_height_override", 0))
-    if window_width < 1280 or window_height < 720:
-        _fail("Project startup window is too small")
+    if int(ProjectSettings.get_setting("display/window/size/viewport_width", 0)) != 1280 or int(ProjectSettings.get_setting("display/window/size/viewport_height", 0)) != 720:
+        _fail("Project lost its baseline logical viewport")
+        return
+    if int(ProjectSettings.get_setting("display/window/size/window_width_override", 0)) != 0 or int(ProjectSettings.get_setting("display/window/size/window_height_override", 0)) != 0:
+        _fail("Project reintroduced a forced native window size")
         return
 
     print("SCALFAGUS_MIRROR_VISUAL_PASS")

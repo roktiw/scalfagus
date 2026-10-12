@@ -30,6 +30,11 @@ var build_mode: bool = false
 var spectator: bool = false
 var time_accumulator: float = 0.0
 var speed: int = 1
+const COMMAND_HUD = preload("res://scripts/mirror_command_hud.gd")
+var command_hud: Control
+var paused: bool = false
+var pause_overlay: Control
+var settings_overlay: Control
 var hud: Label
 var help_label: Label
 var selection_marker: MeshInstance3D
@@ -190,18 +195,13 @@ func _build_scene() -> void:
 
     var ui := CanvasLayer.new()
     add_child(ui)
-    hud = Label.new()
-    hud.position = Vector2(16, 12)
-    hud.mouse_filter = Control.MOUSE_FILTER_IGNORE
-    hud.add_theme_color_override("font_color", Color.WHITE)
-    hud.add_theme_font_size_override("font_size", 18)
-    ui.add_child(hud)
-    help_label = Label.new()
-    help_label.position = Vector2(16, 56)
-    help_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
-    help_label.add_theme_color_override("font_color", Color("#f5e6b2"))
-    help_label.add_theme_font_size_override("font_size", 14)
-    ui.add_child(help_label)
+    command_hud = COMMAND_HUD.new()
+    ui.add_child(command_hud)
+    command_hud.configure(self)
+    command_hud.command_requested.connect(_hud_command)
+    command_hud.menu_requested.connect(_toggle_pause)
+    hud = command_hud.top
+    help_label = command_hud.status
 
     # CanvasLayer's native Control draws a marquee; it never intercepts clicks.
     selection_box = ColorRect.new()
@@ -291,27 +291,64 @@ func _sync_visuals() -> void:
         var p: Vector2i = sim.entities[id]["pos"]
         (group_markers[id] as Node3D).position = GEOM.tile_to_world(p, 0.24)
         (group_markers[id] as Node3D).scale = Vector3(3.0, 1.0, 3.0) if GEOM.is_building(str(sim.entities[id]["kind"])) else Vector3.ONE
-    var selected_text: String = "None"
-    if selected_id >= 0 and sim.entities.has(selected_id):
-        var chosen: Dictionary = sim.entities[selected_id]
-        selected_text = "%d selected | %s #%d HP:%d (%s)" % [
-            selected_ids.size(), str(chosen["kind"]).to_upper(),
-            selected_id, int(chosen["hp"]), str(chosen["order"])
-        ]
-    var result_text: String = ""
-    if sim.finished:
-        result_text = " | FINISHED: %s — %s" % [
-            "DRAW" if sim.winner < 0 else "PLAYER %d WINS" % (sim.winner + 1), sim.finish_reason
-        ]
-    hud.text = "SCALFAGUS MVP 0.1  |  MAN vs MAN  |  %s  |  Tick %d  |  Matter %d  |  Speed x%d%s" % [
-        "BOT vs BOT" if spectator else "HUMAN vs BOT",
-        sim.tick, int(sim.players[0]["matter"]), speed, result_text
-    ]
-    help_label.text = "Selected: %s  |  %s\n%s" % [
-        selected_text, info,
-        "P pause / +/- speed / Esc menu (Options: Controls)" if spectator else
-        "Left-click/drag select, Shift add / Right-click orders / B then click: Barracks / T: Worker at HQ / R: Rifleman at Barracks / WASD pan / Mouse wheel zoom / Esc menu (Options: Controls)"
-    ]
+    command_hud.refresh()
+
+func _hud_command(action: String) -> void:
+    if spectator or sim.finished or paused or not sim.entities.has(selected_id):
+        return
+    if action == "build_barracks":
+        build_mode = true
+        info = "Place Barracks on clear ground · Esc cancels"
+    elif action == "stop":
+        for id in selected_ids:
+            sim.issue_command(0, "stop", id)
+        info = "Selected units stopped"
+    else:
+        info = "Production queued" if sim.issue_command(0, action, selected_id) else "Order rejected: check Matter and production queue"
+    _sync_visuals()
+
+func _toggle_pause() -> void:
+    if settings_overlay != null:
+        return
+    if pause_overlay != null:
+        pause_overlay.queue_free()
+        pause_overlay = null
+        paused = false
+        return
+    paused = true
+    drag_active = false
+    selection_box.visible = false
+    pause_overlay = Control.new()
+    pause_overlay.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+    command_hud.add_child(pause_overlay)
+    var shade := ColorRect.new()
+    shade.color = Color(0.02, 0.05, 0.08, 0.94)
+    shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+    pause_overlay.add_child(shade)
+    var center := CenterContainer.new()
+    center.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+    pause_overlay.add_child(center)
+    var choices := VBoxContainer.new()
+    choices.custom_minimum_size.x = 360
+    center.add_child(choices)
+    choices.add_child(COMMAND_HUD.UI.label("MATCH PAUSED", 28))
+    for entry in [["Resume", _toggle_pause], ["Settings", _match_settings], ["Return to main menu", func(): get_tree().change_scene_to_file(MENU_SCENE)]]:
+        var button := Button.new()
+        button.text = entry[0]
+        button.custom_minimum_size.y = 48
+        button.pressed.connect(entry[1])
+        choices.add_child(button)
+    (choices.get_child(1) as Button).grab_focus()
+
+func _match_settings() -> void:
+    settings_overlay = load(MENU_SCENE).instantiate()
+    command_hud.add_child(settings_overlay)
+    settings_overlay._open_options()
+    settings_overlay.settings_closed.connect(func():
+        settings_overlay.queue_free()
+        settings_overlay = null
+        pause_overlay.visible = true)
+    pause_overlay.visible = false
 
 func _cell_at_mouse(screen_pos: Vector2) -> Vector2i:
     var ray_origin: Vector3 = camera.project_ray_origin(screen_pos)
@@ -422,13 +459,15 @@ func _issue_group_order(cell: Vector2i) -> int:
     return applied
 
 func _unhandled_input(event: InputEvent) -> void:
+    if paused and not (event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE):
+        return
     if event is InputEventKey and event.pressed and not event.echo:
         if event.keycode == KEY_ESCAPE:
             if build_mode:
                 build_mode = false
                 info = "Barracks placement cancelled"
             else:
-                get_tree().change_scene_to_file(MENU_SCENE)
+                _toggle_pause()
             return
         if event.is_action_pressed("rts_pause"):
             if spectator:
@@ -496,6 +535,8 @@ func _unhandled_input(event: InputEvent) -> void:
             selection_box.visible = true
 
 func _process(delta: float) -> void:
+    if paused:
+        return
     var shift := Vector3.ZERO
     if not spectator:
         shift.x = Input.get_axis("rts_pan_left", "rts_pan_right")
