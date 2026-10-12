@@ -5,6 +5,7 @@ extends Node3D
 const MATCH = preload("res://scripts/mirror_match_state.gd")
 const TIMING = preload("res://scripts/mirror_timing.gd")
 const GEOM = preload("res://scripts/mirror_geometry.gd")
+const PHYSICS_LOS = preload("res://scripts/mirror_physics_los_3d.gd")
 const VIEW_SCRIPT = preload("res://scripts/directional_sprite_5.gd")
 const WORKER_ATLAS = preload("res://assets/man_worker_32x48_idle_5view.png")
 const LANDER_ATLAS = preload("res://assets/man_lander_128x128_unverified_5view.png")
@@ -15,6 +16,7 @@ const MENU_SCENE: String = "res://scenes/menu.tscn"
 var sim
 var camera: Camera3D
 var world_root: Node3D
+var terrain_physics_root: Node3D
 var unit_nodes: Dictionary = {}
 var source_nodes: Dictionary = {}
 var selected_id: int = -1
@@ -75,13 +77,14 @@ func _pixel_actor(atlas: Texture2D, frame_size: Vector2i, pixel_scale: float,
     visual.sprite.modulate = tint
     return root
 
-func _attach_footprint_collider(actor: Node3D, height_tiles: float) -> void:
+func _attach_footprint_collider(actor: Node3D, height_tiles: float, entity_id: int) -> void:
     # Actual Godot physics shape matches the authoritative 3x3 footprint:
     # root is scaled by tile_meters, so this 3-tile BoxShape becomes 6x6 m.
     var collider := StaticBody3D.new()
     collider.name = "FootprintBody"
     collider.collision_layer = 1
     collider.collision_mask = 0
+    collider.set_meta("scalfagus_entity_id", entity_id)
     actor.add_child(collider)
     var shape_node := CollisionShape3D.new()
     shape_node.name = "FootprintShape"
@@ -97,13 +100,13 @@ func _unit_sprite(e: Dictionary) -> Node3D:
     if kind == "hq":
         var hq_sprite: Node3D = _pixel_actor(LANDER_ATLAS, Vector2i(128, 128), 0.038,
             Color(0.85, 0.98, 1.0) if blue else Color(1.0, 0.77, 0.70))
-        _attach_footprint_collider(hq_sprite, 2.6)
+        _attach_footprint_collider(hq_sprite, 2.6, int(e["id"]))
         return hq_sprite
     if kind == "barracks":
         # Existing lander sprite temporarily represents a Barracks until dedicated art.
         var barracks_sprite: Node3D = _pixel_actor(LANDER_ATLAS, Vector2i(128, 128), 0.027,
             Color(0.58, 0.81, 1.0) if blue else Color(1.0, 0.64, 0.50))
-        _attach_footprint_collider(barracks_sprite, 2.0)
+        _attach_footprint_collider(barracks_sprite, 2.0, int(e["id"]))
         return barracks_sprite
     if kind == "rifleman":
         # Reuse MAN worker sheet until the Rifleman 5-view atlas is authored.
@@ -130,6 +133,9 @@ func _build_scene() -> void:
 
     world_root = Node3D.new()
     add_child(world_root)
+    terrain_physics_root = Node3D.new()
+    terrain_physics_root.name = "TerrainPhysics"
+    world_root.add_child(terrain_physics_root)
     var underdeck := _block(Vector3(134.0, 3.0, 134.0), Color("#25314b"), world_root)
     underdeck.position = Vector3(63.0, -2.4, 63.0)
     var ground := _block(Vector3(128.0, 0.8, 128.0), Color("#526c4d"), world_root)
@@ -151,6 +157,9 @@ func _build_scene() -> void:
     # Gameplay obstruction lives in the Simulation Core. Pixel art is visual only.
     for cell in sim.terrain.keys():
         var kind: String = str(sim.terrain[cell])
+        # These native colliders mirror the compiled authored tile raster.
+        # Water is solid for future actor physics, but never blocks LOS rays.
+        PHYSICS_LOS.attach_tile(terrain_physics_root, cell, kind)
         if kind == "tree":
             var tree_sprite: Node3D = _pixel_actor(
                 TREE_ATLAS, Vector2i(40, 64), 0.052, Color.WHITE, true)
@@ -201,6 +210,12 @@ func _build_scene() -> void:
     selection_box.mouse_filter = Control.MOUSE_FILTER_IGNORE
     selection_box.visible = false
     ui.add_child(selection_box)
+
+# Raycast audit for authored static world. The authoritative RefCounted match
+# deliberately never consumes this renderer-physics result (CI/lockstep safe).
+func physics_los_probe(from_cell: Vector2i, to_cell: Vector2i,
+        target_building_id: int = -1) -> Dictionary:
+    return PHYSICS_LOS.trace(get_world_3d(), from_cell, to_cell, target_building_id)
 
 func _position_camera() -> void:
     if camera == null:
