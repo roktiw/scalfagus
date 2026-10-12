@@ -20,6 +20,7 @@ bash scripts/godot-qa-run.sh "$GODOT_BIN" --headless --path apps/game --editor -
 bash scripts/godot-qa-run.sh "$GODOT_BIN" --headless --path apps/game --script res://tests/addons_smoke.gd
 bash scripts/godot-qa-run.sh "$GODOT_BIN" --headless --path apps/game --script res://tests/smoke.gd
 bash scripts/godot-qa-run.sh "$GODOT_BIN" --headless --path apps/game --script res://tests/menu_smoke.gd
+bash scripts/godot-qa-run.sh "$GODOT_BIN" --headless --path apps/game --script res://tests/command_ui_smoke.gd
 bash scripts/godot-qa-run.sh "$GODOT_BIN" --headless --path apps/game --script res://tests/keychain_rts_smoke.gd
 bash scripts/godot-qa-run.sh "$GODOT_BIN" --headless --path apps/game --script res://tests/rts_smoke.gd
 bash scripts/godot-qa-run.sh "$GODOT_BIN" --headless --path apps/game --script res://tests/navigation_smoke.gd

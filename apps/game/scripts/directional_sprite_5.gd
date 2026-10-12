@@ -16,6 +16,9 @@ var animation_frame: int = 0
 var latest_sector: int = 0
 var mirror_safe: bool = true
 var mirrored_view_warning: bool = false
+var source_rows: Array[int] = [0, 1, 2, 3, 4]
+var has_incomplete_views: bool = false
+static var validated_rows: Dictionary = {}
 
 static func resolve_sector(degrees: float) -> Dictionary:
     var sector: int = wrapi(int(floor(degrees / 45.0 + 0.5)), 0, 8)
@@ -49,7 +52,31 @@ func configure(
         "Atlas width must equal frame width * animation frames")
     assert(source.get_height() == dimensions.y * 5,
         "Atlas height must equal five authored directions")
+    _validate_source_rows(source)
     _apply(0)
+
+func _validate_source_rows(source: Texture2D) -> void:
+    # Provisional atlases can have nominal dimensions but nearly empty views.
+    # Display a substantial authored row instead of transparent speckles.
+    var key: String = "%d:%d:%d" % [source.get_instance_id(), frame_size.x, frame_size.y]
+    if not validated_rows.has(key):
+        var image := source.get_image()
+        var coverage: Array[int] = []
+        for row in range(5):
+            var opaque: int = 0
+            for y in range(row * frame_size.y, (row + 1) * frame_size.y):
+                for x in range(frame_size.x):
+                    if image.get_pixel(x, y).a >= 0.5:
+                        opaque += 1
+            coverage.append(opaque)
+        var largest: int = coverage.max()
+        var fallback: int = coverage.find(largest)
+        var rows: Array[int] = []
+        for row in range(5):
+            rows.append(fallback if coverage[row] < largest * 0.2 else row)
+        validated_rows[key] = rows
+    source_rows.assign(validated_rows[key])
+    has_incomplete_views = source_rows != [0, 1, 2, 3, 4]
 
 func _process(_delta: float) -> void:
     if sprite == null or actor_root == null:
@@ -89,7 +116,7 @@ func _apply(sector: int) -> void:
     if sprite == null:
         return
     var chosen: int = wrapi(sector, 0, 8)
-    var row: int = SOURCE_ROWS[chosen]
+    var row: int = source_rows[SOURCE_ROWS[chosen]]
     var reflected: bool = MIRROR[chosen]
     latest_sector = chosen
     mirrored_view_warning = reflected and not mirror_safe
@@ -105,6 +132,7 @@ func replace_texture(source: Texture2D) -> void:
     assert(source.get_width() == frame_size.x * animation_frames)
     assert(source.get_height() == frame_size.y * 5)
     sprite.texture = source
+    _validate_source_rows(source)
     _apply(latest_sector)
 
 func set_animation_frame(frame: int) -> void:

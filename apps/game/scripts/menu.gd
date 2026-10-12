@@ -1,5 +1,7 @@
 extends Control
 
+signal settings_closed
+
 # All main menu UI is created with native Godot Controls — no browser window.
 var options_panel: VBoxContainer
 var menu_panel: VBoxContainer
@@ -10,71 +12,122 @@ var shortcut_editor: Control
 var shortcut_status: Label
 var footer: Label
 
+const UI = preload("res://scripts/command_ui_theme.gd")
+var back_button: Button
+var settings_scroll: ScrollContainer
+var first_button: Button
+
 func _ready() -> void:
+    theme = UI.create()
     var bg := ColorRect.new()
-    bg.color = Color("#091725")
+    bg.color = Color("#080f19")
+    bg.mouse_filter = Control.MOUSE_FILTER_IGNORE
     bg.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
     add_child(bg)
-    var center := CenterContainer.new()
-    center.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-    add_child(center)
+    var frame := MarginContainer.new()
+    frame.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+    for side in ["left", "right", "top", "bottom"]:
+        frame.add_theme_constant_override("margin_" + side, 28)
+    add_child(frame)
     menu_stack = VBoxContainer.new()
-    var stack: VBoxContainer = menu_stack
-    stack.custom_minimum_size = Vector2(330, 280)
-    stack.add_theme_constant_override("separation", 16)
-    center.add_child(stack)
-    var title := Label.new()
-    title.text = "SCALFAGUS"
-    title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-    title.add_theme_font_size_override("font_size", 38)
-    stack.add_child(title)
-    var subtitle := Label.new()
-    subtitle.text = "MAN vs MAN  |  RTS MVP 0.1 (local test)"
-    subtitle.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-    stack.add_child(subtitle)
+    menu_stack.add_theme_constant_override("separation", 16)
+    frame.add_child(menu_stack)
+    var masthead := HBoxContainer.new()
+    menu_stack.add_child(masthead)
+    var brand := UI.label("SCALFAGUS", 30)
+    brand.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+    masthead.add_child(brand)
+    masthead.add_child(UI.label("MANUS  /  COMMAND INTERFACE", 14))
     menu_panel = VBoxContainer.new()
-    menu_panel.add_theme_constant_override("separation", 12)
-    stack.add_child(menu_panel)
-    _add_button(menu_panel, "PLAY MAN vs BOT", _start_mirror_vs_bot)
-    _add_button(menu_panel, "WATCH BOT vs BOT", _start_mirror_bots)
-    _add_button(menu_panel, "LEGACY CAMERA SPIKE", _start_game)
-    _add_button(menu_panel, "OPTIONS", _open_options)
-    _add_button(menu_panel, "QUIT", _quit)
+    menu_panel.size_flags_vertical = Control.SIZE_EXPAND_FILL
+    menu_stack.add_child(menu_panel)
+    var center := CenterContainer.new()
+    center.size_flags_vertical = Control.SIZE_EXPAND_FILL
+    menu_panel.add_child(center)
+    var card := PanelContainer.new()
+    card.custom_minimum_size.x = 480
+    center.add_child(card)
+    var choices := VBoxContainer.new()
+    choices.add_theme_constant_override("separation", 12)
+    card.add_child(choices)
+    choices.add_child(UI.label("TAKE COMMAND", 27))
+    var description := UI.label("Verdant Divide · Manus vs Manus", 16)
+    choices.add_child(description)
+    first_button = _add_button(choices, "Play against computer", _start_mirror_vs_bot)
+    _add_button(choices, "Watch computer vs computer", _start_mirror_bots)
+    _add_button(choices, "Settings", _open_options)
+    _add_button(choices, "Quit game", _quit)
+    var debug := _add_button(menu_panel, "Development: camera prototype", _start_game)
+    debug.size_flags_horizontal = Control.SIZE_SHRINK_END
+    debug.custom_minimum_size.y = 36
+    debug.tooltip_text = "Development scene: experimental RTS / TPP / FPP cameras"
+    footer = UI.label("LOCAL PLAY  ·  LAN multiplayer is in development", 14)
+    menu_stack.add_child(footer)
     options_panel = VBoxContainer.new()
+    options_panel.size_flags_vertical = Control.SIZE_EXPAND_FILL
     options_panel.visible = false
-    stack.add_child(options_panel)
+    menu_stack.add_child(options_panel)
+    var heading := HBoxContainer.new()
+    options_panel.add_child(heading)
+    back_button = Button.new()
+    back_button.name = "SettingsBack"
+    back_button.text = "‹  Back"
+    back_button.custom_minimum_size = Vector2(130, 48)
+    back_button.pressed.connect(_close_options)
+    heading.add_child(back_button)
+    var settings_title := UI.label("SETTINGS", 24)
+    settings_title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+    heading.add_child(settings_title)
+    settings_scroll = ScrollContainer.new()
+    settings_scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+    settings_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+    options_panel.add_child(settings_scroll)
+    var content := VBoxContainer.new()
+    content.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+    content.add_theme_constant_override("separation", 14)
+    settings_scroll.add_child(content)
+    content.add_child(UI.label("DISPLAY", 18))
     resolution_button = OptionButton.new()
-    for s in ["1280 × 720", "1440 × 810 (recommended)", "1600 × 900"]:
-        resolution_button.add_item(s)
+    resolution_button.custom_minimum_size.y = 48
+    for item in ["1280 × 720", "1440 × 810", "1600 × 900"]:
+        resolution_button.add_item(item)
     resolution_button.item_selected.connect(_set_resolution)
     resolution_button.select(1)
-    options_panel.add_child(resolution_button)
+    content.add_child(resolution_button)
     fullscreen_toggle = CheckButton.new()
     fullscreen_toggle.text = "Fullscreen"
-    fullscreen_toggle.toggled.connect(_set_fullscreen)
+    fullscreen_toggle.custom_minimum_size.y = 44
     fullscreen_toggle.button_pressed = get_window().mode == Window.MODE_FULLSCREEN
-    options_panel.add_child(fullscreen_toggle)
-
-    var controls_title := Label.new()
-    controls_title.text = "CONTROLS — Keychain profiles (WASD pan / T Worker / R Rifleman / B Barracks)"
-    options_panel.add_child(controls_title)
-    shortcut_status = Label.new()
-    shortcut_status.text = ""
+    fullscreen_toggle.toggled.connect(_set_fullscreen)
+    content.add_child(fullscreen_toggle)
+    content.add_child(UI.label("CONTROLS & PROFILES", 18))
+    shortcut_status = UI.label("Changes to controls are saved in your local profile.")
     shortcut_status.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-    options_panel.add_child(shortcut_status)
+    content.add_child(shortcut_status)
+    var editor_scene := load("res://addons/keychain/ShortcutEdit.tscn") as PackedScene
+    if editor_scene != null:
+        shortcut_editor = editor_scene.instantiate() as Control
+        shortcut_editor.name = "KeychainControls"
+        shortcut_editor.custom_minimum_size = Vector2(0, 460)
+        shortcut_editor.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+        content.add_child(shortcut_editor)
+    else:
+        shortcut_status.text = "Controls could not be loaded. Verify the Keychain addon."
+    _load_display_settings()
+    first_button.grab_focus()
 
-    _add_button(options_panel, "BACK", _close_options)
-    footer = Label.new()
-    footer.text = "LAN Human vs Human: not yet implemented"
-    footer.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-    stack.add_child(footer)
+func _add_button(parent: VBoxContainer, caption: String, callback: Callable) -> Button:
+    var button := Button.new()
+    button.text = caption
+    button.custom_minimum_size.y = 48
+    button.pressed.connect(callback)
+    parent.add_child(button)
+    return button
 
-func _add_button(parent: VBoxContainer, caption: String, callback: Callable) -> void:
-    var b := Button.new()
-    b.text = caption
-    b.custom_minimum_size.y = 43
-    b.pressed.connect(callback)
-    parent.add_child(b)
+func _unhandled_input(event: InputEvent) -> void:
+    if options_panel.visible and event.is_action_pressed("ui_cancel"):
+        _close_options()
+        get_viewport().set_input_as_handled()
 
 func _start_mirror_vs_bot() -> void:
     ProjectSettings.set_setting("scalfagus/mirror_mode", "human_bot")
@@ -91,39 +144,41 @@ func _open_options() -> void:
     menu_panel.visible = false
     options_panel.visible = true
     footer.visible = false
-    menu_stack.custom_minimum_size = Vector2(990, 660)
-    # Reuse Keychain's shipped editor and persistence instead of building
-    # another key-capture, conflict detector or profile manager.
-    if shortcut_editor == null:
-        var keychain: Node = get_node_or_null("/root/Keychain")
-        if keychain == null:
-            shortcut_status.text = "Keychain runtime singleton unavailable. Verify addons locally with: bash scripts/check.sh"
-        else:
-            var editor_scene := load("res://addons/keychain/ShortcutEdit.tscn") as PackedScene
-            if editor_scene == null:
-                shortcut_status.text = "Keychain ShortcutEdit scene missing."
-            else:
-                shortcut_editor = editor_scene.instantiate() as Control
-                shortcut_editor.name = "KeychainControls"
-                shortcut_editor.custom_minimum_size = Vector2(920, 470)
-                shortcut_editor.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-                shortcut_editor.size_flags_vertical = Control.SIZE_EXPAND_FILL
-                # Insert before the BACK button.
-                options_panel.add_child(shortcut_editor)
-                options_panel.move_child(shortcut_editor, options_panel.get_child_count() - 2)
-                shortcut_status.text = "Edit bindings here; Keychain saves your profile under user://shortcut_profiles."
+    back_button.grab_focus()
 
 func _close_options() -> void:
     options_panel.visible = false
     menu_panel.visible = true
     footer.visible = true
-    menu_stack.custom_minimum_size = Vector2(330, 280)
+    first_button.grab_focus()
+    settings_closed.emit()
 
 func _set_resolution(index: int) -> void:
     get_window().size = [Vector2i(1280,720), Vector2i(1440,810), Vector2i(1600,900)][index]
+    _save_display_settings()
 
 func _set_fullscreen(enabled: bool) -> void:
     get_window().mode = Window.MODE_FULLSCREEN if enabled else Window.MODE_WINDOWED
+    _save_display_settings()
+
+func _load_display_settings() -> void:
+    var config := ConfigFile.new()
+    if config.load("user://display_settings.cfg") != OK:
+        return
+    var index: int = clampi(int(config.get_value("display", "resolution", 1)), 0, 2)
+    resolution_button.select(index)
+    get_window().size = [Vector2i(1280,720), Vector2i(1440,810), Vector2i(1600,900)][index]
+    var fullscreen: bool = bool(config.get_value("display", "fullscreen", false))
+    fullscreen_toggle.set_pressed_no_signal(fullscreen)
+    get_window().mode = Window.MODE_FULLSCREEN if fullscreen else Window.MODE_WINDOWED
+
+func _save_display_settings() -> void:
+    var config := ConfigFile.new()
+    config.load("user://display_settings.cfg")
+    config.set_value("display", "resolution", resolution_button.selected)
+    config.set_value("display", "fullscreen", fullscreen_toggle.button_pressed)
+    if config.save("user://display_settings.cfg") != OK:
+        shortcut_status.text = "Display settings could not be saved."
 
 func _quit() -> void:
     get_tree().quit()
