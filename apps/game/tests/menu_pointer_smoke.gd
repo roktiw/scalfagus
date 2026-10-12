@@ -21,12 +21,14 @@ func _click(button: Button) -> void:
     down.position = point
     down.global_position = point
     down.button_index = MOUSE_BUTTON_LEFT
+    down.button_mask = MOUSE_BUTTON_MASK_LEFT
     down.pressed = true
     root.push_input(down, true)
     var up := InputEventMouseButton.new()
     up.position = point
     up.global_position = point
     up.button_index = MOUSE_BUTTON_LEFT
+    up.button_mask = 0
     up.pressed = false
     root.push_input(up, true)
 
