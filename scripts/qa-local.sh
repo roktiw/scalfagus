@@ -34,10 +34,12 @@ run_gate() {
   echo "SCALFAGUS_QA_GATE_${result}: $label (exit=$rc)"
 }
 run_gate native-source bash scripts/check-native-source.sh
+run_gate smoke-coverage bash scripts/check-smoke-coverage.sh
 run_gate runner-regression bash scripts/test-godot-qa-run.sh
 run_gate addon-inventory bash scripts/install-godot-addons.sh --check
 run_gate godot-smoke bash scripts/check.sh
 run_gate gut bash scripts/check-gut.sh
+run_gate keychain-restart bash scripts/check-keychain-persistence.sh
 run_gate map bash scripts/check-map.sh
 run_gate five-view node --test architecture/examples/test_five_view_mapping.mjs
 printf "\n## Manual GUI, exports, stress and untested scenarios\n\n- Status: NOT_RUN until the agent verifies them.\n- Record Keychain remap/restart, H-C/C-C, LOS 49/148, 3x3, Matter custody, exports, renderer warnings.\n\n" >> "$REPORT"

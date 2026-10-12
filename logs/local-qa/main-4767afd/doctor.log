@@ -1,0 +1,13 @@
+DOCTOR_PASS: godot
+SCALFAGUS_ADDONS_CHECK_PASS (no network)
+DOCTOR_PASS: addons
+SCALFAGUS_NATIVE_SOURCE_PASS
+DOCTOR_PASS: native-source
+DOCTOR_PASS: map-python
+v24.21.0
+DOCTOR_PASS: node-assets
+DOCTOR_PASS: export-template:macos.zip
+DOCTOR_PASS: export-template:windows_release_x86_64.exe
+DOCTOR_PASS: export-template:linux_release.x86_64
+DOCTOR_PASS: export-template:web_nothreads_release.zip
+Doctor failures: 0. Repairs: bash scripts/setup-dev.sh

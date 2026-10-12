@@ -1,0 +1,60 @@
+SCALFAGUS_ADDONS_CHECK_PASS (no network)
+SCALFAGUS_ADDON_SETUP_OK
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+[   0% ] first_scan_filesystem | Started Project initialization (5 steps)
+[   0% ] first_scan_filesystem | Scanning file structure...
+[  16% ] first_scan_filesystem | Loading global class names...
+[  33% ] first_scan_filesystem | Verifying GDExtensions...
+[  50% ] first_scan_filesystem | Creating autoload scripts...
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+[  66% ] first_scan_filesystem | Initializing plugins...
+[  83% ] first_scan_filesystem | Starting file scan...
+[ DONE ] first_scan_filesystem
+
+[   0% ] loading_editor_layout | Started Loading editor (5 steps)
+[   0% ] loading_editor_layout | Loading editor layout...
+[  16% ] loading_editor_layout | Loading docks...
+[ DONE ] loading_editor_layout
+
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+---  GUT  ---
+[INFO]:  using [<LOCAL_USER_HOME>/Library/Application Support/Godot/app_userdata/Scalfagus] for temporary output.
+Godot version:  4.7.2
+GUT version:  9.7.1
+
+
+res://tests/gut/test_mirror_authority.gd
+* test_initial_MIRROR_state_is_repeatable
+* test_enemy_unit_orders_are_rejected
+2/2 passed.
+
+
+res://tests/gut/test_rts_input_map.gd
+* test_all_RTS_actions_have_project_defaults
+* test_camera_and_training_do_not_share_default_physical_key
+2/2 passed.
+
+
+
+
+==============================================
+= Run Summary
+==============================================
+
+Totals
+------
+Scripts               2
+Tests                 4
+Passing Tests         4
+Asserts              32
+Time              0.447s
+
+
+---- All tests passed! ----
+
+SCALFAGUS_GUT_CHECK_PASS

@@ -1,0 +1,26 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 4.1 Metal - 91.6 - Compatibility - Using Device: Apple - Apple M4
+
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+WARNING: res://addons/keychain/ShortcutEdit.tscn:3 - ext_resource, invalid UID: uid://dpciapd2x2va6 - using text path instead: res://addons/keychain/ShortcutEdit.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+     GDScript backtrace (most recent call first):
+         [0] _ready (res://scripts/menu.gd:123)
+         [1] _verify (res://tests/mirror_replay_ui_smoke.gd:61)
+WARNING: res://addons/keychain/ShortcutSelectorDialog.tscn:3 - ext_resource, invalid UID: uid://ji2g5biygmmd - using text path instead: res://addons/keychain/ShortcutSelectorDialog.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+     GDScript backtrace (most recent call first):
+         [0] _ready (res://scripts/menu.gd:123)
+         [1] _verify (res://tests/mirror_replay_ui_smoke.gd:61)
+WARNING: res://addons/keychain/ShortcutEdit.tscn:3 - ext_resource, invalid UID: uid://dpciapd2x2va6 - using text path instead: res://addons/keychain/ShortcutEdit.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+     GDScript backtrace (most recent call first):
+         [0] _ready (res://scripts/menu.gd:123)
+         [1] _verify (res://tests/mirror_replay_ui_smoke.gd:157)
+WARNING: res://addons/keychain/ShortcutSelectorDialog.tscn:3 - ext_resource, invalid UID: uid://ji2g5biygmmd - using text path instead: res://addons/keychain/ShortcutSelectorDialog.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+     GDScript backtrace (most recent call first):
+         [0] _ready (res://scripts/menu.gd:123)
+         [1] _verify (res://tests/mirror_replay_ui_smoke.gd:157)
+SCALFAGUS_REPLAY_UI_PASS

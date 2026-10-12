@@ -1,0 +1,263 @@
+SCALFAGUS_ADDONS_CHECK_PASS (no network)
+SCALFAGUS_ADDON_SETUP_OK
+VERDANT_SOURCE_SHA_PASS
+VERDANT_MAP_COMPILED_PASS (source YAML matches committed JSON)
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+[   0% ] first_scan_filesystem | Started Project initialization (5 steps)
+[   0% ] first_scan_filesystem | Scanning file structure...
+[  16% ] first_scan_filesystem | Loading global class names...
+[  33% ] first_scan_filesystem | Verifying GDExtensions...
+[  50% ] first_scan_filesystem | Creating autoload scripts...
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+[  66% ] first_scan_filesystem | Initializing plugins...
+[  83% ] first_scan_filesystem | Starting file scan...
+[ DONE ] first_scan_filesystem
+
+[   0% ] update_scripts_classes | Started Registering global classes... (2 steps)
+[   0% ] update_scripts_classes | 
+[  33% ] update_scripts_classes | 
+[ DONE ] update_scripts_classes
+
+[   0% ] loading_editor_layout | Started Loading editor (5 steps)
+[   0% ] loading_editor_layout | Loading editor layout...
+[  16% ] loading_editor_layout | Loading docks...
+[ DONE ] loading_editor_layout
+
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+SCALFAGUS_ADDONS_SMOKE_PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+SCALFAGUS_SMOKE_PASS: one world, three modes, 5->8 mapping, same hero, PNG import
+WARNING: 4 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 4 RID allocations of type 'N17RendererSceneCull8InstanceE' were leaked at exit.
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+WARNING: res://addons/keychain/ShortcutEdit.tscn:3 - ext_resource, invalid UID: uid://dpciapd2x2va6 - using text path instead: res://addons/keychain/ShortcutEdit.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+     GDScript backtrace (most recent call first):
+         [0] _ready (res://scripts/menu.gd:123)
+         [1] _verify (res://tests/menu_smoke.gd:13)
+WARNING: res://addons/keychain/ShortcutSelectorDialog.tscn:3 - ext_resource, invalid UID: uid://ji2g5biygmmd - using text path instead: res://addons/keychain/ShortcutSelectorDialog.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+     GDScript backtrace (most recent call first):
+         [0] _ready (res://scripts/menu.gd:123)
+         [1] _verify (res://tests/menu_smoke.gd:13)
+SCALFAGUS_MENU_PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+WARNING: res://addons/keychain/ShortcutEdit.tscn:3 - ext_resource, invalid UID: uid://dpciapd2x2va6 - using text path instead: res://addons/keychain/ShortcutEdit.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+     GDScript backtrace (most recent call first):
+         [0] _ready (res://scripts/menu.gd:123)
+         [1] _verify (res://tests/menu_pointer_smoke.gd:40)
+WARNING: res://addons/keychain/ShortcutSelectorDialog.tscn:3 - ext_resource, invalid UID: uid://ji2g5biygmmd - using text path instead: res://addons/keychain/ShortcutSelectorDialog.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+     GDScript backtrace (most recent call first):
+         [0] _ready (res://scripts/menu.gd:123)
+         [1] _verify (res://tests/menu_pointer_smoke.gd:40)
+SCALFAGUS_MENU_POINTER_PASS
+SCALFAGUS_MATCH_POINTER_PASS: select Worker and right-click Matter
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+WARNING: res://addons/keychain/ShortcutEdit.tscn:3 - ext_resource, invalid UID: uid://dpciapd2x2va6 - using text path instead: res://addons/keychain/ShortcutEdit.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+     GDScript backtrace (most recent call first):
+         [0] _ready (res://scripts/menu.gd:123)
+         [1] _run (res://tests/command_ui_smoke.gd:12)
+WARNING: res://addons/keychain/ShortcutSelectorDialog.tscn:3 - ext_resource, invalid UID: uid://ji2g5biygmmd - using text path instead: res://addons/keychain/ShortcutSelectorDialog.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+     GDScript backtrace (most recent call first):
+         [0] _ready (res://scripts/menu.gd:123)
+         [1] _run (res://tests/command_ui_smoke.gd:12)
+SCALFAGUS_HQ_SOURCE_ROWS [1, 1, 1, 1, 1]
+WARNING: res://addons/keychain/ShortcutEdit.tscn:3 - ext_resource, invalid UID: uid://dpciapd2x2va6 - using text path instead: res://addons/keychain/ShortcutEdit.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+     GDScript backtrace (most recent call first):
+         [0] _ready (res://scripts/menu.gd:123)
+         [1] _match_settings (res://scripts/mirror_view.gd:503)
+         [2] _run (res://tests/command_ui_smoke.gd:80)
+WARNING: res://addons/keychain/ShortcutSelectorDialog.tscn:3 - ext_resource, invalid UID: uid://ji2g5biygmmd - using text path instead: res://addons/keychain/ShortcutSelectorDialog.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+     GDScript backtrace (most recent call first):
+         [0] _ready (res://scripts/menu.gd:123)
+         [1] _match_settings (res://scripts/mirror_view.gd:503)
+         [2] _run (res://tests/command_ui_smoke.gd:80)
+SCALFAGUS_COMMAND_UI_PASS: sticky back, portraits, opaque HQ views, production, pause/settings/resume
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+WARNING: res://addons/keychain/ShortcutEdit.tscn:3 - ext_resource, invalid UID: uid://dpciapd2x2va6 - using text path instead: res://addons/keychain/ShortcutEdit.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+     GDScript backtrace (most recent call first):
+         [0] _verify (res://tests/keychain_rts_smoke.gd:54)
+WARNING: res://addons/keychain/ShortcutSelectorDialog.tscn:3 - ext_resource, invalid UID: uid://ji2g5biygmmd - using text path instead: res://addons/keychain/ShortcutSelectorDialog.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+     GDScript backtrace (most recent call first):
+         [0] _verify (res://tests/keychain_rts_smoke.gd:54)
+SCALFAGUS_KEYCHAIN_RTS_PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+SCALFAGUS_RTS_SMOKE_PASS: camera focus, two-faction fixture, commands, selection, shared actor
+WARNING: 4 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 4 RID allocations of type 'N17RendererSceneCull8InstanceE' were leaked at exit.
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+SCALFAGUS_NAV_SMOKE_PASS: A*, 3D obstacles, waypoints, minimap, actor identity
+WARNING: 4 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 4 RID allocations of type 'N17RendererSceneCull8InstanceE' were leaked at exit.
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+SCALFAGUS_MIRROR_SMOKE_PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+SCALFAGUS_MIRROR_INTEGRITY_PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+SCALFAGUS_MIRROR_GATEWAY_PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+SCALFAGUS_HUMAN_REPLAY_PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+SCALFAGUS_REPLAY_CHECKPOINT production-and-build-queued tick=2584 commands=5 hash=a51f1aeee7965815bdf7e03c67f436187067a427d3a335e2a28fa0d657cf35d7
+SCALFAGUS_REPLAY_CHECKPOINT rifleman-queued tick=3549 commands=7 hash=f344a21b7d48d445a36351e8a7f3bd66e77f01cad768bcc709da337b8cf2161f
+SCALFAGUS_REPLAY_CHECKPOINT accepted-attack tick=4253 commands=9 hash=f0d35dd87bb4a82f9eb4d2f9ef18b7c4ab500b71abdbde51a50754337abbdd94
+SCALFAGUS_REPLAY_VALIDATION_PASS: 15 malformed schema cases
+SCALFAGUS_REPLAY_CHECKPOINT terminal-with-rejected-command tick=6833 commands=10 hash=26c9291fba9eb825389ba62ddc701147979a206813cd09e964fa31897cdb346f
+SCALFAGUS_REPLAY_CHECKPOINT setup-clears-history tick=0 commands=0 hash=b80d0a6d778193a8d3ab51a4f593b6108ce94998038d990bd9deefa5d45965bc
+SCALFAGUS_REPLAY_LIFECYCLE_PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+SCALFAGUS_REPLAY_SESSION_PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+WARNING: res://addons/keychain/ShortcutEdit.tscn:3 - ext_resource, invalid UID: uid://dpciapd2x2va6 - using text path instead: res://addons/keychain/ShortcutEdit.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+     GDScript backtrace (most recent call first):
+         [0] _ready (res://scripts/menu.gd:123)
+         [1] _verify (res://tests/mirror_replay_ui_smoke.gd:61)
+WARNING: res://addons/keychain/ShortcutSelectorDialog.tscn:3 - ext_resource, invalid UID: uid://ji2g5biygmmd - using text path instead: res://addons/keychain/ShortcutSelectorDialog.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+     GDScript backtrace (most recent call first):
+         [0] _ready (res://scripts/menu.gd:123)
+         [1] _verify (res://tests/mirror_replay_ui_smoke.gd:61)
+WARNING: res://addons/keychain/ShortcutEdit.tscn:3 - ext_resource, invalid UID: uid://dpciapd2x2va6 - using text path instead: res://addons/keychain/ShortcutEdit.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+     GDScript backtrace (most recent call first):
+         [0] _ready (res://scripts/menu.gd:123)
+         [1] _verify (res://tests/mirror_replay_ui_smoke.gd:157)
+WARNING: res://addons/keychain/ShortcutSelectorDialog.tscn:3 - ext_resource, invalid UID: uid://ji2g5biygmmd - using text path instead: res://addons/keychain/ShortcutSelectorDialog.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+     GDScript backtrace (most recent call first):
+         [0] _ready (res://scripts/menu.gd:123)
+         [1] _verify (res://tests/mirror_replay_ui_smoke.gd:157)
+SCALFAGUS_REPLAY_UI_PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+ERROR: Condition "!is_inside_tree()" is true.
+   at: grab_focus (scene/gui/control.cpp:3001)
+ERROR: Condition "!is_inside_tree()" is true.
+   at: grab_focus (scene/gui/control.cpp:3001)
+WARNING: res://addons/keychain/ShortcutEdit.tscn:3 - ext_resource, invalid UID: uid://dpciapd2x2va6 - using text path instead: res://addons/keychain/ShortcutEdit.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+     GDScript backtrace (most recent call first):
+         [0] _ready (res://scripts/menu.gd:123)
+WARNING: res://addons/keychain/ShortcutSelectorDialog.tscn:3 - ext_resource, invalid UID: uid://ji2g5biygmmd - using text path instead: res://addons/keychain/ShortcutSelectorDialog.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+     GDScript backtrace (most recent call first):
+         [0] _ready (res://scripts/menu.gd:123)
+SCALFAGUS_MATCH_RESULT_PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+SCALFAGUS_MIRROR_TIMING_PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+SCALFAGUS_MIRROR_ASTAR_PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+SCALFAGUS_MIRROR_FOOTPRINT_PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+SCALFAGUS_CONSTRUCTION_LIFECYCLE_PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+SCALFAGUS_VERDANT_MAP_PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+SCALFAGUS_MIRROR_RESULT {"bot_attack_thresholds":[2,3],"controllers":["bot","bot"],"finished":true,"hash":"86a2d047f18aeacaf9cda80f1d29c30da6ad9b312b9860c6ee0a962d45ec9f1a","lost_cargo_legacy":27,"lost_matter":27,"map_hash":"6b9054d78ae619f258cf1ffe8ce1b69e33c3d493b92dfdfc03e9f37ae7534083","map_id":"verdant_divide","map_source_sha":"036c23dbc582af6c63e2c2e901d3a74e3286e5e8","matter_conserved":true,"max_ticks":24000,"reason":"buildings_eliminated","rejected_commands":0,"resources_mined":855,"resources_spent":800,"rules":"mvp0-man-mirror-v5-3x3-world2m","seed":42,"tick_hz":20,"ticks":10111,"winner":1}
+SCALFAGUS_MIRROR_BATCH_PASS {"draws":0,"matches":1,"matches_per_second":2.38663484486874,"seconds":0.419,"wins":[0,1]}
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+SCALFAGUS_MIRROR_VISUAL_PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+SCALFAGUS_MIRROR_FOG_PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+SCALFAGUS_MIRROR_PHYSICS_LOS_PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+SCALFAGUS_MIRROR_GROUP_PASS
+ASSET_MANIFEST_PASS 7 transparent, region-aligned PNG atlases (prototype only)
+OK 16x16: atlas 48x48, 9 icons, 1398 opaque pixels
+OK 32x32: atlas 96x96, 9 icons, 5803 opaque pixels
+OK 64x64: atlas 192x192, 9 icons, 23707 opaque pixels
+OK 27 RGBA icons and 3 atlases, all atlas rectangles match standalone source bytes
+SCALFAGUS_GODOT_CHECK_PASS

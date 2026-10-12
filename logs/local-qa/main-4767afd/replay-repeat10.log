@@ -1,0 +1,121 @@
+RUN 1 EXIT 0
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_REPLAY_CHECKPOINT production-and-build-queued tick=2584 commands=5 hash=a51f1aeee7965815bdf7e03c67f436187067a427d3a335e2a28fa0d657cf35d7
+SCALFAGUS_REPLAY_CHECKPOINT rifleman-queued tick=3549 commands=7 hash=f344a21b7d48d445a36351e8a7f3bd66e77f01cad768bcc709da337b8cf2161f
+SCALFAGUS_REPLAY_CHECKPOINT accepted-attack tick=4253 commands=9 hash=f0d35dd87bb4a82f9eb4d2f9ef18b7c4ab500b71abdbde51a50754337abbdd94
+SCALFAGUS_REPLAY_VALIDATION_PASS: 15 malformed schema cases
+SCALFAGUS_REPLAY_CHECKPOINT terminal-with-rejected-command tick=6833 commands=10 hash=26c9291fba9eb825389ba62ddc701147979a206813cd09e964fa31897cdb346f
+SCALFAGUS_REPLAY_CHECKPOINT setup-clears-history tick=0 commands=0 hash=b80d0a6d778193a8d3ab51a4f593b6108ce94998038d990bd9deefa5d45965bc
+SCALFAGUS_REPLAY_LIFECYCLE_PASS
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+RUN 2 EXIT 0
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_REPLAY_CHECKPOINT production-and-build-queued tick=2584 commands=5 hash=a51f1aeee7965815bdf7e03c67f436187067a427d3a335e2a28fa0d657cf35d7
+SCALFAGUS_REPLAY_CHECKPOINT rifleman-queued tick=3549 commands=7 hash=f344a21b7d48d445a36351e8a7f3bd66e77f01cad768bcc709da337b8cf2161f
+SCALFAGUS_REPLAY_CHECKPOINT accepted-attack tick=4253 commands=9 hash=f0d35dd87bb4a82f9eb4d2f9ef18b7c4ab500b71abdbde51a50754337abbdd94
+SCALFAGUS_REPLAY_VALIDATION_PASS: 15 malformed schema cases
+SCALFAGUS_REPLAY_CHECKPOINT terminal-with-rejected-command tick=6833 commands=10 hash=26c9291fba9eb825389ba62ddc701147979a206813cd09e964fa31897cdb346f
+SCALFAGUS_REPLAY_CHECKPOINT setup-clears-history tick=0 commands=0 hash=b80d0a6d778193a8d3ab51a4f593b6108ce94998038d990bd9deefa5d45965bc
+SCALFAGUS_REPLAY_LIFECYCLE_PASS
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+RUN 3 EXIT 0
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_REPLAY_CHECKPOINT production-and-build-queued tick=2584 commands=5 hash=a51f1aeee7965815bdf7e03c67f436187067a427d3a335e2a28fa0d657cf35d7
+SCALFAGUS_REPLAY_CHECKPOINT rifleman-queued tick=3549 commands=7 hash=f344a21b7d48d445a36351e8a7f3bd66e77f01cad768bcc709da337b8cf2161f
+SCALFAGUS_REPLAY_CHECKPOINT accepted-attack tick=4253 commands=9 hash=f0d35dd87bb4a82f9eb4d2f9ef18b7c4ab500b71abdbde51a50754337abbdd94
+SCALFAGUS_REPLAY_VALIDATION_PASS: 15 malformed schema cases
+SCALFAGUS_REPLAY_CHECKPOINT terminal-with-rejected-command tick=6833 commands=10 hash=26c9291fba9eb825389ba62ddc701147979a206813cd09e964fa31897cdb346f
+SCALFAGUS_REPLAY_CHECKPOINT setup-clears-history tick=0 commands=0 hash=b80d0a6d778193a8d3ab51a4f593b6108ce94998038d990bd9deefa5d45965bc
+SCALFAGUS_REPLAY_LIFECYCLE_PASS
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+RUN 4 EXIT 0
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_REPLAY_CHECKPOINT production-and-build-queued tick=2584 commands=5 hash=a51f1aeee7965815bdf7e03c67f436187067a427d3a335e2a28fa0d657cf35d7
+SCALFAGUS_REPLAY_CHECKPOINT rifleman-queued tick=3549 commands=7 hash=f344a21b7d48d445a36351e8a7f3bd66e77f01cad768bcc709da337b8cf2161f
+SCALFAGUS_REPLAY_CHECKPOINT accepted-attack tick=4253 commands=9 hash=f0d35dd87bb4a82f9eb4d2f9ef18b7c4ab500b71abdbde51a50754337abbdd94
+SCALFAGUS_REPLAY_VALIDATION_PASS: 15 malformed schema cases
+SCALFAGUS_REPLAY_CHECKPOINT terminal-with-rejected-command tick=6833 commands=10 hash=26c9291fba9eb825389ba62ddc701147979a206813cd09e964fa31897cdb346f
+SCALFAGUS_REPLAY_CHECKPOINT setup-clears-history tick=0 commands=0 hash=b80d0a6d778193a8d3ab51a4f593b6108ce94998038d990bd9deefa5d45965bc
+SCALFAGUS_REPLAY_LIFECYCLE_PASS
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+RUN 5 EXIT 0
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_REPLAY_CHECKPOINT production-and-build-queued tick=2584 commands=5 hash=a51f1aeee7965815bdf7e03c67f436187067a427d3a335e2a28fa0d657cf35d7
+SCALFAGUS_REPLAY_CHECKPOINT rifleman-queued tick=3549 commands=7 hash=f344a21b7d48d445a36351e8a7f3bd66e77f01cad768bcc709da337b8cf2161f
+SCALFAGUS_REPLAY_CHECKPOINT accepted-attack tick=4253 commands=9 hash=f0d35dd87bb4a82f9eb4d2f9ef18b7c4ab500b71abdbde51a50754337abbdd94
+SCALFAGUS_REPLAY_VALIDATION_PASS: 15 malformed schema cases
+SCALFAGUS_REPLAY_CHECKPOINT terminal-with-rejected-command tick=6833 commands=10 hash=26c9291fba9eb825389ba62ddc701147979a206813cd09e964fa31897cdb346f
+SCALFAGUS_REPLAY_CHECKPOINT setup-clears-history tick=0 commands=0 hash=b80d0a6d778193a8d3ab51a4f593b6108ce94998038d990bd9deefa5d45965bc
+SCALFAGUS_REPLAY_LIFECYCLE_PASS
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+RUN 6 EXIT 0
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_REPLAY_CHECKPOINT production-and-build-queued tick=2584 commands=5 hash=a51f1aeee7965815bdf7e03c67f436187067a427d3a335e2a28fa0d657cf35d7
+SCALFAGUS_REPLAY_CHECKPOINT rifleman-queued tick=3549 commands=7 hash=f344a21b7d48d445a36351e8a7f3bd66e77f01cad768bcc709da337b8cf2161f
+SCALFAGUS_REPLAY_CHECKPOINT accepted-attack tick=4253 commands=9 hash=f0d35dd87bb4a82f9eb4d2f9ef18b7c4ab500b71abdbde51a50754337abbdd94
+SCALFAGUS_REPLAY_VALIDATION_PASS: 15 malformed schema cases
+SCALFAGUS_REPLAY_CHECKPOINT terminal-with-rejected-command tick=6833 commands=10 hash=26c9291fba9eb825389ba62ddc701147979a206813cd09e964fa31897cdb346f
+SCALFAGUS_REPLAY_CHECKPOINT setup-clears-history tick=0 commands=0 hash=b80d0a6d778193a8d3ab51a4f593b6108ce94998038d990bd9deefa5d45965bc
+SCALFAGUS_REPLAY_LIFECYCLE_PASS
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+RUN 7 EXIT 0
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_REPLAY_CHECKPOINT production-and-build-queued tick=2584 commands=5 hash=a51f1aeee7965815bdf7e03c67f436187067a427d3a335e2a28fa0d657cf35d7
+SCALFAGUS_REPLAY_CHECKPOINT rifleman-queued tick=3549 commands=7 hash=f344a21b7d48d445a36351e8a7f3bd66e77f01cad768bcc709da337b8cf2161f
+SCALFAGUS_REPLAY_CHECKPOINT accepted-attack tick=4253 commands=9 hash=f0d35dd87bb4a82f9eb4d2f9ef18b7c4ab500b71abdbde51a50754337abbdd94
+SCALFAGUS_REPLAY_VALIDATION_PASS: 15 malformed schema cases
+SCALFAGUS_REPLAY_CHECKPOINT terminal-with-rejected-command tick=6833 commands=10 hash=26c9291fba9eb825389ba62ddc701147979a206813cd09e964fa31897cdb346f
+SCALFAGUS_REPLAY_CHECKPOINT setup-clears-history tick=0 commands=0 hash=b80d0a6d778193a8d3ab51a4f593b6108ce94998038d990bd9deefa5d45965bc
+SCALFAGUS_REPLAY_LIFECYCLE_PASS
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+RUN 8 EXIT 0
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_REPLAY_CHECKPOINT production-and-build-queued tick=2584 commands=5 hash=a51f1aeee7965815bdf7e03c67f436187067a427d3a335e2a28fa0d657cf35d7
+SCALFAGUS_REPLAY_CHECKPOINT rifleman-queued tick=3549 commands=7 hash=f344a21b7d48d445a36351e8a7f3bd66e77f01cad768bcc709da337b8cf2161f
+SCALFAGUS_REPLAY_CHECKPOINT accepted-attack tick=4253 commands=9 hash=f0d35dd87bb4a82f9eb4d2f9ef18b7c4ab500b71abdbde51a50754337abbdd94
+SCALFAGUS_REPLAY_VALIDATION_PASS: 15 malformed schema cases
+SCALFAGUS_REPLAY_CHECKPOINT terminal-with-rejected-command tick=6833 commands=10 hash=26c9291fba9eb825389ba62ddc701147979a206813cd09e964fa31897cdb346f
+SCALFAGUS_REPLAY_CHECKPOINT setup-clears-history tick=0 commands=0 hash=b80d0a6d778193a8d3ab51a4f593b6108ce94998038d990bd9deefa5d45965bc
+SCALFAGUS_REPLAY_LIFECYCLE_PASS
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+RUN 9 EXIT 0
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_REPLAY_CHECKPOINT production-and-build-queued tick=2584 commands=5 hash=a51f1aeee7965815bdf7e03c67f436187067a427d3a335e2a28fa0d657cf35d7
+SCALFAGUS_REPLAY_CHECKPOINT rifleman-queued tick=3549 commands=7 hash=f344a21b7d48d445a36351e8a7f3bd66e77f01cad768bcc709da337b8cf2161f
+SCALFAGUS_REPLAY_CHECKPOINT accepted-attack tick=4253 commands=9 hash=f0d35dd87bb4a82f9eb4d2f9ef18b7c4ab500b71abdbde51a50754337abbdd94
+SCALFAGUS_REPLAY_VALIDATION_PASS: 15 malformed schema cases
+SCALFAGUS_REPLAY_CHECKPOINT terminal-with-rejected-command tick=6833 commands=10 hash=26c9291fba9eb825389ba62ddc701147979a206813cd09e964fa31897cdb346f
+SCALFAGUS_REPLAY_CHECKPOINT setup-clears-history tick=0 commands=0 hash=b80d0a6d778193a8d3ab51a4f593b6108ce94998038d990bd9deefa5d45965bc
+SCALFAGUS_REPLAY_LIFECYCLE_PASS
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+RUN 10 EXIT 0
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_REPLAY_CHECKPOINT production-and-build-queued tick=2584 commands=5 hash=a51f1aeee7965815bdf7e03c67f436187067a427d3a335e2a28fa0d657cf35d7
+SCALFAGUS_REPLAY_CHECKPOINT rifleman-queued tick=3549 commands=7 hash=f344a21b7d48d445a36351e8a7f3bd66e77f01cad768bcc709da337b8cf2161f
+SCALFAGUS_REPLAY_CHECKPOINT accepted-attack tick=4253 commands=9 hash=f0d35dd87bb4a82f9eb4d2f9ef18b7c4ab500b71abdbde51a50754337abbdd94
+SCALFAGUS_REPLAY_VALIDATION_PASS: 15 malformed schema cases
+SCALFAGUS_REPLAY_CHECKPOINT terminal-with-rejected-command tick=6833 commands=10 hash=26c9291fba9eb825389ba62ddc701147979a206813cd09e964fa31897cdb346f
+SCALFAGUS_REPLAY_CHECKPOINT setup-clears-history tick=0 commands=0 hash=b80d0a6d778193a8d3ab51a4f593b6108ce94998038d990bd9deefa5d45965bc
+SCALFAGUS_REPLAY_LIFECYCLE_PASS
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+REPLAY_REPEAT_PASS 10/10 hash=26c9291fba9eb825389ba62ddc701147979a206813cd09e964fa31897cdb346f seconds=14.330
