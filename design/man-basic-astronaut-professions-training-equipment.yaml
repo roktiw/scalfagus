@@ -1,10 +1,14 @@
 schema_version: 1
 project: scalfagus
 decision_id: DEC-043
-version: 0.2
+version: 0.3
 date: "2026-10-12"
-status: owner_approved_Basic_Manus_three_slots_seven_options_owner_requested_catalogue_names_proposed
+status: owner_approved_three_human_slots_and_training_prior_seven_roster_historical_superseded_by_DEC_044
 human_specification: design/man-basic-astronaut-professions-training-equipment-2026-10-12.md
+latest_curriculum_replaced_by_DEC_044: design/man-three-academies-nine-faculties.yaml
+current_academy_count: 3
+current_available_faculties_count: 9
+older_seven_option_roster_below_is_historical_migration_input_only: true
 relevant_existing_decisions: [DEC-001, DEC-003, DEC-006, DEC-010, DEC-033, DEC-034, DEC-037, DEC-040, DEC-041, DEC-042]
 release:
   applies_to: post_MVP0_profession_system
