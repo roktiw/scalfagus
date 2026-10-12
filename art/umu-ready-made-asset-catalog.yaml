@@ -1,0 +1,316 @@
+schema_version: 1
+project: scalfagus
+catalog_id: man_umu_ready_made_art_component_candidates
+version: 0.1
+research_date: "2026-10-12"
+status: catalog_only_external_sources_verified_license_claims_archive_contents_uninspected
+human_report: art/umu-ready-made-asset-shortlist-2026-10-12.md
+discussion_record: inbox/2026-10-12-umu-assets-discussion-handoff.md
+validation_plan: art/umu-asset-intake-acceptance.yaml
+target_engine: Godot_4_7_2_Standard
+first_MVP0_owner_decision: DEC-033
+feature_shipping_gate: post_MVP0_only
+UMU_owner_decisions: [DEC-040, DEC-041, DEC-042]
+reuse_first_owner_decision: DEC-034
+five_source_views_renderer: DEC-017
+assets_installed_in_repo_by_this_research: false
+archives_downloaded_by_this_research: false
+individual_meshes_inspected: false
+source_license_files_inspected_inside_ZIPs: false
+tested_in_current_Godot: false
+user_has_approved_specific_pack_for_installation: false
+research_finding:
+  full_finished_UMU_with_exact_twinned_folding_belts_found: false
+  recommendation: original_UMU_chassis_assembled_from_individually_licensed_CC0_components
+  preferred_assembly_id: candidate_industrial_crawler
+  clean_license_default: CC0-1.0
+  require_validated_downloaded_archive_before_any_reuse: true
+  no_gameplay_changes_required_for_art_catalog: true
+
+external_asset_candidates:
+  - id: asset_kenney_conveyor_kit
+    rank: A1
+    publisher: Kenney
+    exact_pack_title: Conveyor Kit
+    original_page_url: https://kenney-assets.itch.io/conveyor-kit
+    original_page_seen: "2026-10-12"
+    reference_source_type: original_publisher_itch_page
+    page_license: CC0-1.0
+    commercial_game_reuse_according_to_page: true
+    mandatory_attribution_according_to_page: false
+    published_pack_items_description: over_60_industrial_3D_models
+    full_free_source_entitlement: download_now_name_your_own_price
+    archive_title_seen_on_page: kenney_conveyor-kit.zip
+    approximate_archive_size_MB_from_page: 1.2
+    source_format_verified_on_page: unknown_download_archive_not_inspected
+    styling: lightweight_colormap_industrial_lowpoly
+    UMU_component_roles: [physical_left_belt, physical_right_belt, loading_feeder, conveyor_3, conveyor_5, belt_side_panels]
+    candidate_mode_coverage: [move_tracks_visual, warehouse, conveyor, power_generator_intake]
+    match_quality_candidate_score_out_of_5: 5
+    caveat: parts_do_not_self_transform_to_tracked_vehicle_and_rig_must_be_authored
+    model_file_names_confirmed: []
+    archive_sha256: null
+    installed: false
+
+  - id: asset_kenney_factory_kit
+    rank: A1
+    publisher: Kenney
+    exact_pack_title: Factory Kit
+    original_page_url: https://kenney.nl/assets/factory-kit
+    original_page_seen: "2026-10-12"
+    reference_source_type: original_publisher_site
+    page_license: CC0-1.0
+    commercial_game_reuse_according_to_page: true
+    mandatory_attribution_according_to_page: false
+    advertised_file_count: 140
+    advertised_animation_or_variation: true
+    advertised_release_version: "3.0"
+    source_formats_on_page: unknown_await_zip_inventory
+    UMU_component_roles: [industrial_core, hopper, generator_casing, warehouse_facade, loader, belt_connection, equipment_shell]
+    candidate_mode_coverage: [warehouse, power_generator, harvest, conveyor]
+    match_quality_candidate_score_out_of_5: 5
+    caveat: factory_parts_not_preassembled_into_ground_vehicle
+    model_file_names_confirmed: []
+    archive_sha256: null
+    installed: false
+
+  - id: asset_kaykit_space_base_bits
+    rank: A1
+    publisher: KayKit_Game_Assets
+    exact_pack_title: KayKit Space Base Bits
+    original_page_url: https://godotengine.org/asset-library/asset/2124
+    original_page_seen: "2026-10-12"
+    reference_source_type: official_Godot_Asset_Library_author_upload
+    page_license: CC0-1.0
+    commercial_game_reuse_according_to_page: true
+    mandatory_attribution_according_to_page: false
+    advertised_model_count: over_48
+    official_target_version_listed: Godot_4_1
+    Godot_4_7_2_compatibility_tested: false
+    advertised_texture_layout: single_gradient_1024x1024_atlas
+    source_formats_on_page: Godot_asset_pack_unknown_mesh_formats_until_archive_inspected
+    UMU_component_roles: [open_trapezoid_cage, bulkhead_frame, roof_socket, bunker_panels, load_port_covers]
+    candidate_mode_coverage: [move_tracks_visual, bunker, sentry_wall, building_drive]
+    match_quality_candidate_score_out_of_5: 4
+    caveat: no_exact_original_track_formation_confirmed_in_pack
+    model_file_names_confirmed: []
+    archive_sha256: null
+    installed: false
+
+  - id: asset_quaternius_modular_scifi_megakit
+    rank: A2
+    publisher: Quaternius
+    exact_pack_title: Modular Sci-Fi Megakit
+    original_page_url: https://quaternius.com/packs/modularscifimegakit.html
+    original_page_seen: "2026-10-12"
+    reference_source_type: original_publisher_site
+    page_license: CC0-1.0
+    commercial_game_reuse_according_to_page: true
+    mandatory_attribution_according_to_page: false
+    advertised_total_full_tier_models: 277
+    free_standard_portion_percent_advertised: 60_to_70
+    full_publisher_source_tier_includes_Godot_project: true
+    Godot_project_in_free_Standard: not_claimed
+    supported_standard_formats_per_page: [OBJ, FBX, glTF]
+    Blend_in_full_Source_tier: true
+    UMU_component_roles: [sci_fi_body_shell, service_hatch, modular_frame, bunker_wall, roof_hardpoint, access_ladder]
+    candidate_mode_coverage: [warehouse, bunker, sentry_wall, building_drive]
+    match_quality_candidate_score_out_of_5: 4
+    caveat: interior_stations_not_ground_vehicles_and_free_tier_exact_model_list_unverified
+    model_file_names_confirmed: []
+    archive_sha256: null
+    installed: false
+
+  - id: asset_quaternius_scifi_essentials
+    rank: A2
+    publisher: Quaternius
+    exact_pack_title: Sci-Fi Essentials Kit
+    original_page_url: https://quaternius.com/packs/scifiessentialskit.html
+    original_page_seen: "2026-10-12"
+    reference_source_type: original_publisher_site
+    page_license: CC0-1.0
+    commercial_game_reuse_according_to_page: true
+    mandatory_attribution_according_to_page: false
+    advertised_total_full_tier_models: 65
+    free_standard_portion_percent_advertised: 60_to_70
+    formats_on_page: [OBJ, FBX, glTF]
+    source_tier_Godot_project: yes_as_publisher_claim_and_requires_purchase_or_tier
+    UMU_component_roles: [physical_cargo_crates, screens, optics, garrison_details, container_ports, roof_prop]
+    candidate_mode_coverage: [move_tracks_visual, warehouse, bunker, survey]
+    match_quality_candidate_score_out_of_5: 4
+    caveat: prop_pack_not_ready_vehicle_and_free_tier_subset_unverified
+    model_file_names_confirmed: []
+    archive_sha256: null
+    installed: false
+
+  - id: asset_kenney_city_industrial
+    rank: A2
+    publisher: Kenney
+    exact_pack_title: City Kit (Industrial)
+    original_page_url: https://kenney.nl/assets/city-kit-industrial
+    original_page_seen: "2026-10-12"
+    reference_source_type: original_publisher_site
+    page_license: CC0-1.0
+    commercial_game_reuse_according_to_page: true
+    mandatory_attribution_according_to_page: false
+    advertised_model_file_count: 40
+    advertised_recent_update: version_2_solar_and_wind_energy
+    source_formats_on_page: unknown_await_archive
+    UMU_component_roles: [solar_roof_visual, turbine_visual, industrial_power_facade]
+    candidate_mode_coverage: [power_generator]
+    match_quality_candidate_score_out_of_5: 3
+    caveat: rooftop_conversion_and_functionality_exclusive_role_not_supplied
+    model_file_names_confirmed: []
+    archive_sha256: null
+    installed: false
+
+  - id: asset_kenney_modular_space
+    rank: B1
+    publisher: Kenney
+    exact_pack_title: Modular Space Kit
+    original_page_url: https://kenney.nl/assets/modular-space-kit
+    original_page_seen: "2026-10-12"
+    reference_source_type: original_publisher_site
+    page_license: CC0-1.0
+    commercial_game_reuse_according_to_page: true
+    mandatory_attribution_according_to_page: false
+    advertised_file_count: 40
+    source_formats_on_page: unknown_await_archive
+    UMU_component_roles: [space_industrial_hull, docking_interfaces, roof_panel, body_shroud]
+    candidate_mode_coverage: [bunker, sentry_wall, building_drive]
+    match_quality_candidate_score_out_of_5: 3
+    caveat: station_interior_pieces_not_roadgoing_transforming_machine
+    model_file_names_confirmed: []
+    archive_sha256: null
+    installed: false
+
+  - id: asset_kenney_car_kit
+    rank: B2
+    publisher: Kenney
+    exact_pack_title: Car Kit
+    original_page_url: https://kenney.nl/assets/car-kit
+    original_page_seen: "2026-10-12"
+    reference_source_type: original_publisher_site
+    page_license: CC0-1.0
+    commercial_game_reuse_according_to_page: true
+    mandatory_attribution_according_to_page: false
+    advertised_file_count: 45
+    source_formats_on_page: unknown_await_archive
+    UMU_component_roles: [temporary_mobile_proxy, standalone_wheel_visual_study, building_drive_movement_reference]
+    candidate_mode_coverage: [building_drive_visual_proxy]
+    match_quality_candidate_score_out_of_5: 2
+    caveat: explicit_two_conveyor_wings_to_tracks_OWNER_canon_must_not_be_replaced_with_off_the_shelf_wheels
+    model_file_names_confirmed: []
+    archive_sha256: null
+    installed: false
+
+  - id: asset_opengameart_lowpoly_tank
+    rank: B2
+    publisher: pixelmannen
+    exact_pack_title: Low-Poly tank assets
+    original_page_url: https://opengameart.org/content/low-poly-tank-assets
+    original_page_seen: "2026-10-12"
+    reference_source_type: original_author_upload_on_OpenGameArt
+    page_license: CC0-1.0
+    commercial_game_reuse_according_to_page: true
+    mandatory_attribution_according_to_page: false
+    download_archive_title_on_page: TankAndProps.zip
+    source_formats_on_page: archive_3D_formats_not_confirmed
+    UMU_component_roles: [tracked_visual_reference, crude_undercarriage_proxy]
+    candidate_mode_coverage: [move_tracks_visual]
+    match_quality_candidate_score_out_of_5: 2
+    caveat: single_tank_model_not_modular_conveyor_to_track_mechanism
+    model_file_names_confirmed: []
+    archive_sha256: null
+    installed: false
+
+not_permitted_as_direct_asset_without_independent_rights:
+  - id: reference_sci_fi_mobile_battery
+    reference_url: https://sketchfab.com/3d-models/mobile-battery-230a7ef3b5b24a6081074a8ecf0b6fef
+    owner: onzarain
+    visible_status: another_game_reference_model_about_308k_triangles_NoAI_notice_no_confirmed_open_redistribution_license
+    proposed_use: generic_concept_reference_only_not_asset_acquisition
+    no_import_or_AI_derived_recreation_without_explicit_rights: true
+  - id: synty_polygon_paid_packs
+    publisher_info_url: https://syntystore.com/community/faq
+    status: commercial_marketplace_license_and_unsupported_Godot_publisher_integration_need_separate_review
+    reason_not_prioritized: asset_rights_and_engine_compatibility_unproven_for_desired_workflow
+
+source_groups:
+  preferred_first_proof:
+    id: candidate_industrial_crawler
+    source_candidate_ids: [asset_kenney_conveyor_kit, asset_kenney_factory_kit, asset_kaykit_space_base_bits]
+    recommendation_priority: first
+    no_finished_UMU_model_claim: true
+    needs_original_rigging_and_five_view_sprite_export: true
+  alternate_scifi:
+    id: candidate_orbital_colony_utility_skid
+    source_candidate_ids: [asset_kenney_conveyor_kit, asset_quaternius_modular_scifi_megakit, asset_quaternius_scifi_essentials]
+    recommendation_priority: second
+    needs_open_front_rear_cage_and_nonmagical_ports: true
+  fastest_blockout:
+    id: candidate_tank_proxy
+    source_candidate_ids: [asset_opengameart_lowpoly_tank, asset_kenney_factory_kit, asset_kenney_conveyor_kit]
+    recommendation_priority: collision_and_navigation_dev_only
+    not_final_owner_silhouette: true
+
+UMU_original_geometry_required:
+  one_persistent_real_UMU_actor_id: true
+  independent_original_left_belt_wing: true
+  independent_original_right_belt_wing: true
+  wings_count: 2
+  core_cage_front_open: true
+  core_cage_rear_open: true
+  mobile_underbody_track_uses_same_two_real_wings: true
+  warehouse_exact_open_wings: 1
+  conveyor_3_geometry_tiles: {left: 1, center: 1, right: 1}
+  conveyor_5_geometry_tiles: {left: 2, center: 1, right: 2}
+  bunker_wings_fold_to_hull_side: true
+  sentry_wings_stand_vertical_and_block_ground: true
+  roof_tool_mount_points: at_least_one_visual_candidate
+  active_operational_roles_max: 1
+  physical_passenger_slots: 4
+  mixed_cargo_capacity_slots: 27
+  monotype_cargo_capacity_slots: 45
+  monotype_side_racks_capacity_each: 9
+  building_drive_required_unique_units: {small: 4, medium: 6, large: 8}
+  external_models_do_not_supply_transactional_inventory_or_collision_truth: true
+
+asset_render_pipeline:
+  runtime_game_renderer: Godot_Sprite3D_on_real_3D_world
+  authored_camera_angles: [front, front_right, right, back_right, back]
+  displayed_sectors: 8
+  one_authoritative_asset_family_per_entity: true
+  source_mesh_format_preferred_if_available: glTF_2_0
+  physical_rendering_and_hitbox_separate: true
+  authored_animation_states: [move_tracks, warehouse_left, warehouse_right, conveyor_3, conveyor_5, bunker, sentry_wall]
+  extended_later_poses: [power_generator, harvest, building_drive]
+  3d_model_parts_are_art_only_without_authoritative_role_state: true
+  dynamic_Belt_transform_and_port_side_requires_five_view_mirror_qa: true
+  proposed_start_frame_px: [128, 96]
+  proposed_frame_size_owner_approved: false
+  wide_conveyor_can_have_larger_alpha_frame_bounds: true
+  temporary_source_rig_is_original_derivative_kitbash: true
+
+provenance_and_security_gates:
+  prefer_original_source_link: true
+  inspect_pack_ZIP_license_text: true
+  keep_original_zip_sha256_and_each_imported_mesh_hash: true
+  keep_source_url_author_license_date_version_per_pack: true
+  inspect_texture_and_material_license: true
+  stage_in_quarantine_not_current_shipping_assets_until_review: true
+  no_runtime_asset_download_or_telemetry: true
+  no_executable_bundle_scripts_without_review: true
+  no_installation_without_explicit_user_approval: true
+  no_license_assumptions_based_only_on_FBX_or_Godot_format: true
+  check_original_IP_or_nonlicensed_model_reposts: true
+
+review_criteria:
+  - visual_match_to_two_actual_persistent_transforming_wings
+  - recognisable_MID_and_MAX_role_without_overcomplicating_asset_roster
+  - coherent_warehouse_generator_bunker_wall_readability
+  - low_poly_model_and_pixel_5_view_atlas_BENCHMARK_NOT_YET_EXECUTED
+  - collision_preserves_finite_packet_and_occupant_manifest
+  - license_and_source_evidence_captured_as_manifest
+  - compiled_sprite_camera_flip_cannot_move_actual_world_ports
+  - no_UMU_in_first_MAN_mirror_MVP0_without_new_owner_release_decision
