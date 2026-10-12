@@ -33,6 +33,7 @@ Status: **living design baseline, NOT implemented gameplay or final balance**.
 ## 1. Fantasy, audience and boundaries
 Scalfagus blends:
 - **Warcraft II / StarCraft:** instantly recognizable selection, units, hotkeys, battles and clarity.
+- **Planet X16 (2023):** owner-added modern-retro RTS reference for compact sprite readability, visible picked-up and dropped-off minerals, basic economy/energy visualization and mouse-order simplicity; see [source-based review](../research/planet-x16-rts-inspiration-2026-10-12.md). Inspiration only, not approval to import its exact art, camera, units, prices, AI, visibility model or match clock.
 - **Z:** map sectors and factories whose capture shifts an active frontline.
 - **Dungeon Keeper:** autonomous base workforce, functional rooms/infrastructure and possible direct possession.
 - **Settlers I/II + Factorio + Transport Tycoon Deluxe:** living, inspectable goods movement with increasing logistical depth.
