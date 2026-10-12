@@ -180,18 +180,19 @@ func _set_fullscreen(enabled: bool) -> void:
 # Keyboard fallback is intentionally independent of mouse and Keychain
 # gameplay shortcuts. Enter/Space also activate the focused native Button.
 func _unhandled_key_input(event: InputEvent) -> void:
-    if not (event is InputEventKey) or not event.pressed or event.echo:
+    var key: InputEventKey = event as InputEventKey
+    if key == null or not key.pressed or key.echo:
         return
-    if event.keycode == KEY_ESCAPE and options_panel.visible:
+    if key.keycode == KEY_ESCAPE and options_panel.visible:
         _close_options()
         get_viewport().set_input_as_handled()
-    elif not options_panel.visible and event.keycode == KEY_1:
+    elif not options_panel.visible and key.keycode == KEY_1:
         _start_mirror_vs_bot()
         get_viewport().set_input_as_handled()
-    elif not options_panel.visible and event.keycode == KEY_2:
+    elif not options_panel.visible and key.keycode == KEY_2:
         _start_mirror_bots()
         get_viewport().set_input_as_handled()
-    elif not options_panel.visible and event.keycode == KEY_O:
+    elif not options_panel.visible and key.keycode == KEY_O:
         _open_options()
         get_viewport().set_input_as_handled()
 
