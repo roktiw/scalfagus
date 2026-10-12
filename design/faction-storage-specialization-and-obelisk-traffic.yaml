@@ -1,12 +1,14 @@
 schema_version: 1
 project: scalfagus
 decision_id: DEC-036
-version: 0.1
+version: 0.2
 date: "2026-10-11"
 status: owner_approved_storage_identity_engineering_values_and_edge_cases_proposed
 narrative: design/faction-storage-specialization-and-obelisk-traffic-2026-10-11.md
 homogeneous_levitation_efficiency: design/faction-bidirectional-logistics-and-homogeneous-storage.yaml
 latest_directional_transport_decision: DEC-038
+latest_Obelisk_storage_tiers_decision: DEC-048
+latest_Obelisk_storage_tiers_specification: design/eth-obelisk-hot-warm-cold-storage.yaml
 precedence:
   current_release: DEC-033
   prior_faction_logistics: [DEC-010, DEC-012, DEC-013, DEC-018, DEC-021, DEC-023, DEC-035]
@@ -74,6 +76,16 @@ factions:
     power_data_cable_carries_physical_material: false
   eth:
     building_canonical_name: Obelisk
+    owner_storage_tiers:
+      hot: above_Obelisk_vertical_stream_juggles_actual_items
+      warm: local_Obelisk_halo_orbit_holds_actual_items
+      cold: Obelisk_foot_manual_drone_picked_ground_items
+    hot_plus_warm_are_local_levitated_storage: true
+    hot_and_warm_require_positive_energy_upkeep: true
+    cold_requires_no_levitation_energy: true
+    cold_requires_real_drone_handling_and_actual_world_footprint: true
+    elevated_node_fill_for_traffic_penalty: HOT_plus_WARM_only
+    preserve_DEC_039_ingress_and_no_new_free_ground_to_ether_path: true
     cargo_visual: mixed_typed_Ether_orbs_levitating_around_Obelisk
     more_homogeneous_levitated_mix_reduces_ongoing_energy_cost_at_equal_stock: true
     mono_resource_levitation_energy_discount_is_not_free_or_zero_cost: true
