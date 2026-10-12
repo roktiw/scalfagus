@@ -380,7 +380,7 @@ func _toggle_pause() -> void:
             item.grab_focus()
             break
 
-func _step_replay_once() -> Dictionary:
+func _step_replay_once(refresh_visuals: bool = true) -> Dictionary:
     if not replay_mode or replay_session == null or replay_session.sim == null:
         return {"ok": false, "reason": "not_in_replay"}
     var frame: Dictionary = replay_session.step()
@@ -392,7 +392,8 @@ func _step_replay_once() -> Dictionary:
         info = "REPLAY VERIFIED  ·  " + str(frame.get("hash", "")).substr(0, 12)
     else:
         info = "Replay tick %d/%d" % [sim.tick, replay_session.final_tick]
-    _sync_visuals()
+    if refresh_visuals:
+        _sync_visuals()
     return frame
 
 func _restart_replay() -> void:
@@ -648,7 +649,7 @@ func _process(delta: float) -> void:
         var steps: int = 0
         while time_accumulator >= TIMING.TICK_SECONDS and steps < 32:
             if replay_mode:
-                var frame: Dictionary = _step_replay_once()
+                var frame: Dictionary = _step_replay_once(false)
                 if not bool(frame.get("ok", false)) or bool(frame.get("complete", false)):
                     steps += 1
                     break
