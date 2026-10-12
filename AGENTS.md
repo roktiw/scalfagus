@@ -1,5 +1,24 @@
 # SCALFAGUS — Coding-Agent Contract
 
+## MVP0 HOST-BOUND COMMAND GATEWAY (UNVERIFIED FEATURE BRANCH)
+
+P0 network acceptance (M0-07, CODE-GAP-08/09) requires one
+authoritative `MirrorMatchState` hosted in Godot; never accept `slot_id`,
+HP, Matter or physics from remote peers. The new
+`MirrorCommandGateway` accepts only versioned primitive intent with
+strict monotonic sequence; **slot is looked up from the actual
+authenticated sender peer ID**. Every authoritative tick is flushed
+in `tick → slot → sequence` order before advancing match state. A
+fog-filtered `observe_for_slot` must never include unseen enemy
+IDs/positions, even as friendly target metadata. Local GUI uses the
+same gateway with synchronous commit; multiplayer transport/client
+visualization is still absent, so **never call H-H playable** yet.
+Run `mirror_gateway_smoke.gd` under real Godot, and maintain
+the existing verified H-C/C-C tests. No gameplay costs or balance
+changes under network work. Details:
+`docs/MVP0-AUTHORITATIVE-COMMAND-GATEWAY-2026-10-12.md`.
+
+
 ## LOCAL QA AGENT — REQUIRED TEST / FIX / REPORT CONTRACT
 
 When working on Scalfagus locally, follow [QA instructions](docs/qa/LOCAL-AGENT-TESTING.md) and [report template](docs/qa/REPORT-TEMPLATE.md). Run `bash scripts/qa-local.sh` on a clean branch from fresh `origin/main`, inspect logs, fix only technical defects or invalid fixtures, never silently change canonical rules, and publish a new Markdown report in `docs/qa/reports/` plus an evidence-backed fix PR. Do not claim unrun GitHub Actions as PASS. Include `HANDOFF TO CHATGPT` with report permalink, baseline/tested SHAs and blockers.
