@@ -480,6 +480,9 @@ func _restart_replay() -> void:
         _sync_visuals()
         return
     sim = replay_session.sim
+    # A replay is a new timeline; do not inherit its prior explored map.
+    if fog != null:
+        fog.reset()
     time_accumulator = 0.0
     speed = 1
     selected_id = -1

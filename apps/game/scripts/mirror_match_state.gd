@@ -8,6 +8,7 @@ const GEOM = preload("res://scripts/mirror_geometry.gd")
 
 # MVP 0.1: authoritative rules for a two-slot MAN mirror match.
 # Pure state: no cameras, rendering, input nodes, or wall-clock delays.
+const RULES_ID: String = "mvp0-man-mirror-v6-construction-lifecycle"
 const BOARD: int = 64
 const MAX_TICKS: int = TIMING.MATCH_LIMIT_TICKS
 const DIRECTIONS: Array[Vector2i] = [
@@ -734,7 +735,7 @@ func matter_is_conserved() -> bool:
 func replay_hash() -> String:
     # Stable state hash includes orders, outstanding work, queues, and cooldowns.
     # It is a pinned-runtime regression tool, not a cross-platform lockstep promise.
-    var material: String = "mvp0-man-mirror-v6-construction-lifecycle|"
+    var material: String = RULES_ID + "|"
     material += map_id + "|" + map_hash + "|"
     for field in [
         seed, tick, winner, finished, finish_reason, next_id,
@@ -780,7 +781,7 @@ func replay_hash() -> String:
 
 func result() -> Dictionary:
     return {
-        "rules": "mvp0-man-mirror-v5-3x3-world2m",
+        "rules": RULES_ID,
         "map_id": map_id, "map_hash": map_hash, "map_source_sha": map_source_sha,
         "tick_hz": TIMING.TICKS_PER_SECOND, "max_ticks": MAX_TICKS,
         "seed": seed, "ticks": tick, "winner": winner, "reason": finish_reason,
