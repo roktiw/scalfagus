@@ -1,4 +1,5 @@
 extends Control
+const REPLAY_ARCHIVE = preload("res://scripts/mirror_replay_archive.gd")
 
 signal settings_closed
 
@@ -63,7 +64,7 @@ func _ready() -> void:
     play_button = first_button
     watch_button = _add_button(choices, "Watch computer vs computer", _start_mirror_bots)
     replay_button = _add_button(choices, "Watch last saved replay", _start_last_replay)
-    replay_button.disabled = not FileAccess.file_exists("user://replays/last-human-match.json")
+    replay_button.disabled = not FileAccess.file_exists("user://replays/" + REPLAY_ARCHIVE.last_basename() + ".json")
     replay_button.tooltip_text = "Save a Human vs Bot match from the in-game pause menu to enable this."
     options_button = _add_button(choices, "Settings", _open_options)
     _add_button(choices, "Quit game", _quit)
@@ -167,7 +168,7 @@ func _start_mirror_bots() -> void:
     get_tree().change_scene_to_file("res://scenes/mirror_match.tscn")
 
 func _start_last_replay() -> void:
-    if not FileAccess.file_exists("user://replays/last-human-match.json"):
+    if not FileAccess.file_exists("user://replays/" + REPLAY_ARCHIVE.last_basename() + ".json"):
         return
     ProjectSettings.set_setting("scalfagus/mirror_mode", "replay")
     get_tree().change_scene_to_file("res://scenes/mirror_match.tscn")
