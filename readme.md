@@ -40,6 +40,17 @@ colliders. See [footprint/scale acceptance contract](docs/MVP0-FOOTPRINT-WORLD-S
 **Code is committed, real Godot/GUI verification is pending.** Full physical
 terrain / height / raycast LOS remain separate work.
 
+## MVP0 host-bound LAN command gateway (under test)
+
+The first stage of H-H LAN infrastructure is a versioned, slot-bound
+authoritative `MirrorCommandGateway`, now shared by local RTS player
+commands and network-ready order envelopes. It rejects duplicate
+sequence numbers, unauthorized actors, malformed targets, stale ticks
+and hidden enemy target probing, while offering fog-filtered snapshots.
+Godot smoke: `mirror_gateway_smoke.gd`. **ENet host/join, two-client
+session, client rendering and LAN verification remain P0**. See
+[Gateway implementation and safety contract](docs/MVP0-AUTHORITATIVE-COMMAND-GATEWAY-2026-10-12.md).
+
 ## Engineering rule — DEC-034 Reuse First
 
 Do not reinvent Godot A*, raycasting, UI, keybinds, physics, generic FSMs or networking. **Wrap built-in Godot facilities first**; use **pinned and audited GitHub/AssetLib modules** only when demonstrably beneficial. Keep game rules behind stable ports and use one authoritative command validation path. Read [ADR-0004](architecture/adr-0004-godot-reuse-first-wrappers.md), [21-capability map](architecture/godot-reuse-component-map.yaml), [third-party candidates](architecture/godot-third-party-candidates.yaml), [research](docs/GODOT-REUSE-RESEARCH-2026-10-11.md) and [agent playbook](docs/AGENT-REUSE-FIRST-PLAYBOOK.md). Candidates are NOT installed or locally runtime-tested simply by being listed.
