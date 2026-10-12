@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 3.6
+version: 3.7
 decisions:
   - id: DEC-001
     status: approved
@@ -974,6 +974,38 @@ decisions:
       support belongs in DEC-033 first four-template MAN mirror.
     specification: design/man-nine-machines-crews-and-autonomy-2026-10-12.md
     data_specification: design/man-nine-machines-crews-and-autonomy.yaml
+
+  - id: DEC-046
+    status: owner_directed_MAN_transformers_combined_meta_machines_and_late_game_titans_specific_recipes_open
+    topic: MAN_physical_machine_recombination_meta_mechs_colossi_and_titan_scale_industrial_technofantasy
+    resolution: >-
+      MAN's modular technology can transform one machine into
+      alternative legal physical postures (e.g. UMU per DEC-040),
+      and multiple already-existing compatible physical MAN
+      machines can dock into combined meta-machines. MAN should
+      also support massive Titan-class articulated war machines
+      as a spectacular late-game design direction, inspired
+      conceptually by General Daimos, Transformers and WH40K
+      giant mechs but realized in an original Scalfagus industrial
+      visual identity. Assembly locks source machines as real
+      components with persistent unique entity IDs, actual HP,
+      cargo, crew, energy, ammo and damage, and uses one shared
+      controller rather than duplicating units or abilities.
+      Human crew or legal autonomous AI may control a composite
+      according to DEC-044/045, with one authoritative steering
+      and combat authority. An UMU component executes the exclusive
+      assembly member role, not simultaneous warehouse, generator,
+      bunker, sentry or full freight service under DEC-041.
+      The DEC-041 owner's 4/6/8 physical UMU building-drive
+      count is a separate mobility rule, not an approved combiner
+      or Titan component-count recipe. Candidate 2-4-machine
+      combiners, heavy colossi, factory-built Titans and specific
+      named archetypes are recommendations only; counts, actual
+      assembly recipes, unlocks, power and balance remain open.
+      This advanced future work cannot enter DEC-033 MAN first
+      four-template mirror MVP0.
+    specification: design/man-machine-recombination-meta-mechs-titans-2026-10-12.md
+    data_specification: design/man-machine-recombination-meta-mechs-titans.yaml
 
 migration_required:
   - design/economy.yaml
