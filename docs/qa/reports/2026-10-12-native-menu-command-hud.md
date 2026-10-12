@@ -73,4 +73,7 @@ The final macOS export is installed at `build/Scalfagus.app` and `~/Applications
 
 ## HANDOFF TO CHATGPT
 
+- PR: [#22](https://github.com/roktiw/scalfagus/pull/22), stacked on [#21](https://github.com/roktiw/scalfagus/pull/21).
+- Report: [Markdown with rendered screenshots](https://github.com/roktiw/scalfagus/blob/ebd8c64/docs/qa/reports/2026-10-12-native-menu-command-hud.md).
+
 Review the rendered screenshots and this presentation implementation on `bc787dea031564aa01fd4969f6b15c487f2e43f1`. Settings Back is fixed; pause/settings/resume retains state. Bottom HUD reads live state and sends legal commands; minimap respects enemy visibility. HQ speckles came from incomplete source rows and now use a tested existing-art fallback. Local QA, GUT, mapping and macOS export/startup PASS. Next: author validated HQ/Barracks direction sets and run native pointer-driven gameplay/Keychain persistence acceptance. Keep domain authority and resource rules unchanged. PR/report links are added on publication.
