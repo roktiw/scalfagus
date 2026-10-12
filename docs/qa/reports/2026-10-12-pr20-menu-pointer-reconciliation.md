@@ -44,4 +44,6 @@ PR20 should not be merged as an independent replacement for PR22's menu: that wo
 
 ## HANDOFF TO CHATGPT
 
+![Integrated full-viewport command HUD](../screenshots/2026-10-12-full-viewport/command-hud.png)
+
 Original [PR20](https://github.com/roktiw/scalfagus/pull/20) FAIL on Mac at Back. Integrated [PR22](https://github.com/roktiw/scalfagus/pull/22), code `aa7c033e5c893bb1efa30f644997b13e54488ec3`, PASS native menu pointer flow and Worker/Matter pointer orders, full QA, macOS packaging/startup. Preserve sticky Back and the bottom HUD. Next acceptance: full native user-driven Human-Bot match and Keychain remap/restart; LAN remains deferred. Report: `docs/qa/reports/2026-10-12-pr20-menu-pointer-reconciliation.md`.
