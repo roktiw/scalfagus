@@ -6,7 +6,7 @@ var world: Node3D
 func _ready() -> void:
     custom_minimum_size = Vector2(152, 152)
     mouse_filter = Control.MOUSE_FILTER_STOP
-    tooltip_text = "Click to focus the camera. Enemy markers follow visibility."
+    tooltip_text = "Click to focus the camera. Unknown terrain and Matter stay shrouded."
 
 func _point(cell: Vector2i) -> Vector2:
     return Vector2(cell) / 63.0 * size
@@ -16,20 +16,52 @@ func _gui_input(event: InputEvent) -> void:
         focus_requested.emit(Vector2i((event.position / size * 63.0).round()))
         accept_event()
 
+# Keep the HUD consistent with the world's presentation fog, never reveal
+# authored tree/water shapes or unobserved Matter stock from sim dictionaries.
+func _vision_state(cell: Vector2i) -> int:
+    if not is_instance_valid(world):
+        return 0
+    if world.spectator:
+        return 2
+    var fog = world.get("fog")
+    if fog == null:
+        return 0
+    if fog.is_visible(cell, 0):
+        return 2
+    return 1 if fog.is_discovered(cell, 0) else 0
+
+func _source_is_visible(source: Dictionary) -> bool:
+    return int(source["stock"]) > 0 and _vision_state(source["pos"]) == 2
+
+func _entity_is_visible(entity: Dictionary) -> bool:
+    if not is_instance_valid(world):
+        return false
+    if world.spectator or int(entity["owner"]) == 0:
+        return true
+    return _vision_state(entity["pos"]) == 2 and world.sim.can_see(0, entity["pos"])
+
 func _draw() -> void:
-    draw_rect(Rect2(Vector2.ZERO, size), Color("#263b30"))
+    draw_rect(Rect2(Vector2.ZERO, size), Color("#0c1118"))
     if not is_instance_valid(world):
         return
     var sim = world.sim
     var tile := size / 64.0
     for cell in sim.terrain:
-        draw_rect(Rect2(_point(cell), tile), Color("#397c97") if sim.terrain[cell] == "water" else Color("#405744"))
+        var vision: int = _vision_state(cell)
+        if vision == 0:
+            continue
+        var water: bool = sim.terrain[cell] == "water"
+        var tone: Color = Color("#397c97") if water else Color("#405744")
+        if vision == 1:
+            tone = Color("#20313b") if water else Color("#27342d")
+        draw_rect(Rect2(_point(cell), tile), tone)
     for sid in sim.sources:
-        if int(sim.sources[sid]["stock"]) > 0:
-            draw_circle(_point(sim.sources[sid]["pos"]), 2.0, Color("#dbb568"))
+        var source: Dictionary = sim.sources[sid]
+        if _source_is_visible(source):
+            draw_circle(_point(source["pos"]), 2.0, Color("#dbb568"))
     for id in sim.sorted_ids():
         var entity: Dictionary = sim.entities[id]
-        if not world.spectator and int(entity["owner"]) == 1 and not sim.can_see(0, entity["pos"]):
+        if not _entity_is_visible(entity):
             continue
         var point := _point(entity["pos"])
         var color := Color("#79d6ee") if int(entity["owner"]) == 0 else Color("#f27e67")

@@ -39,6 +39,7 @@ bash scripts/godot-qa-run.sh "$GODOT_BIN" --headless --path apps/game --script r
 bash scripts/godot-qa-run.sh "$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_batch.gd -- --matches 1 --seed 42
 bash scripts/godot-qa-run.sh "$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_visual_smoke.gd
 bash scripts/godot-qa-run.sh "$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_fog_smoke.gd
+bash scripts/godot-qa-run.sh "$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_singleplayer_integration_smoke.gd
 bash scripts/godot-qa-run.sh "$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_physics_los_smoke.gd
 bash scripts/godot-qa-run.sh "$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_group_orders_smoke.gd
 if command -v node >/dev/null 2>&1; then
