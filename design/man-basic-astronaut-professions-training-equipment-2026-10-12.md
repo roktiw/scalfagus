@@ -2,6 +2,7 @@
 
 **Date:** 2026-10-12  
 **Decision:** DEC-043.  
+**Current-status note:** This earlier seven-specialization catalogue was superseded by the user's later **DEC-044 three academies × three faculties** plan. **The three personal qualification slots, training requirements and physical kit rules remain.** Follow [latest 3×3 design](man-three-academies-nine-faculties-2026-10-12.md) and [YAML](man-three-academies-nine-faculties.yaml) for the future class tree. The older seven-role discussion further below is retained as historical context only.  
 **Status:** owner-approved Basic Manus astronaut production, **three permanent qualification slots per human** and one active trained + physically equipped profession. Owner requests **seven specialty choices**; the names/merges below are the **proposed seven-role catalogue**, with the slot count (3) and choice count (7) now fixed.  
 **Machine contract:** [man-basic-astronaut-professions-training-equipment.yaml](man-basic-astronaut-professions-training-equipment.yaml).  
 **Release guard:** Post-MVP0 — DEC-033 still uses \`man_min\` and \`man_rifleman\` four-template MAN mirror and its simple Barracks → Rifleman production rule until a deliberate migration. **Do not rewrite, rename or accidentally disable the working first-release loop.**
