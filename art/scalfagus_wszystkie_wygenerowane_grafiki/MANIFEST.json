@@ -1,0 +1,845 @@
+{
+  "count": 92,
+  "by_folder": {
+    "01_koncepcje_i_arkusze": 28,
+    "02_sprites_prototypy_i_warianty": 26,
+    "03_logotypy_3x3_16_32_64": 31,
+    "04_godot_prototyp_assets": 7
+  },
+  "files": [
+    {
+      "file": "01_koncepcje_i_arkusze/57826ef8-6499-4452-a2fc-12ded5cb04dd.png",
+      "source": "pliki rozmowy: 57826ef8-6499-4452-a2fc-12ded5cb04dd.png",
+      "width_px": 1122,
+      "height_px": 1402,
+      "format": "PNG",
+      "bytes": 3673026,
+      "sha256": "8bb1c6ea1633942a097b22000a4ac679dbb911c009dd06b76815a538093a404b"
+    },
+    {
+      "file": "01_koncepcje_i_arkusze/a_detailed_infographic_concept_art_style_sprite.png",
+      "source": "pliki rozmowy: a_detailed_infographic_concept_art_style_sprite.png",
+      "width_px": 1536,
+      "height_px": 1024,
+      "format": "PNG",
+      "bytes": 2346953,
+      "sha256": "9006c13af7d90c745c96888a2e47357b6204196778e78e703964b35a1bb64125"
+    },
+    {
+      "file": "01_koncepcje_i_arkusze/a_high_resolution_sprite_sheet_style_image_on_a_so.png",
+      "source": "pliki rozmowy: a_high_resolution_sprite_sheet_style_image_on_a_so.png",
+      "width_px": 1536,
+      "height_px": 1024,
+      "format": "PNG",
+      "bytes": 1185637,
+      "sha256": "66750bc0d53b36f1a79f45d024c5f45b7cbb0009ac6691919aac31439654dddf"
+    },
+    {
+      "file": "01_koncepcje_i_arkusze/a_wide_infographic_poster_concept_art_board_in_a.png",
+      "source": "pliki rozmowy: a_wide_infographic_poster_concept_art_board_in_a.png",
+      "width_px": 1536,
+      "height_px": 1024,
+      "format": "PNG",
+      "bytes": 2615465,
+      "sha256": "529396b15b78e6ed46c626c9e0a155e16cc9a5bfd8a9e9a74bc275736a7a64be"
+    },
+    {
+      "file": "01_koncepcje_i_arkusze/etheran_construction_unit_blueprint_sheet.png",
+      "source": "pliki rozmowy: etheran_construction_unit_blueprint_sheet.png",
+      "width_px": 1122,
+      "height_px": 1402,
+      "format": "PNG",
+      "bytes": 2762655,
+      "sha256": "a7ccae84c6e3befb185b551ffbdcf4092662ef3e729e1738f0366eca0f2c94cc"
+    },
+    {
+      "file": "01_koncepcje_i_arkusze/etheran_faction_concept_sheet.png",
+      "source": "pliki rozmowy: etheran_faction_concept_sheet.png",
+      "width_px": 1122,
+      "height_px": 1402,
+      "format": "PNG",
+      "bytes": 2927126,
+      "sha256": "0601bd23ecaf2e19be34778e460b073412e7ec138cd065bcaa6ccce70a650c35"
+    },
+    {
+      "file": "01_koncepcje_i_arkusze/etheran_faction_tech_codex.png",
+      "source": "pliki rozmowy: etheran_faction_tech_codex.png",
+      "width_px": 1122,
+      "height_px": 1402,
+      "format": "PNG",
+      "bytes": 3079328,
+      "sha256": "e980a6eae594875359426c23102d1a9a086c4bc24bf364b5b032d659c9ca9ae7"
+    },
+    {
+      "file": "01_koncepcje_i_arkusze/etherans_faction_concept_sheet.png",
+      "source": "pliki rozmowy: etherans_faction_concept_sheet.png",
+      "width_px": 1122,
+      "height_px": 1402,
+      "format": "PNG",
+      "bytes": 2881049,
+      "sha256": "95ec1ad0998703296f8df7951c324a8baea0b84618ff368cd7d4f4990a2b12b1"
+    },
+    {
+      "file": "01_koncepcje_i_arkusze/etherans_sci_fi_civilization_blueprint.png",
+      "source": "pliki rozmowy: etherans_sci_fi_civilization_blueprint.png",
+      "width_px": 1122,
+      "height_px": 1402,
+      "format": "PNG",
+      "bytes": 2923527,
+      "sha256": "67b6bae0724790c384a574d1b155434f576f47e65756cb37327ad9289d1c4d01"
+    },
+    {
+      "file": "01_koncepcje_i_arkusze/imagegen.png",
+      "source": "pliki rozmowy: imagegen.png",
+      "width_px": 1122,
+      "height_px": 1402,
+      "format": "PNG",
+      "bytes": 2135832,
+      "sha256": "08ebc0a2e8ca550b5751c33b9d834676a343bb3d82f1e0dd3ac9edc046ace98e"
+    },
+    {
+      "file": "01_koncepcje_i_arkusze/isometric_astronaut_sprite_sheet.png",
+      "source": "pliki rozmowy: isometric_astronaut_sprite_sheet.png",
+      "width_px": 1448,
+      "height_px": 1086,
+      "format": "PNG",
+      "bytes": 1132693,
+      "sha256": "8279583f185b88730b7b5a5bb007ba0b1209489fe55a4bb1340bc7739b921d83"
+    },
+    {
+      "file": "01_koncepcje_i_arkusze/isometric_astronaut_sprite_sheet_grid.jpg",
+      "source": "pliki rozmowy: isometric_astronaut_sprite_sheet_grid.jpg",
+      "width_px": 950,
+      "height_px": 713,
+      "format": "JPEG",
+      "bytes": 190396,
+      "sha256": "4e10a2b101d0b2cf72ae9c1a01450077286181213b69ed5d625f599c412b375d"
+    },
+    {
+      "file": "01_koncepcje_i_arkusze/logistics_crewman_blueprint_sheet.png",
+      "source": "pliki rozmowy: logistics_crewman_blueprint_sheet.png",
+      "width_px": 1122,
+      "height_px": 1402,
+      "format": "PNG",
+      "bytes": 2093540,
+      "sha256": "a3cf468d5d93dd5ce44523e4572c55b8e793e0d3a998f83353d65c274dd22d70"
+    },
+    {
+      "file": "01_koncepcje_i_arkusze/manusian_mobile_frontier_concept_sheet.png",
+      "source": "pliki rozmowy: manusian_mobile_frontier_concept_sheet.png",
+      "width_px": 1122,
+      "height_px": 1402,
+      "format": "PNG",
+      "bytes": 2858365,
+      "sha256": "7237301fb7b1bd927ebfcffc7eae55ed6d53c4ed8271d12774332137adf5fb92"
+    },
+    {
+      "file": "01_koncepcje_i_arkusze/manusian_modular_outpost_blueprint.png",
+      "source": "pliki rozmowy: manusian_modular_outpost_blueprint.png",
+      "width_px": 1122,
+      "height_px": 1402,
+      "format": "PNG",
+      "bytes": 2946560,
+      "sha256": "d05d5c49a05324bd8d09951d585f0663ef494d821f909d193ab53598b082696d"
+    },
+    {
+      "file": "01_koncepcje_i_arkusze/manusians_mobile_industrial_frontier.png",
+      "source": "pliki rozmowy: manusians_mobile_industrial_frontier.png",
+      "width_px": 1122,
+      "height_px": 1402,
+      "format": "PNG",
+      "bytes": 2823426,
+      "sha256": "873217b5d152dbbfc9596bf7e8969b7782499436ae346e7d6332c9310cdaf58d"
+    },
+    {
+      "file": "01_koncepcje_i_arkusze/manusians_mobile_logistics_blueprint.png",
+      "source": "pliki rozmowy: manusians_mobile_logistics_blueprint.png",
+      "width_px": 1122,
+      "height_px": 1402,
+      "format": "PNG",
+      "bytes": 2870436,
+      "sha256": "88078bcf58f119c63ee1cdc6f5dfeff0e2e83199e5a2ba37a6094025cfa54127"
+    },
+    {
+      "file": "01_koncepcje_i_arkusze/manusians_pixel_art_machine_blueprint.png",
+      "source": "pliki rozmowy: manusians_pixel_art_machine_blueprint.png",
+      "width_px": 1122,
+      "height_px": 1402,
+      "format": "PNG",
+      "bytes": 2288862,
+      "sha256": "b2bd1db762d0c18b5470e80af991e2e24056bd4499899999048a47c309784113"
+    },
+    {
+      "file": "01_koncepcje_i_arkusze/org_transport_unit_concept_sheet.png",
+      "source": "pliki rozmowy: org_transport_unit_concept_sheet.png",
+      "width_px": 1122,
+      "height_px": 1402,
+      "format": "PNG",
+      "bytes": 2719522,
+      "sha256": "37383d7e54a2ded1dd2526cdeee562e5122d4dec0ade8a71830e52831a41355e"
+    },
+    {
+      "file": "01_koncepcje_i_arkusze/organites_faction_infographic_poster.png",
+      "source": "pliki rozmowy: organites_faction_infographic_poster.png",
+      "width_px": 1122,
+      "height_px": 1402,
+      "format": "PNG",
+      "bytes": 3048016,
+      "sha256": "a7864313e56b02a66a1b0854fcd37a8b12996d674f3a1662e5307134b0abcdbe"
+    },
+    {
+      "file": "01_koncepcje_i_arkusze/organites_living_alien_war_machine.png",
+      "source": "pliki rozmowy: organites_living_alien_war_machine.png",
+      "width_px": 1122,
+      "height_px": 1402,
+      "format": "PNG",
+      "bytes": 2871203,
+      "sha256": "94f6e553e3aa005430c63c8c4900c9a13ca104bdcb13645f256ead1d90050d52"
+    },
+    {
+      "file": "01_koncepcje_i_arkusze/prospector_scout_unit_blueprint.png",
+      "source": "pliki rozmowy: prospector_scout_unit_blueprint.png",
+      "width_px": 1122,
+      "height_px": 1402,
+      "format": "PNG",
+      "bytes": 1964449,
+      "sha256": "554bfc5507a30cbdbed19769e49f66ef8c49aa078a94e8df9bd199bb30bdf666"
+    },
+    {
+      "file": "01_koncepcje_i_arkusze/retro_faction_emblem_sprite_sheet.png",
+      "source": "pliki rozmowy: retro_faction_emblem_sprite_sheet.png",
+      "width_px": 1254,
+      "height_px": 1254,
+      "format": "PNG",
+      "bytes": 1765309,
+      "sha256": "72be62c5cb634008c8c63b30918c1333e2a597803898dccbd0993bbb8809a8bc"
+    },
+    {
+      "file": "01_koncepcje_i_arkusze/retro_sci_fi_field_engineer_blueprint.png",
+      "source": "pliki rozmowy: retro_sci_fi_field_engineer_blueprint.png",
+      "width_px": 1122,
+      "height_px": 1402,
+      "format": "PNG",
+      "bytes": 2075974,
+      "sha256": "f12ec2f1b2549978109c4e491dec7de64258f5247c25c6b8b83fd31afb168585"
+    },
+    {
+      "file": "01_koncepcje_i_arkusze/retro_sci_fi_lander_sprite_sheet.png",
+      "source": "pliki rozmowy: retro_sci_fi_lander_sprite_sheet.png",
+      "width_px": 1448,
+      "height_px": 1086,
+      "format": "PNG",
+      "bytes": 1775183,
+      "sha256": "2c2b648a1c8d20102874ac2afb15f5b5a1bbd8482aa9ef725b8673fd25efd702"
+    },
+    {
+      "file": "01_koncepcje_i_arkusze/retro_sci_fi_lander_sprite_sheet_grid.jpg",
+      "source": "pliki rozmowy: retro_sci_fi_lander_sprite_sheet_grid.jpg",
+      "width_px": 950,
+      "height_px": 713,
+      "format": "JPEG",
+      "bytes": 244273,
+      "sha256": "fc1ceaf827a0e8acfd92da005c49c4058f9ddddc98cdba3bd223e8667e05a82d"
+    },
+    {
+      "file": "01_koncepcje_i_arkusze/scalfagus_organites_faction_codex.png",
+      "source": "pliki rozmowy: scalfagus_organites_faction_codex.png",
+      "width_px": 1122,
+      "height_px": 1402,
+      "format": "PNG",
+      "bytes": 3191146,
+      "sha256": "eefef1f75b8b8b739e8ff3df5162985df5046dea4c2e288d3aabf3a68a97febe"
+    },
+    {
+      "file": "01_koncepcje_i_arkusze/scalfagus_organites_neon_hive_faction_sheet.png",
+      "source": "pliki rozmowy: scalfagus_organites_neon_hive_faction_sheet.png",
+      "width_px": 1122,
+      "height_px": 1402,
+      "format": "PNG",
+      "bytes": 3148078,
+      "sha256": "3e2c3080dda63c23df3a4500f204e7fbc5cf8acf7752e9bc104d188dcf65431a"
+    },
+    {
+      "file": "02_sprites_prototypy_i_warianty/man_hq_lander_112x112_9views_p16.png",
+      "source": "wyodrebnione arkusze i warianty: man_hq_lander_112x112_9views_p16.png",
+      "width_px": 560,
+      "height_px": 224,
+      "format": "PNG",
+      "bytes": 23922,
+      "sha256": "913908f0223b053b045d149b3bccd5cf7d6f9269e1e4515bdb24419c6b8fe92e"
+    },
+    {
+      "file": "02_sprites_prototypy_i_warianty/man_hq_lander_112x112_9views_p24.png",
+      "source": "wyodrebnione arkusze i warianty: man_hq_lander_112x112_9views_p24.png",
+      "width_px": 560,
+      "height_px": 224,
+      "format": "PNG",
+      "bytes": 26549,
+      "sha256": "a6cd9da7439b2ada63e9f712c24ffdd34c0d14841f0ceb8f0a5a16a79037f19f"
+    },
+    {
+      "file": "02_sprites_prototypy_i_warianty/man_hq_lander_112x112_9views_p32.png",
+      "source": "wyodrebnione arkusze i warianty: man_hq_lander_112x112_9views_p32.png",
+      "width_px": 560,
+      "height_px": 224,
+      "format": "PNG",
+      "bytes": 27045,
+      "sha256": "febdd7ec9af960b514727d9e3acbe7a1cc6013665795662f7af27b377e76a9f0"
+    },
+    {
+      "file": "02_sprites_prototypy_i_warianty/man_hq_lander_128x128_9views.png",
+      "source": "wyodrebnione arkusze i warianty: man_hq_lander_128x128_9views.png",
+      "width_px": 640,
+      "height_px": 256,
+      "format": "PNG",
+      "bytes": 40346,
+      "sha256": "9c527724f62a15c5cae2e92cd6ae2f540719ba25b3549ec404d43157c685e4b3"
+    },
+    {
+      "file": "02_sprites_prototypy_i_warianty/man_hq_lander_128x128_9views_p128.png",
+      "source": "wyodrebnione arkusze i warianty: man_hq_lander_128x128_9views_p128.png",
+      "width_px": 640,
+      "height_px": 256,
+      "format": "PNG",
+      "bytes": 53489,
+      "sha256": "9b06afb71b778c7e05de113a55d6f728b9e013a8c0ba583127d0cced146c4cb3"
+    },
+    {
+      "file": "02_sprites_prototypy_i_warianty/man_hq_lander_128x128_9views_p16.png",
+      "source": "wyodrebnione arkusze i warianty: man_hq_lander_128x128_9views_p16.png",
+      "width_px": 640,
+      "height_px": 256,
+      "format": "PNG",
+      "bytes": 30012,
+      "sha256": "6f927de32a1f2d3e046e37ecafac0842fb6c62d0e1a7fa8b7e306bc50ae6253d"
+    },
+    {
+      "file": "02_sprites_prototypy_i_warianty/man_hq_lander_128x128_9views_p24.png",
+      "source": "wyodrebnione arkusze i warianty: man_hq_lander_128x128_9views_p24.png",
+      "width_px": 640,
+      "height_px": 256,
+      "format": "PNG",
+      "bytes": 32967,
+      "sha256": "d85d64419f1b56eba281c22f1dfd9a6a5f700503e58c500e79b81c88e246781e"
+    },
+    {
+      "file": "02_sprites_prototypy_i_warianty/man_hq_lander_128x128_9views_p32.png",
+      "source": "wyodrebnione arkusze i warianty: man_hq_lander_128x128_9views_p32.png",
+      "width_px": 640,
+      "height_px": 256,
+      "format": "PNG",
+      "bytes": 33567,
+      "sha256": "dad5eff3c4b2ddeb7f52241022185aad160069bb314ad2b4ea3706a34b2d62b9"
+    },
+    {
+      "file": "02_sprites_prototypy_i_warianty/man_hq_lander_128x128_9views_p64.png",
+      "source": "wyodrebnione arkusze i warianty: man_hq_lander_128x128_9views_p64.png",
+      "width_px": 640,
+      "height_px": 256,
+      "format": "PNG",
+      "bytes": 45643,
+      "sha256": "344865e784075f8461f50c1d6b00bdd81e251291fbba26aa7696f7225d514fe0"
+    },
+    {
+      "file": "02_sprites_prototypy_i_warianty/man_hq_lander_64x64_9views_p16.png",
+      "source": "wyodrebnione arkusze i warianty: man_hq_lander_64x64_9views_p16.png",
+      "width_px": 320,
+      "height_px": 128,
+      "format": "PNG",
+      "bytes": 9291,
+      "sha256": "e137990f83bafd4d6199fd117a1308d46f1d6564cbb33102a36bd0cdf5f29fc6"
+    },
+    {
+      "file": "02_sprites_prototypy_i_warianty/man_hq_lander_64x64_9views_p24.png",
+      "source": "wyodrebnione arkusze i warianty: man_hq_lander_64x64_9views_p24.png",
+      "width_px": 320,
+      "height_px": 128,
+      "format": "PNG",
+      "bytes": 10235,
+      "sha256": "f7391db8db006606e974e4f938792ecabe688523750a13f8bfed77cd4f676907"
+    },
+    {
+      "file": "02_sprites_prototypy_i_warianty/man_hq_lander_64x64_9views_p32.png",
+      "source": "wyodrebnione arkusze i warianty: man_hq_lander_64x64_9views_p32.png",
+      "width_px": 320,
+      "height_px": 128,
+      "format": "PNG",
+      "bytes": 10430,
+      "sha256": "50497f406640e2cc47f5b3340d9b7dec4793bcb2cebf6fbcc3b82d4ef6a64e8a"
+    },
+    {
+      "file": "02_sprites_prototypy_i_warianty/man_hq_lander_80x80_9views_p16.png",
+      "source": "wyodrebnione arkusze i warianty: man_hq_lander_80x80_9views_p16.png",
+      "width_px": 400,
+      "height_px": 160,
+      "format": "PNG",
+      "bytes": 13407,
+      "sha256": "14d984e4215b31946876e682b2bd7580e0943bff74c72974a95e5d37ed737567"
+    },
+    {
+      "file": "02_sprites_prototypy_i_warianty/man_hq_lander_80x80_9views_p24.png",
+      "source": "wyodrebnione arkusze i warianty: man_hq_lander_80x80_9views_p24.png",
+      "width_px": 400,
+      "height_px": 160,
+      "format": "PNG",
+      "bytes": 14951,
+      "sha256": "f16eee7031d01e2fdd10afbd893952579d7bdf4d8e095b09c7944eee95f3615b"
+    },
+    {
+      "file": "02_sprites_prototypy_i_warianty/man_hq_lander_80x80_9views_p32.png",
+      "source": "wyodrebnione arkusze i warianty: man_hq_lander_80x80_9views_p32.png",
+      "width_px": 400,
+      "height_px": 160,
+      "format": "PNG",
+      "bytes": 15231,
+      "sha256": "7df92285ccbb6c5e1690b1c57cda9c616f80e74c92595a8a0752e18db52daf67"
+    },
+    {
+      "file": "02_sprites_prototypy_i_warianty/man_hq_lander_96x96_9views_p16.png",
+      "source": "wyodrebnione arkusze i warianty: man_hq_lander_96x96_9views_p16.png",
+      "width_px": 480,
+      "height_px": 192,
+      "format": "PNG",
+      "bytes": 18599,
+      "sha256": "b32491ac88a7f2b9c7ba8582abc26072752f8befa4fa1bf5cd9a159829a1bf27"
+    },
+    {
+      "file": "02_sprites_prototypy_i_warianty/man_hq_lander_96x96_9views_p24.png",
+      "source": "wyodrebnione arkusze i warianty: man_hq_lander_96x96_9views_p24.png",
+      "width_px": 480,
+      "height_px": 192,
+      "format": "PNG",
+      "bytes": 20487,
+      "sha256": "2eb134f17d686c036280082534c06ffe20fa2370346565491b013d9612deab4c"
+    },
+    {
+      "file": "02_sprites_prototypy_i_warianty/man_hq_lander_96x96_9views_p32.png",
+      "source": "wyodrebnione arkusze i warianty: man_hq_lander_96x96_9views_p32.png",
+      "width_px": 480,
+      "height_px": 192,
+      "format": "PNG",
+      "bytes": 20916,
+      "sha256": "9097c21b3e2b7905609beddf9980668853aefc7ab3665951183490973c01ca3a"
+    },
+    {
+      "file": "02_sprites_prototypy_i_warianty/man_worker_min_24x32_8dir_2pose.png",
+      "source": "wyodrebnione arkusze i warianty: man_worker_min_24x32_8dir_2pose.png",
+      "width_px": 192,
+      "height_px": 64,
+      "format": "PNG",
+      "bytes": 19601,
+      "sha256": "6d98b7bf3bf7311d7ff336bb57b9ea9ce7c7d6a446e5495be44cab76425e382a"
+    },
+    {
+      "file": "02_sprites_prototypy_i_warianty/man_worker_min_24x32_8dir_2pose_p128.png",
+      "source": "wyodrebnione arkusze i warianty: man_worker_min_24x32_8dir_2pose_p128.png",
+      "width_px": 192,
+      "height_px": 64,
+      "format": "PNG",
+      "bytes": 5678,
+      "sha256": "55ed35e7ccb737b5d03fba63af3354adf454766c0368d27bda1a3e6b03a5722f"
+    },
+    {
+      "file": "02_sprites_prototypy_i_warianty/man_worker_min_24x32_8dir_2pose_p32.png",
+      "source": "wyodrebnione arkusze i warianty: man_worker_min_24x32_8dir_2pose_p32.png",
+      "width_px": 192,
+      "height_px": 64,
+      "format": "PNG",
+      "bytes": 3738,
+      "sha256": "1ecad85d204561f365dbc62b10519617f01abb86067dff7170a0108fd3f967ed"
+    },
+    {
+      "file": "02_sprites_prototypy_i_warianty/man_worker_min_24x32_8dir_2pose_p64.png",
+      "source": "wyodrebnione arkusze i warianty: man_worker_min_24x32_8dir_2pose_p64.png",
+      "width_px": 192,
+      "height_px": 64,
+      "format": "PNG",
+      "bytes": 4855,
+      "sha256": "b7817feed5915032f9fe2c47c1e604bfbf64eb0e5e6c3cee3514fa91ad147fa8"
+    },
+    {
+      "file": "02_sprites_prototypy_i_warianty/man_worker_min_32x48_8dir_2pose.png",
+      "source": "wyodrebnione arkusze i warianty: man_worker_min_32x48_8dir_2pose.png",
+      "width_px": 256,
+      "height_px": 96,
+      "format": "PNG",
+      "bytes": 43526,
+      "sha256": "9fd58667a6715bfa080b2c0d6c1be375b0a32c5703fc606592ec05767b39dabf"
+    },
+    {
+      "file": "02_sprites_prototypy_i_warianty/man_worker_min_32x48_8dir_2pose_p128.png",
+      "source": "wyodrebnione arkusze i warianty: man_worker_min_32x48_8dir_2pose_p128.png",
+      "width_px": 256,
+      "height_px": 96,
+      "format": "PNG",
+      "bytes": 11801,
+      "sha256": "41bd19c5cdf4839b262fd3a1709ab2dcfaf6ec26f1205a2de55acc33a86eb8af"
+    },
+    {
+      "file": "02_sprites_prototypy_i_warianty/man_worker_min_32x48_8dir_2pose_p32.png",
+      "source": "wyodrebnione arkusze i warianty: man_worker_min_32x48_8dir_2pose_p32.png",
+      "width_px": 256,
+      "height_px": 96,
+      "format": "PNG",
+      "bytes": 7779,
+      "sha256": "81581ebce756207c43e5a75c207848e4c58bd048f03bb39f2406a95daae8acee"
+    },
+    {
+      "file": "02_sprites_prototypy_i_warianty/man_worker_min_32x48_8dir_2pose_p64.png",
+      "source": "wyodrebnione arkusze i warianty: man_worker_min_32x48_8dir_2pose_p64.png",
+      "width_px": 256,
+      "height_px": 96,
+      "format": "PNG",
+      "bytes": 10115,
+      "sha256": "77c196f50a8e043a07ddf984c4d5b4c2c1f03c02f67c27b5ead42ac9de467adb"
+    },
+    {
+      "file": "03_logotypy_3x3_16_32_64/eth_01_16.png",
+      "source": "pakiet logo: assets/faction-emblems/eth_01_16.png",
+      "width_px": 16,
+      "height_px": 16,
+      "format": "PNG",
+      "bytes": 209,
+      "sha256": "75db4e93defd9b245996caf95b5a90c5a0acffc66853624f0cfc7ee3c69ec214"
+    },
+    {
+      "file": "03_logotypy_3x3_16_32_64/eth_01_32.png",
+      "source": "pakiet logo: assets/faction-emblems/eth_01_32.png",
+      "width_px": 32,
+      "height_px": 32,
+      "format": "PNG",
+      "bytes": 339,
+      "sha256": "dc0e52eb0b560a2099a96c3dd05b7371ef9d6f49b7e435e77e8fd52e26fc5568"
+    },
+    {
+      "file": "03_logotypy_3x3_16_32_64/eth_01_64.png",
+      "source": "pakiet logo: assets/faction-emblems/eth_01_64.png",
+      "width_px": 64,
+      "height_px": 64,
+      "format": "PNG",
+      "bytes": 526,
+      "sha256": "f82641e8a33ce28ba931b2c21b16f1477968c5662880747b85abbcaad7f7ecdd"
+    },
+    {
+      "file": "03_logotypy_3x3_16_32_64/eth_02_16.png",
+      "source": "pakiet logo: assets/faction-emblems/eth_02_16.png",
+      "width_px": 16,
+      "height_px": 16,
+      "format": "PNG",
+      "bytes": 206,
+      "sha256": "091f131c570e4e32fda697a87cdc1250c28c335f5d2e5691933bb1d7457e0b5c"
+    },
+    {
+      "file": "03_logotypy_3x3_16_32_64/eth_02_32.png",
+      "source": "pakiet logo: assets/faction-emblems/eth_02_32.png",
+      "width_px": 32,
+      "height_px": 32,
+      "format": "PNG",
+      "bytes": 374,
+      "sha256": "4961edbeac48dfb6557a6d79be95adfa10c1c70854791ee67452a7db995d986d"
+    },
+    {
+      "file": "03_logotypy_3x3_16_32_64/eth_02_64.png",
+      "source": "pakiet logo: assets/faction-emblems/eth_02_64.png",
+      "width_px": 64,
+      "height_px": 64,
+      "format": "PNG",
+      "bytes": 582,
+      "sha256": "e43c21748c33b57205c831ccaa92b35e2513a3c0eb3f48e0bcbb678b0faf8d79"
+    },
+    {
+      "file": "03_logotypy_3x3_16_32_64/eth_03_16.png",
+      "source": "pakiet logo: assets/faction-emblems/eth_03_16.png",
+      "width_px": 16,
+      "height_px": 16,
+      "format": "PNG",
+      "bytes": 187,
+      "sha256": "e5b462bf4bb7029e324e557b074fed27c4b783fa7f645219e7015ed0813b4abe"
+    },
+    {
+      "file": "03_logotypy_3x3_16_32_64/eth_03_32.png",
+      "source": "pakiet logo: assets/faction-emblems/eth_03_32.png",
+      "width_px": 32,
+      "height_px": 32,
+      "format": "PNG",
+      "bytes": 341,
+      "sha256": "361aac02b0caf654b4474e1af8d0385997b1c29cdfccb34ae8bd5c002bc66b94"
+    },
+    {
+      "file": "03_logotypy_3x3_16_32_64/eth_03_64.png",
+      "source": "pakiet logo: assets/faction-emblems/eth_03_64.png",
+      "width_px": 64,
+      "height_px": 64,
+      "format": "PNG",
+      "bytes": 539,
+      "sha256": "dcf0044c165f195bc564c8295269c9249b190b1d8bbec7e6cb7ed54c77d3f2c2"
+    },
+    {
+      "file": "03_logotypy_3x3_16_32_64/faction-emblems-16.png",
+      "source": "pakiet logo: assets/faction-emblems/faction-emblems-16.png",
+      "width_px": 48,
+      "height_px": 48,
+      "format": "PNG",
+      "bytes": 767,
+      "sha256": "f04ab8cd9eb4fc093302312c26bc90631410e50e2e2ba3122e5491270be72ce9"
+    },
+    {
+      "file": "03_logotypy_3x3_16_32_64/faction-emblems-32.png",
+      "source": "pakiet logo: assets/faction-emblems/faction-emblems-32.png",
+      "width_px": 96,
+      "height_px": 96,
+      "format": "PNG",
+      "bytes": 1692,
+      "sha256": "cf224fdd3a77ed12abf679e539ed470d76da7edefe3c49f669623b25e3e2d88f"
+    },
+    {
+      "file": "03_logotypy_3x3_16_32_64/faction-emblems-64.png",
+      "source": "pakiet logo: assets/faction-emblems/faction-emblems-64.png",
+      "width_px": 192,
+      "height_px": 192,
+      "format": "PNG",
+      "bytes": 3385,
+      "sha256": "3daa10b4fcfbd772f91b3950ceb3163bf7b2d1bf0e09799f7bfd240a0d680022"
+    },
+    {
+      "file": "03_logotypy_3x3_16_32_64/man_01_16.png",
+      "source": "pakiet logo: assets/faction-emblems/man_01_16.png",
+      "width_px": 16,
+      "height_px": 16,
+      "format": "PNG",
+      "bytes": 175,
+      "sha256": "59879251f69f5e858773340e9374aa125f47313400f4b946ab0a3d51853f0efd"
+    },
+    {
+      "file": "03_logotypy_3x3_16_32_64/man_01_32.png",
+      "source": "pakiet logo: assets/faction-emblems/man_01_32.png",
+      "width_px": 32,
+      "height_px": 32,
+      "format": "PNG",
+      "bytes": 254,
+      "sha256": "256de8a4f8fc23f5945c8619e095c72fdf901be6b98599d0649e25c5b7f946fc"
+    },
+    {
+      "file": "03_logotypy_3x3_16_32_64/man_01_64.png",
+      "source": "pakiet logo: assets/faction-emblems/man_01_64.png",
+      "width_px": 64,
+      "height_px": 64,
+      "format": "PNG",
+      "bytes": 397,
+      "sha256": "b527272f2422df34ec79ef7d9bbd568ca3e43b3ebad5d699902913bc265bf2dd"
+    },
+    {
+      "file": "03_logotypy_3x3_16_32_64/man_02_16.png",
+      "source": "pakiet logo: assets/faction-emblems/man_02_16.png",
+      "width_px": 16,
+      "height_px": 16,
+      "format": "PNG",
+      "bytes": 157,
+      "sha256": "9218f56d40a13e602e3bc80cc3fadcbdc1fc1712b1fda309f7fa37505e41cd34"
+    },
+    {
+      "file": "03_logotypy_3x3_16_32_64/man_02_32.png",
+      "source": "pakiet logo: assets/faction-emblems/man_02_32.png",
+      "width_px": 32,
+      "height_px": 32,
+      "format": "PNG",
+      "bytes": 229,
+      "sha256": "3080ad43a5b28f7ca0f07146fcf14861d287aa7572b84a0690d5cd2b58ad5619"
+    },
+    {
+      "file": "03_logotypy_3x3_16_32_64/man_02_64.png",
+      "source": "pakiet logo: assets/faction-emblems/man_02_64.png",
+      "width_px": 64,
+      "height_px": 64,
+      "format": "PNG",
+      "bytes": 336,
+      "sha256": "f935a19c5e938bac0f5f3939ffcca6a85d96eddc02486a5cb6e878da2397903a"
+    },
+    {
+      "file": "03_logotypy_3x3_16_32_64/man_03_16.png",
+      "source": "pakiet logo: assets/faction-emblems/man_03_16.png",
+      "width_px": 16,
+      "height_px": 16,
+      "format": "PNG",
+      "bytes": 194,
+      "sha256": "6f4da712978d31f2f3054b68bee907e229b891aba104964145d3723e4eb53840"
+    },
+    {
+      "file": "03_logotypy_3x3_16_32_64/man_03_32.png",
+      "source": "pakiet logo: assets/faction-emblems/man_03_32.png",
+      "width_px": 32,
+      "height_px": 32,
+      "format": "PNG",
+      "bytes": 302,
+      "sha256": "ff92c14b4a58a32c4b5e97d473cfa7b0161f661a8950f24967611a6d501d9e1b"
+    },
+    {
+      "file": "03_logotypy_3x3_16_32_64/man_03_64.png",
+      "source": "pakiet logo: assets/faction-emblems/man_03_64.png",
+      "width_px": 64,
+      "height_px": 64,
+      "format": "PNG",
+      "bytes": 481,
+      "sha256": "caa40e494ea2ad8c74561ff83347634b4736258c3c79261b08f19e9d3c203c38"
+    },
+    {
+      "file": "03_logotypy_3x3_16_32_64/org_01_16.png",
+      "source": "pakiet logo: assets/faction-emblems/org_01_16.png",
+      "width_px": 16,
+      "height_px": 16,
+      "format": "PNG",
+      "bytes": 179,
+      "sha256": "1b397e349925b81fa93af3833e028a166171da37c9c3c4c1042dfa1b3bdefe03"
+    },
+    {
+      "file": "03_logotypy_3x3_16_32_64/org_01_32.png",
+      "source": "pakiet logo: assets/faction-emblems/org_01_32.png",
+      "width_px": 32,
+      "height_px": 32,
+      "format": "PNG",
+      "bytes": 326,
+      "sha256": "d39af361259df8b1745808b5af1cef4af620e3d9b83cd71a5265d72e734c2786"
+    },
+    {
+      "file": "03_logotypy_3x3_16_32_64/org_01_64.png",
+      "source": "pakiet logo: assets/faction-emblems/org_01_64.png",
+      "width_px": 64,
+      "height_px": 64,
+      "format": "PNG",
+      "bytes": 567,
+      "sha256": "4073b0ae54bf3f546aae3a8b5112028f7da5defd723cedd6f36df4127e65d0f6"
+    },
+    {
+      "file": "03_logotypy_3x3_16_32_64/org_02_16.png",
+      "source": "pakiet logo: assets/faction-emblems/org_02_16.png",
+      "width_px": 16,
+      "height_px": 16,
+      "format": "PNG",
+      "bytes": 166,
+      "sha256": "22b9ae128024319b82e995319ca46af3b95eb8befce533e63af43625433a5d4f"
+    },
+    {
+      "file": "03_logotypy_3x3_16_32_64/org_02_32.png",
+      "source": "pakiet logo: assets/faction-emblems/org_02_32.png",
+      "width_px": 32,
+      "height_px": 32,
+      "format": "PNG",
+      "bytes": 291,
+      "sha256": "2573a06ad318b73580cc82a100e808e968893c9a67b4c9106aea834563461e00"
+    },
+    {
+      "file": "03_logotypy_3x3_16_32_64/org_02_64.png",
+      "source": "pakiet logo: assets/faction-emblems/org_02_64.png",
+      "width_px": 64,
+      "height_px": 64,
+      "format": "PNG",
+      "bytes": 497,
+      "sha256": "5cfa51fb2bc98e6b88751ead76494b3fd11507d818a49aec5d7741fe58b9db34"
+    },
+    {
+      "file": "03_logotypy_3x3_16_32_64/org_03_16.png",
+      "source": "pakiet logo: assets/faction-emblems/org_03_16.png",
+      "width_px": 16,
+      "height_px": 16,
+      "format": "PNG",
+      "bytes": 201,
+      "sha256": "20d10b8228356e7e3874bf1e910fc42ae8b75e58f85b5164732cb85f10d19449"
+    },
+    {
+      "file": "03_logotypy_3x3_16_32_64/org_03_32.png",
+      "source": "pakiet logo: assets/faction-emblems/org_03_32.png",
+      "width_px": 32,
+      "height_px": 32,
+      "format": "PNG",
+      "bytes": 344,
+      "sha256": "7f712f77eb0d9de47d11b2b8bb99d1ab970d19ba9797da871e02c9730d8e817c"
+    },
+    {
+      "file": "03_logotypy_3x3_16_32_64/org_03_64.png",
+      "source": "pakiet logo: assets/faction-emblems/org_03_64.png",
+      "width_px": 64,
+      "height_px": 64,
+      "format": "PNG",
+      "bytes": 559,
+      "sha256": "255e0349e97e6a5fa97821698ca940c73cbf6c41f254cdda94a1e0bd5d448d8e"
+    },
+    {
+      "file": "03_logotypy_3x3_16_32_64/podglad_3x3.png",
+      "source": "/mnt/data/scalfagus_logo_package/faction-emblems-preview.png",
+      "width_px": 940,
+      "height_px": 510,
+      "format": "PNG",
+      "bytes": 16306,
+      "sha256": "a1f87817909345561934d7338cc0bb58e751873870e71528442b47db1b48c190"
+    },
+    {
+      "file": "04_godot_prototyp_assets/man_lander_128x128_unverified_5view.png",
+      "source": "prototyp Godot: scalfagus/apps/game/assets/man_lander_128x128_unverified_5view.png",
+      "width_px": 128,
+      "height_px": 640,
+      "format": "PNG",
+      "bytes": 31385,
+      "sha256": "7605b7a1b521a68420b5dd4623231c52211d27e8a7ae5d99638332cbaa433fa4"
+    },
+    {
+      "file": "04_godot_prototyp_assets/man_worker_24x32_idle_5view.png",
+      "source": "prototyp Godot: scalfagus/apps/game/assets/man_worker_24x32_idle_5view.png",
+      "width_px": 24,
+      "height_px": 160,
+      "format": "PNG",
+      "bytes": 6215,
+      "sha256": "5b197d2283c38605527a3bba8cd8275749a13f80e9cebca00f7a0f35dce75991"
+    },
+    {
+      "file": "04_godot_prototyp_assets/man_worker_24x32_walk_reference_5view.png",
+      "source": "prototyp Godot: scalfagus/apps/game/assets/man_worker_24x32_walk_reference_5view.png",
+      "width_px": 24,
+      "height_px": 160,
+      "format": "PNG",
+      "bytes": 6107,
+      "sha256": "1ab9c8608e70b469eee2f210459212e4271679988c5621b465c81fc87983c9d5"
+    },
+    {
+      "file": "04_godot_prototyp_assets/man_worker_32x48_idle_5view.png",
+      "source": "prototyp Godot: scalfagus/apps/game/assets/man_worker_32x48_idle_5view.png",
+      "width_px": 32,
+      "height_px": 240,
+      "format": "PNG",
+      "bytes": 13608,
+      "sha256": "728e71c200023aed45c3082d92d8995f1310918c85a6ee425b46c9e384388adf"
+    },
+    {
+      "file": "04_godot_prototyp_assets/man_worker_32x48_walk_reference_5view.png",
+      "source": "prototyp Godot: scalfagus/apps/game/assets/man_worker_32x48_walk_reference_5view.png",
+      "width_px": 32,
+      "height_px": 240,
+      "format": "PNG",
+      "bytes": 13584,
+      "sha256": "c8adb95d590eed034b4ba7961dc323406352d86fcaf32e7469ec723be4cb3911"
+    },
+    {
+      "file": "04_godot_prototyp_assets/neutral_rock_56x36_5view.png",
+      "source": "prototyp Godot: scalfagus/apps/game/assets/neutral_rock_56x36_5view.png",
+      "width_px": 56,
+      "height_px": 180,
+      "format": "PNG",
+      "bytes": 1138,
+      "sha256": "631c8cca5e2416c6f0e0f8e6f114a5e144de37b7e349df9b57bbbb77765c75d4"
+    },
+    {
+      "file": "04_godot_prototyp_assets/neutral_tree_40x64_5view.png",
+      "source": "prototyp Godot: scalfagus/apps/game/assets/neutral_tree_40x64_5view.png",
+      "width_px": 40,
+      "height_px": 320,
+      "format": "PNG",
+      "bytes": 1650,
+      "sha256": "6ac00d5ad51040ab2144352eae45f9b490d7f0215fd9ba1ed0806ef5f3f7b7bf"
+    }
+  ],
+  "omitted_exact_duplicates": [
+    {
+      "filename": "01_koncepcje_i_arkusze/repair_technician_blueprint_sheet.png",
+      "same_as": "01_koncepcje_i_arkusze/imagegen.png"
+    }
+  ]
+}

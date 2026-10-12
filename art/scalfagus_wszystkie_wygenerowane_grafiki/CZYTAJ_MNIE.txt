@@ -1,0 +1,19 @@
+SCALFAGUS — generated graphics archive
+
+This archive collects all image files available in the current conversation's workspace that appear to have been created for Scalfagus, including concept-art sheets, pixel sprites, 3x3 faction logo candidates, and extracted Godot prototype images.
+
+Folders:
+01_koncepcje_i_arkusze — generated conceptual faction/unit/structure artworks
+02_sprites_prototypy_i_warianty — raster sprite iterations created in this work
+03_logotypy_3x3_16_32_64 — faction logos at 16/32/64 pixels, three atlases and preview
+04_godot_prototyp_assets — texture assets exported with the earlier Godot spike
+PODGLAD_GALERIA.png — overview/contact sheet of the primary concepts
+MANIFEST.json — provenance, dimensions, file size and SHA256 of every archived graphic
+
+Included graphics: 92 unique image files
+Exact-duplicate image files not re-added: 1
+Folder counts: {'01_koncepcje_i_arkusze': 28, '02_sprites_prototypy_i_warianty': 26, '03_logotypy_3x3_16_32_64': 31, '04_godot_prototyp_assets': 7}
+
+Exclusions: original user-supplied StarCraft/Zerg reference art and screenshots have not been included; source screenshots are not treated as generated images. Only files retrievable within the active workspace are included.
+
+The graphics are concept/prototype art; inclusion does not imply approved final art direction or gameplay-readiness.
