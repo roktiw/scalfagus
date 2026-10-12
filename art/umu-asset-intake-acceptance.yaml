@@ -1,7 +1,7 @@
 schema_version: 1
 project: scalfagus
 suite_id: ART_MAN_UMU_REAL_ASSET_EVALUATION
-version: 0.1
+version: 0.2
 date: "2026-10-12"
 status: design_only_checks_no_external_pack_installed_and_no_Godot_render_tests_run
 human_specification: art/umu-ready-made-asset-shortlist-2026-10-12.md
@@ -147,6 +147,13 @@ test_cases:
     test: compare_recolored_Kenney_and_Quaternius_KayKit_parts_with_existing_MAN_blue_white_orange_palette_and_pixel_scale
     expected: consistent_visual_identity_and_working_nearest_neighbor_pixel_render
     requires_archive: true
+  - id: UMU-ASSET-21
+    priority: P0
+    description: Kenney_Conveyor_and_Factory_are_related_kit_generations_not_automatic_complementary_dependencies
+    test: verify_publisher_v3_5_changelog_and_only_audition_legacy_Conveyor_after_Factory_3_0_model_inventory
+    publisher_changelog: https://kenney.itch.io/kenney-game-assets/devlog/1526460/update-version-35
+    expected: {factory_kit_preferred: true, no_unverified_shared_pivot_or_color_atlas_compatibility: true, legacy_kit_only_if_needed: true}
+    requires_archive: false
   - id: UMU-ASSET-20
     priority: P0
     description: no_claim_that_prebuilt_asset_means_functional_UMU
@@ -157,7 +164,10 @@ release_and_adoption_status:
   currently_selected_pack_to_download: null
   currently_installed_external_UMU_art: false
   current_render_test_results: none
-  candidate_best: [asset_kenney_conveyor_kit, asset_kenney_factory_kit, asset_kaykit_space_base_bits]
+  candidate_best: [asset_kenney_factory_kit, asset_kaykit_space_base_bits]
+  optional_legacy_belt_source: asset_kenney_conveyor_kit
+  Factory_Kit_3_0_is_remade_successor_of_Conveyor_Kit: true
+  avoid_automatic_dual_generation_install: true
   owner_specific_approval_required_before_installation: true
   first_UMU_art_asset_delivery_should_be_separate_from_MVP0_engine_release: true
   screenshot_or_video_from_actual_runtime_only_after_engine_test: true
