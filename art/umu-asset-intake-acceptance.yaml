@@ -1,0 +1,163 @@
+schema_version: 1
+project: scalfagus
+suite_id: ART_MAN_UMU_REAL_ASSET_EVALUATION
+version: 0.1
+date: "2026-10-12"
+status: design_only_checks_no_external_pack_installed_and_no_Godot_render_tests_run
+human_specification: art/umu-ready-made-asset-shortlist-2026-10-12.md
+candidate_catalog: art/umu-ready-made-asset-catalog.yaml
+owner_decisions: [DEC-017, DEC-030, DEC-033, DEC-034, DEC-040, DEC-041, DEC-042]
+feature_scope: post_MVP0
+DO_NOT_modify_current_MAN_mirror_ROSTER: true
+safe_procedure:
+  phase_0:
+    title: no_install_asset_research
+    current_task_is_only: discovery_and_GitHub_MD_YAML
+    package_installation_authorized_by_current_request: false
+    downloaded_file_inventory: []
+    tracked_repo_new_third_party_binary_meshes: []
+  phase_1_if_user_explicitly_selects_pack:
+    action: download_original_publisher_archive_to_isolated_staging
+    evidence: [source_original_URL, actual_ZIP_license_text, source_publisher, asset_version, date_checked, ZIP_sha256, actual_model_list, actual_texture_list]
+    reject_on: [not_authorized, missing_license, unknown_provenance, archive_contains_unexpected_programs, downloaded_model_nonmatching_listed_license]
+  phase_2_art_prototype:
+    action: import_selected_CC0_parts_and_assemble_one_original_tracked_UMU
+    source_project_separated_from_MVP0_release_runtime: true
+    required_parts: [core, belt_wing_left, belt_wing_right, open_trapezoid_cage, roof_socket]
+    render_five_views_and_track_actual_world_sockets: true
+  phase_3_role_visual_poses:
+    actions: [move_tracks, warehouse_left, warehouse_right, conveyor_3, conveyor_5, bunker, sentry_wall]
+    higher_role_preview_optional: [power_generator, harvest, building_drive]
+  phase_4_legal_art_approval:
+    actions: [check_Godot_import, test_all_mode_colliders, review_atlas_and_mirrors, approve_publisher_assets_with_hashes, do_not_ship_unreviewed_materials]
+test_cases:
+  - id: UMU-ASSET-01
+    priority: P0
+    description: asset_source_is_real_and_from_original_author
+    test: resolve_each_original_page_and_match_exact_publisher_and_pack_title
+    expected: all_candidates_have_recorded_original_author_and_url
+    current_research_evidence: page_opened_or_search_verified
+    requires_archive: false
+  - id: UMU-ASSET-02
+    priority: P0
+    description: CC0_claim_verified_before_intake
+    test: per_pack_original_page_license_and_downloaded_license_text_match
+    expected: license_CC0_permitted_commercial_distribution_and_derivatives
+    current_research_evidence: original_page_claim_only
+    requires_archive: true
+  - id: UMU-ASSET-03
+    priority: P0
+    description: paid_and_free_tier_differentiated
+    test: Quaternius_Standard_subset_counted_from_real_download_not_277_assumed_free
+    expected: free_Standard_subset_only_models_really_downloaded_and_entitled_to
+    requires_archive: true
+  - id: UMU-ASSET-04
+    priority: P0
+    description: Godot_GLTF_or_source_mesh_import_validated
+    test: import_two_identical_belt_models_and_body_into_pinned_Godot_4_7_2_no_missing_textures_or_invalid_skeletons
+    expected: asset_import_verified_and_authoritative_hitbox_still_owned_by_game
+    requires_archive: true
+  - id: UMU-ASSET-05
+    priority: P0
+    description: two_real_persistent_symmetric_transforming_wings
+    test: trace_left_and_right_same_mesh_IDs_across_MOVE_WAREHOUSE_CONVEYOR_BUNKER_SENTRY
+    expected: no_ghost_extra_track_or_belt_created_or_destroyed_during_pose
+    requires_archive: true
+  - id: UMU-ASSET-06
+    priority: P0
+    description: MOVE_open_cage_tracks
+    test: fold_two_belt_wings_under_trapezoid_core_and_inspect_five_views
+    expected: both_wings_under_chassis_front_and_rear_open_cage
+    requires_archive: true
+  - id: UMU-ASSET-07
+    priority: P0
+    description: WAREHOUSE_one_deployed_loader
+    test: deploy_only_selected_left_then_right_belt
+    expected: exactly_one_active_open_ingress_side_per_pose_opposite_wing_stays_folded
+    requires_archive: true
+  - id: UMU-ASSET-08
+    priority: P0
+    description: CONVEYOR_3_and_CONVEYOR_5_valid_lengths
+    test: extend_same_wings_and_measure_in_gameplay_tile_units
+    expected: {len_3: [1, 1, 1], len_5: [2, 1, 2], no_free_extra_wing: true}
+    requires_archive: true
+  - id: UMU-ASSET-09
+    priority: P0
+    description: BUNKER_and_SENTRY_have_distinct_collision_poses
+    test: bunker_folds_wings_along_hull_sentry_rotates_belts_vertical_with_actual_blocker
+    expected: both_ground_and_enemy_allied_navigation_blocked_by_sentry
+    requires_archive: true
+  - id: UMU-ASSET-10
+    priority: P0
+    description: roof_socket_and_role_exclusivity_visualized
+    test: mount_one_solar_or_turret_module_then_change_role
+    expected: inactive_module_still_physically_visible_but_no_generator_while_defending_or_driving
+    requires_archive: true
+  - id: UMU-ASSET-11
+    priority: P0
+    description: actual_cargo_visual_capacity_can_be_shown_without_clipping
+    test: show_actual_four_soldiers_OR_27_mixed_cargo_OR_45_same_type_with_two_9_racks
+    expected: real_occupant_visibility_and_nonoverlapping_original_belt_sweep
+    requires_archive: true
+  - id: UMU-ASSET-12
+    priority: P0
+    description: larger_building_moves_with_real_4_6_8_UMU_modules
+    test: attach_4_to_small_6_to_medium_8_to_large_using_valid_mount_positions
+    expected: same_individual_UMU_meshes_lock_into_BUILDING_DRIVE_and_do_not_duplicate
+    requires_archive: true
+  - id: UMU-ASSET-13
+    priority: P0
+    description: five_source_view_angles_and_eight_mirror_sectors
+    test: render_front_front_right_right_back_right_back_with_transparent_BG_and_sample_all_eight_sectors
+    expected: {atlas_rows: 5, displayed_yaw_sectors: 8, no_color_key_magenta: true, pivots_consistent: true}
+    requires_archive: true
+  - id: UMU-ASSET-14
+    priority: P0
+    description: sprite_horizontal_flip_does_not_teleport_real_warehouse_port
+    test: switch_selected_world_side_warehouse_port_and_orbit_RTS_camera_360
+    expected: same_real_world_side_collisions_cargo_port_and_projectiles_independent_of_sprite_flip
+    requires_archive: true
+  - id: UMU-ASSET-15
+    priority: P1
+    description: legibility_at_320x240_and_640x360
+    test: record_RTS_gameplay_clips_in_two_sizes_and_read_MOVE_VS_WALL_3_VS_5_BUNKER
+    expected: distinguish_stances_by_silhouette_without_color_only_cues
+    requires_archive: true
+  - id: UMU-ASSET-16
+    priority: P0
+    description: license_and_PROVENANCE_import_manifest_saved_before_commit
+    test: compare_SHA256_of_all_imported_source_meshes_textures_and_original_pack_ZIP_with_manifest
+    expected: no_unlicensed_or_untraced_binary_into_shipped_repo
+    requires_archive: true
+  - id: UMU-ASSET-17
+    priority: P0
+    description: source_pack_does_not_sneak_UMU_into_MAN_mirror_first_release
+    test: load_MVP0_Four_template_registry_and_current_Godot_smoke
+    expected: same_HQ_Worker_Barracks_Rifleman_four_only
+    requires_archive: false
+  - id: UMU-ASSET-18
+    priority: P0
+    description: no_false_promotion_of_Sketchfab_visual_reference
+    test: verify_nonopen_highpoly_sketchfab_in_not_permitted_and_not_in_asset_tree
+    expected: no_proprietary_mesh_or_AI_derived_copy
+    requires_archive: false
+  - id: UMU-ASSET-19
+    priority: P1
+    description: no_missing_sampler_or_palette_drift
+    test: compare_recolored_Kenney_and_Quaternius_KayKit_parts_with_existing_MAN_blue_white_orange_palette_and_pixel_scale
+    expected: consistent_visual_identity_and_working_nearest_neighbor_pixel_render
+    requires_archive: true
+  - id: UMU-ASSET-20
+    priority: P0
+    description: no_claim_that_prebuilt_asset_means_functional_UMU
+    test: role_transition_graph_and_explicit_cost_and_collider_authority_is_owned_by_Godot_not_3D_mesh
+    expected: one_active_role_and_finite_real_packets_independent_of_source_art_content
+    requires_archive: true
+release_and_adoption_status:
+  currently_selected_pack_to_download: null
+  currently_installed_external_UMU_art: false
+  current_render_test_results: none
+  candidate_best: [asset_kenney_conveyor_kit, asset_kenney_factory_kit, asset_kaykit_space_base_bits]
+  owner_specific_approval_required_before_installation: true
+  first_UMU_art_asset_delivery_should_be_separate_from_MVP0_engine_release: true
+  screenshot_or_video_from_actual_runtime_only_after_engine_test: true
