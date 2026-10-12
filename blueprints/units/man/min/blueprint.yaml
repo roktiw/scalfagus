@@ -1,0 +1,56 @@
+schema_version: 1
+blueprint_id: man_min
+object_type: unit
+display_name: MAN MIN worker
+faction: man
+release: mvp_0_1
+lifecycle: prototype_reference
+source_of_truth:
+  decisions: design/decisions.yaml
+  gameplay: design/mvp0-agent-implementation-contract.yaml
+  release_scope: design/mvp0-man-mirror-rts.yaml
+  world: design/mvp-verdant-divide-map.yaml
+  art: art/directional-sprite-five-view-v0.1.yaml
+gameplay:
+  category: economic_ground_actor
+  stable_runtime_entity_id: man_min
+  behaviors: [move, mine_finite_solid, carry_real_matter, deposit_at_own_HQ, construct_Barracks]
+  weapon: none_in_mvp0
+  independent_3d_footprint: true
+  cargo_and_costs: resolve_from_active_mvp0_numeric_contract
+  appearance_does_not_grant_extra_resources: true
+visual:
+  style: 1990s_retro_isometric_pixel_art
+  palette_family: ivory_pressurized_suit_blue_visor_orange_utility
+  silhouette: small_human_helmet_compact_pack_boots_and_tools_not_generic_heavy_mech
+  size_per_frame_px: [24, 32]
+  foot_pivot_px: [12, 30]
+  authored_rows: [front, front_right, right_side, back_right, back]
+  mirror_safe: false_existing_reference_flag
+  idle: current_prototype_one_frame_per_view
+  move: existing_pose_reference_not_verified_animation
+assets:
+  folder: assets/
+  production_status: existing_prototypes_not_shipping_approved
+  files:
+    - path: assets/man_worker_24x32_idle_5view.png
+      role: prototype_reference
+      status: prototype_reference_unverified
+      source_path: apps/game/assets/man_worker_24x32_idle_5view.png
+      git_blob_sha: fae528ef7a3688d008481837d842975e4dfc4760
+      sha256_status: refer_to_apps_game_assets_manifest_for_existing_asset
+      license_source: existing_repo_generated_prototype_only
+    - path: assets/man_worker_24x32_walk_reference_5view.png
+      role: prototype_reference
+      status: prototype_reference_unverified
+      source_path: apps/game/assets/man_worker_24x32_walk_reference_5view.png
+      git_blob_sha: 50b964b534192c8eae61ef67c0981db26ed48b1d
+      sha256_status: refer_to_apps_game_assets_manifest_for_existing_asset
+      license_source: existing_repo_generated_prototype_only
+validation:
+  collision_from_authoritative_world_not_sprite_alpha: true
+  production_atlas_approved: false
+  tested_in_Godot_with_this_blueprint: false
+  readable_320x240: untested
+  readable_640x360: untested
+  mirror_safety: untested

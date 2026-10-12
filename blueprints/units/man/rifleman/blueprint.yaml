@@ -1,0 +1,41 @@
+schema_version: 1
+blueprint_id: man_rifleman
+object_type: unit
+display_name: MAN Rifleman
+faction: man
+release: mvp_0_1
+lifecycle: draft
+source_of_truth:
+  decisions: design/decisions.yaml
+  gameplay: design/mvp0-agent-implementation-contract.yaml
+  release_scope: design/mvp0-man-mirror-rts.yaml
+  world: design/mvp-verdant-divide-map.yaml
+  art: art/directional-sprite-five-view-v0.1.yaml
+gameplay:
+  category: armed_ground_actor
+  stable_runtime_entity_id: man_rifleman
+  producer: man_barracks
+  behaviors: [move, acquire_legal_visible_enemy, attack_ranged_units_and_buildings]
+  attack_range_damage_cooldown_HP: resolve_from_active_mvp0_numeric_contract
+  can_swim_or_fly: false
+  victory_building: false
+visual:
+  style: 1990s_retro_isometric_pixel_art
+  palette_family: ivory_armor_blue_team_panels_dark_rifle_orange_muzzle
+  silhouette: recognizable_human_infantry_with_distinct_two_hand_rifle_not_worker_tool
+  proposed_frame_px: [32, 48]
+  authored_rows: [front, front_right, right_side, back_right, back]
+  mirror_safe: requires_symmetric_rifle_and_world_attachment_QA
+  effects: [muzzle_flash_separate, shot_tracer_separate, ground_shadow_separate]
+assets:
+  folder: assets/
+  production_status: missing_production_media
+  files:
+    []
+validation:
+  collision_from_authoritative_world_not_sprite_alpha: true
+  production_atlas_approved: false
+  tested_in_Godot_with_this_blueprint: false
+  readable_320x240: untested
+  readable_640x360: untested
+  mirror_safety: untested

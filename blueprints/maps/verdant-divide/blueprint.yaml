@@ -1,0 +1,44 @@
+schema_version: 1
+blueprint_id: verdant_divide
+object_type: map
+display_name: Verdant Divide — first playable battlefield
+faction: neutral
+release: mvp_0_1
+lifecycle: draft
+source_of_truth:
+  decisions: design/decisions.yaml
+  gameplay: design/mvp0-agent-implementation-contract.yaml
+  release_scope: design/mvp0-man-mirror-rts.yaml
+  world: design/mvp-verdant-divide-map.yaml
+  art: art/directional-sprite-five-view-v0.1.yaml
+gameplay:
+  category: authored_map_assembly
+  canonical_instance_source: design/mvp-verdant-divide-map.yaml
+  topology: planar
+  world_size_tiles: [64, 64]
+  tile_meters: 2.0
+  frame: floating_space_platform
+  surface_preset: brown_soil_jungle
+  blocked_outer_border_tiles: 1
+  map_instance_positions_and_resource_amounts: load_from_source_map_not_this_blueprint
+  players: man_vs_man
+visual:
+  style: 1990s_retro_isometric_pixel_art
+  biome: humid_tropical_jungle
+  world_deck: brown_soil_and_water_floating_in_outer_space
+  environment_object_blueprints: [giant_living_tree, surface_rock, deadwood_deposit, freshwater_pond, humid_jungle_soil, floating_space_platform]
+  routes: [central_clearing, north_forest_flank, south_understory_flank]
+  lighting: daytime_clear
+  visual_scatter: [fern, grass, moss, flowers, fallen_leaves]
+assets:
+  folder: assets/
+  production_status: missing_production_media
+  files:
+    []
+validation:
+  collision_from_authoritative_world_not_sprite_alpha: true
+  production_atlas_approved: false
+  tested_in_Godot_with_this_blueprint: false
+  readable_320x240: untested
+  readable_640x360: untested
+  mirror_safety: untested

@@ -1,0 +1,47 @@
+schema_version: 1
+blueprint_id: surface_rock
+object_type: resource_node
+display_name: Mineable surface rock
+faction: neutral
+release: mvp_0_1
+lifecycle: prototype_reference
+source_of_truth:
+  decisions: design/decisions.yaml
+  gameplay: design/mvp0-agent-implementation-contract.yaml
+  release_scope: design/mvp0-man-mirror-rts.yaml
+  world: design/mvp-verdant-divide-map.yaml
+  art: art/directional-sprite-five-view-v0.1.yaml
+gameplay:
+  category: neutral_finite_SOLID_Matter_source
+  map_instance_source: design/mvp-verdant-divide-map.yaml#resource_nodes
+  extracted_form: solid
+  prototype_currency_output: matter
+  renewable_in_mvp0: false
+  mining_rig_required: false
+  quantities_and_locations: map_manifest_only
+visual:
+  style: 1990s_retro_isometric_pixel_art
+  palette_family: charcoal_stone_gray_brown_with_subtle_ochre_extraction_faces
+  silhouette: irregular_low_jagged_outcrop_legible_as_mineable
+  reference_frame_px: [56, 36]
+  authored_rows: [front, front_right, right_side, back_right, back]
+  mirror_safe: false_existing_reference_flag
+  depleted_visual: reduced_or_dull_outcrop_no_free_respawn
+assets:
+  folder: assets/
+  production_status: existing_prototypes_not_shipping_approved
+  files:
+    - path: assets/neutral_rock_56x36_5view.png
+      role: prototype_reference
+      status: prototype_reference_unverified
+      source_path: apps/game/assets/neutral_rock_56x36_5view.png
+      git_blob_sha: b918a96a861f8a01688be7504723afe7067cefd0
+      sha256_status: refer_to_apps_game_assets_manifest_for_existing_asset
+      license_source: existing_repo_generated_prototype_only
+validation:
+  collision_from_authoritative_world_not_sprite_alpha: true
+  production_atlas_approved: false
+  tested_in_Godot_with_this_blueprint: false
+  readable_320x240: untested
+  readable_640x360: untested
+  mirror_safety: untested

@@ -1,0 +1,60 @@
+schema_version: 1
+project: scalfagus
+schema_id: scalfagus_object_blueprint_v0_1
+status: documentation_and_asset_intake_contract_not_runtime_schema
+object_folder_required_files: [README.md, blueprint.yaml, assets/README.md]
+id_policy: globally_unique_semantic_blueprint_id
+type_enum: [unit, building, cover, resource_node, liquid_body, terrain, world_frame, map, art_asset]
+faction_enum: [man, org, eth, neutral]
+lifecycle_enum: [draft, prototype_reference, production_candidate, validated]
+lifecycle_transition_requires_human_visual_review: true
+render_contract: art/directional-sprite-five-view-v0.1.yaml
+world_contract: design/battlefield-frames.yaml
+mvp_scope_contract: design/mvp0-man-mirror-rts.yaml
+mvp_candidate_balance_source: design/mvp0-agent-implementation-contract.yaml
+required_top_level_keys:
+  - schema_version
+  - blueprint_id
+  - object_type
+  - display_name
+  - faction
+  - release
+  - lifecycle
+  - source_of_truth
+  - gameplay
+  - visual
+  - assets
+  - validation
+optional_top_level_keys: [notes, relationships]
+source_of_truth_rules:
+  paths_are_relative_to_repository_root: true
+  authoritative_rules_are_references_not_value_copies: true
+  blueprint_does_not_override_decision_or_map_or_numeric_profile: true
+  unresolved_or_missing_reference_is_validation_error_for_runtime_intake: true
+gameplay_rules:
+  gameplay_category_explicit: true
+  simulation_collision_independent_from_alpha_and_sprite_size: true
+  art_only_objects_never_create_economy_or_LoS: true
+  source_nodes_are_finite_and_physical: true
+  visible_platform_rim_matches_hard_bounded_world: true
+visual_rules:
+  alpha: RGBA_transparent_for_individual_sprites
+  filter: nearest
+  atlas_yaw_rows: [front, front_right, right_side, back_right, back]
+  runtime_sector_source_rows: [0, 1, 2, 3, 4, 3, 2, 1]
+  runtime_sector_flip_h: [false, false, false, false, false, true, true, true]
+  mirror_safety: human_visual_QA_required
+  concept_posters_not_cut_final_atlases: true
+asset_record_expected_fields: [path, role, status, source_path, sha256_status, license_source]
+license_policy:
+  no_unlicensed_third_party_assets: true
+  copied_repo_blob_retains_existing_prototype_provenance: true
+  shipping_requires_provenance_and_sha256: true
+validation_expectations:
+  - readable_at_320x240_and_640x360
+  - fixed_ground_pivot_across_views_and_actions
+  - no_alpha_halo_and_no_baked_shadow_as_collision
+  - atlas_dimensions_match_five_views_and_declared_frame_count
+  - mirrored_ports_do_not_swap_world_sides
+  - no_visual_skin_changes_to_state_resource_or_navigation
+  - world_collision_map_is_not_generated_from_sprite_alpha

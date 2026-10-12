@@ -1,0 +1,40 @@
+schema_version: 1
+blueprint_id: floating_space_platform
+object_type: world_frame
+display_name: Floating jungle platform frame
+faction: neutral
+release: mvp_0_1
+lifecycle: draft
+source_of_truth:
+  decisions: design/decisions.yaml
+  gameplay: design/battlefield-frames.yaml
+  release_scope: design/mvp0-man-mirror-rts.yaml
+  world: design/platform-surface-presets.yaml
+  art: art/sprite-resolution-and-camera-profile-v0.1.yaml
+gameplay:
+  category: mandatory_world_frame_for_all_playable_maps
+  world_frame_variant: floating_space_platform
+  map_topology: planar_bounded
+  edge_policy: impassable_four_sided
+  gameplay_edge_guard: true
+  outside_backdrop_interactive: false
+  space_below_has_nav_or_resource_stock: false
+  platform_moves_during_match: false
+visual:
+  style: 1990s_retro_isometric_pixel_art
+  palette_family: rooted_soil_brown_rusty_steel_dark_space_low_contrast_planet
+  features: [jungle_soil_strata, suspended_roots, support_braces, dormant_thrusters, starfield, distant_planet]
+  rendering: modular_rim_sides_corners_underside_and_backdrop
+  separate_world_colliders_from_decoration: true
+assets:
+  folder: assets/
+  production_status: missing_production_media
+  files:
+    []
+validation:
+  collision_from_authoritative_world_not_sprite_alpha: true
+  production_atlas_approved: false
+  tested_in_Godot_with_this_blueprint: false
+  readable_320x240: untested
+  readable_640x360: untested
+  mirror_safety: untested

@@ -1,0 +1,49 @@
+schema_version: 1
+blueprint_id: man_command_core
+object_type: building
+display_name: MAN Command Core HQ
+faction: man
+release: mvp_0_1
+lifecycle: prototype_reference
+source_of_truth:
+  decisions: design/decisions.yaml
+  gameplay: design/mvp0-agent-implementation-contract.yaml
+  release_scope: design/mvp0-man-mirror-rts.yaml
+  world: design/mvp-verdant-divide-map.yaml
+  art: art/directional-sprite-five-view-v0.1.yaml
+gameplay:
+  category: completed_HQ_victory_building
+  stable_runtime_entity_id: man_command_core
+  ground_footprint_tiles: [3, 3]
+  world_footprint_meters: [6, 6]
+  behaviors: [store_deposited_matter, receive_worker_cargo_at_real_port, train_man_min]
+  can_be_rebuilt_in_mvp0: false
+  initial_count_per_team: 1
+  victory_building: true
+visual:
+  style: 1990s_retro_isometric_pixel_art
+  palette_family: white_blue_modular_industrial_orange_warning
+  silhouette: low_heavy_square_lander_with_actual_worker_access_ramp_and_storage_hatch
+  proposed_frame_px: [128, 128]
+  authored_rows: [front, front_right, right_side, back_right, back]
+  mirror_safe: false_existing_reference_flag
+  critical_ports: same_world_space_positions_in_all_views
+  selection: floor_footprint_diamond_3x3_world_tiles
+assets:
+  folder: assets/
+  production_status: existing_prototypes_not_shipping_approved
+  files:
+    - path: assets/man_lander_128x128_unverified_5view.png
+      role: prototype_reference
+      status: prototype_reference_unverified
+      source_path: apps/game/assets/man_lander_128x128_unverified_5view.png
+      git_blob_sha: 7f688f26b337e6fa3f10d869cbc10d0a4088685d
+      sha256_status: refer_to_apps_game_assets_manifest_for_existing_asset
+      license_source: existing_repo_generated_prototype_only
+validation:
+  collision_from_authoritative_world_not_sprite_alpha: true
+  production_atlas_approved: false
+  tested_in_Godot_with_this_blueprint: false
+  readable_320x240: untested
+  readable_640x360: untested
+  mirror_safety: untested

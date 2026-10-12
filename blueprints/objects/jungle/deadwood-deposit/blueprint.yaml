@@ -1,0 +1,39 @@
+schema_version: 1
+blueprint_id: deadwood_deposit
+object_type: resource_node
+display_name: Finite deadwood deposit
+faction: neutral
+release: mvp_0_1
+lifecycle: draft
+source_of_truth:
+  decisions: design/decisions.yaml
+  gameplay: design/mvp0-agent-implementation-contract.yaml
+  release_scope: design/mvp0-man-mirror-rts.yaml
+  world: design/mvp-verdant-divide-map.yaml
+  art: art/directional-sprite-five-view-v0.1.yaml
+gameplay:
+  category: neutral_finite_SOLID_Matter_source
+  map_instance_source: design/mvp-verdant-divide-map.yaml#resource_nodes
+  extracted_form: solid
+  prototype_currency_output: matter
+  renewable_in_mvp0: false
+  distinction: living_trees_are_nonharvestable_cover
+visual:
+  style: 1990s_retro_isometric_pixel_art
+  palette_family: brown_wood_slate_shadow_moss_green
+  silhouette: clearly_fallen_log_bundle_with_exposed_cut_ends
+  authored_rows: [front, front_right, right_side, back_right, back]
+  mirror_safe: visual_symmetry_to_be_reviewed
+  depletion: count_reduces_only_when_authoritative_source_reaches_zero
+assets:
+  folder: assets/
+  production_status: missing_production_media
+  files:
+    []
+validation:
+  collision_from_authoritative_world_not_sprite_alpha: true
+  production_atlas_approved: false
+  tested_in_Godot_with_this_blueprint: false
+  readable_320x240: untested
+  readable_640x360: untested
+  mirror_safety: untested

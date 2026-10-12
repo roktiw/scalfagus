@@ -1,0 +1,38 @@
+schema_version: 1
+blueprint_id: replace_with_unique_id
+object_type: unit # unit | building | cover | resource_node | liquid_body | terrain | world_frame | map | art_asset
+display_name: REPLACE_ME
+faction: neutral
+release: future # or mvp_0_1
+lifecycle: draft
+source_of_truth:
+  decisions: design/decisions.yaml
+  gameplay: null # relative repository path to authoritative contract
+  world: null
+  art: art/directional-sprite-five-view-v0.1.yaml
+gameplay:
+  category: needs_definition
+  authority: external_source_of_truth_only
+  collision: real_3d_proxy_separate_from_sprite
+visual:
+  style: 1990s_crisp_isometric_pixel_art
+  palette_family: TBD
+  silhouette: TBD
+  sprite3d:
+    enabled: true
+    five_authored_yaw_rows: [front, front_right, right_side, back_right, back]
+    mirror_safe: needs_art_review
+    frame_px: null
+    pivot_px: null
+    transparent_rgba: true
+    texture_filter: nearest
+assets:
+  folder: assets/
+  production_status: missing
+  files: []
+validation:
+  production_atlas_approved: false
+  tested_in_Godot: false
+  readable_320x240: untested
+  readable_640x360: untested
+  mirroring_safety: untested

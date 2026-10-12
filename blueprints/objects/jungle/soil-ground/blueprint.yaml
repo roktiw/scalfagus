@@ -1,0 +1,39 @@
+schema_version: 1
+blueprint_id: humid_jungle_soil
+object_type: terrain
+display_name: Brown jungle soil tile family
+faction: neutral
+release: mvp_0_1
+lifecycle: draft
+source_of_truth:
+  decisions: design/decisions.yaml
+  gameplay: design/mvp0-agent-implementation-contract.yaml
+  release_scope: design/mvp0-man-mirror-rts.yaml
+  world: design/mvp-verdant-divide-map.yaml
+  art: art/directional-sprite-five-view-v0.1.yaml
+gameplay:
+  category: brown_soil_jungle_surface_preset
+  world_surface_preset: brown_soil_jungle
+  does_not_add_independent_collision: true
+  real_terrain_mesh_and_height_are_authoritative: true
+  decorations_nonblocking_unless_explicit_map_object: true
+visual:
+  style: 1990s_retro_isometric_pixel_art
+  palette_family: warm_brown_loam_desaturated_olive_fern_green
+  nominal_iso_diamond_px: [32, 16]
+  optional_detailed_iso_diamond_px: [64, 32]
+  rendering: ground_material_and_optional_decorative_tiles
+  variants: [loam, grass_patch, roots, muddy_soil, transition_rock, ferns]
+  seam_tiling: required
+assets:
+  folder: assets/
+  production_status: missing_production_media
+  files:
+    []
+validation:
+  collision_from_authoritative_world_not_sprite_alpha: true
+  production_atlas_approved: false
+  tested_in_Godot_with_this_blueprint: false
+  readable_320x240: untested
+  readable_640x360: untested
+  mirror_safety: untested

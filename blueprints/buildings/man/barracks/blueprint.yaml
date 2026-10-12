@@ -1,0 +1,43 @@
+schema_version: 1
+blueprint_id: man_barracks
+object_type: building
+display_name: MAN Barracks
+faction: man
+release: mvp_0_1
+lifecycle: draft
+source_of_truth:
+  decisions: design/decisions.yaml
+  gameplay: design/mvp0-agent-implementation-contract.yaml
+  release_scope: design/mvp0-man-mirror-rts.yaml
+  world: design/mvp-verdant-divide-map.yaml
+  art: art/directional-sprite-five-view-v0.1.yaml
+gameplay:
+  category: constructible_production_victory_building
+  stable_runtime_entity_id: man_barracks
+  ground_footprint_tiles: [3, 3]
+  world_footprint_meters: [6, 6]
+  built_by: man_min
+  production: man_rifleman
+  incomplete_site_is_victory_building: false
+  completed_structure_is_victory_building: true
+  build_time_cost_HP: resolve_from_active_mvp0_numeric_contract
+visual:
+  style: 1990s_retro_isometric_pixel_art
+  palette_family: white_blue_modular_hangar_orange_hazard
+  silhouette: rectangular_low_military_module_with_visible_squad_exit_and_ramp
+  authored_rows: [front, front_right, right_side, back_right, back]
+  mirror_safe: design_symmetric_doors_or_use_world_locked_overlay
+  visual_states: [site_footprint, scaffold, complete, training, damaged, destroyed]
+  suggested_frame_px: [128, 128]
+assets:
+  folder: assets/
+  production_status: missing_production_media
+  files:
+    []
+validation:
+  collision_from_authoritative_world_not_sprite_alpha: true
+  production_atlas_approved: false
+  tested_in_Godot_with_this_blueprint: false
+  readable_320x240: untested
+  readable_640x360: untested
+  mirror_safety: untested

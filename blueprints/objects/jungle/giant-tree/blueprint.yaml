@@ -1,0 +1,47 @@
+schema_version: 1
+blueprint_id: giant_living_tree
+object_type: cover
+display_name: Jungle giant living tree
+faction: neutral
+release: mvp_0_1
+lifecycle: prototype_reference
+source_of_truth:
+  decisions: design/decisions.yaml
+  gameplay: design/mvp0-agent-implementation-contract.yaml
+  release_scope: design/mvp0-man-mirror-rts.yaml
+  world: design/mvp-verdant-divide-map.yaml
+  art: art/directional-sprite-five-view-v0.1.yaml
+gameplay:
+  category: neutral_fixed_tactical_cover
+  map_instance_source: design/mvp-verdant-divide-map.yaml#fixed_cover
+  blocks: [ground_navigation, gameplay_line_of_sight, basic_projectiles]
+  canopy_independent_collision: false
+  can_be_harvested_in_mvp0: false
+  spawn_placement_seed_randomized: false
+visual:
+  style: 1990s_retro_isometric_pixel_art
+  palette_family: dark_green_moss_verdant_canopy_dark_brown_bark
+  silhouette: heavy_wide_tree_trunk_with_separable_canopy_and_roots
+  reference_frame_px: [40, 64]
+  authored_rows: [front, front_right, right_side, back_right, back]
+  mirror_safe: true_existing_placeholder_flag
+  canopy_fade_when_obscuring_selected_units: required
+  trunk_collision_comes_from_map_not_reference_sprite
+assets:
+  folder: assets/
+  production_status: existing_prototypes_not_shipping_approved
+  files:
+    - path: assets/neutral_tree_40x64_5view.png
+      role: prototype_reference
+      status: prototype_reference_unverified
+      source_path: apps/game/assets/neutral_tree_40x64_5view.png
+      git_blob_sha: 3eecb4c1f153d3befaa5dce30ae219a50617ad36
+      sha256_status: refer_to_apps_game_assets_manifest_for_existing_asset
+      license_source: existing_repo_generated_prototype_only
+validation:
+  collision_from_authoritative_world_not_sprite_alpha: true
+  production_atlas_approved: false
+  tested_in_Godot_with_this_blueprint: false
+  readable_320x240: untested
+  readable_640x360: untested
+  mirror_safety: untested

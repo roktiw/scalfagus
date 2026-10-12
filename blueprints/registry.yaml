@@ -1,0 +1,18 @@
+schema_version: 1
+project: scalfagus
+release: mvp_0_1
+purpose: discoverability_only_not_runtime_registry
+entries:
+  - {id: man_min, type: unit, path: blueprints/units/man/min/blueprint.yaml, gameplay: mvp0, art: prototype_reference}
+  - {id: man_rifleman, type: unit, path: blueprints/units/man/rifleman/blueprint.yaml, gameplay: mvp0, art: pending}
+  - {id: man_command_core, type: building, path: blueprints/buildings/man/command-core/blueprint.yaml, gameplay: mvp0, art: prototype_reference}
+  - {id: man_barracks, type: building, path: blueprints/buildings/man/barracks/blueprint.yaml, gameplay: mvp0, art: pending}
+  - {id: giant_living_tree, type: cover, path: blueprints/objects/jungle/giant-tree/blueprint.yaml, gameplay: mvp0, art: prototype_reference}
+  - {id: surface_rock, type: resource_node, path: blueprints/objects/jungle/surface-rock/blueprint.yaml, gameplay: mvp0, art: prototype_reference}
+  - {id: deadwood_deposit, type: resource_node, path: blueprints/objects/jungle/deadwood-deposit/blueprint.yaml, gameplay: mvp0, art: pending}
+  - {id: freshwater_pond, type: liquid_body, path: blueprints/objects/jungle/freshwater-pond/blueprint.yaml, gameplay: mvp0, art: pending}
+  - {id: humid_jungle_soil, type: terrain, path: blueprints/objects/jungle/soil-ground/blueprint.yaml, gameplay: visual_surface, art: pending}
+  - {id: floating_space_platform, type: world_frame, path: blueprints/objects/space/platform-rim/blueprint.yaml, gameplay: mandatory_frame, art: pending}
+  - {id: verdant_divide, type: map, path: blueprints/maps/verdant-divide/blueprint.yaml, gameplay: mvp0, art: assembly_pending}
+  - {id: man_min_idle_24x32, type: art_asset, path: blueprints/art-assets/man-min-idle/blueprint.yaml, gameplay: visual_only, art: prototype_reference}
+deferred_no_active_blueprint_mvp0: [man_umu, eth, org, new_energy_resources, transformative_mechs]
