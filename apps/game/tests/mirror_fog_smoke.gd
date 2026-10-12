@@ -151,6 +151,18 @@ func _verify() -> void:
     if not local_sim.matter_is_conserved():
         _fail("Fog presentation leaked into match ledger")
         return
+    # Bot-vs-Bot spectator mode stays omniscient: this checks the same
+    # presentation toggles without requiring a second renderer teardown.
+    game.spectator = true
+    overlay.set_spectator(true)
+    game._sync_visuals()
+    if overlay.visible:
+        _fail("Spectator still sees the shroud overlay")
+        return
+    for sid in nodes.keys():
+        if int(local_sim.sources[sid]["stock"]) > 0 and not (nodes[sid] as Node3D).visible:
+            _fail("Bot observer lost visibility of active Matter")
+            return
     game.queue_free()
     await process_frame
     print("SCALFAGUS_MIRROR_FOG_PASS")
