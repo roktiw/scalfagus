@@ -5,6 +5,9 @@ decision_id: DEC-046
 version: 0.1
 status: owner_directed_MAN_transformers_combining_meta_machines_and_titans_recipes_counts_balance_pending
 human_spec: design/man-machine-recombination-meta-mechs-titans-2026-10-12.md
+cross_faction_analogy_DEC_047: design/three-faction-assembly-fusion-resonance.yaml
+MAN_preserves_separable_parts_vs_ORG_irreversible_precursor_loss: true
+MAN_simple_dock_undock_must_not_be_assumed_for_ETH_deep_energetic_merger: true
 scope:
   first_release: DEC-033
   first_release_contains_meta_machines: false
