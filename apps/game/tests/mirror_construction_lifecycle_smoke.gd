@@ -3,7 +3,6 @@ extends SceneTree
 # Construction lifecycle: no ghost 3x3 reservations, no double bookkeeping
 # and deterministic interruption for the MVP0 single-worker Barracks.
 const MATCH = preload("res://scripts/mirror_match_state.gd")
-const GEOM = preload("res://scripts/mirror_geometry.gd")
 const REPLAY = preload("res://scripts/mirror_replay_archive.gd")
 const SITE = Vector2i(13, 12)
 
@@ -77,7 +76,6 @@ func _verify() -> void:
     var worker: int = _start(cancelled)
     if worker < 0:
         return
-    var initial_hash: String = cancelled.replay_hash()
     if cancelled.issue_command(0, "move", worker, Vector2i(64, 64)):
         _fail("Out-of-range move was accepted during construction")
         return
@@ -89,6 +87,7 @@ func _verify() -> void:
         return
     for i in range(9):
         cancelled.advance()
+    var hash_before_stop: String = cancelled.replay_hash()
     if not cancelled.issue_command(0, "stop", worker):
         _fail("Worker STOP did not cancel Barracks construction")
         return
@@ -98,7 +97,7 @@ func _verify() -> void:
     if int(stop_event["remaining_ticks"]) != 351 or not cancelled._can_build(SITE, 0):
         _fail("STOP did not preserve accurate unfinished progress in event or release site")
         return
-    if cancelled.replay_hash() == initial_hash:
+    if cancelled.replay_hash() == hash_before_stop:
         _fail("Interrupted work produced the original authoritative replay hash")
         return
 
