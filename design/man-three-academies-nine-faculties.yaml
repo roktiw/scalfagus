@@ -14,6 +14,10 @@ precedence:
 core:
   academy_count: 3
   faculty_slots_per_person: 3
+  DEC_045_MACHINE_operator_or_AI_machine_control: design/man-nine-machines-crews-and-autonomy.yaml
+  ground_machine_manual_pilot_requires_operator_certificate: true
+  onboard_machine_AI_does_not_require_human_certificate: true
+  owner_desired_nine_machine_families_does_not_mean_nine_more_faculties: true
   selectable_faculty_count: 9
   faculties_per_academy: 3
   all_nine_courses_are_distinct: true
