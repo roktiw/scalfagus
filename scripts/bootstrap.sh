@@ -6,7 +6,7 @@ if [[ "$(uname -s)" != Darwin ]]; then
   echo 'macOS bootstrap only. On Windows/Linux install Godot 4.7.2 Standard, set GODOT_BIN, then run scripts/check.sh.' >&2
   exit 1
 fi
-command -v xcode-select >/dev/null && xcode-select -p >/dev/null || { echo 'Install Apple Command Line Tools: xcode-select --install' >&2; exit 1; }
+# Standard Godot/GDScript development does not require a C++/Rust compiler.
 mkdir -p .tools
 if [[ ! -x "$SCALFAGUS_ROOT/.tools/Godot.app/Contents/MacOS/Godot" ]]; then
   file='Godot_v4.7.2-stable_macos.universal.zip'

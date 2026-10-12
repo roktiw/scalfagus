@@ -30,6 +30,6 @@ case "$target" in
   *) echo 'Usage: bash scripts/build.sh [macos|windows|linux|web|--templates]' >&2; exit 2 ;;
 esac
 mkdir -p "$(dirname "$filename")"
-"$GODOT_BIN" --headless --path apps/game --editor --import --quit
-"$GODOT_BIN" --headless --path apps/game --export-release "$preset" "$SCALFAGUS_ROOT/$filename"
+bash scripts/godot-qa-run.sh "$GODOT_BIN" --headless --path apps/game --editor --import --quit
+bash scripts/godot-qa-run.sh --strict-errors "$GODOT_BIN" --headless --path apps/game --export-release "$preset" "$SCALFAGUS_ROOT/$filename"
 echo "Exported $filename. Target-platform runtime testing still required."

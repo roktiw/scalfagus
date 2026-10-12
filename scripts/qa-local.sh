@@ -3,7 +3,7 @@
 set -uo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT" || exit 2
-[[ -d .git ]] || { echo "Run in a Git checkout, not a source archive" >&2; exit 2; }
+git rev-parse --is-inside-work-tree >/dev/null 2>&1 || { echo "Run in a Git checkout, not a source archive" >&2; exit 2; }
 source scripts/env.sh
 BASE="$(git rev-parse HEAD)"
 SHORT="$(git rev-parse --short=9 HEAD)"
@@ -33,6 +33,8 @@ run_gate() {
   printf "| %s | %s | %s | %s |\n" "$*" "$rc" "$result" "$log" >> "$REPORT"
   echo "SCALFAGUS_QA_GATE_${result}: $label (exit=$rc)"
 }
+run_gate native-source bash scripts/check-native-source.sh
+run_gate runner-regression bash scripts/test-godot-qa-run.sh
 run_gate addon-inventory bash scripts/install-godot-addons.sh --check
 run_gate godot-smoke bash scripts/check.sh
 run_gate gut bash scripts/check-gut.sh

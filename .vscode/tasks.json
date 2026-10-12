@@ -1,0 +1,11 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {"label": "Godot: doctor", "type": "shell", "command": "bash", "args": ["scripts/dev-tools.sh", "doctor"], "problemMatcher": []},
+    {"label": "Godot: editor", "type": "shell", "command": "bash", "args": ["scripts/dev-tools.sh", "editor"], "problemMatcher": []},
+    {"label": "Godot: game", "type": "shell", "command": "bash", "args": ["scripts/dev-tools.sh", "game"], "problemMatcher": []},
+    {"label": "Godot: local QA", "type": "shell", "command": "bash", "args": ["scripts/dev-tools.sh", "test"], "group": {"kind": "test", "isDefault": true}, "problemMatcher": []},
+    {"label": "Godot: GUT", "type": "shell", "command": "bash", "args": ["scripts/dev-tools.sh", "gut"], "problemMatcher": []},
+    {"label": "Godot: export macOS", "type": "shell", "command": "bash", "args": ["scripts/dev-tools.sh", "export", "macos"], "problemMatcher": []}
+  ]
+}
