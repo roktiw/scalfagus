@@ -148,7 +148,7 @@ major_gaps:
     tests: [M0B-05, M0B-06, M0B-09]
   - id: CODE-GAP-06
     priority: P0
-    status: cooldown_fixed_range_and_3d_LOS_still_P0
+    status: cooldown_and_world_range_aligned_3d_raycast_diagnostics_not_authoritative
     issue: weapon_cooldown_current_10_ticks_vs_20_ticks_and_range_6_Manhattan_cells_vs_6p5_world_metres
     remediation: use_shared_projected_world_scale_and_actual_3d_LOS_raycast_through_tree_collision
     tests: [M0B-07, M0B-13]
@@ -188,7 +188,9 @@ major_gaps:
     tests: [M0B-13, M0B-23, mirror_navigation_port_smoke.gd]
   - id: CODE-GAP-12
     priority: P0
-    status: 3x3_completed_buildings_have_native_collision_other_terrain_physics_pending
+    status: native_trunk_water_building_colliders_and_3d_los_probe_implemented_unverified_height_ramps_omitted
+    physics_port: apps/game/scripts/mirror_physics_los_3d.gd
+    verification_test: apps/game/tests/mirror_physics_los_smoke.gd
     partial_test: apps/game/tests/mirror_visual_smoke.gd
     issue: first_ground_view_renderer_meshes_have_no_verified_physical_collision_equivalent_to_world_map
     remediation: ensure_actual_deck_tree_water_and_rim_collider_and_LOS_match_map_manifest_for_all_visual_render_scales

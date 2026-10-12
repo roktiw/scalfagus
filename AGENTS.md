@@ -1,5 +1,20 @@
 # SCALFAGUS — Coding-Agent Contract
 
+## MVP0 NATIVE 3D LOS AUDIT (DRAFT / REAL GODOT NOT TESTED)
+
+`MirrorPhysicsLos3D` creates `StaticBody3D` colliders from the compiled
+Verdant tree and water tile raster; trees/buildings use raycast mask 1,
+water uses surface mask 2. Completed building colliders expose stable
+authoritative entity IDs. `PhysicsDirectSpaceState3D.intersect_ray`
+allows headless tests and future HUD diagnostics. **This renderer-physics
+ray is never authoritative for combat**: `MirrorMatchState` remains the
+replay/network-compatible source of truth, while trees, buildings,
+water and elevation require future parity checks before changing the
+combat authority. Run `scripts/check.sh` with Godot 4.7.2 locally; old
+PR #14 replay PASS predates PR #15 and this change. Read
+`docs/MVP0-PHYSICS-LOS-AUDIT-2026-10-12.md`.
+
+
 ## MAN TRANSFORMERS / META-MACHINES / TITANS — DEC-046 (POST-MVP0)
 
 Read [physical combiners and MAN Titan design](design/man-machine-recombination-meta-mechs-titans-2026-10-12.md) and [YAML contract](design/man-machine-recombination-meta-mechs-titans.yaml). OWNER DIRECTED: Scalfagus MAN should have spectacular **General Daimos-like transformable machines**, **Transformers-like multiple independent machines physically joining into meta-machines**, and **WH40K Titan-scale giant mechs**, with **original Scalfagus industrial/mechanical aesthetics**, not IP copies. Treat each combined assembly as a physically valid, finite-time, costed **group of existing persistent machine IDs**, with one authoritative coordinator, real connector/footprint, individual module damage and independent part identity after legal separation. **NO free cloned units, armor, extra warehouse, energy, crew, ammunition, instantaneous stacking or teleport.** An attached UMU enters one exclusive COMBINER-MEMBER job, **not** simultaneously generator, conveyor, warehouse or wall. Human qualified cockpit pilot or lawful onboard AI (DEC-044/045) can run the same assembly, with FPP/TPP still future. **Do not confuse the owner's exact 4/6/8 UMU counts for moving small/medium/large buildings (DEC-041) with the UNDECIDED physical part counts for a mech/Titan.** No new tenth base chassis family merely by combining DEC-045's nine candidate families. Balancing, recipes, named archetypes and prerequisites are proposals. **None of this goes into DEC-033 first release.**

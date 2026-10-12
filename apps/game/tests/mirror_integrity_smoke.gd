@@ -42,10 +42,10 @@ func _verify() -> void:
         return
 
     # An existing building blocks fire through it but is itself a valid target.
-    var from_cell := Vector2i(37, 25)
-    var building_cell := Vector2i(42, 25)
-    var face_cell := Vector2i(41, 25)
-    var behind := Vector2i(47, 25)
+    var from_cell := Vector2i(37, 28)
+    var building_cell := Vector2i(45, 28)
+    var face_cell := Vector2i(44, 28)
+    var behind := Vector2i(51, 28)
     sim._spawn("barracks", 0, building_cell)
     if sim._line_clear(from_cell, behind):
         _fail("Projectile passed through an intervening building")
