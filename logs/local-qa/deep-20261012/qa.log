@@ -1,0 +1,382 @@
+=== SCALFAGUS QA: addon-inventory ===
+ERROR: State Charts absent/incomplete; run bash scripts/install-godot-addons.sh --install
+SCALFAGUS_QA_GATE_FAIL: addon-inventory (exit=1)
+=== SCALFAGUS QA: godot-smoke ===
+ADDON_INSTALLED godot_state_charts 76d226a3efac66a72aea825382b320c94808f409
+SCALFAGUS_ADDONS_CHECK_PASS (no network)
+SCALFAGUS_ADDON_SETUP_OK
+VERDANT_SOURCE_SHA_PASS
+VERDANT_MAP_COMPILED_PASS (source YAML matches committed JSON)
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+[   0% ] first_scan_filesystem | Started Project initialization (5 steps)
+[   0% ] first_scan_filesystem | Scanning file structure...
+[  16% ] first_scan_filesystem | Loading global class names...
+[  33% ] first_scan_filesystem | Verifying GDExtensions...
+[  50% ] first_scan_filesystem | Creating autoload scripts...
+[  66% ] first_scan_filesystem | Initializing plugins...
+[  83% ] first_scan_filesystem | Starting file scan...
+[ DONE ] first_scan_filesystem
+
+[   0% ] update_scripts_classes | Started Registering global classes... (36 steps)
+[   0% ] update_scripts_classes | 
+[   2% ] update_scripts_classes | 
+[   5% ] update_scripts_classes | 
+[   8% ] update_scripts_classes | 
+[  10% ] update_scripts_classes | 
+[  13% ] update_scripts_classes | 
+[  16% ] update_scripts_classes | 
+[  18% ] update_scripts_classes | 
+[  21% ] update_scripts_classes | 
+[  24% ] update_scripts_classes | 
+[  27% ] update_scripts_classes | 
+[  29% ] update_scripts_classes | 
+[  32% ] update_scripts_classes | 
+[  35% ] update_scripts_classes | 
+[  37% ] update_scripts_classes | AllOfGuard
+[  40% ] update_scripts_classes | AnimationPlayerState
+[  43% ] update_scripts_classes | AnimationTreeState
+[  45% ] update_scripts_classes | AnyOfGuard
+[  48% ] update_scripts_classes | AtomicState
+[  51% ] update_scripts_classes | CompoundState
+[  54% ] update_scripts_classes | 
+[  56% ] update_scripts_classes | ExpressionGuard
+[  59% ] update_scripts_classes | 
+[  62% ] update_scripts_classes | 
+[  64% ] update_scripts_classes | Guard
+[  67% ] update_scripts_classes | HistoryState
+[  70% ] update_scripts_classes | NotGuard
+[  72% ] update_scripts_classes | ParallelState
+[  75% ] update_scripts_classes | SavedState
+[  78% ] update_scripts_classes | SerializedStateChart
+[  81% ] update_scripts_classes | SerializedStateChartState
+[  83% ] update_scripts_classes | StateChart
+[  86% ] update_scripts_classes | StateChartSerializer
+[  89% ] update_scripts_classes | StateChartState
+[  91% ] update_scripts_classes | StateIsActiveGuard
+[  94% ] update_scripts_classes | Transition
+[ DONE ] update_scripts_classes
+
+[   0% ] _update_scan_actions | Started Scanning actions... (19 steps)
+[   0% ] _update_scan_actions | state_chart_debugger.svg
+[   5% ] _update_scan_actions | all_of_guard.svg
+[  10% ] _update_scan_actions | animation_player_state.svg
+[  15% ] _update_scan_actions | animation_tree_state.svg
+[  20% ] _update_scan_actions | any_of_guard.svg
+[  25% ] _update_scan_actions | atomic_state.svg
+[  30% ] _update_scan_actions | compound_state.svg
+[  35% ] _update_scan_actions | expression_guard.svg
+[  40% ] _update_scan_actions | guard.svg
+[  45% ] _update_scan_actions | history_state.svg
+[  50% ] _update_scan_actions | not_guard.svg
+[  55% ] _update_scan_actions | parallel_state.svg
+[  60% ] _update_scan_actions | state_chart.svg
+[  65% ] _update_scan_actions | state_is_active_guard.svg
+[  70% ] _update_scan_actions | toggle_sidebar.svg
+[  75% ] _update_scan_actions | transition.svg
+[  80% ] _update_scan_actions | HSplitContainer.svg
+[  85% ] _update_scan_actions | VSplitContainer.svg
+[  90% ] _update_scan_actions | pixel.png
+[ DONE ] _update_scan_actions
+
+[   0% ] reimport | Started (Re)Importing Assets (18 steps)
+[   0% ] reimport | Preparing files to reimport...
+[   5% ] reimport | Preparing files to reimport...
+[  10% ] reimport | Preparing files to reimport...
+[  15% ] reimport | Preparing files to reimport...
+[  21% ] reimport | Preparing files to reimport...
+[  26% ] reimport | Preparing files to reimport...
+[  31% ] reimport | Preparing files to reimport...
+[  36% ] reimport | Preparing files to reimport...
+[  42% ] reimport | Preparing files to reimport...
+[  47% ] reimport | Preparing files to reimport...
+[  52% ] reimport | Preparing files to reimport...
+[  57% ] reimport | Preparing files to reimport...
+[  63% ] reimport | Preparing files to reimport...
+[  68% ] reimport | Preparing files to reimport...
+[  73% ] reimport | Preparing files to reimport...
+[  78% ] reimport | Preparing files to reimport...
+[  84% ] reimport | Preparing files to reimport...
+[  89% ] reimport | Preparing files to reimport...
+[   0% ] reimport | Executing pre-reimport operations...
+[   0% ] reimport | pixel.png
+[   5% ] reimport | VSplitContainer.svg
+[  10% ] reimport | HSplitContainer.svg
+[  15% ] reimport | transition.svg
+[  21% ] reimport | state_is_active_guard.svg
+[  26% ] reimport | state_chart.svg
+[  31% ] reimport | parallel_state.svg
+[  36% ] reimport | not_guard.svg
+[  42% ] reimport | history_state.svg
+[  47% ] reimport | guard.svg
+[  52% ] reimport | expression_guard.svg
+[  57% ] reimport | compound_state.svg
+[  63% ] reimport | atomic_state.svg
+[  68% ] reimport | any_of_guard.svg
+[  73% ] reimport | animation_tree_state.svg
+[  78% ] reimport | animation_player_state.svg
+[  84% ] reimport | all_of_guard.svg
+[  89% ] reimport | state_chart_debugger.svg
+[  94% ] reimport | Finalizing Asset Import...
+[ DONE ] reimport
+
+[   0% ] reimport | Started (Re)Importing Assets (18 steps)
+[   0% ] reimport | Executing post-reimport operations...
+[ DONE ] reimport
+
+[   0% ] loading_editor_layout | Started Loading editor (5 steps)
+[   0% ] loading_editor_layout | Loading editor layout...
+[  16% ] loading_editor_layout | Loading docks...
+[  33% ] loading_editor_layout | Reopening scenes...
+[  50% ] loading_editor_layout | Loading central editor layout...
+[  66% ] loading_editor_layout | Loading plugin window layout...
+[  83% ] loading_editor_layout | Editor layout ready.
+[ DONE ] loading_editor_layout
+
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_ADDONS_SMOKE_PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_SMOKE_PASS: one world, three modes, 5->8 mapping, same hero, PNG import
+WARNING: 4 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 4 RID allocations of type 'N17RendererSceneCull8InstanceE' were leaked at exit.
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_MENU_PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_KEYCHAIN_RTS_PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_RTS_SMOKE_PASS: camera focus, two-faction fixture, commands, selection, shared actor
+WARNING: 4 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 4 RID allocations of type 'N17RendererSceneCull8InstanceE' were leaked at exit.
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_NAV_SMOKE_PASS: A*, 3D obstacles, waypoints, minimap, actor identity
+WARNING: 4 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 4 RID allocations of type 'N17RendererSceneCull8InstanceE' were leaked at exit.
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_MIRROR_SMOKE_PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_MIRROR_INTEGRITY_PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_MIRROR_TIMING_PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_MIRROR_ASTAR_PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_MIRROR_FOOTPRINT_PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_VERDANT_MAP_PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_MIRROR_RESULT {"bot_attack_thresholds":[2,3],"controllers":["bot","bot"],"finished":true,"hash":"5bc6e08eed48b37188f2eaf5a03d1996f4afde5ddd57b0d7ce3c214526a1486b","lost_cargo_legacy":27,"lost_matter":27,"map_hash":"6b9054d78ae619f258cf1ffe8ce1b69e33c3d493b92dfdfc03e9f37ae7534083","map_id":"verdant_divide","map_source_sha":"036c23dbc582af6c63e2c2e901d3a74e3286e5e8","matter_conserved":true,"max_ticks":24000,"reason":"buildings_eliminated","rejected_commands":0,"resources_mined":855,"resources_spent":800,"rules":"mvp0-man-mirror-v5-3x3-world2m","seed":42,"tick_hz":20,"ticks":10111,"winner":1}
+SCALFAGUS_MIRROR_BATCH_PASS {"draws":0,"matches":1,"matches_per_second":2.49376558603491,"seconds":0.401,"wins":[0,1]}
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_MIRROR_VISUAL_PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_MIRROR_PHYSICS_LOS_PASS
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_MIRROR_GROUP_PASS
+ASSET_MANIFEST_PASS 7 transparent, region-aligned PNG atlases (prototype only)
+OK 16x16: atlas 48x48, 9 icons, 1398 opaque pixels
+OK 32x32: atlas 96x96, 9 icons, 5803 opaque pixels
+OK 64x64: atlas 192x192, 9 icons, 23707 opaque pixels
+OK 27 RGBA icons and 3 atlases, all atlas rectangles match standalone source bytes
+SCALFAGUS_GODOT_CHECK_PASS
+SCALFAGUS_QA_GATE_PASS: godot-smoke (exit=0)
+=== SCALFAGUS QA: gut ===
+ADDON_INSTALLED godot_state_charts 76d226a3efac66a72aea825382b320c94808f409
+SCALFAGUS_ADDONS_CHECK_PASS (no network)
+SCALFAGUS_ADDON_SETUP_OK
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+[   0% ] first_scan_filesystem | Started Project initialization (5 steps)
+[   0% ] first_scan_filesystem | Scanning file structure...
+[  16% ] first_scan_filesystem | Loading global class names...
+[  33% ] first_scan_filesystem | Verifying GDExtensions...
+[  50% ] first_scan_filesystem | Creating autoload scripts...
+[  66% ] first_scan_filesystem | Initializing plugins...
+[  83% ] first_scan_filesystem | Starting file scan...
+[ DONE ] first_scan_filesystem
+
+[   0% ] update_scripts_classes | Started Registering global classes... (37 steps)
+[   0% ] update_scripts_classes | 
+[   2% ] update_scripts_classes | 
+[   5% ] update_scripts_classes | 
+[   7% ] update_scripts_classes | 
+[  10% ] update_scripts_classes | 
+[  13% ] update_scripts_classes | 
+[  15% ] update_scripts_classes | 
+[  18% ] update_scripts_classes | 
+[  21% ] update_scripts_classes | 
+[  23% ] update_scripts_classes | 
+[  26% ] update_scripts_classes | 
+[  28% ] update_scripts_classes | 
+[  31% ] update_scripts_classes | 
+[  34% ] update_scripts_classes | 
+[  36% ] update_scripts_classes | AllOfGuard
+[  39% ] update_scripts_classes | AnimationPlayerState
+[  42% ] update_scripts_classes | AnimationTreeState
+[  44% ] update_scripts_classes | AnyOfGuard
+[  47% ] update_scripts_classes | AtomicState
+[  50% ] update_scripts_classes | CompoundState
+[  52% ] update_scripts_classes | 
+[  55% ] update_scripts_classes | ExpressionGuard
+[  57% ] update_scripts_classes | 
+[  60% ] update_scripts_classes | 
+[  63% ] update_scripts_classes | Guard
+[  65% ] update_scripts_classes | HistoryState
+[  68% ] update_scripts_classes | NotGuard
+[  71% ] update_scripts_classes | ParallelState
+[  73% ] update_scripts_classes | SavedState
+[  76% ] update_scripts_classes | SerializedStateChart
+[  78% ] update_scripts_classes | SerializedStateChartState
+[  81% ] update_scripts_classes | StateChart
+[  84% ] update_scripts_classes | StateChartSerializer
+[  86% ] update_scripts_classes | StateChartState
+[  89% ] update_scripts_classes | StateIsActiveGuard
+[  92% ] update_scripts_classes | Transition
+[  94% ] update_scripts_classes | 
+[ DONE ] update_scripts_classes
+
+[   0% ] _update_scan_actions | Started Scanning actions... (16 steps)
+[   0% ] _update_scan_actions | state_chart_debugger.svg
+[   5% ] _update_scan_actions | all_of_guard.svg
+[  11% ] _update_scan_actions | animation_player_state.svg
+[  17% ] _update_scan_actions | animation_tree_state.svg
+[  23% ] _update_scan_actions | any_of_guard.svg
+[  29% ] _update_scan_actions | atomic_state.svg
+[  35% ] _update_scan_actions | compound_state.svg
+[  41% ] _update_scan_actions | expression_guard.svg
+[  47% ] _update_scan_actions | guard.svg
+[  52% ] _update_scan_actions | history_state.svg
+[  58% ] _update_scan_actions | not_guard.svg
+[  64% ] _update_scan_actions | parallel_state.svg
+[  70% ] _update_scan_actions | state_chart.svg
+[  76% ] _update_scan_actions | state_is_active_guard.svg
+[  82% ] _update_scan_actions | toggle_sidebar.svg
+[  88% ] _update_scan_actions | transition.svg
+[ DONE ] _update_scan_actions
+
+[   0% ] reimport | Started (Re)Importing Assets (15 steps)
+[   0% ] reimport | Preparing files to reimport...
+[   6% ] reimport | Preparing files to reimport...
+[  12% ] reimport | Preparing files to reimport...
+[  18% ] reimport | Preparing files to reimport...
+[  25% ] reimport | Preparing files to reimport...
+[  31% ] reimport | Preparing files to reimport...
+[  37% ] reimport | Preparing files to reimport...
+[  43% ] reimport | Preparing files to reimport...
+[  50% ] reimport | Preparing files to reimport...
+[  56% ] reimport | Preparing files to reimport...
+[  62% ] reimport | Preparing files to reimport...
+[  68% ] reimport | Preparing files to reimport...
+[  75% ] reimport | Preparing files to reimport...
+[  81% ] reimport | Preparing files to reimport...
+[  87% ] reimport | Preparing files to reimport...
+[   0% ] reimport | Executing pre-reimport operations...
+[   0% ] reimport | state_chart_debugger.svg
+[   6% ] reimport | all_of_guard.svg
+[  12% ] reimport | animation_player_state.svg
+[  18% ] reimport | animation_tree_state.svg
+[  25% ] reimport | any_of_guard.svg
+[  31% ] reimport | atomic_state.svg
+[  37% ] reimport | compound_state.svg
+[  43% ] reimport | expression_guard.svg
+[  50% ] reimport | guard.svg
+[  56% ] reimport | history_state.svg
+[  62% ] reimport | not_guard.svg
+[  68% ] reimport | parallel_state.svg
+[  75% ] reimport | state_chart.svg
+[  81% ] reimport | state_is_active_guard.svg
+[  87% ] reimport | transition.svg
+[  93% ] reimport | Finalizing Asset Import...
+[ DONE ] reimport
+
+[   0% ] reimport | Started (Re)Importing Assets (15 steps)
+[   0% ] reimport | Executing post-reimport operations...
+[ DONE ] reimport
+
+[   0% ] loading_editor_layout | Started Loading editor (5 steps)
+[   0% ] loading_editor_layout | Loading editor layout...
+[  16% ] loading_editor_layout | Loading docks...
+[  33% ] loading_editor_layout | Reopening scenes...
+[  50% ] loading_editor_layout | Loading central editor layout...
+[  66% ] loading_editor_layout | Loading plugin window layout...
+[  83% ] loading_editor_layout | Editor layout ready.
+[ DONE ] loading_editor_layout
+
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+---  GUT  ---
+[INFO]:  using [<LOCAL_USER_HOME>/Library/Application Support/Godot/app_userdata/Scalfagus] for temporary output.
+Godot version:  4.7.2
+GUT version:  9.7.1
+
+
+res://tests/gut/test_mirror_authority.gd
+* test_initial_MIRROR_state_is_repeatable
+* test_enemy_unit_orders_are_rejected
+2/2 passed.
+
+
+res://tests/gut/test_rts_input_map.gd
+* test_all_RTS_actions_have_project_defaults
+* test_camera_and_training_do_not_share_default_physical_key
+2/2 passed.
+
+
+
+
+==============================================
+= Run Summary
+==============================================
+
+Totals
+------
+Scripts               2
+Tests                 4
+Passing Tests         4
+Asserts              32
+Time              0.454s
+
+
+---- All tests passed! ----
+
+SCALFAGUS_GUT_CHECK_PASS
+SCALFAGUS_QA_GATE_PASS: gut (exit=0)
+=== SCALFAGUS QA: map ===
+VERDANT_MAP_COMPILED_PASS (source YAML matches committed JSON)
+SCALFAGUS_QA_GATE_PASS: map (exit=0)
+=== SCALFAGUS QA: five-view ===
+✔ eight sectors map to five source rows and three mirrors (0.621084ms)
+✔ angle wrap works in both directions (0.094334ms)
+✔ near-sector boundary is stable unless threshold is actually crossed (0.0475ms)
+✔ orthographic camera shares bearing regardless of actor position (0.060583ms)
+✔ perspective camera bearing differs for actors on opposite sides of camera (0.343708ms)
+✔ zero horizontal camera-to-actor vector does not yield NaN (0.057875ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 61.821166
+SCALFAGUS_QA_GATE_PASS: five-view (exit=0)
+QA report: docs/qa/reports/2026-10-12-112518-7251bc8de.md
+QA logs: logs/local-qa/2026-10-12-112518-7251bc8de
