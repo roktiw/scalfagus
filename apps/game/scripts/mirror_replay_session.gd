@@ -8,6 +8,7 @@ const REPLAY = preload("res://scripts/mirror_replay_archive.gd")
 
 var sim: MirrorMatchState
 var commands: Array = []
+var original_document: Dictionary = {}
 var next_command: int = 0
 var final_tick: int = -1
 var expected_hash: String = ""
@@ -16,10 +17,21 @@ var verified: bool = false
 var error: String = ""
 
 func begin(document: Variant) -> Dictionary:
+    # Never reuse an old simulation after a malformed/newer file. This is
+    # essential when the player restarts or reloads within the same scene.
+    sim = null
+    commands.clear()
+    original_document.clear()
+    next_command = 0
+    final_tick = -1
+    expected_hash = ""
+    finished = false
+    verified = false
     var prepared: Dictionary = REPLAY.prepare(document)
     if not bool(prepared.get("ok", false)):
         error = str(prepared.get("reason", "invalid_replay"))
         return {"ok": false, "reason": error}
+    original_document = (document as Dictionary).duplicate(true)
     sim = prepared["sim"]
     commands = prepared["commands"]
     final_tick = int(prepared["final_tick"])
@@ -29,6 +41,13 @@ func begin(document: Variant) -> Dictionary:
     verified = false
     error = ""
     return {"ok": true, "reason": "ready", "total_ticks": final_tick}
+
+func restart() -> Dictionary:
+    if original_document.is_empty():
+        return {"ok": false, "reason": "no_valid_archive"}
+    # A deep copy protects the saved revision from accidental runtime writes.
+    var original: Dictionary = original_document.duplicate(true)
+    return begin(original)
 
 func step() -> Dictionary:
     if sim == null:
