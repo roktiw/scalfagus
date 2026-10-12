@@ -1,5 +1,16 @@
 # Scalfagus — Godot-only RTS / Direct / Possession prototype
 
+**Playable single-player UI (current priority):** The native Godot menu
+stretches to the full viewport, standalone opens maximized, and gameplay is
+`PLAY MAN vs BOT`. In the Godot editor's **Game** bar choose **Stretch
+to Fit** instead of its default **Fixed Size**, or disable embedding to
+test the real standalone window. Run `bash scripts/check.sh`, which
+includes `menu_pointer_smoke.gd` (actual mouse down/up routed through
+Viewport); then validate actual Mac pointer input manually. Details:
+[GUI and viewport QA](docs/qa/MVP0-PLAYABLE-VIEWPORT-MENU-2026-10-12.md).
+**H-H ENet implementation is paused by owner request; existing PR #18
+remains a separate unmerged draft.**
+
 **Local agent QA:** [Runbook](docs/qa/LOCAL-AGENT-TESTING.md) · [Report template](docs/qa/REPORT-TEMPLATE.md) · [Historical branch integration](docs/qa/BRANCH-INTEGRATION-2026-10-12.md). Start with `bash scripts/qa-local.sh`; report via Markdown on GitHub (GitHub Actions do not replace local tests).
 
 ## MVP 0.1 — one race, two player slots, classic RTS
