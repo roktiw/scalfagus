@@ -5,6 +5,7 @@ class_name MirrorCommandGateway
 # by (host tick, authorized slot, per-peer sequence), and only then calls
 # MirrorMatchState.issue_command(). A client never sends authoritative stats.
 const PROTOCOL_VERSION: int = 1
+const TIMING = preload("res://scripts/mirror_timing.gd")
 const MAX_ENVELOPE_BYTES: int = 1024
 const MAX_ORDERS_PER_SECOND: int = 40
 const MAX_FUTURE_TICKS: int = 2
@@ -149,14 +150,16 @@ func submit_from_peer(peer_id: int, envelope: Variant) -> Dictionary:
         return _ack(seq, slot, false, "not_owner", sim.tick)
     if action == "attack":
         var victim_id: int = int(decoded["arg"])
+        # Never turn entity-ID guessing into a hidden-enemy existence oracle.
+        # Both unknown and unobserved IDs return the same reason code.
         if not sim.entities.has(victim_id):
-            return _ack(seq, slot, false, "target_dead", sim.tick)
+            return _ack(seq, slot, false, "target_not_currently_visible", sim.tick)
         var target: Dictionary = sim.entities[victim_id]
         if int(target["owner"]) == slot:
             return _ack(seq, slot, false, "not_owner", sim.tick)
         if not sim.can_see(slot, target["pos"]):
             return _ack(seq, slot, false, "target_not_currently_visible", sim.tick)
-    var window: int = sim.tick / MirrorTiming.TICKS_PER_SECOND
+    var window: int = sim.tick / TIMING.TICKS_PER_SECOND
     var limiter: Dictionary = rate_windows[peer_id]
     if int(limiter["window"]) != window:
         limiter["window"] = window
