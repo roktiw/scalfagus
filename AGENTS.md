@@ -1,5 +1,25 @@
 # SCALFAGUS — Coding-Agent Contract
 
+## CURRENT OWNER PRIORITY — ONE HUMAN PLAYER / USABLE FULL VIEWPORT
+
+One human against the existing bot is the **current implementation and QA
+priority**. No ENet H-H development until explicitly resumed by owner,
+regardless of the long-term DEC-033 networking requirement. Verify the
+native menu is genuinely clickable by physical mouse and automated
+`Viewport.push_input` rather than only invoking `_open_options()`
+directly. Root menu layout must fill the render surface; all fullscreen
+background controls use `MOUSE_FILTER_IGNORE` and native Buttons
+receive input. Standalone maximizes its window; editor Game embedding
+**Fixed Size** is an editor preference — select **Stretch to Fit**
+or disable game embedding, as documented in
+`docs/qa/MVP0-PLAYABLE-VIEWPORT-MENU-2026-10-12.md`.
+Do not alter `dev_menu.gd` or someone else's uncommitted local
+formatting. Check play → human_bot match, Options/Back, Keychain,
+one-human full economy/combat loop, and 4.7.2 startup. Report Mac
+physical-click findings with window/embedding mode and screenshot
+or video. The new `menu_pointer_smoke.gd` must pass locally before
+claiming UI regression fixed.
+
 ## LOCAL QA AGENT — REQUIRED TEST / FIX / REPORT CONTRACT
 
 When working on Scalfagus locally, follow [QA instructions](docs/qa/LOCAL-AGENT-TESTING.md) and [report template](docs/qa/REPORT-TEMPLATE.md). Run `bash scripts/qa-local.sh` on a clean branch from fresh `origin/main`, inspect logs, fix only technical defects or invalid fixtures, never silently change canonical rules, and publish a new Markdown report in `docs/qa/reports/` plus an evidence-backed fix PR. Do not claim unrun GitHub Actions as PASS. Include `HANDOFF TO CHATGPT` with report permalink, baseline/tested SHAs and blockers.
