@@ -120,6 +120,8 @@ func _verify() -> void:
         _fail("Rendered fog tile counts differ from authoritative visible-cell set")
         return
     var nodes: Dictionary = game.get("source_nodes")
+    var minimap: Control = game.command_hud.minimap
+    var minimap_sources: Array[String] = minimap.visible_source_ids()
     var hidden_sources: int = 0
     var visible_sources: int = 0
     for sid in nodes.keys():
@@ -128,6 +130,9 @@ func _verify() -> void:
         var expected: bool = int(source["stock"]) > 0 and local_fog.is_visible(source["pos"], 0)
         if ore.visible != expected:
             _fail("Source sprite leaked undiscovered Matter " + str(sid))
+            return
+        if minimap_sources.has(str(sid)) != expected:
+            _fail("Minimap source markers reveal a hidden Matter node: " + str(sid))
             return
         if expected:
             visible_sources += 1
@@ -144,6 +149,9 @@ func _verify() -> void:
         _fail("Authored terrain visual nodes and fog source disagree")
         return
     for cell in visuals.keys():
+        if minimap._known_cell(cell) != local_fog.is_discovered(cell, 0):
+            _fail("Minimap exposes undiscovered terrain")
+            return
         var node: Node3D = visuals[cell]
         if node.visible != local_fog.is_discovered(cell, 0):
             _fail("Unknown terrain prop visible through undiscovered shroud")
@@ -156,6 +164,11 @@ func _verify() -> void:
     game.spectator = true
     overlay.set_spectator(true)
     game._sync_visuals()
+    var spectator_sources: Array[String] = minimap.visible_source_ids()
+    for sid in local_sim.sources:
+        if int(local_sim.sources[sid]["stock"]) > 0 and not spectator_sources.has(str(sid)):
+            _fail("Spectator minimap hides an active source")
+            return
     if overlay.visible:
         _fail("Spectator still sees the shroud overlay")
         return
