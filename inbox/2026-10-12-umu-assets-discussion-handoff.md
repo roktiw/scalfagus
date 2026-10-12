@@ -45,8 +45,8 @@ The user requests **new proposals for real, existing third-party art assets**, r
 ### Outcome
 
 No externally listed **ready-to-import complete UMU** with the exact owner-approved wing transformation, open cage, conveyor reach, rack geometry and every exclusive job was substantiated by this search. **Do not describe generic trucks/industrial models as already implementing UMU**. Instead, use approved **CC0 component kits** to assemble the original UMU chassis in Godot/Blender and generate 5 directional frames from a deterministic model/rig. Best initial components:
-1. **Kenney Conveyor Kit** — two visual belt wings, straight conveyor segments, robot arms and cargo feed covers (60+ models, CC0; itch publisher page).
-2. **Kenney Factory Kit** — factory/conveyor industrial bodies, machinery, generator/warehouse facade details and some animations (140 models, CC0).
+1. **Kenney Factory Kit 3.0** — newer **completely remade/renamed Conveyor Kit**, 140 industrial/factory/conveyor models; **primary audition for two belt-wing pieces** (CC0).
+2. **Kenney Conveyor Kit (legacy)** — older publisher-hosted 60+ models, now an **optional belt-parts fallback** rather than an independently mandatory kit. [Kenney's own developer changelog](https://kenney.itch.io/kenney-game-assets/devlog/1526460/update-version-35) explicitly says Factory Kit replaced Conveyor Kit as a complete remake.
 3. **KayKit Space Base Bits** — Godot Asset Library native-suitable hard-surface base building/colony props (48+ models, CC0), check Godot 4.7.2 compatibility.
 4. **Quaternius Modular Sci-Fi Megakit** — multiple modular bulkheads, frames, shutters, hatches and cabin/roof panel pieces (277 items advertised in full kit; 60–70% free Standard tier, CC0 for included material; glTF/OBJ/FBX).
 5. **Quaternius Sci-Fi Essentials Kit** — physical crates, screens and equipment props (65 models advertised in full kit, 60–70% free Standard, CC0).
