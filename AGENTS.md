@@ -1,5 +1,20 @@
 # SCALFAGUS — Coding-Agent Contract
 
+## MVP0 NATIVE 3D LOS AUDIT (DRAFT / REAL GODOT NOT TESTED)
+
+`MirrorPhysicsLos3D` creates `StaticBody3D` colliders from the compiled
+Verdant tree and water tile raster; trees/buildings use raycast mask 1,
+water uses surface mask 2. Completed building colliders expose stable
+authoritative entity IDs. `PhysicsDirectSpaceState3D.intersect_ray`
+allows headless tests and future HUD diagnostics. **This renderer-physics
+ray is never authoritative for combat**: `MirrorMatchState` remains the
+replay/network-compatible source of truth, while trees, buildings,
+water and elevation require future parity checks before changing the
+combat authority. Run `scripts/check.sh` with Godot 4.7.2 locally; old
+PR #14 replay PASS predates PR #15 and this change. Read
+`docs/MVP0-PHYSICS-LOS-AUDIT-2026-10-12.md`.
+
+
 
 ## MVP0 3×3 FOOTPRINT & 2M WORLD GEOMETRY (DRAFT, UNVERIFIED)
 
