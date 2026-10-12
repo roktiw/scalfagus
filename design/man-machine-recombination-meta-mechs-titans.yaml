@@ -1,0 +1,117 @@
+schema_version: 1
+project: scalfagus
+date: "2026-10-12"
+decision_id: DEC-046
+version: 0.1
+status: owner_directed_MAN_transformers_combining_meta_machines_and_titans_recipes_counts_balance_pending
+human_spec: design/man-machine-recombination-meta-mechs-titans-2026-10-12.md
+scope:
+  first_release: DEC-033
+  first_release_contains_meta_machines: false
+  future_MAN_only: true
+  no_Godot_runtime_implementation_claim: true
+owner_direction:
+  inspirations: [General_Daimos, Transformers_combiners, Warhammer_40000_Titan_scale]
+  original_Scalfagus_visual_design_required: true
+  combine_multiple_existing_independent_real_machines_into_meta_machine: true
+  late_game_giant_meta_mechs_and_titans: true
+  industrial_mechanical_modularity_and_technofantasy: true
+  specific_mech_sizes_numbers_recipes_and_names_approved: false
+hierarchy:
+  - id: single_transform
+    actor_count: 1
+    mechanism: chassis_changes_physical_posture
+    existing_contract: DEC-040
+    status: already_owner_approved_UMU
+  - id: combined_meta_machine
+    actor_count: multiple_real_distinct_compatible_chassis
+    mechanism: physically_latched_children_and_one_group_controller
+    status: owner_direction_exact_recipe_TBD
+    candidate_count_range_not_owner_approved: [2, 4]
+  - id: heavy_colossus
+    actor_count: multiple_heavy_parts_and_real_manufactured_frame
+    mechanism: high_mass_assembly_with_integrated_legs_cooling_and_weapons
+    status: proposed_intermediate_scale
+    candidate_count_range_not_owner_approved: [4, 8]
+  - id: titan
+    actor_count: multiple_real_chassis_plus_heavy_titan_structural_components
+    mechanism: giant_walking_mechanical_fortress
+    status: owner_desired_megamech_scale_count_TBD
+    candidate_machine_count_lower_bound_NOT_owner_approved: 8
+base_chassis:
+  current_requested_count: 9
+  counts_machines_from: DEC-045
+  meta_machine_is_a_composite_not_automatically_tenth_chassis_family: true
+  nine_includes_UMU_still_open: true
+components:
+  physical_interfaces_required: true
+  proposed_socket_types: [core, locomotion, left_arm, right_arm, armor, weapon, power, heat, sensor, life_support]
+  all_parts_have_persistent_unique_original_machine_IDs: true
+  new_assembly_ID_is_only_group_coordinator: true
+  no_spawned_duplicate_originals: true
+  attached_part_loses_independent_autonomy_and_original_live_job: true
+  attached_UMU_role: assembly_member_exclusive
+  same_UMU_can_be_member_of_only_one_assembly: true
+  legal_structural_support_and_mass_required: true
+  no_free_additional_HP_power_fuel_weapons_or_cargo_from_combine: true
+  cargo_passengers_training_inventories_keep_real_custody: true
+  component_damage_persists_after_decombine: true
+  destroyed_component_cannot_respawn_on_detach: true
+simulation:
+  stages: [inspect, plan, rendezvous, settle, lock_components, animate_transform_over_ticks, validate, commit, operate, detach_if_legal]
+  need_real_assembly_footprint_collision_and_clear_ground: true
+  nonzero_time_and_energy_and_material_costs: true
+  deterministic_host_authoritative_one_group_motion_and_weapon_control: true
+  component_los_ammo_energy_damage_and_heat_limits: true
+  no_combined_global_wallet_or_infinite_electricity: true
+  same_fixed_tick_and_custody_rules_as_individual_machines: true
+  assembly_damage_can_disable_joints_arm_legs_and_power: true
+  titan_footprint_uses_real_pathing_including_void_boundary: true
+  exact_physical_ragdoll_simulation_not_required_first_slice: true
+  separation_only_when_real_support_legal_no_teleport: true
+control:
+  compatible_human_operator_physical_station: possible_with_real_course_and_cockpit
+  no_crew_AI_controller_operates_if_valid_and_authorized: true
+  one_active_master_control_authority_per_combined_assembly: true
+  subordinate_AIs_only_execute_authorized_articulation_and_diagnostics: true
+  player_direct_future_possession: DEC-045
+  human_faculty_reuse: DEC-044
+  global_full_manual_semi_auto_full_auto: existing_autonomy_policies
+economic_balance:
+  owning_multiple_combined_parts_cannot_use_them_in_parallel: true
+  specialized_machines_still_better_than_UMU_at_own_job: DEC-042
+  expensive_titan_not_automatically_invincible: true
+  supply_repair_ammunition_power_and_exposed_joints_all_real: true
+  combined_unit_less_distributed_than_the_same_independent_fleet: true
+  building_drive:
+    owner_fixed_4_6_8_distinct_UMU: DEC-041
+    mechanics_separate_from_meta_mech_combiner: true
+    building_drive_does_not_grant_simultaneous_sentry_generator_full_role: true
+visuals:
+  industrial_exposed_hydraulics_conveyor_segments_couplers_trusses: true
+  no_IP_character_silhouette_emblem_or_named_licensed_machine_copy: true
+  player_must_see_source_parts_fold_and_dock: true
+proposed_future_facilities:
+  - modular_service_dock
+  - combiner_assembly_gantry
+  - heavy_forge
+  - titan_foundry
+  - repair_hangar
+implementation_phases_proposed:
+  - persistent_child_machine_group_graph_and_authority
+  - small_two_machine_physical_combine_and_uncombine
+  - multi_part_meta_machine_with_damage_and_crew_AI
+  - heavy_industrial_forge_real_bills_of_material
+  - colossus_footprint_and_power_balance
+  - Titan_late_game_supported_maps
+acceptance_ids: [COMB-01, COMB-02, COMB-03, COMB-04, COMB-05, COMB-06, COMB-07, COMB-08, COMB-09, COMB-10, COMB-11, COMB-12, COMB-13, COMB-14, COMB-15, COMB-16, COMB-17, COMB-18]
+open_questions:
+  - exact_meta_machine_assembly_recipes_compatible_interfaces
+  - exact_count_per_combiner_colossus_titan
+  - permanent_vs_field_assembly_gantry_requirement
+  - named_mech_and_titan_original_catalogue
+  - pilot_and_AI_advantages_multi_crew_bridge_cost
+  - assembly_limb_health_stability_and_repair_rates
+  - heat_power_and_ammunition_regimes
+  - balance_vs_ORG_and_ETH_and_map_sizes
+  - if_titans_can_contain_mobile_buildings_and_victory_class_subactors
