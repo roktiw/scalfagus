@@ -57,7 +57,7 @@ func _ready() -> void:
         zoom_size = 152.0
     if replay_mode:
         replay_session = REPLAY_SESSION.new()
-        var document: Dictionary = REPLAY_ARCHIVE.load_user("last-human-match")
+        var document: Dictionary = REPLAY_ARCHIVE.load_user(REPLAY_ARCHIVE.last_basename())
         var start: Dictionary = replay_session.begin(document)
         if bool(start.get("ok", false)):
             sim = replay_session.sim
@@ -376,8 +376,8 @@ func _save_current_replay() -> void:
     if spectator or replay_mode or sim == null:
         return
     var data: Dictionary = REPLAY_ARCHIVE.capture(sim)
-    var path: String = REPLAY_ARCHIVE.save_user(data, "last-human-match")
-    info = "Replay saved to user://replays/last-human-match.json" if not path.is_empty() else "Replay save failed"
+    var path: String = REPLAY_ARCHIVE.save_user(data, REPLAY_ARCHIVE.last_basename())
+    info = "Replay saved: " + path if not path.is_empty() else "Replay save failed"
     if replay_save_status != null:
         replay_save_status.text = info
     _sync_visuals()
