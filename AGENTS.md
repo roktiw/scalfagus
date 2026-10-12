@@ -1,5 +1,24 @@
 # SCALFAGUS — Coding-Agent Contract
 
+## MVP0 BARRACKS INTERRUPTION / REPLAY v2 — LOCAL QA REQUIRED
+
+`MirrorMatchState` now explicitly releases a 3×3 Barracks reservation on
+accepted Stop, Move, Gather, legal new Build, builder death or a permanently
+invalid foundation. Invalid attempts do not interrupt paid work. No instant
+Matter refund, salvage or persistence-of-partial-foundation is added:
+those are owner-proposed **future MAN** rules in
+`design/construction-phases.yaml`, not approved for DEC-033 mirror MVP0.
+`build_abandoned` events carry typed site and remaining ticks; on completed
+Barracks the builder's route/timer/site are cleared. The runtime rules
+marker is `mvp0-man-mirror-v6-construction-lifecycle`, deliberately
+invalidating older v5 replays while keeping the **v2 replay JSON format**
+and independent command history digest. Run
+`mirror_construction_lifecycle_smoke.gd` through `scripts/check.sh`
+on real Godot 4.7.2, including genuine gathered-funds cancellation
+and replay; do not claim PASS from source inspection.
+See `docs/MVP0-CONSTRUCTION-LIFECYCLE-2026-10-12.md`.
+
+
 ## ETH OBELISK HOT / WARM / COLD STORAGE — DEC-048 (POST-MVP0)
 
 Read [three-temperature ETH Obelisk storage spec](design/eth-obelisk-hot-warm-cold-storage-2026-10-12.md) and [machine contract](design/eth-obelisk-hot-warm-cold-storage.yaml). Owner WHITEBOARD CANON: **HOT = real cargo juggled in the vertical stream ABOVE Obelisk tip**; **WARM = real levitating cargo orbiting in a broad AUREOLA/HALO AROUND the tower**; **COLD = physical manually handled ground piles AT ITS FOOT**. **HOT != outgoing inter-Obelisk tip-to-tip in-flight link packet; WARM != separate second Ether graph; COLD != invisible global wallet.** Split existing local `tip_local_levitated_inventory` into HOT + WARM unique custody; aggregate both under DEC-036 filled-node transport penalty and DEC-038 homogeneous discount/strictly positive elevated levitation Energy. COLD has **no levitation upkeep** but real finite drone ground-handling and path costs. **Ground→elevated requires exactly one DEC-039 ingress**: Nexus physical intake (0 extra ingress tariff), legitimate shielded ETH drone at actual Obelisk tip (33% blue shield), or costly powered Obelisk ground uplift. **No fourth free COLD→HALO/STREAM path**. Actual loss of levitation support drops elevated stock once; valid separately powered network partition need not. All rate/capacity rankings are tuning candidates, not approved numerical constants. **No ETH in DEC-033 MAN mirror MVP0.** Whiteboard photographs are original conversation attachments; do not claim they are already present as repo binary assets.
