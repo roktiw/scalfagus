@@ -195,6 +195,14 @@ static func _valid_basename(name: String) -> bool:
             return false
     return true
 
+static func last_basename() -> String:
+    # QA can isolate its playback fixture without ever overwriting real user
+    # saves. The default game always uses the most recent human replay.
+    var requested: String = str(ProjectSettings.get_setting(
+        "scalfagus/replay_basename", "last-human-match"
+    ))
+    return requested if _valid_basename(requested) else "last-human-match"
+
 static func save_user(archive: Dictionary, basename: String) -> String:
     if not _valid_basename(basename):
         return ""
