@@ -389,7 +389,7 @@ func _step_replay_once(refresh_visuals: bool = true) -> Dictionary:
         info = "REPLAY DIVERGED: " + str(frame.get("reason", "unknown"))
     elif bool(frame.get("complete", false)):
         speed = 0
-        info = "REPLAY VERIFIED  ·  " + str(frame.get("hash", "")).substr(0, 12)
+        info = "REPLAY VERIFIED  ·  " + str(frame.get("hash", sim.replay_hash())).substr(0, 12)
     else:
         info = "Replay tick %d/%d" % [sim.tick, replay_session.final_tick]
     if refresh_visuals:
