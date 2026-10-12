@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 3.8
+version: 3.9
 decisions:
   - id: DEC-001
     status: approved
@@ -1039,6 +1039,40 @@ decisions:
     specification: design/three-faction-assembly-fusion-resonance-2026-10-12.md
     data_specification: design/three-faction-assembly-fusion-resonance.yaml
     original_discussion: inbox/2026-10-12-man-org-eth-fusion-transformation-discussion.md
+
+  - id: DEC-048
+    status: owner_approved_ETH_Obelisk_HOT_above_stream_WARM_orbital_halo_COLD_manual_foot_storage
+    topic: ETH_Obelisk_three_temperature_vertical_juggling_stream_orbital_halo_and_ground_manual_flag
+    resolution: >-
+      Based on the owner's ETH whiteboard drawings, EVERY applicable
+      Obelisk conceptually has three separately visible storage
+      temperatures: HOT is a vertical stream above the Obelisk tip
+      physically juggling suspended resource objects; WARM is a
+      visible orbit/aureola around the Obelisk carrying levitated
+      local resources; COLD is actual manually handled ground-level
+      storage at its foot. HOT and WARM are real finite typed-Ether
+      cargo custodians and both need strictly positive levitation
+      Energy upkeep. COLD stacks do not require levitation Energy
+      but still occupy real world space and need drone pickup/dropoff.
+      The previous local tip inventory is split into HOT plus WARM
+      for accounting, and combined occupancy still reduces Obelisk
+      freight throughput under DEC-036. Mixed-versus-homogeneous
+      storage Energy accounting remains under DEC-038. The local
+      HOT juggling stream is DISTINCT from the straight tip-to-tip
+      edge-in-flight freight graph; the WARM halo is not a second
+      network. Ground cargo enters the elevated service only via
+      DEC-039's THREE legal ingress methods: Nexus physical input
+      with zero EXTRA conversion ingress fee, shielded drone
+      physically uploading at Obelisk tip for 33 percent of blue
+      shield, or the highest-cost powered Obelisk ground uplift.
+      Lost ACTUAL levitation support drops both HOT and WARM stock
+      to ground exactly once; a mere graph partition with valid
+      local levitation support does not necessarily cause any drop.
+      Detailed exact capacity, Energy rates, latency and optional
+      automatic tier balancing remain proposed/TBD. No change
+      to the DEC-033 first MAN-only MVP0 release.
+    specification: design/eth-obelisk-hot-warm-cold-storage-2026-10-12.md
+    data_specification: design/eth-obelisk-hot-warm-cold-storage.yaml
 
 migration_required:
   - design/economy.yaml
