@@ -72,7 +72,7 @@ static func _argument(payload: Variant) -> Dictionary:
 static func _failure(reason: String, index: int = -1) -> Dictionary:
     return {"ok": false, "reason": reason, "command_index": index}
 
-static func playback(archive: Variant) -> Dictionary:
+static func prepare(archive: Variant) -> Dictionary:
     if not (archive is Dictionary):
         return _failure("invalid_document")
     var required: Array[String] = [
@@ -141,6 +141,18 @@ static func playback(archive: Variant) -> Dictionary:
         if not bool(_argument(cmd["argument"]).get("ok", false)):
             return _failure("unsupported_argument", i)
 
+    return {
+        "ok": true, "sim": sim, "commands": commands,
+        "final_tick": int(archive["final_tick"]),
+        "final_hash": str(archive["final_hash"])
+    }
+
+static func playback(archive: Variant) -> Dictionary:
+    var prepared: Dictionary = prepare(archive)
+    if not bool(prepared.get("ok", false)):
+        return prepared
+    var sim: MirrorMatchState = prepared["sim"]
+    var commands: Array = prepared["commands"]
     var next_command: int = 0
     var terminal_tick: int = int(archive["final_tick"])
     for t in range(terminal_tick + 1):
