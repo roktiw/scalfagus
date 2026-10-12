@@ -35,6 +35,10 @@ core:
   rooftop_equipment_persists_but_not_all_services_active: true
   no_resource_or_actors_created_during_transformation: true
   one_authoritative_role_enum: true
+  future_meta_machine_component_mode_DEC_046: design/man-machine-recombination-meta-mechs-titans.yaml
+  COMBINER_MEMBER_locked_exclusive_mode: true
+  COMBINER_MEMBER_prevents_simultaneous_independent_generator_warehouse_belt_wall: true
+  combine_recipe_part_numbers_NOT_equal_owner_building_drive_4_6_8_counts: true
   allowed_role_family:
     - move_tracks
     - warehouse
