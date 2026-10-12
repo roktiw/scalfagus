@@ -50,9 +50,10 @@ The seven-category framework is requested by the owner. The **Industrial Technic
 
 **Specialist dominance:** specialized veteran MAN personnel can progress in mastery within a faculty without spending another slot; physically purpose-built machines still outperform UMU at their dedicated jobs (DEC-042). A three-faculty generalist gains flexibility, not triple concurrent output.
 
-## Faculties per person: recommend max THREE, one active
+## Faculties per person: EXACTLY THREE permanent slots, one active
 
-**Recommendation:** \`max_distinct_certifications_per_actor = 3\`, with **one currently active role and one equipped functional loadout**. The owner asked "can one person have three faculties?" — it is an **open approval question** rather than a canon hard cap.
+**Owner-approved hard rule:** every Basic Manus has **three initially empty vocational slots**. Each successfully completed distinct faculty course occupies one slot. A person may learn any **three of the seven available specializations** and can select only one trained-and-equipped active occupation at once. Adding a fourth different faculty is illegal. Advancing within an already held faculty does **not** consume another slot. Free removal/replacement of an old faculty is not approved.
+
 
 Example: actor M-017 has Engineer, Soldier and Medic certifications. In a Workshop/Armory/Medical Locker:
 - Equips construction kit → active \`engineer\`; may build/repair but does not shoot or heal.
