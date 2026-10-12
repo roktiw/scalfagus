@@ -5,6 +5,17 @@ status: active_agent_document_authority_after_owner_DEC_033
 language: en
 latest_owner_scope_decision: DEC-033
 latest_research_and_view_decisions: [DEC-030, DEC-031, DEC-032, DEC-034]
+future_MAN_human_piloted_AI_machine_roster_DEC_045:
+  decision: DEC-045
+  human: design/man-nine-machines-crews-and-autonomy-2026-10-12.md
+  machine: design/man-nine-machines-crews-and-autonomy.yaml
+  real_human_can_occupy_pilot_seat: true
+  same_machine_can_operate_crewless_with_AI: true
+  proposed_nine_classes_including_UMU_not_final_owner_approved: true
+  named_by_owner: [mech, tank, bolide]
+  qualified_ground_machine_operators_from: DEC-044
+  no_new_tenth_faculty: true
+  first_MAN_mirror_MVP0_excluded: true
 mandatory_reuse_first_policy: DEC-034
 future_MAN_three_academies_nine_faculties_DEC_044:
   decision: DEC-044
