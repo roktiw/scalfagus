@@ -55,4 +55,7 @@ Logs: `logs/local-qa/godot-dev-environment/` and `logs/local-qa/2026-10-12-11590
 
 ## HANDOFF TO CHATGPT
 
+- PR: [#21](https://github.com/roktiw/scalfagus/pull/21).
+- Report: [Markdown evidence snapshot](https://github.com/roktiw/scalfagus/blob/a0a58d7/docs/qa/reports/2026-10-12-dd58a57-godot-dev-environment.md).
+
 Use [Godot development instructions](../../GODOT-DEVELOPMENT.md). Baseline `dd58a57357ec8bb03812f1b82d0194d3f9a433b5`, tested code `d823963f502fe111eafe66a0783353f65e8f4ec6`. Workstation setup, doctor, all automatic QA gates and four exports PASS. macOS native startup PASS. Local Tauri app archived and replaced by native Godot. GUI sequence/Keychain persistence, GUT panel interaction and foreign target runtimes are not accepted yet. Next agent should use existing dev-tools scripts, review the LAN/command-gateway branch, and preserve the engine-authority boundaries. PR and report links are added during publication.
