@@ -10,9 +10,13 @@ config/features=PackedStringArray("4.7", "GL Compatibility")
 [display]
 window/size/viewport_width=1280
 window/size/viewport_height=720
-window/size/window_width_override=1440
-window/size/window_height_override=810
+; Do not force the embedded game into a fixed 1440x810 canvas.
+; Standalone window maximizes in menu.gd, while Godot's editor embedding
+; must use "Stretch to Fit" in the Game tab instead of "Fixed Size".
+window/size/window_width_override=0
+window/size/window_height_override=0
 window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 
 [rendering]
 textures/vram_compression/import_etc2_astc=true
