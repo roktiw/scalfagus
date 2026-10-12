@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "project": "scalfagus",
+  "faction": "eth",
+  "asset_id": "eth.orbpod.min",
+  "status": "pixel_art_prototype_not_final_approved_asset",
+  "source": "original_procedurally_authored_in_chat_2026-10-12",
+  "license_source": "original_user_project_concept_computer_render",
+  "frame_width_px": 24,
+  "frame_height_px": 32,
+  "authored_views": [
+    "front",
+    "front_right",
+    "right_side",
+    "back_right",
+    "back"
+  ],
+  "eight_sector_rows": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    3,
+    2,
+    1
+  ],
+  "mirror_flags": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    true,
+    true,
+    true
+  ],
+  "sprite_render_node": "Sprite3D",
+  "filter": "nearest",
+  "transparent_background": true,
+  "shadow_is_separate": true,
+  "world_movement_domain": "ground",
+  "locomotion_visual": "hover",
+  "pivot_px": [
+    12,
+    30
+  ],
+  "three_pairs_two_limbs_each": true,
+  "single_eye_and_eyebrow": true,
+  "skills_mining_carry_hide_not_automatic_aerial_flight": true,
+  "actions": {
+    "idle": {
+      "texture": "eth_orbpod_idle_5views.png",
+      "frame_count": 2,
+      "atlas_width": 48,
+      "atlas_height": 160,
+      "fps": 3
+    },
+    "move": {
+      "texture": "eth_orbpod_move_5views.png",
+      "frame_count": 4,
+      "atlas_width": 96,
+      "atlas_height": 160,
+      "fps": 7
+    },
+    "carry": {
+      "texture": "eth_orbpod_carry_5views.png",
+      "frame_count": 2,
+      "atlas_width": 48,
+      "atlas_height": 160,
+      "fps": 4
+    },
+    "hide": {
+      "texture": "eth_orbpod_hide_5views.png",
+      "frame_count": 3,
+      "atlas_width": 72,
+      "atlas_height": 160,
+      "fps": 5
+    }
+  }
+}
