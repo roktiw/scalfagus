@@ -18,5 +18,6 @@
 - [MAN MIN 5-direction production sheet](man-min-isometric-sprite-production-spec-v0.1.md) / [YAML](man-min-isometric-sprite-production-spec-v0.1.yaml)
 - [Faction icons](faction-ui-iconography-v0.1.md)
 - [ETH style research](eth-ancient-aliens-folklore-and-pixel-lineages-2026-10-11.md)
+- [Planet X16 retro RTS inspiration — small-sprite readability, visible resource pickup/dropoff, with explicit no-copy safeguards](../research/planet-x16-rts-inspiration-2026-10-12.md)
 - Existing provisional Godot sprite source art/provenance: [`apps/game/assets/manifest.json`](../apps/game/assets/manifest.json)
 - No image preview/reference proves ownership of a final UMU model: source parts need authored transform rig and pixel atlas QA.
