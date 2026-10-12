@@ -1,0 +1,71 @@
+RUN 1 EXIT 0
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_MIRROR_RESULT {"bot_attack_thresholds":[2,3],"controllers":["bot","bot"],"finished":true,"hash":"86a2d047f18aeacaf9cda80f1d29c30da6ad9b312b9860c6ee0a962d45ec9f1a","lost_cargo_legacy":27,"lost_matter":27,"map_hash":"6b9054d78ae619f258cf1ffe8ce1b69e33c3d493b92dfdfc03e9f37ae7534083","map_id":"verdant_divide","map_source_sha":"036c23dbc582af6c63e2c2e901d3a74e3286e5e8","matter_conserved":true,"max_ticks":24000,"reason":"buildings_eliminated","rejected_commands":0,"resources_mined":855,"resources_spent":800,"rules":"mvp0-man-mirror-v5-3x3-world2m","seed":42,"tick_hz":20,"ticks":10111,"winner":1}
+SCALFAGUS_MIRROR_BATCH_PASS {"draws":0,"matches":1,"matches_per_second":2.41545893719807,"seconds":0.414,"wins":[0,1]}
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+RUN 2 EXIT 0
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_MIRROR_RESULT {"bot_attack_thresholds":[2,3],"controllers":["bot","bot"],"finished":true,"hash":"86a2d047f18aeacaf9cda80f1d29c30da6ad9b312b9860c6ee0a962d45ec9f1a","lost_cargo_legacy":27,"lost_matter":27,"map_hash":"6b9054d78ae619f258cf1ffe8ce1b69e33c3d493b92dfdfc03e9f37ae7534083","map_id":"verdant_divide","map_source_sha":"036c23dbc582af6c63e2c2e901d3a74e3286e5e8","matter_conserved":true,"max_ticks":24000,"reason":"buildings_eliminated","rejected_commands":0,"resources_mined":855,"resources_spent":800,"rules":"mvp0-man-mirror-v5-3x3-world2m","seed":42,"tick_hz":20,"ticks":10111,"winner":1}
+SCALFAGUS_MIRROR_BATCH_PASS {"draws":0,"matches":1,"matches_per_second":2.38663484486874,"seconds":0.419,"wins":[0,1]}
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+RUN 3 EXIT 0
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_MIRROR_RESULT {"bot_attack_thresholds":[2,3],"controllers":["bot","bot"],"finished":true,"hash":"86a2d047f18aeacaf9cda80f1d29c30da6ad9b312b9860c6ee0a962d45ec9f1a","lost_cargo_legacy":27,"lost_matter":27,"map_hash":"6b9054d78ae619f258cf1ffe8ce1b69e33c3d493b92dfdfc03e9f37ae7534083","map_id":"verdant_divide","map_source_sha":"036c23dbc582af6c63e2c2e901d3a74e3286e5e8","matter_conserved":true,"max_ticks":24000,"reason":"buildings_eliminated","rejected_commands":0,"resources_mined":855,"resources_spent":800,"rules":"mvp0-man-mirror-v5-3x3-world2m","seed":42,"tick_hz":20,"ticks":10111,"winner":1}
+SCALFAGUS_MIRROR_BATCH_PASS {"draws":0,"matches":1,"matches_per_second":2.35849056603774,"seconds":0.424,"wins":[0,1]}
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+RUN 4 EXIT 0
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_MIRROR_RESULT {"bot_attack_thresholds":[2,3],"controllers":["bot","bot"],"finished":true,"hash":"86a2d047f18aeacaf9cda80f1d29c30da6ad9b312b9860c6ee0a962d45ec9f1a","lost_cargo_legacy":27,"lost_matter":27,"map_hash":"6b9054d78ae619f258cf1ffe8ce1b69e33c3d493b92dfdfc03e9f37ae7534083","map_id":"verdant_divide","map_source_sha":"036c23dbc582af6c63e2c2e901d3a74e3286e5e8","matter_conserved":true,"max_ticks":24000,"reason":"buildings_eliminated","rejected_commands":0,"resources_mined":855,"resources_spent":800,"rules":"mvp0-man-mirror-v5-3x3-world2m","seed":42,"tick_hz":20,"ticks":10111,"winner":1}
+SCALFAGUS_MIRROR_BATCH_PASS {"draws":0,"matches":1,"matches_per_second":2.42130750605327,"seconds":0.413,"wins":[0,1]}
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+RUN 5 EXIT 0
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_MIRROR_RESULT {"bot_attack_thresholds":[2,3],"controllers":["bot","bot"],"finished":true,"hash":"86a2d047f18aeacaf9cda80f1d29c30da6ad9b312b9860c6ee0a962d45ec9f1a","lost_cargo_legacy":27,"lost_matter":27,"map_hash":"6b9054d78ae619f258cf1ffe8ce1b69e33c3d493b92dfdfc03e9f37ae7534083","map_id":"verdant_divide","map_source_sha":"036c23dbc582af6c63e2c2e901d3a74e3286e5e8","matter_conserved":true,"max_ticks":24000,"reason":"buildings_eliminated","rejected_commands":0,"resources_mined":855,"resources_spent":800,"rules":"mvp0-man-mirror-v5-3x3-world2m","seed":42,"tick_hz":20,"ticks":10111,"winner":1}
+SCALFAGUS_MIRROR_BATCH_PASS {"draws":0,"matches":1,"matches_per_second":2.39234449760766,"seconds":0.418,"wins":[0,1]}
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+RUN 6 EXIT 0
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_MIRROR_RESULT {"bot_attack_thresholds":[2,3],"controllers":["bot","bot"],"finished":true,"hash":"86a2d047f18aeacaf9cda80f1d29c30da6ad9b312b9860c6ee0a962d45ec9f1a","lost_cargo_legacy":27,"lost_matter":27,"map_hash":"6b9054d78ae619f258cf1ffe8ce1b69e33c3d493b92dfdfc03e9f37ae7534083","map_id":"verdant_divide","map_source_sha":"036c23dbc582af6c63e2c2e901d3a74e3286e5e8","matter_conserved":true,"max_ticks":24000,"reason":"buildings_eliminated","rejected_commands":0,"resources_mined":855,"resources_spent":800,"rules":"mvp0-man-mirror-v5-3x3-world2m","seed":42,"tick_hz":20,"ticks":10111,"winner":1}
+SCALFAGUS_MIRROR_BATCH_PASS {"draws":0,"matches":1,"matches_per_second":2.41545893719807,"seconds":0.414,"wins":[0,1]}
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+RUN 7 EXIT 0
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_MIRROR_RESULT {"bot_attack_thresholds":[2,3],"controllers":["bot","bot"],"finished":true,"hash":"86a2d047f18aeacaf9cda80f1d29c30da6ad9b312b9860c6ee0a962d45ec9f1a","lost_cargo_legacy":27,"lost_matter":27,"map_hash":"6b9054d78ae619f258cf1ffe8ce1b69e33c3d493b92dfdfc03e9f37ae7534083","map_id":"verdant_divide","map_source_sha":"036c23dbc582af6c63e2c2e901d3a74e3286e5e8","matter_conserved":true,"max_ticks":24000,"reason":"buildings_eliminated","rejected_commands":0,"resources_mined":855,"resources_spent":800,"rules":"mvp0-man-mirror-v5-3x3-world2m","seed":42,"tick_hz":20,"ticks":10111,"winner":1}
+SCALFAGUS_MIRROR_BATCH_PASS {"draws":0,"matches":1,"matches_per_second":2.41545893719807,"seconds":0.414,"wins":[0,1]}
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+RUN 8 EXIT 0
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_MIRROR_RESULT {"bot_attack_thresholds":[2,3],"controllers":["bot","bot"],"finished":true,"hash":"86a2d047f18aeacaf9cda80f1d29c30da6ad9b312b9860c6ee0a962d45ec9f1a","lost_cargo_legacy":27,"lost_matter":27,"map_hash":"6b9054d78ae619f258cf1ffe8ce1b69e33c3d493b92dfdfc03e9f37ae7534083","map_id":"verdant_divide","map_source_sha":"036c23dbc582af6c63e2c2e901d3a74e3286e5e8","matter_conserved":true,"max_ticks":24000,"reason":"buildings_eliminated","rejected_commands":0,"resources_mined":855,"resources_spent":800,"rules":"mvp0-man-mirror-v5-3x3-world2m","seed":42,"tick_hz":20,"ticks":10111,"winner":1}
+SCALFAGUS_MIRROR_BATCH_PASS {"draws":0,"matches":1,"matches_per_second":2.38663484486874,"seconds":0.419,"wins":[0,1]}
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+RUN 9 EXIT 0
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_MIRROR_RESULT {"bot_attack_thresholds":[2,3],"controllers":["bot","bot"],"finished":true,"hash":"86a2d047f18aeacaf9cda80f1d29c30da6ad9b312b9860c6ee0a962d45ec9f1a","lost_cargo_legacy":27,"lost_matter":27,"map_hash":"6b9054d78ae619f258cf1ffe8ce1b69e33c3d493b92dfdfc03e9f37ae7534083","map_id":"verdant_divide","map_source_sha":"036c23dbc582af6c63e2c2e901d3a74e3286e5e8","matter_conserved":true,"max_ticks":24000,"reason":"buildings_eliminated","rejected_commands":0,"resources_mined":855,"resources_spent":800,"rules":"mvp0-man-mirror-v5-3x3-world2m","seed":42,"tick_hz":20,"ticks":10111,"winner":1}
+SCALFAGUS_MIRROR_BATCH_PASS {"draws":0,"matches":1,"matches_per_second":2.40963855421687,"seconds":0.415,"wins":[0,1]}
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+RUN 10 EXIT 0
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCALFAGUS_MIRROR_RESULT {"bot_attack_thresholds":[2,3],"controllers":["bot","bot"],"finished":true,"hash":"86a2d047f18aeacaf9cda80f1d29c30da6ad9b312b9860c6ee0a962d45ec9f1a","lost_cargo_legacy":27,"lost_matter":27,"map_hash":"6b9054d78ae619f258cf1ffe8ce1b69e33c3d493b92dfdfc03e9f37ae7534083","map_id":"verdant_divide","map_source_sha":"036c23dbc582af6c63e2c2e901d3a74e3286e5e8","matter_conserved":true,"max_ticks":24000,"reason":"buildings_eliminated","rejected_commands":0,"resources_mined":855,"resources_spent":800,"rules":"mvp0-man-mirror-v5-3x3-world2m","seed":42,"tick_hz":20,"ticks":10111,"winner":1}
+SCALFAGUS_MIRROR_BATCH_PASS {"draws":0,"matches":1,"matches_per_second":2.39808153477218,"seconds":0.417,"wins":[0,1]}
+WARNING: res://addons/keychain/profiles/default.tres:3 - ext_resource, invalid UID: uid://bmtkqh6xvat7 - using text path instead: res://addons/keychain/ShortcutProfile.gd
+     at: load (scene/resources/resource_format_text.cpp:501)
+BOT_REPEAT_PASS 10/10 hash=86a2d047f18aeacaf9cda80f1d29c30da6ad9b312b9860c6ee0a962d45ec9f1a seconds=6.417
