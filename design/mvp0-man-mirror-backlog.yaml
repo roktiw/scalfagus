@@ -83,7 +83,11 @@ tasks:
     related: design/godot-headless-balance-lab-2026-10-11.md
   - id: M0-07
     priority: P0
-    status: todo
+    status: in_progress
+    first_gate_code: apps/game/scripts/mirror_command_gateway.gd
+    first_gate_tests: apps/game/tests/mirror_gateway_smoke.gd
+    next_blocking_gate: ENet_host_join_two_processes_with_fog_filtered_snapshot_transport
+    current_status_warning: command_gateway_implemented_LAN_HH_NOT_YET_PLAYABLE
     title: Authoritative LAN or loopback H-H host and join clients
     blocking_source_mismatches: [CODE-GAP-08, CODE-GAP-09]
     dependencies: [M0-04]
