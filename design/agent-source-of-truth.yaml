@@ -4,6 +4,18 @@ version: 0.5
 status: active_agent_document_authority_after_owner_DEC_033
 language: en
 latest_owner_scope_decision: DEC-033
+future_ETH_three_temperature_Obelisk_storage_DEC_048:
+  decision: DEC-048
+  human: design/eth-obelisk-hot-warm-cold-storage-2026-10-12.md
+  machine: design/eth-obelisk-hot-warm-cold-storage.yaml
+  HOT: above_Obelisk_tip_juggling_vertical_stream
+  WARM: around_Obelisk_orbital_halo
+  COLD: manual_ground_piles_at_Obelisk_foot
+  hot_and_warm_real_finite_positive_levitation_cost: true
+  cold_zero_levitation_but_real_drone_handling: true
+  ingress_paths_only: [Nexus_input, drone_tip_33_percent_shield, powered_ground_uplift]
+  prior_homogeneity_and_storage_pressure_still_apply: [DEC-036, DEC-038]
+  first_MVP0_excluded: true
 future_three_faction_assembly_fusion_resonance_DEC_047:
   decision: DEC-047
   discussion: inbox/2026-10-12-man-org-eth-fusion-transformation-discussion.md
