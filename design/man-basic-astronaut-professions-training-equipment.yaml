@@ -1,9 +1,9 @@
 schema_version: 1
 project: scalfagus
 decision_id: DEC-043
-version: 0.1
+version: 0.2
 date: "2026-10-12"
-status: owner_approved_Basic_Manus_training_and_real_equipment_recommended_three_certifications_eight_career_tracks_open
+status: owner_approved_Basic_Manus_three_slots_seven_options_owner_requested_catalogue_names_proposed
 human_specification: design/man-basic-astronaut-professions-training-equipment-2026-10-12.md
 relevant_existing_decisions: [DEC-001, DEC-003, DEC-006, DEC-010, DEC-033, DEC-034, DEC-037, DEC-040, DEC-041, DEC-042]
 release:
@@ -29,10 +29,16 @@ training:
   military_must_complete_barracks_course: true
   scientist_must_complete_academy_course_before_laboratory_work: true
   career_slots:
-    recommended_distinct_certifications_per_person: 3
-    approved_by_owner: false
+    owner_approved_slots_per_Basic_Manus: 3
+    slots_initially_empty: 3
+    maximum_distinct_certifications_per_person: 3
+    approved_by_owner: true
+    available_families_count_owner_requested: 7
     concurrent_active_jobs: 1
+    duplicate_faculty_does_not_consume_new_slot: true
+    replace_or_erase_old_qualification: not_approved
     future_training_proficiency_levels_within_faculty: proposed
+    future_mastery_does_not_consume_another_slot: true
     third_faculty_cost_premium: possible_balance_not_approved
   finite_queue_and_positive_course_time: true
   actor_physically_attends_training: true
@@ -44,22 +50,26 @@ training:
     approved_by_owner: false
     training_bootstrap_cannot_be_impossible: true
 career_tracks:
-  status: recommended_eight_not_owner_approved_exact_roster
-  recommended_count: 8
+  seven_specialization_count: 7
+  seven_specialization_count_owner_requested: true
+  precise_names_facility_combination: proposed
+  ids: [industrial, engineer, soldier, scientist, medic, operator, specops]
   proposed:
-    - {id: miner, facility: extraction_center_or_core_induction, kit: extraction_tools, work: finite_raw_resource_extraction}
-    - {id: engineer, facility: engineering_workshop_or_core_induction, kit: construction_and_repair, work: building_and_mechanical_service}
-    - {id: logistician, facility: logistics_center, kit: cargo_handler, work: physical_warehouse_and_freight}
-    - {id: soldier, facility: barracks, kit: legal_weapon_and_armor, work: combat}
-    - {id: medic, facility: medical_center_or_clinic, kit: medical_treatment, work: heal_biological_Manus}
-    - {id: scientist, facility: academy, kit: scientific_instruments, work: research_at_eligible_lab}
-    - {id: power_engineer, facility: technical_school, kit: grid_and_generator_tools, work: energy_plant_and_network_operation}
-    - {id: operator, facility: machinery_school, kit: heavy_control_interface, work: qualified_machine_operation_if_crew_required}
-  rifleman_sniper_heavy_gunner_share_basic_soldier_faculty_with_different_kit: true
-  related_role_specializations_are_not_new_faculties_by_default: true
-  MAY_merge_miner_and_logistician_in_first_implementation: true
-  MAY_merge_power_engineer_into_engineer_in_first_implementation: true
-  operator_crew_gate_vs_Umu_autonomy: open_not_automatic_hard_dependency
+    - {id: industrial, label: Industrial_Technician, facility: Command_Core_induction_or_Industrial_Bay, kit: legal_extractor_or_cargo_handling, work: mining_physical_haulage_and_depot_operations}
+    - {id: engineer, label: Engineer, facility: Engineering_Workshop, kit: construction_mechanical_or_grid_tools, work: construction_mechanical_repair_and_power_infrastructure}
+    - {id: soldier, label: Soldier, facility: Barracks, kit: legal_weapon_armor_and_ammunition, work: combat}
+    - {id: scientist, label: Scientist, facility: Academy, kit: research_kit, work: research_in_actual_eligible_Lab}
+    - {id: medic, label: Medic, facility: Medical_Training_Center, kit: medical_treatment, work: heal_biological_Manus}
+    - {id: operator, label: Machine_Operator, facility: Machine_Simulator_or_Hangar, kit: qualified_machine_control_interface, work: crewed_mechs_heavy_machinery_and_lawfully_crewed_UMU}
+    - {id: specops, label: SpecOps, facility: SpecOps_Center_or_Advanced_Barracks, kit: recon_sabotage_EW_tools, work: covert_recon_breaching_sabotage_EW}
+  former_miner_and_logistician_merged_into_industrial: true
+  former_power_engineer_is_engineer_endorsement: true
+  soldier_weapon_variants_are_loadouts_not_faculties: true
+  scientist_fields_are_proficiency_not_faculties: true
+  Operator_UMU_crew_requirement: TBD_and_not_general_UMU_autonomy_override
+  SpecOps_use_of_soldier_gated_firearm: requires_Soldier_faculty_unless_owner_explicitly_exempts
+  may_have_skill_ranks_inside_each_faculty: proposed
+  no_unapproved_extra_eighth_specialization: true
 equipment:
   issued_from_real_legal_warehouse_locker_or_facility: true
   kit_requires_actual_inventory_and_hand_off: true
@@ -69,7 +79,7 @@ equipment:
   equipment_not_training: true
   kit_and_actor_unique_custody_ledger: true
   no_kit_creation_from_switching_profession: true
-  solder_suit_without_weapon_not_shooter: true
+  soldier_suit_without_weapon_not_shooter: true
   doctor_kit_without_medic_faculty_does_not_heal: true
   lab_work_requires_academy_certificate_and_research_kit: true
   soldier_equipment_loadout_may_change_weapon_subtype_without_extra_facet: true
@@ -84,10 +94,9 @@ compatibility:
   do_not_mutate_live_First_MVP_training_action_semantics: true
   future_rifleman_is_basic_person_plus_barracks_certificate_plus_actual_weapon: true
   future_worker_is_basic_person_plus_correct_course_plus_actual_work_tools: true
-acceptance_test_ids: [HUM-01, HUM-02, HUM-03, HUM-04, HUM-05, HUM-06, HUM-07, HUM-08, HUM-09, HUM-10, HUM-11, HUM-12, HUM-13, HUM-14, HUM-15, HUM-16, HUM-17, HUM-18]
+acceptance_test_ids: [HUM-01, HUM-02, HUM-03, HUM-04, HUM-05, HUM-06, HUM-07, HUM-08, HUM-09, HUM-10, HUM-11, HUM-12, HUM-13, HUM-14, HUM-15, HUM-16, HUM-17, HUM-18, HUM-19, HUM-20, HUM-21, HUM-22, HUM-23, HUM-24, HUM-25, HUM-26]
 owner_decisions_still_open:
-  - three_max_per_person_or_other_faculty_cap
-  - count_exactly_eight_career_tracks_vs_consolidated_six
+  - finalized_names_and_facility_merges_of_seven_requested_specializations
   - Basic_Manus_final_in_game_label
   - starter_Command_Core_training_kit_vs_prequalified_founders
   - human_professional_ranks_levels_experience_and_specialist_bonus
