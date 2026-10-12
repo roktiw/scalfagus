@@ -29,6 +29,7 @@ bash scripts/godot-qa-run.sh "$GODOT_BIN" --headless --path apps/game --script r
 bash scripts/godot-qa-run.sh "$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_replay_lifecycle_smoke.gd
 bash scripts/godot-qa-run.sh "$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_replay_session_smoke.gd
 bash scripts/godot-qa-run.sh "$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_replay_ui_smoke.gd
+bash scripts/godot-qa-run.sh "$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_match_result_smoke.gd
 bash scripts/godot-qa-run.sh "$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_timing_smoke.gd
 bash scripts/godot-qa-run.sh "$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_navigation_port_smoke.gd
 bash scripts/godot-qa-run.sh "$GODOT_BIN" --headless --path apps/game --script res://tests/mirror_footprint_smoke.gd
