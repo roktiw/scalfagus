@@ -3,6 +3,7 @@ extends Node3D
 # First playable visualization of MVP 0.1's shared authoritative MAN rules.
 # This is local Human-vs-Bot / Bot-vs-Bot; LAN Human-vs-Human is a later gate.
 const MATCH = preload("res://scripts/mirror_match_state.gd")
+const GATEWAY = preload("res://scripts/mirror_command_gateway.gd")
 const TIMING = preload("res://scripts/mirror_timing.gd")
 const GEOM = preload("res://scripts/mirror_geometry.gd")
 const PHYSICS_LOS = preload("res://scripts/mirror_physics_los_3d.gd")
@@ -16,6 +17,7 @@ const ROCK_ATLAS = preload("res://assets/neutral_rock_56x36_5view.png")
 const MENU_SCENE: String = "res://scenes/menu.tscn"
 
 var sim
+var command_gateway
 var camera: Camera3D
 var world_root: Node3D
 var terrain_physics_root: Node3D
@@ -77,6 +79,10 @@ func _ready() -> void:
     else:
         sim.setup(42, ["bot", "bot"] if spectator else ["human", "bot"])
     fog = FOG_SCRIPT.new()
+    command_gateway = GATEWAY.new()
+    command_gateway.configure(sim, "local-mirror-%d" % sim.seed)
+    if not spectator and not replay_mode:
+        command_gateway.bind_peer(1, 0)
     _build_scene()
     _sync_visuals()
 
@@ -386,10 +392,10 @@ func _hud_command(action: String) -> void:
         info = "Place Barracks on clear ground · Esc cancels"
     elif action == "stop":
         for id in selected_ids:
-            sim.issue_command(0, "stop", id)
+            _issue_human_order("stop", id)
         info = "Selected units stopped"
     else:
-        info = "Production queued" if sim.issue_command(0, action, selected_id) else "Order rejected: check Matter and production queue"
+        info = "Production queued" if _issue_human_order(action, selected_id) else "Order rejected: check Matter and production queue"
     _sync_visuals()
 
 func _toggle_pause() -> void:
@@ -574,6 +580,24 @@ func _select_box(from_screen: Vector2, to_screen: Vector2,
                 selected_ids.append(id)
     selected_id = selected_ids.back() if not selected_ids.is_empty() else -1
 
+# Local commands use the same peer-bound envelope validation as a future
+# ENet host. Flush synchronously for input responsiveness and legacy Godot
+# GUI smoke tests; the actual LAN host will batch at tick boundaries.
+func _issue_human_order(action: String, actor_id: int, arg: Variant = null) -> bool:
+    if spectator or command_gateway == null or not command_gateway.peer_slots.has(1):
+        return false
+    var seq: int = int(command_gateway.last_sequence[1]) + 1
+    var envelope: Dictionary = GATEWAY.encode_order(
+        command_gateway.match_id, seq, sim.tick, action, actor_id, arg)
+    var queued: Dictionary = command_gateway.submit_from_peer(1, envelope)
+    if not bool(queued["accepted"]):
+        return false
+    var results: Array[Dictionary] = command_gateway.flush_tick()
+    for result in results:
+        if int(result["sequence"]) == seq and int(result["slot_id"]) == 0:
+            return bool(result["accepted"])
+    return false
+
 func _issue_group_order(cell: Vector2i) -> int:
     var applied: int = 0
     var target: int = _entity_near(cell, 1)
@@ -584,10 +608,10 @@ func _issue_group_order(cell: Vector2i) -> int:
             continue
         var kind: String = str(sim.entities[id]["kind"])
         if target >= 0:
-            if kind == "rifleman" and sim.issue_command(0, "attack", id, target):
+            if kind == "rifleman" and _issue_human_order("attack", id, target):
                 applied += 1
         elif source_id != "":
-            if kind == "worker" and sim.issue_command(0, "gather", id, source_id):
+            if kind == "worker" and _issue_human_order("gather", id, source_id):
                 applied += 1
         elif kind in ["worker", "rifleman"]:
             # Distinct nearby arrival tiles; the authoritative command API
@@ -605,7 +629,7 @@ func _issue_group_order(cell: Vector2i) -> int:
                         var destination: Vector2i = cell + Vector2i(dx, dy)
                         if chosen_destinations.has(destination) or sim._blocked(destination):
                             continue
-                        if sim.issue_command(0, "move", id, destination):
+                        if _issue_human_order("move", id, destination):
                             chosen_destinations[destination] = id
                             applied += 1
                             accepted = true
@@ -646,10 +670,10 @@ func _unhandled_input(event: InputEvent) -> void:
                 info = "Choose Barracks location with left click"
         elif event.is_action_pressed("rts_train_worker"):
             if not spectator and sim.entities.has(selected_id):
-                info = "Worker queued" if sim.issue_command(0, "train_worker", selected_id) else "Cannot train Worker"
+                info = "Worker queued" if _issue_human_order("train_worker", selected_id) else "Cannot train Worker"
         elif event.is_action_pressed("rts_train_rifleman"):
             if not spectator and sim.entities.has(selected_id):
-                info = "Rifleman queued" if sim.issue_command(0, "train_rifleman", selected_id) else "Cannot train Rifleman"
+                info = "Rifleman queued" if _issue_human_order("train_rifleman", selected_id) else "Cannot train Rifleman"
     elif event is InputEventMouseButton:
         if event.pressed and event.button_index in [
                 MOUSE_BUTTON_WHEEL_UP, MOUSE_BUTTON_WHEEL_DOWN]:
@@ -671,9 +695,7 @@ func _unhandled_input(event: InputEvent) -> void:
                 var cell: Vector2i = _cell_at_mouse(event.position)
                 if build_mode and sim.entities.has(selected_id):
                     if sim._in_bounds(cell):
-                        info = "Barracks ordered" if sim.issue_command(
-                            0, "build_barracks", selected_id, cell
-                        ) else "Invalid site or insufficient Matter"
+                        info = "Barracks ordered" if _issue_human_order("build_barracks", selected_id, cell) else "Invalid site or insufficient Matter"
                     build_mode = false
                 elif drag_moved:
                     _select_box(drag_start, event.position,

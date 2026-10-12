@@ -76,6 +76,10 @@ func _run() -> void:
     if str(sim.entities[workers[0]]["order"]) != "move" or str(sim.entities[workers[1]]["order"]) != "move":
         _fail("Movement orders did not reach shared simulation")
         return
+    var gateway = game.get("command_gateway")
+    if gateway == null or gateway.accepted_log.size() < 2:
+        _fail("Human group commands bypassed peer-bound authoritative gateway")
+        return
 
     # Both workers may gather from the same physical Matter source.
     sent = game._issue_group_order(Vector2i(17, 10))

@@ -1,5 +1,24 @@
 # SCALFAGUS — Coding-Agent Contract
 
+## MVP0 HOST-BOUND COMMAND GATEWAY (UNVERIFIED FEATURE BRANCH)
+
+P0 network acceptance (M0-07, CODE-GAP-08/09) requires one
+authoritative `MirrorMatchState` hosted in Godot; never accept `slot_id`,
+HP, Matter or physics from remote peers. The new
+`MirrorCommandGateway` accepts only versioned primitive intent with
+strict monotonic sequence; **slot is looked up from the actual
+authenticated sender peer ID**. Every authoritative tick is flushed
+in `tick → slot → sequence` order before advancing match state. A
+fog-filtered `observe_for_slot` must never include unseen enemy
+IDs/positions, even as friendly target metadata. Local GUI uses the
+same gateway with synchronous commit; multiplayer transport/client
+visualization is still absent, so **never call H-H playable** yet.
+Run `mirror_gateway_smoke.gd` under real Godot, and maintain
+the existing verified H-C/C-C tests. No gameplay costs or balance
+changes under network work. Details:
+`docs/MVP0-AUTHORITATIVE-COMMAND-GATEWAY-2026-10-12.md`.
+
+
 ## MVP0 BARRACKS INTERRUPTION / REPLAY v2 — LOCAL QA REQUIRED
 
 `MirrorMatchState` now explicitly releases a 3×3 Barracks reservation on
