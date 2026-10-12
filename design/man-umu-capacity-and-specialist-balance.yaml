@@ -14,6 +14,9 @@ UMU:
   type: Universal_Man_Unit
   owner_philosophy: lightweight_flexible_multifunction_generalist
   one_active_job_at_a_time: DEC-041
+  MAN_specialist_machine_roster_DEC_045: design/man-nine-machines-crews-and-autonomy.yaml
+  human_operator_or_onboard_AI_allowed_when_qualified_fitted: true
+  controller_switch_preserves_actual_passengers_and_cargo: true
   actual_transforming_belt_wings: 2
   capacity:
     profiles_mutually_exclusive: [troop_transport, mixed_resource_cargo, monotypic_resource_cargo, empty]

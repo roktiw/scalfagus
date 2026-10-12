@@ -15,6 +15,11 @@ PR #14 replay PASS predates PR #15 and this change. Read
 `docs/MVP0-PHYSICS-LOS-AUDIT-2026-10-12.md`.
 
 
+## MAN NINE MACHINE FAMILIES / CREW OR AI — DEC-045 (POST-MVP0)
+
+Read [MAN pilots, autonomous machines and nine candidate families](design/man-nine-machines-crews-and-autonomy-2026-10-12.md) and [typed contract](design/man-nine-machines-crews-and-autonomy.yaml). Owner confirms **MAN machines can be physically piloted by humans AND can operate without any human by onboard AI**; requested examples are **mechs, tanks and high-speed bolides**, with **NINE distinct machine types** as the desired total. The initial list **UMU, bolide, APC, tank, mech, artillery, anti-air, heavy drill and heavy hauler** is assistant's **nine-including-UMU candidate**, not yet an approved exact catalogue; whether the nine count includes UMU remains explicitly open. Pilot actor, machine actor, AI controller and future player possession stay separate identities/control routes. Reuse **DEC-044 Machine Operator faculty** for qualified ground driving, Aviation for aircraft, Navy for eligible ships; **do not add a tenth faculty**. Human pilot may board a real cockpit but AI can run a machine alone with real controller hardware/power. Controller change preserves actor IDs, HP, passengers, ammo, Energy and orders; player manual takeover preempts AI and cannot spawn a copy. Respect Full Manual / Semi Auto / Full Auto permissions. Dedicated machines must materially outperform UMU in their chosen task under DEC-042. **No feature enters the DEC-033 first MAN mirror build.**
+
+
 
 ## MVP0 3×3 FOOTPRINT & 2M WORLD GEOMETRY (DRAFT, UNVERIFIED)
 

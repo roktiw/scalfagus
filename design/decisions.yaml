@@ -1,6 +1,6 @@
 schema_version: 1
 project: scalfagus
-version: 3.5
+version: 3.6
 decisions:
   - id: DEC-001
     status: approved
@@ -944,6 +944,36 @@ decisions:
     specification: design/man-three-academies-nine-faculties-2026-10-12.md
     data_specification: design/man-three-academies-nine-faculties.yaml
 
+
+  - id: DEC-045
+    status: owner_human_operators_AND_crewless_AI_machines_nine_distinct_kinds_desired_roster_candidates
+    topic: MAN_nine_machine_families_operator_crew_AI_autonomy_and_future_direct_vehicle_possession
+    resolution: >-
+      MAN can have real human-operated machines, including mechs,
+      tanks and fast bolides, AND those same machine chassis can
+      operate independently with onboard AI rather than requiring a
+      human crew. The owner wants nine distinct machine kinds; their
+      exact catalogue is open. A proposed initial nine-family slate
+      counts UMU plus eight stronger role-specific specialist
+      vehicles: bolide, APC, tank, combat mech, mobile artillery,
+      anti-air vehicle, heavy drill and heavy hauler; whether the
+      count includes UMU itself remains open for owner approval.
+      Machine, human actor, onboard AI decision system and future
+      player possession are distinct control/identity concepts.
+      Human piloting requires the compatible real Machine Operator
+      qualification/equipment from DEC-044's existing Technical
+      Academy; optional flight/ship qualifications remain separate.
+      AI may perform tasks with zero humans aboard, respecting
+      FULL MANUAL/SEMI AUTO/FULL AUTO owner policies. Direct player
+      possession has priority over agent decisions, does not create
+      a second unit or human, and is a future optional FPP/TPP mode.
+      Unique actor/machine identity, fuel, visibility, health,
+      inventories and permits persist through boarding or handoff.
+      Purpose-built specialists should beat UMU at their one role
+      as required by DEC-042. No nine-machine roster or piloting
+      support belongs in DEC-033 first four-template MAN mirror.
+    specification: design/man-nine-machines-crews-and-autonomy-2026-10-12.md
+    data_specification: design/man-nine-machines-crews-and-autonomy.yaml
 
 migration_required:
   - design/economy.yaml

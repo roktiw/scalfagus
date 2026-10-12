@@ -6,6 +6,10 @@ date: "2026-10-11"
 language: en
 status: owner_directed_product_vision_implementation_proposal_unimplemented
 narrative: design/command-autonomy-modes-2026-10-11.md
+future_crewed_AND_uncrewed_MAN_machine_contract_DEC_045: design/man-nine-machines-crews-and-autonomy.yaml
+vehicle_human_or_AI_pilot_is_separate_axis_from_global_manual_semi_auto_full_auto: true
+direct_player_vehicle_possession_has_higher_priority_than_local_vehicle_AI: true
+no_human_unit_is_spawned_for_uncrewed_AI_control: true
 release_guard:
   current: mvp_0_1
   decision: DEC-033
