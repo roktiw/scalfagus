@@ -596,7 +596,13 @@ func _process(delta: float) -> void:
         camera_center.x = clampf(camera_center.x, 24.0, 104.0)
         camera_center.z = clampf(camera_center.z, 24.0, 104.0)
         _position_camera()
-    if not sim.finished and speed > 0:
+    # Replay has to execute its *terminal* tick's recorded attempts and
+    # verify both checksums even if sim.finished was already set by combat.
+    # Otherwise a complete saved victory stalls one tick before verification.
+    var may_advance: bool = not sim.finished
+    if replay_mode:
+        may_advance = replay_session != null and replay_session.sim != null and not replay_session.finished
+    if may_advance and speed > 0:
         time_accumulator += delta * float(speed)
         var steps: int = 0
         while time_accumulator >= TIMING.TICK_SECONDS and steps < 32:
