@@ -6,6 +6,8 @@ const MATCH = preload("res://scripts/mirror_match_state.gd")
 const TIMING = preload("res://scripts/mirror_timing.gd")
 const GEOM = preload("res://scripts/mirror_geometry.gd")
 const PHYSICS_LOS = preload("res://scripts/mirror_physics_los_3d.gd")
+const FOG_SCRIPT = preload("res://scripts/mirror_fog_of_war.gd")
+const FOG_OVERLAY = preload("res://scripts/mirror_fog_overlay.gd")
 const VIEW_SCRIPT = preload("res://scripts/directional_sprite_5.gd")
 const WORKER_ATLAS = preload("res://assets/man_worker_32x48_idle_5view.png")
 const LANDER_ATLAS = preload("res://assets/man_lander_128x128_unverified_5view.png")
@@ -19,6 +21,9 @@ var world_root: Node3D
 var terrain_physics_root: Node3D
 var unit_nodes: Dictionary = {}
 var source_nodes: Dictionary = {}
+var terrain_visual_nodes: Dictionary = {}
+var fog: MirrorFogOfWar
+var fog_overlay: MirrorFogOverlay
 var selected_id: int = -1
 var selected_ids: Array[int] = []
 var group_markers: Dictionary = {}
@@ -45,6 +50,7 @@ func _ready() -> void:
         camera_center = Vector3(63.0, 0.0, 63.0)
         zoom_size = 152.0
     sim.setup(42, ["bot", "bot"] if spectator else ["human", "bot"])
+    fog = FOG_SCRIPT.new()
     _build_scene()
     _sync_visuals()
 
@@ -164,10 +170,12 @@ func _build_scene() -> void:
             var tree_sprite: Node3D = _pixel_actor(
                 TREE_ATLAS, Vector2i(40, 64), 0.052, Color.WHITE, true)
             tree_sprite.position = GEOM.tile_to_world(cell)
+            terrain_visual_nodes[cell] = tree_sprite
         else:
             var pond := _block(Vector3(2.0, 0.14, 2.0),
                 Color("#296d9d"), world_root)
             pond.position = GEOM.tile_to_world(cell, 0.08)
+            terrain_visual_nodes[cell] = pond
 
     for sid in sim.sources.keys():
         var source: Dictionary = sim.sources[sid]
@@ -176,6 +184,13 @@ func _build_scene() -> void:
         var p: Vector2i = source["pos"]
         ore.position = GEOM.tile_to_world(p)
         source_nodes[sid] = ore
+
+    # One MultiMesh for unknown tiles and one for explored out-of-sight tiles.
+    # Physics, replay and MatchState remain independent of presentation fog.
+    fog_overlay = FOG_OVERLAY.new()
+    fog_overlay.name = "FogOfWar"
+    world_root.add_child(fog_overlay)
+    fog_overlay.set_spectator(spectator)
 
     camera = Camera3D.new()
     camera.projection = Camera3D.PROJECTION_ORTHOGONAL
@@ -250,6 +265,19 @@ func _unit_shape(e: Dictionary) -> Vector3:
             return Vector3(0.95, 1.5, 0.95)
 
 func _sync_visuals() -> void:
+    if not spectator and fog != null:
+        if fog.refresh(sim, 0):
+            fog_overlay.render(fog, 0)
+    for cell in terrain_visual_nodes.keys():
+        var terrain_actor: Node3D = terrain_visual_nodes[cell]
+        var explored: bool = spectator or fog.is_discovered(cell, 0)
+        terrain_actor.visible = explored
+        if explored and sim.terrain.get(cell, "") == "tree":
+            var visual: Node = terrain_actor.get_node_or_null("Visual")
+            if visual != null:
+                var sprite: Sprite3D = visual.get("sprite") as Sprite3D
+                if sprite != null:
+                    sprite.modulate = Color.WHITE if spectator or fog.is_visible(cell, 0) else Color(0.42, 0.50, 0.58)
     for id in unit_nodes.keys():
         if not sim.entities.has(id):
             (unit_nodes[id] as Node).queue_free()
@@ -264,7 +292,12 @@ func _sync_visuals() -> void:
         v.visible = spectator or int(e["owner"]) == 0 or sim.can_see(0, p)
     for sid in source_nodes.keys():
         var source: Dictionary = sim.sources[sid]
-        (source_nodes[sid] as Node3D).visible = int(source["stock"]) > 0
+        # Ore is a live stock indicator. Never reveal an unseen source or
+        # its depletion status through sprite visibility outside team LOS.
+        (source_nodes[sid] as Node3D).visible = (
+            int(source["stock"]) > 0 and
+            (spectator or fog.is_visible(source["pos"], 0))
+        )
     # Reconcile all selected references after unit death or production.
     var live_selection: Array[int] = []
     for id in selected_ids:
@@ -345,6 +378,8 @@ func _resource_near(cell: Vector2i) -> String:
     for sid in sim.sources.keys():
         var s: Dictionary = sim.sources[sid]
         var p: Vector2i = s["pos"]
+        if not spectator and not fog.is_visible(p, 0):
+            continue
         if absi(p.x - cell.x) + absi(p.y - cell.y) <= 1 and int(s["stock"]) > 0:
             return str(sid)
     return ""
