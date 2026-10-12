@@ -33,6 +33,7 @@ var speed: int = 1
 const COMMAND_HUD = preload("res://scripts/mirror_command_hud.gd")
 const REPLAY_ARCHIVE = preload("res://scripts/mirror_replay_archive.gd")
 const REPLAY_SESSION = preload("res://scripts/mirror_replay_session.gd")
+const RESULT_OVERLAY = preload("res://scripts/mirror_match_result_overlay.gd")
 var command_hud: Control
 var paused: bool = false
 var pause_overlay: Control
@@ -40,6 +41,7 @@ var settings_overlay: Control
 var replay_mode: bool = false
 var replay_session: MirrorReplaySession
 var replay_save_status: Label
+var match_result_overlay: MirrorMatchResultOverlay
 var hud: Label
 var help_label: Label
 var selection_marker: MeshInstance3D
@@ -311,6 +313,37 @@ func _sync_visuals() -> void:
         (group_markers[id] as Node3D).position = GEOM.tile_to_world(p, 0.24)
         (group_markers[id] as Node3D).scale = Vector3(3.0, 1.0, 3.0) if GEOM.is_building(str(sim.entities[id]["kind"])) else Vector3.ONE
     command_hud.refresh()
+    _show_result_if_finished()
+
+func _show_result_if_finished() -> void:
+    if not sim.finished or replay_mode or is_instance_valid(match_result_overlay):
+        return
+    # MatchState alone determined win/defeat/draw. The modal is UI only and
+    # never awards units/Matter or generates extra simulation events.
+    match_result_overlay = RESULT_OVERLAY.new()
+    command_hud.add_child(match_result_overlay)
+    match_result_overlay.configure(sim, spectator)
+    match_result_overlay.play_again_requested.connect(_play_again)
+    match_result_overlay.main_menu_requested.connect(_return_to_menu)
+    match_result_overlay.save_replay_requested.connect(_save_finished_replay)
+
+func _save_finished_replay() -> void:
+    if spectator or replay_mode or not sim.finished:
+        return
+    _save_current_replay()
+    if is_instance_valid(match_result_overlay):
+        match_result_overlay.set_feedback(info)
+
+func _play_again() -> void:
+    # Same human/bot preset, fresh sim/map and no carried orders or old FOW.
+    ProjectSettings.set_setting(
+        "scalfagus/mirror_mode", "bot_bot" if spectator else "human_bot"
+    )
+    get_tree().change_scene_to_file("res://scenes/mirror_match.tscn")
+
+func _return_to_menu() -> void:
+    ProjectSettings.set_setting("scalfagus/mirror_mode", "human_bot")
+    get_tree().change_scene_to_file(MENU_SCENE)
 
 func _hud_command(action: String) -> void:
     if spectator or replay_mode or sim.finished or paused or not sim.entities.has(selected_id):
@@ -327,6 +360,8 @@ func _hud_command(action: String) -> void:
     _sync_visuals()
 
 func _toggle_pause() -> void:
+    if is_instance_valid(match_result_overlay):
+        return
     if settings_overlay != null:
         return
     if pause_overlay != null:
@@ -543,6 +578,8 @@ func _issue_group_order(cell: Vector2i) -> int:
     return applied
 
 func _unhandled_input(event: InputEvent) -> void:
+    if is_instance_valid(match_result_overlay):
+        return
     if paused and not (event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE):
         return
     if replay_mode and event is InputEventKey and event.pressed and not event.echo:
@@ -627,7 +664,7 @@ func _unhandled_input(event: InputEvent) -> void:
             selection_box.visible = true
 
 func _process(delta: float) -> void:
-    if paused:
+    if paused or is_instance_valid(match_result_overlay):
         return
     var shift := Vector3.ZERO
     if not spectator:
